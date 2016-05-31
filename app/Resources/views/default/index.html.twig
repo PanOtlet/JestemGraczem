@@ -42,26 +42,40 @@
     {{ parent() }}
     <script src="{{ asset('assets/js/jquery.rss.js') }}"></script>
     <script>
+
+        var sites = [
+            {
+                "name": "jestemgraczem",
+                "url": "http://blog.jestemgraczem.pl/rss"
+            },
+            {
+                "name": "23games",
+                "url": "http://23games.pl/feed"
+            }
+        ]
+
         jQuery(function ($) {
-            $("#jestemgraczem").rss("http://blog.jestemgraczem.pl/rss", {
-                limit: 12,
-                effect: 'slideFastSynced',
-                offsetStart: false,
-                offsetEnd: false,
-                ssl: false,
-                layoutTemplate: '{entries}',
-                entryTemplate: '' +
-                '<div class="panel panel-info">' +
-                '<div class="panel-heading">' +
-                '<h3 class="panel-title">{title} <small>{date}</small></h3>' +
-                '</div>' +
-                '<div class="panel-body">' +
-                '{shortBodyPlain}...' +
-                '<a href="{{ path('redirect') }}?url={url}" target="_blank">Czytaj dalej...</a>' +
-                '</div>' +
-                '</div>',
-                dateFormat: 'HH:mm D/MM/YYYY',
-            });
+            for (var x in sites) {
+                $("#"+x['name']).rss(x['url'], {
+                    limit: 12,
+                    effect: 'slideFastSynced',
+                    offsetStart: false,
+                    offsetEnd: false,
+                    ssl: false,
+                    layoutTemplate: '{entries}',
+                    entryTemplate: '' +
+                    '<div class="panel panel-info">' +
+                    '<div class="panel-heading">' +
+                    '<h3 class="panel-title">{title} <small>{date}</small></h3>' +
+                    '</div>' +
+                    '<div class="panel-body">' +
+                    '{shortBodyPlain}...' +
+                    '<a href="{{ path('redirect') }}?url={url}" target="_blank">Czytaj dalej...</a>' +
+                    '</div>' +
+                    '</div>',
+                    dateFormat: 'HH:mm D/MM/YYYY',
+                });
+            }
             $("#23games").rss("http://23games.pl/feed", {
                 limit: 12,
                 offsetStart: false,
