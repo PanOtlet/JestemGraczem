@@ -1,8 +1,18 @@
 {% extends 'base.html.twig' %}
 
 {% block content %}
-    <div class="row" id="jestemgraczem">
-        <h1>JestemGraczem</h1>
+    <div>
+        <ul class="nav nav-tabs" role="tablist">
+            <li role="presentation" class="active">
+                <a href="#jestemgraczem" aria-controls="home" role="tab" data-toggle="tab">Blog</a>
+            </li>
+        </ul>
+
+        <!-- Tab panes -->
+        <div class="tab-content">
+            <div role="tabpanel" class="tab-pane fade row active" id="jestemgraczem"></div>
+        </div>
+
     </div>
 {% endblock %}
 
