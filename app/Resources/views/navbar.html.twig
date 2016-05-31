@@ -34,8 +34,13 @@
                             <span class="caret"></span></a>
                         <ul class="dropdown-menu">
                             <li>
+                                <a href="{{ path('user',{'user': app.user.username}) }}">
+                                    <i class="fa fa-user" aria-hidden="true"></i> {{ 'profile.publicprofil'|trans({}, 'FOSUserBundle') }}
+                                </a>
+                            </li>
+                            <li>
                                 <a href="{{ path('fos_user_profile_show') }}">
-                                    <i class="fa fa-user" aria-hidden="true"></i> {{ 'profile.profil'|trans({}, 'FOSUserBundle') }}
+                                    <i class="fa fa-user-secret" aria-hidden="true"></i> {{ 'profile.profil'|trans({}, 'FOSUserBundle') }}
                                 </a>
                             </li>
                             <li>

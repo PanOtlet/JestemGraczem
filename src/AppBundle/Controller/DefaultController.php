@@ -30,7 +30,7 @@ class DefaultController extends Controller
     }
 
     /**
-     * @Route("/u/{user}", name="usersite")
+     * @Route("/u/{user}", name="user")
      */
     public function userSiteAction($user)
     {
