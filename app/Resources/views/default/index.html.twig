@@ -7,8 +7,7 @@
                 <a href="#jestemgraczem" aria-controls="home" role="tab" data-toggle="tab">Blog</a>
             </li>
             <li role="presentation">
-                <a href="#23games" aria-controls="home" role="tab" data-toggle="tab">23Games
-                    <span class="label label-danger">$</span></a>
+                <a href="#23games" aria-controls="home" role="tab" data-toggle="tab">23Games</a>
             </li>
             <li role="presentation" class="dropdown">
                 <a href="#" id="drop" class="dropdown-toggle"
@@ -25,10 +24,15 @@
         </ul>
 
         <div class="tab-content container">
-            <div role="tabpanel" class="tab-pane fade row active in" id="jestemgraczem"></div>
-            <div role="tabpanel" class="tab-pane fade row" id="23games"></div>
-            <div role="tabpanel" class="tab-pane fade row" id="cybersport"></div>
-            <div role="tabpanel" class="tab-pane fade row" id="cybersport"></div>
+            <div role="tabpanel" class="tab-pane fade row active in" id="jestemgraczem">
+                <h3>Blog</h3>
+            </div>
+            <div role="tabpanel" class="tab-pane fade row" id="23games">
+                <h3>23Games <span class="label label-danger">Sponsorowane</span></h3>
+            </div>
+            <div role="tabpanel" class="tab-pane fade row" id="cybersport">
+                <h3>Cybersport.pl</h3>
+            </div>
         </div>
     </div>
 {% endblock %}
@@ -46,7 +50,7 @@
                 ssl: false,
                 layoutTemplate: '{entries}',
                 entryTemplate: '' +
-                '<div class="panel panel-default">' +
+                '<div class="panel panel-info">' +
                 '<div class="panel-heading">' +
                 '<h3 class="panel-title">{title} <small>{date}</small></h3>' +
                 '</div>' +
@@ -82,7 +86,7 @@
                 ssl: false,
                 layoutTemplate: '{entries}',
                 entryTemplate: '' +
-                '<div class="panel panel-default">' +
+                '<div class="panel panel-info">' +
                 '<div class="panel-heading">' +
                 '<h3 class="panel-title">{title} <small>{date}</small></h3>' +
                 '</div>' +
