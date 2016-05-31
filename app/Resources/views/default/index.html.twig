@@ -1,12 +1,8 @@
 {% extends 'base.html.twig' %}
 
-{% block body %}
-    <div class="container">
-        <div class="jumbotron">
-            <div class="row" id="jestemgraczem">
-                <h1>JestemGraczem</h1>
-            </div>
-        </div>
+{% block content %}
+    <div class="row" id="jestemgraczem">
+        <h1>JestemGraczem</h1>
     </div>
 {% endblock %}
 
@@ -24,15 +20,15 @@
                 layoutTemplate: '{entries}',
                 entryTemplate: '' +
                 '<div class="col-md-3">' +
-                    '<div class="panel panel-default">' +
-                        '<div class="panel-heading">' +
-                            '<h3 class="panel-title">{title} <small>{date}</small></h3>' +
-                        '</div>' +
-                        '<div class="panel-body">' +
-                            '{shortBodyPlain}...' +
-                            '<a href="{{ path('redirect') }}?url={url}" target="_blank">Czytaj dalej...</a>' +
-                        '</div>' +
-                    '</div>' +
+                '<div class="panel panel-default">' +
+                '<div class="panel-heading">' +
+                '<h3 class="panel-title">{title} <small>{date}</small></h3>' +
+                '</div>' +
+                '<div class="panel-body">' +
+                '{shortBodyPlain}...' +
+                '<a href="{{ path('redirect') }}?url={url}" target="_blank">Czytaj dalej...</a>' +
+                '</div>' +
+                '</div>' +
                 '</div>',
                 dateFormat: 'HH:mm D/MM/YYYY',
             });
