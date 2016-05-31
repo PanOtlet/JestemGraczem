@@ -72,6 +72,17 @@ class User extends BaseUser
      *     groups={"Registration", "Profile"}
      * )
      */
+    protected $youtube = null;
+
+    /**
+     * @ORM\Column(type="string", nullable=true)
+     *
+     * @Assert\Length(
+     *     min=3,
+     *     minMessage="The name is too short.",
+     *     groups={"Registration", "Profile"}
+     * )
+     */
     protected $localization = null;
 
     public function __construct()
@@ -99,6 +110,11 @@ class User extends BaseUser
         return $this->twitch;
     }
 
+    public function getYouTube()
+    {
+        return $this->youtube;
+    }
+
     public function getLocalization()
     {
         return $this->localization;
@@ -122,6 +138,11 @@ class User extends BaseUser
     public function setTwitch($twitch)
     {
         $this->twitch = $twitch;
+    }
+
+    public function setYouTube($youtube)
+    {
+        $this->youtube = $youtube;
     }
 
     public function setLocalization($localization)

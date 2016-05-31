@@ -29,4 +29,18 @@ class DefaultController extends Controller
         return $this->redirect($_GET['url']);
     }
 
+    /**
+     * @Route("/u/{user}", name="usersite")
+     */
+    public function userSiteAction($user)
+    {
+        $user = $this->getDoctrine()->getRepository('AppBundle:User')->findOneBy(['username' => $user]);
+
+        if (!$user) {
+            return $this->redirectToRoute('homepage');
+        }
+
+        return $this->render('default/user.html.twig', ['user' => $user]);
+    }
+
 }

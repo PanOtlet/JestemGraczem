@@ -13,6 +13,7 @@ class ProfileFormType extends AbstractType
         $builder->add('battlenet');
         $builder->add('lol');
         $builder->add('twitch');
+        $builder->add('youtube');
         $builder->add('localization');
         $builder->remove('email');
         $builder->remove('username');

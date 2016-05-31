@@ -23,7 +23,8 @@ profile:
         steam: Steam
         battlenet: 'BattleTag'
         lol: 'LoL'
-        twitch: 'Konto Twitch'
+        twitch: 'Twitch'
+        youtube: 'YouTube'
         localization: 'Lokalizacja'
     edit:
         submit: 'Edytuj użytkownika'

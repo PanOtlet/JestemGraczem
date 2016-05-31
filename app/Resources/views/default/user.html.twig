@@ -1,0 +1,16 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ user.username }}{% endblock %}
+
+{% block content %}
+    {{ user.username }}<br/>
+    {{ user.battlenet }}<br/>
+    {{ user.lol }}<br/>
+    {{ user.steam }}<br/>
+    {{ user.twitch }}<br/>
+    {{ user.youtube }}
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+{% endblock %}
