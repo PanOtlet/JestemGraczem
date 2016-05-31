@@ -26,7 +26,16 @@
 
     <main class="container">
         <div class="jumbotron">
-            {% block content %}{% endblock %}
+            <div class="row">
+                <div class="col-md-8">
+                    <div class="container-fluid">
+                        {% block content %}{% endblock %}
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    SIDEBAR
+                </div>
+            </div>
         </div>
     </main>
 
