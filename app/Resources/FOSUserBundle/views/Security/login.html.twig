@@ -27,10 +27,12 @@
                            class="form-control"
                            placeholder="Password">
                 </div>
-                <div class="checkbox">
-                    <input type="checkbox" id="remember_me" name="_remember_me" value="on"/>
-                    <label for="remember_me">{{ 'security.login.remember_me'|trans }}</label>
+                <div class="togglebutton">
+                    <label>
+                        <input type="checkbox" id="remember_me" name="_remember_me" checked="">{{ 'security.login.remember_me'|trans }}
+                    </label>
                 </div>
+
                 <input type="submit" id="_submit" name="_submit" value="{{ 'security.login.submit'|trans }}"
                        class="btn btn-danger"/>
             </form>
