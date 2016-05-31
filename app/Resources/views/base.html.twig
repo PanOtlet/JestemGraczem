@@ -1,29 +1,51 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        {{ sonata_seo_metadatas() }}
+<head>
+    {{ sonata_seo_metadatas() }}
 
-        <title>{% block title %}Strona główna{% endblock %} :: JestemGraczem.pl</title>
+    <title>{% block title %}Strona główna{% endblock %} :: JestemGraczem.pl</title>
 
-        {% block stylesheets %}
-            <link rel="stylesheet" href="{{ asset('assets/css/bootstrap.min.css') }}">
-            {#<link rel="stylesheet" href="{{ asset('assets/css/bootstrap-theme.min.css') }}">#}
-            <link rel="stylesheet" href="{{ asset('assets/css/material.min.css') }}">
-            <link rel="stylesheet" href="{{ asset('assets/css/ripples.min.css') }}">
-        {% endblock %}
+    {% block stylesheets %}
+        <link rel="stylesheet" href="{{ asset('assets/css/bootstrap.min.css') }}">
+        {#<link rel="stylesheet" href="{{ asset('assets/css/bootstrap-theme.min.css') }}">#}
+        <link rel="stylesheet" href="{{ asset('assets/css/material.min.css') }}">
+        <link rel="stylesheet" href="{{ asset('assets/css/ripples.min.css') }}">
+        <link rel="stylesheet" href="{{ asset('assets/css/style.css') }}">
+    {% endblock %}
 
-        {% block head %}{% endblock %}
+    {% block head %}{% endblock %}
 
-        <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
-    </head>
-    <body>
-        {% block body %}{% endblock %}
+    <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}"/>
+</head>
+<body>
+<div id="background"></div>
 
-        {% block javascripts %}
-            <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-            <script src="{{ asset('assets/js/bootstrap.min.js') }}"></script>
-            <script src="{{ asset('assets/js/material.min.js') }}"></script>
-            <script src="{{ asset('assets/js/ripples.min.js') }}"></script>
-        {% endblock %}
-    </body>
+{% include 'navbar.html.twig' %}
+
+{% block body %}
+
+    <main class="container">
+        {% block content %}{% endblock %}
+    </main>
+
+{% endblock %}
+
+{% block javascripts %}
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/trianglify/0.4.0/trianglify.min.js"></script>
+    <script src="{{ asset('assets/js/bootstrap.min.js') }}"></script>
+    <script src="{{ asset('assets/js/material.min.js') }}"></script>
+    <script src="{{ asset('assets/js/ripples.min.js') }}"></script>
+    <script>
+        var something = document.getElementById('background');
+        var dimensions = something.getClientRects()[0];
+        var pattern = Trianglify({
+            width: dimensions.width - 10,
+            height: dimensions.height - 10
+        });
+        something.appendChild(pattern.canvas());
+        $.material.init();
+    </script>
+{% endblock %}
+</body>
 </html>

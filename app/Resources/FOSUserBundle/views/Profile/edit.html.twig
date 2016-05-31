@@ -1,0 +1,10 @@
+{% extends "FOSUserBundle::layout.html.twig" %}
+
+{% form_theme form ':Form:form.html.twig' %}
+
+{% block title %}Edycja profilu{% endblock %}
+{% block titlemeta %}Edycja profilu{% endblock %}
+
+{% block fos_user_content %}
+{% include "FOSUserBundle:Profile:edit_content.html.twig" %}
+{% endblock fos_user_content %}
