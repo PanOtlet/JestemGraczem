@@ -3,7 +3,7 @@
 {% block body %}
     <div class="container">
         <div class="row" id="jestemgraczem">
-
+            <h1>JestemGraczem</h1>
         </div>
     </div>
 {% endblock %}
@@ -14,13 +14,24 @@
     <script>
         jQuery(function ($) {
             $("#jestemgraczem").rss("http://blog.jestemgraczem.pl/rss", {
-                limit: 5,
+                limit: 12,
                 effect: 'slideFastSynced',
                 offsetStart: false,
                 offsetEnd: false,
                 ssl: false,
                 layoutTemplate: '{entries}',
-                entryTemplate: '<div class="col-md-3"><h4>{title} <small>{date}</small></h4><p>{shortBodyPlain}... <a href="{{ path('redirect') }}?url={url}" target="_blank">Czytaj dalej...</a></p></div>',
+                entryTemplate: '' +
+                '<div class="col-md-3">' +
+                    '<div class="panel panel-default">' +
+                        '<div class="panel-heading">' +
+                            '<h3 class="panel-title">{title} <small>{date}</small></h3>' +
+                        '</div>' +
+                        '<div class="panel-body">' +
+                            '{shortBodyPlain}...' +
+                            '<a href="{{ path('redirect') }}?url={url}" target="_blank">Czytaj dalej...</a>' +
+                        '</div>' +
+                    '</div>' +
+                '</div>',
                 dateFormat: 'HH:mm D/MM/YYYY',
             });
         });
