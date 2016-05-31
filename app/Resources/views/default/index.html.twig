@@ -45,18 +45,26 @@
 
         var sites = [
             {
-                name: "jestemgraczem",
-                url: "http://blog.jestemgraczem.pl/rss"
+                name: "#jestemgraczem",
+                url: "http://blog.jestemgraczem.pl/rss",
+                css: "panel-info"
             },
             {
-                name: "23games",
-                url: "http://23games.pl/feed"
+                name: "#23games",
+                url: "https://23games.pl/feed",
+                css: "panel-danger"
+            },
+            {
+                name: "#cybersport",
+                url: "http://cybersport.pl/feed",
+                css: "panel-warning"
             }
-        ]
+        ];
 
         jQuery(function ($) {
-            for (var x in sites) {
-                $("#"+x['name']).rss(x['url'], {
+            for (var i=0;i<sites.length;i++) {
+                console.log(sites[i]['name']+" "+sites[i]['url']);
+                $(sites[i]['name']).rss(sites[i]['url'], {
                     limit: 12,
                     effect: 'slideFastSynced',
                     offsetStart: false,
@@ -64,7 +72,7 @@
                     ssl: false,
                     layoutTemplate: '{entries}',
                     entryTemplate: '' +
-                    '<div class="panel panel-info">' +
+                    '<div class="panel '+sites[i]['css']+'">' +
                     '<div class="panel-heading">' +
                     '<h3 class="panel-title">{title} <small>{date}</small></h3>' +
                     '</div>' +
@@ -76,42 +84,6 @@
                     dateFormat: 'HH:mm D/MM/YYYY',
                 });
             }
-            $("#23games").rss("http://23games.pl/feed", {
-                limit: 12,
-                offsetStart: false,
-                offsetEnd: false,
-                ssl: false,
-                layoutTemplate: '{entries}',
-                entryTemplate: '' +
-                '<div class="panel panel-default">' +
-                '<div class="panel-heading">' +
-                '<h3 class="panel-title">{title} <small>{date}</small></h3>' +
-                '</div>' +
-                '<div class="panel-body">' +
-                '{shortBodyPlain}...' +
-                '<a href="{{ path('redirect') }}?url={url}" target="_blank">Czytaj dalej...</a>' +
-                '</div>' +
-                '</div>',
-                dateFormat: 'HH:mm D/MM/YYYY',
-            });
-            $("#cybersport").rss("http://cybersport.pl/feed", {
-                limit: 12,
-                offsetStart: false,
-                offsetEnd: false,
-                ssl: false,
-                layoutTemplate: '{entries}',
-                entryTemplate: '' +
-                '<div class="panel panel-info">' +
-                '<div class="panel-heading">' +
-                '<h3 class="panel-title">{title} <small>{date}</small></h3>' +
-                '</div>' +
-                '<div class="panel-body">' +
-                '{shortBodyPlain}...' +
-                '<a href="{{ path('redirect') }}?url={url}" target="_blank">Czytaj dalej...</a>' +
-                '</div>' +
-                '</div>',
-                dateFormat: 'HH:mm D/MM/YYYY',
-            });
         });
     </script>
 {% endblock %}
