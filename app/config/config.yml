@@ -6,11 +6,11 @@ imports:
 # Put parameters here that don't need to change on each machine where the app is deployed
 # http://symfony.com/doc/current/best_practices/configuration.html#application-related-configuration
 parameters:
-    locale: en
+    locale: pl
 
 framework:
     #esi:             ~
-    translator:       ~
+    translator:      ~
 #    translator:      { fallbacks: ["%locale%"] }
     secret:          "%secret%"
     router:
@@ -26,7 +26,6 @@ framework:
     trusted_hosts:   ~
     trusted_proxies: ~
     session:
-        # http://symfony.com/doc/current/reference/configuration/framework.html#handler-id
         handler_id:  session.handler.native_file
         save_path:   "%kernel.root_dir%/../var/sessions/%kernel.environment%"
     fragments:       ~
@@ -48,12 +47,6 @@ doctrine:
         user:     "%database_user%"
         password: "%database_password%"
         charset:  UTF8
-        # if using pdo_sqlite as your database driver:
-        #   1. add the path in parameters.yml
-        #     e.g. database_path: "%kernel.root_dir%/data/data.db3"
-        #   2. Uncomment database_path in parameters.yml.dist
-        #   3. Uncomment next line:
-        #     path:     "%database_path%"
 
     orm:
         auto_generate_proxy_classes: "%kernel.debug%"
@@ -68,11 +61,27 @@ swiftmailer:
     password:  "%mailer_password%"
     spool:     { type: memory }
 
+#FOSUserBundle
 fos_user:
     db_driver: orm
     firewall_name: main
     user_class: AppBundle\Entity\User
+    profile:
+        form:
+            type: AppBundle\Form\ProfileFormType
+    registration:
+        confirmation:
+            enabled: true
+    resetting:
+        email:
+            from_email:
+                address:        noreply@jestemgraczem.pl
+                sender_name:    Reset JestemGraczem.pl
+    from_email:
+        address:        noreply@jestemgraczem.pl
+        sender_name:    JestemGraczem
 
+#SonataSeoBundle
 sonata_seo:
     encoding:         UTF-8
     page:
