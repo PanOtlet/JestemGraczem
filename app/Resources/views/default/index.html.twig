@@ -8,10 +8,9 @@
             </li>
         </ul>
 
-        <div class="tab-content">
+        <div class="tab-content container">
             <div role="tabpanel" class="tab-pane fade row active in" id="jestemgraczem"></div>
         </div>
-
     </div>
 {% endblock %}
 
@@ -28,7 +27,6 @@
                 ssl: false,
                 layoutTemplate: '{entries}',
                 entryTemplate: '' +
-                '<div class="col-md-4">' +
                 '<div class="panel panel-default">' +
                 '<div class="panel-heading">' +
                 '<h3 class="panel-title">{title} <small>{date}</small></h3>' +
@@ -36,7 +34,6 @@
                 '<div class="panel-body">' +
                 '{shortBodyPlain}...' +
                 '<a href="{{ path('redirect') }}?url={url}" target="_blank">Czytaj dalej...</a>' +
-                '</div>' +
                 '</div>' +
                 '</div>',
                 dateFormat: 'HH:mm D/MM/YYYY',
