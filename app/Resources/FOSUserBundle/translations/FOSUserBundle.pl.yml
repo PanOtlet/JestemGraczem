@@ -17,6 +17,7 @@ security:
         submit: Zaloguj
 profile:
     profil: Profil
+    publicprofil: Profil publiczny
     show:
         username: 'Nazwa użytkownika'
         email: E-mail
