@@ -19,7 +19,7 @@ class DefaultController extends Controller
     public function indexAction(Request $request)
     {
         if (!$this->isGranted('IS_AUTHENTICATED_REMEMBERED')) {
-            return $this->render('default/index.html.twig');
+            return $this->render('default/index.html.twig',['rss'=>[]]);
         }
 
         $rss = $this->getDoctrine()->getRepository('AppBundle:News')->findBy(['user' => $this->getUser()->getId()]);
@@ -45,9 +45,9 @@ class DefaultController extends Controller
     public function newsAddAction(Request $request)
     {
         $form = $this->createFormBuilder()
-            ->add('url', UrlType::class, array('label' => 'Adres RSS'))
-            ->add('name', TextType::class, array('label' => 'Nazwa'))
-            ->add('css', TextType::class, array('label' => 'Kolor', 'attr' => ['class' => 'jscolor']))
+            ->add('url', UrlType::class, array('label' => 'Adres RSS', 'required' => true))
+            ->add('name', TextType::class, array('label' => 'Nazwa', 'required' => true))
+            ->add('css', TextType::class, array('label' => 'Kolor', 'required' => true, 'attr' => ['class' => 'jscolor']))
             ->add('save', SubmitType::class, array('label' => 'Dodaj kanał'))
             ->getForm();
 
