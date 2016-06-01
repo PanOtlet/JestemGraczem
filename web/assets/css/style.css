@@ -31,3 +31,15 @@ body {
 .yt{
 
 }
+.meme{
+    text-align: center;
+}
+.m-title{
+    text-align: left;
+}
+.m-title h2{
+    margin-top: 0px;
+    margin-bottom: 20px;
+}
+.m-img{}
+.m-bottom{}
