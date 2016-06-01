@@ -1,5 +1,8 @@
 {% extends 'base.html.twig' %}
 
 {% block content %}
-
+    {% for mem in meme %}
+        <h1>{{ mem.title }} <small>{{ mem.date.date|date('d/m/Y') }}</small></h1>
+        {{ mem.file }}
+    {% endfor %}
 {% endblock %}

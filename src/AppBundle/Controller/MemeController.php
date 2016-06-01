@@ -16,19 +16,19 @@ class MemeController extends Controller
     /**
      * @Route("/meme/{page}", name="meme")
      */
-    public function indexAction($page=1)
+    public function indexAction($page = 1)
     {
         $em = $this->getDoctrine()->getRepository('AppBundle:Meme');
         $query = $em->createQueryBuilder('p')
             ->where('p.status > 0')
-            ->where('p.id > :min')
-            ->setParameter('min', $page*10)
+            ->where('p.id < :max')
+            ->setParameter('max', $page * 10)
             ->orderBy('p.id', 'DESC')
             ->getQuery()->setMaxResults(10);
 
         $meme = $query->getResult();
-        
-        return $this->render('meme/index.html.twig',['meme' => $meme]);
+
+        return $this->render('meme/index.html.twig', ['meme' => $meme]);
     }
 
     /**
