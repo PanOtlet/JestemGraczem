@@ -23,7 +23,7 @@ class DefaultController extends Controller
         }
 
         $rss = $this->getDoctrine()->getRepository('AppBundle:News')->findBy(['user' => $this->getUser()->getId()]);
-        return $this->render('default/index.html.twig',[
+        return $this->render('default/index.html.twig', [
             'rss' => $rss
         ]);
     }
@@ -33,7 +33,7 @@ class DefaultController extends Controller
      */
     public function redirectAction()
     {
-        if (isset($_GET['url']) && !preg_match('|^http(s)?://[a-z0-9-]+(.[a-z0-9-]+)*(:[0-9]+)?(/.*)?$|i', $_GET['url'])){
+        if (isset($_GET['url']) && !preg_match('|^http(s)?://[a-z0-9-]+(.[a-z0-9-]+)*(:[0-9]+)?(/.*)?$|i', $_GET['url'])) {
             return $this->redirectToRoute('homepage');
         }
         return $this->redirect($_GET['url']);
@@ -47,7 +47,7 @@ class DefaultController extends Controller
         $form = $this->createFormBuilder()
             ->add('url', UrlType::class, array('label' => 'Adres RSS'))
             ->add('name', TextType::class, array('label' => 'Nazwa'))
-            ->add('css', TextType::class, array('label' => 'Kolor', 'attr' => ['class'=>'jscolor']))
+            ->add('css', TextType::class, array('label' => 'Kolor', 'attr' => ['class' => 'jscolor']))
             ->add('save', SubmitType::class, array('label' => 'Dodaj kanał'))
             ->getForm();
 
@@ -88,7 +88,9 @@ class DefaultController extends Controller
             return $this->redirectToRoute('homepage');
         }
 
-        return $this->render('default/user.html.twig', ['user' => $user]);
+        $avatar = md5($user->getEmail());
+
+        return $this->render('default/user.html.twig', ['user' => $user, 'avatar' => $avatar]);
     }
 
 }
