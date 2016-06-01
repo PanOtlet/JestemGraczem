@@ -78,6 +78,45 @@ class DefaultController extends Controller
     }
 
     /**
+     * @Route("/news/remove/{id}", name="news.remove")
+     */
+    public function newsRemoveAction($id)
+    {
+        if (!$this->isGranted('IS_AUTHENTICATED_REMEMBERED')) {
+            return $this->redirectToRoute('homepage');
+        }
+
+        $user = $this->getDoctrine()->getRepository('AppBundle:News')->findOneBy(['id' => $id]);
+
+        if(!$user){
+            $this->addFlash(
+                'danger',
+                'Nie ma takiego kanału informacji!'
+            );
+
+            return $this->redirectToRoute('homepage');
+        }
+
+        if($user->getUser()!=$this->getUser()->getId()){
+            $this->addFlash(
+                'danger',
+                'Można kasować tylko swoje kanały informacji!'
+            );
+            return $this->redirectToRoute('homepage');
+        }
+
+        $em = $this->getDoctrine()->getManager();
+        $em->remove($user);
+        $em->flush();
+
+        $this->addFlash(
+            'danger',
+            'Usunięto kanał informacji!'
+        );
+        return $this->redirectToRoute('homepage');
+    }
+
+    /**
      * @Route("/u/{user}", name="user")
      */
     public function userSiteAction($user)

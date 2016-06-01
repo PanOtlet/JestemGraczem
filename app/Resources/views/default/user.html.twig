@@ -38,7 +38,7 @@
                                 <h4><span class="visible-xs">LoL</span> {{ user.lol }}</h4>
                             </div>
                             <div class="col-md-4 v-steam">
-                                <a href="http://steamcommunity.com/profiles/{{ user.steam }}" target="_blank">
+                                <a href="{{ user.steam }}" target="_blank">
                                     <img src="{{asset('assets/img/steam.png')}}" class="img-responsive">
                                 </a>
                             </div>
