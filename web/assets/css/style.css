@@ -43,3 +43,7 @@ body {
 }
 .m-img{}
 .m-bottom{}
+.m-add{
+    opacity: 1 !important;
+    position: relative !important;
+}

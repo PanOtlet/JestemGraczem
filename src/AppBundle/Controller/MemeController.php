@@ -38,7 +38,7 @@ class MemeController extends Controller
                 'label' => 'Plik',
                 'required' => true,
                 'attr' => [
-                    'class' => 'form-control',
+                    'class' => 'btn-raised  m-add',
                     'placeholder' => 'Wybierz mem'
                 ]
             ])
