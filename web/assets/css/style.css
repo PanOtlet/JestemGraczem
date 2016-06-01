@@ -8,3 +8,15 @@ body {
 .togglebutton{
     display: inline-block;
 }
+.battlenet{
+    background-image: url("");
+}
+.lol{
+    background-image: url("");
+}
+.v-steam{
+    background-image: url("");
+}
+.yt{
+    background-image: url("");
+}
