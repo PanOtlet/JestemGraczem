@@ -1,0 +1,17 @@
+{% extends "base.html.twig" %}
+
+{% block title %}Dodaj kanał informacji{% endblock %}
+{% block titlemeta %}Dodaj{% endblock %}
+
+{% form_theme form ':Form:form.html.twig' %}
+
+{% block content %}
+    {{ form_start(form) }}
+    {{ form_widget(form) }}
+    {{ form_end(form) }}
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script src="{{ asset('assets/js/jscolor.min.js') }}"></script>
+{% endblock %}
