@@ -16,13 +16,28 @@
     <div class="jumbotron">
         <div class="row">
             <div class="col-md-3 battlenet">
-                {{ user.battlenet }}
+                <div class="col-xs-6 platform-i">
+                    <img src="{{asset('assets/img/battlenet.png')}}" class="img-responsive">
+                </div>
+                <div class="col-xs-6 platform-t">
+                    {{ user.battlenet }}
+                </div>
             </div>
             <div class="col-md-3 lol">
-                {{ user.lol }}
+                <div class="col-xs-6 platform-i">
+                    <img src="{{asset('assets/img/lol.jpg')}}" class="img-responsive">
+                </div>
+                <div class="col-xs-6 platform-t">
+                    {{ user.lol }}
+                </div>
             </div>
             <div class="col-md-3 v-steam">
-                {{ user.steam }}
+                <div class="col-xs-6 platform-i">
+                    <img src="{{asset('assets/img/steam.png')}}" class="img-responsive">
+                </div>
+                <div class="col-xs-6 platform-t">
+                    {{ user.steam }}
+                </div>
             </div>
             <div class="col-md-3 yt">
                 <script src="https://apis.google.com/js/platform.js"></script>

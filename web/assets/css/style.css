@@ -8,15 +8,23 @@ body {
 .togglebutton{
     display: inline-block;
 }
+.platform-i{
+    padding-right: 2px;
+    padding-left: 0px;
+}
+.platform-t{
+    padding-left: 0px;
+    padding-top: 18%;
+}
 .battlenet{
-    background-image: url("");
+
 }
 .lol{
-    background-image: url("");
+
 }
 .v-steam{
-    background-image: url("");
+
 }
 .yt{
-    background-image: url("");
+
 }
