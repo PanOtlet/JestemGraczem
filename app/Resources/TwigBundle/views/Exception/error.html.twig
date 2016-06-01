@@ -1,0 +1,27 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}ERROR 404{% endblock %}
+
+{% block body %}
+    <h1>ERROR 404 - Strona nie odnaleziona!</h1>
+{% endblock %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <style>
+        body {
+            background: url({{ asset('assets/img/404.gif') }}) no-repeat center center fixed;
+            -webkit-background-size: cover;
+            -moz-background-size: cover;
+            -o-background-size: cover;
+            background-size: cover;
+        }
+
+        h1 {
+            text-align: center;
+            font-weight: bold;
+            color: #FFFFFF;
+            text-shadow: 2px 2px 5px red;
+        }
+    </style>
+{% endblock %}

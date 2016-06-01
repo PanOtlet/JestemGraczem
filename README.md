@@ -7,3 +7,6 @@ JestemGraczem.pl
 `php bin/console doctrine:generate:entity` - Tworzenie nowej tabeli
 ### Bundle
 `php bin/console generate:bundle` - Generator Bundle
+### Cache
+`php bin/console cache:clear --env=prod` - Czyszczenie cache produkcja
+`php bin/console cache:clear` - Czyszczenie cache dev
