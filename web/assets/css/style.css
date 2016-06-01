@@ -14,13 +14,16 @@ body {
 }
 .platform-t{
     padding-left: 0px;
+    text-align: center;
     word-break: break-all;
 }
 .battlenet{
-
+    text-align: center;
+    word-break: break-all;
 }
 .lol{
-
+    text-align: center;
+    word-break: break-all;
 }
 .v-steam{
 
