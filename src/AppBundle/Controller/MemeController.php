@@ -6,31 +6,13 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
-use Symfony\Component\Form\Extension\Core\Type\UrlType;
+use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\HttpFoundation\RedirectResponse;
-use AppBundle\Entity\News;
+use AppBundle\Entity\Meme;
 
 class MemeController extends Controller
 {
-    /**
-     * @Route("/meme/{page}", name="meme")
-     */
-    public function indexAction($page = 1)
-    {
-        $em = $this->getDoctrine()->getRepository('AppBundle:Meme');
-        $query = $em->createQueryBuilder('p')
-            ->where('p.status > 0')
-            ->where('p.id < :max')
-            ->setParameter('max', $page * 10)
-            ->orderBy('p.id', 'DESC')
-            ->getQuery()->setMaxResults(10);
-
-        $meme = $query->getResult();
-
-        return $this->render('meme/index.html.twig', ['meme' => $meme]);
-    }
-
     /**
      * @Route("/meme/img/{id}", name="meme.id")
      */
@@ -48,21 +30,42 @@ class MemeController extends Controller
     public function addAction(Request $request)
     {
         $form = $this->createFormBuilder()
-            ->add('url', UrlType::class, array('label' => 'Adres RSS', 'required' => true))
-            ->add('name', TextType::class, array('label' => 'Nazwa', 'required' => true))
-            ->add('css', TextType::class, array('label' => 'Kolor', 'required' => true, 'attr' => ['class' => 'jscolor']))
-            ->add('save', SubmitType::class, array('label' => 'Dodaj kanał'))
+            ->add('title', TextType::class, array('label' => 'Tytuł', 'required' => true))
+            ->add('file', FileType::class, [
+                'label' => 'Plik',
+                'required' => true,
+                'attr'  =>  [
+                    'class' =>  'form-control',
+                    'placeholder'   =>  'Wybierz mem'
+                ]
+            ])
+            ->add('save', SubmitType::class, array('label' => 'Dodaj'))
             ->getForm();
 
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
 
-            $data = new News();
+            $data = new Meme();
+
+            $file = $form->get('file')->getData();
+
+            $extension = $file->guessExtension();
+            if (!$extension) {
+                $extension = 'png';
+            }
+
+            $fileName = md5(uniqid()).'.'.$extension;
+
+            $file->move($this->getParameter('mem_upload'),$fileName);
+
             $data->setUser($this->getUser()->getId());
-            $data->setName($form->get('name')->getViewData());
-            $data->setUrl($form->get('url')->getViewData());
-            $data->setCss($form->get('css')->getViewData());
+            $data->setTitle($form->get('title')->getViewData());
+            $data->setDate(new \DateTime("now"));
+            $data->setCategory(0);
+            $data->setPoints(0);
+            $data->setStatus(0);
+            $data->setFile($fileName);
 
             $em = $this->getDoctrine()->getManager();
             $em->persist($data);
@@ -70,13 +73,37 @@ class MemeController extends Controller
 
             $this->addFlash(
                 'danger',
-                'Dodano prywatny kanał informacji!'
+                'Dodano mem! Teraz Twój mem pojawił się w poczekalni i oczekuje akceptacji przez administrację, by pojawić się na głównej!'
             );
-            return $this->redirectToRoute('homepage');
+            return $this->redirectToRoute('meme');
         }
 
-        return $this->render('default/newsadd.html.twig', [
+        return $this->render('meme/add.html.twig', [
             'form' => $form->createView(),
+        ]);
+    }
+
+    /**
+     * @Route("/meme/{page}", name="meme")
+     */
+    public function indexAction($page = 1)
+    {
+        $em = $this->getDoctrine()->getRepository('AppBundle:Meme');
+        $query = $em->createQueryBuilder('p')
+            ->where('p.status > 0')
+            ->where('p.id < :max')
+            ->setParameter('max', $page * 10)
+            ->orderBy('p.id', 'DESC')
+            ->getQuery()->setMaxResults(10);
+
+        $meme = $query->getResult();
+
+        if($meme==NULL){
+            return $this->redirectToRoute('meme');
+        }
+
+        return $this->render('meme/index.html.twig', [
+            'meme' => $meme,
         ]);
     }
 }

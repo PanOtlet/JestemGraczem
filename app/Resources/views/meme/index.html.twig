@@ -3,6 +3,6 @@
 {% block content %}
     {% for mem in meme %}
         <h1>{{ mem.title }} <small>{{ mem.date.date|date('d/m/Y') }}</small></h1>
-        {{ mem.file }}
+        <img src="{{ asset('assets/mem/') ~ mem.file }}" alt="" class="img-responsive">
     {% endfor %}
 {% endblock %}
