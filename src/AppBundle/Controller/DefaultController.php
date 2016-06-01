@@ -18,8 +18,13 @@ class DefaultController extends Controller
      */
     public function indexAction(Request $request)
     {
-        return $this->render('default/index.html.twig', [
-            'base_dir' => realpath($this->getParameter('kernel.root_dir').'/..'),
+        if (!$this->isGranted('IS_AUTHENTICATED_REMEMBERED')) {
+            return $this->render('default/index.html.twig');
+        }
+
+        $rss = $this->getDoctrine()->getRepository('AppBundle:News')->findBy(['user' => $this->getUser()->getId()]);
+        return $this->render('default/index.html.twig',[
+            'rss' => $rss
         ]);
     }
 

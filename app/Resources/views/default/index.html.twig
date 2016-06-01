@@ -26,6 +26,13 @@
                    data-toggle="dropdown" aria-controls="myTabDrop1-contents"
                    aria-expanded="false">Moje newsy <span class="caret"></span></a>
                 <ul class="dropdown-menu" aria-labelledby="myTabDrop2" id="myTabDrop2-contents">
+                    {% for news in rss %}
+                    <li class="">
+                        <a href="#{{ news.name }}" role="tab" data-toggle="tab">
+                            {{ news.name }}
+                        </a>
+                    </li>
+                    {% endfor %}
                     <li class="">
                         <a href="{{ path('news.add') }}" >
                             Dodaj własny kanał informacji
@@ -49,6 +56,11 @@
             <div role="tabpanel" class="tab-pane fade row" id="23games">
                 <h3>23Games <span class="label label-danger">Sponsorowane</span></h3>
             </div>
+            {% for news in rss %}
+                <div role="tabpanel" class="tab-pane fade row" id="{{ news.name }}">
+                    <h3>{{ news.name }}</h3>
+                </div>
+            {% endfor %}
         </div>
     </div>
 {% endblock %}
@@ -71,6 +83,13 @@
                 css: "panel-danger",
                 color: "#232323"
             },
+            {% for news in rss %}
+            {
+                name: "#{{ news.name }}",
+                url: "{{ news.url }}",
+                color: "{{ news.css }}"
+            },
+            {% endfor %}
             {
                 name: "#cybersport",
                 url: "http://cybersport.pl/feed",
