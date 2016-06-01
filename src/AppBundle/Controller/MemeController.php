@@ -30,16 +30,24 @@ class MemeController extends Controller
     public function addAction(Request $request)
     {
         $form = $this->createFormBuilder()
-            ->add('title', TextType::class, array('label' => 'Tytuł', 'required' => true))
+            ->add('title', TextType::class, [
+                'label' => 'Tytuł',
+                'required' => true
+            ])
             ->add('file', FileType::class, [
                 'label' => 'Plik',
                 'required' => true,
-                'attr'  =>  [
-                    'class' =>  'form-control',
-                    'placeholder'   =>  'Wybierz mem'
+                'attr' => [
+                    'class' => 'form-control',
+                    'placeholder' => 'Wybierz mem'
                 ]
             ])
-            ->add('save', SubmitType::class, array('label' => 'Dodaj'))
+            ->add('save', SubmitType::class, [
+                'label' => 'Dodaj',
+                'attr' => [
+                    'class' => 'btn-raised btn-danger'
+                ]
+            ])
             ->getForm();
 
         $form->handleRequest($request);
@@ -55,9 +63,9 @@ class MemeController extends Controller
                 $extension = 'png';
             }
 
-            $fileName = md5(uniqid()).'.'.$extension;
+            $fileName = md5(uniqid()) . '.' . $extension;
 
-            $file->move($this->getParameter('mem_upload'),$fileName);
+            $file->move($this->getParameter('mem_upload'), $fileName);
 
             $data->setUser($this->getUser()->getId());
             $data->setTitle($form->get('title')->getViewData());
@@ -98,7 +106,7 @@ class MemeController extends Controller
 
         $meme = $query->getResult();
 
-        if($meme==NULL){
+        if ($meme == NULL) {
             return $this->redirectToRoute('meme');
         }
 
