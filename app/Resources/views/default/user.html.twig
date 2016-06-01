@@ -4,13 +4,13 @@
 
 {% block content %}
     <div class="row">
-        <div class="col-xs-3">
+        <div class="col-md-3">
         <img src="https://www.gravatar.com/avatar/{{ avatar }}?s=160" class="img-responsive">
         </div>
-        <div class="col-xs-9">
+        <div class="col-md-9">
             <div class="jumbotron">
                 <div class="row">
-                    <div class="col-xs-4">
+                    <div class="col-md-4">
                         <h2>{{ user.username }}</h2>
                         <script src="https://apis.google.com/js/platform.js"></script>
                         <script>
@@ -27,21 +27,20 @@
                         </script>
                         <div class="g-ytsubscribe" data-channel="{{ user.youtube }}" data-layout="full" data-count="default" data-onytevent="onYtEvent"></div>
                     </div>
-                    <div class="col-xs-8">
+                    <div class="col-md-8">
                         <div class="row">
-                            <div class="col-xs-4 battlenet">
-                                <img src="{{asset('assets/img/battlenet.png')}}" class="img-responsive">
-                                <h4>{{ user.battlenet }}</h4>
+                            <div class="col-md-4 battlenet">
+                                <img src="{{asset('assets/img/battlenet.png')}}" class="img-responsive hidden-xs">
+                                <h4><span class="visible-xs">Battle.net</span> {{ user.battlenet }}</h4>
                             </div>
-                            <div class="col-xs-4 lol">
-                                <img src="{{asset('assets/img/lol.jpg')}}" class="img-responsive">
-                                <h4>{{ user.lol }}</h4>
+                            <div class="col-md-4 lol">
+                                <img src="{{asset('assets/img/lol.jpg')}}" class="img-responsive hidden-xs">
+                                <h4><span class="visible-xs">LoL</span> {{ user.lol }}</h4>
                             </div>
-                            <div class="col-xs-4 v-steam">
+                            <div class="col-md-4 v-steam">
                                 <a href="http://steamcommunity.com/profiles/{{ user.steam }}" target="_blank">
                                     <img src="{{asset('assets/img/steam.png')}}" class="img-responsive">
                                 </a>
-                                <h2></h2>
                             </div>
                         </div>
                     </div>
