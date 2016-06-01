@@ -44,7 +44,7 @@ class News
     /**
      * @var string
      *
-     * @ORM\Column(name="css", type="string", length=255)
+     * @ORM\Column(name="css", type="string", length=6)
      */
     private $css;
 
