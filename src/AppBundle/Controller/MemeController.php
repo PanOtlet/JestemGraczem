@@ -9,6 +9,8 @@ use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\HttpFoundation\RedirectResponse;
+use Symfony\Component\HttpFoundation\Response;
+use JMS\Serializer\SerializerBuilder as serializer;
 use AppBundle\Entity\Meme;
 
 class MemeController extends Controller
@@ -102,7 +104,7 @@ class MemeController extends Controller
      */
     public function waitAction($page = 0)
     {
-        if ($page < 0 || !is_numeric($page)){
+        if ($page < 0 || !is_numeric($page)) {
             return $this->redirectToRoute('meme.wait');
         }
 
@@ -123,11 +125,40 @@ class MemeController extends Controller
     }
 
     /**
+     * @Route("/meme/ajax", name="meme.ajax")
+     */
+    public function ajaxAction(Request $request)
+    {
+        if ($request->isXmlHttpRequest()) {
+
+            $offset = $request->get('offset');
+            $limit = $request->get('limit');
+
+            $em = $this->getDoctrine()->getRepository('AppBundle:Meme');
+
+            $meme = $em->createQueryBuilder('p')
+                ->where('p.status > 0')
+                ->orderBy('p.id', 'DESC')
+                ->setFirstResult($offset)
+                ->setMaxResults($limit)
+                ->getQuery()
+                ->getResult();
+
+            $serializer = serializer::create()->build();
+            $json = $serializer->serialize($meme, 'json');
+        } else {
+            return $this->redirectToRoute('meme');
+        }
+
+        return new Response($json);
+    }
+
+    /**
      * @Route("/meme/{page}", name="meme")
      */
     public function indexAction($page = 0)
     {
-        if ($page < 0 || !is_numeric($page)){
+        if ($page < 0 || !is_numeric($page)) {
             return $this->redirectToRoute('meme');
         }
 
