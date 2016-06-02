@@ -55,7 +55,16 @@ class Meme
     /**
      * @var string
      *
-     * @Assert\File(maxSize="6000000")
+     * @Assert\File(
+     *     maxSize = "4M",
+     *     mimeTypes = {
+     *      "image/bmp",
+     *      "image/png",
+     *      "image/gif",
+     *      "image/jpg"
+     * },
+     *     mimeTypesMessage = "Wyślij obrazek Ziom"
+     * )
      */
     private $file;
 
