@@ -11,4 +11,7 @@ JestemGraczem.pl
 `php bin/console cache:clear --env=prod` - Czyszczenie cache produkcja
 `php bin/console cache:clear` - Czyszczenie cache dev
 ### Assets
-`php app/console assets:install --symlink` - Instalacja assetów
+`php bin/console assets:install --symlink` - Instalacja assetów
+### FOSUserBundle
+`php bin/console fos:user:promote testuser ROLE_ADMIN` - Promowanie użytkownika na admina
+`php bin/console fos:user:promote testuser ROLE_SUPER_ADMIN` - Promowanie użytkownika na super saiyajin

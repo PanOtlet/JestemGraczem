@@ -120,6 +120,7 @@ sonata_seo:
 
 easy_admin:
     entities:
-        - AppBundle\Entity\Meme
-        - AppBundle\Entity\News
-        - AppBundle\Entity\User
+        News: AppBundle\Entity\News
+        Mems: AppBundle\Entity\Meme
+        Użytkownicy: AppBundle\Entity\User
+    site_name: 'JestemGraczem.pl'
