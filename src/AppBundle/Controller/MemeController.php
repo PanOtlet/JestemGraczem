@@ -42,7 +42,10 @@ class MemeController extends Controller
                 'label' => 'Źródło'
             ])
             ->add('file',NULL, [
-                'label' => 'Plik'
+                'label' => 'Plik',
+                'attr' => [
+                    'class' => 'm-add'
+                ]
             ])
             ->add('save', SubmitType::class, [
                 'label' => 'Dodaj',
