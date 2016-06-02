@@ -97,7 +97,7 @@ sonata_seo:
 
             property:
                 # Facebook application settings
-                #'fb:app_id':          XXXXXX
+                'fb:app_id':          1792775277616619
                 #'fb:admins':          admin1, admin2
 
                 # Open Graph information

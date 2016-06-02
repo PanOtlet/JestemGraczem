@@ -16,12 +16,13 @@ class MemeController extends Controller
     /**
      * @Route("/meme/img/{id}", name="meme.id")
      */
-    public function memAction()
+    public function memAction($id)
     {
-        if (isset($_GET['url']) && !preg_match('|^http(s)?://[a-z0-9-]+(.[a-z0-9-]+)*(:[0-9]+)?(/.*)?$|i', $_GET['url'])) {
-            return $this->redirectToRoute('homepage');
-        }
-        return $this->redirect($_GET['url']);
+        $mem = $this->getDoctrine()->getRepository('AppBundle:Meme')->findOneBy(['id' => $id]);
+
+        return $this->render('meme/mem.html.twig', [
+            'mem' => $mem
+        ]);
     }
 
     /**

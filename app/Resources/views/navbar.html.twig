@@ -22,18 +22,18 @@
                         <li><a href="{{ path('meme.add') }}">Dodaj</a></li>
                     </ul>
                 </li>
-                <li class="dropdown">
-                    <a href="#" data-target="#" class="dropdown-toggle" data-toggle="dropdown">
-                        Gry <b class="caret"></b></a>
-                    <ul class="dropdown-menu">
-                        <li><a href="javascript:void(0)">Counter-Strike: Global Offensive</a></li>
-                        <li><a href="javascript:void(0)">Overwatch</a></li>
-                        <li class="divider"></li>
-                        <li class="dropdown-header">Dropdown header</li>
-                        <li><a href="javascript:void(0)">Separated link</a></li>
-                        <li><a href="javascript:void(0)">One more separated link</a></li>
-                    </ul>
-                </li>
+                {#<li class="dropdown">#}
+                    {#<a href="#" data-target="#" class="dropdown-toggle" data-toggle="dropdown">#}
+                        {#Gry <b class="caret"></b></a>#}
+                    {#<ul class="dropdown-menu">#}
+                        {#<li><a href="javascript:void(0)">Counter-Strike: Global Offensive</a></li>#}
+                        {#<li><a href="javascript:void(0)">Overwatch</a></li>#}
+                        {#<li class="divider"></li>#}
+                        {#<li class="dropdown-header">Dropdown header</li>#}
+                        {#<li><a href="javascript:void(0)">Separated link</a></li>#}
+                        {#<li><a href="javascript:void(0)">One more separated link</a></li>#}
+                    {#</ul>#}
+                {#</li>#}
             </ul>
             <ul class="nav navbar-nav navbar-right">
                 {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
