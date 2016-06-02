@@ -63,7 +63,7 @@ class Meme
      *      "image/gif",
      *      "image/jpg"
      * },
-     *     mimeTypesMessage = "Wyślij obrazek Ziom"
+     *     mimeTypesMessage = "Mime Error"
      * )
      */
     private $file;
