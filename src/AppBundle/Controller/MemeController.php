@@ -32,22 +32,17 @@ class MemeController extends Controller
      */
     public function addAction(Request $request)
     {
-        $form = $this->createFormBuilder()
-            ->add('title', TextType::class, [
-                'label' => 'Tytuł',
-                'required' => true
+        $mem = new Meme();
+
+        $form = $this->createFormBuilder($mem)
+            ->add('title',NULL, [
+                'label' => 'Tytuł'
             ])
-            ->add('source', TextType::class, [
-                'label' => 'Źródło',
-                'required' => true
+            ->add('source',NULL, [
+                'label' => 'Źródło'
             ])
-            ->add('file', FileType::class, [
-                'label' => 'Plik',
-                'required' => true,
-                'attr' => [
-                    'class' => 'btn-raised  m-add',
-                    'placeholder' => 'Wybierz mem'
-                ]
+            ->add('file',NULL, [
+                'label' => 'Plik'
             ])
             ->add('save', SubmitType::class, [
                 'label' => 'Dodaj',
@@ -61,37 +56,24 @@ class MemeController extends Controller
 
         if ($form->isSubmitted() && $form->isValid()) {
 
-            $data = new Meme();
-
-            $file = $form->get('file')->getData();
-
-            $extension = $file->guessExtension();
-            if (!$extension) {
-                $extension = 'png';
-            }
-
-            $fileName = md5(uniqid()) . '.' . $extension;
-
-            $file->move($this->getParameter('mem_upload'), $fileName);
-
-            $data->setUser($this->getUser()->getId());
-            $data->setTitle($form->get('title')->getViewData());
-            $data->setSource($form->get('source')->getViewData());
-            $data->setDate(new \DateTime("now"));
-            $data->setCategory(0);
-            $data->setPoints(0);
-            $data->setStatus(0);
-            $data->setFile($fileName);
-
             $em = $this->getDoctrine()->getManager();
-            $em->persist($data);
+
+            $mem->upload();
+            $mem->setUser($this->getUser()->getId());
+            $mem->setTitle($form->get('title')->getViewData());
+            $mem->setSource($form->get('source')->getViewData());
+            $mem->setDate(new \DateTime("now"));
+            $mem->setCategory(0);
+            $mem->setPoints(0);
+            $mem->setStatus(0);
+            $em->persist($mem);
             $em->flush();
 
             $this->addFlash(
                 'danger',
                 'Dodano mem! Teraz Twój mem pojawił się w poczekalni i oczekuje akceptacji przez administrację, by pojawić się na głównej!'
             );
-            return $this->redirectToRoute('meme');
+            return $this->redirectToRoute('meme.wait');
         }
 
         return $this->render('meme/add.html.twig', [

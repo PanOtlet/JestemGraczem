@@ -3,6 +3,8 @@
 namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Component\HttpFoundation\File\UploadedFile;
 
 /**
  * Meme
@@ -32,6 +34,7 @@ class Meme
      * @var string
      *
      * @ORM\Column(name="title", type="string", length=255)
+     * @Assert\NotBlank
      */
     private $title;
 
@@ -45,7 +48,14 @@ class Meme
     /**
      * @var string
      *
-     * @ORM\Column(name="file", type="string", length=255)
+     * @ORM\Column(name="url", type="string", length=255)
+     */
+    private $url;
+
+    /**
+     * @var string
+     *
+     * @Assert\File(maxSize="6000000")
      */
     private $file;
 
@@ -160,25 +170,45 @@ class Meme
         return $this->source;
     }
 
+    /**
+     * Get url
+     *
+     * @return string
+     */
+    public function getUrl()
+    {
+        return $this->url;
+    }
+
+    /**
+     * Set source
+     *
+     * @param string $url
+     *
+     * @return Meme
+     */
+    public function setUrl($url)
+    {
+        $this->url = $url;
+
+        return $this;
+    }
+
 
     /**
      * Set file
      *
-     * @param string $file
-     *
-     * @return Meme
+     * @param UploadedFile $file
      */
-    public function setFile($file)
+    public function setFile(UploadedFile $file = null)
     {
         $this->file = $file;
-
-        return $this;
     }
 
     /**
      * Get file
      *
-     * @return string
+     * @return UploadedFile
      */
     public function getFile()
     {
@@ -279,6 +309,43 @@ class Meme
     public function getPoints()
     {
         return $this->points;
+    }
+
+    public function getAbsolutePath()
+    {
+        return null === $this->path
+            ? null
+            : $this->getUploadRootDir() . '/' . $this->path;
+    }
+
+    public function getWebPath()
+    {
+        return null === $this->path
+            ? null
+            : $this->getUploadDir() . '/' . $this->path;
+    }
+
+    protected function getUploadRootDir()
+    {
+        return __DIR__ . '/../../../web/' . $this->getUploadDir();
+    }
+
+    protected function getUploadDir()
+    {
+        return 'assets/mem';
+    }
+
+    public function upload()
+    {
+        if (null === $this->getFile()) {
+            return;
+        }
+
+        $filename = md5(uniqid()) . '.' . $this->getFile()->getClientOriginalExtension();
+        $this->getFile()->move($this->getUploadRootDir(), $filename);
+
+        $this->url = $filename;
+//        $this->path = $this->getFile()->getClientOriginalName();
     }
 }
 
