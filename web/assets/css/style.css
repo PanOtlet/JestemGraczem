@@ -37,9 +37,17 @@ body {
 .m-title{
     text-align: left;
 }
-.m-title h2{
+.m-title a{
+    color: #000000;
+}
+.m-title a:hover{
+    color: #000000;
+    text-decoration: none;
+}
+.m-title h3{
     margin-top: 0px;
     margin-bottom: 20px;
+    font-weight: bold;
 }
 .m-img{}
 .m-bottom{}

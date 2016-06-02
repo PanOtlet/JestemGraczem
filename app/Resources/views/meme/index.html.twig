@@ -7,7 +7,7 @@
                 <div class="meme jumbotron">
                     <div class="m-title">
                         <a href="{{ path('meme.id',{'id': mem.id}) }}">
-                            <h2>{{ mem.title }}</h2>
+                            <h3>{{ mem.title|slice(0,50) }}</h3>
                         </a>
                     </div>
                     <div class="m-img">
