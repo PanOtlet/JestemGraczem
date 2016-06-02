@@ -3,29 +3,34 @@
 {% block content %}
     <div class="container-fluid">
         {% if meme %}
-        {% for mem in meme %}
-            <div class="meme jumbotron">
-                <div class="m-title">
-                    <a href="{{ path('meme',{'id': page+meme.id}) }}"> <h2>{{ mem.title }} </h2></a>
+            {% for mem in meme %}
+                <div class="meme jumbotron">
+                    <div class="m-title">
+                        <a href="{{ path('meme.id',{'id': mem.id}) }}">
+                            <h2>{{ mem.title }}</h2>
+                        </a>
+                    </div>
+                    <div class="m-img">
+                        <a href="{{ path('meme.id',{'id': mem.id}) }}">
+                            <img src="{{ asset('assets/mem/') ~ mem.file }}" alt="" class="img-responsive">
+                        </a>
+                    </div>
+                    <div class="m-bottom">
+                        <small>{{ mem.date.date|date('d/m/Y') }}</small>
+                    </div>
                 </div>
-                <div class="m-img">
-                    <img src="{{ asset('assets/mem/') ~ mem.file }}" alt="" class="img-responsive">
+            {% endfor %}
+            <div class="row">
+                <div class="col-md-6">
+                    {% if page > 0 %}
+                        <a href="{{ path('meme',{'page': page-1}) }}" class="btn btn-raised btn-danger btn-block">Poprzednie</a>
+                    {% endif %}
                 </div>
-                <div class="m-bottom">
-                    <small>{{ mem.date.date|date('d/m/Y') }}</small>
+                <div class="col-md-6">
+                    <a href="{{ path('meme',{'page': page+1}) }}"
+                       class="btn btn-raised btn-danger btn-block">Kolejne</a>
                 </div>
             </div>
-        {% endfor %}
-        <div class="row">
-            <div class="col-md-6">
-                {% if page > 0 %}
-                    <a href="{{ path('meme',{'page': page-1}) }}" class="btn btn-raised btn-danger btn-block">Poprzednie</a>
-                {% endif %}
-            </div>
-            <div class="col-md-6">
-                <a href="{{ path('meme',{'page': page+1}) }}" class="btn btn-raised btn-danger btn-block">Kolejne</a>
-            </div>
-        </div>
         {% else %}
             <h1>Brak memów :( Smutek.jpg</h1>
         {% endif %}
