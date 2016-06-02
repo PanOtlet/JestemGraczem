@@ -31,4 +31,5 @@ security:
         - { path: ^/register, role: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/resetting, role: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/news/add, role: ROLE_USER }
+        - { path: ^/meme/add, role: ROLE_USER }
         - { path: ^/admin/, role: ROLE_ADMIN }

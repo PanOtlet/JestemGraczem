@@ -2,6 +2,7 @@
 
 {% block content %}
     <div class="container-fluid">
+        {% if meme %}
         {% for mem in meme %}
             <div class="meme jumbotron">
                 <div class="m-title">
@@ -15,5 +16,18 @@
                 </div>
             </div>
         {% endfor %}
+        <div class="row">
+            <div class="col-md-6">
+                {% if page > 0 %}
+                    <a href="{{ path('meme',{'page': page-1}) }}" class="btn btn-raised btn-danger btn-block">Poprzednie</a>
+                {% endif %}
+            </div>
+            <div class="col-md-6">
+                <a href="{{ path('meme',{'page': page+1}) }}" class="btn btn-raised btn-danger btn-block">Kolejne</a>
+            </div>
+        </div>
+        {% else %}
+            <h1>Brak memów :( Smutek.jpg</h1>
+        {% endif %}
     </div>
 {% endblock %}

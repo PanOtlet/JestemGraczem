@@ -38,7 +38,14 @@ class Meme
     /**
      * @var string
      *
-     * @ORM\Column(name="file", type="string", length=255, unique=true)
+     * @ORM\Column(name="source", type="string", length=255)
+     */
+    private $source;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="file", type="string", length=255)
      */
     private $file;
 
@@ -128,6 +135,31 @@ class Meme
     {
         return $this->title;
     }
+
+    /**
+     * Set source
+     *
+     * @param string $source
+     *
+     * @return Meme
+     */
+    public function setSource($source)
+    {
+        $this->source = $source;
+
+        return $this;
+    }
+
+    /**
+     * Get source
+     *
+     * @return int
+     */
+    public function getSource()
+    {
+        return $this->source;
+    }
+
 
     /**
      * Set file

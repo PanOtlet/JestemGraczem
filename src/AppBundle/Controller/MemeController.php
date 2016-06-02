@@ -34,6 +34,10 @@ class MemeController extends Controller
                 'label' => 'Tytuł',
                 'required' => true
             ])
+            ->add('source', TextType::class, [
+                'label' => 'Źródło',
+                'required' => true
+            ])
             ->add('file', FileType::class, [
                 'label' => 'Plik',
                 'required' => true,
@@ -69,6 +73,7 @@ class MemeController extends Controller
 
             $data->setUser($this->getUser()->getId());
             $data->setTitle($form->get('title')->getViewData());
+            $data->setSource($form->get('source')->getViewData());
             $data->setDate(new \DateTime("now"));
             $data->setCategory(0);
             $data->setPoints(0);
@@ -92,26 +97,52 @@ class MemeController extends Controller
     }
 
     /**
-     * @Route("/meme/{page}", name="meme")
+     * @Route("/meme/poczekalnia/{page}", name="meme.wait")
      */
-    public function indexAction($page = 1)
+    public function waitAction($page = 0)
     {
+        if ($page < 0 || !is_numeric($page)){
+            return $this->redirectToRoute('meme.wait');
+        }
+
         $em = $this->getDoctrine()->getRepository('AppBundle:Meme');
         $query = $em->createQueryBuilder('p')
-            ->where('p.status > 0')
-            ->where('p.id < :max')
-            ->setParameter('max', $page * 10)
+            ->where('p.status = 0')
+            ->setFirstResult($page * 10)
             ->orderBy('p.id', 'DESC')
-            ->getQuery()->setMaxResults(10);
+            ->getQuery()
+            ->setMaxResults(10);
 
         $meme = $query->getResult();
 
-        if ($meme == NULL) {
+        return $this->render('meme/index.html.twig', [
+            'meme' => $meme,
+            'page' => $page
+        ]);
+    }
+
+    /**
+     * @Route("/meme/{page}", name="meme")
+     */
+    public function indexAction($page = 0)
+    {
+        if ($page < 0 || !is_numeric($page)){
             return $this->redirectToRoute('meme');
         }
 
+        $em = $this->getDoctrine()->getRepository('AppBundle:Meme');
+        $query = $em->createQueryBuilder('p')
+            ->where('p.status > 0')
+            ->setFirstResult($page * 10)
+            ->orderBy('p.id', 'DESC')
+            ->getQuery()
+            ->setMaxResults(10);
+
+        $meme = $query->getResult();
+
         return $this->render('meme/index.html.twig', [
             'meme' => $meme,
+            'page' => $page
         ]);
     }
 }
