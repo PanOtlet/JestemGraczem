@@ -10,3 +10,5 @@ JestemGraczem.pl
 ### Cache
 `php bin/console cache:clear --env=prod` - Czyszczenie cache produkcja
 `php bin/console cache:clear` - Czyszczenie cache dev
+### Assets
+`php app/console assets:install --symlink` - Instalacja assetów
