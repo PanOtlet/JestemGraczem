@@ -103,7 +103,7 @@ class MemeController extends Controller
 
         $meme = $query->getResult();
 
-        return $this->render('meme/index.html.twig', [
+        return $this->render('meme/wait.html.twig', [
             'meme' => $meme,
             'page' => $page
         ]);
