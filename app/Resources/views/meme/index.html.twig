@@ -6,7 +6,7 @@
         {% for mem in meme %}
             <div class="meme jumbotron">
                 <div class="m-title">
-                    <h2>{{ mem.title }} </h2>
+                    <a href="{{ path('meme',{'id': page+meme.id}) }}"> <h2>{{ mem.title }} </h2></a>
                 </div>
                 <div class="m-img">
                     <img src="{{ asset('assets/mem/') ~ mem.file }}" alt="" class="img-responsive">
