@@ -1,39 +1,81 @@
-{% extends 'all.html.twig' %}
+{% extends 'video.html.twig' %}
 
 {% block content %}
     <div class="container-fluid">
-        {% if videos %}
-            {% for video in videos %}
-                <div class="video jumbotron">
-                    <div class="v-title">
-                        <a href="{{ path('video.id',{'id': video.id}) }}">
-                            <h3>{{ video.title|slice(0,50) }}</h3>
-                        </a>
-                    </div>
-                    <div class="v-img">
-                        <iframe width="560" height="315" src="https://www.youtube.com/embed/{{ path('video.id',{'id': video.id}) }}"
-                                frameborder="0" allowfullscreen class="embed-responsive-16by9"></iframe>
-                    </div>
-                    <div class="v-bottom">
+        <div class="col-md-6"></div>
+        <div class="col-md-3"></div>
+        <div class="col-md-3"></div>
+        <div class="col-md-3"></div>
+        <div class="col-md-3"></div>
 
+    </div>
+    <main class="container">
+        <div class="row">
+            <div class="col-xs-8">
+                <div class="row">
+                    <div class="container-fluid">
+                        {% if videos %}
+                            {% for video in videos %}
+                                <div class="video jumbotron">
+                                    <div class="row">
+                                        <div class="col-md-6 v-img">
+                                            <a href="{{ path('video.id',{'id': video.id}) }}">
+                                                <img class="img-responsive" src="http://img.youtube.com/vi/{{ video.videoid }}/mqdefault.jpg">
+
+                                            </a>
+                                        </div>
+                                        <div class="col-md-6 v-title">
+                                            <a href="{{ path('video.id',{'id': video.id}) }}">
+                                                <h3>{{ video.title|slice(0,50) }}</h3>
+                                            </a>
+                                        </div>
+                                    </div>
+                                    <div class="v-bottom">
+
+                                    </div>
+                                </div>
+                            {% endfor %}
+                            <div class="row">
+                                <div class="col-md-6">
+                                    {% if page > 0 %}
+                                        <a href="{{ path('video',{'page': page-1}) }}" class="btn btn-raised btn-danger btn-block">Poprzednie</a>
+                                    {% endif %}
+                                </div>
+                                <div class="col-md-6">
+                                    <a href="{{ path('video',{'page': page+1}) }}"
+                                       class="btn btn-raised btn-danger btn-block">Kolejne</a>
+                                </div>
+                            </div>
+                        {% else %}
+                            <h1>Brak filmów :( Smutek.jpg</h1>
+                        {% endif %}
                     </div>
-                </div>
-            {% endfor %}
-            <div class="row">
-                <div class="col-md-6">
-                    {% if page > 0 %}
-                        <a href="{{ path('video',{'page': page-1}) }}" class="btn btn-raised btn-danger btn-block">Poprzednie</a>
-                    {% endif %}
-                </div>
-                <div class="col-md-6">
-                    <a href="{{ path('video',{'page': page+1}) }}"
-                       class="btn btn-raised btn-danger btn-block">Kolejne</a>
                 </div>
             </div>
-        {% else %}
-            <h1>Brak filmów :( Smutek.jpg</h1>
-        {% endif %}
-    </div>
+            <div class="jumbotron col-xs-3" style="margin-left: 20px">
+                {% block sidebar %}
+                    <div id="fb-root"></div>
+                    <script>(function (d, s, id) {
+                            var js, fjs = d.getElementsByTagName(s)[0];
+                            if (d.getElementById(id)) return;
+                            js = d.createElement(s);
+                            js.id = id;
+                            js.src = "//connect.facebook.net/pl_PL/sdk.js#xfbml=1&version=v2.6&appId=1191702130875167";
+                            fjs.parentNode.insertBefore(js, fjs);
+                        }(document, 'script', 'facebook-jssdk'));</script>
+                    <div class="fb-page" data-href="https://www.facebook.com/JestemGraczemPL/" data-tabs="timeline"
+                         data-small-header="false" data-adapt-container-width="true" data-hide-cover="false"
+                         data-show-facepile="true">
+                        <div class="fb-xfbml-parse-ignore">
+                            <blockquote cite="https://www.facebook.com/JestemGraczemPL/"><a
+                                        href="https://www.facebook.com/JestemGraczemPL/">JestemGraczem.pl</a>
+                            </blockquote>
+                        </div>
+                    </div>
+                {% endblock %}
+            </div>
+        </div>
+    </main>
 {% endblock %}
 
 {% block javascripts %}

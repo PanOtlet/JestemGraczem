@@ -58,3 +58,18 @@ body {
     opacity: 1 !important;
     position: relative !important;
 }
+.v-title{
+    text-align: left;
+}
+.v-title h3{
+    margin-top: 0px;
+    margin-bottom: 20px;
+    font-weight: bold;
+}
+.v-title a{
+    color: #000000;
+}
+.v-title a:hover{
+    color: #000000;
+    text-decoration: none;
+}

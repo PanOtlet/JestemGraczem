@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+    {{ sonata_seo_metadatas() }}
+
+    <title>{% block title %}Strona główna{% endblock %} :: JestemGraczem.pl</title>
+
+    {% block stylesheets %}
+        <link rel="stylesheet" href="{{ asset('assets/css/bootstrap.min.css') }}">
+        {#<link rel="stylesheet" href="{{ asset('assets/css/bootstrap-theme.min.css') }}">#}
+        <link rel="stylesheet" href="{{ asset('assets/css/material.min.css') }}">
+        <link rel="stylesheet" href="{{ asset('assets/css/ripples.min.css') }}">
+        <link rel="stylesheet" href="{{ asset('assets/css/style.css') }}">
+    {% endblock %}
+
+    {% block head %}{% endblock %}
+
+    <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}"/>
+</head>
+<body>
+<div id="background"></div>
+
+{% include 'navbar.html.twig' %}
+
+{% block body %}
+    {% for flash_message in app.session.flashBag.get('danger') %}
+        <div class="alert alert-danger alert-dismissible" role="alert">
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+            {{ flash_message }}
+        </div>
+    {% endfor %}
+
+    {% block content %}
+    {% endblock %}
+
+
+{% endblock %}
+
+{% block javascripts %}
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script src="{{ asset('assets/js/bootstrap.min.js') }}"></script>
+    <script src="{{ asset('assets/js/material.min.js') }}"></script>
+    <script src="{{ asset('assets/js/ripples.min.js') }}"></script>
+    <script src="https://use.fontawesome.com/c0b3ee6d21.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.8.4/moment.min.js"></script>
+    <script>
+        $.material.init();
+    </script>
+{% endblock %}
+</body>
+</html>
