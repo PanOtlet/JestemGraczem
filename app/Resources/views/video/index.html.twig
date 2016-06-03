@@ -16,7 +16,8 @@
                     <div class="container-fluid">
                         {% if videos %}
                             {% for video in videos %}
-                                <div class="meme col-md-6 jumbotron">
+                                <div class="col-md-6">
+                                <div class="meme jumbotron">
                                     <div class="v-title">
                                         <a href="{{ path('video.id',{'id': video.id}) }}">
                                             <h3>{{ video.title|slice(0,50) }}</h3>
@@ -31,6 +32,7 @@
                                     <div class="v-bottom">
 
                                     </div>
+                                </div>
                                 </div>
                             {% endfor %}
                             <div class="row">
