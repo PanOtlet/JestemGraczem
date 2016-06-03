@@ -117,7 +117,6 @@ sonata_seo:
             'xmlns:og':           http://opengraphprotocol.org/schema/
             #'xmlns:fb':           "http://www.facebook.com/2008/fbml"
 
-
 easy_admin:
     entities:
         News: AppBundle\Entity\News
