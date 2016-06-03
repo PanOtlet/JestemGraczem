@@ -28,10 +28,10 @@ class VideoController extends Controller
 
         if ($form->isSubmitted() && $form->isValid()) {
 
-            $videoid = parse_url($form->get('url')->getViewData(), PHP_URL_QUERY);
-            parse_str($videoid, $videoidParsed);
+            $videoId = parse_url($form->get('url')->getViewData(), PHP_URL_QUERY);
+            parse_str($videoId, $videoIdParsed);
 
-            $videoUrl = 'https://www.youtube.com/oembed?url=https://www.youtube.com/watch?v=' . $videoidParsed['v'];
+            $videoUrl = 'https://www.youtube.com/oembed?url=https://www.youtube.com/watch?v=' . $videoIdParsed['v'];
 
             $response = substr(get_headers($videoUrl)[0], 9, 3);
 
@@ -46,7 +46,7 @@ class VideoController extends Controller
             $data = new Video();
             $data->setUser($this->getUser()->getId());
             $data->setTitle($form->get('title')->getViewData());
-            $data->setVideoid($videoidParsed['v']);
+            $data->setVideoid($videoIdParsed['v']);
             $data->setStatus(0);
             $data->setDateAdd(new \DateTime("now"));
 
