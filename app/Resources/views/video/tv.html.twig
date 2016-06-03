@@ -2,10 +2,12 @@
 
 {% block content %}
     <div class="container-fluid">
-        <div class="meme jumbotron">
+        <div class="video jumbotron">
             <div class="v-title">
                 <h3>{{ video.title }}</h3>
             </div>
+            </div>
+        <div class="video jumbotron">
             <div class="v-img embed-responsive embed-responsive-16by9">
                 <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/{{ video.videoid }}" frameborder="0" allowfullscreen></iframe>
             </div>
@@ -13,7 +15,7 @@
 
             </div>
         </div>
-        <div class="meme jumbotron">
+        <div class="video jumbotron">
             <div id="fb-root"></div>
             <script>(function (d, s, id) {
                     var js, fjs = d.getElementsByTagName(s)[0];

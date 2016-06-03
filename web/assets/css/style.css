@@ -58,6 +58,12 @@ body {
     opacity: 1 !important;
     position: relative !important;
 }
+.video{
+
+}
+.video .v-title h3{
+    margin-bottom: 0px;
+}
 .v-title{
     text-align: left;
 }
