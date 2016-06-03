@@ -5,22 +5,20 @@ namespace AppBundle\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\UrlType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use AppBundle\Entity\Video;
 
-class VideoController extends Controller
+class StreamController extends Controller
 {
     /**
-     * @Route("/video/add", name="video.add")
+     * @Route("/stream/add", name="stream.add")
      */
     public function addAction(Request $request)
     {
         $form = $this->createFormBuilder()
-            ->add('url', UrlType::class, array('label' => 'Link do filmu', 'required' => true))
-            ->add('title', TextType::class, array('label' => 'Tytuł', 'required' => true))
+            ->add('url', UrlType::class, array('label' => 'Link do kanału Twitch', 'required' => true))
             ->add('save', SubmitType::class, array('label' => 'Dodaj film'))
             ->getForm();
 
@@ -40,7 +38,7 @@ class VideoController extends Controller
                     'danger',
                     'Błąd! Film nie istnieje lub nie pochodzi z serwisu YouTube!'
                 );
-                return $this->redirectToRoute('video');
+                return $this->redirectToRoute('stream');
             }
 
             $data = new Video();
@@ -58,21 +56,21 @@ class VideoController extends Controller
                 'danger',
                 'Dodano film do poczekalni! Po akceptacji film powinien być dostępny dla wszystkich!'
             );
-            return $this->redirectToRoute('video');
+            return $this->redirectToRoute('stream');
         }
 
-        return $this->render('video/add.html.twig', [
+        return $this->render('stream/add.html.twig', [
             'form' => $form->createView(),
         ]);
     }
 
     /**
-     * @Route("/video/poczekalnia/{page}", name="video.wait")
+     * @Route("/stream/poczekalnia/{page}", name="stream.wait")
      */
     public function waitAction($page = 0)
     {
         $em = $this->getDoctrine()->getRepository('AppBundle:Video');
-        $video = $em->createQueryBuilder('p')
+        $stream = $em->createQueryBuilder('p')
             ->where('p.status = 0')
             ->setFirstResult($page * 10)
             ->orderBy('p.id', 'DESC')
@@ -80,19 +78,19 @@ class VideoController extends Controller
             ->setMaxResults(10)
             ->getResult();
 
-        return $this->render('video/index.html.twig', [
-            'videos' => $video,
+        return $this->render('stream/index.html.twig', [
+            'streams' => $stream,
             'page' => $page
         ]);
     }
 
     /**
-     * @Route("/video/{page}", name="video")
+     * @Route("/stream/{page}", name="stream")
      */
     public function indexAction($page = 0)
     {
         $em = $this->getDoctrine()->getRepository('AppBundle:Video');
-        $video = $em->createQueryBuilder('p')
+        $stream = $em->createQueryBuilder('p')
             ->where('p.status = 1')
             ->setFirstResult($page * 10)
             ->orderBy('p.id', 'DESC')
@@ -101,22 +99,22 @@ class VideoController extends Controller
             ->getResult();
 
         $promoted = $this->getDoctrine()->getRepository('AppBundle:Video')->findBy(['status' => 2]);
-        return $this->render('video/index.html.twig', [
-            'videos' => $video,
+        return $this->render('stream/index.html.twig', [
+            'streams' => $stream,
             'promoted' => $promoted,
             'page' => $page
         ]);
     }
 
     /**
-     * @Route("/tv/{id}", name="video.id")
+     * @Route("/player/{id}", name="stream.id")
      */
-    public function tvAction($id)
+    public function streamAction($id)
     {
-        $video = $this->getDoctrine()->getRepository('AppBundle:Video')->findOneBy(['id' => $id]);
+        $stream = $this->getDoctrine()->getRepository('AppBundle:Video')->findOneBy(['id' => $id]);
 
-        return $this->render('video/tv.html.twig', [
-            'video' => $video
+        return $this->render('stream/tv.html.twig', [
+            'stream' => $stream
         ]);
     }
 }
