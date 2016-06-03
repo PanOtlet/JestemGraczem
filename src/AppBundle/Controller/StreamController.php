@@ -2,6 +2,7 @@
 
 namespace AppBundle\Controller;
 
+use AppBundle\Entity\Stream;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
@@ -26,11 +27,18 @@ class StreamController extends Controller
 
         if ($form->isSubmitted() && $form->isValid()) {
 
-            $data = new Video();
+            $twitch = [
+                'http://twitch.tv/',
+                'https://twitch.tv/',
+                'http://www.twitch.tv/',
+                'https://www.twitch.tv/'
+            ];
+            $name = str_replace($twitch,NULL,$form->get('url')->getViewData());
+
+            $data = new Stream();
             $data->setUser($this->getUser()->getId());
-            $data->setTitle($form->get('title')->getViewData());
+            $data->setName($name);
             $data->setStatus(0);
-            $data->setDateAdd(new \DateTime("now"));
 
             $em = $this->getDoctrine()->getManager();
             $em->persist($data);
@@ -53,7 +61,7 @@ class StreamController extends Controller
      */
     public function waitAction($page = 0)
     {
-        $em = $this->getDoctrine()->getRepository('AppBundle:Video');
+        $em = $this->getDoctrine()->getRepository('AppBundle:Stream');
         $stream = $em->createQueryBuilder('p')
             ->where('p.status = 0')
             ->setFirstResult($page * 10)
@@ -73,7 +81,7 @@ class StreamController extends Controller
      */
     public function indexAction($page = 0)
     {
-        $em = $this->getDoctrine()->getRepository('AppBundle:Video');
+        $em = $this->getDoctrine()->getRepository('AppBundle:Stream');
         $stream = $em->createQueryBuilder('p')
             ->where('p.status = 1')
             ->setFirstResult($page * 10)
@@ -82,7 +90,7 @@ class StreamController extends Controller
             ->setMaxResults(10)
             ->getResult();
 
-        $promoted = $this->getDoctrine()->getRepository('AppBundle:Video')->findBy(['status' => 2]);
+        $promoted = $this->getDoctrine()->getRepository('AppBundle:Stream')->findBy(['status' => 2]);
         return $this->render('stream/index.html.twig', [
             'streams' => $stream,
             'promoted' => $promoted,
