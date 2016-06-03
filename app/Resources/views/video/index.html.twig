@@ -2,8 +2,8 @@
 
 {% block content %}
     <div class="container-fluid">
-        {% if meme %}
-            {% for mem in meme %}
+        {% if videos %}
+            {% for video in videos %}
                 <div class="video jumbotron">
                     <div class="v-title">
                         <a href="{{ path('video.id',{'id': video.id}) }}">
