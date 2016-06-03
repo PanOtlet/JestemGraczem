@@ -30,6 +30,19 @@ class VideoController extends Controller
 
             $videoid = parse_url($form->get('url')->getViewData(), PHP_URL_QUERY);
             parse_str($videoid, $videoidParsed);
+
+            $videoUrl = 'https://www.youtube.com/oembed?url=https://www.youtube.com/watch?v=' . $videoidParsed['v'];
+
+            $response = substr(get_headers($videoUrl)[0], 9, 3);
+
+            if($response != "200"){
+                $this->addFlash(
+                    'danger',
+                    'Błąd! Film nie istnieje lub nie pochodzi z serwisu YouTube!'
+                );
+                return $this->redirectToRoute('video');
+            }
+
             $data = new Video();
             $data->setUser($this->getUser()->getId());
             $data->setTitle($form->get('title')->getViewData());
