@@ -16,16 +16,16 @@
                     <div class="container-fluid">
                         {% if streams %}
                             {% for stream in streams %}
-                                <div class="col-md-3">
+                                <div class="col-md-6" id="{{ stream.name }}">
                                 <div class="meme jumbotron">
                                     <div class="v-title">
                                         <a href="">
-                                            <h3></h3>
+                                            <p>{{ stream.name }}</p>
                                         </a>
                                     </div>
                                     <div class="v-img">
                                         <a href="">
-                                            <img class="img-responsive" src="">
+                                            <img class="img-responsive" src="https://static-cdn.jtvnw.net/previews-ttv/live_user_{{ stream.name }}-320x180.jpg">
                                         </a>
                                     </div>
 
@@ -81,6 +81,7 @@
                     $("#{{ stream.name }}").addClass('danger');
                     $("#{{ stream.name }}_viewers").html(channel["stream"]["viewers"]);
                     $("#{{ stream.name }}_game").html(channel["stream"]["game"]);
+                    console.log(stream);
                 } else {
                     $("#{{ stream.name }}").remove();
                     $("#offline").append("{{ stream.name }} ");
