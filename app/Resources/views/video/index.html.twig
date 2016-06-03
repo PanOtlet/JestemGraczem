@@ -16,20 +16,18 @@
                     <div class="container-fluid">
                         {% if videos %}
                             {% for video in videos %}
-                                <div class="video jumbotron">
-                                    <div class="row">
-                                        <div class="col-md-6 v-img">
-                                            <a href="{{ path('video.id',{'id': video.id}) }}">
-                                                <img class="img-responsive" src="http://img.youtube.com/vi/{{ video.videoid }}/mqdefault.jpg">
-
-                                            </a>
-                                        </div>
-                                        <div class="col-md-6 v-title">
-                                            <a href="{{ path('video.id',{'id': video.id}) }}">
-                                                <h3>{{ video.title|slice(0,50) }}</h3>
-                                            </a>
-                                        </div>
+                                <div class="meme col-md-6 jumbotron">
+                                    <div class="v-title">
+                                        <a href="{{ path('video.id',{'id': video.id}) }}">
+                                            <h3>{{ video.title|slice(0,50) }}</h3>
+                                        </a>
                                     </div>
+                                    <div class="v-img">
+                                        <a href="{{ path('video.id',{'id': video.id}) }}">
+                                            <img class="img-responsive" src="http://img.youtube.com/vi/{{ video.videoid }}/mqdefault.jpg">
+                                        </a>
+                                    </div>
+
                                     <div class="v-bottom">
 
                                     </div>
