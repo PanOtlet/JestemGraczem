@@ -14,29 +14,6 @@ use AppBundle\Entity\Video;
 class VideoController extends Controller
 {
     /**
-     * @Route("/video", name="video")
-     */
-    public function indexAction(Request $request)
-    {
-        $video = $this->getDoctrine()->getRepository('AppBundle:Video')->findBy(['status' => 1]);
-        $promoted = $this->getDoctrine()->getRepository('AppBundle:Video')->findBy(['status' => 2]);
-        return $this->render('video/index.html.twig', [
-            'video' => $video,
-            'promoted' => $promoted
-        ]);
-    }
-    /**
-     * @Route("/video/poczekalnia", name="video.wait")
-     */
-    public function waitAction(Request $request)
-    {
-        $video = $this->getDoctrine()->getRepository('AppBundle:Video')->findBy(['status' => 0]);
-        return $this->render('video/index.html.twig', [
-            'video' => $video
-        ]);
-    }
-
-    /**
      * @Route("/video/add", name="video.add")
      */
     public function newsAddAction(Request $request)
@@ -76,4 +53,55 @@ class VideoController extends Controller
         ]);
     }
 
+    /**
+     * @Route("/video/poczekalnia/{page}", name="video.wait")
+     */
+    public function waitAction($page = 0)
+    {
+        $em = $this->getDoctrine()->getRepository('AppBundle:Video');
+        $video = $em->createQueryBuilder('p')
+            ->where('p.status = 0')
+            ->setFirstResult($page * 10)
+            ->orderBy('p.id', 'DESC')
+            ->getQuery()
+            ->setMaxResults(10)
+            ->getResult();
+
+        return $this->render('video/index.html.twig', [
+            'videos' => $video
+        ]);
+    }
+
+    /**
+     * @Route("/video/{page}", name="video")
+     */
+    public function indexAction($page = 0)
+    {
+        $em = $this->getDoctrine()->getRepository('AppBundle:Video');
+        $video = $em->createQueryBuilder('p')
+            ->where('p.status = 1')
+            ->setFirstResult($page * 10)
+            ->orderBy('p.id', 'DESC')
+            ->getQuery()
+            ->setMaxResults(10)
+            ->getResult();
+
+        $promoted = $this->getDoctrine()->getRepository('AppBundle:Video')->findBy(['status' => 2]);
+        return $this->render('video/index.html.twig', [
+            'videos' => $video,
+            'promoted' => $promoted
+        ]);
+    }
+
+    /**
+     * @Route("/tv/{id}", name="video.id")
+     */
+    public function memAction($id)
+    {
+        $video = $this->getDoctrine()->getRepository('AppBundle:Video')->findOneBy(['id' => $id]);
+
+        return $this->render('video/tv.html.twig', [
+            'video' => $video
+        ]);
+    }
 }
