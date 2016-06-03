@@ -35,13 +35,13 @@ class MemeController extends Controller
         $mem = new Meme();
 
         $form = $this->createFormBuilder($mem)
-            ->add('title',NULL, [
+            ->add('title', NULL, [
                 'label' => 'Tytuł'
             ])
-            ->add('source',NULL, [
+            ->add('source', NULL, [
                 'label' => 'Źródło'
             ])
-            ->add('file',NULL, [
+            ->add('file', NULL, [
                 'label' => 'Plik',
                 'attr' => [
                     'class' => 'm-add'

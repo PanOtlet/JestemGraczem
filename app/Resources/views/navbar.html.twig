@@ -24,14 +24,14 @@
                 </li>
                 <li class="dropdown">
                     <a href="#" data-target="#" class="dropdown-toggle" data-toggle="dropdown">
-                        Gry <b class="caret"></b></a>
+                        Filmy <b class="caret"></b></a>
                     <ul class="dropdown-menu">
-                        <li><a href="javascript:void(0)">Counter-Strike: Global Offensive</a></li>
-                        <li><a href="javascript:void(0)">Overwatch</a></li>
+                        <li class="dropdown-header">Filmy</li>
+                        <li><a href="javascript:void(0)">Zobacz filmy</a></li>
+                        <li><a href="javascript:void(0)">Dodaj film</a></li>
                         <li class="divider"></li>
-                        <li class="dropdown-header">Dropdown header</li>
-                        <li><a href="javascript:void(0)">Separated link</a></li>
-                        <li><a href="javascript:void(0)">One more separated link</a></li>
+                        <li class="dropdown-header">Streamy</li>
+                        <li><a href="javascript:void(0)">Zobacz streamy</a></li>
                     </ul>
                 </li>
             </ul>
@@ -45,28 +45,33 @@
                         <ul class="dropdown-menu">
                             <li>
                                 <a href="{{ path('user',{'user': app.user.username}) }}">
-                                    <i class="fa fa-user" aria-hidden="true"></i> {{ 'profile.publicprofil'|trans({}, 'FOSUserBundle') }}
+                                    <i class="fa fa-user"
+                                       aria-hidden="true"></i> {{ 'profile.publicprofil'|trans({}, 'FOSUserBundle') }}
                                 </a>
                             </li>
                             <li>
                                 <a href="{{ path('fos_user_profile_show') }}">
-                                    <i class="fa fa-user-secret" aria-hidden="true"></i> {{ 'profile.profil'|trans({}, 'FOSUserBundle') }}
+                                    <i class="fa fa-user-secret"
+                                       aria-hidden="true"></i> {{ 'profile.profil'|trans({}, 'FOSUserBundle') }}
                                 </a>
                             </li>
                             <li>
                                 <a href="{{ path('fos_user_change_password') }}">
-                                    <i class="fa fa-key" aria-hidden="true"></i> {{ 'change_password.submit'|trans({}, 'FOSUserBundle') }}
+                                    <i class="fa fa-key"
+                                       aria-hidden="true"></i> {{ 'change_password.submit'|trans({}, 'FOSUserBundle') }}
                                 </a>
                             </li>
                             <li>
                                 <a href="{{ path('fos_user_profile_edit') }}">
-                                    <i class="fa fa-pencil" aria-hidden="true"></i> {{ 'profile.edit.edit'|trans({}, 'FOSUserBundle') }}
+                                    <i class="fa fa-pencil"
+                                       aria-hidden="true"></i> {{ 'profile.edit.edit'|trans({}, 'FOSUserBundle') }}
                                 </a>
                             </li>
                             <li role="separator" class="divider"></li>
                             <li>
                                 <a href="{{ path('fos_user_security_logout') }}">
-                                    <i class="fa fa-sign-out" aria-hidden="true"></i> {{ 'layout.logout'|trans({}, 'FOSUserBundle') }}
+                                    <i class="fa fa-sign-out"
+                                       aria-hidden="true"></i> {{ 'layout.logout'|trans({}, 'FOSUserBundle') }}
                                 </a>
                             </li>
                         </ul>
@@ -74,12 +79,14 @@
                 {% else %}
                     <li>
                         <a href="{{ path('fos_user_security_login') }}">
-                            <i class="fa fa-sign-in" aria-hidden="true"></i> {{ 'layout.login'|trans({}, 'FOSUserBundle') }}
+                            <i class="fa fa-sign-in"
+                               aria-hidden="true"></i> {{ 'layout.login'|trans({}, 'FOSUserBundle') }}
                         </a>
                     </li>
                     <li>
                         <a href="{{ path('fos_user_registration_register') }}">
-                            <i class="fa fa-user-plus" aria-hidden="true"></i> {{ 'layout.register'|trans({}, 'FOSUserBundle') }}
+                            <i class="fa fa-user-plus"
+                               aria-hidden="true"></i> {{ 'layout.register'|trans({}, 'FOSUserBundle') }}
                         </a>
                     </li>
                 {% endif %}

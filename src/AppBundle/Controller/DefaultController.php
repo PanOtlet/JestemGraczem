@@ -19,7 +19,7 @@ class DefaultController extends Controller
     public function indexAction(Request $request)
     {
         if (!$this->isGranted('IS_AUTHENTICATED_REMEMBERED')) {
-            return $this->render('default/index.html.twig',['rss'=>[]]);
+            return $this->render('default/index.html.twig', ['rss' => []]);
         }
 
         $rss = $this->getDoctrine()->getRepository('AppBundle:News')->findBy(['user' => $this->getUser()->getId()]);
@@ -88,7 +88,7 @@ class DefaultController extends Controller
 
         $user = $this->getDoctrine()->getRepository('AppBundle:News')->findOneBy(['id' => $id]);
 
-        if(!$user){
+        if (!$user) {
             $this->addFlash(
                 'danger',
                 'Nie ma takiego kanału informacji!'
@@ -97,7 +97,7 @@ class DefaultController extends Controller
             return $this->redirectToRoute('homepage');
         }
 
-        if($user->getUser()!=$this->getUser()->getId()){
+        if ($user->getUser() != $this->getUser()->getId()) {
             $this->addFlash(
                 'danger',
                 'Można kasować tylko swoje kanały informacji!'
