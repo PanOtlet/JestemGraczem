@@ -25,6 +25,16 @@ class VideoController extends Controller
             'promoted' => $promoted
         ]);
     }
+    /**
+     * @Route("/video/poczekalnia", name="video.wait")
+     */
+    public function waitAction(Request $request)
+    {
+        $video = $this->getDoctrine()->getRepository('AppBundle:Video')->findBy(['status' => 0]);
+        return $this->render('video/index.html.twig', [
+            'video' => $video
+        ]);
+    }
 
     /**
      * @Route("/video/add", name="video.add")
