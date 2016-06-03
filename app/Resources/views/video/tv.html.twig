@@ -2,5 +2,6 @@
 
 {% block content %}
             {{ video.title }}<br>
-            {{ video.videoid }}
+            {{ video.videoid }}<br>
+    https://www.youtube.com/oembed?url=https://youtube.com/watch?v={{ video.videoid }}
 {% endblock %}
