@@ -68,7 +68,8 @@ class VideoController extends Controller
             ->getResult();
 
         return $this->render('video/index.html.twig', [
-            'videos' => $video
+            'videos' => $video,
+            'page' => $page
         ]);
     }
 
@@ -89,7 +90,8 @@ class VideoController extends Controller
         $promoted = $this->getDoctrine()->getRepository('AppBundle:Video')->findBy(['status' => 2]);
         return $this->render('video/index.html.twig', [
             'videos' => $video,
-            'promoted' => $promoted
+            'promoted' => $promoted,
+            'page' => $page
         ]);
     }
 
