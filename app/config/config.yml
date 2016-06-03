@@ -124,4 +124,5 @@ easy_admin:
         Mems: AppBundle\Entity\Meme
         Użytkownicy: AppBundle\Entity\User
         YouTube: AppBundle\Entity\Video
+        Stream: AppBundle\Entity\Stream
     site_name: 'JestemGraczem.pl'
