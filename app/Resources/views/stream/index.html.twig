@@ -13,31 +13,10 @@
         <div class="row">
             <div class="col-xs-8">
                 <div class="row">
-                    <div class="container-fluid">
-                        {% if streams %}
-                            {% for stream in streams %}
-                                <div class="col-md-6" id="{{ stream.name }}">
-                                <div class="meme jumbotron">
-                                    <div class="v-title">
-                                        <a href="">
-                                            <p>{{ stream.name }}</p>
-                                        </a>
-                                    </div>
-                                    <div class="v-img">
-                                        <a href="">
-                                            <img class="img-responsive" src="https://static-cdn.jtvnw.net/previews-ttv/live_user_{{ stream.name }}-320x180.jpg">
-                                        </a>
-                                    </div>
+                    <div class="container-fluid" id="streams-container">
 
-                                    <div class="v-bottom">
 
-                                    </div>
-                                </div>
-                                </div>
-                            {% endfor %}
-                        {% else %}
-                            <h1>Brak streamów :( Smutek.jpg</h1>
-                        {% endif %}
+
                     </div>
                 </div>
             </div>
@@ -69,6 +48,7 @@
 
 {% block javascripts %}
     {{ parent() }}
+    {% if streams %}
     <script>
         {% for stream in streams %}
         $.ajax({
@@ -79,9 +59,11 @@
                     $("#{{ stream.name }}_status").html('ONLINE');
                     $("#{{ stream.name }}_status").css('font-weight','bold');
                     $("#{{ stream.name }}").addClass('danger');
-                    $("#{{ stream.name }}_viewers").html(channel["stream"]["viewers"]);
                     $("#{{ stream.name }}_game").html(channel["stream"]["game"]);
-                    console.log(stream);
+                    $("#streams-container").append('<div class="col-md-6" id="{{ stream.name }}"><div class="meme jumbotron"><div class="v-title" id="{{ stream.name }}_title"></div><div class="v-img" id="{{ stream.name }}_img"></div><div class="v-bottom"id="{{ stream.name }}_bottom"></div></div></div>');
+                    $("#{{ stream.name }}_viewers").html(channel["stream"]["viewers"]);
+                    $("#{{ stream.name }}_title").html('<a href="#""><p>{{ stream.name }}<span style="float: right;color: gray;font-size: medium;">'+channel["stream"]["viewers"]+'</span></p>'+'</a>');
+                    $("#{{ stream.name }}_img").html('<a href="#"> <img class="img-responsive" src="https://static-cdn.jtvnw.net/previews-ttv/live_user_{{ stream.name }}-320x180.jpg"> </a>');
                 } else {
                     $("#{{ stream.name }}").remove();
                     $("#offline").append("{{ stream.name }} ");
@@ -90,4 +72,7 @@
         });
         {% endfor %}
     </script>
+    {% else %}
+        <h1>Brak streamów :( Smutek.jpg</h1>
+    {% endif %}
 {% endblock %}
