@@ -19,9 +19,9 @@ class VideoController extends Controller
     public function addAction(Request $request)
     {
         $form = $this->createFormBuilder()
-            ->add('url', UrlType::class, array('label' => 'Link do filmu', 'required' => true))
-            ->add('title', TextType::class, array('label' => 'Tytuł', 'required' => true))
-            ->add('save', SubmitType::class, array('label' => 'Dodaj film'))
+            ->add('url', UrlType::class, ['label' => 'Link do filmu', 'required' => true])
+            ->add('title', TextType::class, ['label' => 'Tytuł', 'required' => true])
+            ->add('save', SubmitType::class, ['label' => 'Dodaj film'])
             ->getForm();
 
         $form->handleRequest($request);

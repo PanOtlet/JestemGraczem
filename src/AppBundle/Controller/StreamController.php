@@ -18,33 +18,17 @@ class StreamController extends Controller
     public function addAction(Request $request)
     {
         $form = $this->createFormBuilder()
-            ->add('url', UrlType::class, array('label' => 'Link do kanału Twitch', 'required' => true))
-            ->add('save', SubmitType::class, array('label' => 'Dodaj film'))
+            ->add('url', UrlType::class, ['label' => 'Link do kanału Twitch', 'required' => true])
+            ->add('save', SubmitType::class, ['label' => 'Dodaj'])
             ->getForm();
 
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
 
-            $videoId = parse_url($form->get('url')->getViewData(), PHP_URL_QUERY);
-            parse_str($videoId, $videoIdParsed);
-
-            $videoUrl = 'https://www.youtube.com/oembed?url=https://www.youtube.com/watch?v=' . $videoIdParsed['v'];
-
-            $response = substr(get_headers($videoUrl)[0], 9, 3);
-
-            if($response != "200"){
-                $this->addFlash(
-                    'danger',
-                    'Błąd! Film nie istnieje lub nie pochodzi z serwisu YouTube!'
-                );
-                return $this->redirectToRoute('stream');
-            }
-
             $data = new Video();
             $data->setUser($this->getUser()->getId());
             $data->setTitle($form->get('title')->getViewData());
-            $data->setVideoid($videoIdParsed['v']);
             $data->setStatus(0);
             $data->setDateAdd(new \DateTime("now"));
 
@@ -54,7 +38,7 @@ class StreamController extends Controller
 
             $this->addFlash(
                 'danger',
-                'Dodano film do poczekalni! Po akceptacji film powinien być dostępny dla wszystkich!'
+                'Dodano kanał do poczekalni! Po akceptacji kanał powinien być dostępny dla wszystkich!'
             );
             return $this->redirectToRoute('stream');
         }
