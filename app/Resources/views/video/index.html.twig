@@ -7,7 +7,7 @@
                 <div class="video jumbotron">
                     <div class="v-title">
                         <a href="{{ path('video.id',{'id': video.id}) }}">
-                            <h3>{{ mem.title|slice(0,50) }}</h3>
+                            <h3>{{ video.title|slice(0,50) }}</h3>
                         </a>
                     </div>
                     <div class="v-img">
@@ -15,7 +15,7 @@
                                 frameborder="0" allowfullscreen class="embed-responsive-16by9"></iframe>
                     </div>
                     <div class="v-bottom">
-                        <small>{{ mem.date.date|date('d/m/Y') }}</small>
+
                     </div>
                 </div>
             {% endfor %}
@@ -31,7 +31,7 @@
                 </div>
             </div>
         {% else %}
-            <h1>Brak memów :( Smutek.jpg</h1>
+            <h1>Brak filmów :( Smutek.jpg</h1>
         {% endif %}
     </div>
 {% endblock %}
