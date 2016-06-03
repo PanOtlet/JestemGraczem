@@ -69,4 +69,24 @@
 
 {% block javascripts %}
     {{ parent() }}
+    <script>
+        {% for stream in streams %}
+        $.ajax({
+            url:'https://api.twitch.tv/kraken/streams/{{ stream.name }}',
+            dataType:'jsonp',
+            success:function(channel) {
+                if (channel["stream"] != null) {
+                    $("#{{ stream.name }}_status").html('ONLINE');
+                    $("#{{ stream.name }}_status").css('font-weight','bold');
+                    $("#{{ stream.name }}").addClass('danger');
+                    $("#{{ stream.name }}_viewers").html(channel["stream"]["viewers"]);
+                    $("#{{ stream.name }}_game").html(channel["stream"]["game"]);
+                } else {
+                    $("#{{ stream.name }}").remove();
+                    $("#offline").append("{{ stream.name }} ");
+                }
+            }
+        });
+        {% endfor %}
+    </script>
 {% endblock %}
