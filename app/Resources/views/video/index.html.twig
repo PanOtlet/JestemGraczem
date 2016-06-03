@@ -1,7 +1,39 @@
-{% extends 'base.html.twig' %}
+{% extends 'all.html.twig' %}
 
 {% block content %}
-
+    <div class="container-fluid">
+        {% if videos %}
+            {% for video in videos %}
+                <div class="video jumbotron">
+                    <div class="v-title">
+                        <a href="{{ path('video.id',{'id': video.id}) }}">
+                            <h3>{{ mem.title|slice(0,50) }}</h3>
+                        </a>
+                    </div>
+                    <div class="v-img">
+                        <iframe width="560" height="315" src="https://www.youtube.com/embed/{{ path('video.id',{'id': video.id}) }}"
+                                frameborder="0" allowfullscreen class="embed-responsive-16by9"></iframe>
+                    </div>
+                    <div class="v-bottom">
+                        <small>{{ mem.date.date|date('d/m/Y') }}</small>
+                    </div>
+                </div>
+            {% endfor %}
+            <div class="row">
+                <div class="col-md-6">
+                    {% if page > 0 %}
+                        <a href="{{ path('video',{'page': page-1}) }}" class="btn btn-raised btn-danger btn-block">Poprzednie</a>
+                    {% endif %}
+                </div>
+                <div class="col-md-6">
+                    <a href="{{ path('video',{'page': page+1}) }}"
+                       class="btn btn-raised btn-danger btn-block">Kolejne</a>
+                </div>
+            </div>
+        {% else %}
+            <h1>Brak memów :( Smutek.jpg</h1>
+        {% endif %}
+    </div>
 {% endblock %}
 
 {% block javascripts %}
