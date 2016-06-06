@@ -18,7 +18,7 @@ class StreamController extends Controller
      */
     public function streamAction($id = 0)
     {
-        $stream = $this->getDoctrine()->getRepository('AppBundle:Video')->findOneBy(['id' => $id]);
+        $stream = $this->getDoctrine()->getRepository('AppBundle:Stream')->findOneBy(['id' => $id]);
 
         $encoders = [
             new XmlEncoder(),
