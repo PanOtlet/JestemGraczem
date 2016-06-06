@@ -70,9 +70,12 @@ class StreamController extends Controller
             ->setMaxResults(10)
             ->getResult();
 
+        $total = $em->createQueryBuilder('p')->select('COUNT(p)')->getQuery()->getSingleScalarResult();
+
         return $this->render('stream/index.html.twig', [
             'streams' => $stream,
-            'page' => $page
+            'page' => $page,
+            'total' => $total
         ]);
     }
 
@@ -90,11 +93,14 @@ class StreamController extends Controller
             ->setMaxResults(10)
             ->getResult();
 
+        $total = $em->createQueryBuilder('p')->select('COUNT(p)')->getQuery()->getSingleScalarResult();
+
         $promoted = $this->getDoctrine()->getRepository('AppBundle:Stream')->findBy(['status' => 2]);
         return $this->render('stream/index.html.twig', [
             'streams' => $stream,
             'promoted' => $promoted,
-            'page' => $page
+            'page' => $page,
+            'total' => $total
         ]);
     }
 
