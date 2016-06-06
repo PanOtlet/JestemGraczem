@@ -85,19 +85,10 @@ class StreamController extends Controller
     public function indexAction($page = 0)
     {
         $em = $this->getDoctrine()->getRepository('AppBundle:Stream');
-        $stream = $em->createQueryBuilder('p')
-            ->where('p.status = 1')
-            ->setFirstResult($page * 10)
-            ->orderBy('p.id', 'DESC')
-            ->getQuery()
-            ->setMaxResults(10)
-            ->getResult();
-
-        $total = $em->createQueryBuilder('p')->select('COUNT(p)')->getQuery()->getSingleScalarResult();
+        $total = $em->createQueryBuilder('e')->select('MAX(e.id)')->getQuery()->getSingleScalarResult();
 
         $promoted = $this->getDoctrine()->getRepository('AppBundle:Stream')->findBy(['status' => 2]);
-        return $this->render('stream/index.html.twig', [
-            'streams' => $stream,
+        return $this->render('stream/index_epic.html.twig', [
             'promoted' => $promoted,
             'page' => $page,
             'total' => $total
