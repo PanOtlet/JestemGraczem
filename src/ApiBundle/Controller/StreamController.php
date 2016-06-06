@@ -16,7 +16,7 @@ class StreamController extends Controller
     /**
      * @Route("/stream/p/{id}", name="api.stream.id")
      */
-    public function streamAction($id)
+    public function streamAction($id = 0)
     {
         $stream = $this->getDoctrine()->getRepository('AppBundle:Video')->findOneBy(['id' => $id]);
 
@@ -48,7 +48,7 @@ class StreamController extends Controller
             ->getQuery()
             ->setMaxResults(10)
             ->getResult();
-        
+
         $encoders = [
             new XmlEncoder(),
             new JsonEncoder()
