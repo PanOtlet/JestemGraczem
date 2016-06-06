@@ -49,40 +49,46 @@
     {{ parent() }}
     {% if streams %}
         <script>
-
-            $.ajax({
-                url: '{{ path('api.stream.id') }}' + 1,
-                dataType: 'json',
-                success: function (name) {
-                    for (var i = 0; i < name.length; i++) {
-                        var name_t = name[i]["name"];
-                        console.log(name_t);
-                        $.ajax({
-                            url: 'https://api.twitch.tv/kraken/streams/' + name_t,
-                            dataType: 'jsonp',
-                            success: function (channel) {
-                                if (channel["stream"] != null) {
-                                    var display = channel["stream"]["channel"]["display_name"];
-                                    var name = channel["stream"]["channel"]["name"];
-                                    console.log(display+" TEST");
-                                    $("#streams-container").append('<div class="col-md-6" id="' + name + '"><div class="meme jumbotron"><div class="v-title" id="' + name + '_title"></div><div class="v-img" id="' + name + '_img"></div><div class="v-bottom" id="' + name + '_bottom"></div></div></div>');
-                                    $("#" + name).addClass('danger');
-                                    $("#" + name + "_status").html('ONLINE').css('font-weight', 'bold');
-                                    $("#" + name + "_game").html(channel["stream"]["game"]);
-                                    $("#" + name + "_viewers").html(channel["stream"]["viewers"]);
-                                    $("#" + name + "_title").html('<a href="#"><p>' + display + '<span style="float: right;color: gray;font-size: medium;">' + channel["stream"]["viewers"] + '</span></p></a>');
-                                    $("#" + name + "_img").html('<a href="#"> <img class="img-responsive" src="https://static-cdn.jtvnw.net/previews-ttv/live_user_' + name + '-320x180.jpg"> </a>');
-                                } else {
-                                    console.log("ERROR");
-                                    $("#" + name_t).remove();
-                                    $("#offline").append(name_t);
-                                }
+                var stream_c=0;
+                $.ajax({
+                    url: '{{ path('api.stream.id') }}' + 1,
+                    dataType: 'json',
+                    success: function (name) {
+                        for (var i = 0; i < name.length; i++) {
+                            console.log(stream_c);
+                            if (stream_c === 2) {
+                                console.log(stream_c + " break");
+                                break;
                             }
-                        });
+                            var name_t = name[i]["name"];
+                            console.log(name_t);
+                            $.ajax({
+                                url: 'https://api.twitch.tv/kraken/streams/' + name_t,
+                                dataType: 'jsonp',
+                                success: function (channel) {
+                                    if (channel["stream"] != null) {
+                                        var display = channel["stream"]["channel"]["display_name"];
+                                        var name = channel["stream"]["channel"]["name"];
+                                        console.log(display + " TEST");
+                                        $("#streams-container").append('<div class="col-md-6" id="' + name + '"><div class="meme jumbotron"><div class="v-title" id="' + name + '_title"></div><div class="v-img" id="' + name + '_img"></div><div class="v-bottom" id="' + name + '_bottom"></div></div></div>');
+                                        $("#" + name).addClass('danger');
+                                        $("#" + name + "_status").html('ONLINE').css('font-weight', 'bold');
+                                        $("#" + name + "_game").html(channel["stream"]["game"]);
+                                        $("#" + name + "_viewers").html(channel["stream"]["viewers"]);
+                                        $("#" + name + "_title").html('<a href="#"><p>' + display + '<span style="float: right;color: gray;font-size: medium;">' + channel["stream"]["viewers"] + '</span></p></a>');
+                                        $("#" + name + "_img").html('<a href="#"> <img class="img-responsive" src="https://static-cdn.jtvnw.net/previews-ttv/live_user_' + name + '-320x180.jpg"> </a>');
+                                        stream_c++;
+                                        console.log(stream_c);
+                                    } else {
+                                        console.log("ERROR");
+                                        $("#" + name_t).remove();
+                                        $("#offline").append(name_t);
+                                    }
+                                }
+                            });
+                        }
                     }
-                }
-            });
-
+                });
             {#{% for stream in streams %}#}
             {#$.ajax({#}
             {#url:'https://api.twitch.tv/kraken/streams/{{ stream.name }}',#}
