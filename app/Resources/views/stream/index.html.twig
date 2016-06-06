@@ -52,6 +52,7 @@
                 var stream_c=1;
                 var stream_c_o=0;
                 var online_streams=10;//liczba wyświetlanych streamów
+                console.log({{ total }});
                 getstream();
                 function getstream(){
                     $.ajax({
@@ -76,13 +77,13 @@
                                             $("#" + name + "_img").html('<a href="#"> <img class="img-responsive" src="https://static-cdn.jtvnw.net/previews-ttv/live_user_' + name + '-320x180.jpg"> </a>');
                                             stream_c++;
                                             stream_c_o++;
-                                            if (stream_c_o < online_streams){
+                                            if (stream_c_o < online_streams && stream_c < {{ total }}){
                                                 setTimeout(function(){getstream()}, 100);
                                             }
                                         } else {
                                             console.log(stream["name"]+" Offline "+ stream_c);
                                             stream_c++;
-                                            if (stream_c_o < online_streams){
+                                            if (stream_c_o < online_streams && stream_c < {{ total }}){
                                                 setTimeout(function(){getstream()}, 100);
                                             }
                                         }
