@@ -77,13 +77,13 @@
                                             stream_c++;
                                             stream_c_o++;
                                             if (stream_c_o < online_streams){
-                                                setTimeout(function(){getstream()}, 1000);
+                                                setTimeout(function(){getstream()}, 100);
                                             }
                                         } else {
                                             console.log(stream["name"]+" Offline "+ stream_c);
                                             stream_c++;
                                             if (stream_c_o < online_streams){
-                                                setTimeout(function(){getstream()}, 1000);
+                                                setTimeout(function(){getstream()}, 100);
                                             }
                                         }
                                     }
@@ -92,8 +92,8 @@
                     error:function(){
                         console.log("Coś poszło nie tak albo Błąd 404");
                         stream_c++;
-                        if (stream_c_o < online_streams){
-                            setTimeout(function(){getstream()}, 1000);
+                        if (stream_c_o < online_streams && stream_c < {{ total }}){
+                            setTimeout(function(){getstream()}, 100);
                         }
                     }
                     });
