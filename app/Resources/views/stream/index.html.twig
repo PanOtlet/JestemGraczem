@@ -62,14 +62,16 @@
                             dataType: 'jsonp',
                             success: function (channel) {
                                 if (channel["stream"] != null) {
-                                    console.log(channel["stream"]["channel"]["display_name"]+" TEST");
-                                    $("#streams-container").append('<div class="col-md-6" id="' + channel["stream"]["channel"]["display_name"] + '"><div class="meme jumbotron"><div class="v-title" id="' + channel["stream"]["channel"]["display_name"] + '_title"></div><div class="v-img" id="' + channel["stream"]["channel"]["display_name"] + '_img"></div><div class="v-bottom" id="' + channel["stream"]["channel"]["display_name"] + '_bottom"></div></div></div>');
-                                    $("#" + channel["stream"]["channel"]["display_name"]).addClass('danger');
-                                    $("#" + channel["stream"]["channel"]["display_name"] + "_status").html('ONLINE').css('font-weight', 'bold');
-                                    $("#" + channel["stream"]["channel"]["display_name"] + "_game").html(channel["stream"]["game"]);
-                                    $("#" + channel["stream"]["channel"]["display_name"] + "_viewers").html(channel["stream"]["viewers"]);
-                                    $("#" + channel["stream"]["channel"]["display_name"] + "_title").html('<a href="#"><p>' + channel["stream"]["channel"]["display_name"] + '<span style="float: right;color: gray;font-size: medium;">' + channel["stream"]["viewers"] + '</span></p></a>');
-                                    $("#" + channel["stream"]["channel"]["display_name"] + "_img").html('<a href="#"> <img class="img-responsive" src="https://static-cdn.jtvnw.net/previews-ttv/live_user_' + channel["stream"]["channel"]["display_name"] + '-320x180.jpg"> </a>');
+                                    var display = channel["stream"]["channel"]["display_name"];
+                                    var name = channel["stream"]["channel"]["name"];
+                                    console.log(display+" TEST");
+                                    $("#streams-container").append('<div class="col-md-6" id="' + name + '"><div class="meme jumbotron"><div class="v-title" id="' + name + '_title"></div><div class="v-img" id="' + name + '_img"></div><div class="v-bottom" id="' + name + '_bottom"></div></div></div>');
+                                    $("#" + name).addClass('danger');
+                                    $("#" + name + "_status").html('ONLINE').css('font-weight', 'bold');
+                                    $("#" + name + "_game").html(channel["stream"]["game"]);
+                                    $("#" + name + "_viewers").html(channel["stream"]["viewers"]);
+                                    $("#" + name + "_title").html('<a href="#"><p>' + display + '<span style="float: right;color: gray;font-size: medium;">' + channel["stream"]["viewers"] + '</span></p></a>');
+                                    $("#" + name + "_img").html('<a href="#"> <img class="img-responsive" src="https://static-cdn.jtvnw.net/previews-ttv/live_user_' + name + '-320x180.jpg"> </a>');
                                 } else {
                                     console.log("ERROR");
                                     $("#" + name_t).remove();
