@@ -14,6 +14,27 @@ class StreamController extends Controller
 {
 
     /**
+     * @Route("/stream/p/{id}", name="api.stream.id")
+     */
+    public function streamAction($id)
+    {
+        $stream = $this->getDoctrine()->getRepository('AppBundle:Video')->findOneBy(['id' => $id]);
+
+        $encoders = [
+            new XmlEncoder(),
+            new JsonEncoder()
+        ];
+
+        $normalizers = [
+            new ObjectNormalizer()
+        ];
+
+        $serializer = new Serializer($normalizers, $encoders);
+
+        return new Response($serializer->serialize($stream, 'json'));
+    }
+
+    /**
      * @Route("/stream/{page}", name="api.stream")
      */
     public function indexAction($page = 0)
@@ -27,9 +48,15 @@ class StreamController extends Controller
             ->getQuery()
             ->setMaxResults(10)
             ->getResult();
+        
+        $encoders = [
+            new XmlEncoder(),
+            new JsonEncoder()
+        ];
 
-        $encoders = array(new XmlEncoder(), new JsonEncoder());
-        $normalizers = array(new ObjectNormalizer());
+        $normalizers = [
+            new ObjectNormalizer()
+        ];
 
         $serializer = new Serializer($normalizers, $encoders);
 
