@@ -15,3 +15,5 @@ JestemGraczem.pl
 ### FOSUserBundle
 `php bin/console fos:user:promote testuser ROLE_ADMIN` - Promowanie użytkownika na admina
 `php bin/console fos:user:promote testuser ROLE_SUPER_ADMIN` - Promowanie użytkownika na super saiyajin
+### Controllers
+`php bin/console generate:controller` - Generator kontrolerów
