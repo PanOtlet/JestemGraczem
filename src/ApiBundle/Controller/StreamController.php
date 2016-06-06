@@ -16,9 +16,17 @@ class StreamController extends Controller
     /**
      * @Route("/stream/p/{id}", name="api.stream.id")
      */
-    public function streamAction($id = 0)
+    public function streamAction($id = 1)
     {
         $stream = $this->getDoctrine()->getRepository('AppBundle:Stream')->findOneBy(['id' => $id]);
+
+        if ($stream == NULL) {
+            return new Response(
+                "{name:NULL,status:-1,message:'ERROR 404 - Stream nie znaleziono!'}",
+                Response::HTTP_NOT_FOUND,
+                ['content-type' => 'application/json']
+            );
+        }
 
         $encoders = [
             new XmlEncoder(),
@@ -31,7 +39,11 @@ class StreamController extends Controller
 
         $serializer = new Serializer($normalizers, $encoders);
 
-        return new Response($serializer->serialize($stream, 'json'));
+        return new Response(
+            $serializer->serialize($stream, 'json'),
+            Response::HTTP_OK,
+            ['content-type' => 'application/json']
+        );
     }
 
     /**
@@ -49,6 +61,14 @@ class StreamController extends Controller
             ->setMaxResults(50)
             ->getResult();
 
+        if ($stream == NULL) {
+            return new Response(
+                "{name:NULL,status:-1,message:'ERROR 404 - Streamów nie znaleziono!'}",
+                Response::HTTP_NOT_FOUND,
+                ['content-type' => 'application/json']
+            );
+        }
+
         $encoders = [
             new XmlEncoder(),
             new JsonEncoder()
@@ -60,6 +80,10 @@ class StreamController extends Controller
 
         $serializer = new Serializer($normalizers, $encoders);
 
-        return new Response($serializer->serialize($stream, 'json'));
+        return new Response(
+            $serializer->serialize($stream, 'json'),
+            Response::HTTP_OK,
+            ['content-type' => 'application/json']
+        );
     }
 }
