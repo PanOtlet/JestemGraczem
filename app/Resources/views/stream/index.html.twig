@@ -50,6 +50,44 @@
     {{ parent() }}
     {% if streams %}
     <script>
+
+            $.ajax({
+                url:'{{ path('api.stream.id') }}'+1,
+                dataType:'json',
+                success:function(name) {
+                    for(var i=0;i<name.length;i++){
+                        var name_t=name[i]["name"];
+                        console.log(name_t);
+
+
+                        $.ajax({
+                            url:'https://api.twitch.tv/kraken/streams/'+name_t,
+                            dataType:'jsonp',
+                            success:function(channel) {
+                                if (channel["stream"] != null) {
+                                    console.log(name_t);
+                                    $("#"+name_t+"_status").html('ONLINE');
+                                    $("#"+name_t+"_status").css('font-weight','bold');
+                                    $("#"+name_t+"").addClass('danger');
+                                    $("#"+name_t+"_game").html(channel["stream"]["game"]);
+                                    $("#streams-container").append('<div class="col-md-6" id="'+name_t+'"><div class="meme jumbotron"><div class="v-title" id="'+name_t+'_title"></div><div class="v-img" id="'+name_t+'_img"></div><div class="v-bottom" id="'+name_t+'_bottom"></div></div></div>');
+                                    $("#"+name_t+"_viewers").html(channel["stream"]["viewers"]);
+                                    $("#"+name_t+"_title").html('<a href="#"><p>'+name_t+'<span style="float: right;color: gray;font-size: medium;">'+channel["stream"]["viewers"]+'</span></p></a>');
+                                    $("#"+name_t+"_img").html('<a href="#"> <img class="img-responsive" src="https://static-cdn.jtvnw.net/previews-ttv/live_user_'+name_t+'-320x180.jpg"> </a>');
+                                } else {
+                                    $("#"+name_t).remove();
+                                    $("#offline").append(name_t);
+
+                                }
+                            }
+                        });
+
+
+
+                    };
+                }
+            });
+
         {% for stream in streams %}
         $.ajax({
             url:'https://api.twitch.tv/kraken/streams/{{ stream.name }}',
