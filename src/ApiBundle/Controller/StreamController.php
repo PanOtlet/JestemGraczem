@@ -43,10 +43,10 @@ class StreamController extends Controller
         $em = $this->getDoctrine()->getRepository('AppBundle:Stream');
         $stream = $em->createQueryBuilder('p')
             ->where('p.status = 1')
-            ->setFirstResult($page * 10)
+            ->setFirstResult($page * 50)
             ->orderBy('p.id', 'DESC')
             ->getQuery()
-            ->setMaxResults(10)
+            ->setMaxResults(50)
             ->getResult();
 
         $encoders = [
