@@ -57,9 +57,10 @@
                         url: '{{ path('api.stream.id') }}/' + stream_c,
                         dataType: 'json',
                         success: function (stream) {
-                            if (stream != null) {
+                            if (stream["name"] != null) {
                                 console.log(stream);
                                 getstream(stream);
+
                                 $.ajax({
                                     url: 'https://api.twitch.tv/kraken/streams/' + stream["name"],
                                     dataType: 'jsonp',
