@@ -121,8 +121,8 @@
             $("#" + name + "_status").html('ONLINE').css('font-weight', 'bold');
             $("#" + name + "_game").html(channel["stream"]["game"]);
             $("#" + name + "_viewers").html(channel["stream"]["viewers"]);
-            $("#" + name + "_title").html('<a href="#"><p>' + display + '<span style="float: right;color: gray;font-size: medium;">' + channel["stream"]["viewers"] + '</span></p></a>');
-            $("#" + name + "_img").html('<a href="#"> <img class="img-responsive" src="https://static-cdn.jtvnw.net/previews-ttv/live_user_' + name + '-320x180.jpg"> </a>');
+            $("#" + name + "_title").html('<a href="{{ path('stream.id')}}'+stream_c+'"><p>' + display + '<span style="float: right;color: gray;font-size: medium;">' + channel["stream"]["viewers"] + '</span></p></a>');
+            $("#" + name + "_img").html('<a href="{{ path('stream.id')}}/'+stream_c+'"> <img class="img-responsive" src="https://static-cdn.jtvnw.net/previews-ttv/live_user_' + name + '-320x180.jpg"> </a>') ;
 
         }
 
