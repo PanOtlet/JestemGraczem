@@ -88,7 +88,19 @@
         }
 
         function sort() {
-            console.log(objects);
+                var swapped;
+                do {
+                    swapped = false;
+                    for (var i = 0; i < objects.length - 1; i++) {
+                        if (objects[i]["stream"]["viewers"] < objects[i + 1]["stream"]["viewers"]) {
+                            var temp = objects[i];
+                            console.log(objects[i]);
+                            objects[i] = objects[i + 1];
+                            objects[i + 1] = temp;
+                            swapped = true;
+                        }
+                    }
+                } while (swapped);
             loop();
         }
 
@@ -98,7 +110,7 @@
             }
         }
         function render(channel) {
-            console.log(objects);
+
             var display = channel["stream"]["channel"]["display_name"];
             var name = channel["stream"]["channel"]["name"];
             $("#streams-container").append('<div class="col-md-6" id="' + name + '"><div class="meme jumbotron"><div class="v-title" id="' + name + '_title"></div><div class="v-img" id="' + name + '_img"></div><div class="v-bottom" id="' + name + '_bottom"></div></div></div>');
