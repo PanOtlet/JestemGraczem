@@ -2,7 +2,11 @@
 
 {% block menu %}
     <p class="navbar-text">{{ stream.name }}</p>
-    <li><a href="{{ path('stream') }}">Lista Streamów</a></li>
+    <li>
+        <a href="{{ path('stream') }}">
+            <i class="fa fa-twitch" aria-hidden="true"></i> Lista Streamów
+        </a>
+    </li>
 {% endblock %}
 
 {% block content %}
@@ -14,20 +18,10 @@
             </div>
         <div class="video jumbotron">
             <div class="v-bottom">
+                <div class="embed-responsive embed-responsive-16by9">
+                    <iframe class="embed-responsive-item" src="https://player.twitch.tv/?channel={{ stream.name }}"></iframe>
+                </div>
             </div>
-        </div>
-        <div class="video jumbotron">
-            <div id="fb-root"></div>
-            <script>(function (d, s, id) {
-                    var js, fjs = d.getElementsByTagName(s)[0];
-                    if (d.getElementById(id)) return;
-                    js = d.createElement(s);
-                    js.id = id;
-                    js.src = "//connect.facebook.net/pl_PL/sdk.js#xfbml=1&version=v2.6&appId=1792775277616619";
-                    fjs.parentNode.insertBefore(js, fjs);
-                }(document, 'script', 'facebook-jssdk'));</script>
-            <div class="fb-comments" data-href="{{ absolute_url(path('stream.id', {'id': stream.id})) }}"
-                 data-numposts="10"></div>
         </div>
     </div>
 {% endblock %}
