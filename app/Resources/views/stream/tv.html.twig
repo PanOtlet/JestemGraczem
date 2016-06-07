@@ -1,26 +1,27 @@
 {% extends 'all.html.twig' %}
 
 {% block menu %}
-    <p class="navbar-text">{{ stream.name }}</p>
     <li>
         <a href="{{ path('stream') }}">
             <i class="fa fa-twitch" aria-hidden="true"></i> Lista Streamów
         </a>
     </li>
+    <p class="navbar-text">{{ stream.name }}</p>
+    <p class="navbar-text">
+        Gra: <span id="game" class="label label-danger">Ładowanie...</span>
+    </p>
+    <p class="navbar-text">
+        Ilość widzów: <span id="viewers" class="label label-danger">Ładowanie...</span>
+    </p>
 {% endblock %}
 
 {% block content %}
     <div class="container-fluid">
         <div class="video jumbotron">
-            <div class="v-title">
-                <h3>{{ stream.name }}</h3>
-            </div>
-        </div>
-        <div class="video jumbotron">
             <div class="v-bottom">
                 <div class="embed-responsive embed-responsive-16by9">
                     <iframe class="embed-responsive-item"
-                            src="https://player.twitch.tv/?channel={{ stream.name }}"></iframe>
+                            src="http://player.twitch.tv/?channel={{ stream.name }}"></iframe>
                 </div>
             </div>
         </div>
@@ -28,33 +29,29 @@
 {% endblock %}
 
 {% block sidebar %}
-    <div class="embed-responsived embed-responsive-4by3">
-        <iframe class="embed-responsive-chat" src="https://www.twitch.tv/{{ stream.name }}/chat?popout="
-                width="300px"></iframe>
-    </div>
+    <a href="{{ path('redirect') }}?url=https://www.twitch.tv/{{ stream.name }}">
+        <i class="fa fa-twitch"></i> Twitch
+    </a>
 {% endblock %}
 
-{% block stylesheets %}
+{% block javascripts %}
     {{ parent() }}
-    <style>
-        .embed-responsived iframe {
-            position: absolute;
-            top: 0;
-            bottom: 0;
-            left: 0;
-            height: 500px;
-            width: 100%;
-            border: 0;
+    <script>
+        function metadata(){
+            $.ajax({
+                url:'https://api.twitch.tv/kraken/streams/{{ stream.name }}',
+                dataType:'jsonp',
+                success:function(channel) {
+                    if (channel["stream"] != null) {
+                        $("#viewers").html(channel["stream"]["viewers"]);
+                        $("#game").html(channel["stream"]["game"]);
+                    } else {
+                        $("#gametext").remove();
+                        $("#viewers").html("OFFLINE");
+                    }
+                }
+            });
         }
-
-        .embed-responsive-chat {
-            position: absolute;
-            top: 0;
-            left: 0;
-            bottom: 0;
-            height: 500px !important;
-            width: 100%;
-            border: 0;
-        }
-    </style>
+        setInterval("metadata();",10000);
+    </script>
 {% endblock %}

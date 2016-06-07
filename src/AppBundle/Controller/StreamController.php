@@ -33,7 +33,7 @@ class StreamController extends Controller
                 'http://www.twitch.tv/',
                 'https://www.twitch.tv/'
             ];
-            $name = str_replace($twitch,NULL,$form->get('url')->getViewData());
+            $name = str_replace($twitch, NULL, $form->get('url')->getViewData());
 
             $data = new Stream();
             $data->setUser($this->getUser()->getId());
@@ -75,11 +75,11 @@ class StreamController extends Controller
     /**
      * @Route("/player/{id}", name="stream.id")
      */
-    public function streamAction($id=1)
+    public function streamAction($id = 1)
     {
         $stream = $this->getDoctrine()->getRepository('AppBundle:Stream')->findOneBy(['name' => $id]);
 
-        if ($stream==NULL){
+        if ($stream == NULL) {
             $this->addFlash(
                 'danger',
                 'Stream nie istnieje!'
@@ -87,8 +87,11 @@ class StreamController extends Controller
             return $this->redirectToRoute('stream');
         }
 
+        $user = $this->getDoctrine()->getRepository('AppBundle:User')->findOneBy(['id' => $stream->getUser()]);
+
         return $this->render('stream/tv.html.twig', [
-            'stream' => $stream
+            'stream' => $stream,
+            'user' => $user
         ]);
     }
 }
