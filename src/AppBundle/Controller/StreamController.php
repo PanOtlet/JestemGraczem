@@ -75,9 +75,17 @@ class StreamController extends Controller
     /**
      * @Route("/player/{id}", name="stream.id")
      */
-    public function streamAction($id)
+    public function streamAction($id=1)
     {
         $stream = $this->getDoctrine()->getRepository('AppBundle:Stream')->findOneBy(['id' => $id]);
+
+        if ($stream==NULL){
+            $this->addFlash(
+                'danger',
+                'Stream nie istnieje!'
+            );
+            return $this->redirectToRoute('stream');
+        }
 
         return $this->render('stream/tv.html.twig', [
             'stream' => $stream
