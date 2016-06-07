@@ -60,6 +60,7 @@
         var stream_c_o = 0;
         var online_streams = 10;//liczba wyświetlanych streamów
         var total = {{ total }}+1;
+        var objects =[];
         console.log(total);
         getstream();
 
@@ -79,34 +80,55 @@
                             getstream()
                         }, 100);
                     }
+                    else {
+                        sort();
+                    }
                 }
             });
         }
-        function sort(ch_array) {
+
+        function sort() {
+            console.log(objects);
+            loop();
+        }
+
+        function loop() {
+            for (var i=0;i<objects.length;i++){
+                render(objects[i]);
+            }
+        }
+        function render(channel) {
+            console.log(objects);
+            var display = channel["stream"]["channel"]["display_name"];
+            var name = channel["stream"]["channel"]["name"];
+            $("#streams-container").append('<div class="col-md-6" id="' + name + '"><div class="meme jumbotron"><div class="v-title" id="' + name + '_title"></div><div class="v-img" id="' + name + '_img"></div><div class="v-bottom" id="' + name + '_bottom"></div></div></div>');
+            $("#" + name).addClass('danger');
+            $("#" + name + "_status").html('ONLINE').css('font-weight', 'bold');
+            $("#" + name + "_game").html(channel["stream"]["game"]);
+            $("#" + name + "_viewers").html(channel["stream"]["viewers"]);
+            $("#" + name + "_title").html('<a href="#"><p>' + display + '<span style="float: right;color: gray;font-size: medium;">' + channel["stream"]["viewers"] + '</span></p></a>');
+            $("#" + name + "_img").html('<a href="#"> <img class="img-responsive" src="https://static-cdn.jtvnw.net/previews-ttv/live_user_' + name + '-320x180.jpg"> </a>');
 
         }
+
         function get_twitch(stream) {
             $.ajax({
                 url: 'https://api.twitch.tv/kraken/streams/' + stream["name"],
                 dataType: 'jsonp',
                 success: function (channel) {
                     if (channel["stream"] != null) {
-                        var display = channel["stream"]["channel"]["display_name"];
-                        var name = channel["stream"]["channel"]["name"];
-                        console.log(display + " Online " + stream_c + " " + stream_c_o);
-                        $("#streams-container").append('<div class="col-md-6" id="' + name + '"><div class="meme jumbotron"><div class="v-title" id="' + name + '_title"></div><div class="v-img" id="' + name + '_img"></div><div class="v-bottom" id="' + name + '_bottom"></div></div></div>');
-                        $("#" + name).addClass('danger');
-                        $("#" + name + "_status").html('ONLINE').css('font-weight', 'bold');
-                        $("#" + name + "_game").html(channel["stream"]["game"]);
-                        $("#" + name + "_viewers").html(channel["stream"]["viewers"]);
-                        $("#" + name + "_title").html('<a href="#"><p>' + display + '<span style="float: right;color: gray;font-size: medium;">' + channel["stream"]["viewers"] + '</span></p></a>');
-                        $("#" + name + "_img").html('<a href="#"> <img class="img-responsive" src="https://static-cdn.jtvnw.net/previews-ttv/live_user_' + name + '-320x180.jpg"> </a>');
+                        console.log(channel["stream"]["channel"]["display_name"] + " Online " + stream_c + " " + stream_c_o);
+                        objects.push(channel);
+                        //render(channel);
                         stream_c++;
                         stream_c_o++;
                         if (stream_c_o < online_streams && stream_c < total) {
                             setTimeout(function () {
                                 getstream()
                             }, 100);
+                        }
+                        else {
+                            sort();
                         }
                     } else {
                         console.log(stream["name"] + " Offline " + stream_c);
@@ -115,6 +137,8 @@
                             setTimeout(function () {
                                 getstream()
                             }, 100);
+                        }else {
+                            sort();
                         }
                     }
                 }
