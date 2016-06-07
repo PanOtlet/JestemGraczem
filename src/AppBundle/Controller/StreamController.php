@@ -77,7 +77,7 @@ class StreamController extends Controller
      */
     public function streamAction($id=1)
     {
-        $stream = $this->getDoctrine()->getRepository('AppBundle:Stream')->findOneBy(['id' => $id]);
+        $stream = $this->getDoctrine()->getRepository('AppBundle:Stream')->findOneBy(['name' => $id]);
 
         if ($stream==NULL){
             $this->addFlash(
