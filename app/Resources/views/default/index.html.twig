@@ -14,9 +14,14 @@
                    data-toggle="dropdown" aria-controls="myTabDrop1-contents"
                    aria-expanded="false">Inne newsy <span class="caret"></span></a>
                 <ul class="dropdown-menu" aria-labelledby="myTabDrop1" id="myTabDrop1-contents">
-                    <li class="">
+                    <li>
                         <a href="#cybersport" role="tab" data-toggle="tab" aria-controls="dropdown1">
                             CyberSport.pl
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#lowcygier" role="tab" data-toggle="tab" aria-controls="dropdown1">
+                            Łowcy Gier
                         </a>
                     </li>
                 </ul>
@@ -52,6 +57,10 @@
             <div role="tabpanel" class="tab-pane fade row" id="cybersport">
                 <img src="http://cybersport.pl/wp-content/themes/cybersport/assets/img/logo_cybersport.gif"
                      alt="Cybersport" class="img-responsive">
+            </div>
+            <div role="tabpanel" class="tab-pane fade row" id="lowcygier">
+                <img src="http://lowcygier.pl/wp-content/uploads/2013/02/main_logo.png"
+                     alt="Łowcy Gier" class="img-responsive">
             </div>
             <div role="tabpanel" class="tab-pane fade row" id="23games">
                 <h3>23Games <span class="label label-danger">Sponsorowane</span></h3>
@@ -97,6 +106,12 @@
                 url: "http://cybersport.pl/feed",
                 css: "panel-warning",
                 color: "#99161b"
+            },
+            {
+                name: "#lowcygier",
+                url: "http://lowcygier.pl/feed/",
+                css: "panel-warning",
+                color: "#367ea8"
             }
         ];
 
