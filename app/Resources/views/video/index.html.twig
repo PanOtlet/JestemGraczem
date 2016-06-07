@@ -1,9 +1,21 @@
 {% extends 'video.html.twig' %}
 
 {% block menu %}
-    <li><a href="{{ path('video') }}">Główna</a></li>
-    <li><a href="{{ path('video.wait') }}">Poczekalnia</a></li>
-    <li><a href="{{ path('video.add') }}">Dodaj</a></li>
+    <li>
+        <a href="{{ path('video') }}">
+            <i class="fa fa-youtube" aria-hidden="true"></i> Główna
+        </a>
+    </li>
+    <li>
+        <a href="{{ path('video.wait') }}">
+            <i class="fa fa-clock-o" aria-hidden="true"></i> Poczekalnia
+        </a>
+    </li>
+    <li>
+        <a href="{{ path('video.add') }}">
+            <i class="fa fa-plus" aria-hidden="true"></i> Dodaj
+        </a>
+    </li>
 {% endblock %}
 
 {% block content %}

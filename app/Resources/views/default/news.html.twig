@@ -1,7 +1,11 @@
 {% extends 'base.html.twig' %}
 
 {% block menu %}
-    <li><a href="{{ path('news') }}">News</a></li>
+    <li>
+        <a href="{{ path('news') }}">
+            <i class="fa fa-newspaper-o" aria-hidden="true"></i> News
+        </a>
+    </li>
 {% endblock %}
 
 {% block content %}

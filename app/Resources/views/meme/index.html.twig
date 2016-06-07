@@ -1,9 +1,21 @@
 {% extends 'all.html.twig' %}
 
 {% block menu %}
-    <li class="active"><a href="{{ path('meme') }}">Główna</a></li>
-    <li><a href="{{ path('meme.wait') }}">Poczekalnia</a></li>
-    <li><a href="{{ path('meme.add') }}">Dodaj</a></li>
+    <li class="active">
+        <a href="{{ path('meme') }}">
+            <i class="fa fa-picture-o" aria-hidden="true"></i> Główna
+        </a>
+    </li>
+    <li>
+        <a href="{{ path('meme.wait') }}">
+            <i class="fa fa-clock-o" aria-hidden="true"></i> Poczekalnia
+        </a>
+    </li>
+    <li>
+        <a href="{{ path('meme.add') }}">
+            <i class="fa fa-plus" aria-hidden="true"></i> Dodaj
+        </a>
+    </li>
 {% endblock %}
 
 {% block content %}
