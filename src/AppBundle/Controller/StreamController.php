@@ -88,7 +88,7 @@ class StreamController extends Controller
         $total = $em->createQueryBuilder('e')->select('MAX(e.id)')->getQuery()->getSingleScalarResult();
 
         $promoted = $this->getDoctrine()->getRepository('AppBundle:Stream')->findBy(['status' => 2]);
-        return $this->render('stream/index_epic.html.twig', [
+        return $this->render('stream/index.html.twig', [
             'promoted' => $promoted,
             'page' => $page,
             'total' => $total
