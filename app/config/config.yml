@@ -119,9 +119,9 @@ sonata_seo:
 
 easy_admin:
     entities:
-        News: AppBundle\Entity\News
+        RSS: AppBundle\Entity\News
         Mems: AppBundle\Entity\Meme
         Użytkownicy: AppBundle\Entity\User
         YouTube: AppBundle\Entity\Video
         Stream: AppBundle\Entity\Stream
-    site_name: 'JestemGraczem.pl'
+    site_name: 'JG Admin'
