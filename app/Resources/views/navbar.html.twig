@@ -56,6 +56,26 @@
                 {% block menu %}{% endblock %}
             </ul>
             <ul class="nav navbar-nav navbar-right">
+                <li>
+                    <a href="#" data-toggle="modal" data-target="#snap" target="_blank">
+                        <i class="fa fa-snapchat-ghost" aria-hidden="true"></i>
+                    </a>
+                </li>
+                <li>
+                    <a href="https://www.facebook.com/jestemgraczempl/" target="_blank">
+                        <i class="fa fa-facebook" aria-hidden="true"></i>
+                    </a>
+                </li>
+                <li>
+                    <a href="https://twitter.com/PanOtlet" target="_blank">
+                        <i class="fa fa-twitter" aria-hidden="true"></i>
+                    </a>
+                </li>
+                <li>
+                    <a href="https://twitch.tv/otlet" target="_blank">
+                        <i class="fa fa-twitch" aria-hidden="true"></i>
+                    </a>
+                </li>
                 {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"
@@ -111,6 +131,23 @@
                     </li>
                 {% endif %}
             </ul>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" tabindex="-1" role="dialog" id="snap">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title">Snapchat</h4>
+            </div>
+            <div class="modal-body">
+                <img class="img-responsive" src="{{ asset('assets/img/snap.jpg') }}" alt="Snapchat Pan Otlet">
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Zamknij</button>
+            </div>
         </div>
     </div>
 </div>
