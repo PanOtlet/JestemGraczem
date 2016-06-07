@@ -1,5 +1,9 @@
 {% extends 'base.html.twig' %}
 
+{% block menu %}
+    <li><a href="{{ path('news') }}">News</a></li>
+{% endblock %}
+
 {% block content %}
     <div>
         <ul class="nav nav-tabs" role="tablist">

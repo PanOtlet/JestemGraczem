@@ -1,5 +1,11 @@
 {% extends 'all.html.twig' %}
 
+{% block menu %}
+    <li><a href="{{ path('meme') }}">Główna</a></li>
+    <li class="active"><a href="{{ path('meme.wait') }}">Poczekalnia</a></li>
+    <li><a href="{{ path('meme.add') }}">Dodaj</a></li>
+{% endblock %}
+
 {% block content %}
     <div class="container-fluid">
         {% if meme %}

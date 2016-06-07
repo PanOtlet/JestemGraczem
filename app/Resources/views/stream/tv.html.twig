@@ -1,18 +1,19 @@
 {% extends 'all.html.twig' %}
 
+{% block menu %}
+    <p class="navbar-text">{{ stream.name }}</p>
+    <li><a href="{{ path('stream') }}">Lista Streamów</a></li>
+{% endblock %}
+
 {% block content %}
     <div class="container-fluid">
         <div class="video jumbotron">
             <div class="v-title">
-                <h3>{{ video.title }}</h3>
+                <h3>{{ stream.name }}</h3>
             </div>
             </div>
         <div class="video jumbotron">
-            <div class="v-img embed-responsive embed-responsive-16by9">
-                <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/{{ video.videoid }}" frameborder="0" allowfullscreen></iframe>
-            </div>
             <div class="v-bottom">
-
             </div>
         </div>
         <div class="video jumbotron">
@@ -25,7 +26,7 @@
                     js.src = "//connect.facebook.net/pl_PL/sdk.js#xfbml=1&version=v2.6&appId=1792775277616619";
                     fjs.parentNode.insertBefore(js, fjs);
                 }(document, 'script', 'facebook-jssdk'));</script>
-            <div class="fb-comments" data-href="{{ absolute_url(path('video.id', {'id': video.id})) }}"
+            <div class="fb-comments" data-href="{{ absolute_url(path('stream.id', {'id': stream.id})) }}"
                  data-numposts="10"></div>
         </div>
     </div>

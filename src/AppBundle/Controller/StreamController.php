@@ -57,29 +57,6 @@ class StreamController extends Controller
     }
 
     /**
-     * @Route("/stream/poczekalnia/{page}", name="stream.wait")
-     */
-    public function waitAction($page = 0)
-    {
-        $em = $this->getDoctrine()->getRepository('AppBundle:Stream');
-        $stream = $em->createQueryBuilder('p')
-            ->where('p.status = 0')
-            ->setFirstResult($page * 10)
-            ->orderBy('p.id', 'DESC')
-            ->getQuery()
-            ->setMaxResults(10)
-            ->getResult();
-
-        $total = $em->createQueryBuilder('p')->select('COUNT(p)')->getQuery()->getSingleScalarResult();
-
-        return $this->render('stream/index.html.twig', [
-            'streams' => $stream,
-            'page' => $page,
-            'total' => $total
-        ]);
-    }
-
-    /**
      * @Route("/stream/{page}", name="stream")
      */
     public function indexAction($page = 0)
@@ -100,7 +77,7 @@ class StreamController extends Controller
      */
     public function streamAction($id)
     {
-        $stream = $this->getDoctrine()->getRepository('AppBundle:Video')->findOneBy(['id' => $id]);
+        $stream = $this->getDoctrine()->getRepository('AppBundle:Stream')->findOneBy(['id' => $id]);
 
         return $this->render('stream/tv.html.twig', [
             'stream' => $stream

@@ -1,5 +1,12 @@
 {% extends 'all.html.twig' %}
 
+{% block menu %}
+    <p class="navbar-text">{{ video.title }}</p>
+    <li><a href="{{ path('video') }}">Główna</a></li>
+    <li><a href="{{ path('video.wait') }}">Poczekalnia</a></li>
+    <li><a href="{{ path('video.add') }}">Dodaj</a></li>
+{% endblock %}
+
 {% block content %}
     <div class="container-fluid">
         <div class="video jumbotron">

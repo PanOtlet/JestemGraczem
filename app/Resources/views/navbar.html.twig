@@ -1,3 +1,4 @@
+{% block navigation %}
 <div class="navbar navbar-inverse navbar-fixed-top">
     <div class="container-fluid">
         <div class="navbar-header">
@@ -10,33 +11,49 @@
         </div>
         <div class="navbar-collapse collapse navbar-inverse-collapse">
             <ul class="nav navbar-nav">
-                <li><a href="{{ path('news') }}">News</a></li>
                 <li class="dropdown">
                     <a href="#" data-target="#" class="dropdown-toggle" data-toggle="dropdown">
-                        Memy <b class="caret"></b></a>
+                        <i class="fa fa-bars" aria-hidden="true"></i>
+                    </a>
                     <ul class="dropdown-menu">
-                        <li><a href="{{ path('meme') }}">Główna</a></li>
+                        <li class="dropdown-header">Strefa Gamingowa</li>
+                        <li>
+                            <a href="{{ path('news') }}">
+                                <i class="fa fa-newspaper-o" aria-hidden="true"></i> Newsy
+                            </a>
+                        </li>
                         <li class="divider"></li>
-                        <li class="dropdown-header">Dodatkowo</li>
-                        <li><a href="{{ path('meme.wait') }}">Poczekalnia</a></li>
-                        <li><a href="{{ path('meme.add') }}">Dodaj</a></li>
+                        <li class="dropdown-header">Strefa Fun</li>
+                        <li>
+                            <a href="{{ path('meme') }}">
+                                <i class="fa fa-picture-o" aria-hidden="true"></i> Memy
+                            </a>
+                        </li>
+                        <li>
+                            <a href="{{ path('stream') }}">
+                                <i class="fa fa-twitch" aria-hidden="true"></i> Stream
+                            </a>
+                        </li>
+                        <li>
+                            <a href="{{ path('video') }}">
+                                <i class="fa fa-youtube" aria-hidden="true"></i> Filmy
+                            </a>
+                        </li>
+                        <li class="divider"></li>
+                        <li class="dropdown-header">Strefa Turniejowa</li>
+                        <li>
+                            <a href="#">
+                                <i class="fa fa-trophy" aria-hidden="true"></i> Turnieje
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <i class="fa fa-users" aria-hidden="true"></i> Drużyny
+                            </a>
+                        </li>
                     </ul>
                 </li>
-                <li class="dropdown">
-                    <a href="#" data-target="#" class="dropdown-toggle" data-toggle="dropdown">
-                        Filmy <b class="caret"></b></a>
-                    <ul class="dropdown-menu">
-                        <li class="dropdown-header">Filmy</li>
-                        <li><a href="{{ path('video') }}">Zobacz filmy</a></li>
-                        <li><a href="{{ path('video.wait') }}">Poczekalnia</a></li>
-                        <li><a href="{{ path('video.add') }}">Dodaj film</a></li>
-                        <li class="divider"></li>
-                        <li class="dropdown-header">Streamy</li>
-                        <li><a href="{{ path('stream') }}">Zobacz streamy</a></li>
-                        <li><a href="{{ path('stream.wait') }}">Poczekalnia</a></li>
-                        <li><a href="{{ path('stream.add') }}">Dodaj stream</a></li>
-                    </ul>
-                </li>
+                {% block menu %}{% endblock %}
             </ul>
             <ul class="nav navbar-nav navbar-right">
                 {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
@@ -97,3 +114,4 @@
         </div>
     </div>
 </div>
+{% endblock %}

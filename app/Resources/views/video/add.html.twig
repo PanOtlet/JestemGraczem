@@ -1,5 +1,11 @@
 {% extends "base.html.twig" %}
 
+{% block menu %}
+    <li><a href="{{ path('video') }}">Główna</a></li>
+    <li><a href="{{ path('video.wait') }}">Poczekalnia</a></li>
+    <li><a href="{{ path('video.add') }}">Dodaj</a></li>
+{% endblock %}
+
 {% block title %}Dodaj film{% endblock %}
 {% block titlemeta %}Dodaj{% endblock %}
 
