@@ -21,7 +21,7 @@ class StreamController extends Controller
         $em = $this->getDoctrine()->getRepository('AppBundle:User');
 
         $stream = $em->createQueryBuilder('p')
-            ->select('p.username', 'p.twitch')
+            ->select('p.username', 'p.twitch', 'p.partner')
             ->where('p.twitch IS NOT NULL')
             ->orderBy('p.partner', 'DESC')
             ->getQuery()

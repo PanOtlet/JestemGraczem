@@ -6,52 +6,81 @@
             <i class="fa fa-twitch" aria-hidden="true"></i> Lista Streamów
         </a>
     </li>
-    <p class="navbar-text">{{ stream.name }}</p>
+    <li>
+        <a href="{{ path('user',{'user':stream.username}) }}">
+            {{ stream.twitch }}
+        </a>
+    </li>
     <p id="gametext" class="navbar-text">
         Gra: <span id="game" class="label label-danger">Ładowanie...</span>
     </p>
-    <p class="navbar-text">
-        Ilość widzów: <span id="viewers" class="label label-danger">Ładowanie...</span>
-    </p>
 {% endblock %}
 
-{% block content %}
-    <div class="container-fluid">
-        <div class="video jumbotron">
-            <div class="v-bottom">
-                <div class="embed-responsive embed-responsive-16by9">
-                    <iframe class="embed-responsive-item"
-                            src="http://player.twitch.tv/?channel={{ stream.name }}"></iframe>
+{% block body %}
+    <main class="container">
+        <div class="row">
+            <div class="col-md-7">
+                <div class="row">
+                    <div class="container-fluid">
+                        <div class="video jumbotron">
+                            <div class="v-bottom">
+                                <div class="embed-responsive embed-responsive-16by9">
+                                    <iframe class="embed-responsive-item"
+                                            src="http://player.twitch.tv/?channel={{ stream.twitch }}"></iframe>
+                                </div>
+                            </div>
+                        </div>
+                        <div id="data" class="video jumbotron">
+                            <div class="v-bottom" style="text-align: right">
+                                <i class="fa fa-user" aria-hidden="true" style="color: #FF0000"></i>
+                                <span id="viewers" class="label label-danger">Ładowanie...</span>
+                                <i class="fa fa-eye" aria-hidden="true"></i>
+                                <span id="views" class="label label-danger">Ładowanie...</span>
+                                <i class="fa fa-heart" aria-hidden="true"></i>
+                                <span id="followers" class="label label-danger">Ładowanie...</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-5">
+                <div class="row">
+                    <div class="container-fluid">
+                        <div class="video jumbotron">
+                            <div class="v-bottom">
+                                <div class="embed-responsive embed-responsive-4by3">
+                                    <iframe class="embed-responsive-item"
+                                            src="https://www.twitch.tv/{{ stream.twitch }}/chat?popout=true"></iframe>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
-{% endblock %}
-
-{% block sidebar %}
-    <a href="{{ path('redirect') }}?url=https://www.twitch.tv/{{ stream.name }}">
-        <i class="fa fa-twitch"></i> Twitch
-    </a>
+    </main>
 {% endblock %}
 
 {% block javascripts %}
     {{ parent() }}
     <script>
-        function metadata(){
+        function metadata() {
             $.ajax({
-                url:'https://api.twitch.tv/kraken/streams/{{ stream.name }}',
-                dataType:'jsonp',
-                success:function(channel) {
+                url: 'https://api.twitch.tv/kraken/streams/{{ stream.twitch }}',
+                dataType: 'jsonp',
+                success: function (channel) {
                     if (channel["stream"] != null) {
                         $("#viewers").html(channel["stream"]["viewers"]);
                         $("#game").html(channel["stream"]["game"]);
+                        $("#followers").html(channel["stream"]["channel"]["followers"]);
+                        $("#views").html(channel["stream"]["channel"]["views"]);
                     } else {
                         $("#gametext").remove();
-                        $("#viewers").html("OFFLINE");
+                        $("#data").remove();
                     }
                 }
             });
         }
-        setInterval("metadata();",10000);
+        setInterval("metadata();", 10000);
     </script>
 {% endblock %}

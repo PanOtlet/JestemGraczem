@@ -29,56 +29,13 @@ class StreamController extends Controller
     }
 
     /**
-     * @Route("/stream/add", name="stream.add")
+     * @Route("/player/{twitch}", name="stream.id")
      */
-    public function addAction(Request $request)
+    public function streamAction($twitch = NULL)
     {
-        $form = $this->createFormBuilder()
-            ->add('url', UrlType::class, ['label' => 'Link do kanału Twitch', 'required' => true])
-            ->add('save', SubmitType::class, ['label' => 'Dodaj'])
-            ->getForm();
+        $stream = $this->getDoctrine()->getRepository('AppBundle:User')->findOneBy(['twitch' => $twitch]);
 
-        $form->handleRequest($request);
-
-        if ($form->isSubmitted() && $form->isValid()) {
-
-            $twitch = [
-                'http://twitch.tv/',
-                'https://twitch.tv/',
-                'http://www.twitch.tv/',
-                'https://www.twitch.tv/'
-            ];
-            $name = str_replace($twitch, NULL, $form->get('url')->getViewData());
-
-            $data = new Stream();
-            $data->setUser($this->getUser()->getId());
-            $data->setName($name);
-            $data->setStatus(0);
-
-            $em = $this->getDoctrine()->getManager();
-            $em->persist($data);
-            $em->flush();
-
-            $this->addFlash(
-                'danger',
-                'Dodano kanał do poczekalni! Po akceptacji kanał powinien być dostępny dla wszystkich!'
-            );
-            return $this->redirectToRoute('stream');
-        }
-
-        return $this->render('stream/add.html.twig', [
-            'form' => $form->createView(),
-        ]);
-    }
-
-    /**
-     * @Route("/player/{name}", name="stream.id")
-     */
-    public function streamAction($name = 1)
-    {
-        $stream = $this->getDoctrine()->getRepository('AppBundle:Stream')->findOneBy(['name' => $name]);
-
-        if ($stream == NULL) {
+        if ($stream == NULL || $twitch == NULL) {
             $this->addFlash(
                 'danger',
                 'Stream nie istnieje!'
@@ -86,11 +43,8 @@ class StreamController extends Controller
             return $this->redirectToRoute('stream');
         }
 
-        $user = $this->getDoctrine()->getRepository('AppBundle:User')->findOneBy(['id' => $stream->getUser()]);
-
         return $this->render('stream/tv.html.twig', [
-            'stream' => $stream,
-            'user' => $user
+            'stream' => $stream
         ]);
     }
 }
