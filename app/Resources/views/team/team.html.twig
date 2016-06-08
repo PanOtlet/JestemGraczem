@@ -13,50 +13,50 @@
 
 {% block content %}
     <div class="jumbotron">
-    <div class="container-fluid">
-        <div class="row">
-            <div class="col-md-4">
-                <img src="https://www.gravatar.com/avatar/{{ team.logo }}?s=160" class="img-responsive">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-4">
+                    <img src="https://www.gravatar.com/avatar/{{ team.logo }}?s=160" class="img-responsive">
+                </div>
+                <div class="col-md-8">
+                    <h2>Nazwa: {{ team.name }}</h2>
+                    <h3>Tag: {{ team.tag }}</h3>
+                </div>
+                <div class="col-md-8">
+                    <h2>Krótki opis: {{ team.shortdesc }}</h2>
+                </div>
             </div>
-            <div class="col-md-8">
-                <h2>Nazwa: {{team.name}}</h2>
-                <h3>Tag: {{team.tag}}</h3>
-            </div>
-            <div class="col-md-8">
-                <h2>Krótki opis: {{team.shortdesc}}</h2>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-md-12">
-                <h2>Długi opis: {{team.description}}</h2>
+            <div class="row">
+                <div class="col-md-12">
+                    <h2>Długi opis: {{ team.description }}</h2>
+                </div>
             </div>
         </div>
     </div>
-</div>
     <div class="jumbotron">
         <div class="row">
-        {% if divisions %}
-        {% for division in divisions %}
-            <div class="col-md-4">
-                <div class="jumbotron teams">
-                    <div class="t-img">
-                        <a href="{{ path('division',{'id': division.id}) }}">
-                            <img src="{{ asset('assets/img/lol.jpg') }}" class="img-responsive">
-                        </a>
+            {% if divisions %}
+                {% for division in divisions %}
+                    <div class="col-md-4">
+                        <div class="jumbotron teams">
+                            <div class="t-img">
+                                <a href="{{ path('division',{'id': division.id}) }}">
+                                    <img src="{{ asset('assets/img/lol.jpg') }}" class="img-responsive">
+                                </a>
+                            </div>
+                            <div class="t-title">
+                                <a href="{{ path('division',{'id': division.id}) }}">
+                                    <h3>
+                                        {{ division.name }}
+                                    </h3>
+                                </a>
+                            </div>
+                        </div>
                     </div>
-                    <div class="t-title">
-                        <a href="{{ path('division',{'id': division.id}) }}">
-                            <h3>
-                                {{ division.name }}
-                            </h3>
-                        </a>
-                    </div>
-                </div>
-            </div>
-        {% endfor %}
-        {% else %}
-        <h1>Brak Dywizj :( Smutek.jpg</h1>
-        {% endif %}
-            </div>
+                {% endfor %}
+            {% else %}
+                <h1>Brak Dywizj :( Smutek.jpg</h1>
+            {% endif %}
+        </div>
     </div>
 {% endblock %}

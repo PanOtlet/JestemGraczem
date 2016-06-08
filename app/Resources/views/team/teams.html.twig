@@ -7,7 +7,7 @@
         <div class="jumbotron t-title">
             <h1>Drużyny</h1>
         </div>
-    {% if teams %}
+        {% if teams %}
             {% for team in teams %}
                 <div class="col-md-4">
                     <div class="jumbotron teams">
@@ -26,8 +26,8 @@
                     </div>
                 </div>
             {% endfor %}
-    {% else %}
-        <h1>Brak Drużyn :( Smutek.jpg</h1>
-    {% endif %}
-</div>
+        {% else %}
+            <h1>Brak Drużyn :( Smutek.jpg</h1>
+        {% endif %}
+    </div>
 {% endblock %}

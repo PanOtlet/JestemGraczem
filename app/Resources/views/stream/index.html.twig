@@ -18,7 +18,6 @@
         <div class="col-md-3"></div>
         <div class="col-md-3"></div>
         <div class="col-md-3"></div>
-
     </div>
     <main class="container">
         <div class="row">
@@ -62,7 +61,7 @@
     {{ parent() }}
 
     <script>
-        var u_twitch="";
+        var u_twitch = "";
         getstream();
 
         function getstream() {
@@ -71,8 +70,8 @@
                 dataType: 'json',
                 success: function (stream) {
                     //console.log(stream);
-                    for(var i=0;i<stream.length;i++){
-                        u_twitch+=stream[i]["twitch"]+",";
+                    for (var i = 0; i < stream.length; i++) {
+                        u_twitch += stream[i]["twitch"] + ",";
                     }
                     //console.log(u_twitch+" getstream()");
                     get_twitch(u_twitch);
@@ -92,9 +91,8 @@
             $("#" + name + "_status").html('ONLINE').css('font-weight', 'bold');
             $("#" + name + "_game").html(channel["game"]);
             $("#" + name + "_viewers").html(channel["viewers"]);
-            $("#" + name + "_title").html('<a href="{{ path('stream.id')}}/'+name+'"><p>' + display + '<span style="float: right;color: gray;font-size: medium;">' + channel["viewers"] + '</span></p></a>');
-            $("#" + name + "_img").html('<a href="{{ path('stream.id')}}/'+name+'"> <img class="img-responsive" src="https://static-cdn.jtvnw.net/previews-ttv/live_user_' + name + '-320x180.jpg"> </a>') ;
-
+            $("#" + name + "_title").html('<a href="{{ path('stream.id') }}/' + name + '"><p>' + display + '<span style="float: right;color: gray;font-size: medium;">' + channel["viewers"] + '</span></p></a>');
+            $("#" + name + "_img").html('<a href="{{ path('stream.id') }}/' + name + '"> <img class="img-responsive" src="https://static-cdn.jtvnw.net/previews-ttv/live_user_' + name + '-320x180.jpg"> </a>');
         }
 
         function get_twitch(stream) {
@@ -103,11 +101,11 @@
                 dataType: 'jsonp',
                 success: function (channel) {
                     document.getElementById("loading").remove();
-                    for(var i=0;i<channel["streams"].length;i++){
+                    for (var i = 0; i < channel["streams"].length; i++) {
                         //console.log(channel["streams"][i]["channel"]["display_name"]+" "+channel["streams"][i]["viewers"]);
                         render(channel["streams"][i]);
                     }
-                },error: function () {
+                }, error: function () {
                     console.log("Coś poszło nie tak podczas łączenia z api twitch");
                 }
             });
