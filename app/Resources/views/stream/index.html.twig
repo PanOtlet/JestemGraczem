@@ -109,6 +109,7 @@
         function loop() {
             document.getElementById("loading").remove();
             for (var i=0;i<objects.length;i++){
+                document.getElementById(objects[i]["stream"]["channel"]["name"]).remove();
                 render(objects[i]);
             }
         }
@@ -134,7 +135,7 @@
                     if (channel["stream"] != null) {
                         console.log(channel["stream"]["channel"]["display_name"] + " Online " + stream_c + " " + stream_c_o);
                         objects.push(channel);
-                        //render(channel);
+                        render(channel);
                         stream_c++;
                         stream_c_o++;
                         if (stream_c_o < online_streams && stream_c < total) {
