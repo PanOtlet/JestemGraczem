@@ -8,6 +8,11 @@
             <i class="fa fa-users" aria-hidden="true"></i> Drużyny
         </a>
     </li>
+    <li>
+        <a href="{{ path('teams') }}">
+            <i class="fa fa-users" aria-hidden="true"></i> Drużyny
+        </a>
+    </li>
 
 {% endblock %}
 
@@ -28,6 +33,7 @@
         </div>
     </div>
     <div class="jumbotron">
+        <h2>Członkowie</h2>
         <div class="row">
             {% if team.team %}
                 {% for member in team.members %}
