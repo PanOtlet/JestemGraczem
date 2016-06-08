@@ -1,0 +1,46 @@
+{% extends "all.html.twig" %}
+
+{% block title %}TurniejBundle:Team:team{% endblock %}
+
+{% block menu %}
+    <li>
+        <a href="{{ path('teams') }}">
+            <i class="fa fa-users" aria-hidden="true"></i> Drużyny
+        </a>
+    </li>
+
+{% endblock %}
+
+{% block content %}
+    <div class="jumbotron">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-4">
+                <img src="https://www.gravatar.com/avatar/{{ division.logo }}?s=160" class="img-responsive">
+            </div>
+            <div class="col-md-8">
+                <h2>Nazwa dywizi {{ division.name }}</h2>
+                <h3>Nazwa drużyny: {{team.name}}</h3>
+            </div>
+            <div class="col-md-8">
+                <h2>Krótki opis: {{division.shortdesc}}</h2>
+            </div>
+        </div>
+    </div>
+</div>
+    <div class="jumbotron">
+        <div class="row">
+        {% if divisions %}
+        {% for division in divisions %}
+            <div class="col-md-4">
+                <div class="jumbotron teams">
+
+                </div>
+            </div>
+        {% endfor %}
+        {% else %}
+        <h1>Brak Członków :( Smutek.jpg</h1>
+        {% endif %}
+            </div>
+    </div>
+{% endblock %}
