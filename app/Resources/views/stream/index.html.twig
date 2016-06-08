@@ -63,29 +63,26 @@
         var stream_c_o = 0;
         var online_streams = 10;//liczba wyświetlanych streamów
         var total = {{ total }}+1;
+        var u_twitch="";
         var objects =[];
         console.log(total);
         getstream();
 
         function getstream() {
             $.ajax({
-                url: '{{ path('api.stream.id') }}/' + stream_c,
+                url: '{{ path('api.stream') }}',
                 dataType: 'json',
                 success: function (stream) {
                     console.log(stream);
-                    get_twitch(stream);
+                    for(var i=0;i<stream.length;i++){
+                        u_twitch+=stream[i]["twitch"]+",";
+                    }
+                    console.log(u_twitch+" getstream()");
+                    get_twitch(u_twitch);
                 },
                 error: function () {
-                    console.log("Coś poszło nie tak albo Błąd 404");
-                    stream_c++;
-                    if (stream_c_o < online_streams && stream_c < total) {
-                        setTimeout(function () {
-                            getstream()
-                        }, 100);
-                    }
-                    else {
-                        sort();
-                    }
+                    console.log("Coś poszło nie tak podczas łączenia z api jestemgraczem");
+
                 }
             });
         }
@@ -95,7 +92,7 @@
             do {
                 swapped = false;
                 for (var i = 0; i < objects.length - 1; i++) {
-                    if (objects[i]["stream"]["viewers"] < objects[i + 1]["stream"]["viewers"]) {
+                    if (objects["streams"][i]["viewers"] < objects["streams"][i + 1]["viewers"]) {
                         var temp = objects[i];
                         console.log(objects[i]);
                         objects[i] = objects[i + 1];
@@ -104,69 +101,46 @@
                     }
                 }
             } while (swapped);
-            $.ajax({
-                url: 'https://api.twitch.tv/kraken/streams?channel=monstercat,dotamajor,ragingluke',
-                dataType: 'jsonp',
-                success: function (stream) {
-                    console.log(stream);
-                }
-            });
             loop();
         }
 
         function loop() {
             document.getElementById("loading").remove();
             for (var i=0;i<objects.length;i++){
-                document.getElementById(objects[i]["stream"]["channel"]["name"]).remove();
+                document.getElementById(objects["streams"][i]["channel"]["name"]).remove();
             }
             for (var i=0;i<objects.length;i++){
-                render(objects[i]);
+                render(objects["streams"][i]);
             }
         }
         function render(channel) {
 
-            var display = channel["stream"]["channel"]["display_name"];
-            var name = channel["stream"]["channel"]["name"];
+            var display = channel["channel"]["display_name"];
+            var name = channel["channel"]["name"];
             $("#streams-container").append('<div class="col-md-6" id="' + name + '"><div class="meme jumbotron"><div class="v-title" id="' + name + '_title"></div><div class="v-img" id="' + name + '_img"></div><div class="v-bottom" id="' + name + '_bottom"></div></div></div>');
             $("#" + name).addClass('danger');
             $("#" + name + "_status").html('ONLINE').css('font-weight', 'bold');
-            $("#" + name + "_game").html(channel["stream"]["game"]);
-            $("#" + name + "_viewers").html(channel["stream"]["viewers"]);
-            $("#" + name + "_title").html('<a href="{{ path('stream.id')}}/'+name+'"><p>' + display + '<span style="float: right;color: gray;font-size: medium;">' + channel["stream"]["viewers"] + '</span></p></a>');
+            $("#" + name + "_game").html(channel["game"]);
+            $("#" + name + "_viewers").html(channel["viewers"]);
+            $("#" + name + "_title").html('<a href="{{ path('stream.id')}}/'+name+'"><p>' + display + '<span style="float: right;color: gray;font-size: medium;">' + channel["viewers"] + '</span></p></a>');
             $("#" + name + "_img").html('<a href="{{ path('stream.id')}}/'+name+'"> <img class="img-responsive" src="https://static-cdn.jtvnw.net/previews-ttv/live_user_' + name + '-320x180.jpg"> </a>') ;
 
         }
 
         function get_twitch(stream) {
             $.ajax({
-                url: 'https://api.twitch.tv/kraken/streams/' + stream["name"],
+                url: 'https://api.twitch.tv/kraken/streams/?channel=' + stream,
                 dataType: 'jsonp',
                 success: function (channel) {
-                    if (channel["stream"] != null) {
-                        console.log(channel["stream"]["channel"]["display_name"] + " Online " + stream_c + " " + stream_c_o);
-                        objects.push(channel);
-                        render(channel);
-                        stream_c++;
-                        stream_c_o++;
-                        if (stream_c_o < online_streams && stream_c < total) {
-                            setTimeout(function () {
-                                getstream()
-                            }, 100);
-                        }
-                        else {
-                            sort();
-                        }
-                    } else {
-                        console.log(stream["name"] + " Offline " + stream_c);
-                        stream_c++;
-                        if (stream_c_o < online_streams && stream_c < total) {
-                            setTimeout(function () {
-                                getstream()
-                            }, 100);
-                        }else {
-                            sort();
-                        }
+                    //objects=channel;
+                    //console.log(objects);
+                    document.getElementById("loading").remove();
+                    for(var i=0;i<channel["streams"].length;i++){
+                        console.log(channel["streams"][i]["channel"]["display_name"]+" "+channel["streams"][i]["viewers"]);
+                        render(channel["streams"][i]);
                     }
+                },error: function () {
+                    console.log("Coś poszło nie tak podczas łączenia z api twitch");
                 }
             });
         }
