@@ -110,6 +110,8 @@
             document.getElementById("loading").remove();
             for (var i=0;i<objects.length;i++){
                 document.getElementById(objects[i]["stream"]["channel"]["name"]).remove();
+            }
+            for (var i=0;i<objects.length;i++){
                 render(objects[i]);
             }
         }
