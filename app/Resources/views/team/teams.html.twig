@@ -7,14 +7,14 @@
             {% for team in teams %}
                 <div class="meme jumbotron">
                     <div class="t-title">
-                        <a href="{{ path('meme.id',{'id': mem.id}) }}">
+                        <a href="{{ path('team',{'tag': team.tag}) }}">
                             <h3>
                                 {{ team.name }}
                             </h3>
                         </a>
                     </div>
                     <div class="t-img">
-                        <a href="{{ path('meme.id',{'id': mem.id}) }}">
+                        <a href="{{ path('team',{'tag': team.tag}) }}">
                             <img src="https://www.gravatar.com/avatar/{{ team.logo }}?s=160" class="img-responsive">
                         </a>
                     </div>

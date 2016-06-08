@@ -8,25 +8,25 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 class TeamController extends Controller
 {
     /**
-     * @Route("/")
+     * @Route("/", name="teams")
      */
     public function indexAction()
     {
         $teams = $this->getDoctrine()->getRepository('TurniejBundle:Team')->findAll();
 
-        return $this->render('team/team.html.twig', [
+        return $this->render('team/teams.html.twig', [
             'teams' => $teams
         ]);
     }
 
     /**
-     * @Route("/t/{name}")
+     * @Route("/t/{tag}", name="team")
      */
-    public function teamAction($name = NULL)
+    public function teamAction($tag = NULL)
     {
-        $team = $this->getDoctrine()->getRepository('TurniejBundle:Team')->findOneBy(['tag' => $name]);
+        $team = $this->getDoctrine()->getRepository('TurniejBundle:Team')->findOneBy(['tag' => $tag]);
 
-        if ($name == NULL || $team == NULL) {
+        if ($tag == NULL || $team == NULL) {
             return $this->redirectToRoute('tournament');
         }
 
@@ -41,7 +41,7 @@ class TeamController extends Controller
     }
 
     /**
-     * @Route("/add")
+     * @Route("/add", name="team.add")
      */
     public function addAction()
     {
@@ -51,7 +51,7 @@ class TeamController extends Controller
     }
 
     /**
-     * @Route("/edit")
+     * @Route("/edit/{tag}", name="team.edit")
      */
     public function editAction()
     {
@@ -61,7 +61,7 @@ class TeamController extends Controller
     }
 
     /**
-     * @Route("/join")
+     * @Route("/join", name="team.join")
      */
     public function joinAction()
     {
@@ -71,7 +71,7 @@ class TeamController extends Controller
     }
 
     /**
-     * @Route("/remove")
+     * @Route("/remove/{tag}", name="team.remove")
      */
     public function removeAction()
     {
