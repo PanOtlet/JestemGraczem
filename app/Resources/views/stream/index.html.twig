@@ -59,13 +59,7 @@
     {{ parent() }}
 
     <script>
-        var stream_c = 1;
-        var stream_c_o = 0;
-        var online_streams = 10;//liczba wyświetlanych streamów
-        var total = {{ total }}+1;
         var u_twitch="";
-        var objects =[];
-        console.log(total);
         getstream();
 
         function getstream() {
@@ -73,11 +67,11 @@
                 url: '{{ path('api.stream') }}',
                 dataType: 'json',
                 success: function (stream) {
-                    console.log(stream);
+                    //console.log(stream);
                     for(var i=0;i<stream.length;i++){
                         u_twitch+=stream[i]["twitch"]+",";
                     }
-                    console.log(u_twitch+" getstream()");
+                    //console.log(u_twitch+" getstream()");
                     get_twitch(u_twitch);
                 },
                 error: function () {
@@ -87,34 +81,7 @@
             });
         }
 
-        function sort() {
-            var swapped;
-            do {
-                swapped = false;
-                for (var i = 0; i < objects.length - 1; i++) {
-                    if (objects["streams"][i]["viewers"] < objects["streams"][i + 1]["viewers"]) {
-                        var temp = objects[i];
-                        console.log(objects[i]);
-                        objects[i] = objects[i + 1];
-                        objects[i + 1] = temp;
-                        swapped = true;
-                    }
-                }
-            } while (swapped);
-            loop();
-        }
-
-        function loop() {
-            document.getElementById("loading").remove();
-            for (var i=0;i<objects.length;i++){
-                document.getElementById(objects["streams"][i]["channel"]["name"]).remove();
-            }
-            for (var i=0;i<objects.length;i++){
-                render(objects["streams"][i]);
-            }
-        }
         function render(channel) {
-
             var display = channel["channel"]["display_name"];
             var name = channel["channel"]["name"];
             $("#streams-container").append('<div class="col-md-6" id="' + name + '"><div class="meme jumbotron"><div class="v-title" id="' + name + '_title"></div><div class="v-img" id="' + name + '_img"></div><div class="v-bottom" id="' + name + '_bottom"></div></div></div>');
@@ -132,11 +99,9 @@
                 url: 'https://api.twitch.tv/kraken/streams/?channel=' + stream,
                 dataType: 'jsonp',
                 success: function (channel) {
-                    //objects=channel;
-                    //console.log(objects);
                     document.getElementById("loading").remove();
                     for(var i=0;i<channel["streams"].length;i++){
-                        console.log(channel["streams"][i]["channel"]["display_name"]+" "+channel["streams"][i]["viewers"]);
+                        //console.log(channel["streams"][i]["channel"]["display_name"]+" "+channel["streams"][i]["viewers"]);
                         render(channel["streams"][i]);
                     }
                 },error: function () {
