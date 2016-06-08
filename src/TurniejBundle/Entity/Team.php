@@ -3,6 +3,7 @@
 namespace TurniejBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use AppBundle\Entity\User;
 
 /**
  * Team
@@ -25,6 +26,7 @@ class Team
      * @var string
      *
      * @ORM\Column(name="name", type="string", length=255)
+     * 
      */
     private $name;
 
@@ -32,6 +34,8 @@ class Team
      * @var int
      *
      * @ORM\Column(name="owner", type="integer")
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\User")
+     * @ORM\JoinColumn(name="owner_username", referencedColumnName="username")
      */
     private $owner;
 

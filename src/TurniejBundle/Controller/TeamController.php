@@ -12,7 +12,11 @@ class TeamController extends Controller
      */
     public function indexAction()
     {
-        return $this->redirectToRoute('tournament');
+        $teams = $this->getDoctrine()->getRepository('TurniejBundle:Team')->findAll();
+
+        return $this->render('team/team.html.twig', [
+            'teams' => $teams
+        ]);
     }
 
     /**
