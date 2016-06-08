@@ -34,17 +34,17 @@
     </div>
 </div>
     <div class="jumbotron">
-        {% if division %}
-        {% for diw in division %}
+        {% if divisions %}
+        {% for division in divisions %}
             <div class="col-md-4">
                 <div class="jumbotron teams">
                     <div class="t-img">
-                        <a href="{{ path('diw',{'name': diw.name}) }}">
+                        <a href="{{ path('division',{'id': division.id}) }}">
                             <img src="{{ asset('assets/img/lol.jpg') }}" class="img-responsive">
                         </a>
                     </div>
                     <div class="t-title">
-                        <a href="{{ path('diw',{'name': diw.name}) }}">
+                        <a href="{{ path('division',{'id': division.id}) }}">
                             <h3>
                                 {{ team.name }}
                             </h3>
@@ -55,5 +55,6 @@
         {% endfor %}
         {% else %}
         <h1>Brak Dywizj :( Smutek.jpg</h1>
+        {% endif %}
     </div>
 {% endblock %}

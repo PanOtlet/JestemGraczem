@@ -20,7 +20,7 @@ class TeamController extends Controller
     }
 
     /**
-     * @Route("/t/{tag}", name="team")
+     * @Route("/druzyna/{tag}", name="team")
      */
     public function teamAction($tag = NULL)
     {
@@ -35,8 +35,24 @@ class TeamController extends Controller
 
         return $this->render('team/team.html.twig', [
             'team' => $team,
-            'division' => $division,
+            'divisions' => $division,
             'owner' => $owner
+        ]);
+    }
+
+    /**
+     * @Route("/dywizja/{id}", name="division")
+     */
+    public function divisionAction($id = NULL)
+    {
+        $team = $this->getDoctrine()->getRepository('TurniejBundle:Division')->findOneBy(['id' => $id]);
+
+        if ($id == NULL || $team == NULL) {
+            return $this->redirectToRoute('tournament');
+        }
+
+        return $this->render('team/division.html.twig', [
+            'team' => $team
         ]);
     }
 
