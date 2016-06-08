@@ -9,10 +9,25 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Form\Extension\Core\Type\UrlType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\HttpFoundation\RedirectResponse;
-use AppBundle\Entity\Video;
+use AppBundle\Entity\User;
 
 class StreamController extends Controller
 {
+    /**
+     * @Route("/stream", name="stream")
+     */
+    public function indexAction()
+    {
+        $em = $this->getDoctrine()->getRepository('AppBundle:Stream');
+        $total = $em->createQueryBuilder('e')->select('MAX(e.id)')->getQuery()->getSingleScalarResult();
+
+        $promoted = $this->getDoctrine()->getRepository('AppBundle:Stream')->findBy(['status' => 2]);
+        return $this->render('stream/index.html.twig', [
+            'promoted' => $promoted,
+            'total' => $total
+        ]);
+    }
+
     /**
      * @Route("/stream/add", name="stream.add")
      */
@@ -57,27 +72,11 @@ class StreamController extends Controller
     }
 
     /**
-     * @Route("/stream/{page}", name="stream")
+     * @Route("/player/{name}", name="stream.id")
      */
-    public function indexAction($page = 0)
+    public function streamAction($name = 1)
     {
-        $em = $this->getDoctrine()->getRepository('AppBundle:Stream');
-        $total = $em->createQueryBuilder('e')->select('MAX(e.id)')->getQuery()->getSingleScalarResult();
-
-        $promoted = $this->getDoctrine()->getRepository('AppBundle:Stream')->findBy(['status' => 2]);
-        return $this->render('stream/index.html.twig', [
-            'promoted' => $promoted,
-            'page' => $page,
-            'total' => $total
-        ]);
-    }
-
-    /**
-     * @Route("/player/{id}", name="stream.id")
-     */
-    public function streamAction($id = 1)
-    {
-        $stream = $this->getDoctrine()->getRepository('AppBundle:Stream')->findOneBy(['name' => $id]);
+        $stream = $this->getDoctrine()->getRepository('AppBundle:Stream')->findOneBy(['name' => $name]);
 
         if ($stream == NULL) {
             $this->addFlash(
