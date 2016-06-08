@@ -33,34 +33,38 @@
                 <div class="row">
                     <div class="container-fluid">
                         {% if videos %}
-                            {% for video in videos %}
-                                <div class="col-md-6">
-                                <div class="meme jumbotron">
-                                    <div class="v-title">
-                                        <a href="{{ path('video.id',{'id': video.id}) }}">
-                                            <h3>{{ video.title|slice(0,50) }}</h3>
-                                        </a>
-                                    </div>
-                                    <div class="v-img">
-                                        <a href="{{ path('video.id',{'id': video.id}) }}">
-                                            <img class="img-responsive" src="http://img.youtube.com/vi/{{ video.videoid }}/mqdefault.jpg">
-                                        </a>
-                                    </div>
+                            <div class="row">
+                                {% for video in videos %}
+                                    <div class="col-md-6">
+                                        <div class="meme jumbotron">
+                                            <div class="v-title">
+                                                <a href="{{ path('video.id',{'id': video.id}) }}">
+                                                    <h3>{{ video.title|slice(0,23) }}</h3>
+                                                </a>
+                                            </div>
+                                            <div class="v-img">
+                                                <a href="{{ path('video.id',{'id': video.id}) }}">
+                                                    <img class="img-responsive"
+                                                         src="http://img.youtube.com/vi/{{ video.videoid }}/mqdefault.jpg">
+                                                </a>
+                                            </div>
 
-                                    <div class="v-bottom">
+                                            <div class="v-bottom">
 
+                                            </div>
+                                        </div>
                                     </div>
-                                </div>
-                                </div>
-                            {% endfor %}
+                                {% endfor %}
+                            </div>
                             <div class="row">
                                 <div class="col-md-6">
                                     {% if page > 0 %}
-                                        <a href="{{ path('video',{'page': page-1}) }}" class="btn btn-raised btn-danger btn-block">Poprzednie</a>
+                                        <a href="{{ path('video.wait',{'page': page-1}) }}"
+                                           class="btn btn-raised btn-danger btn-block">Poprzednie</a>
                                     {% endif %}
                                 </div>
                                 <div class="col-md-6">
-                                    <a href="{{ path('video',{'page': page+1}) }}"
+                                    <a href="{{ path('video.wait',{'page': page+1}) }}"
                                        class="btn btn-raised btn-danger btn-block">Kolejne</a>
                                 </div>
                             </div>
