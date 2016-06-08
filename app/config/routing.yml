@@ -1,3 +1,13 @@
+turniej:
+    resource: "@TurniejBundle/Controller/"
+    type:     annotation
+    prefix:   /turniej
+
+team:
+    resource: "@TurniejBundle/Controller/TeamController.php"
+    type:     annotation
+    prefix:   /team
+
 api:
     resource: "@ApiBundle/Controller/"
     type:     annotation

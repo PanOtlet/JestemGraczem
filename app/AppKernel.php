@@ -21,6 +21,7 @@ class AppKernel extends Kernel
             new JavierEguiluz\Bundle\EasyAdminBundle\EasyAdminBundle(),
             new AppBundle\AppBundle(),
             new ApiBundle\ApiBundle(),
+            new TurniejBundle\TurniejBundle(),
         ];
 
         if (in_array($this->getEnvironment(), ['dev', 'test'], true)) {
