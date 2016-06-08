@@ -87,3 +87,9 @@ body {
     padding-left: 36%;
     padding-top: 20%;
 }
+.twitch{
+    padding: 0px !important;
+}
+.embed-responsive-twitch-chat{
+    padding-bottom: 175%;
+}
