@@ -56,7 +56,7 @@ class Meme
      * @var string
      *
      * @Assert\File(
-     *     maxSize = "4M",
+     *     maxSize = "8M",
      *     mimeTypes = {
      *      "image/bmp",
      *      "image/png",
