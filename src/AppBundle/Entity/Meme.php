@@ -61,7 +61,8 @@ class Meme
      *      "image/bmp",
      *      "image/png",
      *      "image/gif",
-     *      "image/jpg"
+     *      "image/jpg",
+     *      "image/jpeg"
      * },
      *     mimeTypesMessage = "Mime Error"
      * )
