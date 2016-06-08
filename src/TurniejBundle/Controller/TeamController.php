@@ -30,11 +30,13 @@ class TeamController extends Controller
             return $this->redirectToRoute('tournament');
         }
 
+        $owner = $this->getDoctrine()->getRepository('AppBundle:User')->findOneBy(['id' => $team->getOwner()]);
         $division = $this->getDoctrine()->getRepository('TurniejBundle:Division')->findAll(['team' => $team->getId()]);
 
         return $this->render('team/team.html.twig', [
             'team' => $team,
-            'division' => $division
+            'division' => $division,
+            'owner' => $owner
         ]);
     }
 
