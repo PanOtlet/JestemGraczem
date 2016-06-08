@@ -1,27 +1,33 @@
-{% extends "base.html.twig" %}
+{% extends 'all.html.twig' %}
 
 {% block title %}TurniejBundle:Team:team{% endblock %}
 
 {% block content %}
+    <div class="container-fluid">
+        <div class="jumbotron t-title">
+            <h1>Drużyny</h1>
+        </div>
     {% if teams %}
             {% for team in teams %}
-                <div class="meme jumbotron">
-                    <div class="t-title">
-                        <a href="{{ path('team',{'tag': team.tag}) }}">
-                            <h3>
-                                {{ team.name }}
-                            </h3>
-                        </a>
-                    </div>
-                    <div class="t-img">
-                        <a href="{{ path('team',{'tag': team.tag}) }}">
-                            <img src="https://www.gravatar.com/avatar/{{ team.logo }}?s=160" class="img-responsive">
-                        </a>
+                <div class="col-md-4">
+                    <div class="jumbotron">
+                        <div class="t-img">
+                            <a href="{{ path('team',{'tag': team.tag}) }}">
+                                <img src="{{ asset('assets/img/lol.jpg') }}" class="img-responsive">
+                            </a>
+                        </div>
+                        <div class="t-title">
+                            <a href="{{ path('team',{'tag': team.tag}) }}">
+                                <h3>
+                                    {{ team.name }}
+                                </h3>
+                            </a>
+                        </div>
                     </div>
                 </div>
             {% endfor %}
     {% else %}
         <h1>Brak memów :( Smutek.jpg</h1>
     {% endif %}
-
+</div>
 {% endblock %}

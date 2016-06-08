@@ -57,6 +57,22 @@ body {
     opacity: 1 !important;
     position: relative !important;
 }
+.t-title{
+    text-align: center;
+}
+.t-title h3{
+    margin-top: 0px;
+}
+.t-title a{
+    color: #000000;
+}
+.t-title a:hover{
+    color: #000000;
+    text-decoration: none;
+}
+.t-img{
+
+}
 .video{
 
 }
