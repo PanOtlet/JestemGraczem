@@ -34,6 +34,7 @@
     </div>
 </div>
     <div class="jumbotron">
+        <div class="row">
         {% if divisions %}
         {% for division in divisions %}
             <div class="col-md-4">
@@ -46,7 +47,7 @@
                     <div class="t-title">
                         <a href="{{ path('division',{'id': division.id}) }}">
                             <h3>
-                                {{ team.name }}
+                                {{ division.name }}
                             </h3>
                         </a>
                     </div>
@@ -56,5 +57,6 @@
         {% else %}
         <h1>Brak Dywizj :( Smutek.jpg</h1>
         {% endif %}
+            </div>
     </div>
 {% endblock %}
