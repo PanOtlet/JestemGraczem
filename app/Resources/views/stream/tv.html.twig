@@ -1,5 +1,8 @@
 {% extends 'all.html.twig' %}
 
+{% block title %}Stream {{ stream.twitch }}{% endblock %}
+{% block titlemeta %}{{ stream.twitch }}{% endblock %}
+
 {% block menu %}
     <li>
         <a href="{{ path('stream') }}">
