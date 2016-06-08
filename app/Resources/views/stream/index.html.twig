@@ -22,9 +22,10 @@
             <div class="col-xs-8">
                 <div class="row">
                     <div class="container-fluid" id="streams-container">
-                        <div class="loading" id="loading">
-                            <i class="fa fa-spinner fa-pulse fa-6x" aria-hidden="true"></i>
-                        </div>
+
+                    </div>
+                    <div class="loading" id="loading">
+                        <i class="fa fa-spinner fa-pulse fa-6x" aria-hidden="true"></i>
                     </div>
                 </div>
             </div>
@@ -90,19 +91,26 @@
         }
 
         function sort() {
-                var swapped;
-                do {
-                    swapped = false;
-                    for (var i = 0; i < objects.length - 1; i++) {
-                        if (objects[i]["stream"]["viewers"] < objects[i + 1]["stream"]["viewers"]) {
-                            var temp = objects[i];
-                            console.log(objects[i]);
-                            objects[i] = objects[i + 1];
-                            objects[i + 1] = temp;
-                            swapped = true;
-                        }
+            var swapped;
+            do {
+                swapped = false;
+                for (var i = 0; i < objects.length - 1; i++) {
+                    if (objects[i]["stream"]["viewers"] < objects[i + 1]["stream"]["viewers"]) {
+                        var temp = objects[i];
+                        console.log(objects[i]);
+                        objects[i] = objects[i + 1];
+                        objects[i + 1] = temp;
+                        swapped = true;
                     }
-                } while (swapped);
+                }
+            } while (swapped);
+            $.ajax({
+                url: 'https://api.twitch.tv/kraken/streams?channel=monstercat,dotamajor,ragingluke',
+                dataType: 'jsonp',
+                success: function (stream) {
+                    console.log(stream);
+                }
+            });
             loop();
         }
 
