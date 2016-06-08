@@ -23,7 +23,7 @@ class TeamController extends Controller
         if ($name == NULL) {
             return $this->redirectToRoute('tournament');
         }
-        return $this->render('TurniejBundle:Team:team.html.twig', [
+        return $this->render('team/team.html.twig', [
 
         ]);
     }
@@ -33,7 +33,7 @@ class TeamController extends Controller
      */
     public function addAction()
     {
-        return $this->render('TurniejBundle:Team:add.html.twig', [
+        return $this->render('team/add.html.twig', [
 
         ]);
     }
@@ -43,7 +43,7 @@ class TeamController extends Controller
      */
     public function editAction()
     {
-        return $this->render('TurniejBundle:Team:edit.html.twig', [
+        return $this->render('team/edit.html.twig', [
 
         ]);
     }
@@ -53,7 +53,7 @@ class TeamController extends Controller
      */
     public function joinAction()
     {
-        return $this->render('TurniejBundle:Team:join.html.twig', [
+        return $this->render('team/join.html.twig', [
 
         ]);
     }
@@ -63,7 +63,7 @@ class TeamController extends Controller
      */
     public function removeAction()
     {
-        return $this->render('TurniejBundle:Team:remove.html.twig', [
+        return $this->render('team/remove.html.twig', [
 
         ]);
     }
