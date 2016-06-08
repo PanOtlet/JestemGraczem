@@ -20,11 +20,14 @@ class TeamController extends Controller
      */
     public function teamAction($name = NULL)
     {
-        if ($name == NULL) {
+        $team = $this->getDoctrine()->getRepository('TurniejBundle:Team')->findOneBy(['tag' => $name]);
+
+        if ($name == NULL || $team == NULL) {
             return $this->redirectToRoute('tournament');
         }
-        return $this->render('team/team.html.twig', [
 
+        return $this->render('team/team.html.twig', [
+            'team' => $team
         ]);
     }
 
