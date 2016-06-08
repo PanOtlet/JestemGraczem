@@ -57,11 +57,15 @@ body {
     opacity: 1 !important;
     position: relative !important;
 }
+.teams{
+    padding: 5px !important;
+}
 .t-title{
     text-align: center;
 }
 .t-title h3{
-    margin-top: 0px;
+    margin-top: 15px;
+    margin-bottom: 10px;
 }
 .t-title a{
     color: #000000;

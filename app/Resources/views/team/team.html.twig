@@ -1,8 +1,18 @@
-{% extends "base.html.twig" %}
+{% extends "all.html.twig" %}
 
 {% block title %}TurniejBundle:Team:team{% endblock %}
 
+{% block menu %}
+    <li>
+        <a href="{{ path('teams') }}">
+            <i class="fa fa-users" aria-hidden="true"></i> Drużyny
+        </a>
+    </li>
+
+{% endblock %}
+
 {% block content %}
+    <div class="jumbotron">
     <div class="container-fluid">
         <div class="row">
             <div class="col-md-4">
@@ -22,5 +32,28 @@
             </div>
         </div>
     </div>
-
+</div>
+    <div class="jumbotron">
+        {% if division %}
+        {% for diw in division %}
+            <div class="col-md-4">
+                <div class="jumbotron teams">
+                    <div class="t-img">
+                        <a href="{{ path('diw',{'name': diw.name}) }}">
+                            <img src="{{ asset('assets/img/lol.jpg') }}" class="img-responsive">
+                        </a>
+                    </div>
+                    <div class="t-title">
+                        <a href="{{ path('diw',{'name': diw.name}) }}">
+                            <h3>
+                                {{ team.name }}
+                            </h3>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+        {% else %}
+        <h1>Brak Dywizj :( Smutek.jpg</h1>
+    </div>
 {% endblock %}

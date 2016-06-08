@@ -10,7 +10,7 @@
     {% if teams %}
             {% for team in teams %}
                 <div class="col-md-4">
-                    <div class="jumbotron">
+                    <div class="jumbotron teams">
                         <div class="t-img">
                             <a href="{{ path('team',{'tag': team.tag}) }}">
                                 <img src="{{ asset('assets/img/lol.jpg') }}" class="img-responsive">
@@ -27,7 +27,7 @@
                 </div>
             {% endfor %}
     {% else %}
-        <h1>Brak memów :( Smutek.jpg</h1>
+        <h1>Brak Drużyn :( Smutek.jpg</h1>
     {% endif %}
 </div>
 {% endblock %}
