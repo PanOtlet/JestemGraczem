@@ -85,6 +85,11 @@ class User extends BaseUser
      */
     protected $localization = null;
 
+    /**
+     * @ORM\Column(type="integer", nullable=false)
+     */
+    protected $partner = 0;
+
     public function __construct()
     {
         parent::__construct();
@@ -120,6 +125,11 @@ class User extends BaseUser
         return $this->localization;
     }
 
+    public function getPartner()
+    {
+        return $this->partner;
+    }
+
     public function setSteam($steam)
     {
         $this->steam = $steam;
@@ -148,5 +158,10 @@ class User extends BaseUser
     public function setLocalization($localization)
     {
         $this->localization = $localization;
+    }
+
+    public function setPartner($partner)
+    {
+        $this->partner = $partner;
     }
 }
