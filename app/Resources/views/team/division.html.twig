@@ -3,19 +3,19 @@
 {% block title %}Dywizje{% endblock %}
 
 {% block menu %}
-    <li>
+    <li class="active">
         <a href="{{ path('teams') }}">
             <i class="fa fa-users" aria-hidden="true"></i> Drużyny
         </a>
     </li>
     <li>
         <a href="{{ path('team.add') }}">
-            <i class="fa fa-users" aria-hidden="true"></i> Stwórz
+            <i class="fa fa-users" aria-hidden="true"></i><i class="fa fa-plus" aria-hidden="true"></i> Stwórz
         </a>
     </li>
     <li>
         <a href="{{ path('team.join') }}">
-            <i class="fa fa-users" aria-hidden="true"></i> Dołącz
+            <i class="fa fa-users" aria-hidden="true"></i><i class="fa fa-plus" aria-hidden="true"></i><i class="fa fa-user" aria-hidden="true"></i> Dołącz
         </a>
     </li>
 {% endblock %}
