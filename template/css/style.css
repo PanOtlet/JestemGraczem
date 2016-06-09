@@ -1,0 +1,27 @@
+.nav-green{
+    background-color: #8bc34a;
+}
+.navbar{
+    text-align: center;
+}
+.p-t-5{
+    padding-top: 5rem !important;
+}
+
+.top-stream{
+
+    padding-top: 30px;
+    padding-bottom: 60px;
+    text-align: center;
+    background-image: url("../img/bg-lol.jpg");
+    color: #FFFFFF;
+}
+
+
+.row-streams{
+    padding-top: 10px;
+}
+.video{
+    padding-top: 5px;
+    padding-bottom: 5px;
+}
