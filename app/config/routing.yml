@@ -6,7 +6,12 @@ turniej:
 team:
     resource: "@TurniejBundle/Controller/TeamController.php"
     type:     annotation
-    prefix:   /team
+    prefix:   /druzyny
+
+division:
+    resource: "@TurniejBundle/Controller/DivisionController.php"
+    type:     annotation
+    prefix:   /dywizja
 
 api:
     resource: "@ApiBundle/Controller/"
