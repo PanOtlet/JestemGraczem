@@ -153,6 +153,7 @@ class TeamController extends Controller
                     'danger',
                     'Źle wprowadzona nazwa lub hasło! Upewnij się, że podajesz poprawne dane!'
                 );
+                return $this->redirectToRoute('teams');
             }
 
             $members = $division->getMembers();
