@@ -1,3 +1,25 @@
+body{
+    background-color: #fbfbfb;
+}
+
+footer{
+    background-color: #8bc34a;
+    color: #FFFFFF;
+    font-size: 0.8rem;
+}
+.pre-footer{
+    border-top: solid 6px #cccccc;
+    background-color: #eaeaea;
+    color: #969595;
+}
+.pre-f-p{
+    font-size: 0.8rem !important;
+    padding-left: 2rem !important;
+}
+.pre-f-p p{
+    margin-bottom: 0.5rem !important;
+}
+
 .nav-green{
     background-color: #8bc34a;
 }
@@ -14,13 +36,62 @@
     padding-bottom: 60px;
     text-align: center;
     background-image: url("../img/bg-lol.jpg");
-    color: #FFFFFF;
+    color: #eaeaea;
 }
 
 
 .row-streams{
     padding-top: 10px;
 }
+
+
+.btn-white{
+    border: solid 1px #EAEAEA;
+    background-color: #FFFFFF;
+    color: #8bc34a;
+    font-weight: bold;
+    font-size: 1.6rem;
+    margin-bottom: 5px;
+    border-radius: 0px;
+}
+
+.btn-white-lg{
+    border: solid 1px #EAEAEA;
+    border-left: solid 4px #8bc34a;
+    background-color: #FFFFFF;
+    color: #8bc34a;
+    font-weight: bold;
+    font-size: 1.6rem;
+    margin-bottom: 5px;
+    border-radius: 0px;
+}
+
+.btn-clear-lg{
+    text-align: left;
+    border-left: solid 4px #8bc34a;
+    background-color: transparent;
+    color: #FFFFFF;
+    font-weight: bold;
+    font-size: 1.6rem;
+    margin-bottom: 5px;
+    border-radius: 0px;
+}
+
+.btn-green{
+    background-color: #8bc34a;
+    color: #FFFFFF;
+    font-weight: bold;
+    font-size: 0.9rem;
+    padding-top: 0.6rem;
+    padding-bottom: 0.6rem;
+    margin-top: 5px;
+    border-radius: 0px;
+}
+.btn-green:hover{
+    background-color: #82E115;
+    color: #FFFFFF;
+}
+
 .video{
     padding-top: 5px;
     padding-bottom: 5px;
