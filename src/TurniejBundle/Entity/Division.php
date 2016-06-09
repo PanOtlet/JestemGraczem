@@ -36,6 +36,13 @@ class Division
     private $name;
 
     /**
+     * @var string
+     *
+     * @ORM\Column(name="pass", type="string", length=255)
+     */
+    private $pass;
+
+    /**
      * @var array
      *
      * @ORM\Column(name="members", type="json_array")
@@ -106,6 +113,22 @@ class Division
     public function getName()
     {
         return $this->name;
+    }
+
+    /**
+     * @param string $pass
+     */
+    public function setPass($pass)
+    {
+        $this->pass = $pass;
+    }
+
+    /**
+     * @return string
+     */
+    public function getPass()
+    {
+        return $this->pass;
     }
 
     /**
