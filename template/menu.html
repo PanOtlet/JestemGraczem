@@ -16,32 +16,40 @@
         }
 
         .tilt {
-            -ms-transform: skewX(-30deg); /* IE 9 */
-            -webkit-transform: skewX(-30deg); /* Safari */
-            transform: skewX(-30deg); /* Standard syntax */
-            margin-right: 0px;
+            -ms-transform: skewX(-45deg); /* IE 9 */
+            -webkit-transform: skewX(-45deg); /* Safari */
+            transform: skewX(-45deg); /* Standard syntax */
             display: inline-block;
             background-color: #FFFFFF;
-
-        }
-        .tilt- {
-            -ms-transform: skewX(-30deg); /* IE 9 */
-            -webkit-transform: skewX(-30deg); /* Safari */
-            transform: skewX(-30deg); /* Standard syntax */
-            margin-left: 200px;
-            padding: 20px;
-            width: 300px;
-            height: 100px;
-            background-color: #FFFFFF;
-
+            border-right: solid grey 5px;
+            margin-right: -5px;
         }
         .text{
-            -ms-transform: skewX(30deg); /* IE 9 */
-            -webkit-transform: skewX(30deg); /* Safari */
-            transform: skewX(30deg); /* Standard syntax */
-            display: inline-block;
-            padding: 15px 40px;
+            -ms-transform: skewX(45deg); /* IE 9 */
+            -webkit-transform: skewX(45deg); /* Safari */
+            transform: skewX(45deg); /* Standard syntax */
+            padding: 15px 20px;
         }
+        .t-45{
+            -ms-transform: skewX(-45deg); /* IE 9 */
+            -webkit-transform: skewX(-45deg); /* Safari */
+            transform: skewX(-45deg); /* Standard syntax */
+            background-color: #FFFFFF;
+            border-right: solid grey 5px;
+        }
+        .t45{
+            -ms-transform: skewX(45deg); /* IE 9 */
+            -webkit-transform: skewX(45deg); /* Safari */
+            transform: skewX(45deg); /* Standard syntax */
+            padding-top: 16px;
+            padding-bottom: 16px;
+
+        }
+
+
+
+
+
         p{
             margin-bottom: 0px;
         }
@@ -49,29 +57,46 @@
 </head>
 <body>
     <div style="background-color: #8bc34a; margin-bottom: -40px; height: 40px"></div>
-        <div class="container-fluid">
-            <div class="tilt">
-                <div class="text "style="padding-bottom: 3px; padding-top: 3px;">
-                    <img src="img/Logo.png">
-                </div>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-3 t-45">
+                <img class="img-fluid t45" src="img/Logo.png" style="padding: 4px 4px;">
             </div>
-            <div class="tilt">
-                <div class="text">
-                    <p style=" font-weight: bold; color: #303030;" class="p-l-1">TURNAMENTS<span style="color: #e91e63">AREA</span></p>
-                </div>
+            <div class="col-md-3 t-45">
+                <p class="t45" style=" font-weight: bold; color: #303030;" class="p-l-1">TURNAMENTS<span style="color: #e91e63">AREA</span></p>
             </div>
-            <div class="tilt">
-                <div class="text">
-                    <p style=" font-weight: bold; color: #303030;" class="p-l-1">GAMES<span style="color: #ff9800">AREA</span></p>
-                </div>
+            <div class="col-md-3 t-45">
+                <p class="t45" style=" font-weight: bold; color: #303030;" class="p-l-1">GAMES<span style="color: #ff9800">AREA</span></p>
             </div>
-            <div class="tilt">
-                <div class="text">
-                    <p style=" font-weight: bold; color: #303030;" class="p-l-1">FANS<span style="color: #8bc34a">AREA</span></p>
-                </div>
+            <div class="col-md-3 t-45">
+                <p class="t45" style=" font-weight: bold; color: #303030;" class="p-l-1">FANS<span style="color: #8bc34a">AREA</span></p>
             </div>
         </div>
-
+    </div>
+        <!--<div class="container-fluid">-->
+            <!--<div class="bg">-->
+                <!--<div class="tilt" style="margin-top: 0">-->
+                    <!--<div class="text ">-->
+                        <!--<img  src="img/Logo.png">-->
+                    <!--</div>-->
+                <!--</div>-->
+                <!--<div class="tilt">-->
+                    <!--<div class="text">-->
+                        <!--<p style=" font-weight: bold; color: #303030;" class="p-l-1">TURNAMENTS<span style="color: #e91e63">AREA</span></p>-->
+                    <!--</div>-->
+                <!--</div>-->
+                <!--<div class="tilt">-->
+                    <!--<div class="text">-->
+                        <!--<p style=" font-weight: bold; color: #303030;" class="p-l-1">GAMES<span style="color: #ff9800">AREA</span></p>-->
+                    <!--</div>-->
+                <!--</div>-->
+                <!--<div class="tilt">-->
+                    <!--<div class="text">-->
+                        <!--<p style=" font-weight: bold; color: #303030;" class="p-l-1">FANS<span style="color: #8bc34a">AREA</span></p>-->
+                    <!--</div>-->
+                <!--</div>-->
+            <!--</div>-->
+        <!--</div>-->
 
     <!-- jQuery first, then Bootstrap JS. -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
