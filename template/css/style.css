@@ -29,6 +29,10 @@ footer{
 .p-t-5{
     padding-top: 5rem !important;
 }
+.p-y-06{
+    padding-top: 0.6rem !important;
+    padding-bottom: 0.6rem !important;
+}
 
 .top-stream{
 
@@ -95,4 +99,8 @@ footer{
 .video{
     padding-top: 5px;
     padding-bottom: 5px;
+}
+.grey{
+    background-color: #eaeaea;
+    max-height: 30px;
 }
