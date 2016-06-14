@@ -15,21 +15,6 @@
             text-align: center;
         }
 
-        .tilt {
-            -ms-transform: skewX(-45deg); /* IE 9 */
-            -webkit-transform: skewX(-45deg); /* Safari */
-            transform: skewX(-45deg); /* Standard syntax */
-            display: inline-block;
-            background-color: #FFFFFF;
-            border-right: solid grey 5px;
-            margin-right: -5px;
-        }
-        .text{
-            -ms-transform: skewX(45deg); /* IE 9 */
-            -webkit-transform: skewX(45deg); /* Safari */
-            transform: skewX(45deg); /* Standard syntax */
-            padding: 15px 20px;
-        }
         .t-45{
             -ms-transform: skewX(-45deg); /* IE 9 */
             -webkit-transform: skewX(-45deg); /* Safari */
@@ -43,61 +28,35 @@
             transform: skewX(45deg); /* Standard syntax */
             padding-top: 16px;
             padding-bottom: 16px;
-
         }
-
-
-
-
-
+        .last{
+            border-right: none;
+        }
         p{
             margin-bottom: 0px;
         }
     </style>
 </head>
 <body>
-    <div style="background-color: #8bc34a; margin-bottom: -40px; height: 40px"></div>
-    <div class="container">
-        <div class="row">
-            <div class="col-md-3 t-45">
-                <img class="img-fluid t45" src="img/Logo.png" style="padding: 4px 4px;">
-            </div>
-            <div class="col-md-3 t-45">
-                <p class="t45" style=" font-weight: bold; color: #303030;" class="p-l-1">TURNAMENTS<span style="color: #e91e63">AREA</span></p>
-            </div>
-            <div class="col-md-3 t-45">
-                <p class="t45" style=" font-weight: bold; color: #303030;" class="p-l-1">GAMES<span style="color: #ff9800">AREA</span></p>
-            </div>
-            <div class="col-md-3 t-45">
-                <p class="t45" style=" font-weight: bold; color: #303030;" class="p-l-1">FANS<span style="color: #8bc34a">AREA</span></p>
+    <div class="hidden-md-down">
+        <div style="background-color: #8bc34a; margin-bottom: -40px; height: 40px"></div>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-3 t-45" style="height: 56px">
+                    <img class="t45" src="img/Logo1.png" style="padding: 4px 4px; width: 100%">
+                </div>
+                <div class="col-md-3 t-45">
+                    <p class="t45" style=" font-weight: bold; color: #303030;" class="p-l-1">TURNAMENTS<span style="color: #e91e63">AREA</span></p>
+                </div>
+                <div class="col-md-3 t-45">
+                    <p class="t45" style=" font-weight: bold; color: #303030;" class="p-l-1">GAMES<span style="color: #ff9800">AREA</span></p>
+                </div>
+                <div class="col-md-3 t-45 last">
+                    <p class="t45" style=" font-weight: bold; color: #303030;" class="p-l-1">FANS<span style="color: #8bc34a">AREA</span></p>
+                </div>
             </div>
         </div>
     </div>
-        <!--<div class="container-fluid">-->
-            <!--<div class="bg">-->
-                <!--<div class="tilt" style="margin-top: 0">-->
-                    <!--<div class="text ">-->
-                        <!--<img  src="img/Logo.png">-->
-                    <!--</div>-->
-                <!--</div>-->
-                <!--<div class="tilt">-->
-                    <!--<div class="text">-->
-                        <!--<p style=" font-weight: bold; color: #303030;" class="p-l-1">TURNAMENTS<span style="color: #e91e63">AREA</span></p>-->
-                    <!--</div>-->
-                <!--</div>-->
-                <!--<div class="tilt">-->
-                    <!--<div class="text">-->
-                        <!--<p style=" font-weight: bold; color: #303030;" class="p-l-1">GAMES<span style="color: #ff9800">AREA</span></p>-->
-                    <!--</div>-->
-                <!--</div>-->
-                <!--<div class="tilt">-->
-                    <!--<div class="text">-->
-                        <!--<p style=" font-weight: bold; color: #303030;" class="p-l-1">FANS<span style="color: #8bc34a">AREA</span></p>-->
-                    <!--</div>-->
-                <!--</div>-->
-            <!--</div>-->
-        <!--</div>-->
-
     <!-- jQuery first, then Bootstrap JS. -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
     <script src="js/bootstrap.min.js"  ></script>
