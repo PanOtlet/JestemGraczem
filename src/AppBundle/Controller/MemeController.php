@@ -20,6 +20,14 @@ class MemeController extends Controller
     {
         $mem = $this->getDoctrine()->getRepository('AppBundle:Meme')->findOneBy(['id' => $id]);
 
+        if ($mem == NULL) {
+            $this->addFlash(
+                'danger',
+                'Kurde, nie znaleźliśmy tego co poszukujesz :('
+            );
+            return $this->redirectToRoute('meme');
+        }
+
         return $this->render('meme/mem.html.twig', [
             'mem' => $mem
         ]);
@@ -101,39 +109,18 @@ class MemeController extends Controller
 
         $meme = $query->getResult();
 
+        if ($meme == NULL) {
+            $this->addFlash(
+                'danger',
+                'Kurde, nie znaleźliśmy tego co poszukujesz :('
+            );
+            return $this->redirectToRoute('meme.wait');
+        }
+
         return $this->render('meme/wait.html.twig', [
             'meme' => $meme,
             'page' => $page
         ]);
-    }
-
-    /**
-     * @Route("/meme/ajax", name="meme.ajax")
-     */
-    public function ajaxAction(Request $request)
-    {
-        if ($request->isXmlHttpRequest()) {
-
-            $offset = $request->get('offset');
-            $limit = $request->get('limit');
-
-            $em = $this->getDoctrine()->getRepository('AppBundle:Meme');
-
-            $meme = $em->createQueryBuilder('p')
-                ->where('p.status > 0')
-                ->orderBy('p.id', 'DESC')
-                ->setFirstResult($offset)
-                ->setMaxResults($limit)
-                ->getQuery()
-                ->getResult();
-
-            $serializer = serializer::create()->build();
-            $json = $serializer->serialize($meme, 'json');
-        } else {
-            return $this->redirectToRoute('meme');
-        }
-
-        return new Response($json);
     }
 
     /**
@@ -154,6 +141,14 @@ class MemeController extends Controller
             ->setMaxResults(10);
 
         $meme = $query->getResult();
+
+        if ($meme == NULL) {
+            $this->addFlash(
+                'danger',
+                'Doszedłeś do końca internetu. Jesteśmy dumni!'
+            );
+            return $this->redirectToRoute('meme');
+        }
 
         return $this->render('meme/index.html.twig', [
             'meme' => $meme,

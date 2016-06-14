@@ -35,7 +35,7 @@ class VideoController extends Controller
 
             $response = substr(get_headers($videoUrl)[0], 9, 3);
 
-            if($response != "200"){
+            if ($response != "200") {
                 $this->addFlash(
                     'danger',
                     'Błąd! Film nie istnieje lub nie pochodzi z serwisu YouTube!'
@@ -80,6 +80,14 @@ class VideoController extends Controller
             ->setMaxResults(10)
             ->getResult();
 
+        if ($video == NULL) {
+            $this->addFlash(
+                'danger',
+                'Więcej filmów nie mamy :('
+            );
+            return $this->redirectToRoute('video.wait');
+        }
+
         return $this->render('video/index.html.twig', [
             'videos' => $video,
             'page' => $page
@@ -100,7 +108,16 @@ class VideoController extends Controller
             ->setMaxResults(10)
             ->getResult();
 
+        if ($video == NULL) {
+            $this->addFlash(
+                'danger',
+                'Więcej filmów nie mamy :('
+            );
+            return $this->redirectToRoute('video');
+        }
+
         $promoted = $this->getDoctrine()->getRepository('AppBundle:Video')->findBy(['status' => 2]);
+
         return $this->render('video/index.html.twig', [
             'videos' => $video,
             'promoted' => $promoted,
@@ -114,6 +131,14 @@ class VideoController extends Controller
     public function tvAction($id)
     {
         $video = $this->getDoctrine()->getRepository('AppBundle:Video')->findOneBy(['id' => $id]);
+
+        if ($video == NULL) {
+            $this->addFlash(
+                'danger',
+                'Nie mamy tego filmu :('
+            );
+            return $this->redirectToRoute('video');
+        }
 
         return $this->render('video/tv.html.twig', [
             'video' => $video

@@ -16,7 +16,7 @@ class DefaultController extends Controller
     /**
      * @Route("/", name="homepage")
      */
-    public function indexAction(Request $request)
+    public function indexAction()
     {
         $meme = $this->getDoctrine()->getRepository('AppBundle:Meme')->findOneBy(['status' => 2], ['id' => 'DESC']);
         $stream = $this->getDoctrine()->getRepository('AppBundle:Stream')->findBy(['status' => 2], ['id' => 'DESC']);
@@ -53,7 +53,7 @@ class DefaultController extends Controller
         $user = $this->getDoctrine()->getRepository('AppBundle:User')->findOneBy(['username' => $user]);
 
         if (!$user) {
-            return $this->redirectToRoute('homepage');
+            throw $this->createNotFoundException('Nie ma takiego użytkownika!');
         }
 
         $avatar = md5($user->getEmail());
