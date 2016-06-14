@@ -32,6 +32,12 @@
         .last{
             border-right: none;
         }
+        .t-45 a{
+            text-decoration: none !important;
+        }
+        .t-45:hover{
+            background-color: #f4f4f4;
+        }
         p{
             margin-bottom: 0px;
         }
@@ -39,11 +45,11 @@
 </head>
 <body>
 <!-- navbar -->
-<nav class="navbar hidden-md-up navbar-light nav-green">
-    <button class="navbar-toggler hidden-sm-up pull-xs-left" type="button" data-toggle="collapse" data-target="#exCollapsingNavbar2">
+<nav class="navbar hidden-lg-up navbar-light nav-green">
+    <button class="navbar-toggler hidden-lg-up pull-xs-left" type="button" data-toggle="collapse" data-target="#exCollapsingNavbar2">
         &#9776;
     </button>
-    <div class="collapse navbar-toggleable-xs" id="exCollapsingNavbar2">
+    <div class="collapse navbar-toggleable-md" id="exCollapsingNavbar2">
         <a class="navbar-brand" href="#">
             <img class="img-fluid" src="img/Logo.png">
         </a>
@@ -69,14 +75,71 @@
                 <div class="col-md-3 t-45" style="height: 56px">
                     <img class="t45" src="img/Logo1.png" style="padding: 4px 4px; width: 100%">
                 </div>
+
+                <div id="turnaments" class="modal fade">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                                <h4 class="modal-title">"PRO" GEMERS</h4>
+                            </div>
+                            <div class="modal-body">
+                                <p>KUPA</p>
+                            </div>
+                            <div class="modal-footer">
+                            </div>
+                        </div><!-- /.modal-content -->
+                    </div><!-- /.modal-dialog -->
+                </div><!-- /.modal -->
+
                 <div class="col-md-3 t-45">
-                    <p class="t45" style=" font-weight: bold; color: #303030;" class="p-l-1">TURNAMENTS<span style="color: #e91e63">AREA</span></p>
+                    <a data-toggle="modal" data-target="#turnaments"><p class="t45" style=" font-weight: bold; color: #303030;" class="p-l-1">TURNAMENTS<span style="color: #e91e63">AREA</span></p></a>
                 </div>
+
+                <div id="games" class="modal fade">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                                <h4 class="modal-title">May the Gaben by with you </h4>
+                            </div>
+                            <div class="modal-body">
+                                <p>all your bases all now belong to us</p>
+                            </div>
+                            <div class="modal-footer">
+                            </div>
+                        </div><!-- /.modal-content -->
+                    </div><!-- /.modal-dialog -->
+                </div><!-- /.modal -->
+
                 <div class="col-md-3 t-45">
-                    <p class="t45" style=" font-weight: bold; color: #303030;" class="p-l-1">GAMES<span style="color: #ff9800">AREA</span></p>
+                    <a data-toggle="modal" data-target="#games"><p class="t45" style=" font-weight: bold; color: #303030;" class="p-l-1">GAMES<span style="color: #ff9800">AREA</span></p></a>
                 </div>
+
+                <div id="fans" class="modal fade">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                                <h4 class="modal-title">Delikatny szum powietrza</h4>
+                            </div>
+                            <div class="modal-body">
+                                <p>Dla wentylatorów</p>
+                            </div>
+                            <div class="modal-footer">
+                            </div>
+                        </div><!-- /.modal-content -->
+                    </div><!-- /.modal-dialog -->
+                </div><!-- /.modal -->
+
                 <div class="col-md-3 t-45 last">
-                    <p class="t45" style=" font-weight: bold; color: #303030;" class="p-l-1">FANS<span style="color: #8bc34a">AREA</span></p>
+                    <a data-toggle="modal" data-target="#fans"><p class="t45" style=" font-weight: bold; color: #303030;" class="p-l-1">FANS<span style="color: #8bc34a">AREA</span></p></a>
                 </div>
             </div>
         </div>
