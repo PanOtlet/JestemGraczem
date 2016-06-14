@@ -18,13 +18,19 @@ class DefaultController extends Controller
      */
     public function indexAction(Request $request)
     {
-        if (!$this->isGranted('IS_AUTHENTICATED_REMEMBERED')) {
-            return $this->render('default/index.html.twig', ['rss' => []]);
-        }
+        $meme = $this->getDoctrine()->getRepository('AppBundle:Meme')->findOneBy(['status' => 2], ['id' => 'DESC']);
+        $stream = $this->getDoctrine()->getRepository('AppBundle:Stream')->findBy(['status' => 2], ['id' => 'DESC']);
 
-        $rss = $this->getDoctrine()->getRepository('AppBundle:News')->findBy(['user' => $this->getUser()->getId()]);
+        $video = $this->getDoctrine()->getRepository('AppBundle:Video')->createQueryBuilder('m')
+            ->where('m.status = 2')
+            ->orderBy('m.id', 'DESC')
+            ->setMaxResults(6)
+            ->getQuery()->getResult();
+
         return $this->render('default/index.html.twig', [
-            'rss' => $rss
+            'meme' => $meme,
+            'video' => $video,
+            'stream' => $stream
         ]);
     }
 
