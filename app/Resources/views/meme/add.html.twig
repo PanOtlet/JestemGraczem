@@ -1,0 +1,14 @@
+{% extends "base.html.twig" %}
+
+{% block title %}Dodaj mem{% endblock %}
+{% block titlemeta %}Dodaj{% endblock %}
+
+{% form_theme form ':Form:form.html.twig' %}
+
+{% block body %}
+    <div class="container p-t-5 p-b-2">
+        {{ form_start(form) }}
+        {{ form_widget(form) }}
+        {{ form_end(form) }}
+    </div>
+{% endblock %}
