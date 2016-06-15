@@ -1,115 +1,177 @@
 body {
-    padding-top: 70px;
+    background-color: #fbfbfb;
 }
-.img-responsive {
-    margin: auto;
-}
-.togglebutton{
-    display: inline-block;
-}
-.platform-i{
-    padding-right: 2px;
-    padding-left: 0px;
-}
-.platform-t{
-    padding-left: 0px;
-    text-align: center;
-    word-break: break-all;
-}
-.battlenet{
-    text-align: center;
-    word-break: break-all;
-}
-.lol{
-    text-align: center;
-    word-break: break-all;
-}
-.v-steam{
 
+.nav a {
+    margin-right: 4px;
 }
-.yt{
 
-}
-.meme{
-    text-align: center;
-}
-.m-title{
-    text-align: left;
-}
-.m-title a{
-    color: #000000;
-}
-.m-title a:hover{
-    color: #000000;
+a {
     text-decoration: none;
 }
-.nav-tabs{
-    background-color: purple;
+
+footer {
+    background-color: #8bc34a;
+    color: #FFFFFF;
+    font-size: 0.8rem;
 }
-.m-title h3{
-    margin-top: 0px;
-    margin-bottom: 20px;
+
+.pre-footer {
+    border-top: solid 6px #cccccc;
+    background-color: #eaeaea;
+    color: #969595;
+}
+
+.pre-f-p {
+    font-size: 0.8rem !important;
+    padding-left: 2rem !important;
+}
+
+.pre-f-p p {
+    margin-bottom: 0.5rem !important;
+}
+
+.nav-green {
+    background-color: #FFFFFF;
+}
+
+.navbar {
+    text-align: center;
+    border-radius: 0;
+}
+
+.p-t-5 {
+    padding-top: 5rem !important;
+}
+
+.p-y-06 {
+    padding-top: 0.6rem !important;
+    padding-bottom: 0.6rem !important;
+}
+
+.top-stream {
+
+    padding-top: 30px;
+    padding-bottom: 60px;
+    text-align: center;
+    background-image: url("../img/bg-lol.jpg");
+    color: #eaeaea;
+}
+
+.row-streams {
+    padding-top: 10px;
+}
+
+.btn-white {
+    border: solid 1px #EAEAEA;
+    background-color: #FFFFFF;
+    color: #8bc34a;
     font-weight: bold;
+    font-size: 1.6rem;
+    margin-bottom: 5px;
+    border-radius: 0px;
 }
-.m-img{}
-.m-bottom{}
-.m-add{
-    opacity: 1 !important;
-    position: relative !important;
+
+.btn-white-lg {
+    border: solid 1px #EAEAEA;
+    border-left: solid 4px #8bc34a;
+    background-color: #FFFFFF;
+    color: #8bc34a;
+    font-weight: bold;
+    font-size: 1.6rem;
+    margin-bottom: 5px;
+    border-radius: 0px;
 }
-.teams{
-    padding: 5px !important;
+
+.btn-clear-lg {
+    text-align: left;
+    border-left: solid 4px #8bc34a;
+    background-color: transparent;
+    color: #FFFFFF;
+    font-weight: bold;
+    font-size: 1.6rem;
+    margin-bottom: 5px;
+    border-radius: 0px;
 }
-.t-title{
+
+.btn-green {
+    background-color: #8bc34a;
+    color: #FFFFFF;
+    font-weight: bold;
+    font-size: 0.9rem;
+    padding-top: 0.6rem;
+    padding-bottom: 0.6rem;
+    margin-top: 5px;
+    border-radius: 0px;
+}
+
+.btn-green:hover {
+    background-color: #82E115;
+    color: #FFFFFF;
+}
+
+.video {
+    padding-top: 5px;
+    padding-bottom: 5px;
+}
+
+.grey {
+    background-color: #eaeaea;
+    max-height: 30px;
+}
+
+.t-45 {
+    -ms-transform: skewX(-45deg); /* IE 9 */
+    -webkit-transform: skewX(-45deg); /* Safari */
+    transform: skewX(-45deg); /* Standard syntax */
+    background-color: #FFFFFF;
+    border-right: solid #ccc 3px;
+
+}
+
+.t-45-active {
+    background-color: #ccc;
+    border-bottom: solid #8bc34a 5px;
+}
+
+.t45 {
+    -ms-transform: skewX(45deg); /* IE 9 */
+    -webkit-transform: skewX(45deg); /* Safari */
+    transform: skewX(45deg); /* Standard syntax */
+    padding-top: 16px;
+    padding-bottom: 16px;
     text-align: center;
 }
-.t-title h3{
-    margin-top: 15px;
-    margin-bottom: 10px;
-}
-.t-title a{
-    color: #000000;
-}
-.t-title a:hover{
-    color: #000000;
-    text-decoration: none;
-}
-.t-img{
 
+.last {
+    border-right: none;
 }
-.video{
 
+.t-45 a {
+    text-decoration: none !important;
+    cursor: pointer;
 }
-.video .v-title h3{
+
+.t-45:hover {
+    background-color: #f4f4f4;
+}
+
+p {
     margin-bottom: 0px;
 }
-.v-title{
-    text-align: left;
+
+.nav p {
+    color: #a5a5a5;
+    font-size: 0.7rem;
 }
-.v-title h3{
-    margin-top: 0px;
-    margin-bottom: 20px;
-    font-weight: bold;
+
+p a {
+    color: #d6d6d6;
+    font-size: 0.8rem;
+    text-decoration: underline;
 }
-.v-title a{
-    color: #000000;
-}
-.v-title a:hover{
-    color: #000000;
+
+p a:hover {
+    color: #FFFFFF;
     text-decoration: none;
-}
-.fa-6x{
-    font-size: 15em !important;
-    color: #9e9e9e;
-    text-align: center;
-}
-.loading{
-    padding-left: 36%;
-    padding-top: 20%;
-}
-.twitch{
-    padding: 0px !important;
-}
-.embed-responsive-twitch-chat{
-    padding-bottom: 175%;
 }
