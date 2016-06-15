@@ -6,77 +6,48 @@
         <div class="col-sm-2 btn-clear-lg p-l-1">
             NEWS
         </div>
+        <div class="col-sm-2"></div>
+        <div class="col-sm-2">
+            <a href="{{ path('news.add') }}" type="button" class="btn btn-green"><span class="p-x-3">Dodaj RSS</span></a>
+        </div>
     </div>
     <div class="container">
-        <ul class="nav nav-tabs" role="tablist">
-            <li role="presentation" class="active">
-                <a href="#jestemgraczem" aria-controls="home" role="tab" data-toggle="tab">Blog</a>
-            </li>
-            <li role="presentation">
-                <a href="#23games" aria-controls="home" role="tab" data-toggle="tab">23Games</a>
-            </li>
-            <li role="presentation" class="dropdown">
-                <a href="#" id="drop" class="dropdown-toggle"
-                   data-toggle="dropdown" aria-controls="myTabDrop1-contents"
-                   aria-expanded="false">Inne newsy <span class="caret"></span></a>
-                <ul class="dropdown-menu" aria-labelledby="myTabDrop1" id="myTabDrop1-contents">
-                    <li>
-                        <a href="#cybersport" role="tab" data-toggle="tab" aria-controls="dropdown1">
-                            CyberSport.pl
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#lowcygier" role="tab" data-toggle="tab" aria-controls="dropdown1">
-                            Łowcy Gier
-                        </a>
-                    </li>
-                </ul>
-            </li>
-            <li role="presentation" class="dropdown">
-                <a href="#" id="drop" class="dropdown-toggle"
-                   data-toggle="dropdown" aria-controls="myTabDrop1-contents"
-                   aria-expanded="false">Moje newsy <span class="caret"></span></a>
-                <ul class="dropdown-menu" aria-labelledby="myTabDrop2" id="myTabDrop2-contents">
-                    {% for news in rss %}
-                        <li class="">
-                            <a href="#{{ news.name }}" role="tab" data-toggle="tab">
-                                {{ news.name }}
-                            </a>
-                        </li>
-                    {% endfor %}
-                    <li class="">
-                        <a href="{{ path('news.add') }}">
-                            Dodaj własny kanał informacji
-                        </a>
-                    </li>
-                </ul>
-            </li>
-        </ul>
-
-        <div class="tab-content container">
-            <div role="tabpanel" class="tab-pane fade row active in" id="jestemgraczem">
-                <h3>Blog</h3>
+        <div class="row">
+            <div class="col-md-4">
+                <div class="card">
+                    <div class="card-block">
+                        <h4 class="card-title">Blog</h4>
+                    </div>
+                    <ul class="list-group list-group-flush" id="jestemgraczem"></ul>
+                </div>
             </div>
-            <div role="tabpanel" class="tab-pane fade row" id="23games">
-                <h3>23Games <span class="label label-danger">Sponsorowane</span></h3>
+            <div class="col-md-4">
+                <div class="card">
+                    <div class="card-block">
+                        <h4 class="card-title">CyberSport.pl</h4>
+                    </div>
+                    <ul class="list-group list-group-flush" id="cybersport"></ul>
+                </div>
             </div>
-            <div role="tabpanel" class="tab-pane fade row" id="cybersport">
-                <img src="http://cybersport.pl/wp-content/themes/cybersport/assets/img/logo_cybersport.gif"
-                     alt="Cybersport" class="img-responsive">
+            <div class="col-md-4">
+                <div class="card">
+                    <div class="card-block">
+                        <h4 class="card-title">LowcyGier.pl</h4>
+                    </div>
+                    <ul class="list-group list-group-flush" id="lowcygier"></ul>
+                </div>
             </div>
-            <div role="tabpanel" class="tab-pane fade row" id="lowcygier">
-                <img src="http://lowcygier.pl/wp-content/uploads/2013/02/main_logo.png"
-                     alt="Łowcy Gier" class="img-responsive">
-            </div>
-            <div role="tabpanel" class="tab-pane fade row" id="23games">
-                <h3>23Games <span class="label label-danger">Sponsorowane</span></h3>
-            </div>
+        </div>
+        <div class="row">
             {% for news in rss %}
-                <div role="tabpanel" class="tab-pane fade row" id="{{ news.name }}">
-                    <h3>
-                        {{ news.name }}
-                        <a href="{{ path('news.remove',{'id': news.id }) }}" class="btn btn-raised btn-danger">Usuń</a>
-                    </h3>
+                <div class="col-md-4">
+                    <div class="card">
+                        <div class="card-block">
+                            <h4 class="card-title">{{ news.name }} <a href="{{ path('news.remove',{'id': news.id }) }}"
+                                                                      class="btn btn-raised btn-danger">Usuń</a></h4>
+                        </div>
+                        <ul class="list-group list-group-flush" id="{{ news.name }}"></ul>
+                    </div>
                 </div>
             {% endfor %}
         </div>
@@ -95,19 +66,6 @@
                 color: "#865DAC"
             },
             {
-                name: "#23games",
-                url: "https://23games.pl/feed",
-                css: "panel-danger",
-                color: "#232323"
-            },
-            {% for news in rss %}
-            {
-                name: "#{{ news.name }}",
-                url: "{{ news.url }}",
-                color: "{{ news.css }}"
-            },
-            {% endfor %}
-            {
                 name: "#cybersport",
                 url: "http://cybersport.pl/feed",
                 css: "panel-warning",
@@ -118,29 +76,38 @@
                 url: "http://lowcygier.pl/feed/",
                 css: "panel-warning",
                 color: "#367ea8"
-            }
+            },
+            {% for news in rss %}
+            {
+                name: "#{{ news.name }}",
+                url: "{{ news.url }}",
+                color: "{{ news.css }}"
+            },
+            {% endfor %}
         ];
 
         jQuery(function ($) {
             for (var i = 0; i < sites.length; i++) {
                 $(sites[i]['name']).rss(sites[i]['url'], {
-                    limit: 12,
+                    limit: 5,
                     effect: 'slideFastSynced',
                     offsetStart: false,
                     offsetEnd: false,
                     ssl: false,
                     layoutTemplate: '{entries}',
                     entryTemplate: '' +
-                    '<div class="panel ' + sites[i]['css'] + '">' +
-                    '<div class="panel-heading" style="background-color: ' + sites[i]['color'] + '">' +
-                    '<h3 class="panel-title">{title} <small>{date}</small></h3>' +
-                    '</div>' +
-                    '<div class="panel-body">' +
-                    '{shortBodyPlain}...' +
-                    '<a href="{{ path('redirect') }}?url={url}" target="_blank">Czytaj dalej...</a>' +
-                    '</div>' +
-                    '</div>',
-                    dateFormat: 'HH:mm D/MM/YYYY',
+                    '<li class="list-group-item"><a href="{{ path('redirect') }}?url={url}" target="_blank">{title}</a></li>',
+                    {#entryTemplate: '' +#}
+                    {#'<div class="panel ' + sites[i]['css'] + '">' +#}
+                    {#'<div class="panel-heading" style="background-color: ' + sites[i]['color'] + '">' +#}
+                    {#'<h3 class="panel-title">{title} <small>{date}</small></h3>' +#}
+                    {#'</div>' +#}
+                    {#'<div class="panel-body">' +#}
+                    {#'{shortBodyPlain}...' +#}
+                    {#'<a href="{{ path('redirect') }}?url={url}" target="_blank">Czytaj dalej...</a>' +#}
+                    {#'</div>' +#}
+                    {#'</div>',#}
+                    dateFormat: 'HH:mm D/MM/YYYY'
                 });
             }
         });

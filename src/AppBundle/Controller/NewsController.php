@@ -58,7 +58,7 @@ class NewsController extends Controller
                 'danger',
                 'Dodano prywatny kanał informacji!'
             );
-            return $this->redirectToRoute('homepage');
+            return $this->redirectToRoute('news');
         }
 
         return $this->render('default/newsadd.html.twig', [
