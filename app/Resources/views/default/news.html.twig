@@ -1,0 +1,142 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <div class="container">
+        <ul class="nav nav-tabs" role="tablist">
+            <li role="presentation" class="active">
+                <a href="#jestemgraczem" aria-controls="home" role="tab" data-toggle="tab">Blog</a>
+            </li>
+            <li role="presentation">
+                <a href="#23games" aria-controls="home" role="tab" data-toggle="tab">23Games</a>
+            </li>
+            <li role="presentation" class="dropdown">
+                <a href="#" id="drop" class="dropdown-toggle"
+                   data-toggle="dropdown" aria-controls="myTabDrop1-contents"
+                   aria-expanded="false">Inne newsy <span class="caret"></span></a>
+                <ul class="dropdown-menu" aria-labelledby="myTabDrop1" id="myTabDrop1-contents">
+                    <li>
+                        <a href="#cybersport" role="tab" data-toggle="tab" aria-controls="dropdown1">
+                            CyberSport.pl
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#lowcygier" role="tab" data-toggle="tab" aria-controls="dropdown1">
+                            Łowcy Gier
+                        </a>
+                    </li>
+                </ul>
+            </li>
+            <li role="presentation" class="dropdown">
+                <a href="#" id="drop" class="dropdown-toggle"
+                   data-toggle="dropdown" aria-controls="myTabDrop1-contents"
+                   aria-expanded="false">Moje newsy <span class="caret"></span></a>
+                <ul class="dropdown-menu" aria-labelledby="myTabDrop2" id="myTabDrop2-contents">
+                    {% for news in rss %}
+                        <li class="">
+                            <a href="#{{ news.name }}" role="tab" data-toggle="tab">
+                                {{ news.name }}
+                            </a>
+                        </li>
+                    {% endfor %}
+                    <li class="">
+                        <a href="{{ path('news.add') }}">
+                            Dodaj własny kanał informacji
+                        </a>
+                    </li>
+                </ul>
+            </li>
+        </ul>
+
+        <div class="tab-content container">
+            <div role="tabpanel" class="tab-pane fade row active in" id="jestemgraczem">
+                <h3>Blog</h3>
+            </div>
+            <div role="tabpanel" class="tab-pane fade row" id="23games">
+                <h3>23Games <span class="label label-danger">Sponsorowane</span></h3>
+            </div>
+            <div role="tabpanel" class="tab-pane fade row" id="cybersport">
+                <img src="http://cybersport.pl/wp-content/themes/cybersport/assets/img/logo_cybersport.gif"
+                     alt="Cybersport" class="img-responsive">
+            </div>
+            <div role="tabpanel" class="tab-pane fade row" id="lowcygier">
+                <img src="http://lowcygier.pl/wp-content/uploads/2013/02/main_logo.png"
+                     alt="Łowcy Gier" class="img-responsive">
+            </div>
+            <div role="tabpanel" class="tab-pane fade row" id="23games">
+                <h3>23Games <span class="label label-danger">Sponsorowane</span></h3>
+            </div>
+            {% for news in rss %}
+                <div role="tabpanel" class="tab-pane fade row" id="{{ news.name }}">
+                    <h3>
+                        {{ news.name }}
+                        <a href="{{ path('news.remove',{'id': news.id }) }}" class="btn btn-raised btn-danger">Usuń</a>
+                    </h3>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script src="{{ asset('assets/js/jquery.rss.js') }}"></script>
+    <script>
+        var sites = [
+            {
+                name: "#jestemgraczem",
+                url: "http://blog.jestemgraczem.pl/rss",
+                css: "panel-info",
+                color: "#865DAC"
+            },
+            {
+                name: "#23games",
+                url: "https://23games.pl/feed",
+                css: "panel-danger",
+                color: "#232323"
+            },
+            {% for news in rss %}
+            {
+                name: "#{{ news.name }}",
+                url: "{{ news.url }}",
+                color: "{{ news.css }}"
+            },
+            {% endfor %}
+            {
+                name: "#cybersport",
+                url: "http://cybersport.pl/feed",
+                css: "panel-warning",
+                color: "#99161b"
+            },
+            {
+                name: "#lowcygier",
+                url: "http://lowcygier.pl/feed/",
+                css: "panel-warning",
+                color: "#367ea8"
+            }
+        ];
+
+        jQuery(function ($) {
+            for (var i = 0; i < sites.length; i++) {
+                $(sites[i]['name']).rss(sites[i]['url'], {
+                    limit: 12,
+                    effect: 'slideFastSynced',
+                    offsetStart: false,
+                    offsetEnd: false,
+                    ssl: false,
+                    layoutTemplate: '{entries}',
+                    entryTemplate: '' +
+                    '<div class="panel ' + sites[i]['css'] + '">' +
+                    '<div class="panel-heading" style="background-color: ' + sites[i]['color'] + '">' +
+                    '<h3 class="panel-title">{title} <small>{date}</small></h3>' +
+                    '</div>' +
+                    '<div class="panel-body">' +
+                    '{shortBodyPlain}...' +
+                    '<a href="{{ path('redirect') }}?url={url}" target="_blank">Czytaj dalej...</a>' +
+                    '</div>' +
+                    '</div>',
+                    dateFormat: 'HH:mm D/MM/YYYY',
+                });
+            }
+        });
+    </script>
+{% endblock %}
