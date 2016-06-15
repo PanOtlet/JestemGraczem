@@ -61,6 +61,12 @@ class VideoController extends Controller
             return $this->redirectToRoute('video');
         }
 
+        $seo = $this->container->get('sonata.seo.page');
+        $seo->addMeta('property', 'og:title', 'Dodaj film')
+            ->addMeta('property', 'og:type', 'website')
+            ->addMeta('property', 'og:description', 'Dodaj swój własny film do naszej bazy!')
+            ->addMeta('property', 'og:url', $this->get('router')->generate('video.add', [], UrlGeneratorInterface::ABSOLUTE_URL));
+
         return $this->render('video/add.html.twig', [
             'form' => $form->createView(),
         ]);
@@ -87,6 +93,12 @@ class VideoController extends Controller
             );
             return $this->redirectToRoute('video.wait');
         }
+
+        $seo = $this->container->get('sonata.seo.page');
+        $seo->addMeta('property', 'og:title', 'Poczekalnia z filmami! Strona ' . $page)
+            ->addMeta('property', 'og:type', 'website')
+            ->addMeta('property', 'og:description', 'Poczekalnia z najciekawszymi filmami dostępnymi w internecie! Strona ' . $page)
+            ->addMeta('property', 'og:url', $this->get('router')->generate('video.wait', ['page' => $page], UrlGeneratorInterface::ABSOLUTE_URL));
 
         return $this->render('video/index.html.twig', [
             'videos' => $video,
@@ -118,6 +130,12 @@ class VideoController extends Controller
 
         $promoted = $this->getDoctrine()->getRepository('AppBundle:Video')->findBy(['status' => 2]);
 
+        $seo = $this->container->get('sonata.seo.page');
+        $seo->addMeta('property', 'og:title', 'Najciekawsze filmy w internecie! Strona ' . $page)
+            ->addMeta('property', 'og:type', 'website')
+            ->addMeta('property', 'og:description', 'Poszukujesz ciekawych filmów w interncie? Zapraszamy do oglądania twórczości naszych użytkowników! Strona ' . $page)
+            ->addMeta('property', 'og:url', $this->get('router')->generate('video.wait', ['page' => $page], UrlGeneratorInterface::ABSOLUTE_URL));
+
         return $this->render('video/index.html.twig', [
             'videos' => $video,
             'promoted' => $promoted,
@@ -139,6 +157,12 @@ class VideoController extends Controller
             );
             return $this->redirectToRoute('video');
         }
+
+        $seo = $this->container->get('sonata.seo.page');
+        $seo->addMeta('property', 'og:title', $video->getTitle())
+            ->addMeta('property', 'og:type', 'website')
+            ->addMeta('property', 'og:description', $video->getTitle())
+            ->addMeta('property', 'og:url', $this->get('router')->generate('video.id', ['id' => $id], UrlGeneratorInterface::ABSOLUTE_URL));
 
         return $this->render('video/tv.html.twig', [
             'video' => $video

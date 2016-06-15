@@ -4,12 +4,7 @@ namespace AppBundle\Controller;
 
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\Form\Extension\Core\Type\TextType;
-use Symfony\Component\Form\Extension\Core\Type\UrlType;
-use Symfony\Component\Form\Extension\Core\Type\SubmitType;
-use Symfony\Component\HttpFoundation\RedirectResponse;
-use AppBundle\Entity\News;
+use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 
 class DefaultController extends Controller
 {
@@ -18,6 +13,11 @@ class DefaultController extends Controller
      */
     public function indexAction()
     {
+        $seo = $this->container->get('sonata.seo.page');
+        $seo->addMeta('property', 'og:title', 'Strona główna')
+            ->addMeta('property', 'og:type', 'website')
+            ->addMeta('property', 'og:url', $this->get('router')->generate('homepage',[],UrlGeneratorInterface::ABSOLUTE_URL));
+
         $meme = $this->getDoctrine()->getRepository('AppBundle:Meme')->findOneBy(['status' => 2], ['id' => 'DESC']);
         $stream = $this->getDoctrine()->getRepository('AppBundle:Stream')->findBy(['status' => 2], ['id' => 'DESC']);
 
@@ -55,6 +55,11 @@ class DefaultController extends Controller
         if (!$user) {
             throw $this->createNotFoundException('Nie ma takiego użytkownika!');
         }
+
+        $seo = $this->container->get('sonata.seo.page');
+        $seo->addMeta('property', 'og:title', $user->getUsername())
+            ->addMeta('property', 'og:type', 'profile')
+            ->addMeta('property', 'og:url', $this->get('router')->generate('user',['user'=>$user],UrlGeneratorInterface::ABSOLUTE_URL));
 
         $avatar = md5($user->getEmail());
 

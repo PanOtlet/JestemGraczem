@@ -22,6 +22,13 @@ class StreamController extends Controller
         $total = $em->createQueryBuilder('e')->select('MAX(e.id)')->getQuery()->getSingleScalarResult();
 
         $promoted = $this->getDoctrine()->getRepository('AppBundle:Stream')->findBy(['status' => 2]);
+
+        $seo = $this->container->get('sonata.seo.page');
+        $seo->addMeta('property', 'og:title', 'Streamy na żywo')
+            ->addMeta('property', 'og:type', 'website')
+            ->addMeta('property', 'og:description', 'Nudzisz się? Sprawdź audycje na żywo naszych użytkowników!')
+            ->addMeta('property', 'og:url', $this->get('router')->generate('stream', [], UrlGeneratorInterface::ABSOLUTE_URL));
+
         return $this->render('stream/index.html.twig', [
             'promoted' => $promoted,
             'total' => $total
@@ -42,6 +49,12 @@ class StreamController extends Controller
             );
             return $this->redirectToRoute('stream');
         }
+
+        $seo = $this->container->get('sonata.seo.page');
+        $seo->addMeta('property', 'og:title', 'Oglądaj '.$twitch.' na żywo!')
+            ->addMeta('property', 'og:type', 'website')
+            ->addMeta('property', 'og:description', 'Oglądnij audycję '.$twitch.' na żywo! Najciekawsze audycje na żywo tylko u nas!')
+            ->addMeta('property', 'og:url', $this->get('router')->generate('stream', [], UrlGeneratorInterface::ABSOLUTE_URL));
 
         return $this->render('stream/tv.html.twig', [
             'stream' => $stream

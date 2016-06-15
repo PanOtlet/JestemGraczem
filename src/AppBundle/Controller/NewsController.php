@@ -22,6 +22,12 @@ class NewsController extends Controller
             return $this->render('default/news.html.twig', ['rss' => []]);
         }
 
+        $seo = $this->container->get('sonata.seo.page');
+        $seo->addMeta('property', 'og:title', 'Najnowsze newsy ze świata gier!')
+            ->addMeta('property', 'og:type', 'article')
+            ->addMeta('property', 'og:description', 'Najnowsze i najciekawsze newsy ze świata zgromadzonego wokół gier komputerowych!')
+            ->addMeta('property', 'og:url', $this->get('router')->generate('news', [], UrlGeneratorInterface::ABSOLUTE_URL));
+
         $rss = $this->getDoctrine()->getRepository('AppBundle:News')->findBy(['user' => $this->getUser()->getId()]);
         return $this->render('default/news.html.twig', [
             'rss' => $rss
@@ -60,6 +66,12 @@ class NewsController extends Controller
             );
             return $this->redirectToRoute('news');
         }
+
+        $seo = $this->container->get('sonata.seo.page');
+        $seo->addMeta('property', 'og:title', 'Dodaj swój własny news!')
+            ->addMeta('property', 'og:type', 'website')
+            ->addMeta('property', 'og:description', 'Dodaj swóje własne kanały z newsami, byś zawsze był na bieżąco!')
+            ->addMeta('property', 'og:url', $this->get('router')->generate('news.add', [], UrlGeneratorInterface::ABSOLUTE_URL));
 
         return $this->render('default/newsadd.html.twig', [
             'form' => $form->createView(),
