@@ -2,6 +2,123 @@ body {
     background-color: #fbfbfb;
 }
 
+.img-responsive {
+    margin: auto;
+}
+.togglebutton{
+    display: inline-block;
+}
+.platform-i{
+    padding-right: 2px;
+    padding-left: 0px;
+}
+.platform-t{
+    padding-left: 0px;
+    text-align: center;
+    word-break: break-all;
+}
+.battlenet{
+    text-align: center;
+    word-break: break-all;
+}
+.lol{
+    text-align: center;
+    word-break: break-all;
+}
+.v-steam{
+
+}
+.yt{
+
+}
+.meme{
+    text-align: center;
+    padding-left: 8rem;
+    margin-bottom: 4rem;
+}
+.m-title{
+    text-align: left;
+}
+.m-title a{
+    color: #000000;
+}
+.m-title a:hover{
+    color: #000000;
+    text-decoration: none;
+}
+.nav-tabs{
+    background-color: purple;
+}
+.m-title h3{
+    margin-top: 0px;
+    margin-bottom: 20px;
+    font-weight: bold;
+}
+.m-img{}
+.m-bottom{}
+.m-add{
+    opacity: 1 !important;
+    position: relative !important;
+}
+.teams{
+    padding: 5px !important;
+}
+.t-title{
+    text-align: center;
+}
+.t-title h3{
+    margin-top: 15px;
+    margin-bottom: 10px;
+}
+.t-title a{
+    color: #000000;
+}
+.t-title a:hover{
+    color: #000000;
+    text-decoration: none;
+}
+.t-img{
+
+}
+.video{
+
+}
+.video .v-title h3{
+    margin-bottom: 0px;
+}
+.v-title{
+    text-align: left;
+}
+.v-title h3{
+    margin-top: 0px;
+    margin-bottom: 20px;
+    font-weight: bold;
+}
+.v-title a{
+    color: #000000;
+}
+.v-title a:hover{
+    color: #000000;
+    text-decoration: none;
+}
+.fa-6x{
+    font-size: 15em !important;
+    color: #9e9e9e;
+    text-align: center;
+}
+.loading{
+    padding-left: 36%;
+    padding-top: 20%;
+}
+.twitch{
+    padding: 0px !important;
+}
+.embed-responsive-twitch-chat{
+    padding-bottom: 175%;
+}
+
+
+
 .nav a {
     margin-right: 4px;
 }
