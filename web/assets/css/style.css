@@ -176,10 +176,10 @@ p {
 p a {
     color: #d6d6d6;
     font-size: 0.8rem;
-    text-decoration: underline;
+
 }
 
 p a:hover {
     color: #FFFFFF;
-    text-decoration: none;
+    text-decoration: underline;
 }
