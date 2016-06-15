@@ -117,7 +117,7 @@ class MemeController extends Controller
             return $this->redirectToRoute('meme.wait');
         }
 
-        return $this->render('meme/index.html.twig', [
+        return $this->render('meme/wait.html.twig', [
             'meme' => $meme,
             'page' => $page
         ]);
