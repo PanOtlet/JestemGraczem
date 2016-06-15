@@ -32,7 +32,6 @@ body {
 
 }
 .meme{
-    text-align: center;
     padding-left: 8rem;
     margin-bottom: 4rem;
 }
@@ -178,7 +177,13 @@ footer {
     background-image: url("../img/bg-lol.jpg");
     color: #eaeaea;
 }
-
+.top{
+    padding-top: 10px;
+    padding-bottom: 20px;
+    text-align: center;
+    background-image: url("../img/bg-lol.jpg");
+    color: #eaeaea;
+}
 .row-streams {
     padding-top: 10px;
 }
