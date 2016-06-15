@@ -183,3 +183,9 @@ p a:hover {
     color: #FFFFFF;
     text-decoration: underline;
 }
+.pre-f-p a{
+    color: #969595;
+}
+.pre-f-p a:hover{
+    color: #303030;
+}
