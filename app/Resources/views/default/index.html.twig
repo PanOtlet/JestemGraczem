@@ -96,7 +96,9 @@
                 <div class="row">
                     {% for vod in video %}
                         <div class="col-md-6 video">
-                            <img class="img-responsive" src="http://img.youtube.com/vi/{{ vod.videoid }}/mqdefault.jpg">
+                            <a href="{{ path('video.id', { 'id':vod.id }) }}">
+                                <img class="img-responsive" src="http://img.youtube.com/vi/{{ vod.videoid }}/mqdefault.jpg">
+                            </a>
                         </div>
                     {% endfor %}
                 </div>
