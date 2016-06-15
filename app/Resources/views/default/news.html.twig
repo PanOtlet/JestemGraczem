@@ -12,12 +12,12 @@
                         class="p-x-3">Dodaj RSS</span></a>
         </div>
     </div>
-    <div class="container">
+    <div class="container" style="margin-top: 10px">
         <div class="row">
             <div class="col-md-4">
                 <div class="card">
                     <div class="card-block">
-                        <h4 class="card-title">Blog</h4>
+                        <h4 class="card-title">Centrum Prasowe</h4>
                     </div>
                     <ul class="list-group list-group-flush" id="jestemgraczem"></ul>
                 </div>
@@ -102,16 +102,6 @@
                     layoutTemplate: '{entries}',
                     entryTemplate: '' +
                     '<li class="list-group-item"><a href="{{ path('redirect') }}?url={url}" target="_blank">{title}</a></li>',
-                    {#entryTemplate: '' +#}
-                    {#'<div class="panel ' + sites[i]['css'] + '">' +#}
-                    {#'<div class="panel-heading" style="background-color: ' + sites[i]['color'] + '">' +#}
-                    {#'<h3 class="panel-title">{title} <small>{date}</small></h3>' +#}
-                    {#'</div>' +#}
-                    {#'<div class="panel-body">' +#}
-                    {#'{shortBodyPlain}...' +#}
-                    {#'<a href="{{ path('redirect') }}?url={url}" target="_blank">Czytaj dalej...</a>' +#}
-                    {#'</div>' +#}
-                    {#'</div>',#}
                     dateFormat: 'HH:mm D/MM/YYYY'
                 });
             }
