@@ -25,6 +25,7 @@ footer{
 }
 .navbar{
     text-align: center;
+    border-radius: 0;
 }
 .p-t-5{
     padding-top: 5rem !important;
