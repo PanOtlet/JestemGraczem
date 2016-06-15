@@ -2,14 +2,14 @@
 
 {% block body %}
     <div class="container-fluid top p-t-3 p-b-2">
-        <div class="col-sm-3"></div>
-        <div class="col-sm-2 btn-clear-lg p-l-1">
-            NEWS
-        </div>
-        <div class="col-sm-2"></div>
-        <div class="col-sm-2">
-            <a href="{{ path('news.add') }}" type="button" class="btn btn-green"><span
-                        class="p-x-3">Dodaj RSS</span></a>
+        <div class="container">
+            <div class="col-sm-6 btn-clear-lg p-l-1 ">
+                NEWS
+            </div>
+            <div class="col-sm-6">
+                <a href="{{ path('news.add') }}" type="button" class="btn btn-green pull-sm-right"><span
+                            class="p-x-3">Dodaj RSS</span></a>
+            </div>
         </div>
     </div>
     <div class="container" style="margin-top: 10px">
