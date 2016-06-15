@@ -36,7 +36,9 @@
                             </p>
                         </div>
                         <div class="col-xs-6">
-                            <a class="pull-right btn btn-green" href="#">Zobacz profil</a>
+                            <div class="pull-right btn btn-green">
+                                <a href="#">Zobacz profil</a>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -77,8 +79,8 @@
                         <img class="img-fluid pull-xl-left p-b-0 grey" src="https://www.gravatar.com/avatar/23?s=48">
                     </div>
                     <div class="col-xs-10 p-l-0">
-                        <p class="text-xs-left font-weight-bold m-b-0" style="padding-top: 0.4rem; font-size: 0.9rem">
-                            <a href="{{ path('meme.id', {'id': meme.id}) }}">Zobacz komentarze!</a></p>
+                        <p class="text-xs-left  m-b-0" style="padding-top: 0.3rem;">
+                            <a class="font-weight-bold" href="{{ path('meme.id', {'id': meme.id}) }}" style="color: #000000;font-size: 0.9rem; text-decoration: none;">Zobacz komentarze!</a></p>
                     </div>
                     <div class="col-xs-1 p-x-0">
                         <img class="img-fluid pull-xs-right p-b-0 grey" src="{{ asset('assets/img/cs_50.png') }}">
@@ -96,7 +98,6 @@
                         <div class="col-md-6 video">
                             <img class="img-responsive" src="http://img.youtube.com/vi/{{ vod.videoid }}/mqdefault.jpg">
                         </div>
-                        <br>
                     {% endfor %}
                 </div>
                 <div class="btn-green text-xs-center">

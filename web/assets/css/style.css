@@ -108,11 +108,15 @@ footer {
     margin-top: 5px;
     border-radius: 0px;
 }
-
+.btn-green a{
+    color: #FFFFFF;
+    text-decoration: none;
+}
 .btn-green:hover {
     background-color: #82E115;
     color: #FFFFFF;
 }
+
 
 .video {
     padding-top: 5px;
