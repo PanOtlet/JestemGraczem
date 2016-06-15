@@ -94,10 +94,7 @@
                 <div class="row">
                     {% for vod in video %}
                         <div class="col-md-6 video">
-                            <div class="embed-responsive embed-responsive-16by9">
-                                <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/{{ vod.videoid }}"
-                                        allowfullscreen></iframe>
-                            </div>
+                            <img class="img-responsive" src="http://img.youtube.com/vi/{{ vod.videoid }}/mqdefault.jpg">
                         </div>
                         <br>
                     {% endfor %}

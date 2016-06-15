@@ -10,6 +10,10 @@ a {
     text-decoration: none;
 }
 
+.img-responsive {
+    width: 100%;
+}
+
 footer {
     background-color: #8bc34a;
     color: #FFFFFF;
