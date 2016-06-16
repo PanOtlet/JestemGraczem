@@ -1,0 +1,74 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <div class="container-fluid top p-t-3 p-b-2">
+        <div class="container">
+            <div class="col-sm-6 btn-clear-lg p-l-1 ">
+                STREAMY<span style="color: #8bc34a;">NA</span>ŻYWO
+            </div>
+        </div>
+    </div>
+    <main class="container">
+        <div class="row" id="streams-container">
+            <div class="loading" id="loading">
+                <i class="fa fa-spinner fa-pulse fa-6x" aria-hidden="true"></i>
+            </div>
+        </div>
+    </main>
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+
+    <script>
+        var u_twitch = "";
+        getstream();
+
+        function getstream() {
+            $.ajax({
+                url: '{{ path('api.stream') }}',
+                dataType: 'json',
+                success: function (stream) {
+                    //console.log(stream);
+                    for (var i = 0; i < stream.length; i++) {
+                        u_twitch += stream[i]["twitch"] + ",";
+                    }
+                    //console.log(u_twitch+" getstream()");
+                    get_twitch(u_twitch);
+                },
+                error: function () {
+                    console.log("Coś poszło nie tak podczas łączenia z api jestemgraczem");
+
+                }
+            });
+        }
+
+        function render(channel) {
+            var display = channel["channel"]["display_name"];
+            var name = channel["channel"]["name"];
+            $("#streams-container").append('<div class="col-md-4" id="' + name + '"><div class="meme"><div class="v-title" id="' + name + '_title"></div><div class="v-img" id="' + name + '_img"></div><div class="v-bottom" id="' + name + '_bottom"></div></div></div>');
+            $("#" + name).addClass('danger');
+            $("#" + name + "_status").html('ONLINE').css('font-weight', 'bold');
+            $("#" + name + "_game").html(channel["game"]);
+            $("#" + name + "_viewers").html(channel["viewers"]);
+            $("#" + name + "_title").html('<a href="{{ path('stream.id') }}/' + name + '"><p>' + display + '<span style="float: right;color: gray;font-size: medium;">' + channel["viewers"] + '</span></p></a>');
+            $("#" + name + "_img").html('<a href="{{ path('stream.id') }}/' + name + '"> <img class="img-responsive" src="https://static-cdn.jtvnw.net/previews-ttv/live_user_' + name + '-320x180.jpg"> </a>');
+        }
+
+        function get_twitch(stream) {
+            $.ajax({
+                url: 'https://api.twitch.tv/kraken/streams/?channel=' + stream,
+                dataType: 'jsonp',
+                success: function (channel) {
+                    document.getElementById("loading").remove();
+                    for (var i = 0; i < channel["streams"].length; i++) {
+                        //console.log(channel["streams"][i]["channel"]["display_name"]+" "+channel["streams"][i]["viewers"]);
+                        render(channel["streams"][i]);
+                    }
+                }, error: function () {
+                    console.log("Coś poszło nie tak podczas łączenia z api twitch");
+                }
+            });
+        }
+    </script>
+{% endblock %}
