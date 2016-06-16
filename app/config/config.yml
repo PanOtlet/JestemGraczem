@@ -136,7 +136,7 @@ easy_admin:
                     - { property: 'title', label: 'Tytuł'}
                     - { property: 'accept', label: 'Akceptacja'}
                     - { property: 'videoid', label: 'ID Filmu'}
-                    - { property: 'videoid', type: 'image', base_path: 'http://img.youtube.com/vi/%1/mqdefault.jpg' }
+                    - { property: 'videoid', type: 'image', base_path: 'http://img.youtube.com/vi/%1/mqdefault.jpg', label: 'Miniatura' }
                     - { property: 'user', label: 'UserID'}
         Uzytkownicy:
             class: AppBundle\Entity\User
