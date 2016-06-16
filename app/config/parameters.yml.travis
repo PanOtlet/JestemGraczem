@@ -1,0 +1,12 @@
+# This file is auto-generated during the composer install
+parameters:
+    database_host: 127.0.0.1
+    database_port: null
+    database_name: jg
+    database_user: travis
+    database_password: ~
+    mailer_transport: smtp
+    mailer_host:
+    mailer_user:
+    mailer_password:
+    secret: 53bdbcefedb2c4410523ba2783ebeea6924a388b
