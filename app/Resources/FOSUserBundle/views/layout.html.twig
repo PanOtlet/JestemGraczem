@@ -1,6 +1,14 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
+    <div class="container-fluid top p-t-3 p-b-2">
+        <div class="container">
+            <div class="col-sm-6 btn-clear-lg p-l-1 ">
+                <span style="color: #8bc34a;">TWOJE</span>KONTO
+            </div>
+        </div>
+    </div>
+
     {% for type, messages in app.session.flashBag.all %}
         {% for message in messages %}
             <div class="alert alert-danger {{ type }}" role="alert">

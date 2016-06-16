@@ -1,6 +1,16 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
+    <div class="container-fluid top p-t-3 p-b-2">
+        <div class="container">
+            <div class="col-sm-6 btn-clear-lg p-l-1 ">
+                <span style="color: #8bc34a;">Najlepsze</span>Memy
+            </div>
+            <div class="col-sm-6">
+                <a href="{{ path('meme.add') }}" type="button" class="btn btn-green pull-sm-right"><span class="p-x-3">Dodaj nowy</span></a>
+            </div>
+        </div>
+    </div>
     <div class="container p-t-5 p-b-2">
         <div class="row">
             <div class="col-md-8">
