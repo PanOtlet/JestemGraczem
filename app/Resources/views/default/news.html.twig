@@ -47,7 +47,7 @@
             {% endif %}
             <div class="col-md-4">
                 <div class="card">
-                    <div class="card-block">
+                    <div class="card-block" style="background-color: #{{ news.css }}">
                         <h4 class="card-title">{{ news.name }} <a href="{{ path('news.remove',{'id': news.id }) }}"
                                                                   class="btn btn-raised btn-danger">Usuń</a></h4>
                     </div>
