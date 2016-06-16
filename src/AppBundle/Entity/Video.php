@@ -56,6 +56,13 @@ class Video
      */
     private $status;
 
+    /**
+     * @var boolean
+     *
+     * @ORM\Column(name="accept", type="boolean")
+     */
+    private $accept;
+
 
     /**
      * Get id
@@ -185,6 +192,24 @@ class Video
     public function getStatus()
     {
         return $this->status;
+    }
+
+    /**
+     * @param boolean $accept
+     */
+    public function setAccept($accept)
+    {
+        $this->accept = $accept;
+    }
+
+    /**
+     * Get accept
+     *
+     * @return boolean
+     */
+    public function getAccept()
+    {
+        return $this->accept;
     }
 }
 

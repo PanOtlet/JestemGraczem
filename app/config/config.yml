@@ -119,19 +119,35 @@ sonata_seo:
 
 easy_admin:
     entities:
-        Uzytkownicy: AppBundle\Entity\User
         Mems:
             class: AppBundle\Entity\Meme
             list:
                 fields:
                     - 'id'
-                    - 'accept'
-                    - 'title'
-                    - 'source'
-#                    - 'url'
-                    - { property: 'url', type: 'image', base_path: '/assets/meme/' }
-                    - 'user'
-        YouTube: AppBundle\Entity\Video
+                    - { property: 'accept', label: 'Akceptacja'}
+                    - { property: 'title', label: 'Tytuł'}
+                    - { property: 'source', label: 'Źródło'}
+                    - { property: 'url', type: 'image', base_path: 'http://localhost/jg/web/assets/mem/', label: 'Obrazek' }
+        YouTube:
+            class: AppBundle\Entity\Video
+            list:
+                fields:
+                    - 'id'
+                    - { property: 'title', label: 'Akceptacja'}
+                    - { property: 'accept', label: 'Akceptacja'}
+                    - { property: 'videoid', label: 'Akceptacja'}
+                    - { property: 'videoid', type: 'image', base_path: 'http://img.youtube.com/vi/%1/mqdefault.jpg' }
+                    - { property: 'user', label: 'Akceptacja'}
+        Uzytkownicy:
+            class: AppBundle\Entity\User
+            list:
+                fields:
+                    - 'id'
+                    - { property: 'username', label: 'Login'}
+                    - { property: 'email', label: 'Email'}
+                    - { property: 'last_login', label: 'Ostatnie logowanie', type: 'datetime'}
+                    - { property: 'locked', label: 'Zbanowany'}
+                    - { property: 'enabled', label: 'Zaakceptowany'}
         RSS: AppBundle\Entity\News
     site_name: 'JG Admin'
     design:
