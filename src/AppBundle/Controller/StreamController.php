@@ -2,7 +2,6 @@
 
 namespace AppBundle\Controller;
 
-use AppBundle\Entity\Stream;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use AppBundle\Entity\User;
@@ -15,10 +14,10 @@ class StreamController extends Controller
      */
     public function indexAction()
     {
-        $em = $this->getDoctrine()->getRepository('AppBundle:Stream');
+        $em = $this->getDoctrine()->getRepository('AppBundle:User');
         $total = $em->createQueryBuilder('e')->select('MAX(e.id)')->getQuery()->getSingleScalarResult();
 
-        $promoted = $this->getDoctrine()->getRepository('AppBundle:Stream')->findBy(['status' => 2]);
+        $promoted = $this->getDoctrine()->getRepository('AppBundle:User')->findBy(['twitch' => !NULL]);
 
         $seo = $this->container->get('sonata.seo.page');
         $seo->setTitle('Streamy na żywo :: JestemGraczem.pl')
