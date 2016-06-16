@@ -20,7 +20,7 @@ class DefaultController extends Controller
             ->addMeta('property', 'og:url', $this->get('router')->generate('homepage', [], UrlGeneratorInterface::ABSOLUTE_URL));
 
         $meme = $this->getDoctrine()->getRepository('AppBundle:Meme')->findOneBy(['status' => 2], ['id' => 'DESC']);
-        $stream = $this->getDoctrine()->getRepository('AppBundle:Stream')->findBy(['status' => 2], ['id' => 'DESC']);
+        $stream = $this->getDoctrine()->getRepository('AppBundle:User')->findBy(['partner' => 1]);
 
         $video = $this->getDoctrine()->getRepository('AppBundle:Video')->createQueryBuilder('m')
             ->where('m.status = 2')
