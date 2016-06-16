@@ -63,8 +63,9 @@ class VideoController extends Controller
         }
 
         $seo = $this->container->get('sonata.seo.page');
-        $seo->addMeta('property', 'og:title', 'Dodaj film')
-            ->addMeta('property', 'og:type', 'website')
+        $seo->setTitle('Dodaj film :: JestemGraczem.pl')
+            ->addMeta('name', 'description', 'Dodaj swój własny film do naszej bazy!')
+            ->addMeta('property', 'og:title', 'Dodaj film')
             ->addMeta('property', 'og:description', 'Dodaj swój własny film do naszej bazy!')
             ->addMeta('property', 'og:url', $this->get('router')->generate('video.add', [], UrlGeneratorInterface::ABSOLUTE_URL));
 
@@ -96,8 +97,9 @@ class VideoController extends Controller
         }
 
         $seo = $this->container->get('sonata.seo.page');
-        $seo->addMeta('property', 'og:title', 'Poczekalnia z filmami! Strona ' . $page)
-            ->addMeta('property', 'og:type', 'website')
+        $seo->setTitle('Poczekalnia z filmami! Strona ' . $page . ' :: JestemGraczem.pl')
+            ->addMeta('name', 'description', 'Poczekalnia z najciekawszymi filmami dostępnymi w internecie! Strona ' . $page)
+            ->addMeta('property', 'og:title', 'Poczekalnia z filmami! Strona ' . $page)
             ->addMeta('property', 'og:description', 'Poczekalnia z najciekawszymi filmami dostępnymi w internecie! Strona ' . $page)
             ->addMeta('property', 'og:url', $this->get('router')->generate('video.wait', ['page' => $page], UrlGeneratorInterface::ABSOLUTE_URL));
 
@@ -132,8 +134,9 @@ class VideoController extends Controller
         $promoted = $this->getDoctrine()->getRepository('AppBundle:Video')->findBy(['status' => 2]);
 
         $seo = $this->container->get('sonata.seo.page');
-        $seo->addMeta('property', 'og:title', 'Najciekawsze filmy w internecie! Strona ' . $page)
-            ->addMeta('property', 'og:type', 'website')
+        $seo->setTitle('Najciekawsze filmy w internecie! Strona ' . $page . ' :: JestemGraczem.pl')
+            ->addMeta('name', 'description', 'Poszukujesz ciekawych filmów w internecie? Zapraszamy do oglądania twórczości naszych użytkowników! Strona ' . $page)
+            ->addMeta('property', 'og:title', 'Najciekawsze filmy w internecie! Strona ' . $page)
             ->addMeta('property', 'og:description', 'Poszukujesz ciekawych filmów w internecie? Zapraszamy do oglądania twórczości naszych użytkowników! Strona ' . $page)
             ->addMeta('property', 'og:url', $this->get('router')->generate('video.wait', ['page' => $page], UrlGeneratorInterface::ABSOLUTE_URL));
 
@@ -160,10 +163,10 @@ class VideoController extends Controller
         }
 
         $seo = $this->container->get('sonata.seo.page');
-        $seo->addMeta('property', 'og:title', $video->getTitle())
+        $seo->setTitle($video->getTitle() . ' :: JestemGraczem.pl')
             ->addMeta('name', 'description', 'Film ' . $video->getTitle() . ' dostępny jest na platformie JestemGraczem.pl bez ograniczeń!')
-            ->addMeta('property', 'og:type', 'website')
-            ->addMeta('property', 'og:video', 'https://www.youtube.com/v/'.$video->getVideoid())
+            ->addMeta('property', 'og:title', $video->getTitle())
+            ->addMeta('property', 'og:video', 'https://www.youtube.com/v/' . $video->getVideoid())
             ->addMeta('property', 'og:description', 'Film ' . $video->getTitle() . ' dostępny jest na platformie JestemGraczem.pl bez ograniczeń!')
             ->addMeta('property', 'og:url', $this->get('router')->generate('video.id', ['id' => $id], UrlGeneratorInterface::ABSOLUTE_URL));
 

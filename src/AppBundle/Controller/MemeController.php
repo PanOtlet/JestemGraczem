@@ -27,8 +27,9 @@ class MemeController extends Controller
         }
 
         $seo = $this->container->get('sonata.seo.page');
-        $seo->addMeta('property', 'og:title', $mem->getTitle())
-            ->addMeta('property', 'og:type', 'website')
+        $seo->setTitle($mem->getTitle() . ' :: JestemGraczem.pl')
+            ->addMeta('name', 'description', 'Najlepsze memy tylko u nas! ' . $mem->getTitle())
+            ->addMeta('property', 'og:title', $mem->getTitle())
             ->addMeta('property', 'og:description', 'Najlepsze memy tylko u nas! ' . $mem->getTitle())
             ->addMeta('property', 'og:image', $this->get('router')->generate('homepage', [], UrlGeneratorInterface::ABSOLUTE_URL) . '/assets/mem/' . $mem->getFile())
             ->addMeta('property', 'og:url', $this->get('router')->generate('meme.id', ['id' => $id], UrlGeneratorInterface::ABSOLUTE_URL));
@@ -44,8 +45,9 @@ class MemeController extends Controller
     public function addAction(Request $request)
     {
         $seo = $this->container->get('sonata.seo.page');
-        $seo->addMeta('property', 'og:title', 'Dodaj mem')
-            ->addMeta('property', 'og:type', 'website')
+        $seo->setTitle('Dodaj mem :: JestemGraczem.pl')
+            ->addMeta('name', 'description', 'Dodaj swój własny mem na stronę!')
+            ->addMeta('property', 'og:title', 'Dodaj mem')
             ->addMeta('property', 'og:description', 'Dodaj swój własny mem na stronę!')
             ->addMeta('property', 'og:url', $this->get('router')->generate('meme.add', [], UrlGeneratorInterface::ABSOLUTE_URL));
 
@@ -129,8 +131,9 @@ class MemeController extends Controller
         }
 
         $seo = $this->container->get('sonata.seo.page');
-        $seo->addMeta('property', 'og:title', 'Poczekalnia dla memów. Strona ' . $page)
-            ->addMeta('property', 'og:type', 'website')
+        $seo->setTitle('Poczekalnia dla memów. Strona ' . $page . ' :: JestemGraczem.pl')
+            ->addMeta('name', 'description', 'To miejsce na wszystkie memy, które jeszcze nie przeszły walidacji lub pozostaną w czyściu! Strona ' . $page)
+            ->addMeta('property', 'og:title', 'Poczekalnia dla memów. Strona ' . $page)
             ->addMeta('property', 'og:description', 'To miejsce na wszystkie memy, które jeszcze nie przeszły walidacji lub pozostaną w czyściu! Strona ' . $page)
             ->addMeta('property', 'og:url', $this->get('router')->generate('meme.wait', ['page' => $page], UrlGeneratorInterface::ABSOLUTE_URL));
 
@@ -168,8 +171,9 @@ class MemeController extends Controller
         }
 
         $seo = $this->container->get('sonata.seo.page');
-        $seo->addMeta('property', 'og:title', 'Najlepsze memy! Strona ' . $page)
-            ->addMeta('property', 'og:type', 'website')
+        $seo->setTitle('Najlepsze memy! Strona ' . $page . ' :: JestemGraczem.pl')
+            ->addMeta('name', 'description', 'Najlepsze gamingowe memy w całym internecie! Strona ' . $page)
+            ->addMeta('property', 'og:title', 'Najlepsze memy! Strona ' . $page)
             ->addMeta('property', 'og:description', 'Najlepsze gamingowe memy w całym internecie! Strona ' . $page)
             ->addMeta('property', 'og:url', $this->get('router')->generate('meme', ['page' => $page], UrlGeneratorInterface::ABSOLUTE_URL));
 

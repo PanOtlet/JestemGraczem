@@ -21,8 +21,9 @@ class StreamController extends Controller
         $promoted = $this->getDoctrine()->getRepository('AppBundle:Stream')->findBy(['status' => 2]);
 
         $seo = $this->container->get('sonata.seo.page');
-        $seo->addMeta('property', 'og:title', 'Streamy na żywo')
-            ->addMeta('property', 'og:type', 'website')
+        $seo->setTitle('Streamy na żywo :: JestemGraczem.pl')
+            ->addMeta('name', 'description', 'Nudzisz się? Sprawdź audycje na żywo naszych użytkowników!')
+            ->addMeta('property', 'og:title', 'Streamy na żywo')
             ->addMeta('property', 'og:description', 'Nudzisz się? Sprawdź audycje na żywo naszych użytkowników!')
             ->addMeta('property', 'og:url', $this->get('router')->generate('stream', [], UrlGeneratorInterface::ABSOLUTE_URL));
 
@@ -48,8 +49,9 @@ class StreamController extends Controller
         }
 
         $seo = $this->container->get('sonata.seo.page');
-        $seo->addMeta('property', 'og:title', 'Oglądaj '.$twitch.' na żywo!')
-            ->addMeta('property', 'og:type', 'website')
+        $seo->setTitle('Oglądaj '.$twitch.' na żywo! :: JestemGraczem.pl')
+            ->addMeta('name', 'description', 'Oglądnij audycję '.$twitch.' na żywo! Najciekawsze audycje na żywo tylko u nas!')
+            ->addMeta('property', 'og:title', 'Oglądaj '.$twitch.' na żywo!')
             ->addMeta('property', 'og:description', 'Oglądnij audycję '.$twitch.' na żywo! Najciekawsze audycje na żywo tylko u nas!')
             ->addMeta('property', 'og:url', $this->get('router')->generate('stream', [], UrlGeneratorInterface::ABSOLUTE_URL));
 

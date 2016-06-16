@@ -14,9 +14,10 @@ class DefaultController extends Controller
     public function indexAction()
     {
         $seo = $this->container->get('sonata.seo.page');
-        $seo->addMeta('property', 'og:title', 'Strona główna')
-            ->addMeta('property', 'og:type', 'website')
-            ->addMeta('property', 'og:url', $this->get('router')->generate('homepage',[],UrlGeneratorInterface::ABSOLUTE_URL));
+        $seo->setTitle('Strona główna :: JestemGraczem.pl')
+            ->addMeta('name', 'description', "JestemGraczem.pl jest to pierwszy w Polsce portal poświęcony graczom, a nie samym grom!")
+            ->addMeta('property', 'og:title', 'Strona główna :: JestemGraczem.pl')
+            ->addMeta('property', 'og:url', $this->get('router')->generate('homepage', [], UrlGeneratorInterface::ABSOLUTE_URL));
 
         $meme = $this->getDoctrine()->getRepository('AppBundle:Meme')->findOneBy(['status' => 2], ['id' => 'DESC']);
         $stream = $this->getDoctrine()->getRepository('AppBundle:Stream')->findBy(['status' => 2], ['id' => 'DESC']);
@@ -57,9 +58,11 @@ class DefaultController extends Controller
         }
 
         $seo = $this->container->get('sonata.seo.page');
-        $seo->addMeta('property', 'og:title', $user->getUsername())
+        $seo->setTitle('Profil: ' . $user->getUsername() . ' :: JestemGraczem.pl')
+            ->addMeta('name', 'description', "Profil użytkownika " . $user->getUsername() . " na portalu JestemGraczem.pl")
+            ->addMeta('property', 'og:title', $user->getUsername())
             ->addMeta('property', 'og:type', 'profile')
-            ->addMeta('property', 'og:url', $this->get('router')->generate('user',['user'=>$user],UrlGeneratorInterface::ABSOLUTE_URL));
+            ->addMeta('property', 'og:url', $this->get('router')->generate('user', ['user' => $user], UrlGeneratorInterface::ABSOLUTE_URL));
 
         $avatar = md5($user->getEmail());
 

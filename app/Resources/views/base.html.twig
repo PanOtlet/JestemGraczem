@@ -3,7 +3,7 @@
 <head>
     {{ sonata_seo_metadatas() }}
 
-    <title>{% block title %}Strona główna{% endblock %} :: JestemGraczem.pl</title>
+    {{ sonata_seo_title() }}
 
     {% block stylesheets %}
         <link rel="stylesheet" href="{{ asset('assets/css/bootstrap.min.css') }}">

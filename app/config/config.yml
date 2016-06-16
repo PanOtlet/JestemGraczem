@@ -86,16 +86,14 @@ fos_user:
 sonata_seo:
     encoding:         UTF-8
     page:
-        default: sonata.seo.page.default
         title:            JestemGraczem
         default:          sonata.seo.page.default
         metas:
             name:
-                keywords:             foo bar
-                description:          The description
+                keywords:             jestem,graczem,gry,tworzone,z,pasji,portal,poświęcony,graczom,jestemgraczem,turnieje,stream,youtube,reklama
+                description:          JestemGraczem.pl jest to pierwszy w Polsce portal poświęcony graczom, a nie samym grom!
                 robots:               index, follow
                 viewport:             width=device-width, initial-scale=1, shrink-to-fit=no
-
             property:
                 # Facebook application settings
                 'fb:app_id':          1792775277616619
@@ -104,7 +102,8 @@ sonata_seo:
                 # Open Graph information
                 # see http://developers.facebook.com/docs/opengraphprotocol/#types or http://ogp.me/
                 'og:site_name':       JestemGraczem.pl
-                'og:description':     A tutaj świetny opis dla OG
+                'og:description':     JestemGraczem.pl jest to pierwszy w Polsce portal poświęcony graczom, a nie samym grom!
+                'og:type':            website
 
             http-equiv:
                 'Content-Type':         text/html; charset=utf-8
@@ -116,7 +115,7 @@ sonata_seo:
         head:
             'xmlns':              http://www.w3.org/1999/xhtml
             'xmlns:og':           http://opengraphprotocol.org/schema/
-            #'xmlns:fb':           "http://www.facebook.com/2008/fbml"
+            'xmlns:fb':           http://www.facebook.com/2008/fbml
 
 easy_admin:
     entities:
