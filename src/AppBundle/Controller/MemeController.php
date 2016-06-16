@@ -88,6 +88,7 @@ class MemeController extends Controller
             $mem->setCategory(0);
             $mem->setPoints(0);
             $mem->setStatus(0);
+            $mem->setAccept(false);
             $em->persist($mem);
             $em->flush();
 
@@ -114,7 +115,7 @@ class MemeController extends Controller
 
         $em = $this->getDoctrine()->getRepository('AppBundle:Meme');
         $query = $em->createQueryBuilder('p')
-            ->where('p.status = 0')
+            ->where('p.accept = false')
             ->setFirstResult($page * 10)
             ->orderBy('p.id', 'DESC')
             ->getQuery()
@@ -154,7 +155,7 @@ class MemeController extends Controller
 
         $em = $this->getDoctrine()->getRepository('AppBundle:Meme');
         $query = $em->createQueryBuilder('p')
-            ->where('p.status > 0')
+            ->where('p.accept = true')
             ->setFirstResult($page * 10)
             ->orderBy('p.id', 'DESC')
             ->getQuery()

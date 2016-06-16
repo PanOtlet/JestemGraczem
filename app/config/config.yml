@@ -119,10 +119,20 @@ sonata_seo:
 
 easy_admin:
     entities:
-        RSS: AppBundle\Entity\News
-        Mems: AppBundle\Entity\Meme
-        Użytkownicy: AppBundle\Entity\User
+        Uzytkownicy: AppBundle\Entity\User
+        Mems:
+            class: AppBundle\Entity\Meme
+            list:
+                fields:
+                    - 'id'
+                    - 'accept'
+                    - 'title'
+                    - 'source'
+#                    - 'url'
+                    - { property: 'url', type: 'image', base_path: '/assets/meme/' }
+                    - 'user'
         YouTube: AppBundle\Entity\Video
+        RSS: AppBundle\Entity\News
     site_name: 'JG Admin'
     design:
         brand_color: '#9C27B0'

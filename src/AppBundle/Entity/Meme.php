@@ -91,6 +91,13 @@ class Meme
     private $status;
 
     /**
+     * @var boolean
+     *
+     * @ORM\Column(name="accept", type="boolean")
+     */
+    private $accept;
+
+    /**
      * @var int
      *
      * @ORM\Column(name="points", type="integer")
@@ -295,6 +302,24 @@ class Meme
     public function getStatus()
     {
         return $this->status;
+    }
+
+    /**
+     * @param boolean $accept
+     */
+    public function setAccept($accept)
+    {
+        $this->accept = $accept;
+    }
+
+    /**
+     * Get accept
+     *
+     * @return boolean
+     */
+    public function getAccept()
+    {
+        return $this->accept;
     }
 
     /**
