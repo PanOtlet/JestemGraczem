@@ -6,10 +6,8 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
-use Symfony\Component\HttpFoundation\RedirectResponse;
-use Symfony\Component\HttpFoundation\Response;
-use JMS\Serializer\SerializerBuilder as serializer;
 use AppBundle\Entity\Meme;
+use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 
 class MemeController extends Controller
 {
@@ -31,7 +29,8 @@ class MemeController extends Controller
         $seo = $this->container->get('sonata.seo.page');
         $seo->addMeta('property', 'og:title', $mem->getTitle())
             ->addMeta('property', 'og:type', 'website')
-            ->addMeta('property', 'og:description', 'Najlepsze memy tylko u nas! '.$mem->getTitle())
+            ->addMeta('property', 'og:description', 'Najlepsze memy tylko u nas! ' . $mem->getTitle())
+            ->addMeta('property', 'og:image', $this->get('router')->generate('homepage', [], UrlGeneratorInterface::ABSOLUTE_URL) . '/assets/mem/' . $mem->getFile())
             ->addMeta('property', 'og:url', $this->get('router')->generate('meme.id', ['id' => $id], UrlGeneratorInterface::ABSOLUTE_URL));
 
         return $this->render('meme/mem.html.twig', [
@@ -130,9 +129,9 @@ class MemeController extends Controller
         }
 
         $seo = $this->container->get('sonata.seo.page');
-        $seo->addMeta('property', 'og:title', 'Poczekalnia dla memów. Strona '.$page)
+        $seo->addMeta('property', 'og:title', 'Poczekalnia dla memów. Strona ' . $page)
             ->addMeta('property', 'og:type', 'website')
-            ->addMeta('property', 'og:description', 'To miejsce na wszystkie memy, które jeszcze nie przeszły walidacji lub pozostaną w czyściu! Strona '.$page)
+            ->addMeta('property', 'og:description', 'To miejsce na wszystkie memy, które jeszcze nie przeszły walidacji lub pozostaną w czyściu! Strona ' . $page)
             ->addMeta('property', 'og:url', $this->get('router')->generate('meme.wait', ['page' => $page], UrlGeneratorInterface::ABSOLUTE_URL));
 
         return $this->render('meme/wait.html.twig', [
@@ -169,9 +168,9 @@ class MemeController extends Controller
         }
 
         $seo = $this->container->get('sonata.seo.page');
-        $seo->addMeta('property', 'og:title', 'Najlepsze memy! Strona '.$page)
+        $seo->addMeta('property', 'og:title', 'Najlepsze memy! Strona ' . $page)
             ->addMeta('property', 'og:type', 'website')
-            ->addMeta('property', 'og:description', 'Najlepsze gamingowe memy w całym internecie! Strona '.$page)
+            ->addMeta('property', 'og:description', 'Najlepsze gamingowe memy w całym internecie! Strona ' . $page)
             ->addMeta('property', 'og:url', $this->get('router')->generate('meme', ['page' => $page], UrlGeneratorInterface::ABSOLUTE_URL));
 
         return $this->render('meme/index.html.twig', [

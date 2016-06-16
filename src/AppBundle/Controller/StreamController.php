@@ -5,11 +5,8 @@ namespace AppBundle\Controller;
 use AppBundle\Entity\Stream;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\Form\Extension\Core\Type\UrlType;
-use Symfony\Component\Form\Extension\Core\Type\SubmitType;
-use Symfony\Component\HttpFoundation\RedirectResponse;
 use AppBundle\Entity\User;
+use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 
 class StreamController extends Controller
 {

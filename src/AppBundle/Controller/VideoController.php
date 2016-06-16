@@ -10,6 +10,7 @@ use Symfony\Component\Form\Extension\Core\Type\UrlType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use AppBundle\Entity\Video;
+use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 
 class VideoController extends Controller
 {
@@ -133,7 +134,7 @@ class VideoController extends Controller
         $seo = $this->container->get('sonata.seo.page');
         $seo->addMeta('property', 'og:title', 'Najciekawsze filmy w internecie! Strona ' . $page)
             ->addMeta('property', 'og:type', 'website')
-            ->addMeta('property', 'og:description', 'Poszukujesz ciekawych filmów w interncie? Zapraszamy do oglądania twórczości naszych użytkowników! Strona ' . $page)
+            ->addMeta('property', 'og:description', 'Poszukujesz ciekawych filmów w internecie? Zapraszamy do oglądania twórczości naszych użytkowników! Strona ' . $page)
             ->addMeta('property', 'og:url', $this->get('router')->generate('video.wait', ['page' => $page], UrlGeneratorInterface::ABSOLUTE_URL));
 
         return $this->render('video/index.html.twig', [
@@ -160,8 +161,10 @@ class VideoController extends Controller
 
         $seo = $this->container->get('sonata.seo.page');
         $seo->addMeta('property', 'og:title', $video->getTitle())
+            ->addMeta('name', 'description', 'Film ' . $video->getTitle() . ' dostępny jest na platformie JestemGraczem.pl bez ograniczeń!')
             ->addMeta('property', 'og:type', 'website')
-            ->addMeta('property', 'og:description', $video->getTitle())
+            ->addMeta('property', 'og:video', 'https://www.youtube.com/v/'.$video->getVideoid())
+            ->addMeta('property', 'og:description', 'Film ' . $video->getTitle() . ' dostępny jest na platformie JestemGraczem.pl bez ograniczeń!')
             ->addMeta('property', 'og:url', $this->get('router')->generate('video.id', ['id' => $id], UrlGeneratorInterface::ABSOLUTE_URL));
 
         return $this->render('video/tv.html.twig', [
