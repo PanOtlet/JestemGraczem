@@ -166,7 +166,7 @@
                 document.getElementById("display_name").innerHTML =channel["channel"]["display_name"];
                 document.getElementById("profile").href=("http://localhost/jestemgraczem/web/app_dev.php/player/monstercat");
                 document.getElementById("avatar").src = "https://www.gravatar.com/avatar/"+channel["channel"]["display_name"]+"?s=48";
-                document.getElementById("game").src = "{{ asset('assets/img/') }}"+channel["game"]+".png";
+                document.getElementById("game").src = "https://static-cdn.jtvnw.net/ttv-boxart/"+channel["game"]+"-50x50.jpg";
             }
         }
         function img404() {
