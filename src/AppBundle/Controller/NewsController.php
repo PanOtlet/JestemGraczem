@@ -63,7 +63,7 @@ class NewsController extends Controller
             $em->flush();
 
             $this->addFlash(
-                'danger',
+                'success',
                 'Dodano prywatny kanał informacji!'
             );
             return $this->redirectToRoute('news');
@@ -94,7 +94,7 @@ class NewsController extends Controller
 
         if (!$user) {
             $this->addFlash(
-                'danger',
+                'error',
                 'Nie ma takiego kanału informacji!'
             );
 
@@ -103,7 +103,7 @@ class NewsController extends Controller
 
         if ($user->getUser() != $this->getUser()->getId()) {
             $this->addFlash(
-                'danger',
+                'warning',
                 'Można kasować tylko swoje kanały informacji!'
             );
             return $this->redirectToRoute('homepage');
@@ -114,7 +114,7 @@ class NewsController extends Controller
         $em->flush();
 
         $this->addFlash(
-            'danger',
+            'success',
             'Usunięto kanał informacji!'
         );
         return $this->redirectToRoute('homepage');

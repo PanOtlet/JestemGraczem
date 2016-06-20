@@ -20,7 +20,7 @@ class MemeController extends Controller
 
         if ($mem == NULL) {
             $this->addFlash(
-                'danger',
+                'error',
                 'Kurde, nie znaleźliśmy tego co poszukujesz :('
             );
             return $this->redirectToRoute('meme');
@@ -93,7 +93,7 @@ class MemeController extends Controller
             $em->flush();
 
             $this->addFlash(
-                'danger',
+                'success',
                 'Dodano mem! Teraz Twój mem pojawił się w poczekalni i oczekuje akceptacji przez administrację, by pojawić się na głównej!'
             );
             return $this->redirectToRoute('meme.wait');
@@ -125,7 +125,7 @@ class MemeController extends Controller
 
         if ($meme == NULL) {
             $this->addFlash(
-                'danger',
+                'error',
                 'Kurde, nie znaleźliśmy tego co poszukujesz :('
             );
             return $this->redirectToRoute('meme.wait');
@@ -165,7 +165,7 @@ class MemeController extends Controller
 
         if ($meme == NULL) {
             $this->addFlash(
-                'danger',
+                'info',
                 'Doszedłeś do końca internetu. Jesteśmy dumni!'
             );
             return $this->redirectToRoute('meme');

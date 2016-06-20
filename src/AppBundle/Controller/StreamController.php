@@ -41,7 +41,7 @@ class StreamController extends Controller
 
         if ($stream == NULL || $twitch == NULL) {
             $this->addFlash(
-                'danger',
+                'error',
                 'Stream nie istnieje!'
             );
             return $this->redirectToRoute('stream');

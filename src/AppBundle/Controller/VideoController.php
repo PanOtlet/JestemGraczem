@@ -38,7 +38,7 @@ class VideoController extends Controller
 
             if ($response != "200") {
                 $this->addFlash(
-                    'danger',
+                    'error',
                     'Błąd! Film nie istnieje lub nie pochodzi z serwisu YouTube!'
                 );
                 return $this->redirectToRoute('video');
@@ -56,7 +56,7 @@ class VideoController extends Controller
             $em->flush();
 
             $this->addFlash(
-                'danger',
+                'success',
                 'Dodano film do poczekalni! Po akceptacji film powinien być dostępny dla wszystkich!'
             );
             return $this->redirectToRoute('video');
@@ -90,7 +90,7 @@ class VideoController extends Controller
 
         if ($video == NULL) {
             $this->addFlash(
-                'danger',
+                'error',
                 'Więcej filmów nie mamy :('
             );
             return $this->redirectToRoute('video.wait');
@@ -125,7 +125,7 @@ class VideoController extends Controller
 
         if ($video == NULL) {
             $this->addFlash(
-                'danger',
+                'error',
                 'Więcej filmów nie mamy :('
             );
             return $this->redirectToRoute('video');
@@ -156,7 +156,7 @@ class VideoController extends Controller
 
         if ($video == NULL) {
             $this->addFlash(
-                'danger',
+                'error',
                 'Nie mamy tego filmu :('
             );
             return $this->redirectToRoute('video');

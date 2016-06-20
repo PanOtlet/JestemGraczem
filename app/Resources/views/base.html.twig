@@ -94,15 +94,6 @@
         </div>
     </nav>
 
-    {% for flash_message in app.session.flashBag.get('danger') %}
-        <div class="alert alert-danger alert-dismissible" role="alert">
-            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-            </button>
-            {{ flash_message }}
-        </div>
-    {% endfor %}
-
     {# Główny navbar mobilny #}
     <nav class="navbar hidden-lg-up navbar-light nav-green">
         <button class="navbar-toggler hidden-lg-up pull-xs-left" type="button" data-toggle="collapse"
@@ -294,6 +285,28 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
     <script async src="{{ asset('assets/js/bootstrap.min.js') }}"></script>
     <script async src="https://use.fontawesome.com/c0b3ee6d21.js"></script>
+
+    {% if app.session.flashBag.has('error') or app.session.flashBag.has('info') or app.session.flashBag.has('warning') or app.session.flashBag.has('success') %}
+    <script src="{{ asset('assets/js/sweetalert.min.js') }}"></script>
+    <link rel="stylesheet" type="text/css" href="{{ asset('assets/js/sweetalert.css') }}" property="stylesheet">
+    {% endif %}
+
+    {% for flash_message in app.session.flashBag.get('error') %}
+    <script>sweetAlert("Oops...", "{{ flash_message }}", "error");</script>
+    {% endfor %}
+
+    {% for flash_message in app.session.flashBag.get('info') %}
+    <script>sweetAlert("Informacja", "{{ flash_message }}", "info");</script>
+    {% endfor %}
+
+    {% for flash_message in app.session.flashBag.get('warning') %}
+    <script>sweetAlert("Ostrzeżenie", "{{ flash_message }}", "warning");</script>
+    {% endfor %}
+
+    {% for flash_message in app.session.flashBag.get('success') %}
+    <script>sweetAlert("Jupi!", "{{ flash_message }}", "success");</script>
+    {% endfor %}
+
 {% endblock %}
 
 {{ include('adblock.html.twig') }}
