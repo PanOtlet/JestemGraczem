@@ -13,7 +13,7 @@
             </div>
         </div>
     </div>
-    <main class="container">
+    <main class="container p-t-1">
         <div class="row">
             <div class="col-xs-8">
                 <div class="row">
@@ -24,7 +24,7 @@
                                     <div class="col-md-6">
                                         <div class="card">
                                             <div class="card-block">
-                                                <h4 class="card-title">{{ video.title|slice(0,22) }}...</h4>
+                                                <h4 class="card-title m-b-0">{{ video.title|slice(0,22) }}...</h4>
                                             </div>
                                             <a href="{{ path('video.id',{'id': video.id}) }}">
                                                 <img src="http://img.youtube.com/vi/{{ video.videoid }}/mqdefault.jpg"
