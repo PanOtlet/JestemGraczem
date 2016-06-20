@@ -31,8 +31,10 @@ body {
 .yt{
 
 }
+.jumbotron{
+    padding: 1rem 1rem;
+}
 .meme{
-    padding-left: 8rem;
     margin-bottom: 4rem;
 }
 .m-title{
