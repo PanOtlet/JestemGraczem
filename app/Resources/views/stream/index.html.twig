@@ -8,10 +8,17 @@
             </div>
         </div>
     </div>
-    <main class="container">
-        <div class="row p-y-1" id="streams-container">
-            <div class="loading" id="loading">
-                <i class="fa fa-spinner fa-pulse fa-6x" aria-hidden="true"></i>
+    <main class="container p-t-1">
+        <div class="row">
+            <div class="col-xs-8">
+                <div class="row p-y-1" id="streams-container">
+                    <div class="text-xs-center" id="loading">
+                        <i class="fa fa-spinner fa-pulse fa-6x p-y-1" aria-hidden="true"></i>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xs-4">
+                {{ include('navbar.html.twig') }}
             </div>
         </div>
     </main>
