@@ -1,6 +1,14 @@
 {% extends "base.html.twig" %}
 
 {% block body %}
+<div class="container-fluid top p-t-3 p-b-2">
+    <div class="container">
+        <div class="col-sm-6 btn-clear-lg p-l-1 ">
+            <span style="color: #8bc34a;">{{ team.name }}</span>
+        </div>
+    </div>
+</div>
+<div class="container">
     <div class="jumbotron">
         <div class="container-fluid">
             <div class="row">
@@ -31,5 +39,6 @@
                 <h1>Brak Członków :( Smutek.jpg</h1>
             {% endif %}
         </div>
+    </div>
     </div>
 {% endblock %}
