@@ -46,13 +46,13 @@
         function render(channel) {
             var display = channel["channel"]["display_name"];
             var name = channel["channel"]["name"];
-            $("#streams-container").append('<div class="col-md-4" id="' + name + '"><div class="meme"><div class="v-title" id="' + name + '_title"></div><div class="v-img" id="' + name + '_img"></div><div class="v-bottom" id="' + name + '_bottom"></div></div></div>');
+            $("#streams-container").append('<div class="col-md-6" id="' + name + '"><div class="stream"><div class="v-title" id="' + name + '_title"></div><div class="v-img" id="' + name + '_img"></div><div class="v-bottom" id="' + name + '_bottom"></div></div></div>');
             $("#" + name).addClass('danger');
             $("#" + name + "_status").html('ONLINE').css('font-weight', 'bold');
             $("#" + name + "_game").html(channel["game"]);
             $("#" + name + "_viewers").html(channel["viewers"]);
-            $("#" + name + "_title").html('<a href="{{ path('stream.id') }}/' + name + '"><p>' + display + '<span style="float: right;color: gray;font-size: medium;">' + channel["viewers"] + '</span></p></a>');
-            $("#" + name + "_img").html('<a href="{{ path('stream.id') }}/' + name + '"> <img class="img-responsive" src="https://static-cdn.jtvnw.net/previews-ttv/live_user_' + name + '-320x180.jpg"> </a>');
+            $("#" + name + "_title").html('<a href="{{ path('stream.id') }}/' + name + '"><h2 class="m-b-0 m-t-1">' + display + '<span style="float: right;color: #8bc34a;font-size: medium;">' + channel["viewers"] + '</span></h2></a>');
+            $("#" + name + "_img").html('<a href="{{ path('stream.id') }}/' + name + '"> <img class="img-responsive" src="https://static-cdn.jtvnw.net/previews-ttv/live_user_' + name + '-640x360.jpg"> </a>');
         }
 
         function get_twitch(stream) {
