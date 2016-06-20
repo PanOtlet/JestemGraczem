@@ -106,7 +106,7 @@ class DivisionController extends Controller
      */
     public function divisionAction($id = NULL)
     {
-        $team = $this->getDoctrine()->getRepository('TurniejBundle:Division')->findOneBy(['name' => $id]);
+        $team = $this->getDoctrine()->getRepository('TurniejBundle:Division')->findOneBy(['id' => $id]);
 
         if ($id == NULL || $team == NULL) {
             return $this->redirectToRoute('tournament');

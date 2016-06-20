@@ -1,26 +1,6 @@
-{% extends "all.html.twig" %}
+{% extends "base.html.twig" %}
 
-{% block title %}Dywizje{% endblock %}
-
-{% block menu %}
-    <li class="active">
-        <a href="{{ path('team') }}">
-            <i class="fa fa-users" aria-hidden="true"></i> Drużyny
-        </a>
-    </li>
-    <li>
-        <a href="{{ path('team.add') }}">
-            <i class="fa fa-plus" aria-hidden="true"></i> Stwórz
-        </a>
-    </li>
-    <li>
-        <a href="{{ path('team.join') }}">
-            <i class="fa fa-plus" aria-hidden="true"></i><i class="fa fa-user" aria-hidden="true"></i> Dołącz
-        </a>
-    </li>
-{% endblock %}
-
-{% block content %}
+{% block body %}
     <div class="jumbotron">
         <div class="container-fluid">
             <div class="row">

@@ -1,28 +1,8 @@
-{% extends "::base.html.twig" %}
-
-{% block title %}TurniejBundle:Team:join{% endblock %}
-
-{% block menu %}
-    <li>
-        <a href="{{ path('team') }}">
-            <i class="fa fa-users" aria-hidden="true"></i> Drużyny
-        </a>
-    </li>
-    <li class="active">
-        <a href="{{ path('team.add') }}">
-            <i class="fa fa-users" aria-hidden="true"></i> Stwórz
-        </a>
-    </li>
-    <li>
-        <a href="{{ path('team.join') }}">
-            <i class="fa fa-users" aria-hidden="true"></i> Dołącz
-        </a>
-    </li>
-{% endblock %}
+{% extends "base.html.twig" %}
 
 {% form_theme form ':Form:form.html.twig' %}
 
-{% block content %}
+{% block body %}
     {{ form_start(form) }}
     {{ form_widget(form) }}
     {{ form_end(form) }}
