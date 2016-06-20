@@ -1,7 +1,7 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-    <div class="container-fluid">
+    <div class="container">
         <div class="jumbotron t-title">
             <h1>Drużyny</h1>
         </div>
@@ -11,7 +11,7 @@
                     <div class="jumbotron teams">
                         <div class="t-img">
                             <a href="{{ path('team',{'tag': team.tag}) }}">
-                                <img src="{{ asset('assets/img/lol.jpg') }}" class="img-responsive">
+                                <img src="{{ asset('assets/img/lol_50.png') }}" class="img-responsive">
                             </a>
                         </div>
                         <div class="t-title">
