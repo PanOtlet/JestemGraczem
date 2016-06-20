@@ -32,12 +32,12 @@
                         {#Gnimsh to pasjonat gier karcianych, suchych żartów, anime oraz fantasy.</p>#}
                     <div class="row">
                         <div class="col-xs-6">
-                            <p class="text-xs-left font-weight-bold">Viewers <span id="viewers" style="color: #8bc34a;"></span>
+                            <p class="text-xs-left font-weight-bold">Widzów: <span id="viewers" style="color: #8bc34a;"></span>
                             </p>
                         </div>
                         <div class="col-xs-6">
                             <div class="pull-right btn btn-green">
-                                <a id="profile" href="#">Zobacz profil</a>
+                                <a id="profile" href="#">Zobacz w odtwarzaczu</a>
                             </div>
                         </div>
                     </div>
@@ -53,8 +53,6 @@
             <div class="text-xs-center" id="loading">
                 <i class="fa fa-spinner fa-pulse fa-4x p-y-1" aria-hidden="true"></i>
             </div>
-
-
         </div>
         <div class="container-fluid p-t-1">
             <img class="img-fluid center-block" src="{{ asset('assets/img/ad.png') }}">
@@ -72,7 +70,10 @@
                     </div>
                     <div class="col-xs-10 p-l-0">
                         <p class="text-xs-left  m-b-0" style="padding-top: 0.3rem;">
-                            <a class="font-weight-bold" href="{{ path('meme.id', {'id': meme.id}) }}" style="color: #000000;font-size: 0.9rem; text-decoration: none;">Zobacz komentarze!</a></p>
+                            <a class="font-weight-bold" href="{{ path('meme.id', {'id': meme.id}) }}" style="color: #000000;font-size: 0.9rem; text-decoration: none;">
+                                Zobacz komentarze!
+                            </a>
+                        </p>
                     </div>
                     <div class="col-xs-1 p-x-0">
                         <img class="img-fluid pull-xs-right p-b-0 grey" src="{{ asset('assets/img/cs_50.png') }}">
