@@ -1,6 +1,17 @@
 {% extends "base.html.twig" %}
 
 {% block body %}
+    <div class="container-fluid top p-t-3 p-b-2">
+            <div class="container">
+                <div class="col-sm-6 btn-clear-lg p-l-1 ">
+                    <span style="color: #8bc34a;">{{ team.name }}</span>
+                </div>
+                <div class="col-sm-6">
+                    <a href="{{ path('division.add') }}" type="button" class="btn btn-green pull-sm-right"><span class="p-x-3">Dodaj nową</span></a>
+                </div>
+            </div>
+        </div>
+<div class="container">
     <div class="jumbotron">
         <div class="container-fluid">
             <div class="row">
@@ -30,7 +41,7 @@
                         <div class="jumbotron teams">
                             <div class="t-img">
                                 <a href="{{ path('division',{'id': division.name}) }}">
-                                    <img src="{{ asset('assets/img/lol.jpg') }}" class="img-responsive">
+                                    <img src="{{ asset('assets/img/lol_50.png') }}" class="img-responsive">
                                 </a>
                             </div>
                             <div class="t-title">
@@ -47,5 +58,6 @@
                 <h1>Brak Dywizj :( Smutek.jpg</h1>
             {% endif %}
         </div>
+    </div>
     </div>
 {% endblock %}
