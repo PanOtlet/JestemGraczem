@@ -16,28 +16,28 @@
                     </div>
                     <div class="row p-y-2">
                         <div class="col-xs-2 p-r-0">
-                            <img class="img-fluid pull-xl-left p-b-0" src="https://www.gravatar.com/avatar/23?s=48">
+                            <img id="avatar" class="img-fluid pull-xl-left p-b-0" src="https://www.gravatar.com/avatar/23?s=48">
                         </div>
                         <div class="col-xs-8">
-                            <h3 class="text-xs-left font-weight-bold m-b-0">OTLET</h3>
-                            <p class="text-xs-left">www.twitch.tv/otlet</p>
+                            <h3 id="display_name" class="text-xs-left font-weight-bold m-b-0"></h3>
+                            <p id="link" class="text-xs-left"></p>
                         </div>
                         <div class="col-xs-2 p-l-0">
-                            <img class="img-fluid pull-xs-right p-b-0" src="{{ asset('assets/img/dota_50.png') }}">
+                            <img id="game" class="img-fluid pull-xs-right p-b-0" src="{{ asset('assets/img/Unknown.png') }}" onerror="img404()">
                         </div>
                     </div>
-                    <p class="text-justify">Marcin, znany bardziej jako "Gnimsh", to profesjonalny i międzynarodowy
-                        komentator gry Hearthstone.
-                        Zanim komentowanie stało się jego pracą, był kapitanem dywizji Hearthstone w drużynie Cloud 9.
-                        Gnimsh to pasjonat gier karcianych, suchych żartów, anime oraz fantasy.</p>
+                    {#<p class="text-justify">Marcin, znany bardziej jako "Gnimsh", to profesjonalny i międzynarodowy#}
+                        {#komentator gry Hearthstone.#}
+                        {#Zanim komentowanie stało się jego pracą, był kapitanem dywizji Hearthstone w drużynie Cloud 9.#}
+                        {#Gnimsh to pasjonat gier karcianych, suchych żartów, anime oraz fantasy.</p>#}
                     <div class="row">
                         <div class="col-xs-6">
-                            <p class="text-xs-left font-weight-bold">Viewers <span style="color: #8bc34a;">12345</span>
+                            <p class="text-xs-left font-weight-bold">Viewers <span id="viewers" style="color: #8bc34a;"></span>
                             </p>
                         </div>
                         <div class="col-xs-6">
                             <div class="pull-right btn btn-green">
-                                <a href="#">Zobacz profil</a>
+                                <a id="profile" href="#">Zobacz profil</a>
                             </div>
                         </div>
                     </div>
@@ -159,9 +159,18 @@
         }
         function topstream(channel) {
             if(channel!=null){
-            console.log(channel["channel"]["name"]);
-            document.getElementById("topstream").src = "http://player.twitch.tv/?channel="+channel["channel"]["name"];
+                console.log(channel);
+                document.getElementById("topstream").src = "http://player.twitch.tv/?channel="+channel["channel"]["name"];
+                document.getElementById("viewers").innerHTML =channel["viewers"];
+                document.getElementById("link").innerHTML ="www.twitch.tv/"+channel["channel"]["name"];
+                document.getElementById("display_name").innerHTML =channel["channel"]["display_name"];
+                document.getElementById("profile").href=("http://localhost/jestemgraczem/web/app_dev.php/player/monstercat");
+                document.getElementById("avatar").src = "https://www.gravatar.com/avatar/"+channel["channel"]["display_name"]+"?s=48";
+                document.getElementById("game").src = "{{ asset('assets/img/') }}"+channel["game"]+".png";
             }
+        }
+        function img404() {
+            document.getElementById("game").src = "{{ asset('assets/img/Unknown.png') }}";
         }
     </script>
 
