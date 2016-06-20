@@ -6,7 +6,7 @@
             <div class="row">
                 <div class="col-sm-8 p-b-1">
                     <div class="embed-responsive embed-responsive-16by9">
-                        <iframe class="embed-responsive-item"
+                        <iframe id="topstream" class="embed-responsive-item"
                                 src="http://player.twitch.tv/?channel=monstercat"></iframe>
                     </div>
                 </div>
@@ -107,6 +107,7 @@
 
     <script>
         var u_twitch = "";
+        var limit = 5
         getstream();
 
         function getstream() {
@@ -146,7 +147,8 @@
                 dataType: 'jsonp',
                 success: function (channel) {
                     document.getElementById("loading").remove();
-                    for (var i = 0; i < channel["streams"].length; i++) {
+                    topstream(channel["streams"][0]);
+                    for (var i = 1; i < limit; i++) {
                         //console.log(channel["streams"][i]["channel"]["display_name"]+" "+channel["streams"][i]["viewers"]);
                         render(channel["streams"][i]);
                     }
@@ -154,6 +156,12 @@
                     console.log("Coś poszło nie tak podczas łączenia z api twitch");
                 }
             });
+        }
+        function topstream(channel) {
+            if(channel!=null){
+            console.log(channel["channel"]["name"]);
+            document.getElementById("topstream").src = "http://player.twitch.tv/?channel="+channel["channel"]["name"];
+            }
         }
     </script>
 
