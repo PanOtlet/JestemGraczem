@@ -31,7 +31,7 @@ class MemeController extends Controller
             ->addMeta('name', 'description', 'Najlepsze memy tylko u nas! ' . $mem->getTitle())
             ->addMeta('property', 'og:title', $mem->getTitle())
             ->addMeta('property', 'og:description', 'Najlepsze memy tylko u nas! ' . $mem->getTitle())
-//            ->addMeta('property', 'og:image', $this->get('router')->generate('homepage', [], UrlGeneratorInterface::ABSOLUTE_URL) . '/assets/mem/' . $mem->getFile())
+            ->addMeta('property', 'og:image', $this->get('router')->generate('homepage', [], UrlGeneratorInterface::ABSOLUTE_URL) . '/assets/mem/' . $mem->getFile())
             ->addMeta('property', 'og:url', $this->get('router')->generate('meme.id', ['id' => $id], UrlGeneratorInterface::ABSOLUTE_URL));
 
         return $this->render('meme/mem.html.twig', [
