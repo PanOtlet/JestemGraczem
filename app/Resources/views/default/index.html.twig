@@ -23,7 +23,7 @@
                             <p id="link" class="text-xs-left"></p>
                         </div>
                         <div class="col-xs-2 p-l-0">
-                            <img id="game" class="img-fluid pull-xs-right p-b-0" src="{{ asset('assets/img/Unknown.png') }}" onerror="img404()">
+                            <img id="game" class="img-fluid pull-xs-right p-b-0" src="">
                         </div>
                     </div>
                     {#<p class="text-justify">Marcin, znany bardziej jako "Gnimsh", to profesjonalny i międzynarodowy#}
@@ -169,9 +169,7 @@
                 document.getElementById("game").src = "https://static-cdn.jtvnw.net/ttv-boxart/"+channel["game"]+"-50x50.jpg";
             }
         }
-        function img404() {
-            document.getElementById("game").src = "{{ asset('assets/img/Unknown.png') }}";
-        }
+
     </script>
 
 
