@@ -1,7 +1,7 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-    <div class="container-fluid top-stream p-t-5 p-b-2">
+    <div class="container-fluid top-stream p-t-5 p-b-2" xmlns="http://www.w3.org/1999/html">
         <div class="container">
             <div class="row">
                 <div class="col-sm-8 p-b-1">
@@ -59,8 +59,8 @@
         </div>
         <div class="row p-t-1">
             <div class="col-md-6">
-                <div class="btn-white-lg p-l-1">
-                    NAJNOWSZE<span style="color: #303030;">MEMY</span>
+                <div class="btn-white-lg dots">
+                    <span class="p-x-1" style="background-color: white">NAJNOWSZE<span style="color: #303030;">MEMY</span></span>
                 </div>
                 <img class="img-fluid center-block video p-b-0"
                      src="{{ asset('assets/mem/') ~ meme.url }}" alt="{{ meme.title }}">
