@@ -2,6 +2,27 @@ body {
     background-color: #fbfbfb;
 }
 
+
+.trap{
+    width: 100%;
+    height: 54px;
+    background:white;
+    transform: perspective(7px) rotateX(-3deg);
+    margin-top: 7px;
+
+}
+.first{
+    border-left: solid #ccc 3px;
+}
+.trap-{
+    width: 100%;
+    height: auto;
+    transform: perspective(7px) rotateX(3deg);
+    padding-left: 1rem;
+    padding-right: 1rem;
+}
+
+
 .img-responsive {
     margin: auto;
 }
