@@ -28,10 +28,13 @@ class DefaultController extends Controller
             ->setMaxResults(6)
             ->getQuery()->getResult();
 
+        $avatar = ($this->getUser()) ? md5($this->getUser()->getEmail()) : 23;
+
         return $this->render('default/index.html.twig', [
             'meme' => $meme,
             'video' => $video,
-            'stream' => $stream
+            'stream' => $stream,
+            'avatar' => $avatar
         ]);
     }
 

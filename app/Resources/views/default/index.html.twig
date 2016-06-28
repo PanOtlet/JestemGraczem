@@ -16,23 +16,24 @@
                     </div>
                     <div class="row p-y-2">
                         <div class="col-xs-2 p-r-0">
-                            <img id="avatar" class="img-fluid pull-xl-left p-b-0" src="https://www.gravatar.com/avatar/23?s=48">
+                            <img id="avatar" class="img-fluid pull-xl-left p-b-0"
+                                 src="https://www.gravatar.com/avatar/{{ avatar }}?s=48">
                         </div>
                         <div class="col-xs-8">
-                            <h3 id="display_name" class="text-xs-left font-weight-bold m-b-0"></h3>
-                            <p id="link" class="text-xs-left"></p>
+                            <h3 id="display_name" class="text-xs-left font-weight-bold m-b-0">Brak</h3>
+                            <p id="link" class="text-xs-left">Niestety nikt nie streamuje :(</p>
                         </div>
                         <div class="col-xs-2 p-l-0">
                             <img id="game" class="img-fluid pull-xs-right p-b-0" src="">
                         </div>
                     </div>
                     {#<p class="text-justify">Marcin, znany bardziej jako "Gnimsh", to profesjonalny i międzynarodowy#}
-                        {#komentator gry Hearthstone.#}
-                        {#Zanim komentowanie stało się jego pracą, był kapitanem dywizji Hearthstone w drużynie Cloud 9.#}
-                        {#Gnimsh to pasjonat gier karcianych, suchych żartów, anime oraz fantasy.</p>#}
+                    {#komentator gry Hearthstone.#}
+                    {#Zanim komentowanie stało się jego pracą, był kapitanem dywizji Hearthstone w drużynie Cloud 9.#}
+                    {#Gnimsh to pasjonat gier karcianych, suchych żartów, anime oraz fantasy.</p>#}
                     <div class="row">
                         <div class="col-xs-6">
-                            <p class="text-xs-left font-weight-bold">Widzów: <span id="viewers" style="color: #8bc34a;"></span>
+                            <p class="text-xs-left font-weight-bold">Widzów: <span id="viewers" style="color: #8bc34a;">n/d</span>
                             </p>
                         </div>
                         <div class="col-xs-6">
@@ -70,7 +71,8 @@
                     </div>
                     <div class="col-xs-10 p-l-0">
                         <p class="text-xs-left  m-b-0" style="padding-top: 0.3rem;">
-                            <a class="font-weight-bold" href="{{ path('meme.id', {'id': meme.id}) }}" style="color: #000000;font-size: 0.9rem; text-decoration: none;">
+                            <a class="font-weight-bold" href="{{ path('meme.id', {'id': meme.id}) }}"
+                               style="color: #000000;font-size: 0.9rem; text-decoration: none;">
                                 Zobacz komentarze!
                             </a>
                         </p>
@@ -92,7 +94,8 @@
                     {% for vod in video %}
                         <div class="col-md-6 video">
                             <a href="{{ path('video.id', { 'id':vod.id }) }}">
-                                <img class="img-responsive" src="http://img.youtube.com/vi/{{ vod.videoid }}/mqdefault.jpg">
+                                <img class="img-responsive"
+                                     src="http://img.youtube.com/vi/{{ vod.videoid }}/mqdefault.jpg">
                             </a>
                         </div>
                     {% endfor %}
@@ -107,10 +110,9 @@
 
 {% block javascripts %}
     {{ parent() }}
-
     <script>
         var u_twitch = "";
-        var limit = 5
+        var limit = 5;
         getstream();
 
         function getstream() {
@@ -118,16 +120,13 @@
                 url: '{{ path('api.stream') }}',
                 dataType: 'json',
                 success: function (stream) {
-                    //console.log(stream);
                     for (var i = 0; i < stream.length; i++) {
                         u_twitch += stream[i]["twitch"] + ",";
                     }
-                    //console.log(u_twitch+" getstream()");
                     get_twitch(u_twitch);
                 },
                 error: function () {
                     console.log("Coś poszło nie tak podczas łączenia z api jestemgraczem");
-
                 }
             });
         }
@@ -140,7 +139,6 @@
             $("#" + name + "_status").html('ONLINE').css('font-weight', 'bold');
             $("#" + name + "_game").html(channel["game"]);
             $("#" + name + "_viewers").html(channel["viewers"]);
-            //$("#" + name + "_title").html('<a href="{{ path('stream.id') }}/' + name + '"><p>' + display + '<span style="float: right;color: gray;font-size: medium;">' + channel["viewers"] + '</span></p></a>');
             $("#" + name + "_img").html('<a href="{{ path('stream.id') }}/' + name + '"> <img class="img-responsive" src="https://static-cdn.jtvnw.net/previews-ttv/live_user_' + name + '-320x180.jpg"> </a>');
         }
 
@@ -149,10 +147,10 @@
                 url: 'https://api.twitch.tv/kraken/streams/?channel=' + stream,
                 dataType: 'jsonp',
                 success: function (channel) {
-                    document.getElementById("loading").remove();
+                    $('#loading').remove();
                     topstream(channel["streams"][0]);
                     for (var i = 1; i < limit; i++) {
-                        //console.log(channel["streams"][i]["channel"]["display_name"]+" "+channel["streams"][i]["viewers"]);
+                        console.log(channel["streams"][i]["channel"]["display_name"] + " " + channel["streams"][i]["viewers"]);
                         render(channel["streams"][i]);
                     }
                 }, error: function () {
@@ -161,15 +159,15 @@
             });
         }
         function topstream(channel) {
-            if(channel!=null){
+            if (channel != null) {
                 console.log(channel);
-                document.getElementById("topstream").src = "http://player.twitch.tv/?channel="+channel["channel"]["name"];
-                document.getElementById("viewers").innerHTML =channel["viewers"];
-                document.getElementById("link").innerHTML ="www.twitch.tv/"+channel["channel"]["name"];
-                document.getElementById("display_name").innerHTML =channel["channel"]["display_name"];
-                document.getElementById("profile").href=("{{ path('stream.id') }}/"+channel["channel"]["name"]);
-                document.getElementById("avatar").src = "https://www.gravatar.com/avatar/"+channel["channel"]["display_name"]+"?s=48";
-                document.getElementById("game").src = "https://static-cdn.jtvnw.net/ttv-boxart/"+channel["game"]+"-50x50.jpg";
+                $('#topstream').attr('src', "http://player.twitch.tv/?channel=" + channel["channel"]["name"]);
+                $('#viewers').html(channel["viewers"]);
+                $('#link').html("www.twitch.tv/" + channel["channel"]["name"]);
+                $('#display_name').html(channel["channel"]["display_name"]);
+                $('#profile').attr('href', "{{ path('stream.id') }}/" + channel["channel"]["name"]);
+                $('#avatar').attr('src', "https://www.gravatar.com/avatar/" + channel["channel"]["display_name"] + "?s=48");
+                $('#game').attr('src', "https://static-cdn.jtvnw.net/ttv-boxart/" + channel["game"] + "-50x50.jpg");
             }
         }
 
