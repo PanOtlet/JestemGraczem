@@ -341,7 +341,7 @@ p a {
 
 p a:hover {
     color: #FFFFFF;
-    text-decoration: underline;
+    text-decoration: none;
 }
 .pre-f-p a{
     color: #969595;
