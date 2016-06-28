@@ -284,7 +284,8 @@ footer {
 }
 
 .t-45-active {
-    background-color: #ccc;
+    max-height: 56px;
+    background-color: #f4f4f4;
     border-bottom: solid #8bc34a 5px;
 }
 
@@ -307,7 +308,7 @@ footer {
 }
 
 .t-45:hover {
-    background-color: #f4f4f4;
+    background-color: #ccc;
 }
 
 p {
