@@ -166,7 +166,7 @@
                 $('#link').html("www.twitch.tv/" + channel["channel"]["name"]);
                 $('#display_name').html(channel["channel"]["display_name"]);
                 $('#profile').attr('href', "{{ path('stream.id') }}/" + channel["channel"]["name"]);
-                $('#avatar').attr('src', "https://www.gravatar.com/avatar/" + channel["channel"]["display_name"] + "?s=48");
+                $('#avatar').attr('src', channel["channel"]["logo"]);
                 $('#game').attr('src', "https://static-cdn.jtvnw.net/ttv-boxart/" + channel["game"] + "-50x50.jpg");
             }
         }
