@@ -236,13 +236,14 @@ footer {
     background-color: white;
 }
 .btn-footer{
-    border-left: solid 4px;
     font-weight: bold;
     color: #303030;
+    border-left: solid 4px ;
 }
 .btn-footer .text{
     background-color: #eaeaea;
     padding-bottom: 2px;
+
 }
 
 .btn-clear-lg {
