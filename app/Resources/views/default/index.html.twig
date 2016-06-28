@@ -60,7 +60,7 @@
         <div class="row p-t-1">
             <div class="col-md-6">
                 <div class="btn-white-lg dots">
-                    <span class="p-x-1" style="background-color: white">NAJNOWSZE<span style="color: #303030;">MEMY</span></span>
+                    <span class="p-x-1 text">NAJNOWSZE<span style="color: #303030;">MEMY</span></span>
                 </div>
                 <img class="img-fluid center-block video p-b-0"
                      src="{{ asset('assets/mem/') ~ meme.url }}" alt="{{ meme.title }}">
@@ -85,7 +85,9 @@
                 </div>
             </div>
             <div class="col-md-6">
-                <div class="btn-white-lg p-l-1">NAJNOWSZE<span style="color: #303030;">FILMY</span></div>
+                <div class="btn-white-lg dots">
+                    <span class="p-x-1 text">NAJNOWSZE<span style="color: #303030;">FILMY</span></span>
+                </div>
                 <div class="row">
                     {% for vod in video %}
                         <div class="col-md-6 video">

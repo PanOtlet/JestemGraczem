@@ -232,6 +232,18 @@ footer {
     margin-bottom: 5px;
     border-radius: 0px;
 }
+.btn-white-lg .text{
+    background-color: white;
+}
+.btn-footer{
+    border-left: solid 4px;
+    font-weight: bold;
+    color: #303030;
+}
+.btn-footer .text{
+    background-color: #eaeaea;
+    padding-bottom: 2px;
+}
 
 .btn-clear-lg {
     text-align: left;
@@ -284,9 +296,7 @@ footer {
 }
 
 .t-45-active {
-    max-height: 56px;
-    background-color: #f4f4f4;
-    border-bottom: solid #8bc34a 5px;
+
 }
 
 .t45 {
@@ -309,6 +319,8 @@ footer {
 
 .t-45:hover {
     background-color: #ccc;
+    max-height: 56px;
+    border-bottom: solid #8bc34a 5px;
 }
 
 p {
