@@ -49,6 +49,7 @@ class VideoController extends Controller
             $data->setTitle($form->get('title')->getViewData());
             $data->setVideoid($videoIdParsed['v']);
             $data->setStatus(0);
+            $data->setAccept(false);
             $data->setDateAdd(new \DateTime("now"));
 
             $em = $this->getDoctrine()->getManager();
