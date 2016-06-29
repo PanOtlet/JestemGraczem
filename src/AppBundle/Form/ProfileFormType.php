@@ -9,15 +9,17 @@ class ProfileFormType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('steam');
-        $builder->add('battlenet');
-        $builder->add('lol');
-        $builder->add('twitch');
-        $builder->add('youtube');
-        $builder->add('localization');
-        $builder->remove('email');
-        $builder->remove('username');
-        $builder->remove('plainPassword');
+        $builder->add('steam')
+                ->add('battlenet')
+                ->add('lol')
+                ->add('twitch')
+                ->add('youtube')
+                ->add('localization')
+                ->add('description')
+                ->add('profilePictureFile')
+                ->remove('email')
+                ->remove('username')
+                ->remove('plainPassword');
     }
 
     public function getParent()
