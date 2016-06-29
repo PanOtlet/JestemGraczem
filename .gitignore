@@ -96,4 +96,5 @@ crashlytics.properties
 crashlytics-build.properties
 fabric.properties
 
-/web/assets/mem/*
+web/assets/mem/*
+web/assets/user/profilepics/*
