@@ -3,7 +3,7 @@
 {% block title %}{{ user.username }}{% endblock %}
 
 {% block body %}
-    <div class="container-fluid user-bdrop">
+    <div class="container-fluid user-bdrop hidden-lg-down">
         {% if user.profilePicturePath is not empty %}
             <img class="img-fluid img-bd center-block" src="{{ asset(user.webProfilePicturePath) }}">
         {% else %}
@@ -25,15 +25,17 @@
                     <span class="p-x-1 text"><i class="fa fa-video-camera" aria-hidden="true"></i> MÓJ<span style="color: #303030;">STREAM</span></span>
                 </div>
                 <div class="grey-box p-y-1 p-l-1 m-b-1">
-                    {{ user.username }}
+                    <a href="https://twitch.tv/?channel={{ user.twitch }}">{{ user.twitch }}</a>
                 </div>
 
                 <div class="btn-white-lp dots m-b-0">
                     <span class="p-x-1 text"><i class="fa fa-user" aria-hidden="true"></i> KRÓTKI<span style="color: #303030;">OPIS</span></span>
                 </div>
                 <div class="grey-box p-y-1 p-l-1 m-b-1">
-                    lorep ipsum
+                    {{ user.description }}
                 </div>
+
+
                 <div class="btn-white-lp dots m-b-0">
                     <span class="p-x-1 text"><i class="fa fa-users" aria-hidden="true"></i> TWOJE<span style="color: #303030;">DRUŻYNY</span></span>
                 </div>
@@ -42,6 +44,21 @@
                 </div>
             </div>
             <div class="col-md-8">
+                {% if user.twitch %}
+                    <div class="panel panel-default">
+                        <div class="panel-body">
+                            <div class="embed-responsive embed-responsive-16by9">
+                                <iframe class="embed-responsive-item"
+                                        src="https://player.twitch.tv/?channel={{ user.twitch }}"></iframe>
+                            </div>
+                        </div>
+                        <div id="streaminfo" class="panel-footer">
+                            Gra: <span id="game" class="label label-danger">Ładowanie <i class="fa fa-spinner fa-spin"></i></span>
+                            Widzów: <span id="viewers" class="label label-danger">Ładowanie <i
+                                        class="fa fa-spinner fa-spin"></i></span>
+                        </div>
+                    </div>
+                {% endif %}
                 <div class="btn-white-lp dots">
                     <span class="p-x-1 text"><i class="fa fa-gamepad" aria-hidden="true"></i> AKTUALNE<span style="color: #303030;">TURNIEJE</span></span>
                 </div>
@@ -88,69 +105,6 @@
                 </div>
             </div>
         </div>
-        <div class="row">
-            <div class="col-md-3">
-                <img src="{{ asset(user.webProfilePicturePath) }}" class="img-responsive">
-            </div>
-            <div class="col-md-9">
-                <h1>{{ user.username }}</h1>
-                <div class="row">
-                    {% if user.youTube %}
-                        <div class="col-md-4">
-                            <script src="https://apis.google.com/js/platform.js"></script>
-                            <script>
-                                function onYtEvent(payload) {
-                                    if (payload.eventType == 'subscribe') {
-                                        // Add code to handle subscribe event.
-                                    } else if (payload.eventType == 'unsubscribe') {
-                                        // Add code to handle unsubscribe event.
-                                    }
-                                    if (window.console) {
-                                        window.console.log('YT event: ', payload);
-                                    }
-                                }
-                            </script>
-                            <div class="g-ytsubscribe" data-channel="{{ user.youtube }}" data-layout="full"
-                                 data-count="default" data-onytevent="onYtEvent"></div>
-                        </div>
-                    {% endif %}
-                    <div class="col-md-8">
-                        <ul class="list-group">
-                            {% if user.battlenet %}
-                                <li class="list-group-item">
-                                    <span class="label label-default">Battle.net</span> {{ user.battlenet }}
-                                </li>
-                            {% endif %}
-                            {% if user.lol %}
-                                <li class="list-group-item">
-                                    <span class="label label-default">LoL</span> {{ user.lol }}
-                                </li>
-                            {% endif %}
-                            {% if user.steam %}
-                                <li class="list-group-item">
-                                    <span class="label label-default">Steam</span> <a href="{{ user.steam }}">LINK</a>
-                                </li>
-                            {% endif %}
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </div>
-        {% if user.twitch %}
-            <div class="panel panel-default">
-                <div class="panel-body">
-                    <div class="embed-responsive embed-responsive-16by9">
-                        <iframe class="embed-responsive-item"
-                                src="https://player.twitch.tv/?channel={{ user.twitch }}"></iframe>
-                    </div>
-                </div>
-                <div id="streaminfo" class="panel-footer">
-                    Gra: <span id="game" class="label label-danger">Ładowanie <i class="fa fa-spinner fa-spin"></i></span>
-                    Widzów: <span id="viewers" class="label label-danger">Ładowanie <i
-                                class="fa fa-spinner fa-spin"></i></span>
-                </div>
-            </div>
-        {% endif %}
     </div>
 {% endblock %}
 
