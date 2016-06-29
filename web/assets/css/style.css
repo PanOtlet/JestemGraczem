@@ -197,6 +197,20 @@ footer {
     background-image: url("../img/bg-lol.jpg");
     color: #eaeaea;
 }
+
+.user-bdrop{
+    background-color: #1e282c;
+    text-align: center;
+    padding-left: 0px;
+    padding-right: 0px;
+    max-height: 450px;
+    overflow: hidden;
+}
+.img-bd{
+
+
+}
+
 .top{
     padding-top: 10px;
     padding-bottom: 20px;
