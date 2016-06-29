@@ -222,6 +222,10 @@ footer {
     border-radius: 0px;
 }
 
+.text-ta {
+    color: #e91e63;
+}
+
 .btn-white-lg {
     border: solid 1px #EAEAEA;
     border-left: solid 4px #8bc34a;
@@ -235,6 +239,22 @@ footer {
 .btn-white-lg .text{
     background-color: white;
 }
+
+.btn-white-lp {
+    border: solid 1px #EAEAEA;
+    border-left: solid 4px #e91e63;
+    background-color: #FFFFFF;
+    color: #e91e63;
+    font-weight: bold;
+    font-size: 1.6rem;
+    margin-bottom: 5px;
+    border-radius: 0px;
+}
+.btn-white-lp .text{
+    background-color: white;
+}
+
+
 .btn-footer{
     font-weight: bold;
     color: #303030;

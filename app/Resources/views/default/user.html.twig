@@ -12,8 +12,61 @@
     </div>
     <div class="container p-t-5 p-b-2">
         <div class="row">
+            <div class="col-md-4">
+                <img src="https://www.gravatar.com/avatar/{{ avatar }}?s=2048" class="img-responsive">
+                <div class="btn-white p-y-06 text-ta text-xs-center">{{ user.username }}</div>
+            </div>
+            <div class="col-md-8">
+                <div class="btn-white-lp dots">
+                    <span class="p-x-1 text">AKTUALNE<span style="color: #303030;">TURNIEJE</span></span>
+                </div>
+
+                <div class="btn-white-lg dots">
+                    <span class="p-x-1 text">NAJNOWSZE<span style="color: #303030;">FILMY</span></span>
+                </div>
+                <div class="row">
+                    {% for vod in video %}
+                        <div class="col-md-6 video">
+                            <a href="{{ path('video.id', { 'id':vod.id }) }}">
+                                <img class="img-responsive"
+                                     src="http://img.youtube.com/vi/{{ vod.videoid }}/mqdefault.jpg">
+                            </a>
+                        </div>
+                    {% endfor %}
+                </div>
+                <div class="btn-green text-xs-center">
+                    <a href="{{ path('video') }}">Pokaż więcej</a>
+                </div>
+
+                <div class="btn-white-lg dots">
+                    <span class="p-x-1 text">NAJNOWSZE<span style="color: #303030;">MEMY</span></span>
+                </div>
+                <img class="img-fluid center-block video p-b-0"
+                     src="{{ asset('assets/mem/') ~ meme.url }}" alt="{{ meme.title }}">
+                <div class="row p-y-0 m-x-0 grey">
+                    <div class="col-xs-1 p-x-0">
+                        <img class="img-fluid pull-xl-left p-b-0 grey" src="https://www.gravatar.com/avatar/23?s=48">
+                    </div>
+                    <div class="col-xs-10 p-l-0">
+                        <p class="text-xs-left  m-b-0" style="padding-top: 0.3rem;">
+                            <a class="font-weight-bold" href="{{ path('meme.id', {'id': meme.id}) }}" style="color: #000000;font-size: 0.9rem; text-decoration: none;">
+                                Zobacz komentarze!
+                            </a>
+                        </p>
+                    </div>
+                    <div class="col-xs-1 p-x-0">
+                        <img class="img-fluid pull-xs-right p-b-0 grey" src="{{ asset('assets/img/cs_50.png') }}">
+                    </div>
+                </div>
+                <div class="btn-white p-l-1 p-y-06">{{ meme.title }}</div>
+                <div class="btn-green text-xs-center m-b-1">
+                    <a href="{{ path('meme') }}">Pokaż więcej</a>
+                </div>
+            </div>
+        </div>
+        <div class="row">
             <div class="col-md-3">
-                <img src="https://www.gravatar.com/avatar/{{ avatar }}?s=160" class="img-responsive">
+                <img src="https://www.gravatar.com/avatar/{{ avatar }}?s=2048" class="img-responsive">
             </div>
             <div class="col-md-9">
                 <h1>{{ user.username }}</h1>
