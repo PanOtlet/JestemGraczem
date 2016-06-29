@@ -4,7 +4,11 @@
 
 {% block body %}
     <div class="container-fluid user-bdrop">
-        <img class="img-fluid img-bd center-block" src="{{ asset('assets/img/bg-lol.jpg')}}">
+        {% if user.profilePicturePath is not empty %}
+            <img class="img-fluid img-bd center-block" src="{{ asset(user.webProfilePicturePath) }}">
+        {% else %}
+            <img class="img-fluid img-bd center-block" src="{{ asset('assets/img/bg-lol.jpg')}}">
+        {% endif %}
     </div>
     <div class="container p-t-1 p-b-2">
         <div class="row">
@@ -58,7 +62,6 @@
                 <div class="btn-green text-xs-center m-b-1">
                     <a href="{{ path('video') }}">Pokaż więcej</a>
                 </div>
-
                 <div class="btn-white-lg dots">
                     <span class="p-x-1 text">NAJNOWSZE<span style="color: #303030;">MEMY</span></span>
                 </div>
