@@ -60,6 +60,9 @@ class DefaultController extends Controller
             throw $this->createNotFoundException('Nie ma takiego użytkownika!');
         }
 
+        $meme = $this->getDoctrine()->getRepository('AppBundle:Meme')->findOneBy(['user' => $user->getId()]);
+        $video = $this->getDoctrine()->getRepository('AppBundle:Video')->findOneBy(['user' => $user->getId()]);
+
         $seo = $this->container->get('sonata.seo.page');
         $seo->setTitle('Profil: ' . $user->getUsername() . ' :: JestemGraczem.pl')
             ->addMeta('name', 'description', "Profil użytkownika " . $user->getUsername() . " na portalu JestemGraczem.pl")
@@ -69,7 +72,12 @@ class DefaultController extends Controller
 
         $avatar = md5($user->getEmail());
 
-        return $this->render('default/user.html.twig', ['user' => $user, 'avatar' => $avatar]);
+        return $this->render('default/user.html.twig', [
+            'user' => $user,
+            'avatar' => $avatar,
+            'meme' => $meme,
+            'video' => $video
+        ]);
     }
 
 }
