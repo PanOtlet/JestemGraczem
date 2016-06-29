@@ -226,6 +226,8 @@ footer {
     color: #e91e63;
 }
 
+
+
 .btn-white-lg {
     border: solid 1px #EAEAEA;
     border-left: solid 4px #8bc34a;
@@ -253,7 +255,9 @@ footer {
 .btn-white-lp .text{
     background-color: white;
 }
-
+.grey-box{
+    background-color: #eaeaea;
+}
 
 .btn-footer{
     font-weight: bold;

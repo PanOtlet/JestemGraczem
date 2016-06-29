@@ -10,19 +10,44 @@
             </div>
         </div>
     </div>
-    <div class="container p-t-5 p-b-2">
+    <div class="container p-t-1 p-b-2">
         <div class="row">
             <div class="col-md-4">
                 <img src="https://www.gravatar.com/avatar/{{ avatar }}?s=2048" class="img-responsive">
-                <div class="btn-white p-y-06 text-ta text-xs-center">{{ user.username }}</div>
+                <div class="btn-white p-y-06 text-ta text-xs-center m-b-0">
+                    {{ user.username }}
+                </div>
+                <div class="grey-box p-y-1 p-l-1 m-b-1">
+                    lorep ipsum
+                </div>
+
+                <div class="btn-white-lg dots m-b-0">
+                    <span class="p-x-1 text"><i class="fa fa-video-camera" aria-hidden="true"></i> MÓJ<span style="color: #303030;">STREAM</span></span>
+                </div>
+                <div class="grey-box p-y-1 p-l-1 m-b-1">
+                    {{ user.username }}
+                </div>
+
+                <div class="btn-white-lp dots m-b-0">
+                    <span class="p-x-1 text"><i class="fa fa-user" aria-hidden="true"></i> KRÓTKI<span style="color: #303030;">OPIS</span></span>
+                </div>
+                <div class="grey-box p-y-1 p-l-1 m-b-1">
+                    lorep ipsum
+                </div>
+                <div class="btn-white-lp dots m-b-0">
+                    <span class="p-x-1 text"><i class="fa fa-users" aria-hidden="true"></i> TWOJE<span style="color: #303030;">DRUŻYNY</span></span>
+                </div>
+                <div class="grey-box p-y-1 p-l-1 m-b-1">
+                    lorep ipsum
+                </div>
             </div>
             <div class="col-md-8">
                 <div class="btn-white-lp dots">
-                    <span class="p-x-1 text">AKTUALNE<span style="color: #303030;">TURNIEJE</span></span>
+                    <span class="p-x-1 text"><i class="fa fa-gamepad" aria-hidden="true"></i> AKTUALNE<span style="color: #303030;">TURNIEJE</span></span>
                 </div>
 
                 <div class="btn-white-lg dots">
-                    <span class="p-x-1 text">NAJNOWSZE<span style="color: #303030;">FILMY</span></span>
+                    <span class="p-x-1 text"><i class="fa fa-video-camera" aria-hidden="true"></i> NAJNOWSZE<span style="color: #303030;">FILMY</span></span>
                 </div>
                 <div class="row">
                     {% for vod in video %}
@@ -34,7 +59,7 @@
                         </div>
                     {% endfor %}
                 </div>
-                <div class="btn-green text-xs-center">
+                <div class="btn-green text-xs-center m-b-1">
                     <a href="{{ path('video') }}">Pokaż więcej</a>
                 </div>
 
