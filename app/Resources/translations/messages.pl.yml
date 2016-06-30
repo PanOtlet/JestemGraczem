@@ -6,5 +6,19 @@ team:
     logo: 'Logo drużyny'
     desc: 'Opis drużyny'
     shortdesc: 'Skrócony opis drużyny'
+mem:
+    title: 'Tytuł mema'
+    source: 'Źródło'
+    file: 'Plik obrazka'
+    add: 'Dodaj mem'
+news:
+    rss: 'Adres RSS'
+    name: 'Nazwa kanału'
+    color: 'Kolor'
+    add: 'Dodaj kanał'
+video:
+    url: 'Link do filmu na YouTube'
+    title: 'Tytuł filmu'
+    add: 'Dodaj film'
 error:
     filetype: 'Zły format pliku!'

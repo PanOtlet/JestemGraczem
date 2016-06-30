@@ -42,10 +42,10 @@ class NewsController extends Controller
     public function newsAddAction(Request $request)
     {
         $form = $this->createFormBuilder()
-            ->add('url', UrlType::class, ['label' => 'Adres RSS', 'required' => true])
-            ->add('name', TextType::class, ['label' => 'Nazwa', 'required' => true])
-            ->add('css', TextType::class, ['label' => 'Kolor', 'required' => true, 'attr' => ['class' => 'jscolor']])
-            ->add('save', SubmitType::class, ['label' => 'Dodaj kanał'])
+            ->add('url', UrlType::class, ['label' => 'news.rss', 'required' => true])
+            ->add('name', TextType::class, ['label' => 'news.name', 'required' => true])
+            ->add('css', TextType::class, ['label' => 'news.color', 'required' => true, 'attr' => ['class' => 'jscolor']])
+            ->add('save', SubmitType::class, ['label' => 'news.add'])
             ->getForm();
 
         $form->handleRequest($request);

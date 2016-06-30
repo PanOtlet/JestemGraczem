@@ -55,19 +55,19 @@ class MemeController extends Controller
 
         $form = $this->createFormBuilder($mem)
             ->add('title', NULL, [
-                'label' => 'Tytuł'
+                'label' => 'mem.title'
             ])
             ->add('source', NULL, [
-                'label' => 'Źródło'
+                'label' => 'mem.source'
             ])
             ->add('file', NULL, [
-                'label' => 'Plik',
+                'label' => 'mem.file',
                 'attr' => [
-                    'class' => 'm-add'
+                    'class' => 'form-control-file'
                 ]
             ])
             ->add('save', SubmitType::class, [
-                'label' => 'Dodaj',
+                'label' => 'mem.add',
                 'attr' => [
                     'class' => 'btn-raised btn-danger'
                 ]
