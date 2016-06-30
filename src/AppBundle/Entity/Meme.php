@@ -64,7 +64,7 @@ class Meme
      *      "image/jpg",
      *      "image/jpeg"
      * },
-     *     mimeTypesMessage = "Mime Error"
+     *     mimeTypesMessage = "error.filetype"
      * )
      */
     private $file;

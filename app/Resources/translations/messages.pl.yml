@@ -1,0 +1,10 @@
+form:
+    add: 'Dodaj'
+team:
+    name: 'Nazwa drużyny'
+    tag: 'Tag drużynowy'
+    logo: 'Logo drużyny'
+    desc: 'Opis drużyny'
+    shortdesc: 'Skrócony opis drużyny'
+error:
+    filetype: 'Zły format pliku!'

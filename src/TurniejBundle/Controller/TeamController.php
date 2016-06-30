@@ -5,12 +5,84 @@ namespace TurniejBundle\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
+use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\HttpFoundation\Request;
 use TurniejBundle\Entity\Division;
 use TurniejBundle\Entity\Team;
+use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
+use TurniejBundle\Repository\TeamRepository;
 
 class TeamController extends Controller
 {
+    /**
+     * @Route("/add", name="team.add")
+     */
+    public function addAction(Request $request)
+    {
+        $seo = $this->container->get('sonata.seo.page');
+        $seo->setTitle('Dodaj drużynę :: JestemGraczem.pl')
+            ->addMeta('name', 'description', 'Dodaj drużynę do największego spisu drużyn esportowych w Polsce!')
+            ->addMeta('property', 'og:title', 'Dodaj drużynę')
+            ->addMeta('property', 'og:description', 'Dodaj drużynę do największego spisu drużyn esportowych w Polsce!')
+            ->addMeta('property', 'og:url', $this->get('router')->generate('team.add', [], UrlGeneratorInterface::ABSOLUTE_URL));
+
+        $team = new Team();
+
+        $form = $this->createFormBuilder($team)
+            ->add('name', NULL, [
+                'label' => 'team.name'
+            ])
+            ->add('tag', NULL, [
+                'label' => 'team.tag'
+            ])
+            ->add('logo', NULL, [
+                'label' => 'team.logo',
+                'attr' => [
+                    'class' => 'form-control-file'
+                ]
+            ])
+            ->add('description', TextAreaType::class, [
+                'label' => 'team.desc',
+                'attr' => [
+                    'class' => 'form-control'
+                ]
+            ])
+            ->add('shortdesc', TextAreaType::class, [
+                'label' => 'team.shortdesc'
+            ])
+            ->add('save', SubmitType::class, [
+                'label' => 'form.add',
+            ])
+            ->getForm();
+
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+
+            $em = $this->getDoctrine()->getManager();
+
+            $team->uploadLogo();
+            $team->setOwner($this->getUser()->getId());
+            $team->setName($form->get('name')->getViewData());
+            $team->setTag($form->get('tag')->getViewData());
+            $team->setDescription($form->get('description')->getViewData());
+            $team->setShortdesc($form->get('shortdesc')->getViewData());
+            $em->persist($team);
+            $em->flush();
+
+            $this->addFlash(
+                'success',
+                'Dodano drużynę do spisu!'
+            );
+            return $this->redirectToRoute('team');
+        }
+
+        return $this->render('team/add.html.twig', [
+            'form' => $form->createView(),
+        ]);
+
+    }
+
     /**
      * @Route("/{tag}", name="team")
      */
@@ -98,16 +170,4 @@ class TeamController extends Controller
         );
         return $this->redirectToRoute('team');
     }
-
-    /**
-     * @Route("/add", name="team.add")
-     */
-    public function addAction()
-    {
-
-        return $this->render('team/add.html.twig', [
-
-        ]);
-    }
-
 }

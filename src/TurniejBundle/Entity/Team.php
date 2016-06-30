@@ -3,12 +3,17 @@
 namespace TurniejBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Component\HttpFoundation\File\UploadedFile;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
 /**
  * Team
  *
  * @ORM\Table(name="team")
  * @ORM\Entity(repositoryClass="TurniejBundle\Repository\TeamRepository")
+ * @ORM\HasLifecycleCallbacks()
+ * @UniqueEntity("tag")
  */
 class Team
 {
@@ -39,14 +44,15 @@ class Team
     /**
      * @var string
      *
-     * @ORM\Column(name="tag", type="string", length=5)
+     * @ORM\Column(name="tag", type="string", length=5, unique=true)
      */
     private $tag;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="logo", type="string", length=255)
+     * @Assert\File(maxSize="8M")
+     * @Assert\Image(mimeTypesMessage="error.filetype")
      */
     private $logo;
 
@@ -63,7 +69,6 @@ class Team
      * @ORM\Column(name="shortdesc", type="string", length=255)
      */
     private $shortdesc;
-
 
     /**
      * Get id
@@ -142,11 +147,11 @@ class Team
     /**
      * Set logo
      *
-     * @param string $logo
+     * @param UploadedFile $logo
      *
      * @return Team
      */
-    public function setLogo($logo)
+    public function setLogo(UploadedFile $logo = null)
     {
         $this->logo = $logo;
 
@@ -156,7 +161,7 @@ class Team
     /**
      * Get logo
      *
-     * @return string
+     * @return UploadedFile
      */
     public function getLogo()
     {
@@ -209,6 +214,42 @@ class Team
     public function getShortdesc()
     {
         return $this->shortdesc;
+    }
+
+    public function getAbsolutePath()
+    {
+        return null === $this->path
+            ? null
+            : $this->getUploadRootDir() . '/' . $this->path;
+    }
+
+    public function getWebPath()
+    {
+        return null === $this->path
+            ? null
+            : $this->getUploadDir() . '/' . $this->path;
+    }
+
+    protected function getUploadRootDir()
+    {
+        return __DIR__ . '/../../../web/' . $this->getUploadDir();
+    }
+
+    protected function getUploadDir()
+    {
+        return 'assets/teams/logo';
+    }
+
+    public function uploadLogo()
+    {
+        if (null === $this->getLogo()) {
+            return;
+        }
+
+        $filename = md5(uniqid()) . '.' . $this->getLogo()->getClientOriginalExtension();
+        $this->getLogo()->move($this->getUploadRootDir(), $filename);
+
+        $this->url = $filename;
     }
 }
 
