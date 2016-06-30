@@ -99,7 +99,7 @@ class TeamController extends Controller
         }
 
         $owner = $this->getDoctrine()->getRepository('AppBundle:User')->findOneBy(['id' => $team->getOwner()]);
-        $division = $this->getDoctrine()->getRepository('TurniejBundle:Division')->findAll(['team' => $team->getId()]);
+        $division = $this->getDoctrine()->getRepository('TurniejBundle:Division')->findBy(['team' => $team->getId()]);
 
         return $this->render('team/team.html.twig', [
             'team' => $team,
