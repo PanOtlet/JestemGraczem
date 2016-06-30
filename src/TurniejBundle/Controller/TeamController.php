@@ -2,6 +2,7 @@
 
 namespace TurniejBundle\Controller;
 
+use AppBundle\AppBundle;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
@@ -104,7 +105,8 @@ class TeamController extends Controller
         return $this->render('team/team.html.twig', [
             'team' => $team,
             'divisions' => $division,
-            'owner' => $owner
+            'owner' => $owner,
+            'hash' => new AppBundle
         ]);
     }
 

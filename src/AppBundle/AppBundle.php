@@ -6,4 +6,7 @@ use Symfony\Component\HttpKernel\Bundle\Bundle;
 
 class AppBundle extends Bundle
 {
+    public function hashmd5($text){
+        return md5($text);
+    }
 }

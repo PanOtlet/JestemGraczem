@@ -38,7 +38,7 @@
                                 {% if division.members %}
                                     {% for member in division.members %}
                                         <div class="col-md-3">
-                                            <img src="{{ asset(team.logo) }}" class="img-responsive">
+                                            <img src="https://www.gravatar.com/avatar/{{ hash.hashmd5(member.user) }}?s=2048" class="img-responsive">
                                             <div class="btn-white p-y-06 text-ta text-xs-center">
                                                 {{ member.user }}
                                             </div>
