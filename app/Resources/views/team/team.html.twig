@@ -34,7 +34,7 @@
                                     <span style="color: #cccccc;">{{ division.name }}</span>
                                 </span>
                             </div>
-                            <div class="row">
+                            <div class="row m-t-1">
                                 {% if division.members %}
                                     {% for member in division.members %}
                                         <div class="col-md-3">
@@ -42,8 +42,8 @@
                                             <div class="btn-white p-y-06 text-ta text-xs-center">
                                                 {{ member.user }}
                                             </div>
-                                            <div class="btn btn-pink">
-                                                <a href="{{ path('user', {'user':member.user}) }}">{{ member.user }}</a>
+                                            <div class="text-xs-center btn-pink m-b-1">
+                                                <a href="{{ path('user', {'user':member.user}) }}">Pokaż profil</a>
                                             </div>
                                         </div>
                                     {% endfor %}
