@@ -3,9 +3,9 @@
 {% block body %}
     <div class="container-fluid user-bdrop hidden-lg-down">
         {#{% if team.profilePicturePath is not empty %}#}
-            {#<img class="img-fluid img-bd center-block" src="{{ asset(team.webProfilePicturePath) }}">#}
+        {#<img class="img-fluid img-bd center-block" src="{{ asset(team.webProfilePicturePath) }}">#}
         {#{% else %}#}
-            <img class="img-fluid img-bd center-block" src="{{ asset('assets/img/bg-lol.jpg')}}">
+        <img class="img-fluid img-bd center-block" src="{{ asset('assets/img/bg-lol.jpg') }}">
         {#{% endif %}#}
     </div>
     <div class="container p-t-1 p-b-2">
@@ -25,17 +25,18 @@
                         <div class="container-fluid">
                             <div class="btn-white-lp dots m-b-0">
                                 <span class="p-x-1 text">
-                                    <i class="fa fa-users" aria-hidden="true"></i>{{ team.name }}<span style="color: #303030;">:</span>
+                                    <i class="fa fa-users" aria-hidden="true"></i>{{ team.name }}<span
+                                            style="color: #303030;">:</span>
                                     <span style="color: #cccccc;">{{ division.name }}</span>
                                 </span>
                             </div>
                             <div class="row">
-                                {% if team.team %}
-                                    {% for member in team.members %}
+                                {% if division.members %}
+                                    {% for member in division.members %}
                                         <div class="col-md-3">
                                             <img src="{{ asset(team.logo) }}" class="img-responsive">
                                             <div class="btn-white p-y-06 text-ta text-xs-center">
-                                                {{ team.name }}
+                                                {{ member.user }}
                                             </div>
                                             <div class="btn btn-pink">
                                                 <a href="{{ path('user', {'user':member.user}) }}">{{ member.user }}</a>
@@ -46,7 +47,6 @@
                                     <h1>Brak Członków :( Smutek.jpg</h1>
                                 {% endif %}
                             </div>
-
 
 
                             <div class="teams">
