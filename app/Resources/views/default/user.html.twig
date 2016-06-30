@@ -32,12 +32,12 @@
                     <span class="p-x-1 text"><i class="fa fa-user" aria-hidden="true"></i> KRÓTKI<span style="color: #303030;">OPIS</span></span>
                 </div>
                 <div class="grey-box p-y-1 p-l-1 m-b-1">
-                    {{ user.description }}
+                    <p>{{ user.description }}</p>
                 </div>
 
 
                 <div class="btn-white-lp dots m-b-0">
-                    <span class="p-x-1 text"><i class="fa fa-users" aria-hidden="true"></i> TWOJE<span style="color: #303030;">DRUŻYNY</span></span>
+                    <span class="p-x-1 text"><i class="fa fa-users" aria-hidden="true"></i> MOJE<span style="color: #303030;">DRUŻYNY</span></span>
                 </div>
                 <div class="grey-box p-y-1 p-l-1 m-b-1">
                     lorep ipsum
@@ -45,7 +45,7 @@
             </div>
             <div class="col-md-8">
                 {% if user.twitch %}
-                    <div class="panel panel-default">
+                    <div id="twitch" class="panel panel-default">
                         <div class="panel-body">
                             <div class="embed-responsive embed-responsive-16by9">
                                 <iframe class="embed-responsive-item"
@@ -120,7 +120,8 @@
                         $("#viewers").html(channel["stream"]["viewers"]);
                         $("#game").html(channel["stream"]["game"]);
                     } else {
-                        $("#streaminfo").html('Użytkownik jest offline!');
+                        $( "#twitch" ).remove();
+
                     }
                 }
             });
