@@ -314,6 +314,25 @@ footer {
     color: #FFFFFF;
 }
 
+.btn-pink{
+    background-color: #e91e63;
+    color: #FFFFFF;
+    font-weight: bold;
+    font-size: 0.9rem;
+    padding-top: 0.6rem;
+    padding-bottom: 0.6rem;
+    margin-top: 5px;
+    border-radius: 0px;
+}
+
+.btn-pink a{
+    color: #FFFFFF;
+    text-decoration: none;
+}
+.btn-pink:hover {
+    background-color: #fb0f5f;
+    color: #FFFFFF;
+}
 
 .video {
     padding-top: 5px;
