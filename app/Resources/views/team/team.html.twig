@@ -2,16 +2,20 @@
 
 {% block body %}
     <div class="container-fluid user-bdrop hidden-lg-down">
-        {#{% if team.profilePicturePath is not empty %}#}
-        {#<img class="img-fluid img-bd center-block" src="{{ asset(team.webProfilePicturePath) }}">#}
-        {#{% else %}#}
+        {% if team.logo is not empty %}
+        <img class="img-fluid img-bd center-block" src="{{ asset(team.logo) }}">
+        {% else %}
         <img class="img-fluid img-bd center-block" src="{{ asset('assets/img/bg-lol.jpg') }}">
-        {#{% endif %}#}
+        {% endif %}
     </div>
     <div class="container p-t-1 p-b-2">
         <div class="row">
             <div class="col-md-4">
-                <img src="{{ asset(team.logo) }}" class="img-responsive">
+                {% if team.logo is not empty %}
+                    <img class="img-responsive" src="{{ asset(team.logo) }}">
+                {% else %}
+                    <img class="img-responsive" src="{{ asset('assets/img/bg-lol.jpg') }}">
+                {% endif %}
                 <div class="btn-white p-y-06 text-ta text-xs-center m-b-0">
                     {{ team.name }}
                 </div>
@@ -48,21 +52,20 @@
                                 {% endif %}
                             </div>
 
-
-                            <div class="teams">
-                                <div class="t-img">
-                                    <a href="{{ path('division',{'id': division.id}) }}">
-                                        <img src="{{ asset('assets/img/lol_50.png') }}" class="img-responsive">
-                                    </a>
-                                </div>
-                                <div class="t-title">
-                                    <a href="{{ path('division',{'id': division.id}) }}">
-                                        <h3>
-                                            {{ division.name }}
-                                        </h3>
-                                    </a>
-                                </div>
-                            </div>
+                            {#<div class="teams">#}
+                                {#<div class="t-img">#}
+                                    {#<a href="{{ path('division',{'id': division.id}) }}">#}
+                                        {#<img src="{{ asset('assets/img/lol_50.png') }}" class="img-responsive">#}
+                                    {#</a>#}
+                                {#</div>#}
+                                {#<div class="t-title">#}
+                                    {#<a href="{{ path('division',{'id': division.id}) }}">#}
+                                        {#<h3>#}
+                                            {#{{ division.name }}#}
+                                        {#</h3>#}
+                                    {#</a>#}
+                                {#</div>#}
+                            {#</div>#}
                         </div>
                     {% endfor %}
                 {% else %}
