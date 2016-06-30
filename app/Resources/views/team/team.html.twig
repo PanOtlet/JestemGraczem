@@ -19,11 +19,23 @@
                 <div class="btn-white p-y-06 text-ta text-xs-center m-b-0">
                     {{ team.name }}
                 </div>
+                <div class="btn-white p-y-06 text-ta text-xs-center m-b-0">
+                    <span style="color: #303030;">Tag: </span>{{ team.tag }}
+                </div>
                 <div class="grey-box p-y-1 p-l-1 m-b-1">
-                    lorep ipsum
+                    siew siew
+                </div>
+                <div class="btn-white-lp dots m-b-0">
+                    <span class="p-x-1 text">KRÓTKI<span style="color: #303030;">OPIS</span></span>
+                </div>
+                <div class="grey-box p-y-1 p-l-1 m-b-1">
+                    <p>{{ team.shortdesc }}</p>
                 </div>
             </div>
             <div class="col-md-8">
+                <div class="container-fluid">
+                    {{ team.description }}
+                </div>
                 {% if divisions %}
                     {% for division in divisions %}
                         <div class="container-fluid">
