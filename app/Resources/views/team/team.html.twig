@@ -19,12 +19,17 @@
                 {% if app.user and team.owner == app.user.id %}
                     <div class="container-fluid">
                         <div class="row p-b-1">
-                            <div class="col-md-6">
+                            <div class="col-md-4">
+                                <div class="btn btn-pink p-x-3 pull-right">
+                                    <a href="{{ url('division.add', {'tag':team.tag}) }}">Dodaj dywizję</a>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
                                 <div class="btn btn-green p-x-3">
                                     <a href="{{ url('team.edit', {'tag':team.tag}) }}">Edytuj</a>
                                 </div>
                             </div>
-                            <div class="col-md-6">
+                            <div class="col-md-4">
                                 <div class="btn btn-pink p-x-3 pull-right">
                                     <a href="{{ url('team.remove', {'tag':team.tag}) }}">Usuń</a>
                                 </div>

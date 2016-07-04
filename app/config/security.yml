@@ -36,3 +36,4 @@ security:
         - { path: ^/stream/add, role: ROLE_USER }
         - { path: ^/meme/add, role: ROLE_USER }
         - { path: ^/druzyny/add, role: ROLE_USER }
+        - { path: ^/dywizja/add, role: ROLE_USER }

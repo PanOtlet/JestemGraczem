@@ -5,6 +5,7 @@ namespace TurniejBundle\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
+use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\HttpFoundation\Request;
 use TurniejBundle\Entity\Division;
 use TurniejBundle\Entity\Team;
@@ -12,13 +13,70 @@ use TurniejBundle\Entity\Team;
 class DivisionController extends Controller
 {
     /**
-     * @Route("/add", name="division.add")
+     * @Route("/add/{tag}", name="division.add")
      */
-    public function addAction()
+    public function addAction($tag = NULL, Request $request)
     {
+        $seo = $this->container->get('sonata.seo.page');
+        $seo->setTitle('Tworzenie dywizji :: JestemGraczem.pl');
+
+        $em = $this->getDoctrine()->getManager();
+        $team = $em->getRepository('TurniejBundle:Team')->findOneBy(['tag' => $tag]);
+
+        if ($tag == NULL || $team == NULL) {
+            return $this->redirectToRoute('team');
+        }
+
+        if ($this->getUser()->getId() != $team->getOwner()) {
+            $this->addFlash(
+                'danger',
+                'Nie jesteś właścicielem drużyny!'
+            );
+            return $this->redirectToRoute('team');
+        }
+
+        $division = new Division();
+
+        $form = $this->createFormBuilder($division)
+            ->add('name', NULL, [
+                'label' => 'team.divname'
+            ])
+            ->add('pass', NULL, [
+                'label' => 'team.pass'
+            ])
+            ->add('description', TextareaType::class, [
+                'label' => 'team.divdesc'
+            ])
+            ->add('save', SubmitType::class, [
+                'label' => 'form.add',
+            ])
+            ->getForm();
+
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+
+            $em = $this->getDoctrine()->getManager();
+
+            $division->setTeam($team->getId());
+            $division->setName($form->get('name')->getViewData());
+            $division->setPass($form->get('pass')->getViewData());
+            $division->setMembers('{}');
+            $division->setDescription($form->get('description')->getViewData());
+            $em->persist($division);
+            $em->flush();
+
+            $this->addFlash(
+                'success',
+                'Dodano dywizję do spisu!'
+            );
+            return $this->redirectToRoute('team', [
+                'tag' => $team->getTag()
+            ]);
+        }
 
         return $this->render('team/add.html.twig', [
-
+            'form' => $form->createView(),
         ]);
     }
 

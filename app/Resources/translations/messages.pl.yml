@@ -3,9 +3,12 @@ form:
     add: 'Dodaj'
 team:
     name: 'Nazwa drużyny'
+    divname: 'Nazwa dywizji'
     tag: 'Tag drużynowy'
     logo: 'Logo drużyny'
     desc: 'Opis drużyny'
+    divdesc: 'Opis dywizji'
+    pass: 'Hasło dołączenia'
     shortdesc: 'Skrócony opis drużyny'
 mem:
     title: 'Tytuł mema'
