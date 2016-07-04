@@ -17,8 +17,20 @@
                     <img class="img-responsive" src="{{ asset('assets/img/bg-lol.jpg') }}">
                 {% endif %}
                 {% if app.user and team.owner == app.user.id %}
-                    <a href="{{ url('team.edit', {'tag':team.tag}) }}">Edytuj</a>
-                    <a href="{{ url('team.remove', {'tag':team.tag}) }}">Usuń</a>
+                    <div class="container-fluid">
+                        <div class="row p-b-1">
+                            <div class="col-md-6">
+                                <div class="btn btn-green p-x-3">
+                                    <a href="{{ url('team.edit', {'tag':team.tag}) }}">Edytuj</a>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="btn btn-pink p-x-3 pull-right">
+                                    <a href="{{ url('team.remove', {'tag':team.tag}) }}">Usuń</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 {% endif %}
                 <div class="btn-white p-y-06 text-ta text-xs-center m-b-0">
                     {{ team.name }}
