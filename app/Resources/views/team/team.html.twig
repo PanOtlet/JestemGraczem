@@ -19,6 +19,11 @@
                 <div class="btn-white p-y-06 text-ta text-xs-center m-b-0">
                     {{ team.name }}
                 </div>
+                {% if team.owner %}
+                <div class="btn-white p-y-06 text-ta text-xs-center m-b-0">
+                    {{ team.name }}
+                </div>
+                {% endif %}
                 <div class="btn-white p-y-06 text-ta text-xs-center m-b-0">
                     <span style="color: #303030;">Tag: </span>{{ team.tag }}
                 </div>
@@ -58,7 +63,7 @@
                                                 {{ member.user }}
                                             </div>
                                             <div class="text-xs-center btn-pink m-b-1">
-                                                <a href="{{ path('user', {'user':member.user}) }}">Pokaż profil</a>
+                                                <a href="{{ url('user', {'user':member.user}) }}">Pokaż profil</a>
                                             </div>
                                         </div>
                                     {% endfor %}
@@ -69,12 +74,12 @@
 
                             {#<div class="teams">#}
                                 {#<div class="t-img">#}
-                                    {#<a href="{{ path('division',{'id': division.id}) }}">#}
+                                    {#<a href="{{ url('division',{'id': division.id}) }}">#}
                                         {#<img src="{{ asset('assets/img/lol_50.png') }}" class="img-responsive">#}
                                     {#</a>#}
                                 {#</div>#}
                                 {#<div class="t-title">#}
-                                    {#<a href="{{ path('division',{'id': division.id}) }}">#}
+                                    {#<a href="{{ url('division',{'id': division.id}) }}">#}
                                         {#<h3>#}
                                             {#{{ division.name }}#}
                                         {#</h3>#}

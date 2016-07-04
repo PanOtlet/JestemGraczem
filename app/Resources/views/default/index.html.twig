@@ -70,7 +70,7 @@
                     </div>
                     <div class="col-xs-10 p-l-0">
                         <p class="text-xs-left  m-b-0" style="padding-top: 0.3rem;">
-                            <a class="font-weight-bold" href="{{ path('meme.id', {'id': meme.id}) }}" style="color: #000000;font-size: 0.9rem; text-decoration: none;">
+                            <a class="font-weight-bold" href="{{ url('meme.id', {'id': meme.id}) }}" style="color: #000000;font-size: 0.9rem; text-decoration: none;">
                                 Zobacz komentarze!
                             </a>
                         </p>
@@ -81,7 +81,7 @@
                 </div>
                 <div class="btn-white p-l-1 p-y-06">{{ meme.title }}</div>
                 <div class="btn-green text-xs-center m-b-1">
-                    <a href="{{ path('meme') }}">Pokaż więcej</a>
+                    <a href="{{ url('meme') }}">Pokaż więcej</a>
                 </div>
             </div>
             <div class="col-md-6">
@@ -91,7 +91,7 @@
                 <div class="row">
                     {% for vod in video %}
                         <div class="col-md-6 video">
-                            <a href="{{ path('video.id', { 'id':vod.id }) }}">
+                            <a href="{{ url('video.id', { 'id':vod.id }) }}">
                                 <img class="img-responsive"
                                      src="http://img.youtube.com/vi/{{ vod.videoid }}/mqdefault.jpg">
                             </a>
@@ -99,7 +99,7 @@
                     {% endfor %}
                 </div>
                 <div class="btn-green text-xs-center">
-                    <a href="{{ path('video') }}">Pokaż więcej</a>
+                    <a href="{{ url('video') }}">Pokaż więcej</a>
                 </div>
             </div>
         </div>
@@ -115,7 +115,7 @@
 
         function getstream() {
             $.ajax({
-                url: '{{ path('api.stream') }}',
+                url: '{{ url('api.stream') }}',
                 dataType: 'json',
                 success: function (stream) {
 //                    console.log(stream);
@@ -138,7 +138,7 @@
             $("#" + name + "_status").html('ONLINE').css('font-weight', 'bold');
             $("#" + name + "_game").html(channel["game"]);
             $("#" + name + "_viewers").html(channel["viewers"]);
-            $("#" + name + "_img").html('<a href="{{ path('stream.id') }}/' + name + '"> <img class="img-responsive" src="https://static-cdn.jtvnw.net/previews-ttv/live_user_' + name + '-320x180.jpg"> </a>');
+            $("#" + name + "_img").html('<a href="{{ url('stream.id') }}/' + name + '"> <img class="img-responsive" src="https://static-cdn.jtvnw.net/previews-ttv/live_user_' + name + '-320x180.jpg"> </a>');
         }
 
         function get_twitch(stream) {
@@ -161,7 +161,7 @@
             if (channel != null) {
 //                console.log(channel);
                 $.ajax({
-                    url: '{{ path('api.stream.name') }}/'+channel["channel"]["name"],
+                    url: '{{ url('api.stream.name') }}/'+channel["channel"]["name"],
                     dataType: 'json',
                     success: function (description) {
 //                        console.log(description[0]['description']);
@@ -175,7 +175,7 @@
                 $('#viewers').html(channel["viewers"]);
                 $('#link').html("www.twitch.tv/" + channel["channel"]["name"]);
                 $('#display_name').html(channel["channel"]["display_name"]);
-                $('#profile').attr('href', "{{ path('stream.id') }}/" + channel["channel"]["name"]);
+                $('#profile').attr('href', "{{ url('stream.id') }}/" + channel["channel"]["name"]);
                 $('#avatar').attr('src', channel["channel"]["logo"]);
                 $('#game').attr('src', "https://static-cdn.jtvnw.net/ttv-boxart/" + channel["game"] + "-50x50.jpg");
             }

@@ -107,7 +107,7 @@
                 <div class="row">
                     {% for vod in video %}
                         <div class="col-md-6 video">
-                            <a href="{{ path('video.id', { 'id':vod.id }) }}">
+                            <a href="{{ url('video.id', { 'id':vod.id }) }}">
                                 <img class="img-responsive"
                                      src="http://img.youtube.com/vi/{{ vod.videoid }}/mqdefault.jpg">
                             </a>
@@ -115,7 +115,7 @@
                     {% endfor %}
                 </div>
                 <div class="btn-green text-xs-center m-b-1">
-                    <a href="{{ path('video') }}">Pokaż więcej</a>
+                    <a href="{{ url('video') }}">Pokaż więcej</a>
                 </div>
                 <div class="btn-white-lg dots">
                     <span class="p-x-1 text">NAJNOWSZE<span style="color: #303030;">MEMY</span></span>
@@ -128,7 +128,7 @@
                     </div>
                     <div class="col-xs-10 p-l-0">
                         <p class="text-xs-left  m-b-0" style="padding-top: 0.3rem;">
-                            <a class="font-weight-bold" href="{{ path('meme.id', {'id': meme.id}) }}" style="color: #000000;font-size: 0.9rem; text-decoration: none;">
+                            <a class="font-weight-bold" href="{{ url('meme.id', {'id': meme.id}) }}" style="color: #000000;font-size: 0.9rem; text-decoration: none;">
                                 Zobacz komentarze!
                             </a>
                         </p>
@@ -139,7 +139,7 @@
                 </div>
                 <div class="btn-white p-l-1 p-y-06">{{ meme.title }}</div>
                 <div class="btn-green text-xs-center m-b-1">
-                    <a href="{{ path('meme') }}">Pokaż więcej</a>
+                    <a href="{{ url('meme') }}">Pokaż więcej</a>
                 </div>
             </div>
         </div>

@@ -7,7 +7,7 @@
                 NEWS
             </div>
             <div class="col-sm-6">
-                <a href="{{ path('news.add') }}" type="button" class="btn btn-green pull-sm-right"><span
+                <a href="{{ url('news.add') }}" type="button" class="btn btn-green pull-sm-right"><span
                             class="p-x-3">Dodaj RSS</span></a>
             </div>
         </div>
@@ -48,7 +48,7 @@
             <div class="col-md-4">
                 <div class="card">
                     <div class="card-block" style="background-color: #{{ news.css }}">
-                        <h4 class="card-title">{{ news.name }} <a href="{{ path('news.remove',{'id': news.id }) }}"
+                        <h4 class="card-title">{{ news.name }} <a href="{{ url('news.remove',{'id': news.id }) }}"
                                                                   class="btn btn-raised btn-danger">Usuń</a></h4>
                     </div>
                     <ul class="list-group list-group-flush" id="{{ news.name }}"></ul>
@@ -101,7 +101,7 @@
                     ssl: false,
                     layoutTemplate: '{entries}',
                     entryTemplate: '' +
-                    '<li class="list-group-item"><a href="{{ path('redirect') }}?url={url}" target="_blank">{title}</a></li>',
+                    '<li class="list-group-item"><a href="{{ url('redirect') }}?url={url}" target="_blank">{title}</a></li>',
                     dateFormat: 'HH:mm D/MM/YYYY'
                 });
             }

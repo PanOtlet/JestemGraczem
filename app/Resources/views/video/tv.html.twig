@@ -7,7 +7,7 @@
                 <span style="color: #8bc34a;">{{ video.title }}</span>
             </div>
             <div class="col-sm-6">
-                <a href="{{ path('video.add') }}" type="button" class="btn btn-green pull-sm-right">
+                <a href="{{ url('video.add') }}" type="button" class="btn btn-green pull-sm-right">
                     <span class="p-x-3">Dodaj nowy</span>
                 </a>
             </div>
@@ -29,7 +29,7 @@
                 js.src = "//connect.facebook.net/pl_PL/sdk.js#xfbml=1&version=v2.6&appId=1792775277616619";
                 fjs.parentNode.insertBefore(js, fjs);
             }(document, 'script', 'facebook-jssdk'));</script>
-        <div class="fb-comments" data-href="{{ absolute_url(path('video.id', {'id': video.id})) }}"
+        <div class="fb-comments" data-href="{{ url('video.id', {'id': video.id}) }}"
              data-numposts="10"></div>
     </div>
 {% endblock %}

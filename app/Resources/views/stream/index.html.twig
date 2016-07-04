@@ -33,7 +33,7 @@
 
         function getstream() {
             $.ajax({
-                url: '{{ path('api.stream') }}',
+                url: '{{ url('api.stream') }}',
                 dataType: 'json',
                 success: function (stream) {
                     //console.log(stream);
@@ -58,8 +58,8 @@
             $("#" + name + "_status").html('ONLINE').css('font-weight', 'bold');
             $("#" + name + "_game").html(channel["game"]);
             $("#" + name + "_viewers").html(channel["viewers"]);
-            $("#" + name + "_title").html('<a href="{{ path('stream.id') }}/' + name + '"><h2 class="m-b-0 m-t-1">' + display + '<span style="float: right;color: #8bc34a;font-size: medium;">' + channel["viewers"] + '</span></h2></a>');
-            $("#" + name + "_img").html('<a href="{{ path('stream.id') }}/' + name + '"> <img class="img-responsive" src="https://static-cdn.jtvnw.net/previews-ttv/live_user_' + name + '-640x360.jpg"> </a>');
+            $("#" + name + "_title").html('<a href="{{ url('stream.id') }}/' + name + '"><h2 class="m-b-0 m-t-1">' + display + '<span style="float: right;color: #8bc34a;font-size: medium;">' + channel["viewers"] + '</span></h2></a>');
+            $("#" + name + "_img").html('<a href="{{ url('stream.id') }}/' + name + '"> <img class="img-responsive" src="https://static-cdn.jtvnw.net/previews-ttv/live_user_' + name + '-640x360.jpg"> </a>');
         }
 
         function get_twitch(stream) {
@@ -86,8 +86,8 @@
             $("#" + name + "_status").html('ONLINE').css('font-weight', 'bold');
             $("#" + name + "_game").html(channel["game"]);
             $("#" + name + "_viewers").html(channel["viewers"]);
-            $("#" + name + "_title").html('<a href="{{ path('stream.id') }}/' + name + '"><h2 class="m-b-0 m-t-1">' + display + '<span style="float: right;color: #8bc34a;font-size: medium;">' + channel["viewers"] + '</span></h2></a>');
-            $("#" + name + "_img").html('<a href="{{ path('stream.id') }}/' + name + '"> <img class="img-responsive" src="https://static-cdn.jtvnw.net/previews-ttv/live_user_' + name + '-1920x1080.jpg"> </a>');
+            $("#" + name + "_title").html('<a href="{{ url('stream.id') }}/' + name + '"><h2 class="m-b-0 m-t-1">' + display + '<span style="float: right;color: #8bc34a;font-size: medium;">' + channel["viewers"] + '</span></h2></a>');
+            $("#" + name + "_img").html('<a href="{{ url('stream.id') }}/' + name + '"> <img class="img-responsive" src="https://static-cdn.jtvnw.net/previews-ttv/live_user_' + name + '-1920x1080.jpg"> </a>');
         }
     </script>
 {% endblock %}

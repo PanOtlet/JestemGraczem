@@ -40,23 +40,23 @@
                     </nav>
                     <nav class="nav navbar-nav pull-xs-right">
                         <p>
-                            <a href="{{ path('user',{'user': app.user.username}) }}">
+                            <a href="{{ url('user',{'user': app.user.username}) }}">
                                 <i class="fa fa-user"
                                    aria-hidden="true"></i> {{ 'profile.publicprofil'|trans({}, 'FOSUserBundle') }}
                             </a>
-                            <a href="{{ path('fos_user_profile_show') }}">
+                            <a href="{{ url('fos_user_profile_show') }}">
                                 <i class="fa fa-user-secret"
                                    aria-hidden="true"></i> {{ 'profile.profil'|trans({}, 'FOSUserBundle') }}
                             </a>
-                            <a href="{{ path('fos_user_change_password') }}">
+                            <a href="{{ url('fos_user_change_password') }}">
                                 <i class="fa fa-key"
                                    aria-hidden="true"></i> {{ 'change_password.submit'|trans({}, 'FOSUserBundle') }}
                             </a>
-                            <a href="{{ path('fos_user_profile_edit') }}">
+                            <a href="{{ url('fos_user_profile_edit') }}">
                                 <i class="fa fa-pencil"
                                    aria-hidden="true"></i> {{ 'profile.edit.edit'|trans({}, 'FOSUserBundle') }}
                             </a>
-                            <a href="{{ path('fos_user_security_logout') }}">
+                            <a href="{{ url('fos_user_security_logout') }}">
                                 <i class="fa fa-sign-out"
                                    aria-hidden="true"></i> {{ 'layout.logout'|trans({}, 'FOSUserBundle') }}
                             </a>
@@ -69,21 +69,21 @@
                     <nav class="nav navbar-nav pull-xs-left">
                         <p>
                             Dołącz do społeczności graczy!
-                            <a href="{{ path('fos_user_registration_register') }}">
+                            <a href="{{ url('fos_user_registration_register') }}">
                                 <span>Zarejestruj się</span>
                             </a> już teraz!
-                            <a href="{{ path('fos_user_resetting_request') }}">
+                            <a href="{{ url('fos_user_resetting_request') }}">
                                 <span>Zapomniałeś hasła?</span>
                             </a>
                         </p>
                     </nav>
                     <nav class="nav navbar-nav pull-xs-right">
                         <p>
-                            <a href="{{ path('fos_user_security_login') }}" class="p-r-1">
+                            <a href="{{ url('fos_user_security_login') }}" class="p-r-1">
                                 <i class="fa fa-user"
                                    aria-hidden="true"></i> {{ 'layout.login'|trans({}, 'FOSUserBundle') }}
                             </a>
-                            <a href="{{ path('fos_user_registration_register') }}">
+                            <a href="{{ url('fos_user_registration_register') }}">
                                 <i class="fa fa-user-plus"
                                    aria-hidden="true"></i> {{ 'layout.register'|trans({}, 'FOSUserBundle') }}
                             </a>
@@ -101,7 +101,7 @@
             &#9776;
         </button>
         <div class="collapse navbar-toggleable-md" id="exCollapsingNavbar2">
-            <a class="navbar-brand" href="{{ path('homepage') }}">
+            <a class="navbar-brand" href="{{ url('homepage') }}">
                 <img class="img-fluid" src="{{ asset('assets/img/Logo.png') }}">
             </a>
             <ul class="nav navbar-nav">
@@ -138,7 +138,7 @@
                 <div class="col-md-3 p-x-0" style="height: 56px">
                     <div class="trap">
                         <div class="trap-">
-                            <a href="{{ path('homepage') }}">
+                            <a href="{{ url('homepage') }}">
                                 <img class="" src="{{ asset('assets/img/Logo1.png') }}" style="padding: 4px 4px;width: 100%;margin-top: -5px;">
                             </a>
                         </div>
@@ -186,8 +186,8 @@
                     <h4 class="modal-title">TOURNAMENTSAREA</h4>
                 </div>
                 <div class="modal-body">
-                    <a href="{{ path('tournament') }}" type="button" class="btn btn-primary btn-lg btn-block">Turnieje</a>
-                    <a href="{{ path('team') }}" type="button" class="btn btn-primary btn-lg btn-block">Drużyny</a>
+                    <a href="{{ url('tournament') }}" type="button" class="btn btn-primary btn-lg btn-block">Turnieje</a>
+                    <a href="{{ url('team') }}" type="button" class="btn btn-primary btn-lg btn-block">Drużyny</a>
                 </div>
                 <div class="modal-footer">
                 </div>
@@ -205,8 +205,8 @@
                     <h4 class="modal-title">GAMESAREA</h4>
                 </div>
                 <div class="modal-body">
-                    <a href="{{ path('news') }}" type="button" class="btn btn-primary btn-lg btn-block">Newsy</a>
-                    <a href="{{ path('news.add') }}" type="button" class="btn btn-primary btn-lg btn-block">Dodaj RSS</a>
+                    <a href="{{ url('news') }}" type="button" class="btn btn-primary btn-lg btn-block">Newsy</a>
+                    <a href="{{ url('news.add') }}" type="button" class="btn btn-primary btn-lg btn-block">Dodaj RSS</a>
                 </div>
                 <div class="modal-footer">
                 </div>
@@ -224,9 +224,9 @@
                     <h4 class="modal-title">FANSAREA</h4>
                 </div>
                 <div class="modal-body">
-                    <a href="{{ path('meme') }}" type="button" class="btn btn-primary btn-lg btn-block">Memy</a>
-                    <a href="{{ path('stream') }}" type="button" class="btn btn-primary btn-lg btn-block">Streamy</a>
-                    <a href="{{ path('video') }}" type="button" class="btn btn-primary btn-lg btn-block">Filmy</a>
+                    <a href="{{ url('meme') }}" type="button" class="btn btn-primary btn-lg btn-block">Memy</a>
+                    <a href="{{ url('stream') }}" type="button" class="btn btn-primary btn-lg btn-block">Streamy</a>
+                    <a href="{{ url('video') }}" type="button" class="btn btn-primary btn-lg btn-block">Filmy</a>
                 </div>
                 <div class="modal-footer">
                 </div>
@@ -256,8 +256,8 @@
                         <span class="p-x-1 text">GAMES<span style="color: #ff9800">AREA</span></span>
                     </p>
                     <div class="pre-f-p">
-                        <p><a href="{{ path('news') }}">Newsy</a></p>
-                        <p><a href="{{ path('news.add') }}">Dodaj RSS</a></p>
+                        <p><a href="{{ url('news') }}">Newsy</a></p>
+                        <p><a href="{{ url('news.add') }}">Dodaj RSS</a></p>
                     </div>
                 </div>
                 <div class="col-md-3">
@@ -265,9 +265,9 @@
                         <span class="p-x-1 text">FANS<span style="color: #8bc34a">AREA</span></span>
                     </p>
                     <div class="pre-f-p">
-                        <p><a href="{{ path('stream') }}">Streamerzy</a></p>
-                        <p><a href="{{ path('meme') }}">Memy</a></p>
-                        <p><a href="{{ path('video') }}">Fimy użytkowników</a></p>
+                        <p><a href="{{ url('stream') }}">Streamerzy</a></p>
+                        <p><a href="{{ url('meme') }}">Memy</a></p>
+                        <p><a href="{{ url('video') }}">Fimy użytkowników</a></p>
                     </div>
                 </div>
                 <div class="col-md-3">
@@ -275,7 +275,7 @@
                         <span class="p-x-1 text">SUPPORT<span style="color: #8a8b8a">AREA</span></span>
                     </p>
                     <div class="pre-f-p">
-                        <p><a href="{{ path('redirect', {'url': 'http://blog.jestemgraczem.pl'}) }}">Centrum Prasowe</a></p>
+                        <p><a href="{{ url('redirect', {'url': 'http://blog.jestemgraczem.pl'}) }}">Centrum Prasowe</a></p>
                         <p>Support</p>
                         <p>Regulamin serwisu</p>
                         <p>Jak stworzyć turniej</p>

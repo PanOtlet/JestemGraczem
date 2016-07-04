@@ -31,7 +31,7 @@
                 {% for member in team.members %}
                     <div class="col-md-4">
                         <div class="jumbotron teams">
-                            <a href="{{ path('user', {'user':member.user}) }}">{{ member.user }} ({{ member.role }})</a>
+                            <a href="{{ url('user', {'user':member.user}) }}">{{ member.user }} ({{ member.role }})</a>
                         </div>
                     </div>
                 {% endfor %}
