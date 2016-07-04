@@ -272,6 +272,19 @@ footer {
 .grey-box{
     background-color: #eaeaea;
 }
+.gb-lp{
+    border-left: solid 4px #e91e63;
+}
+
+.grey-box p{
+    color: #afaeae;
+}
+
+.grey-box p:hover{
+    color: #afaeae;
+}
+
+
 
 .btn-footer{
     font-weight: bold;

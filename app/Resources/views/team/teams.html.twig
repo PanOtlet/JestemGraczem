@@ -12,30 +12,33 @@
         </div>
     </div>
     <div class="container">
-        <div class="jumbotron t-title">
-            <h1>Drużyny</h1>
-        </div>
-        {% if teams %}
-            {% for team in teams %}
-                <div class="col-md-4">
-                    <div class="jumbotron teams">
-                        <div class="t-img">
+        <div class="col-md-8">
+            {% if teams %}
+                {% for team in teams %}
+                    <div class="container">
+                        <div class="row">
                             <a href="{{ url('team',{'tag': team.tag}) }}">
-                                <img src="{{ asset(team.webPath) }}" class="img-responsive">
-                            </a>
-                        </div>
-                        <div class="t-title">
-                            <a href="{{ url('team',{'tag': team.tag}) }}">
-                                <h3>
-                                    {{ team.name }}
-                                </h3>
+                            <div class="col-md-4 p-x-0">
+
+                                    <img src="{{ asset(team.webPath) }}" class="img-responsive">
+
+                            </div>
+                            <div class="col-md-8 p-x-0">
+                                <div class="btn-white-lp dots m-b-0" style="border-bottom: 0px">
+                                    <span class="p-x-1 text">{{ team.name }}</span>
+                                </div>
+                                <div class="grey-box p-y-1 p-l-1 m-b-1 gb-lp">
+                                    <p>{{ team.shortdesc }}</p>
+
+                                </div>
+                            </div>
                             </a>
                         </div>
                     </div>
-                </div>
-            {% endfor %}
-        {% else %}
-            <h1>Brak Drużyn :( Smutek.jpg</h1>
-        {% endif %}
+                {% endfor %}
+            {% else %}
+                <h1>Brak Drużyn :( Smutek.jpg</h1>
+            {% endif %}
+        </div>
     </div>
 {% endblock %}
