@@ -23,3 +23,12 @@ video:
     add: 'Dodaj film'
 error:
     filetype: 'Zły format pliku!'
+#User Form
+Battlenet: 'BattleTag'
+Twitch: 'Nick Twitch'
+Lol: 'Nick League of Legends'
+Steam: 'Adres publicznego konta Steam'
+Youtube: 'Adres konta YouTube'
+Localization: 'Twoja lokalizacja'
+Description: 'Kilka słów o sobie'
+Profile picture file: 'Zdjęcie w tle'
