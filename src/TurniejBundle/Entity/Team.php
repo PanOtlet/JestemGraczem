@@ -54,7 +54,12 @@ class Team
      * @Assert\File(maxSize="8M")
      * @Assert\Image(mimeTypesMessage="error.filetype")
      */
-    private $logo;
+    private $logofile;
+
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    protected $logo;
 
     /**
      * @var string
@@ -218,16 +223,16 @@ class Team
 
     public function getAbsolutePath()
     {
-        return null === $this->path
+        return null === $this->logo
             ? null
-            : $this->getUploadRootDir() . '/' . $this->path;
+            : $this->getUploadRootDir() . '/' . $this->logo;
     }
 
     public function getWebPath()
     {
-        return null === $this->path
+        return null === $this->logo
             ? null
-            : $this->getUploadDir() . '/' . $this->path;
+            : $this->getUploadDir() . '/' . $this->logo;
     }
 
     protected function getUploadRootDir()
@@ -237,7 +242,7 @@ class Team
 
     protected function getUploadDir()
     {
-        return 'assets/teams/logo';
+        return 'assets/team/logo';
     }
 
     public function uploadLogo()
@@ -249,7 +254,7 @@ class Team
         $filename = md5(uniqid()) . '.' . $this->getLogo()->getClientOriginalExtension();
         $this->getLogo()->move($this->getUploadRootDir(), $filename);
 
-        $this->url = $filename;
+        $this->logo = $filename;
     }
 }
 

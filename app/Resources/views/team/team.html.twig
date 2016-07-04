@@ -2,7 +2,7 @@
 
 {% block body %}
     <div class="container-fluid user-bdrop hidden-lg-down">
-        {% if team.logo is not empty %}
+        {% if team.logo is empty %}
         <img class="img-fluid img-bd center-block" src="{{ asset(team.logo) }}">
         {% else %}
         <img class="img-fluid img-bd center-block" src="{{ asset('assets/img/bg-lol.jpg') }}">
@@ -12,7 +12,7 @@
         <div class="row">
             <div class="col-md-4">
                 {% if team.logo is not empty %}
-                    <img class="img-responsive" src="{{ asset(team.logo) }}">
+                    <img class="img-responsive" src="{{ asset(team.webPath) }}">
                 {% else %}
                     <img class="img-responsive" src="{{ asset('assets/img/bg-lol.jpg') }}">
                 {% endif %}
