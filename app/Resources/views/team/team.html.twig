@@ -16,7 +16,7 @@
                 {% else %}
                     <img class="img-responsive" src="{{ asset('assets/img/bg-lol.jpg') }}">
                 {% endif %}
-                {% if team.owner == app.user.id %}
+                {% if app.user and team.owner == app.user.id %}
                     <a href="{{ url('team.edit', {'tag':team.tag}) }}">Edytuj</a>
                     <a href="{{ url('team.remove', {'tag':team.tag}) }}">Usuń</a>
                 {% endif %}
