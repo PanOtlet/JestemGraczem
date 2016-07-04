@@ -11,7 +11,6 @@ use Symfony\Component\HttpFoundation\Request;
 use TurniejBundle\Entity\Division;
 use TurniejBundle\Entity\Team;
 use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
-use TurniejBundle\Repository\TeamRepository;
 
 class TeamController extends Controller
 {
@@ -107,11 +106,11 @@ class TeamController extends Controller
         }
 
         $seo = $this->container->get('sonata.seo.page');
-        $seo->setTitle($team->getName().' :: JestemGraczem.pl')
+        $seo->setTitle($team->getName() . ' :: JestemGraczem.pl')
             ->addMeta('name', 'description', $team->getShortdesc())
             ->addMeta('property', 'og:title', $team->getName())
             ->addMeta('property', 'og:description', $team->getShortdesc())
-            ->addMeta('property', 'og:url', $this->get('router')->generate('team', ['tag'=>$team->getTag()], UrlGeneratorInterface::ABSOLUTE_URL));
+            ->addMeta('property', 'og:url', $this->get('router')->generate('team', ['tag' => $team->getTag()], UrlGeneratorInterface::ABSOLUTE_URL));
 
         $owner = $this->getDoctrine()->getRepository('AppBundle:User')->findOneBy(['id' => $team->getOwner()]);
         $division = $this->getDoctrine()->getRepository('TurniejBundle:Division')->findBy(['team' => $team->getId()]);
@@ -127,7 +126,7 @@ class TeamController extends Controller
     /**
      * @Route("/{tag}/edit", name="team.edit")
      */
-    public function editAction($tag = NULL)
+    public function editAction($tag = NULL, Request $request)
     {
         $em = $this->getDoctrine()->getManager();
         $team = $em->getRepository('TurniejBundle:Team')->findOneBy(['tag' => $tag]);
@@ -147,16 +146,56 @@ class TeamController extends Controller
             return $this->redirectToRoute('team');
         }
 
-        $em->remove($team);
-        $em->flush();
+        $team = new Team();
 
-        $this->addFlash(
-            'danger',
-            'Drużyna została usunięta!'
-        );
+        $form = $this->createFormBuilder($team)
+            ->add('name', NULL, [
+                'label' => 'team.name'
+            ])
+            ->add('tag', NULL, [
+                'label' => 'team.tag'
+            ])
+            ->add('description', TextareaType::class, [
+                'label' => 'team.desc'
+            ])
+            ->add('shortdesc', TextareaType::class, [
+                'label' => 'team.shortdesc'
+            ])
+            ->add('save', SubmitType::class, [
+                'label' => 'save',
+                'attr' => [
+                    'class' => 'btn-raised btn-danger'
+                ]
+            ])
+            ->getForm();
+
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+
+            $em = $this->getDoctrine()->getManager();
+
+//            $mem->upload();
+//            $mem->setUser($this->getUser()->getId());
+//            $mem->setTitle($form->get('title')->getViewData());
+//            $mem->setSource($form->get('source')->getViewData());
+//            $mem->setDate(new \DateTime("now"));
+//            $mem->setCategory(0);
+//            $mem->setPoints(0);
+//            $mem->setStatus(0);
+//            $mem->setAccept(false);
+//            $em->persist($mem);
+//            $em->flush();
+
+            $this->addFlash(
+                'success',
+                'Utworzono drużynę!'
+            );
+            return $this->redirectToRoute('team', ['tag' => $form->get('tag')->getViewData()]);
+        }
 
         return $this->render('team/edit.html.twig', [
-
+            'form' => $form->createView(),
         ]);
     }
 
