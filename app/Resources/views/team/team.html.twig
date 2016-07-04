@@ -71,7 +71,7 @@
                                         <div class="col-md-3">
                                             <img src="https://www.gravatar.com/avatar/{{ hash.hashmd5(member.user) }}?s=2048" class="img-responsive">
                                             <div class="btn-white p-y-06 text-ta text-xs-center">
-                                                {{ member.user }}
+                                                <p>{{ member.user }}</p>
                                             </div>
                                             <div class="text-xs-center btn-pink m-b-1">
                                                 <a href="{{ url('user', {'user':member.user}) }}">Pokaż profil</a>
