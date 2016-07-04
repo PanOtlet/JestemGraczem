@@ -5,6 +5,7 @@ team:
     name: 'Nazwa drużyny'
     divname: 'Nazwa dywizji'
     tag: 'Tag drużynowy'
+    divtag: 'Tag dywizji'
     logo: 'Logo drużyny'
     desc: 'Opis drużyny'
     divdesc: 'Opis dywizji'

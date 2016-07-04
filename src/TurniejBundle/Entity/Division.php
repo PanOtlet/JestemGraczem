@@ -3,12 +3,15 @@
 namespace TurniejBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
 /**
  * Division
  *
  * @ORM\Table(name="division")
  * @ORM\Entity(repositoryClass="TurniejBundle\Repository\DivisionRepository")
+ * @ORM\HasLifecycleCallbacks()
  */
 class Division
 {
@@ -34,6 +37,13 @@ class Division
      * @ORM\Column(name="name", type="string", length=255)
      */
     private $name;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="tag", type="string", length=5)
+     */
+    private $tag;
 
     /**
      * @var string
@@ -113,6 +123,30 @@ class Division
     public function getName()
     {
         return $this->name;
+    }
+
+    /**
+     * Set tag
+     *
+     * @param string $tag
+     *
+     * @return Team
+     */
+    public function setTag($tag)
+    {
+        $this->tag = $tag;
+
+        return $this;
+    }
+
+    /**
+     * Get tag
+     *
+     * @return string
+     */
+    public function getTag()
+    {
+        return $this->tag;
     }
 
     /**

@@ -60,8 +60,9 @@ class DivisionController extends Controller
 
             $division->setTeam($team->getId());
             $division->setName($form->get('name')->getViewData());
+            $division->setTag(md5($form->get('name')->getViewData()));
             $division->setPass($form->get('pass')->getViewData());
-            $division->setMembers('{}');
+            $division->setMembers(json_encode(NULL));
             $division->setDescription($form->get('description')->getViewData());
             $em->persist($division);
             $em->flush();
@@ -89,17 +90,14 @@ class DivisionController extends Controller
         $team = new Division();
 
         $form = $this->createFormBuilder($team)
-            ->add('name', NULL, [
-                'label' => 'Nazwa',
-                'attr' => [
-                    'placeholder' => 'Podaj pełną nazwę dywizji!'
-                ]
+            ->add('tag', NULL, [
+                'label' => 'team.tag'
             ])
             ->add('pass', NULL, [
-                'label' => 'Hasło dostępowe'
+                'label' => 'team.pass'
             ])
             ->add('save', SubmitType::class, [
-                'label' => 'Dodaj',
+                'label' => 'form.add',
                 'attr' => [
                     'class' => 'btn-raised btn-danger'
                 ]
@@ -113,7 +111,7 @@ class DivisionController extends Controller
             $em = $this->getDoctrine()->getManager();
 
             $division = $this->getDoctrine()->getRepository('TurniejBundle:Division')->findOneBy([
-                'name' => $form->get('name')->getViewData(),
+                'tag' => $form->get('tag')->getViewData(),
                 'pass' => $form->get('pass')->getViewData()
             ]);
 
@@ -127,24 +125,32 @@ class DivisionController extends Controller
 
             $members = $division->getMembers();
 
-            foreach ($members as $member) {
-                if ($member['user'] == $this->getUser()->getUsername()) {
-                    $this->addFlash(
-                        'danger',
-                        'Już jesteś w drużynie!'
-                    );
-                    return $this->redirectToRoute('division', ['id' => $division->getName()]);
+            if (is_array($members)) {
+                foreach ($members as $member) {
+                    if ($member['user'] == $this->getUser()->getUsername()) {
+                        $this->addFlash(
+                            'danger',
+                            'Już jesteś w drużynie!'
+                        );
+                        return $this->redirectToRoute('division', ['id' => $division->getName()]);
+                    }
                 }
-            }
 
-            $members[] = [
-                'user' => $this->getUser()->getUsername(),
-                'role' => 'Nowy'
-            ];
+                $members[] = [
+                    'user' => $this->getUser()->getUsername(),
+                    'role' => 'Nowy'
+                ];
+            } else {
+                $members = [
+                    [
+                        'user' => $this->getUser()->getUsername(),
+                        'role' => 'Nowy'
+                    ],
+                ];
+            }
 
             $division->setMembers($members);
 
-            $em->persist($division);
             $em->flush();
 
             $this->addFlash(
