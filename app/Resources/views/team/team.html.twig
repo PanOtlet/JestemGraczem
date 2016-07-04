@@ -16,14 +16,13 @@
                 {% else %}
                     <img class="img-responsive" src="{{ asset('assets/img/bg-lol.jpg') }}">
                 {% endif %}
-                <div class="btn-white p-y-06 text-ta text-xs-center m-b-0">
-                    {{ team.name }}
-                </div>
-                {% if team.owner %}
-                <div class="btn-white p-y-06 text-ta text-xs-center m-b-0">
-                    {{ team.name }}
-                </div>
+                {% if team.owner == app.user.id %}
+                    <a href="{{ url('team.edit', {'tag':team.tag}) }}">Edytuj</a>
+                    <a href="{{ url('team.remove', {'tag':team.tag}) }}">Usuń</a>
                 {% endif %}
+                <div class="btn-white p-y-06 text-ta text-xs-center m-b-0">
+                    {{ team.name }}
+                </div>
                 <div class="btn-white p-y-06 text-ta text-xs-center m-b-0">
                     <span style="color: #303030;">Tag: </span>{{ team.tag }}
                 </div>
