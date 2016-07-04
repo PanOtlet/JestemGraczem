@@ -55,7 +55,7 @@ class StreamController extends Controller
     /**
      * @Route("/stream/{name}", name="api.stream.name")
      */
-    public function nameAction($name)
+    public function nameAction($name = NULL)
     {
         $em = $this->getDoctrine()->getRepository('AppBundle:User');
 
