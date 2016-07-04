@@ -35,7 +35,7 @@ class TeamController extends Controller
             ->add('tag', NULL, [
                 'label' => 'team.tag'
             ])
-            ->add('logo', NULL, [
+            ->add('logofile', NULL, [
                 'label' => 'team.logo',
                 'attr' => [
                     'class' => 'form-control-file'
@@ -159,6 +159,12 @@ class TeamController extends Controller
             ->add('shortdesc', TextareaType::class, [
                 'label' => 'team.shortdesc'
             ])
+//            ->add('logofile', NULL, [
+//                'label' => 'team.logo',
+//                'attr' => [
+//                    'class' => 'form-control-file'
+//                ]
+//            ])
             ->add('save', SubmitType::class, [
                 'label' => 'save',
                 'attr' => [
@@ -210,7 +216,12 @@ class TeamController extends Controller
             return $this->redirectToRoute('team');
         }
 
+        $division = $em->getRepository('TurniejBundle:Division')->findBy(['team' => $team->getId()]);
+
         $em->remove($team);
+        foreach ($division as $div) {
+            $em->remove($div);
+        }
         $em->flush();
 
         $this->addFlash(

@@ -150,13 +150,29 @@ class Team
     }
 
     /**
+     * @param mixed $logo
+     */
+    public function setLogo($logo)
+    {
+        $this->logo = $logo;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getLogo()
+    {
+        return $this->logo;
+    }
+
+    /**
      * Set logo
      *
      * @param UploadedFile $logo
      *
      * @return Team
      */
-    public function setLogo(UploadedFile $logo = null)
+    public function setLogoFile(UploadedFile $logo = null)
     {
         $this->logo = $logo;
 
@@ -168,7 +184,7 @@ class Team
      *
      * @return UploadedFile
      */
-    public function getLogo()
+    public function getLogoFile()
     {
         return $this->logo;
     }
@@ -251,8 +267,8 @@ class Team
             return;
         }
 
-        $filename = md5(uniqid()) . '.' . $this->getLogo()->getClientOriginalExtension();
-        $this->getLogo()->move($this->getUploadRootDir(), $filename);
+        $filename = md5(uniqid()) . '.' . $this->getLogoFile()->getClientOriginalExtension();
+        $this->getLogoFile()->move($this->getUploadRootDir(), $filename);
 
         $this->logo = $filename;
     }
