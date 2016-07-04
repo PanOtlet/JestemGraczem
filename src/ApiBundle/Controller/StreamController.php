@@ -21,7 +21,7 @@ class StreamController extends Controller
         $em = $this->getDoctrine()->getRepository('AppBundle:User');
 
         $stream = $em->createQueryBuilder('p')
-            ->select('p.username', 'p.twitch', 'p.partner')
+            ->select('p.username', 'p.twitch', 'p.partner', 'p.description')
             ->where('p.twitch IS NOT NULL')
             ->orderBy('p.partner', 'DESC')
             ->getQuery()
@@ -52,17 +52,23 @@ class StreamController extends Controller
             ['content-type' => 'application/json']
         );
     }
-
     /**
-     * @Route("/stream/p/{id}", name="api.stream.id")
+     * @Route("/stream/{name}", name="api.stream.name")
      */
-    public function streamAction($id = 1)
+    public function nameAction($name)
     {
-        $stream = $this->getDoctrine()->getRepository('AppBundle:Stream')->findOneBy(['id' => $id]);
+        $em = $this->getDoctrine()->getRepository('AppBundle:User');
+
+        $stream = $em->createQueryBuilder('p')
+            ->select('p.username', 'p.twitch', 'p.partner', 'p.description')
+            ->where('p.twitch = :name')
+            ->setParameter('name', $name)
+            ->getQuery()
+            ->getResult();
 
         if ($stream == NULL) {
             return new Response(
-                "{name:NULL,status:-1,message:'ERROR 404 - Stream nie znaleziono!'}",
+                "{name:NULL,status:-1,message:'ERROR 404 - Streamów nie znaleziono!'}",
                 Response::HTTP_NOT_FOUND,
                 ['content-type' => 'application/json']
             );
