@@ -1,1 +1,20 @@
-Hello World!
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <div class="container-fluid top p-t-3 p-b-2">
+        <div class="container">
+            <div class="col-sm-6 btn-clear-lg p-l-1 ">
+                <span style="color: #8bc34a;">Turnieje</span>
+            </div>
+            {#<div class="col-sm-6">#}
+                {#<a href="{{ url('team.add') }}" type="button" class="btn btn-green pull-sm-right"><span class="p-x-3">Dodaj nową</span></a>#}
+            {#</div>#}
+        </div>
+    </div>
+    <div class="container">
+        <div class="jumbotron t-title">
+            <h1>Wkrótce!</h1>
+            <p>Obecnie trwają prace, by przygotować system turniejowy! Liczymy, że cierpliwość się Wam opłaci :)</p>
+        </div>
+    </div>
+{% endblock %}
