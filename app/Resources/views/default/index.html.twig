@@ -27,10 +27,9 @@
                             <img id="game" class="img-fluid pull-xs-right p-b-0" src="">
                         </div>
                     </div>
-                    {#<p class="text-justify">Marcin, znany bardziej jako "Gnimsh", to profesjonalny i międzynarodowy#}
-                    {#komentator gry Hearthstone.#}
-                    {#Zanim komentowanie stało się jego pracą, był kapitanem dywizji Hearthstone w drużynie Cloud 9.#}
-                    {#Gnimsh to pasjonat gier karcianych, suchych żartów, anime oraz fantasy.</p>#}
+                    <p id="description" class="text-justify">
+
+                    </p>
                     <div class="row">
                         <div class="col-lg-6">
                             <p class="text-xs-left font-weight-bold">Widzów: <span id="viewers" style="color: #8bc34a;">n/d</span>
@@ -119,6 +118,7 @@
                 url: '{{ path('api.stream') }}',
                 dataType: 'json',
                 success: function (stream) {
+//                    console.log(stream);
                     for (var i = 0; i < stream.length; i++) {
                         u_twitch += stream[i]["twitch"] + ",";
                     }
@@ -159,7 +159,18 @@
         }
         function topstream(channel) {
             if (channel != null) {
-                console.log(channel);
+//                console.log(channel);
+                $.ajax({
+                    url: '{{ path('api.stream.name') }}/'+channel["channel"]["name"],
+                    dataType: 'json',
+                    success: function (description) {
+//                        console.log(description[0]['description']);
+                        $('#description').html(description[0]['description']);
+                    },
+                    error: function () {
+                        console.log("Coś poszło nie tak podczas łączenia z api jestemgraczem");
+                    }
+                });
                 $('#topstream').attr('src', "http://player.twitch.tv/?channel=" + channel["channel"]["name"]);
                 $('#viewers').html(channel["viewers"]);
                 $('#link').html("www.twitch.tv/" + channel["channel"]["name"]);
