@@ -146,8 +146,6 @@ class TeamController extends Controller
             return $this->redirectToRoute('team');
         }
 
-        $team = new Team();
-
         $form = $this->createFormBuilder($team)
             ->add('name', NULL, [
                 'label' => 'team.name'
@@ -173,23 +171,16 @@ class TeamController extends Controller
 
         if ($form->isSubmitted() && $form->isValid()) {
 
-            $em = $this->getDoctrine()->getManager();
+            $team->setName($form->get('name')->getViewData());
+            $team->setTag($form->get('tag')->getViewData());
+            $team->setDescription($form->get('description')->getViewData());
+            $team->setShortdesc($form->get('shortdesc')->getViewData());
 
-//            $mem->upload();
-//            $mem->setUser($this->getUser()->getId());
-//            $mem->setTitle($form->get('title')->getViewData());
-//            $mem->setSource($form->get('source')->getViewData());
-//            $mem->setDate(new \DateTime("now"));
-//            $mem->setCategory(0);
-//            $mem->setPoints(0);
-//            $mem->setStatus(0);
-//            $mem->setAccept(false);
-//            $em->persist($mem);
-//            $em->flush();
+            $em->flush();
 
             $this->addFlash(
                 'success',
-                'Utworzono drużynę!'
+                'Edytowano drużynę drużynę!'
             );
             return $this->redirectToRoute('team', ['tag' => $form->get('tag')->getViewData()]);
         }
