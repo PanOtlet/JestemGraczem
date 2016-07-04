@@ -94,10 +94,24 @@ class TeamController extends Controller
         if ($tag == NULL || $team == NULL) {
             $teams = $this->getDoctrine()->getRepository('TurniejBundle:Team')->findAll();
 
+            $seo = $this->container->get('sonata.seo.page');
+            $seo->setTitle('Drużyny :: JestemGraczem.pl')
+                ->addMeta('name', 'description', 'Największa baza drużyn esportowych w Polsce! Pełen rozbudowany system prowadzenia drużyny!')
+                ->addMeta('property', 'og:title', 'Drużyny :: JestemGraczem.pl')
+                ->addMeta('property', 'og:description', 'Największa baza drużyn esportowych w Polsce! Pełen rozbudowany system prowadzenia drużyny!')
+                ->addMeta('property', 'og:url', $this->get('router')->generate('team', [], UrlGeneratorInterface::ABSOLUTE_URL));
+
             return $this->render('team/teams.html.twig', [
                 'teams' => $teams
             ]);
         }
+
+        $seo = $this->container->get('sonata.seo.page');
+        $seo->setTitle($team->getName().' :: JestemGraczem.pl')
+            ->addMeta('name', 'description', $team->getShortdesc())
+            ->addMeta('property', 'og:title', $team->getName())
+            ->addMeta('property', 'og:description', $team->getShortdesc())
+            ->addMeta('property', 'og:url', $this->get('router')->generate('team', ['tag'=>$team->getTag()], UrlGeneratorInterface::ABSOLUTE_URL));
 
         $owner = $this->getDoctrine()->getRepository('AppBundle:User')->findOneBy(['id' => $team->getOwner()]);
         $division = $this->getDoctrine()->getRepository('TurniejBundle:Division')->findBy(['team' => $team->getId()]);
@@ -117,6 +131,9 @@ class TeamController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
         $team = $em->getRepository('TurniejBundle:Team')->findOneBy(['tag' => $tag]);
+
+        $seo = $this->container->get('sonata.seo.page');
+        $seo->setTitle('Edycja drużyny :: JestemGraczem.pl');
 
         if ($tag == NULL || $team == NULL) {
             return $this->redirectToRoute('team');
