@@ -272,8 +272,8 @@ footer {
 .grey-box{
     background-color: #eaeaea;
 }
-.gb-lp{
-    border-left: solid 4px #e91e63;
+.b-rp{
+    border-right: solid 4px #e91e63;
 }
 
 .grey-box p{

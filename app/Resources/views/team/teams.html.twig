@@ -16,18 +16,16 @@
             {% if teams %}
                 {% for team in teams %}
                     <div class="container">
-                        <div class="row">
+                        <div class="row m-t-1" style="background-color: #eaeaea">
                             <a href="{{ url('team',{'tag': team.tag}) }}">
                             <div class="col-md-4 p-x-0">
-
-                                    <img src="{{ asset(team.webPath) }}" class="img-responsive">
-
+                                <img src="{{ asset(team.webPath) }}" class="img-responsive b-rp">
                             </div>
                             <div class="col-md-8 p-x-0">
-                                <div class="btn-white-lp dots m-b-0" style="border-bottom: 0px">
+                                <div class="btn-white-lp dots m-b-0" style="border-left: 0px; border-right: 0px">
                                     <span class="p-x-1 text">{{ team.name }}</span>
                                 </div>
-                                <div class="grey-box p-y-1 p-l-1 m-b-1 gb-lp">
+                                <div class="grey-box p-y-1 p-l-1 m-b-1 ">
                                     <p>{{ team.shortdesc }}</p>
 
                                 </div>
