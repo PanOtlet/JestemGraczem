@@ -163,7 +163,7 @@
                     url: '{{ url('api.stream.name') }}/' + channel["channel"]["name"],
                     dataType: 'json',
                     success: function (description) {
-                        $('#description').html(description[0]['description']);
+                        $('#description').hide().html(description[0]['description']).fadeIn(1000);
                     },
                     error: function () {
                         console.log("Coś poszło nie tak podczas łączenia z api jestemgraczem");
