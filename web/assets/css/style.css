@@ -199,6 +199,13 @@ footer {
 }
 .stream{
     border: solid 4px black;
+    -webkit-filter: grayscale(100%); /* Chrome, Safari, Opera */
+    filter: grayscale(100%);
+}
+.stream-active{
+    border: solid 4px blue;
+    -webkit-filter: grayscale(0%); /* Chrome, Safari, Opera */
+    filter: grayscale(0%);
 }
 .stream:hover{
     cursor: pointer;
