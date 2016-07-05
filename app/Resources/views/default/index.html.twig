@@ -154,7 +154,7 @@
             $("#" + name + "_game").html(channel["game"]);
             $("#" + name + "_viewers").html(channel["viewers"]);
             {#$("#" + name + "_img").html('<a href="{{ url('stream.id') }}/' + name + '"> <img class="img-responsive" src="https://static-cdn.jtvnw.net/previews-ttv/live_user_' + name + '-320x180.jpg"> </a>');#}
-            $("#" + name + "_img").html('<img onclick="topStream(\'' + name + '\',0)" class="img-responsive" src="https://static-cdn.jtvnw.net/previews-ttv/live_user_' + name + '-320x180.jpg" id="#image' + name + '">');
+            $("#" + name + "_img").html('<img onclick="topStream(\'' + name + '\',0)" class="img-responsive stream" src="https://static-cdn.jtvnw.net/previews-ttv/live_user_' + name + '-320x180.jpg" id="#image' + name + '">');
         }
 
         function topStream(channel, type) {

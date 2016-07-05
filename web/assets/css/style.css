@@ -197,6 +197,12 @@ footer {
     background-image: url("../img/bg-lol.jpg");
     color: #eaeaea;
 }
+.stream{
+    border: solid 4px black;
+}
+.stream:hover{
+    cursor: pointer;
+}
 
 .user-bdrop{
     background-color: #1e282c;
