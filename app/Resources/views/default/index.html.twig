@@ -169,13 +169,13 @@
                         console.log("Coś poszło nie tak podczas łączenia z api jestemgraczem");
                     }
                 });
-                $('#topstream').attr('src', "http://player.twitch.tv/?channel=" + channel["channel"]["name"]);
-                $('#viewers').html(channel["viewers"]);
-                $('#link').html("www.twitch.tv/" + channel["channel"]["name"]);
-                $('#display_name').html(channel["channel"]["display_name"]);
+                $('#topstream').hide().attr('src', "http://player.twitch.tv/?channel=" + channel["channel"]["name"]).fadeIn(1000);
+                $('#viewers').hide().html(channel["viewers"]).fadeIn(1000);
+                $('#link').hide().html("www.twitch.tv/" + channel["channel"]["name"]).fadeIn(1000);
+                $('#display_name').hide().html(channel["channel"]["display_name"]).fadeIn(1000);
                 $('#profile').attr('href', "{{ url('stream.id') }}/" + channel["channel"]["name"]);
-                $('#avatar').attr('src', channel["channel"]["logo"]);
-                $('#game').attr('src', "https://static-cdn.jtvnw.net/ttv-boxart/" + channel["game"] + "-50x50.jpg");
+                $('#avatar').hide().attr('src', channel["channel"]["logo"]).fadeIn(1000);
+                $('#game').hide().attr('src', "https://static-cdn.jtvnw.net/ttv-boxart/" + channel["game"] + "-50x50.jpg").fadeIn(1000);
 
                 return 0;
             }
