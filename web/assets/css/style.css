@@ -202,6 +202,11 @@ footer {
     -webkit-filter: grayscale(100%); /* Chrome, Safari, Opera */
     filter: grayscale(100%);
 }
+.stream:hover{
+    border: solid 4px #2b2d2f;
+    -webkit-filter: grayscale(50%); /* Chrome, Safari, Opera */
+    filter: grayscale(50%);
+}
 .stream-active{
     border: solid 4px blue;
     -webkit-filter: grayscale(0%); /* Chrome, Safari, Opera */
