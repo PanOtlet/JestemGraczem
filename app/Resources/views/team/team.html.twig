@@ -63,12 +63,17 @@
                 {% if divisions %}
                     {% for division in divisions %}
                         <div class="container-fluid">
+
+                            {% if app.user and team.owner == app.user.id %}
                             <div class="btn-white-lp dots m-b-0">
-                                <span class="p-x-1 text">
-                                    <i class="fa fa-users" aria-hidden="true"></i><span
-                                            style="color: #303030;">{{ division.tag }}</span>{{ team.name }}:
+                                <span style="color: #303030;">{{ division.tag }}</span>
+                                {% else %}
+                                <div class="btn-white-lp dots m-b-0">
+                                    <span class="p-x-1 text">
+                                    <i class="fa fa-users" aria-hidden="true"></i>{{ team.name }}:
                                     <span style="color: #cccccc;">{{ division.name }}</span>
                                 </span>
+                            {% endif %}
                             </div>
                             <div class="row m-t-1">
                                 {% if division.members %}
