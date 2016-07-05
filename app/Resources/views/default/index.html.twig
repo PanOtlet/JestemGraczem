@@ -125,7 +125,7 @@
                     getTwitch(u_twitch);
                 },
                 error: function () {
-                    console.log("Coś poszło nie tak podczas łączenia z api jestemgraczem");
+                    console.log("Coś poszło nie tak podczas łączenia z API JestemGraczem.pl");
                 }
             });
         }
@@ -136,9 +136,8 @@
                 dataType: 'jsonp',
                 success: function (channel) {
                     $('#loading').remove();
-                    topStream(channel["streams"][0]);
-                    for (var i = 1; i < limit; i++) {
-                        console.log(channel["streams"][i]["channel"]["display_name"] + " " + channel["streams"][i]["viewers"]);
+                    topStream(channel["streams"][0], 1);
+                    for (var i = 0; i < limit; i++) {
                         renderBottomStreamList(channel["streams"][i]);
                     }
                 }, error: function () {
@@ -154,11 +153,12 @@
             $("#" + name + "_status").html('ONLINE').css('font-weight', 'bold');
             $("#" + name + "_game").html(channel["game"]);
             $("#" + name + "_viewers").html(channel["viewers"]);
-            $("#" + name + "_img").html('<a href="#" test="{{ url('stream.id') }}/' + name + '"> <img class="img-responsive" src="https://static-cdn.jtvnw.net/previews-ttv/live_user_' + name + '-320x180.jpg"> </a>');
+            {#$("#" + name + "_img").html('<a href="{{ url('stream.id') }}/' + name + '"> <img class="img-responsive" src="https://static-cdn.jtvnw.net/previews-ttv/live_user_' + name + '-320x180.jpg"> </a>');#}
+            $("#" + name + "_img").html('<img onclick="topStream(\'' + name + '\',0)" class="img-responsive" src="https://static-cdn.jtvnw.net/previews-ttv/live_user_' + name + '-320x180.jpg" id="#image' + name + '">');
         }
 
         function topStream(channel, type) {
-            if (channel != null && type === 'undefined') {
+            if (channel != null && type === 1) {
                 $.ajax({
                     url: '{{ url('api.stream.name') }}/' + channel["channel"]["name"],
                     dataType: 'json',
@@ -176,8 +176,18 @@
                 $('#profile').attr('href', "{{ url('stream.id') }}/" + channel["channel"]["name"]);
                 $('#avatar').attr('src', channel["channel"]["logo"]);
                 $('#game').attr('src', "https://static-cdn.jtvnw.net/ttv-boxart/" + channel["game"] + "-50x50.jpg");
+
+                return 0;
             }
-            console.log('ERROR WITH FUNCTION topStream()');
+            $.ajax({
+                url: 'https://api.twitch.tv/kraken/streams/?channel=' + channel,
+                dataType: 'jsonp',
+                success: function (channel) {
+                    topStream(channel["streams"][0], 1);
+                }, error: function () {
+                    console.log("Błąd z działaniem funkcji");
+                }
+            });
         }
 
     </script>
