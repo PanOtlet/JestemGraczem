@@ -163,14 +163,6 @@ class MemeController extends Controller
 
         $meme = $query->getResult();
 
-        if ($meme == NULL) {
-            $this->addFlash(
-                'info',
-                'Doszedłeś do końca internetu. Jesteśmy dumni!'
-            );
-            return $this->redirectToRoute('meme');
-        }
-
         $seo = $this->container->get('sonata.seo.page');
         $seo->setTitle('Najlepsze memy! Strona ' . $page . ' :: JestemGraczem.pl')
             ->addMeta('name', 'description', 'Najlepsze gamingowe memy w całym internecie! Strona ' . $page)

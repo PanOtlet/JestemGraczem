@@ -94,7 +94,7 @@ class VideoController extends Controller
                 'error',
                 'Więcej filmów nie mamy :('
             );
-            return $this->redirectToRoute('video.wait');
+            return $this->redirectToRoute('video');
         }
 
         $seo = $this->container->get('sonata.seo.page');
@@ -123,14 +123,6 @@ class VideoController extends Controller
             ->getQuery()
             ->setMaxResults(10)
             ->getResult();
-
-        if ($video == NULL) {
-            $this->addFlash(
-                'error',
-                'Więcej filmów nie mamy :('
-            );
-            return $this->redirectToRoute('video');
-        }
 
         $promoted = $this->getDoctrine()->getRepository('AppBundle:Video')->findBy(['status' => 2]);
 

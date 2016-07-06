@@ -1,4 +1,4 @@
-JestemGraczem.pl
+JestemGraczem.pl [![Build Status](https://travis-ci.com/otlet/JestemGraczem.svg?token=bYUTHcLbz1WFJyMWVtLD&branch=master)](https://travis-ci.com/otlet/JestemGraczem)
 ================
 
 ## Komendy
@@ -13,6 +13,7 @@ JestemGraczem.pl
 ### Assets
 `php bin/console assets:install --symlink` - Instalacja assetów
 ### FOSUserBundle
+`php bin/console fos:user:create login owner@email.chuj passlo` - Tworzenie nowego użytkownika
 `php bin/console fos:user:promote testuser ROLE_ADMIN` - Promowanie użytkownika na admina
 `php bin/console fos:user:promote testuser ROLE_SUPER_ADMIN` - Promowanie użytkownika na super saiyajin
 ### Controllers
