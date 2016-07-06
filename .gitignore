@@ -45,7 +45,7 @@
 
 # Composer PHAR
 /composer.phar
-composer.lock
+#composer.lock
 
 # Backup entities generated with doctrine:generate:entities command
 */Entity/*~
@@ -96,6 +96,6 @@ crashlytics.properties
 crashlytics-build.properties
 fabric.properties
 
-web/assets/mem/*
 web/assets/user/profilepics/*
 web/assets/teams/*
+web/assets/mem/

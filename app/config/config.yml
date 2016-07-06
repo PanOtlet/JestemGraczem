@@ -96,7 +96,7 @@ sonata_seo:
                 viewport:             width=device-width, initial-scale=1, shrink-to-fit=no
             property:
                 # Facebook application settings
-                'fb:app_id':          1792775277616619
+                'fb:app_id':          '1792775277616619'
                 #'fb:admins':          admin1, admin2
 
                 # Open Graph information
