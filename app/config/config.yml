@@ -97,7 +97,7 @@ sonata_seo:
             property:
                 # Facebook application settings
                 'fb:app_id':          '1792775277616619'
-                #'fb:admins':          admin1, admin2
+                'fb:admins':          PanOtlet, 100000499973060, TheOtlet
 
                 # Open Graph information
                 # see http://developers.facebook.com/docs/opengraphprotocol/#types or http://ogp.me/
