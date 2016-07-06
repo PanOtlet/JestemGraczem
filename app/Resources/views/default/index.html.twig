@@ -137,6 +137,7 @@
                 success: function (channel) {
                     $('#loading').remove();
                     topStream(channel["streams"][0], 1);
+                    setTimeout(function(){ $('#image'+channel["streams"][0]["channel"]["name"]).addClass("stream-active"); }, 3000);
                     for (var i = 0; i < limit; i++) {
                         renderBottomStreamList(channel["streams"][i]);
                     }
@@ -185,7 +186,6 @@
                 success: function (channel) {
                     $('.stream-active').addClass('stream').removeClass('stream-active');
                     $('#image'+channel["streams"][0]["channel"]["name"]).addClass("stream-active");
-                    console.log('#image'+channel["streams"][0]["channel"]["name"]);
                     topStream(channel["streams"][0], 1);
                 }, error: function () {
                     console.log("Błąd z działaniem funkcji");
