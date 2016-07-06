@@ -87,7 +87,7 @@ sonata_seo:
     encoding:         UTF-8
     page:
         title:            JestemGraczem
-        default:          sonata.seo.page.default
+#        default:          sonata.seo.page.default
         metas:
             name:
                 keywords:             jestem,graczem,gry,tworzone,z,pasji,portal,poświęcony,graczom,jestemgraczem,turnieje,stream,youtube,reklama
