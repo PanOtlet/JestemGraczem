@@ -12,3 +12,7 @@ before_script:
   - php bin/console doctrine:schema:create --env=test
 
 script: phpunit
+
+notifications:
+    on_success: never
+    on_failure: always
