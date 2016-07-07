@@ -18,10 +18,10 @@ server('production', 'prod.domain.com')
     ->password()
     ->env('deploy_path', '/var/www/prod.domain.com');
 
-server('beta', 'ubuntu.mike.otlet.pl')
-    ->user('beta')
+server('beta', 'saiyan.deephosting.pro')
+    ->user('jestemgraczem')
     ->password('Siewo2323')
-    ->env('deploy_path', '/var/www');
+    ->env('deploy_path', '/beta.jestemgraczem.pl');
 
 /**
  * Restart php-fpm on success deploy.
@@ -33,7 +33,7 @@ task('php-fpm:restart', function () {
     run('sudo /bin/systemctl restart php-fpm.service');
 })->desc('Restart PHP-FPM service');
 
-after('success', 'php-fpm:restart');
+//after('success', 'php-fpm:restart');
 
 
 /**

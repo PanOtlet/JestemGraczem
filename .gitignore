@@ -99,3 +99,5 @@ fabric.properties
 web/assets/user/profilepics/*
 web/assets/teams/*
 web/assets/mem/
+deploy.php
+composer.lock
