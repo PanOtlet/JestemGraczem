@@ -206,14 +206,19 @@ footer {
     border: solid 4px #2b2d2f;
     -webkit-filter: grayscale(50%); /* Chrome, Safari, Opera */
     filter: grayscale(50%);
+    cursor: pointer;
 }
+
 .stream-active{
-    border: solid 4px blue;
+    border: solid 4px darkblue;
     -webkit-filter: grayscale(0%); /* Chrome, Safari, Opera */
     filter: grayscale(0%);
 }
-.stream:hover{
+.stream-active:hover{
     cursor: pointer;
+    border: solid 4px blue;
+    -webkit-filter: grayscale(10%); /* Chrome, Safari, Opera */
+    filter: grayscale(10%);
 }
 
 .user-bdrop{
