@@ -36,3 +36,5 @@ Youtube: 'Adres konta YouTube'
 Localization: 'Twoja lokalizacja'
 Description: 'Kilka słów o sobie'
 Profile picture file: 'Zdjęcie w tle'
+base:
+    calendarium: 'Kalendarium turniejowe'
