@@ -1,10 +1,12 @@
 account:
     login: 'Zaloguj'
     register: 'Zarejestruj'
-    forgotpass: 'Zapomniałeś hasła'
+    forgotpass: 'Zapomniałeś hasła?'
     joincomunity: 'Dołącz do społeczności graczy!'
     now: 'już teraz!'
 save: 'Zapisz'
+modal:
+    news: 
 form:
     add: 'Dodaj'
 team:

@@ -84,13 +84,12 @@
             {% else %}
                 <div id="navbar">
                     <nav class="nav navbar-nav pull-xs-left">
-                        <p>
-                            Dołącz do społeczności graczy!
+                        <p>{{ 'account.joincomunity'|trans }}
                             <a href="{{ url('fos_user_registration_register') }}">
-                                <span>Zarejestruj się</span>
-                            </a> już teraz!
+                                <span>{{ 'account.register'|trans }}</span>
+                            </a> {{ 'account.now'|trans }}
                             <a href="{{ url('fos_user_resetting_request') }}">
-                                <span>Zapomniałeś hasła?</span>
+                                <span>{{ 'account.forgotpass'|trans }}</span>
                             </a>
                         </p>
                     </nav>
