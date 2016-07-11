@@ -11,6 +11,7 @@ team:
     divdesc: 'Opis dywizji'
     pass: 'Hasło dołączenia'
     shortdesc: 'Skrócony opis drużyny'
+    list: 'Lista drużyn'
 mem:
     title: 'Tytuł mema'
     source: 'Źródło'
@@ -36,5 +37,6 @@ Youtube: 'Adres konta YouTube'
 Localization: 'Twoja lokalizacja'
 Description: 'Kilka słów o sobie'
 Profile picture file: 'Zdjęcie w tle'
-base:
+tournament:
     calendarium: 'Kalendarium turniejowe'
+    create: 'Stwórz turniej'
