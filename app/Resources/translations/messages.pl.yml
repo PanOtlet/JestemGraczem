@@ -1,3 +1,9 @@
+account:
+    login: 'Zaloguj'
+    register: 'Zarejestruj'
+    forgotpass: 'Zapomniałeś hasła'
+    joincomunity: 'Dołącz do społeczności graczy!'
+    now: 'już teraz!'
 save: 'Zapisz'
 form:
     add: 'Dodaj'
