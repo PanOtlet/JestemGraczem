@@ -82,7 +82,7 @@ class VideoController extends Controller
     {
         $em = $this->getDoctrine()->getRepository('AppBundle:Video');
         $video = $em->createQueryBuilder('p')
-            ->where('p.accept = false')
+            ->where('p.accept = 0')
             ->setFirstResult($page * 10)
             ->orderBy('p.id', 'DESC')
             ->getQuery()
@@ -117,7 +117,7 @@ class VideoController extends Controller
     {
         $em = $this->getDoctrine()->getRepository('AppBundle:Video');
         $video = $em->createQueryBuilder('p')
-            ->where('p.accept = true')
+            ->where('p.accept = 1')
             ->setFirstResult($page * 10)
             ->orderBy('p.id', 'DESC')
             ->getQuery()
