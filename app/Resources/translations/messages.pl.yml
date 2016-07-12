@@ -24,6 +24,10 @@ button:
     player: 'Zobacz w odtwarzaczu'
     more: 'Pokaż więcej'
     comments: 'Zobacz komentarze!'
+    add: 'Dodaj nowy'
+    next: 'Następne'
+    prev: 'Poprzednie'
+    waitingroom: 'Poczekalnia'
     newest:
         new: 'NAJNOWSZE'
         meme: 'MEMY'
