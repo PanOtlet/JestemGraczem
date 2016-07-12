@@ -44,7 +44,7 @@ class StreamController extends Controller
                 'error',
                 'Stream nie istnieje!'
             );
-            return $this->redirectToRoute('stream');
+            throw $this->createNotFoundException('Stream nie istnieje!');
         }
 
         $seo = $this->container->get('sonata.seo.page');
