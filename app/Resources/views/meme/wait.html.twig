@@ -7,7 +7,7 @@
                 <span style="color: #8bc34a;">POCZEKALNIA</span>MEMÓW
             </div>
             <div class="col-sm-8">
-                <a href="{{ url('meme.add') }}" type="button" class="btn btn-green pull-sm-right"><span class="p-x-3">Dodaj nowy</span></a>
+                <a href="{{ url('meme.add') }}" type="button" class="btn btn-green pull-sm-right"><span class="p-x-3">{{ 'button.add'|trans }}</span></a>
             </div>
         </div>
     </div>
@@ -41,12 +41,12 @@
                     <div class="row">
                         <div class="col-md-6">
                             {% if page > 0 %}
-                                <a href="{{ url('meme.wait',{'page': page-1}) }}" class="btn btn-raised btn-danger btn-block">Poprzednie</a>
+                                <a href="{{ url('meme.wait',{'page': page-1}) }}" class="btn btn-raised btn-danger btn-block">{{ 'button.prev'|trans }}</a>
                             {% endif %}
                         </div>
                         <div class="col-md-6">
                             <a href="{{ url('meme.wait',{'page': page+1}) }}"
-                               class="btn btn-raised btn-danger btn-block">Kolejne</a>
+                               class="btn btn-raised btn-danger btn-block">{{ 'button.next'|trans }}</a>
                         </div>
                     </div>
                 {% else %}
