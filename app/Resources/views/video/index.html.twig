@@ -4,11 +4,11 @@
     <div class="container-fluid top p-t-3 p-b-2">
         <div class="container">
             <div class="col-sm-6 btn-clear-lg p-l-1 ">
-                <span style="color: #8bc34a;">NAJNOWSZE</span>FILMY
+                <span style="color: #8bc34a;">{{ 'button.newest.new'|trans }}</span>{{ 'button.newest.video'|trans }}
             </div>
             <div class="col-sm-6">
                 <a href="{{ url('video.add') }}" type="button" class="btn btn-green pull-sm-right">
-                    <span class="p-x-3">Dodaj nowy</span>
+                    <span class="p-x-3">{{ 'button.add'|trans }}</span>
                 </a>
             </div>
         </div>
@@ -39,12 +39,12 @@
                                 <div class="col-md-6">
                                     {% if page > 0 %}
                                         <a href="{{ url('video',{'page': page-1}) }}"
-                                           class="btn btn-raised btn-danger btn-block">Poprzednie</a>
+                                           class="btn btn-raised btn-danger btn-block">{{ 'button.prev'|trans }}</a>
                                     {% endif %}
                                 </div>
                                 <div class="col-md-6">
                                     <a href="{{ url('video',{'page': page+1}) }}"
-                                       class="btn btn-raised btn-danger btn-block">Kolejne</a>
+                                       class="btn btn-raised btn-danger btn-block">{{ 'button.next'|trans }}</a>
                                 </div>
                             </div>
                         {% else %}
@@ -54,7 +54,7 @@
                 </div>
             </div>
             <div class="col-md-4">
-                <a href="{{ url('video.wait') }}" type="button" class="btn btn-green btn-block"><span class="p-x-3">Poczekalnia</span></a>
+                <a href="{{ url('video.wait') }}" type="button" class="btn btn-green btn-block"><span class="p-x-3">{{ 'button.waitingroom'|trans }}</span></a>
                 {{ include('navbar.html.twig') }}
             </div>
         </div>
