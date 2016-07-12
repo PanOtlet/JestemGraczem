@@ -205,7 +205,8 @@
                 <div class="modal-body">
                     <a href="{{ url('tournament') }}" type="button"
                        class="btn btn-primary btn-lg btn-block">{{ 'nav.turnaments'|trans }}</a>
-                    <a href="{{ url('team') }}" type="button" class="btn btn-primary btn-lg btn-block">{{ 'nav.teams'|trans }}</a>
+                    <a href="{{ url('team') }}" type="button"
+                       class="btn btn-primary btn-lg btn-block">{{ 'nav.teams'|trans }}</a>
                 </div>
                 <div class="modal-footer">
                 </div>
@@ -223,8 +224,10 @@
                     <h4 class="modal-title">GAMESAREA</h4>
                 </div>
                 <div class="modal-body">
-                    <a href="{{ url('news') }}" type="button" class="btn btn-primary btn-lg btn-block">{{ 'nav.news'|trans }}</a>
-                    <a href="{{ url('news.add') }}" type="button" class="btn btn-primary btn-lg btn-block">{{ 'nav.addrss'|trans }}</a>
+                    <a href="{{ url('news') }}" type="button"
+                       class="btn btn-primary btn-lg btn-block">{{ 'nav.news'|trans }}</a>
+                    <a href="{{ url('news.add') }}" type="button"
+                       class="btn btn-primary btn-lg btn-block">{{ 'nav.addrss'|trans }}</a>
                 </div>
                 <div class="modal-footer">
                 </div>
@@ -242,9 +245,12 @@
                     <h4 class="modal-title">FANSAREA</h4>
                 </div>
                 <div class="modal-body">
-                    <a href="{{ url('meme') }}" type="button" class="btn btn-primary btn-lg btn-block">{{ 'nav.meme'|trans }}</a>
-                    <a href="{{ url('stream') }}" type="button" class="btn btn-primary btn-lg btn-block">{{ 'nav.streams'|trans }}</a>
-                    <a href="{{ url('video') }}" type="button" class="btn btn-primary btn-lg btn-block">{{ 'nav.video'|trans }}</a>
+                    <a href="{{ url('meme') }}" type="button"
+                       class="btn btn-primary btn-lg btn-block">{{ 'nav.meme'|trans }}</a>
+                    <a href="{{ url('stream') }}" type="button"
+                       class="btn btn-primary btn-lg btn-block">{{ 'nav.streams'|trans }}</a>
+                    <a href="{{ url('video') }}" type="button"
+                       class="btn btn-primary btn-lg btn-block">{{ 'nav.video'|trans }}</a>
                 </div>
                 <div class="modal-footer">
                 </div>
@@ -296,10 +302,10 @@
                         <p>
                             <a href="{{ url('redirect', {'url': 'http://blog.jestemgraczem.pl'}) }}">{{ 'nav.blog'|trans }}</a>
                         </p>
-                        <p>{{ 'nav.support'|trans }}</p>
-                        <p>{{ 'nav.rules'|trans }}</p>
-                        <p>{{ 'nav.howto'|trans }}</p>
-                        <p>{{ 'nav.ppartner'|trans }}</p>
+                        <p><a href="{{ url('cms',{'title': 'support'}) }}">{{ 'nav.support'|trans }}</a></p>
+                        <p><a href="{{ url('cms',{'title': 'regulamin'}) }}">{{ 'nav.rules'|trans }}</a></p>
+                        <p><a href="{{ url('cms',{'title': 'jak-stworzyc-turniej'}) }}">{{ 'nav.howto'|trans }}</a></p>
+                        <p><a href="{{ url('cms',{'title': 'program-partnerski'}) }}">{{ 'nav.ppartner'|trans }}</a></p>
                     </div>
                 </div>
             </div>

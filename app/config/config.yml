@@ -119,6 +119,14 @@ sonata_seo:
 
 easy_admin:
     entities:
+        CMS:
+            class: AppBundle\Entity\CMS
+            list:
+                fields:
+                    - 'id'
+                    - { property: 'title', label: 'Tytuł'}
+                    - { property: 'url', label: 'Adres'}
+                    - { property: 'text', label: 'Text'}
         Mems:
             class: AppBundle\Entity\Meme
             list:

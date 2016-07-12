@@ -22,6 +22,11 @@ app:
     resource: "@AppBundle/Controller/"
     type:     annotation
 
+cms:
+    resource: "@AppBundle/Controller/CMSController.php"
+    type:     annotation
+    prefix:   /cms
+
 fos_user:
     resource: "@FOSUserBundle/Resources/config/routing/all.xml"
 easy_admin_bundle:
