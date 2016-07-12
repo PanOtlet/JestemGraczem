@@ -36,11 +36,9 @@
                 url: '{{ url('api.stream') }}',
                 dataType: 'json',
                 success: function (stream) {
-                    //console.log(stream);
                     for (var i = 0; i < stream.length; i++) {
                         u_twitch += stream[i]["twitch"] + ",";
                     }
-                    //console.log(u_twitch+" getstream()");
                     get_twitch(u_twitch);
                 },
                 error: function () {
@@ -70,7 +68,6 @@
                     document.getElementById("loading").remove();
                     first(channel["streams"][0]);
                     for (var i = 1; i < channel["streams"].length; i++) {
-                        //console.log(channel["streams"][i]["channel"]["display_name"]+" "+channel["streams"][i]["viewers"]);
                         render(channel["streams"][i]);
                     }
                 }, error: function () {

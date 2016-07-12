@@ -23,7 +23,7 @@ class MemeController extends Controller
                 'error',
                 'Kurde, nie znaleźliśmy tego co poszukujesz :('
             );
-            return $this->redirectToRoute('meme');
+            throw $this->createNotFoundException('Kurde, nie znaleźliśmy tego co poszukujesz :(');
         }
 
         $seo = $this->container->get('sonata.seo.page');
@@ -128,7 +128,7 @@ class MemeController extends Controller
                 'error',
                 'Kurde, nie znaleźliśmy tego co poszukujesz :('
             );
-            return $this->redirectToRoute('meme.wait');
+            throw $this->createNotFoundException('Kurde, nie znaleźliśmy tego co poszukujesz :(');
         }
 
         $seo = $this->container->get('sonata.seo.page');
@@ -162,6 +162,14 @@ class MemeController extends Controller
             ->setMaxResults(10);
 
         $meme = $query->getResult();
+
+        if ($meme == NULL) {
+            $this->addFlash(
+                'error',
+                'Kurde, nie znaleźliśmy tego co poszukujesz :('
+            );
+            throw $this->createNotFoundException('Kurde, nie znaleźliśmy tego co poszukujesz :(');
+        }
 
         $seo = $this->container->get('sonata.seo.page');
         $seo->setTitle('Najlepsze memy! Strona ' . $page . ' :: JestemGraczem.pl')

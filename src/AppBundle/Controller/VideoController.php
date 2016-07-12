@@ -94,7 +94,7 @@ class VideoController extends Controller
                 'error',
                 'Więcej filmów nie mamy :('
             );
-            return $this->redirectToRoute('video');
+            throw $this->createNotFoundException('Więcej filmów nie mamy :(');
         }
 
         $seo = $this->container->get('sonata.seo.page');
@@ -124,6 +124,14 @@ class VideoController extends Controller
             ->setMaxResults(10)
             ->getResult();
 
+        if ($video == NULL) {
+            $this->addFlash(
+                'error',
+                'Więcej filmów nie mamy :('
+            );
+            throw $this->createNotFoundException('Więcej filmów nie mamy :(');
+        }
+
         $promoted = $this->getDoctrine()->getRepository('AppBundle:Video')->findBy(['status' => 2]);
 
         $seo = $this->container->get('sonata.seo.page');
@@ -152,7 +160,7 @@ class VideoController extends Controller
                 'error',
                 'Nie mamy tego filmu :('
             );
-            return $this->redirectToRoute('video');
+            throw $this->createNotFoundException('Nie mamy tego filmu :(');
         }
 
         $seo = $this->container->get('sonata.seo.page');
