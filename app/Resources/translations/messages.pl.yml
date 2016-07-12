@@ -21,7 +21,13 @@ nav:
 form:
     add: 'Dodaj'
 button:
+    player: 'Zobacz w odtwarzaczu'
     more: 'Pokaż więcej'
+    comments: 'Zobacz komentarze!'
+    newest:
+        new: 'NAJNOWSZE'
+        meme: 'MEMY'
+        video: 'FILMY'
 team:
     name: 'Nazwa drużyny'
     divname: 'Nazwa dywizji'

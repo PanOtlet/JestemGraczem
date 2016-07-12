@@ -37,7 +37,7 @@
                         </div>
                         <div class="col-lg-6">
                             <div class="pull-right btn btn-green">
-                                <a id="profile" href="#">Zobacz w odtwarzaczu</a>
+                                <a id="profile" href="#">{{ 'button.player'|trans }}</a>
                             </div>
                         </div>
                     </div>
@@ -60,7 +60,7 @@
         <div class="row p-t-1">
             <div class="col-md-6">
                 <div class="btn-white-lg dots">
-                    <span class="p-x-1 text">NAJNOWSZE<span style="color: #303030;">MEMY</span></span>
+                    <span class="p-x-1 text">{{ 'button.newest.new'|trans }}<span style="color: #303030;">{{ 'button.newest.meme'|trans }}</span></span>
                 </div>
                 <img class="img-fluid center-block video p-b-0"
                      src="{{ asset('assets/mem/') ~ meme.url }}" alt="{{ meme.title }}">
@@ -72,7 +72,7 @@
                         <p class="text-xs-left  m-b-0" style="padding-top: 0.3rem;">
                             <a class="font-weight-bold" href="{{ url('meme.id', {'id': meme.id}) }}"
                                style="color: #000000;font-size: 0.9rem; text-decoration: none;">
-                                Zobacz komentarze!
+                                {{ 'button.comments'|trans }}
                             </a>
                         </p>
                     </div>
@@ -82,12 +82,12 @@
                 </div>
                 <div class="btn-white p-l-1 p-y-06">{{ meme.title }}</div>
                 <div class="btn-green text-xs-center m-b-1">
-                    <a href="{{ url('meme') }}">Pokaż więcej</a>
+                    <a href="{{ url('meme') }}">{{ 'button.more'|trans }}</a>
                 </div>
             </div>
             <div class="col-md-6">
                 <div class="btn-white-lg dots">
-                    <span class="p-x-1 text">NAJNOWSZE<span style="color: #303030;">FILMY</span></span>
+                    <span class="p-x-1 text">{{ 'button.newest.new'|trans }}<span style="color: #303030;">{{ 'button.newest.video'|trans }}</span></span>
                 </div>
                 <div class="row">
                     {% for vod in video %}
@@ -100,7 +100,7 @@
                     {% endfor %}
                 </div>
                 <div class="btn-green text-xs-center">
-                    <a href="{{ url('video') }}">Pokaż więcej</a>
+                    <a href="{{ url('video') }}">{{ 'button.more'|trans }}</a>
                 </div>
             </div>
         </div>
