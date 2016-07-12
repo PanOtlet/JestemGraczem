@@ -5,10 +5,23 @@ account:
     joincomunity: 'Dołącz do społeczności graczy!'
     now: 'już teraz!'
 save: 'Zapisz'
-modal:
-    news: 
+nav:
+    turnaments: 'Turnieje'
+    teams: 'Drużyny'
+    news: 'Newsy'
+    addrss: 'Dodaj rss'
+    meme: 'Memy'
+    streams: 'Streamy'
+    video: 'Filmy'
+    blog: 'Blog'
+    support: 'Support'
+    rules: 'Regulamin serwisu'
+    ppartner: 'Program partnerski'
+    howto: 'Jak stworzyć turniej'
 form:
     add: 'Dodaj'
+button:
+    more: 'Pokaż więcej'
 team:
     name: 'Nazwa drużyny'
     divname: 'Nazwa dywizji'
