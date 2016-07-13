@@ -37,7 +37,7 @@
                         </div>
                         <div class="col-lg-6">
                             <div class="pull-right btn btn-green">
-                                <a id="profile" href="#">{{ 'button.player'|trans }}</a>
+                                <a id="profile" href="{{ url('stream') }}">{{ 'button.player'|trans }}</a>
                             </div>
                         </div>
                     </div>
@@ -56,7 +56,9 @@
         </div>
 
         <div class="container-fluid p-t-1">
-            <img class="img-fluid center-block" src="{{ asset('assets/img/ad.png') }}">
+            <script type="text/javascript" id="AdTaily_Widget" src="http://static.adtaily.pl/widget.js#W4OY4l6LDlauyr9"></script>
+            <noscript><a href="http://www.adtaily.pl">Reklama w internecie</a></noscript>
+            {#<img class="img-fluid center-block" src="{{ asset('assets/img/ad.png') }}">#}
         </div>
 
         <div class="row p-t-1">

@@ -124,38 +124,37 @@ easy_admin:
             list:
                 fields:
                     - 'id'
-                    - { property: 'title', label: 'Tytuł'}
-                    - { property: 'url', label: 'Adres'}
-                    - { property: 'text', label: 'Text'}
+                    - { property: 'title', label: 'admin.title'}
+                    - { property: 'url', label: 'admin.url'}
+                    - { property: 'text', label: 'admin.text'}
         Mems:
             class: AppBundle\Entity\Meme
             list:
                 fields:
                     - 'id'
-                    - { property: 'accept', label: 'Akceptacja'}
-                    - { property: 'title', label: 'Tytuł'}
-                    - { property: 'source', label: 'Źródło'}
-                    - { property: 'url', type: 'image', base_path: 'http://localhost/jg/web/assets/mem/', label: 'Obrazek' }
+                    - { property: 'accept', label: 'admin.accept'}
+                    - { property: 'title', label: 'admin.title'}
+                    - { property: 'source', label: 'admin.source'}
+                    - { property: 'url', type: 'image', base_path: 'http://localhost/jg/web/assets/mem/', label: 'admin.img' }
         YouTube:
             class: AppBundle\Entity\Video
             list:
                 fields:
                     - 'id'
-                    - { property: 'title', label: 'Tytuł'}
-                    - { property: 'accept', label: 'Akceptacja'}
-                    - { property: 'videoid', label: 'ID Filmu'}
-                    - { property: 'videoid', type: 'image', base_path: 'http://img.youtube.com/vi/%1/mqdefault.jpg', label: 'Miniatura' }
-                    - { property: 'user', label: 'UserID'}
+                    - { property: 'title', label: 'admin.title'}
+                    - { property: 'accept', label: 'admin.accept'}
+                    - { property: 'videoid', label: 'admin.id'}
+                    - { property: 'videoid', type: 'image', base_path: 'http://img.youtube.com/vi/%1/mqdefault.jpg', label: 'admin.img' }
         Uzytkownicy:
             class: AppBundle\Entity\User
             list:
                 fields:
                     - 'id'
-                    - { property: 'username', label: 'Login'}
-                    - { property: 'email', label: 'Email'}
-                    - { property: 'last_login', label: 'Ostatnie logowanie', type: 'datetime'}
-                    - { property: 'locked', label: 'Zbanowany'}
-                    - { property: 'enabled', label: 'Zaakceptowany'}
+                    - { property: 'username', label: 'admin.username'}
+                    - { property: 'email', label: 'admin.email'}
+                    - { property: 'last_login', label: 'admin.lastlogin', type: 'datetime'}
+                    - { property: 'locked', label: 'admin.locked'}
+                    - { property: 'enabled', label: 'admin.enabled'}
         RSS: AppBundle\Entity\News
     site_name: 'JG Admin'
     design:

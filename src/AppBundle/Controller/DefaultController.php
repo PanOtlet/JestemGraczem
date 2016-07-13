@@ -23,7 +23,7 @@ class DefaultController extends Controller
         $stream = $this->getDoctrine()->getRepository('AppBundle:User')->findBy(['partner' => 1]);
 
         $video = $this->getDoctrine()->getRepository('AppBundle:Video')->createQueryBuilder('m')
-            ->where('m.status = 2')
+            ->where('m.accept = 1')
             ->orderBy('m.id', 'DESC')
             ->setMaxResults(6)
             ->getQuery()->getResult();
