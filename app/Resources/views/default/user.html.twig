@@ -73,8 +73,10 @@
                 </div>
 
                 <div class="btn-white-lp dots m-b-0">
-                    <span class="p-x-1 text"><i class="fa fa-user" aria-hidden="true"></i> {{ 'button.my.short'|trans }}
-                        <span style="color: #303030;">{{ 'button.my.desc'|trans }}</span></span>
+                    <span class="p-x-1 text">
+                        <i class="fa fa-user" aria-hidden="true"></i> {{ 'button.my.short'|trans }}
+                        <span style="color: #303030;">{{ 'button.my.desc'|trans }}</span>
+                    </span>
                 </div>
                 <div class="grey-box p-y-1 p-l-1 m-b-1">
                     <p>{{ user.description }}</p>
@@ -82,8 +84,10 @@
 
 
                 <div class="btn-white-lp dots m-b-0">
-                    <span class="p-x-1 text"><i class="fa fa-users" aria-hidden="true"></i> {{ 'button.my.my'|trans }}
-                        <span style="color: #303030;">{{ 'button.my.teams'|trans }}</span></span>
+                    <span class="p-x-1 text">
+                        <i class="fa fa-users" aria-hidden="true"></i> {{ 'button.my.my'|trans }}
+                        <span style="color: #303030;">{{ 'button.my.teams'|trans }}</span>
+                    </span>
                 </div>
                 <div class="grey-box p-y-1 p-l-1 m-b-1">
                     lorep ipsum
@@ -95,27 +99,31 @@
                         <div class="panel-body">
                             <div class="embed-responsive embed-responsive-16by9">
                                 <iframe class="embed-responsive-item"
-                                        src="https://player.twitch.tv/?channel={{ user.twitch }}"></iframe>
+                                        src="https://player.twitch.tv/?channel={{ user.twitch }}">
+                                </iframe>
                             </div>
                         </div>
                         <div id="streaminfo" class="panel-footer">
-                            Gra: <span id="game" class="label label-danger">Ładowanie <i
-                                        class="fa fa-spinner fa-spin"></i></span>
-                            Widzów: <span id="viewers" class="label label-danger">Ładowanie <i
-                                        class="fa fa-spinner fa-spin"></i></span>
+                            Gra: <span id="game" class="label label-danger">Ładowanie
+                                    <i class="fa fa-spinner fa-spin"></i>
+                                 </span>
+                            Widzów: <span id="viewers" class="label label-danger">Ładowanie
+                                        <i class="fa fa-spinner fa-spin"></i>
+                                    </span>
                         </div>
                     </div>
                 {% endif %}
                 <div class="btn-white-lp dots">
-                    <span class="p-x-1 text"><i class="fa fa-gamepad"
-                                                aria-hidden="true"></i> {{ 'button.actual'|trans }}<span
-                                style="color: #303030;">{{ 'button.turnaments'|trans }}</span></span>
+                    <span class="p-x-1 text">
+                        <i class="fa fa-gamepad" aria-hidden="true"></i> {{ 'button.actual'|trans }}
+                        <span style="color: #303030;">{{ 'button.turnaments'|trans }}</span>
+                    </span>
                 </div>
                 {% if video %}
                     <div class="btn-white-lg dots">
-                    <span class="p-x-1 text"><i class="fa fa-video-camera"
-                                                aria-hidden="true"></i> {{ 'button.my.my'|trans }}<span
-                                style="color: #303030;">{{ 'button.newest.video'|trans }}</span></span>
+                    <span class="p-x-1 text"><i class="fa fa-video-camera" aria-hidden="true"></i> {{ 'button.my.my'|trans }}
+                        <span style="color: #303030;">{{ 'button.newest.video'|trans }}</span>
+                    </span>
                     </div>
                     <div class="row">
                         {% for vod in video %}
@@ -133,8 +141,9 @@
                 {% endif %}
                 {% if meme %}
                     <div class="btn-white-lg dots">
-                        <span class="p-x-1 text">{{ 'button.my.my'|trans }}<span
-                                    style="color: #303030;">{{ 'button.newest.meme'|trans }}</span></span>
+                        <span class="p-x-1 text">{{ 'button.my.my'|trans }}
+                            <span style="color: #303030;">{{ 'button.newest.meme'|trans }}</span>
+                        </span>
                     </div>
                     <img class="img-fluid center-block video p-b-0"
                          src="{{ asset('assets/mem/') ~ meme.url }}" alt="{{ meme.title }}">
