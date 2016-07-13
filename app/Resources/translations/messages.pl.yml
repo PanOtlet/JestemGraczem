@@ -5,6 +5,8 @@ account:
     joincomunity: 'Dołącz do społeczności graczy!'
     now: 'już teraz!'
 save: 'Zapisz'
+ad:
+    disable: 'Prosimy o wyłączenie swojego AdBlocka lub skryptu blokującego reklamy. U nas nie ma reklam, ale uszanujcie pracę innych!'
 nav:
     turnaments: 'Turnieje'
     teams: 'Drużyny'
