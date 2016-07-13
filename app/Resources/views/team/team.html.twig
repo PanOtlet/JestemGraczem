@@ -3,7 +3,7 @@
 {% block body %}
     <div class="container-fluid user-bdrop hidden-lg-down">
         {% if team.logo is empty %}
-            <img class="img-fluid img-bd center-block" src="{{ asset('assets/img/bg-lol.jpg') }}">
+            <img class="img-fluid img-bd center-block" src="{{ asset('assets/img/bg-defoult.png') }}">
         {% else %}
             <img class="img-fluid img-bd center-block" src="{{ asset(team.webPath) }}">
         {% endif %}
@@ -14,25 +14,25 @@
                 {% if team.logo is not empty %}
                     <img class="img-responsive" src="{{ asset(team.webPath) }}">
                 {% else %}
-                    <img class="img-responsive" src="{{ asset('assets/img/bg-lol.jpg') }}">
+                    <img class="img-responsive" src="{{ asset('assets/img/team_avatar.png') }}">
                 {% endif %}
                 {% if app.user and team.owner == app.user.id %}
                     <div class="container-fluid">
                         <div class="row p-b-1">
                             <div class="col-md-6">
                                 <div class="btn btn-green p-x-3">
-                                    <a href="{{ url('team.edit', {'tag':team.tag}) }}">Edytuj</a>
+                                    <a href="{{ url('team.edit', {'tag':team.tag}) }}">{{ 'button.edit'|trans }}</a>
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="btn btn-pink p-x-3 pull-right">
-                                    <a href="{{ url('team.remove', {'tag':team.tag}) }}">Usuń</a>
+                                    <a href="{{ url('team.remove', {'tag':team.tag}) }}">{{ 'button.delete'|trans }}</a>
                                 </div>
                             </div>
                         </div>
                         <div class="col-md-12 p-b-1">
                             <div class="btn btn-green p-x-3 center-block">
-                                <a href="{{ url('division.add', {'tag':team.tag}) }}">Dodaj dywizję</a>
+                                <a href="{{ url('division.add', {'tag':team.tag}) }}">{{ 'button.adddiv'|trans }}</a>
                             </div>
                         </div>
                     </div>
@@ -43,11 +43,11 @@
                 <div class="btn-white p-y-06 text-ta text-xs-center m-b-0">
                     <span style="color: #303030;">Tag: </span>{{ team.tag }}
                 </div>
-                <div class="grey-box p-y-1 p-l-1 m-b-1">
-                    siew siew
-                </div>
+                {#<div class="grey-box p-y-1 p-l-1 m-b-1">#}
+                    {#siew siew#}
+                {#</div>#}
                 <div class="btn-white-lp dots m-b-0">
-                    <span class="p-x-1 text">KRÓTKI<span style="color: #303030;">OPIS</span></span>
+                    <span class="p-x-1 text">{{ 'button.my.short'|trans }}<span style="color: #303030;">{{ 'button.my.desc'|trans }}</span></span>
                 </div>
                 <div class="grey-box p-y-1 p-l-1 m-b-1">
                     <p>{{ team.shortdesc }}</p>
@@ -56,7 +56,7 @@
             <div class="col-md-8">
                 <div class="container-fluid">
                     <div class="btn-white-lg dots m-b-0">
-                        <span class="p-x-1 text">O<span style="color: #303030;">PIS</span></span>
+                        <span class="p-x-1 text">{{ 'button.my.desc'|trans }}</span>
                     </div>
                     {{ team.description|markdown }}
                 </div>
@@ -87,7 +87,7 @@
                                                 <p>{{ member.user }}</p>
                                             </div>
                                             <div class="text-xs-center btn-pink m-b-1">
-                                                <a href="{{ url('user', {'user':member.user}) }}">Pokaż profil</a>
+                                                <a href="{{ url('user', {'user':member.user}) }}">{{ 'button.seeprofile'|trans }}</a>
                                             </div>
                                         </div>
                                     {% endfor %}

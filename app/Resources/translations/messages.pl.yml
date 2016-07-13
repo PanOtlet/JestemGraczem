@@ -21,6 +21,9 @@ nav:
 form:
     add: 'Dodaj'
 button:
+    edit: 'Edytuj'
+    delete: 'Usuń'
+    adddiv: 'Dodaj dywizję'
     player: 'Zobacz w odtwarzaczu'
     more: 'Pokaż więcej'
     comments: 'Zobacz komentarze!'
@@ -30,6 +33,7 @@ button:
     waitingroom: 'Poczekalnia'
     actual: 'AKTUALNE'
     turnaments: 'TURNIEJE'
+    seeprofile: 'Zobacz profil'
     my:
         my: 'MOJE'
         me: 'MÓJ'
