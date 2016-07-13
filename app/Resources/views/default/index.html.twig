@@ -54,40 +54,47 @@
                 <i class="fa fa-spinner fa-pulse fa-4x p-y-1" aria-hidden="true"></i>
             </div>
         </div>
+
         <div class="container-fluid p-t-1">
             <img class="img-fluid center-block" src="{{ asset('assets/img/ad.png') }}">
         </div>
+
         <div class="row p-t-1">
             <div class="col-md-6">
-                <div class="btn-white-lg dots">
-                    <span class="p-x-1 text">{{ 'button.newest.new'|trans }}<span style="color: #303030;">{{ 'button.newest.meme'|trans }}</span></span>
-                </div>
-                <img class="img-fluid center-block video p-b-0"
-                     src="{{ asset('assets/mem/') ~ meme.url }}" alt="{{ meme.title }}">
-                <div class="row p-y-0 m-x-0 grey">
-                    <div class="col-xs-1 p-x-0">
-                        <img class="img-fluid pull-xl-left p-b-0 grey" src="https://www.gravatar.com/avatar/23?s=48">
+                {% if meme %}
+                    <div class="btn-white-lg dots">
+                        <span class="p-x-1 text">{{ 'button.newest.new'|trans }}<span
+                                    style="color: #303030;">{{ 'button.newest.meme'|trans }}</span></span>
                     </div>
-                    <div class="col-xs-10 p-l-0">
-                        <p class="text-xs-left  m-b-0" style="padding-top: 0.3rem;">
-                            <a class="font-weight-bold" href="{{ url('meme.id', {'id': meme.id}) }}"
-                               style="color: #000000;font-size: 0.9rem; text-decoration: none;">
-                                {{ 'button.comments'|trans }}
-                            </a>
-                        </p>
+                    <img class="img-fluid center-block video p-b-0"
+                         src="{{ asset('assets/mem/') ~ meme.url }}" alt="{{ meme.title }}">
+                    <div class="row p-y-0 m-x-0 grey">
+                        <div class="col-xs-1 p-x-0">
+                            <img class="img-fluid pull-xl-left p-b-0 grey"
+                                 src="https://www.gravatar.com/avatar/23?s=48">
+                        </div>
+                        <div class="col-xs-10 p-l-0">
+                            <p class="text-xs-left  m-b-0" style="padding-top: 0.3rem;">
+                                <a class="font-weight-bold" href="{{ url('meme.id', {'id': meme.id}) }}"
+                                   style="color: #000000;font-size: 0.9rem; text-decoration: none;">
+                                    {{ 'button.comments'|trans }}
+                                </a>
+                            </p>
+                        </div>
+                        <div class="col-xs-1 p-x-0">
+                            <img class="img-fluid pull-xs-right p-b-0 grey" src="{{ asset('assets/img/cs_50.png') }}">
+                        </div>
                     </div>
-                    <div class="col-xs-1 p-x-0">
-                        <img class="img-fluid pull-xs-right p-b-0 grey" src="{{ asset('assets/img/cs_50.png') }}">
+                    <div class="btn-white p-l-1 p-y-06">{{ meme.title }}</div>
+                    <div class="btn-green text-xs-center m-b-1">
+                        <a href="{{ url('meme') }}">{{ 'button.more'|trans }}</a>
                     </div>
-                </div>
-                <div class="btn-white p-l-1 p-y-06">{{ meme.title }}</div>
-                <div class="btn-green text-xs-center m-b-1">
-                    <a href="{{ url('meme') }}">{{ 'button.more'|trans }}</a>
-                </div>
+                {% endif %}
             </div>
             <div class="col-md-6">
                 <div class="btn-white-lg dots">
-                    <span class="p-x-1 text">{{ 'button.newest.new'|trans }}<span style="color: #303030;">{{ 'button.newest.video'|trans }}</span></span>
+                    <span class="p-x-1 text">{{ 'button.newest.new'|trans }}<span
+                                style="color: #303030;">{{ 'button.newest.video'|trans }}</span></span>
                 </div>
                 <div class="row">
                     {% for vod in video %}
@@ -137,7 +144,9 @@
                 success: function (channel) {
                     $('#loading').remove();
                     topStream(channel["streams"][0], 1);
-                    setTimeout(function(){ $('#image'+channel["streams"][0]["channel"]["name"]).addClass("stream-active"); }, 3000);
+                    setTimeout(function () {
+                        $('#image' + channel["streams"][0]["channel"]["name"]).addClass("stream-active");
+                    }, 3000);
                     for (var i = 0; i < limit; i++) {
                         renderBottomStreamList(channel["streams"][i]);
                     }
@@ -185,7 +194,7 @@
                 dataType: 'jsonp',
                 success: function (channel) {
                     $('.stream-active').addClass('stream').removeClass('stream-active');
-                    $('#image'+channel["streams"][0]["channel"]["name"]).addClass("stream-active");
+                    $('#image' + channel["streams"][0]["channel"]["name"]).addClass("stream-active");
                     topStream(channel["streams"][0], 1);
                 }, error: function () {
                     console.log("Błąd z działaniem funkcji");

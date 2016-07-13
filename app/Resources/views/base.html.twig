@@ -245,12 +245,32 @@
                     <h4 class="modal-title">FANSAREA</h4>
                 </div>
                 <div class="modal-body">
-                    <a href="{{ url('meme') }}" type="button"
-                       class="btn btn-primary btn-lg btn-block">{{ 'nav.meme'|trans }}</a>
+                    <div class="btn-group btn-group-justified">
+                        <a  href="{{ url('meme') }}" type="button"
+                            class="btn btn-primary btn-lg">{{ 'nav.meme'|trans }}</a>
+                        <button type="button" class="btn btn-danger btn-lg dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <span class="sr-only">Toggle Dropdown</span>
+                        </button>
+                        <div class="dropdown-menu">
+                            <a class="dropdown-item" href="{{ url('meme.wait') }}">{{ 'button.waitingroom'|trans }}</a>
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item" href="{{ url('meme.add') }}">{{ 'form.add'|trans }}</a>
+                        </div>
+                    </div>
                     <a href="{{ url('stream') }}" type="button"
-                       class="btn btn-primary btn-lg btn-block">{{ 'nav.streams'|trans }}</a>
-                    <a href="{{ url('video') }}" type="button"
-                       class="btn btn-primary btn-lg btn-block">{{ 'nav.video'|trans }}</a>
+                       class="btn btn-primary btn-lg">{{ 'nav.streams'|trans }}</a>
+                    <div class="btn-group btn-group-justified">
+                        <a  href="{{ url('video') }}" type="button"
+                            class="btn btn-primary btn-lg">{{ 'nav.video'|trans }}</a>
+                        <button type="button" class="btn btn-danger btn-lg dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <span class="sr-only">Toggle Dropdown</span>
+                        </button>
+                        <div class="dropdown-menu">
+                            <a class="dropdown-item" href="{{ url('video.wait') }}">{{ 'button.waitingroom'|trans }}</a>
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item" href="{{ url('video.add') }}">{{ 'form.add'|trans }}</a>
+                        </div>
+                    </div>
                 </div>
                 <div class="modal-footer">
                 </div>
