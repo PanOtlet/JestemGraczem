@@ -22,14 +22,14 @@
                 {#</div>#}
 
                 <div class="btn-white-lg dots m-b-0">
-                    <span class="p-x-1 text"><i class="fa fa-video-camera" aria-hidden="true"></i> MÓJ<span style="color: #303030;">STREAM</span></span>
+                    <span class="p-x-1 text"><i class="fa fa-video-camera" aria-hidden="true"></i> {{ 'button.my.me'|trans }}<span style="color: #303030;">STREAM</span></span>
                 </div>
                 <div class="grey-box p-y-1 p-l-1 m-b-1">
                     <a href="https://twitch.tv/?channel={{ user.twitch }}">{{ user.twitch }}</a>
                 </div>
 
                 <div class="btn-white-lg dots m-b-0">
-                    <span class="p-x-1 text">MOJE<span style="color: #303030;">KONTA</span></span>
+                    <span class="p-x-1 text">{{ 'button.my.my'|trans }}<span style="color: #303030;">{{ 'button.my.account'|trans }}</span></span>
                 </div>
                 <div class="container-fluid grey-box p-y-1 p-l-1 m-b-1">
                     {% if user.steam %}
@@ -67,7 +67,7 @@
                 </div>
 
                 <div class="btn-white-lp dots m-b-0">
-                    <span class="p-x-1 text"><i class="fa fa-user" aria-hidden="true"></i> KRÓTKI<span style="color: #303030;">OPIS</span></span>
+                    <span class="p-x-1 text"><i class="fa fa-user" aria-hidden="true"></i> {{ 'button.my.short'|trans }}<span style="color: #303030;">{{ 'button.my.desc'|trans }}</span></span>
                 </div>
                 <div class="grey-box p-y-1 p-l-1 m-b-1">
                     <p>{{ user.description }}</p>
@@ -75,7 +75,7 @@
 
 
                 <div class="btn-white-lp dots m-b-0">
-                    <span class="p-x-1 text"><i class="fa fa-users" aria-hidden="true"></i> MOJE<span style="color: #303030;">DRUŻYNY</span></span>
+                    <span class="p-x-1 text"><i class="fa fa-users" aria-hidden="true"></i> {{ 'button.my.my'|trans }}<span style="color: #303030;">{{ 'button.my.teams'|trans }}</span></span>
                 </div>
                 <div class="grey-box p-y-1 p-l-1 m-b-1">
                     lorep ipsum
@@ -98,11 +98,11 @@
                     </div>
                 {% endif %}
                 <div class="btn-white-lp dots">
-                    <span class="p-x-1 text"><i class="fa fa-gamepad" aria-hidden="true"></i> AKTUALNE<span style="color: #303030;">TURNIEJE</span></span>
+                    <span class="p-x-1 text"><i class="fa fa-gamepad" aria-hidden="true"></i> {{ 'button.actual'|trans }}<span style="color: #303030;">{{ 'button.turnaments'|trans }}</span></span>
                 </div>
 
                 <div class="btn-white-lg dots">
-                    <span class="p-x-1 text"><i class="fa fa-video-camera" aria-hidden="true"></i> NAJNOWSZE<span style="color: #303030;">FILMY</span></span>
+                    <span class="p-x-1 text"><i class="fa fa-video-camera" aria-hidden="true"></i> {{ 'button.my.my'|trans }}<span style="color: #303030;">{{ 'button.newest.video'|trans }}</span></span>
                 </div>
                 <div class="row">
                     {% for vod in video %}
@@ -115,10 +115,10 @@
                     {% endfor %}
                 </div>
                 <div class="btn-green text-xs-center m-b-1">
-                    <a href="{{ url('video') }}">Pokaż więcej</a>
+                    <a href="{{ url('video') }}">{{ 'button.more'|trans }}</a>
                 </div>
                 <div class="btn-white-lg dots">
-                    <span class="p-x-1 text">NAJNOWSZE<span style="color: #303030;">MEMY</span></span>
+                    <span class="p-x-1 text">{{ 'button.my.my'|trans }}<span style="color: #303030;">{{ 'button.newest.meme'|trans }}</span></span>
                 </div>
                 <img class="img-fluid center-block video p-b-0"
                      src="{{ asset('assets/mem/') ~ meme.url }}" alt="{{ meme.title }}">
@@ -129,7 +129,7 @@
                     <div class="col-xs-10 p-l-0">
                         <p class="text-xs-left  m-b-0" style="padding-top: 0.3rem;">
                             <a class="font-weight-bold" href="{{ url('meme.id', {'id': meme.id}) }}" style="color: #000000;font-size: 0.9rem; text-decoration: none;">
-                                Zobacz komentarze!
+                                {{ 'button.comments'|trans }}
                             </a>
                         </p>
                     </div>
@@ -139,7 +139,7 @@
                 </div>
                 <div class="btn-white p-l-1 p-y-06">{{ meme.title }}</div>
                 <div class="btn-green text-xs-center m-b-1">
-                    <a href="{{ url('meme') }}">Pokaż więcej</a>
+                    <a href="{{ url('meme') }}">{{ 'button.more'|trans }}</a>
                 </div>
             </div>
         </div>

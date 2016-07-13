@@ -28,6 +28,15 @@ button:
     next: 'Następne'
     prev: 'Poprzednie'
     waitingroom: 'Poczekalnia'
+    actual: 'AKTUALNE'
+    turnaments: 'TURNIEJE'
+    my:
+        my: 'MOJE'
+        me: 'MÓJ'
+        account: 'KONTA'
+        short: 'KRÓTKI'
+        desc: 'OPIS'
+        teams: 'DRUŻYNY'
     newest:
         new: 'NAJNOWSZE'
         meme: 'MEMY'
