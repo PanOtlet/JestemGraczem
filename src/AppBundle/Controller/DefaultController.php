@@ -8,6 +8,9 @@ use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 
 class DefaultController extends Controller
 {
+
+    protected $color = "green";
+
     /**
      * @Route("/", name="homepage")
      */
@@ -31,6 +34,7 @@ class DefaultController extends Controller
         $avatar = ($this->getUser()) ? md5($this->getUser()->getEmail()) : 23;
 
         return $this->render('default/index.html.twig', [
+            'color' => $this->color,
             'meme' => $meme,
             'video' => $video,
             'stream' => $stream,
@@ -73,6 +77,7 @@ class DefaultController extends Controller
         $avatar = md5($user->getEmail());
 
         return $this->render('default/user.html.twig', [
+            'color' => $this->color,
             'user' => $user,
             'avatar' => $avatar,
             'meme' => $meme,

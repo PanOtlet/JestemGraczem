@@ -13,6 +13,9 @@ use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 
 class NewsController extends Controller
 {
+
+    protected $color = "orange";
+
     /**
      * @Route("/news", name="news")
      */
@@ -32,6 +35,7 @@ class NewsController extends Controller
 
         $rss = $this->getDoctrine()->getRepository('AppBundle:News')->findBy(['user' => $this->getUser()->getId()]);
         return $this->render('default/news.html.twig', [
+            'color' => $this->color,
             'rss' => $rss
         ]);
     }
@@ -77,6 +81,7 @@ class NewsController extends Controller
             ->addMeta('property', 'og:url', $this->get('router')->generate('news.add', [], UrlGeneratorInterface::ABSOLUTE_URL));
 
         return $this->render('default/newsadd.html.twig', [
+            'color' => $this->color,
             'form' => $form->createView(),
         ]);
     }

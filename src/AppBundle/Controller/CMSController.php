@@ -8,6 +8,9 @@ use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 
 class CMSController extends Controller
 {
+
+    protected $color = "red";
+
     /**
      * @Route("/{title}", name="cms")
      */
@@ -26,6 +29,7 @@ class CMSController extends Controller
             ->addMeta('property', 'og:url', $this->get('router')->generate('cms', ['title' => $cms->getUrl()], UrlGeneratorInterface::ABSOLUTE_URL));
 
         return $this->render('CMS/index.html.twig', [
+            'color' => $this->color,
             'cms' => $cms
         ]);
     }

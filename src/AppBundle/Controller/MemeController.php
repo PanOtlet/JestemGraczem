@@ -11,6 +11,9 @@ use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 
 class MemeController extends Controller
 {
+
+    protected $color = "green";
+
     /**
      * @Route("/meme/img/{id}", name="meme.id")
      */
@@ -35,6 +38,7 @@ class MemeController extends Controller
             ->addMeta('property', 'og:url', $this->get('router')->generate('meme.id', ['id' => $id], UrlGeneratorInterface::ABSOLUTE_URL));
 
         return $this->render('meme/mem.html.twig', [
+            'color' => $this->color,
             'mem' => $mem
         ]);
     }
@@ -100,6 +104,7 @@ class MemeController extends Controller
         }
 
         return $this->render('meme/add.html.twig', [
+            'color' => $this->color,
             'form' => $form->createView(),
         ]);
     }
@@ -139,6 +144,7 @@ class MemeController extends Controller
             ->addMeta('property', 'og:url', $this->get('router')->generate('meme.wait', ['page' => $page], UrlGeneratorInterface::ABSOLUTE_URL));
 
         return $this->render('meme/wait.html.twig', [
+            'color' => $this->color,
             'meme' => $meme,
             'page' => $page
         ]);
@@ -179,6 +185,7 @@ class MemeController extends Controller
             ->addMeta('property', 'og:url', $this->get('router')->generate('meme', ['page' => $page], UrlGeneratorInterface::ABSOLUTE_URL));
 
         return $this->render('meme/index.html.twig', [
+            'color' => $this->color,
             'meme' => $meme,
             'page' => $page
         ]);

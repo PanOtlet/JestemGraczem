@@ -14,6 +14,9 @@ use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 
 class VideoController extends Controller
 {
+
+    protected $color = "green";
+
     /**
      * @Route("/video/add", name="video.add")
      */
