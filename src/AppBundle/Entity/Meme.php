@@ -26,6 +26,8 @@ class Meme
     /**
      * @var int
      *
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\User")
+     * @ORM\JoinColumn(name="username", referencedColumnName="id")
      * @ORM\Column(name="user", type="integer")
      */
     private $user;
