@@ -155,6 +155,13 @@ easy_admin:
                     - { property: 'last_login', label: 'admin.lastlogin', type: 'datetime'}
                     - { property: 'locked', label: 'admin.locked'}
                     - { property: 'enabled', label: 'admin.enabled'}
+            form:
+                fields:
+                    - { property: 'username', label: 'admin.username'}
+                    - { property: 'email', label: 'admin.email'}
+                    - { property: 'locked', label: 'admin.locked'}
+                    - { property: 'enabled', label: 'admin.enabled'}
+                    - { property: 'partner', label: 'admin.partner'}
         RSS: AppBundle\Entity\News
     site_name: 'JG Admin'
     design:

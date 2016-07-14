@@ -87,10 +87,10 @@
                         <p>{{ 'account.joincomunity'|trans }}
                             <a href="{{ url('fos_user_registration_register') }}">
                                 <span>{{ 'account.register'|trans }}</span>
-                            </a>{# {{ 'account.now'|trans }} #}
-                            {#<a href="{{ url('fos_user_resetting_request') }}">#}
-                            {#<span>{{ 'account.forgotpass'|trans }}</span>#}
-                            {#</a>#}
+                            </a> {{ 'account.now'|trans }}
+                            <a href="{{ url('fos_user_resetting_request') }}">
+                            <span>{{ 'account.forgotpass'|trans }}</span>
+                            </a>
                         </p>
                     </nav>
                     <nav class="nav navbar-nav pull-xs-right">
