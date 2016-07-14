@@ -135,7 +135,7 @@ easy_admin:
                     - { property: 'accept', label: 'admin.accept'}
                     - { property: 'title', label: 'admin.title'}
                     - { property: 'source', label: 'admin.source'}
-                    - { property: 'url', type: 'image', base_path: 'http://localhost/jg/web/assets/mem/', label: 'admin.img' }
+                    - { property: 'url', type: 'image', base_path: 'http://jestemgraczem.pl/assets/mem/', label: 'admin.img' }
         YouTube:
             class: AppBundle\Entity\Video
             list:
