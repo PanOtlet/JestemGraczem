@@ -148,7 +148,11 @@
 
     {# Główny Navbar desktop #}
     <nav class="hidden-md-down" style="margin-bottom: -16px;">
-        <div class="bar-nav c-{{ color }}" ></div>
+        {% if color is defined %}
+            <div class="bar-nav c-{{ color }}"></div>
+        {% else %}
+            <div class="bar-nav c-red"></div>
+        {% endif %}
         <div class="container">
             <div class="row">
                 <div class="col-md-3 p-x-0" style="height: 56px">
@@ -246,9 +250,10 @@
                 </div>
                 <div class="modal-body">
                     <div class="btn-group btn-group-justified">
-                        <a  href="{{ url('meme') }}" type="button"
-                            class="btn btn-primary btn-lg">{{ 'nav.meme'|trans }}</a>
-                        <button type="button" class="btn btn-primary btn-lg dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <a href="{{ url('meme') }}" type="button"
+                           class="btn btn-primary btn-lg">{{ 'nav.meme'|trans }}</a>
+                        <button type="button" class="btn btn-primary btn-lg dropdown-toggle" data-toggle="dropdown"
+                                aria-haspopup="true" aria-expanded="false">
                             <span class="sr-only">Toggle Dropdown</span>
                         </button>
                         <div class="dropdown-menu">
@@ -260,9 +265,10 @@
                     <a href="{{ url('stream') }}" type="button"
                        class="btn btn-primary btn-lg">{{ 'nav.streams'|trans }}</a>
                     <div class="btn-group btn-group-justified">
-                        <a  href="{{ url('video') }}" type="button"
-                            class="btn btn-primary btn-lg">{{ 'nav.video'|trans }}</a>
-                        <button type="button" class="btn btn-primary btn-lg dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <a href="{{ url('video') }}" type="button"
+                           class="btn btn-primary btn-lg">{{ 'nav.video'|trans }}</a>
+                        <button type="button" class="btn btn-primary btn-lg dropdown-toggle" data-toggle="dropdown"
+                                aria-haspopup="true" aria-expanded="false">
                             <span class="sr-only">Toggle Dropdown</span>
                         </button>
                         <div class="dropdown-menu">
@@ -282,126 +288,130 @@
 {% block body %}{% endblock %}
 
 {% block footer %}
-    <div class="pre-footer m-t-2">
-        <div class="container">
-            <div class="row p-y-1">
-                <div class="col-md-3">
-                    <p class="m-b-1 dots btn-footer" style="border-color: #e91e63;">
-                        <span class="p-x-1 text">TOURNAMENTS<span style="color: #e91e63">AREA</span></span>
-                    </p>
-                    <div class="pre-f-p">
-                        <p>{{ 'tournament.calendarium'|trans }}</p>
-                        <p>{{ 'tournament.create'|trans }}</p>
-                        <p>{{ 'team.list'|trans }}</p>
-                    </div>
+<div class="pre-footer m-t-2">
+    <div class="container">
+        <div class="row p-y-1">
+            <div class="col-md-3">
+                <p class="m-b-1 dots btn-footer" style="border-color: #e91e63;">
+                    <span class="p-x-1 text">TOURNAMENTS<span style="color: #e91e63">AREA</span></span>
+                </p>
+                <div class="pre-f-p">
+                    <p>{{ 'tournament.calendarium'|trans }}</p>
+                    <p>{{ 'tournament.create'|trans }}</p>
+                    <p>{{ 'team.list'|trans }}</p>
                 </div>
-                <div class="col-md-3">
-                    <p class="m-b-1 dots btn-footer" style="border-color: #ff9800;">
-                        <span class="p-x-1 text">GAMES<span style="color: #ff9800">AREA</span></span>
-                    </p>
-                    <div class="pre-f-p">
-                        <p><a href="{{ url('news') }}">{{ 'nav.news'|trans }}</a></p>
-                        <p><a href="{{ url('news.add') }}">{{ 'nav.addrss'|trans }}</a></p>
-                    </div>
+            </div>
+            <div class="col-md-3">
+                <p class="m-b-1 dots btn-footer" style="border-color: #ff9800;">
+                    <span class="p-x-1 text">GAMES<span style="color: #ff9800">AREA</span></span>
+                </p>
+                <div class="pre-f-p">
+                    <p><a href="{{ url('news') }}">{{ 'nav.news'|trans }}</a></p>
+                    <p><a href="{{ url('news.add') }}">{{ 'nav.addrss'|trans }}</a></p>
                 </div>
-                <div class="col-md-3">
-                    <p class="m-b-1 dots btn-footer" style="border-color: #8bc34a;">
-                        <span class="p-x-1 text">FANS<span style="color: #8bc34a">AREA</span></span>
-                    </p>
-                    <div class="pre-f-p">
-                        <p><a href="{{ url('stream') }}">{{ 'nav.streams'|trans }}</a></p>
-                        <p><a href="{{ url('meme') }}">{{ 'nav.meme'|trans }}</a></p>
-                        <p><a href="{{ url('video') }}">{{ 'nav.video'|trans }}</a></p>
-                    </div>
+            </div>
+            <div class="col-md-3">
+                <p class="m-b-1 dots btn-footer" style="border-color: #8bc34a;">
+                    <span class="p-x-1 text">FANS<span style="color: #8bc34a">AREA</span></span>
+                </p>
+                <div class="pre-f-p">
+                    <p><a href="{{ url('stream') }}">{{ 'nav.streams'|trans }}</a></p>
+                    <p><a href="{{ url('meme') }}">{{ 'nav.meme'|trans }}</a></p>
+                    <p><a href="{{ url('video') }}">{{ 'nav.video'|trans }}</a></p>
                 </div>
-                <div class="col-md-3">
-                    <p class="m-b-1 dots btn-footer" style="border-color: #8a8b8a;">
-                        <span class="p-x-1 text">SUPPORT<span style="color: #8a8b8a">AREA</span></span>
+            </div>
+            <div class="col-md-3">
+                <p class="m-b-1 dots btn-footer" style="border-color: #8a8b8a;">
+                    <span class="p-x-1 text">SUPPORT<span style="color: #8a8b8a">AREA</span></span>
+                </p>
+                <div class="pre-f-p">
+                    <p>
+                        <a href="{{ url('redirect', {'url': 'http://blog.jestemgraczem.pl'}) }}">{{ 'nav.blog'|trans }}</a>
                     </p>
-                    <div class="pre-f-p">
-                        <p>
-                            <a href="{{ url('redirect', {'url': 'http://blog.jestemgraczem.pl'}) }}">{{ 'nav.blog'|trans }}</a>
-                        </p>
-                        <p><a href="{{ url('cms',{'title': 'support'}) }}">{{ 'nav.support'|trans }}</a></p>
-                        <p><a href="{{ url('cms',{'title': 'regulamin'}) }}">{{ 'nav.rules'|trans }}</a></p>
-                        <p><a href="{{ url('cms',{'title': 'jak-stworzyc-turniej'}) }}">{{ 'nav.howto'|trans }}</a></p>
-                        <p><a href="{{ url('cms',{'title': 'program-partnerski'}) }}">{{ 'nav.ppartner'|trans }}</a></p>
-                    </div>
+                    <p><a href="{{ url('cms',{'title': 'support'}) }}">{{ 'nav.support'|trans }}</a></p>
+                    <p><a href="{{ url('cms',{'title': 'regulamin'}) }}">{{ 'nav.rules'|trans }}</a></p>
+                    <p><a href="{{ url('cms',{'title': 'jak-stworzyc-turniej'}) }}">{{ 'nav.howto'|trans }}</a></p>
+                    <p><a href="{{ url('cms',{'title': 'program-partnerski'}) }}">{{ 'nav.ppartner'|trans }}</a></p>
                 </div>
             </div>
         </div>
     </div>
-    <footer class="p-y-1 c-{{ color }}">
+</div>
+{% if color is defined %}
+<footer class="p-y-1 c-{{ color }}">
+    {% else %}
+    <footer class="p-y-1 c-red">
+        {% endif %}
         <p class="text-xs-center m-y-0">
             Copyright &copy; {{ "now"|date('Y') }} <span style="color: #000000">JestemGraczem.pl</span>
         </p>
     </footer>
-{% endblock %}
+    {% endblock %}
 
-{% block javascripts %}
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
-    <script async src="{{ asset('assets/js/tether.min.js') }}"></script>
-    <script async src="{{ asset('assets/js/bootstrap.min.js') }}"></script>
-    <script async src="https://use.fontawesome.com/c0b3ee6d21.js"></script>
+    {% block javascripts %}
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+        <script async src="{{ asset('assets/js/tether.min.js') }}"></script>
+        <script async src="{{ asset('assets/js/bootstrap.min.js') }}"></script>
+        <script async src="https://use.fontawesome.com/c0b3ee6d21.js"></script>
 
-    <script type="text/javascript">
-        window.doorbellOptions = {
-            appKey: 'eFPzjPWMWqQC1VUSI4EZkKJIEZPpptfouJbYhkDtSerECdUi7QKz7QWclpzZnFCr'
-        };
-        (function (w, d, t) {
-            var hasLoaded = false;
+        <script type="text/javascript">
+            window.doorbellOptions = {
+                appKey: 'eFPzjPWMWqQC1VUSI4EZkKJIEZPpptfouJbYhkDtSerECdUi7QKz7QWclpzZnFCr'
+            };
+            (function (w, d, t) {
+                var hasLoaded = false;
 
-            function l() {
-                if (hasLoaded) {
-                    return;
+                function l() {
+                    if (hasLoaded) {
+                        return;
+                    }
+                    hasLoaded = true;
+                    window.doorbellOptions.windowLoaded = true;
+                    var g = d.createElement(t);
+                    g.id = 'doorbellScript';
+                    g.type = 'text/javascript';
+                    g.async = true;
+                    g.src = 'https://embed.doorbell.io/button/3971?t=' + (new Date().getTime());
+                    (d.getElementsByTagName('head')[0] || d.getElementsByTagName('body')[0]).appendChild(g);
                 }
-                hasLoaded = true;
-                window.doorbellOptions.windowLoaded = true;
-                var g = d.createElement(t);
-                g.id = 'doorbellScript';
-                g.type = 'text/javascript';
-                g.async = true;
-                g.src = 'https://embed.doorbell.io/button/3971?t=' + (new Date().getTime());
-                (d.getElementsByTagName('head')[0] || d.getElementsByTagName('body')[0]).appendChild(g);
-            }
 
-            if (w.attachEvent) {
-                w.attachEvent('onload', l);
-            } else if (w.addEventListener) {
-                w.addEventListener('load', l, false);
-            } else {
-                l();
-            }
-            if (d.readyState == 'complete') {
-                l();
-            }
-        }(window, document, 'script'));
-    </script>
+                if (w.attachEvent) {
+                    w.attachEvent('onload', l);
+                } else if (w.addEventListener) {
+                    w.addEventListener('load', l, false);
+                } else {
+                    l();
+                }
+                if (d.readyState == 'complete') {
+                    l();
+                }
+            }(window, document, 'script'));
+        </script>
 
-    {% if app.session.flashBag.has('error') or app.session.flashBag.has('info') or app.session.flashBag.has('warning') or app.session.flashBag.has('success') %}
-    <script src="{{ asset('assets/js/sweetalert.min.js') }}"></script>
-<link rel="stylesheet" type="text/css" href="{{ asset('assets/js/sweetalert.css') }}" property="stylesheet">
-    {% endif %}
+        {% if app.session.flashBag.has('error') or app.session.flashBag.has('info') or app.session.flashBag.has('warning') or app.session.flashBag.has('success') %}
+        <script src="{{ asset('assets/js/sweetalert.min.js') }}"></script>
+    <link rel="stylesheet" type="text/css" href="{{ asset('assets/js/sweetalert.css') }}" property="stylesheet">
+        {% endif %}
 
-    {% for flash_message in app.session.flashBag.get('error') %}
-    <script>sweetAlert("Oops...", "{{ flash_message }}", "error");</script>
-    {% endfor %}
+        {% for flash_message in app.session.flashBag.get('error') %}
+        <script>sweetAlert("Oops...", "{{ flash_message }}", "error");</script>
+        {% endfor %}
 
-    {% for flash_message in app.session.flashBag.get('info') %}
-    <script>sweetAlert("Informacja", "{{ flash_message }}", "info");</script>
-    {% endfor %}
+        {% for flash_message in app.session.flashBag.get('info') %}
+        <script>sweetAlert("Informacja", "{{ flash_message }}", "info");</script>
+        {% endfor %}
 
-    {% for flash_message in app.session.flashBag.get('warning') %}
-    <script>sweetAlert("Ostrzeżenie", "{{ flash_message }}", "warning");</script>
-    {% endfor %}
+        {% for flash_message in app.session.flashBag.get('warning') %}
+        <script>sweetAlert("Ostrzeżenie", "{{ flash_message }}", "warning");</script>
+        {% endfor %}
 
-    {% for flash_message in app.session.flashBag.get('success') %}
-    <script>sweetAlert("Jupi!", "{{ flash_message }}", "success");</script>
-    {% endfor %}
+        {% for flash_message in app.session.flashBag.get('success') %}
+        <script>sweetAlert("Jupi!", "{{ flash_message }}", "success");</script>
+        {% endfor %}
 
-{% endblock %}
+    {% endblock %}
 
-{{ include('adblock.html.twig') }}
+    {{ include('adblock.html.twig') }}
 
 </body>
 </html>
