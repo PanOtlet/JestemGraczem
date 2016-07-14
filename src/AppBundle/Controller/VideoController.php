@@ -51,8 +51,13 @@ class VideoController extends Controller
             $data->setUser($this->getUser()->getId());
             $data->setTitle($form->get('title')->getViewData());
             $data->setVideoid($videoIdParsed['v']);
-            $data->setStatus(0);
-            $data->setAccept(false);
+            if ($this->getUser()->getPartner() == 1) {
+                $data->setStatus(2);
+                $data->setAccept(true);
+            } else {
+                $data->setStatus(0);
+                $data->setAccept(false);
+            }
             $data->setDateAdd(new \DateTime("now"));
 
             $em = $this->getDoctrine()->getManager();
@@ -74,6 +79,7 @@ class VideoController extends Controller
             ->addMeta('property', 'og:url', $this->get('router')->generate('video.add', [], UrlGeneratorInterface::ABSOLUTE_URL));
 
         return $this->render('video/add.html.twig', [
+            'color' => $this->color,
             'form' => $form->createView(),
         ]);
     }
@@ -108,6 +114,7 @@ class VideoController extends Controller
             ->addMeta('property', 'og:url', $this->get('router')->generate('video.wait', ['page' => $page], UrlGeneratorInterface::ABSOLUTE_URL));
 
         return $this->render('video/index.html.twig', [
+            'color' => $this->color,
             'videos' => $video,
             'page' => $page
         ]);
@@ -145,6 +152,7 @@ class VideoController extends Controller
             ->addMeta('property', 'og:url', $this->get('router')->generate('video.wait', ['page' => $page], UrlGeneratorInterface::ABSOLUTE_URL));
 
         return $this->render('video/index.html.twig', [
+            'color' => $this->color,
             'videos' => $video,
             'promoted' => $promoted,
             'page' => $page
@@ -175,6 +183,7 @@ class VideoController extends Controller
             ->addMeta('property', 'og:url', $this->get('router')->generate('video.id', ['id' => $id], UrlGeneratorInterface::ABSOLUTE_URL));
 
         return $this->render('video/tv.html.twig', [
+            'color' => $this->color,
             'video' => $video
         ]);
     }

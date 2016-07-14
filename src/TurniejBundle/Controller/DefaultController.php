@@ -8,6 +8,9 @@ use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 
 class DefaultController extends Controller
 {
+
+    protected $color = "magenta";
+
     /**
      * @Route("/", name="tournament")
      */
@@ -19,6 +22,8 @@ class DefaultController extends Controller
             ->addMeta('property', 'og:title', 'Turnieje')
             ->addMeta('property', 'og:description', 'Więcej informacji wkrótce!')
             ->addMeta('property', 'og:url', $this->get('router')->generate('tournament', [], UrlGeneratorInterface::ABSOLUTE_URL));
-        return $this->render('tournament/index.html.twig');
+        return $this->render('tournament/index.html.twig',[
+            'color' => $this->color,
+        ]);
     }
 }

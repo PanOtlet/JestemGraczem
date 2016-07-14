@@ -14,6 +14,9 @@ use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 
 class TeamController extends Controller
 {
+
+    protected $color = "magenta";
+
     /**
      * @Route("/add", name="team.add")
      */
@@ -78,6 +81,7 @@ class TeamController extends Controller
         }
 
         return $this->render('team/add.html.twig', [
+            'color' => $this->color,
             'form' => $form->createView(),
         ]);
 
@@ -116,6 +120,7 @@ class TeamController extends Controller
         $division = $this->getDoctrine()->getRepository('TurniejBundle:Division')->findBy(['team' => $team->getId()]);
 
         return $this->render('team/team.html.twig', [
+            'color' => $this->color,
             'team' => $team,
             'divisions' => $division,
             'owner' => $owner,
@@ -192,6 +197,7 @@ class TeamController extends Controller
         }
 
         return $this->render('team/edit.html.twig', [
+            'color' => $this->color,
             'form' => $form->createView(),
         ]);
     }
