@@ -9,7 +9,7 @@ use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 class DefaultController extends Controller
 {
 
-    protected $color = "red";
+    protected $color = "green";
 
     /**
      * @Route("/", name="homepage")
