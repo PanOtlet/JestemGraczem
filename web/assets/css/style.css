@@ -2,7 +2,22 @@ body {
     background-color: #fbfbfb;
 }
 
-
+.bar-nav{
+    margin-bottom: -40px;
+    height: 40px;
+}
+.c-green{
+    background-color: #8bc34a;
+}
+.c-red{
+    background-color: #FF0000;
+}
+.c-orange{
+    background-color: #ff9903;
+}
+.c-magenta{
+    background-color: #e91e63;
+}
 .trap{
     width: 100%;
     height: 54px;
