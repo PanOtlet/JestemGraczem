@@ -177,6 +177,13 @@ class MemeController extends Controller
             throw $this->createNotFoundException('Kurde, nie znaleźliśmy tego co poszukujesz :(');
         }
 
+        $promoted = $em->createQueryBuilder('e')
+            ->where('e.promoted = true')
+            ->orderBy('e.id','DESC')
+            ->setMaxResults(10)
+            ->getQuery()
+            ->getResult();
+
         $seo = $this->container->get('sonata.seo.page');
         $seo->setTitle('Najlepsze memy! Strona ' . $page . ' :: JestemGraczem.pl')
             ->addMeta('name', 'description', 'Najlepsze gamingowe memy w całym internecie! Strona ' . $page)
@@ -187,7 +194,8 @@ class MemeController extends Controller
         return $this->render('meme/index.html.twig', [
             'color' => $this->color,
             'meme' => $meme,
-            'page' => $page
+            'page' => $page,
+            'promoted' => $promoted
         ]);
     }
 }

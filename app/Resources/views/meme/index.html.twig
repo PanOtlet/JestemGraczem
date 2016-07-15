@@ -76,10 +76,18 @@
                 {% endif %}
             </div>
             <div class="col-md-3">
-                <a href="{{ url('meme.wait') }}" type="button" class="btn btn-green btn-block"><span class="p-x-3">{{ 'button.waitingroom'|trans }}</span></a>
-                {% block sidebar %}{{ parent() }}{% endblock %}
+                <span class="label label-pill label-danger center-block">Polecane!</span>
+                {% for mem in promoted %}
+                    <a href="{{ url('meme.id',{'id': mem.id}) }}">
+                        <img src="{{ asset('assets/mem/') ~ mem.url }}" alt="{{ mem.title }}" class="img-rounded img-responsive" style="margin-top: 10px">
+                    </a>
+                {% endfor %}
             </div>
             <div class="col-md-3">
+                <a href="{{ url('meme.wait') }}" type="button" class="btn btn-green btn-block"><span class="p-x-3">{{ 'button.waitingroom'|trans }}</span></a>
+                {% block sidebar %}
+                    {{ parent() }}
+                {% endblock %}
                 {% block adsidebar %}{{ parent() }}{% endblock %}
             </div>
         </div>
