@@ -28,7 +28,7 @@
                                 style="color: #303030;">STREAM</span></span>
                 </div>
                 <div class="grey-box p-y-1 p-l-1 m-b-1">
-                    <a href="https://twitch.tv/?channel={{ user.twitch }}">{{ user.twitch }}</a>
+                    <a href="https://twitch.tv/{{ user.twitch }}">{{ user.twitch }}</a>
                 </div>
 
                 <div class="btn-white-lg dots m-b-0">
@@ -84,12 +84,12 @@
                 </div>
 
 
-                <div class="btn-white-lp dots m-b-0">
-                    <span class="p-x-1 text">
-                        <i class="fa fa-users" aria-hidden="true"></i> {{ 'button.my.my'|trans }}
-                        <span style="color: #303030;">{{ 'button.my.teams'|trans }}</span>
-                    </span>
-                </div>
+                {#<div class="btn-white-lp dots m-b-0">#}
+                    {#<span class="p-x-1 text">#}
+                        {#<i class="fa fa-users" aria-hidden="true"></i> {{ 'button.my.my'|trans }}#}
+                        {#<span style="color: #303030;">{{ 'button.my.teams'|trans }}</span>#}
+                    {#</span>#}
+                {#</div>#}
                 <div class="grey-box p-y-1 p-l-1 m-b-1">
                     lorep ipsum
                 </div>
@@ -100,7 +100,7 @@
                         <div class="panel-body">
                             <div class="embed-responsive embed-responsive-16by9">
                                 <iframe class="embed-responsive-item"
-                                        src="https://twitch.tv/{{ user.twitch }}">
+                                        src="https://player.twitch.tv/?channel={{ user.twitch }}">
                                 </iframe>
                             </div>
                         </div>
