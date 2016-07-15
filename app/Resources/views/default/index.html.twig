@@ -17,14 +17,14 @@
                     <div class="row p-y-2">
                         <div class="col-xs-2 p-r-0">
                             <img id="avatar" class="img-fluid pull-xl-left p-b-0"
-                                 src="https://www.gravatar.com/avatar/{{ avatar }}?s=48">
+                                 src="https://www.gravatar.com/avatar/{{ avatar }}?s=48" alt="Gravatar Avatar">
                         </div>
                         <div class="col-xs-8">
                             <h3 id="display_name" class="text-xs-left font-weight-bold m-b-0">Brak</h3>
                             <p id="link" class="text-xs-left">Niestety nikt nie streamuje :(</p>
                         </div>
                         <div class="col-xs-2 p-l-0">
-                            <img id="game" class="img-fluid pull-xs-right p-b-0" src="">
+                            <img id="game" class="img-fluid pull-xs-right p-b-0" src="" alt="GameLogo">
                         </div>
                     </div>
                     <p id="description" class="text-justify">
@@ -72,7 +72,7 @@
                     <div class="row p-y-0 m-x-0 grey">
                         <div class="col-xs-1 p-x-0">
                             <img class="img-fluid pull-xl-left p-b-0 grey"
-                                 src="https://www.gravatar.com/avatar/{{ avatar }}?s=48">
+                                 src="https://www.gravatar.com/avatar/{{ avatar }}?s=48" alt="Gravatar Avatar">
                         </div>
                         <div class="col-xs-10 p-l-0">
                             <p class="text-xs-left  m-b-0" style="padding-top: 0.3rem;">
@@ -84,7 +84,7 @@
                         </div>
                         <div class="col-xs-1 p-x-0">
                             <img class="img-fluid pull-xs-right p-b-0 grey"
-                                 src="https://www.gravatar.com/avatar/{{ avatar }}?s=48">
+                                 src="https://www.gravatar.com/avatar/{{ avatar }}?s=48" alt="Gravatar Avatar">
                         </div>
                     </div>
                     <div class="btn-white p-l-1 p-y-06">{{ meme.title }}</div>
@@ -103,7 +103,8 @@
                         <div class="col-md-6 video">
                             <a href="{{ url('video.id', { 'id':vod.id }) }}">
                                 <img class="img-responsive"
-                                     src="http://img.youtube.com/vi/{{ vod.videoid }}/mqdefault.jpg">
+                                     src="http://img.youtube.com/vi/{{ vod.videoid }}/mqdefault.jpg"
+                                     alt="{{ vod.title }}">
                             </a>
                         </div>
                     {% endfor %}
@@ -165,8 +166,7 @@
             $("#" + name + "_status").html('ONLINE').css('font-weight', 'bold');
             $("#" + name + "_game").html(channel["game"]);
             $("#" + name + "_viewers").html(channel["viewers"]);
-            {#$("#" + name + "_img").html('<a href="{{ url('stream.id') }}/' + name + '"> <img class="img-responsive" src="https://static-cdn.jtvnw.net/previews-ttv/live_user_' + name + '-320x180.jpg"> </a>');#}
-            $("#" + name + "_img").html('<img onclick="topStream(\'' + name + '\',0)" class="img-responsive stream" src="https://static-cdn.jtvnw.net/previews-ttv/live_user_' + name + '-320x180.jpg" id="image' + name + '">');
+            $("#" + name + "_img").html('<img onclick="topStream(\'' + name + '\',0)" class="img-responsive stream" src="https://static-cdn.jtvnw.net/previews-ttv/live_user_' + name + '-320x180.jpg" id="image' + name + '" alt="' + name + '">');
         }
 
         function topStream(channel, type) {
