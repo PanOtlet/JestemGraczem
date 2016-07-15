@@ -75,7 +75,7 @@
                     <h1>Brak memów :( Smutek.jpg</h1>
                 {% endif %}
             </div>
-            <div class="col-md-3">
+            <div class="col-md-3 hidden-sm">
                 <span class="label label-pill label-danger center-block">Polecane!</span>
                 {% for mem in promoted %}
                     <a href="{{ url('meme.id',{'id': mem.id}) }}">
