@@ -14,7 +14,7 @@
     <div class="container p-t-5 p-b-2">
         {% include 'ad.html.twig' %}
         <div class="row">
-            <div class="col-md-8 col-sm-12">
+            <div class="col-md-6 col-sm-12">
                 {% if meme %}
                     {% for mem in meme %}
                         <div class="meme">
@@ -54,8 +54,11 @@
                     <h1>Brak memów :( Smutek.jpg</h1>
                 {% endif %}
             </div>
-            <div class="col-md-4 hidden-md-down">
+            <div class="col-md-3 hidden-md-down">
                 {{ include('navbar.html.twig') }}
+            </div>
+            <div class="col-md-3 hidden-md-down">
+                Reklama
             </div>
         </div>
     </div>

@@ -14,7 +14,7 @@
     <div class="container p-t-5 p-b-2">
         {% include 'ad.html.twig' %}
         <div class="row">
-            <div class="col-md-8">
+            <div class="col-md-6">
                 {% if meme %}
                     {% for mem in meme %}
                         {% if mem.url | slice(-4) == '.gif' %}
@@ -75,9 +75,12 @@
                     <h1>Brak memów :( Smutek.jpg</h1>
                 {% endif %}
             </div>
-            <div class="col-md-4">
+            <div class="col-md-3">
                 <a href="{{ url('meme.wait') }}" type="button" class="btn btn-green btn-block"><span class="p-x-3">{{ 'button.waitingroom'|trans }}</span></a>
                 {{ include('navbar.html.twig') }}
+            </div>
+            <div class="col-md-3">
+                REKLAMA
             </div>
         </div>
     </div>
