@@ -14,7 +14,7 @@
         </div>
     </div>
     <main class="container p-t-1">
-        {% include 'ad.html.twig' %}
+        {% block adbanner %}{{ parent() }}{% endblock %}
         <div class="row">
             <div class="col-xs-8">
                 <div class="row">
@@ -56,7 +56,7 @@
             </div>
             <div class="col-md-4">
                 <a href="{{ url('video.wait') }}" type="button" class="btn btn-green btn-block"><span class="p-x-3">{{ 'button.waitingroom'|trans }}</span></a>
-                {{ include('navbar.html.twig') }}
+                {% block sidebar %}{{ parent() }}{% endblock %}
             </div>
         </div>
     </main>

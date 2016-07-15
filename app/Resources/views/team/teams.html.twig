@@ -42,7 +42,7 @@
             {% endif %}
         </div>
         <div class="col-md-4">
-            {{ include('navbar.html.twig') }}
+            {% block sidebar %}{{ parent() }}{% endblock %}
         </div>
     </div>
 {% endblock %}

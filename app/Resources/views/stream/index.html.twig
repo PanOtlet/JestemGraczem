@@ -9,7 +9,7 @@
         </div>
     </div>
     <main class="container p-t-1">
-        {% include 'ad.html.twig' %}
+        {% block adbanner %}{{ parent() }}{% endblock %}
         <div class="row">
             <div class="col-xs-8">
                 <div class="row p-y-1" id="streams-container">
@@ -19,7 +19,7 @@
                 </div>
             </div>
             <div class="col-xs-4">
-                {{ include('navbar.html.twig') }}
+                {% block sidebar %}{{ parent() }}{% endblock %}
             </div>
         </div>
     </main>

@@ -56,7 +56,7 @@
         </div>
 
         <div class="container-fluid p-t-1">
-            {% include 'ad.html.twig' %}
+            {% block adbanner %}{{ parent() }}{% endblock %}
             {#<img class="img-fluid center-block" src="{{ asset('assets/img/ad.png') }}">#}
         </div>
 
