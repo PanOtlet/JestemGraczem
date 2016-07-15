@@ -96,8 +96,8 @@ crashlytics.properties
 crashlytics-build.properties
 fabric.properties
 
-web/assets/user/profilepics/*
-web/assets/teams/*
+web/assets/user/
+web/assets/team/
 web/assets/mem/
 deploy.php
 composer.lock

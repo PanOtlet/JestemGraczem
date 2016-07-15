@@ -84,7 +84,6 @@ class TeamController extends Controller
             'color' => $this->color,
             'form' => $form->createView(),
         ]);
-
     }
 
     /**
@@ -112,7 +111,7 @@ class TeamController extends Controller
         $seo = $this->container->get('sonata.seo.page');
         $seo->setTitle($team->getName() . ' :: JestemGraczem.pl')
             ->addMeta('name', 'description', $team->getShortdesc())
-            ->addMeta('property', 'og:title', $team->getName())
+            ->addMeta('property', 'og:title', $team->getName() . ' :: JestemGraczem.pl')
             ->addMeta('property', 'og:description', $team->getShortdesc())
             ->addMeta('property', 'og:url', $this->get('router')->generate('team', ['tag' => $team->getTag()], UrlGeneratorInterface::ABSOLUTE_URL));
 
@@ -164,12 +163,6 @@ class TeamController extends Controller
             ->add('shortdesc', TextareaType::class, [
                 'label' => 'team.shortdesc'
             ])
-//            ->add('logofile', NULL, [
-//                'label' => 'team.logo',
-//                'attr' => [
-//                    'class' => 'form-control-file'
-//                ]
-//            ])
             ->add('save', SubmitType::class, [
                 'label' => 'save',
                 'attr' => [

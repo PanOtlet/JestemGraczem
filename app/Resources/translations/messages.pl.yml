@@ -58,6 +58,7 @@ team:
     pass: 'Hasło dołączenia'
     shortdesc: 'Skrócony opis drużyny'
     list: 'Lista drużyn'
+    join: 'Dołącz'
 mem:
     title: 'Tytuł mema'
     source: 'Źródło'

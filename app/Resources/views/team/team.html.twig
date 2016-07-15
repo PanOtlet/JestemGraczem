@@ -44,10 +44,11 @@
                     <span style="color: #303030;">Tag: </span>{{ team.tag }}
                 </div>
                 {#<div class="grey-box p-y-1 p-l-1 m-b-1">#}
-                    {#siew siew#}
+                {#siew siew#}
                 {#</div>#}
                 <div class="btn-white-lp dots m-b-0">
-                    <span class="p-x-1 text">{{ 'button.my.short'|trans }}<span style="color: #303030;">{{ 'button.my.desc'|trans }}</span></span>
+                    <span class="p-x-1 text">{{ 'button.my.short'|trans }}<span
+                                style="color: #303030;">{{ 'button.my.desc'|trans }}</span></span>
                 </div>
                 <div class="grey-box p-y-1 p-l-1 m-b-1">
                     <p>{{ team.shortdesc }}</p>
@@ -64,25 +65,27 @@
                     {% for division in divisions %}
                         <div class="container-fluid">
 
-                            {% if app.user and team.owner == app.user.id %}
+                            {#{% if app.user and team.owner == app.user.id %}#}
+                            {#<div class="btn-white-lp dots m-b-0">#}
+                            {#<span class="p-x-1 text">#}
+                            {#<i class="fa fa-users" aria-hidden="true"></i>#}
+                            {#<span style="color: #303030;">{{ division.tag }}</span>: <span style="color: #cccccc;">{{ division.name }}</span>#}
+                            {#</span>#}
+                            {#{% else %}#}
                             <div class="btn-white-lp dots m-b-0">
-                                <span class="p-x-1 text">
-                                    <i class="fa fa-users" aria-hidden="true"></i>
-                                    <span style="color: #303030;">{{ division.tag }}</span>: <span style="color: #cccccc;">{{ division.name }}</span>
-                                </span>
-                                {% else %}
-                                <div class="btn-white-lp dots m-b-0">
                                     <span class="p-x-1 text">
                                     <i class="fa fa-users" aria-hidden="true"></i>
-                                        {{ team.name }}: <span style="color: #cccccc;">{{ division.name }}</span>
+                                        <a href="{{ url('team.join.tag',{'tag':division.tag}) }}">{{ 'team.join'|trans }}</a> <span
+                                                style="color: #cccccc;">{{ division.name }}</span>
                                 </span>
-                            {% endif %}
+                                {#{% endif %}#}
                             </div>
                             <div class="row m-t-1">
                                 {% if division.members %}
                                     {% for member in division.members %}
                                         <div class="col-md-3">
-                                            <img src="https://www.gravatar.com/avatar/{{ hash.hashmd5(member.user) }}?s=2048" class="img-responsive">
+                                            <img src="https://www.gravatar.com/avatar/{{ hash.hashmd5(member.user) }}?s=2048"
+                                                 class="img-responsive">
                                             <div class="btn-white p-y-06 text-ta text-xs-center">
                                                 <p>{{ member.user }}</p>
                                             </div>
@@ -97,18 +100,18 @@
                             </div>
 
                             {#<div class="teams">#}
-                                {#<div class="t-img">#}
-                                    {#<a href="{{ url('division',{'id': division.id}) }}">#}
-                                        {#<img src="{{ asset('assets/img/lol_50.png') }}" class="img-responsive">#}
-                                    {#</a>#}
-                                {#</div>#}
-                                {#<div class="t-title">#}
-                                    {#<a href="{{ url('division',{'id': division.id}) }}">#}
-                                        {#<h3>#}
-                                            {#{{ division.name }}#}
-                                        {#</h3>#}
-                                    {#</a>#}
-                                {#</div>#}
+                            {#<div class="t-img">#}
+                            {#<a href="{{ url('division',{'id': division.id}) }}">#}
+                            {#<img src="{{ asset('assets/img/lol_50.png') }}" class="img-responsive">#}
+                            {#</a>#}
+                            {#</div>#}
+                            {#<div class="t-title">#}
+                            {#<a href="{{ url('division',{'id': division.id}) }}">#}
+                            {#<h3>#}
+                            {#{{ division.name }}#}
+                            {#</h3>#}
+                            {#</a>#}
+                            {#</div>#}
                             {#</div>#}
                         </div>
                     {% endfor %}

@@ -171,6 +171,89 @@ class DivisionController extends Controller
     }
 
     /**
+     * @Route("/join/{tag}", name="team.join.tag")
+     */
+    public function joinTagAction($tag = NULL, Request $request)
+    {
+
+        $team = new Division();
+
+        $form = $this->createFormBuilder($team)
+            ->add('pass', NULL, [
+                'label' => 'team.pass'
+            ])
+            ->add('save', SubmitType::class, [
+                'label' => 'form.add',
+                'attr' => [
+                    'class' => 'btn-raised btn-danger'
+                ]
+            ])
+            ->getForm();
+
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+
+            $em = $this->getDoctrine()->getManager();
+
+            $division = $this->getDoctrine()->getRepository('TurniejBundle:Division')->findOneBy([
+                'tag' => $tag,
+                'pass' => $form->get('pass')->getViewData()
+            ]);
+
+            if ($division == NULL) {
+                $this->addFlash(
+                    'danger',
+                    'Źle wprowadzona nazwa lub hasło! Upewnij się, że podajesz poprawne dane!'
+                );
+                return $this->redirectToRoute('team.join');
+            }
+
+            $members = $division->getMembers();
+
+            if (is_array($members)) {
+                foreach ($members as $member) {
+                    if ($member['user'] == $this->getUser()->getUsername()) {
+                        $this->addFlash(
+                            'danger',
+                            'Już jesteś w drużynie!'
+                        );
+                        return $this->redirectToRoute('division', ['id' => $division->getName()]);
+                    }
+                }
+
+                $members[] = [
+                    'user' => $this->getUser()->getUsername(),
+                    'role' => 'Nowy'
+                ];
+
+            } else {
+                $members = [
+                    [
+                        'user' => $this->getUser()->getUsername(),
+                        'role' => 'Nowy'
+                    ],
+                ];
+            }
+
+            $division->setMembers($members);
+
+            $em->flush();
+
+            $this->addFlash(
+                'danger',
+                'Gratulacje! Dostałeś się do drużyny!'
+            );
+            return $this->redirectToRoute('team');
+        }
+
+        return $this->render('team/join.html.twig', [
+            'color' => $this->color,
+            'form' => $form->createView(),
+        ]);
+    }
+
+    /**
      * @Route("/{id}", name="division")
      */
     public function divisionAction($id = NULL)
