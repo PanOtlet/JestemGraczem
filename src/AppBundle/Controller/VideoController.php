@@ -52,10 +52,10 @@ class VideoController extends Controller
             $data->setTitle($form->get('title')->getViewData());
             $data->setVideoid($videoIdParsed['v']);
             if ($this->getUser()->getPartner() == 1) {
-                $data->setStatus(2);
+                $data->setPromoted(true);
                 $data->setAccept(true);
             } else {
-                $data->setStatus(0);
+                $data->setPromoted(false);
                 $data->setAccept(false);
             }
             $data->setDateAdd(new \DateTime("now"));
@@ -142,7 +142,7 @@ class VideoController extends Controller
             throw $this->createNotFoundException('Więcej filmów nie mamy :(');
         }
 
-        $promoted = $this->getDoctrine()->getRepository('AppBundle:Video')->findBy(['status' => 2]);
+        $promoted = $this->getDoctrine()->getRepository('AppBundle:Video')->findBy(['promoted' => true]);
 
         $seo = $this->container->get('sonata.seo.page');
         $seo->setTitle('Najciekawsze filmy w internecie! Strona ' . $page . ' :: JestemGraczem.pl')

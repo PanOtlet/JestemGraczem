@@ -112,7 +112,7 @@ class User extends BaseUser
     protected $profilePicturePath;
 
     /**
-     * @ORM\Column(type="integer", nullable=false)
+     * @ORM\Column(type="boolean", nullable=false)
      */
     protected $partner = 0;
 

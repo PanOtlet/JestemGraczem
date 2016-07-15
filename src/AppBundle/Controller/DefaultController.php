@@ -22,16 +22,16 @@ class DefaultController extends Controller
             ->addMeta('property', 'og:title', 'Strona główna :: JestemGraczem.pl')
             ->addMeta('property', 'og:url', $this->get('router')->generate('homepage', [], UrlGeneratorInterface::ABSOLUTE_URL));
 
-        $meme = $this->getDoctrine()->getRepository('AppBundle:Meme')->findOneBy(['status' => 2], ['id' => 'DESC']);
-        $stream = $this->getDoctrine()->getRepository('AppBundle:User')->findBy(['partner' => 1]);
+        $meme = $this->getDoctrine()->getRepository('AppBundle:Meme')->findOneBy(['promoted' => true], ['id' => 'DESC']);
+        $stream = $this->getDoctrine()->getRepository('AppBundle:User')->findBy(['partner' => true]);
 
         $video = $this->getDoctrine()->getRepository('AppBundle:Video')->createQueryBuilder('m')
-            ->where('m.accept = 1')
+            ->where('m.promoted = 1')
             ->orderBy('m.id', 'DESC')
             ->setMaxResults(6)
             ->getQuery()->getResult();
 
-        $avatar = ($this->getUser()) ? md5($this->getUser()->getEmail()) : 23;
+        $avatar = ($this->getUser()) ? md5($this->getUser()->getEmail()) : md5('thejestemgraczemsquad@gmail.com');
 
         return $this->render('default/index.html.twig', [
             'color' => $this->color,

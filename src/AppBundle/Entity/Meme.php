@@ -88,9 +88,9 @@ class Meme
     /**
      * @var int
      *
-     * @ORM\Column(name="status", type="integer")
+     * @ORM\Column(name="promoted", type="boolean")
      */
-    private $status;
+    private $promoted;
 
     /**
      * @var boolean
@@ -283,27 +283,27 @@ class Meme
     }
 
     /**
-     * Set status
+     * Set promoted
      *
-     * @param integer $status
+     * @param boolean $promoted
      *
      * @return Meme
      */
-    public function setStatus($status)
+    public function setPromoted($promoted)
     {
-        $this->status = $status;
+        $this->promoted = $promoted;
 
         return $this;
     }
 
     /**
-     * Get status
+     * Get promoted
      *
-     * @return int
+     * @return boolean
      */
-    public function getStatus()
+    public function getPromoted()
     {
-        return $this->status;
+        return $this->promoted;
     }
 
     /**

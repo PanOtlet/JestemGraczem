@@ -133,6 +133,7 @@ easy_admin:
                 fields:
                     - 'id'
                     - { property: 'accept', label: 'admin.accept'}
+                    - { property: 'promoted', label: 'admin.promoted'}
                     - { property: 'title', label: 'admin.title'}
                     - { property: 'source', label: 'admin.source'}
                     - { property: 'url', type: 'image', base_path: 'http://jestemgraczem.pl/assets/mem/', label: 'admin.img' }
@@ -143,6 +144,7 @@ easy_admin:
                     - 'id'
                     - { property: 'title', label: 'admin.title'}
                     - { property: 'accept', label: 'admin.accept'}
+                    - { property: 'promoted', label: 'admin.promoted'}
                     - { property: 'videoid', label: 'admin.id'}
         Uzytkownicy:
             class: AppBundle\Entity\User
