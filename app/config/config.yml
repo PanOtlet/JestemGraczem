@@ -144,7 +144,6 @@ easy_admin:
                     - { property: 'title', label: 'admin.title'}
                     - { property: 'accept', label: 'admin.accept'}
                     - { property: 'videoid', label: 'admin.id'}
-                    - { property: 'videoid', type: 'image', base_path: 'http://img.youtube.com/vi/%1/mqdefault.jpg', label: 'admin.img' }
         Uzytkownicy:
             class: AppBundle\Entity\User
             list:
