@@ -101,3 +101,4 @@ web/assets/team/
 web/assets/mem/
 deploy.php
 composer.lock
+cgi-bin/
