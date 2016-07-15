@@ -1,6 +1,6 @@
 {% use 'blocks.html.twig' %}
 <!DOCTYPE html>
-<html>
+<html lang="pl">
 <head>
     {{ sonata_seo_metadatas() }}
 
@@ -348,89 +348,89 @@
 </div>
 {% if color is defined %}
 <footer class="p-y-1 c-{{ color }}">
-    {% else %}
-    <footer class="p-y-1 c-red">
-        {% endif %}
-        <p class="text-xs-center m-y-0">
-            Copyright &copy; {{ "now"|date('Y') }} <span style="color: #000000">JestemGraczem.pl</span>
-        </p>
-    </footer>
-    {% endblock %}
+{% else %}
+<footer class="p-y-1 c-red">
+{% endif %}
+    <p class="text-xs-center m-y-0">
+        Copyright &copy; {{ "now"|date('Y') }} <span style="color: #000000">JestemGraczem.pl</span>
+    </p>
+</footer>
+{% endblock %}
 
-    {% block javascripts %}
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
-        <script async src="{{ asset('assets/js/tether.min.js') }}"></script>
-        <script async src="{{ asset('assets/js/bootstrap.min.js') }}"></script>
-        <script async src="https://use.fontawesome.com/c0b3ee6d21.js"></script>
-        <script src="{{ asset('assets/js/jquery.cookiesdirective.js') }}"></script>
-        {% if app.session.flashBag.has('error') or app.session.flashBag.has('info') or app.session.flashBag.has('warning') or app.session.flashBag.has('success') %}
-        <script src="{{ asset('assets/js/sweetalert.min.js') }}"></script>
-        <link rel="stylesheet" type="text/css" href="{{ asset('assets/js/sweetalert.css') }}" property="stylesheet">
-        {% endif %}
+{% block javascripts %}
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+    <script async src="{{ asset('assets/js/tether.min.js') }}"></script>
+    <script async src="{{ asset('assets/js/bootstrap.min.js') }}"></script>
+    <script async src="https://use.fontawesome.com/c0b3ee6d21.js"></script>
+    <script src="{{ asset('assets/js/jquery.cookiesdirective.js') }}"></script>
+    {% if app.session.flashBag.has('error') or app.session.flashBag.has('info') or app.session.flashBag.has('warning') or app.session.flashBag.has('success') %}
+    <script src="{{ asset('assets/js/sweetalert.min.js') }}"></script>
+    <link rel="stylesheet" type="text/css" href="{{ asset('assets/js/sweetalert.css') }}" property="stylesheet">
+    {% endif %}
 
-        <script type="text/javascript">
-            $(document).ready(function () {
-                {% for flash_message in app.session.flashBag.get('error') %}
-                sweetAlert("Oops...", "{{ flash_message }}", "error");
-                {% endfor %}
+    <script type="text/javascript">
+        $(document).ready(function () {
+            {% for flash_message in app.session.flashBag.get('error') %}
+            sweetAlert("Oops...", "{{ flash_message }}", "error");
+            {% endfor %}
 
-                {% for flash_message in app.session.flashBag.get('info') %}
-                sweetAlert("Informacja", "{{ flash_message }}", "info");
-                {% endfor %}
+            {% for flash_message in app.session.flashBag.get('info') %}
+            sweetAlert("Informacja", "{{ flash_message }}", "info");
+            {% endfor %}
 
-                {% for flash_message in app.session.flashBag.get('warning') %}
-                sweetAlert("Ostrzeżenie", "{{ flash_message }}", "warning");
-                {% endfor %}
+            {% for flash_message in app.session.flashBag.get('warning') %}
+            sweetAlert("Ostrzeżenie", "{{ flash_message }}", "warning");
+            {% endfor %}
 
-                {% for flash_message in app.session.flashBag.get('success') %}
-                sweetAlert("Jupi!", "{{ flash_message }}", "success");
-                {% endfor %}
+            {% for flash_message in app.session.flashBag.get('success') %}
+            sweetAlert("Jupi!", "{{ flash_message }}", "success");
+            {% endfor %}
 
-                $.cookiesDirective({
-                    privacyPolicyUri: '{{ url('cms',{'title':'regulamin'}) }}',
-                    explicitConsent: false,
-                    position: 'top',
-                    backgroundColor: '#FF0000',
-                    linkColor: '#00FF00'
-                });
-
-                window.doorbellOptions = {
-                    appKey: 'eFPzjPWMWqQC1VUSI4EZkKJIEZPpptfouJbYhkDtSerECdUi7QKz7QWclpzZnFCr'
-                };
-                (function (w, d, t) {
-                    var hasLoaded = false;
-
-                    function l() {
-                        if (hasLoaded) {
-                            return;
-                        }
-                        hasLoaded = true;
-                        window.doorbellOptions.windowLoaded = true;
-                        var g = d.createElement(t);
-                        g.id = 'doorbellScript';
-                        g.type = 'text/javascript';
-                        g.async = true;
-                        g.src = 'https://embed.doorbell.io/button/3971?t=' + (new Date().getTime());
-                        (d.getElementsByTagName('head')[0] || d.getElementsByTagName('body')[0]).appendChild(g);
-                    }
-
-                    if (w.attachEvent) {
-                        w.attachEvent('onload', l);
-                    } else if (w.addEventListener) {
-                        w.addEventListener('load', l, false);
-                    } else {
-                        l();
-                    }
-                    if (d.readyState == 'complete') {
-                        l();
-                    }
-                }(window, document, 'script'));
+            $.cookiesDirective({
+                privacyPolicyUri: '{{ url('cms',{'title':'regulamin'}) }}',
+                explicitConsent: false,
+                position: 'top',
+                backgroundColor: '#FF0000',
+                linkColor: '#00FF00'
             });
-        </script>
 
-    {% endblock %}
+            window.doorbellOptions = {
+                appKey: 'eFPzjPWMWqQC1VUSI4EZkKJIEZPpptfouJbYhkDtSerECdUi7QKz7QWclpzZnFCr'
+            };
+            (function (w, d, t) {
+                var hasLoaded = false;
 
-    {{ include('adblock.html.twig') }}
+                function l() {
+                    if (hasLoaded) {
+                        return;
+                    }
+                    hasLoaded = true;
+                    window.doorbellOptions.windowLoaded = true;
+                    var g = d.createElement(t);
+                    g.id = 'doorbellScript';
+                    g.type = 'text/javascript';
+                    g.async = true;
+                    g.src = 'https://embed.doorbell.io/button/3971?t=' + (new Date().getTime());
+                    (d.getElementsByTagName('head')[0] || d.getElementsByTagName('body')[0]).appendChild(g);
+                }
+
+                if (w.attachEvent) {
+                    w.attachEvent('onload', l);
+                } else if (w.addEventListener) {
+                    w.addEventListener('load', l, false);
+                } else {
+                    l();
+                }
+                if (d.readyState == 'complete') {
+                    l();
+                }
+            }(window, document, 'script'));
+        });
+    </script>
+
+{% endblock %}
+
+{{ include('adblock.html.twig') }}
 
 </body>
 </html>
