@@ -91,7 +91,7 @@ class MemeController extends Controller
             $mem->setDate(new \DateTime("now"));
             $mem->setCategory(0);
             $mem->setPoints(0);
-            $mem->setStatus(0);
+            $mem->setPromoted(0);
             $mem->setAccept(false);
             $em->persist($mem);
             $em->flush();
