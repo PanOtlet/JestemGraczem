@@ -1,0 +1,40 @@
+{% extends "base.html.twig" %}
+
+{% block body %}
+
+    <div class="container-fluid top p-t-3 p-b-2">
+        <div class="container">
+            <div class="col-sm-12 btn-clear-lg p-l-1 ">
+                Game<span style="color: #8bc34a;">Servers</span>Status
+            </div>
+        </div>
+    </div>
+    <div class="container p-t-5 p-b-2">
+        <p id="pokemongo"></p>
+    </div>
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+
+    <script>
+        start();
+
+        function pokemongo() {
+            $.ajax({
+                url: 'https://go.jooas.com/status',
+                dataType: 'json',
+                success: function (stream) {
+                    if (stream["go_online"] === false) {
+                        $("#pokemongo").html("OFFLINE")
+                    } else {
+                        $("#pokemongo").html("ONLINE")
+                    }
+                },
+                error: function () {
+                    console.log("Coś poszło nie tak podczas łączenia z api jestemgraczem");
+                }
+            });
+        }
+    </script>
+{% endblock %}
