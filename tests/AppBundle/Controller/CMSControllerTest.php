@@ -7,12 +7,13 @@ use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 class CMSControllerTest extends WebTestCase
 {
 
-    public function testCMS(){
+    public function testCMS()
+    {
 
         $client = static::createClient();
         $client->request('GET', '/cms/regulamin');
+        $this->assertEquals(404, $client->getResponse()->getStatusCode());
 
-        $this->assertEquals(200,$client->getResponse()->getStatusCode());
     }
 
 }
