@@ -232,16 +232,16 @@
                 </div>
             </div>
             <div class="menu" id="games-m">
-                <a href="{{ url('news') }}" type="button"
-                   class="btn btn-primary btn-lg btn-block">{{ 'nav.news'|trans }}</a>
-                <a href="{{ url('news.add') }}" type="button"
-                   class="btn btn-primary btn-lg btn-block">{{ 'nav.addrss'|trans }}</a>
+                <div class="list-group">
+                    <a href="{{ url('news') }}" class="list-group-item">{{ 'nav.news'|trans }}</a>
+                    <a href="{{ url('news.add') }}" class="list-group-item">{{ 'nav.addrss'|trans }}</a>
+                </div>
             </div>
             <div class="menu" id="turnaments-m">
-                <a href="{{ url('tournament') }}" type="button"
-                   class="btn btn-primary btn-lg btn-block">{{ 'nav.turnaments'|trans }}</a>
-                <a href="{{ url('team') }}" type="button"
-                   class="btn btn-primary btn-lg btn-block">{{ 'nav.teams'|trans }}</a>
+                <div class="list-group">
+                    <a href="{{ url('tournament') }}" class="list-group-item">{{ 'nav.turnaments'|trans }}</a>
+                    <a href="{{ url('team') }}" class="list-group-item">{{ 'nav.teams'|trans }}</a>
+                </div>
             </div>
         </div>
     </nav>
