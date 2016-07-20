@@ -16,6 +16,10 @@ body {
     z-index: 5;
 }
 
+.mini-menu{
+    display: none;
+}
+
 .menu{
     background-color: #FFFFFF;
     display: none;

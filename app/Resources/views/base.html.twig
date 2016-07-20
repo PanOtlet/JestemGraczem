@@ -205,39 +205,28 @@
                 </li>
             </ul>
             <div class="menu" id="fun-m">
-                <div class="row p-x-1 p-y-1">
-                    <div class="col-xs-6 p-x-0">
-                        <a href="{{ url('meme') }}" type="button"
-                           class="btn btn-primary btn-lg btn-block" style="border-radius: 0px;">{{ 'nav.meme'|trans }}</a>
-                    </div>
-                    <div class="col-xs-6 p-x-0">
-                        <button type="button" class="btn btn-primary btn-lg dropdown-toggle btn-block" data-toggle="dropdown"
-                                aria-haspopup="true" aria-expanded="false" style="border-radius: 0px;">
-                            <span class="sr-only">Toggle Dropdown</span>
-                        </button>
-                        <div class="dropdown-menu">
-                            <a class="dropdown-item" href="{{ url('meme.wait') }}">{{ 'button.waitingroom'|trans }}</a>
-                            <div class="dropdown-divider"></div>
-                            <a class="dropdown-item" href="{{ url('meme.add') }}">{{ 'form.add'|trans }}</a>
+                <div class="container-fluid">
+                    <div class="row p-y-1">
+                        <div class="col-md-4">
+
+                            <div class="list-group">
+                                <button type="button" class="list-group-item" id="b-meme">{{ 'nav.meme'|trans }}</button>
+                                <a href="{{ url('stream') }}" class="list-group-item">{{ 'nav.streams'|trans }}</a>
+                                <button type="button" class="list-group-item" id="b-video">{{ 'nav.video'|trans }}</button>
+
+                            </div>
                         </div>
-                    </div>
-                </div>
-                <a href="{{ url('stream') }}" type="button"
-                   class="btn btn-primary btn-lg btn-block">{{ 'nav.streams'|trans }}</a>
-                <div class="row p-x-1 p-y-1">
-                    <div class="col-xs-6 p-x-0">
-                        <a href="{{ url('video') }}" type="button" style="border-radius: 0px;"
-                           class="btn btn-primary btn-lg btn-block" >{{ 'nav.video'|trans }}</a>
-                    </div>
-                    <div class="col-xs-6 p-x-0">
-                        <button type="button" class="btn btn-primary btn-lg dropdown-toggle btn-block" data-toggle="dropdown"
-                                aria-haspopup="true" aria-expanded="false" style="border-radius: 0px;">
-                            <span class="sr-only">Toggle Dropdown</span>
-                        </button>
-                        <div class="dropdown-menu">
-                            <a class="dropdown-item" href="{{ url('video.wait') }}">{{ 'button.waitingroom'|trans }}</a>
-                            <div class="dropdown-divider"></div>
-                            <a class="dropdown-item" href="{{ url('video.add') }}">{{ 'form.add'|trans }}</a>
+                        <div class="col-md-8">
+                            <div class="list-group mini-menu" id="meme-mm">
+                                <a href="{{ url('meme') }}" class="list-group-item">{{ 'nav.meme'|trans }}</a>
+                                <a href="{{ url('meme.wait') }}" class="list-group-item">{{ 'button.waitingroom'|trans }}</a>
+                                <a href="{{ url('meme.add') }}" class="list-group-item">{{ 'form.add'|trans }}</a>
+                            </div>
+                            <div class="list-group mini-menu" id="video-mm">
+                                <a href="{{ url('video') }}" class="list-group-item ">{{ 'nav.video'|trans }}</a>
+                                <a href="{{ url('video.wait') }}" class="list-group-item">{{ 'button.waitingroom'|trans }}</a>
+                                <a href="{{ url('video.add') }}" class="list-group-item">{{ 'form.add'|trans }}</a>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -444,6 +433,14 @@
             $( "#games-m" ).hide();
             $( "#fun-m" ).hide();
             $( "#turnaments-m" ).slideToggle( "slow" );
+        });
+        $( "#b-meme" ).click(function() {
+            $( "#video-mm" ).hide();
+            $( "#meme-mm" ).toggle();
+        });
+        $( "#b-video" ).click(function() {
+            $( "#meme-mm" ).hide();
+            $( "#video-mm" ).toggle();
         });
     </script>
 
