@@ -15,7 +15,7 @@ class MemeController extends Controller
     protected $color = "green";
 
     /**
-     * @Route("/meme/img/{id}", name="meme.id")
+     * @Route("/img/{id}", name="meme.id")
      */
     public function memAction($id)
     {
@@ -44,7 +44,7 @@ class MemeController extends Controller
     }
 
     /**
-     * @Route("/meme/add", name="meme.add")
+     * @Route("/add", name="meme.add")
      */
     public function addAction(Request $request)
     {
@@ -110,7 +110,7 @@ class MemeController extends Controller
     }
 
     /**
-     * @Route("/meme/poczekalnia/{page}", name="meme.wait")
+     * @Route("/poczekalnia/{page}", name="meme.wait")
      */
     public function waitAction($page = 0)
     {
@@ -120,7 +120,6 @@ class MemeController extends Controller
 
         $em = $this->getDoctrine()->getRepository('AppBundle:Meme');
         $query = $em->createQueryBuilder('p')
-            ->where('p.accept = false')
             ->setFirstResult($page * 10)
             ->orderBy('p.id', 'DESC')
             ->getQuery()
@@ -151,7 +150,7 @@ class MemeController extends Controller
     }
 
     /**
-     * @Route("/meme/{page}", name="meme")
+     * @Route("/{page}", name="meme")
      */
     public function indexAction($page = 0)
     {

@@ -27,6 +27,11 @@ cms:
     type:     annotation
     prefix:   /cms
 
+mem:
+    resource: "@AppBundle/Controller/MemeController.php"
+    type:     annotation
+    prefix:   /mem
+
 status:
     resource: "@AppBundle/Controller/StatusController.php"
     type:     annotation
