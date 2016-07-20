@@ -166,6 +166,14 @@ easy_admin:
                     - { property: 'locked', label: 'admin.locked'}
                     - { property: 'enabled', label: 'admin.enabled'}
                     - { property: 'partner', label: 'admin.partner'}
+                    - { property: 'roles', label: 'admin.roles'}
+                    - { property: 'steam', label: 'Steam'}
+                    - { property: 'battlenet', label: 'Battlenet'}
+                    - { property: 'lol', label: 'Lol'}
+                    - { property: 'twitch', label: 'Twitch'}
+                    - { property: 'youtube', label: 'Youtube'}
+                    - { property: 'localization', label: 'Localization'}
+                    - { property: 'description', label: 'Description'}
         RSS: AppBundle\Entity\News
     site_name: 'JG Admin'
     design:
