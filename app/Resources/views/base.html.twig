@@ -159,54 +159,104 @@
     </nav>
 
     {# Główny Navbar desktop #}
-    <nav class="hidden-md-down" style="margin-bottom: -16px;">
+    <nav class="hidden-md-down navbar-desktop" style="margin-bottom: -21px;">
         {% if color is defined %}
             <div class="bar-nav c-{{ color }}"></div>
         {% else %}
             <div class="bar-nav c-red"></div>
         {% endif %}
         <div class="container">
-            <div class="row">
-                <div class="col-md-3 p-x-0" style="height: 56px">
-                    <div class="trap">
-                        <div class="trap-">
-                            <a href="{{ url('homepage') }}">
-                                <img class="" src="{{ asset('assets/img/Logo1.png') }}"
-                                     style="padding: 4px 4px;width: 100%;margin-top: -5px;" alt="Logo JestemGraczem">
+            <div class="trap navbar-brand">
+                <div class="trap-">
+                    <a href="{{ url('homepage') }}">
+                        <img class="" src="{{ asset('assets/img/Logo1.png') }}"
+                             style="padding: 4px 4px;width: 100%;margin-top: -5px;" alt="Logo JestemGraczem">
+                    </a>
+                </div>
+            </div>
+            <ul class="nav navbar-nav">
+                <li class="nav-item active">
+                    <div class="t-45 first" style="border-bottom-color: #e91e63;">
+                        <div class="t45 p-l-1" id="turnaments-a">
+                            <a style="font-weight: bold; color: #303030;">
+                                TOURNAMENTS<span style="color: #e91e63">AREA</span>
                             </a>
                         </div>
                     </div>
-                </div>
-                <div class="col-md-3 p-x-0">
-                    <div class="t-45 first" style="border-bottom-color: #e91e63;">
-                        <a data-toggle="modal" data-target="#tournaments">
-                            <p class="t45 p-l-1" style="font-weight: bold; color: #303030;">
-                                TOURNAMENTS<span style="color: #e91e63">AREA</span>
-                            </p>
-                        </a>
-                    </div>
-                </div>
-                <div class="col-md-3 p-x-0">
+                </li>
+                <li class="nav-item">
                     <div class="t-45" style="border-bottom-color: #ff9800;">
-                        <a data-toggle="modal" data-target="#games">
-                            <p class="t45 p-l-1" style=" font-weight: bold; color: #303030;">
+                        <div class="t45 p-l-1" id="games-a">
+                            <a style=" font-weight: bold; color: #303030;">
                                 GAMES<span style="color: #ff9800">AREA</span>
-                            </p>
-                        </a>
+                            </a>
+                        </div>
+                    </div>
+                </li>
+                <li class="nav-item">
+                    <div class="t-45 last" style="border-bottom-color: #8bc34a;">
+                        <div class="t45 p-l-1" id="fun-a">
+                        {#<div class="t45 p-l-1" data-toggle="modal" data-target="#fans">#}
+                            <a style="font-weight: bold; color: #303030;">
+                                FANS<span style="color: #8bc34a">AREA</span>
+                            </a>
+                        </div>
+                    </div>
+                </li>
+            </ul>
+            <div class="menu" id="fun-m">
+                <div class="row p-x-1 p-y-1">
+                    <div class="col-xs-6 p-x-0">
+                        <a href="{{ url('meme') }}" type="button"
+                           class="btn btn-primary btn-lg btn-block" style="border-radius: 0px;">{{ 'nav.meme'|trans }}</a>
+                    </div>
+                    <div class="col-xs-6 p-x-0">
+                        <button type="button" class="btn btn-primary btn-lg dropdown-toggle btn-block" data-toggle="dropdown"
+                                aria-haspopup="true" aria-expanded="false" style="border-radius: 0px;">
+                            <span class="sr-only">Toggle Dropdown</span>
+                        </button>
+                        <div class="dropdown-menu">
+                            <a class="dropdown-item" href="{{ url('meme.wait') }}">{{ 'button.waitingroom'|trans }}</a>
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item" href="{{ url('meme.add') }}">{{ 'form.add'|trans }}</a>
+                        </div>
                     </div>
                 </div>
-                <div class="col-md-3 p-x-0">
-                    <div class="t-45 last">
-                        <a data-toggle="modal" data-target="#fans">
-                            <p class="t45 p-l-1" style="font-weight: bold; color: #303030;">
-                                FANS<span style="color: #8bc34a">AREA</span>
-                            </p>
-                        </a>
+                <a href="{{ url('stream') }}" type="button"
+                   class="btn btn-primary btn-lg btn-block">{{ 'nav.streams'|trans }}</a>
+                <div class="row p-x-1 p-y-1">
+                    <div class="col-xs-6 p-x-0">
+                        <a href="{{ url('video') }}" type="button" style="border-radius: 0px;"
+                           class="btn btn-primary btn-lg btn-block" >{{ 'nav.video'|trans }}</a>
+                    </div>
+                    <div class="col-xs-6 p-x-0">
+                        <button type="button" class="btn btn-primary btn-lg dropdown-toggle btn-block" data-toggle="dropdown"
+                                aria-haspopup="true" aria-expanded="false" style="border-radius: 0px;">
+                            <span class="sr-only">Toggle Dropdown</span>
+                        </button>
+                        <div class="dropdown-menu">
+                            <a class="dropdown-item" href="{{ url('video.wait') }}">{{ 'button.waitingroom'|trans }}</a>
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item" href="{{ url('video.add') }}">{{ 'form.add'|trans }}</a>
+                        </div>
                     </div>
                 </div>
             </div>
+            <div class="menu" id="games-m">
+                <a href="{{ url('news') }}" type="button"
+                   class="btn btn-primary btn-lg btn-block">{{ 'nav.news'|trans }}</a>
+                <a href="{{ url('news.add') }}" type="button"
+                   class="btn btn-primary btn-lg btn-block">{{ 'nav.addrss'|trans }}</a>
+            </div>
+            <div class="menu" id="turnaments-m">
+                <a href="{{ url('tournament') }}" type="button"
+                   class="btn btn-primary btn-lg btn-block">{{ 'nav.turnaments'|trans }}</a>
+                <a href="{{ url('team') }}" type="button"
+                   class="btn btn-primary btn-lg btn-block">{{ 'nav.teams'|trans }}</a>
+            </div>
         </div>
     </nav>
+
 
     {# Modale #}
     <div id="tournaments" class="modal fade">
@@ -378,6 +428,24 @@
     <script src="{{ asset('assets/js/sweetalert.min.js') }}"></script>
     <link rel="stylesheet" type="text/css" href="{{ asset('assets/js/sweetalert.css') }}" property="stylesheet">
     {% endif %}
+
+    <script type="text/javascript">
+        $( "#fun-a" ).click(function() {
+            $( "#games-m" ).hide();
+            $( "#turnaments-m" ).hide();
+            $( "#fun-m" ).slideToggle( "slow" );
+        });
+        $( "#games-a" ).click(function() {
+            $( "#turnaments-m" ).hide();
+            $( "#fun-m" ).hide();
+            $( "#games-m" ).slideToggle( "slow" );
+        });
+        $( "#turnaments-a" ).click(function() {
+            $( "#games-m" ).hide();
+            $( "#fun-m" ).hide();
+            $( "#turnaments-m" ).slideToggle( "slow" );
+        });
+    </script>
 
     <script type="text/javascript">
         $(document).ready(function () {

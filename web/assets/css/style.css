@@ -2,6 +2,32 @@ body {
     background-color: #fbfbfb;
 }
 
+.navbar-nav .nav-item+.nav-item {
+    margin-left: 0;
+}
+.navbar-nav .nav-item {
+    width: 25%;
+}
+.navbar-brand {
+    margin-right: 0;
+    width: 24% !important;
+}
+.navbar-desktop{
+    z-index: 5;
+}
+
+.menu{
+    background-color: #FFFFFF;
+
+    display: none;
+    z-index: 2;
+    margin-top: 15px;
+    position: absolute;
+    top: 75px;
+    width: 55%;
+    left: 22%;
+}
+
 .bar-nav{
     margin-bottom: -40px;
     height: 40px;
@@ -415,16 +441,16 @@ footer {
     padding-top: 16px;
     padding-bottom: 16px;
     text-align: center;
+    max-height: 56px;
+    cursor: pointer;
+    text-decoration: none !important;
+    cursor: pointer;
 }
 
 .last {
     border-right: none;
 }
 
-.t-45 a {
-    text-decoration: none !important;
-    cursor: pointer;
-}
 
 .t-45:hover {
     background-color: #ccc;
