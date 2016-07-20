@@ -14,10 +14,17 @@
     {% block head %}{% endblock %}
 
     <script>
-        (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-                    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-                m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-        })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+        (function (i, s, o, g, r, a, m) {
+            i['GoogleAnalyticsObject'] = r;
+            i[r] = i[r] || function () {
+                        (i[r].q = i[r].q || []).push(arguments)
+                    }, i[r].l = 1 * new Date();
+            a = s.createElement(o),
+                    m = s.getElementsByTagName(o)[0];
+            a.async = 1;
+            a.src = g;
+            m.parentNode.insertBefore(a, m)
+        })(window, document, 'script', 'https://www.google-analytics.com/analytics.js', 'ga');
 
         ga('create', 'UA-30138329-3', 'auto');
         ga('send', 'pageview');
@@ -43,11 +50,12 @@
     <meta name="theme-color" content="#ffffff">
 
 </head>
-<body style="visibility: hidden !important;">
+{#<body style="visibility: hidden !important;">#}
+<body>
 
-<div id="babasbmsgx" style="visibility: visible !important;">
-    {{ 'ad.disable'|trans }}
-</div>
+{#<div id="babasbmsgx" style="visibility: visible !important;">#}
+{#{{ 'ad.disable'|trans }}#}
+{#</div>#}
 
 {% block navbar %}
     {# Górny Navbar logowania #}
@@ -101,7 +109,7 @@
                                 <span>{{ 'account.register'|trans }}</span>
                             </a> {{ 'account.now'|trans }}
                             <a href="{{ url('fos_user_resetting_request') }}">
-                            <span>{{ 'account.forgotpass'|trans }}</span>
+                                <span>{{ 'account.forgotpass'|trans }}</span>
                             </a>
                         </p>
                     </nav>
@@ -196,7 +204,7 @@
                 <li class="nav-item">
                     <div class="t-45 last" style="border-bottom-color: #8bc34a;">
                         <div class="t45 p-l-1" id="fun-a">
-                        {#<div class="t45 p-l-1" data-toggle="modal" data-target="#fans">#}
+                            {#<div class="t45 p-l-1" data-toggle="modal" data-target="#fans">#}
                             <a style="font-weight: bold; color: #303030;">
                                 FANS<span style="color: #8bc34a">AREA</span>
                             </a>
@@ -210,21 +218,25 @@
                         <div class="col-md-4">
 
                             <div class="list-group">
-                                <button type="button" class="list-group-item" id="b-meme">{{ 'nav.meme'|trans }}</button>
+                                <button type="button" class="list-group-item"
+                                        id="b-meme">{{ 'nav.meme'|trans }}</button>
                                 <a href="{{ url('stream') }}" class="list-group-item">{{ 'nav.streams'|trans }}</a>
-                                <button type="button" class="list-group-item" id="b-video">{{ 'nav.video'|trans }}</button>
+                                <button type="button" class="list-group-item"
+                                        id="b-video">{{ 'nav.video'|trans }}</button>
 
                             </div>
                         </div>
                         <div class="col-md-8">
                             <div class="list-group mini-menu" id="meme-mm">
                                 <a href="{{ url('meme') }}" class="list-group-item">{{ 'nav.meme'|trans }}</a>
-                                <a href="{{ url('meme.wait') }}" class="list-group-item">{{ 'button.waitingroom'|trans }}</a>
+                                <a href="{{ url('meme.wait') }}"
+                                   class="list-group-item">{{ 'button.waitingroom'|trans }}</a>
                                 <a href="{{ url('meme.add') }}" class="list-group-item">{{ 'form.add'|trans }}</a>
                             </div>
                             <div class="list-group mini-menu" id="video-mm">
                                 <a href="{{ url('video') }}" class="list-group-item ">{{ 'nav.video'|trans }}</a>
-                                <a href="{{ url('video.wait') }}" class="list-group-item">{{ 'button.waitingroom'|trans }}</a>
+                                <a href="{{ url('video.wait') }}"
+                                   class="list-group-item">{{ 'button.waitingroom'|trans }}</a>
                                 <a href="{{ url('video.add') }}" class="list-group-item">{{ 'form.add'|trans }}</a>
                             </div>
                         </div>
@@ -303,15 +315,18 @@
                     <div class="row p-x-1 p-y-1">
                         <div class="col-xs-6 p-x-0">
                             <a href="{{ url('meme') }}" type="button"
-                               class="btn btn-primary btn-lg btn-block" style="border-radius: 0px;">{{ 'nav.meme'|trans }}</a>
+                               class="btn btn-primary btn-lg btn-block"
+                               style="border-radius: 0px;">{{ 'nav.meme'|trans }}</a>
                         </div>
                         <div class="col-xs-6 p-x-0">
-                            <button type="button" class="btn btn-primary btn-lg dropdown-toggle btn-block" data-toggle="dropdown"
+                            <button type="button" class="btn btn-primary btn-lg dropdown-toggle btn-block"
+                                    data-toggle="dropdown"
                                     aria-haspopup="true" aria-expanded="false" style="border-radius: 0px;">
                                 <span class="sr-only">Toggle Dropdown</span>
                             </button>
                             <div class="dropdown-menu">
-                                <a class="dropdown-item" href="{{ url('meme.wait') }}">{{ 'button.waitingroom'|trans }}</a>
+                                <a class="dropdown-item"
+                                   href="{{ url('meme.wait') }}">{{ 'button.waitingroom'|trans }}</a>
                                 <div class="dropdown-divider"></div>
                                 <a class="dropdown-item" href="{{ url('meme.add') }}">{{ 'form.add'|trans }}</a>
                             </div>
@@ -322,15 +337,17 @@
                     <div class="row p-x-1 p-y-1">
                         <div class="col-xs-6 p-x-0">
                             <a href="{{ url('video') }}" type="button" style="border-radius: 0px;"
-                               class="btn btn-primary btn-lg btn-block" >{{ 'nav.video'|trans }}</a>
+                               class="btn btn-primary btn-lg btn-block">{{ 'nav.video'|trans }}</a>
                         </div>
                         <div class="col-xs-6 p-x-0">
-                            <button type="button" class="btn btn-primary btn-lg dropdown-toggle btn-block" data-toggle="dropdown"
+                            <button type="button" class="btn btn-primary btn-lg dropdown-toggle btn-block"
+                                    data-toggle="dropdown"
                                     aria-haspopup="true" aria-expanded="false" style="border-radius: 0px;">
                                 <span class="sr-only">Toggle Dropdown</span>
                             </button>
                             <div class="dropdown-menu">
-                                <a class="dropdown-item" href="{{ url('video.wait') }}">{{ 'button.waitingroom'|trans }}</a>
+                                <a class="dropdown-item"
+                                   href="{{ url('video.wait') }}">{{ 'button.waitingroom'|trans }}</a>
                                 <div class="dropdown-divider"></div>
                                 <a class="dropdown-item" href="{{ url('video.add') }}">{{ 'form.add'|trans }}</a>
                             </div>
@@ -347,64 +364,65 @@
 {% block body %}{% endblock %}
 
 {% block footer %}
-<div class="pre-footer m-t-2">
-    <div class="container">
-        <div class="row p-y-1">
-            <div class="col-md-3">
-                <p class="m-b-1 dots btn-footer" style="border-color: #e91e63;">
-                    <span class="p-x-1 text">TOURNAMENTS<span style="color: #e91e63">AREA</span></span>
-                </p>
-                <div class="pre-f-p">
-                    <p>{{ 'tournament.calendarium'|trans }}</p>
-                    <p>{{ 'tournament.create'|trans }}</p>
-                    <p>{{ 'team.list'|trans }}</p>
-                </div>
-            </div>
-            <div class="col-md-3">
-                <p class="m-b-1 dots btn-footer" style="border-color: #ff9800;">
-                    <span class="p-x-1 text">GAMES<span style="color: #ff9800">AREA</span></span>
-                </p>
-                <div class="pre-f-p">
-                    <p><a href="{{ url('news') }}">{{ 'nav.news'|trans }}</a></p>
-                    <p><a href="{{ url('news.add') }}">{{ 'nav.addrss'|trans }}</a></p>
-                </div>
-            </div>
-            <div class="col-md-3">
-                <p class="m-b-1 dots btn-footer" style="border-color: #8bc34a;">
-                    <span class="p-x-1 text">FANS<span style="color: #8bc34a">AREA</span></span>
-                </p>
-                <div class="pre-f-p">
-                    <p><a href="{{ url('stream') }}">{{ 'nav.streams'|trans }}</a></p>
-                    <p><a href="{{ url('meme') }}">{{ 'nav.meme'|trans }}</a></p>
-                    <p><a href="{{ url('video') }}">{{ 'nav.video'|trans }}</a></p>
-                </div>
-            </div>
-            <div class="col-md-3">
-                <p class="m-b-1 dots btn-footer" style="border-color: #8a8b8a;">
-                    <span class="p-x-1 text">SUPPORT<span style="color: #8a8b8a">AREA</span></span>
-                </p>
-                <div class="pre-f-p">
-                    <p>
-                        <a href="{{ url('redirect', {'url': 'http://blog.jestemgraczem.pl'}) }}">{{ 'nav.blog'|trans }}</a>
+    <div class="pre-footer m-t-2">
+        <div class="container">
+            <div class="row p-y-1">
+                <div class="col-md-3">
+                    <p class="m-b-1 dots btn-footer" style="border-color: #e91e63;">
+                        <span class="p-x-1 text">TOURNAMENTS<span style="color: #e91e63">AREA</span></span>
                     </p>
-                    <p><a href="{{ url('cms',{'title': 'support'}) }}">{{ 'nav.support'|trans }}</a></p>
-                    <p><a href="{{ url('cms',{'title': 'regulamin'}) }}">{{ 'nav.rules'|trans }}</a></p>
-                    <p><a href="{{ url('cms',{'title': 'jak-stworzyc-turniej'}) }}">{{ 'nav.howto'|trans }}</a></p>
-                    <p><a href="{{ url('cms',{'title': 'program-partnerski'}) }}">{{ 'nav.ppartner'|trans }}</a></p>
+                    <div class="pre-f-p">
+                        <p>{{ 'tournament.calendarium'|trans }}</p>
+                        <p>{{ 'tournament.create'|trans }}</p>
+                        <p>{{ 'team.list'|trans }}</p>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <p class="m-b-1 dots btn-footer" style="border-color: #ff9800;">
+                        <span class="p-x-1 text">GAMES<span style="color: #ff9800">AREA</span></span>
+                    </p>
+                    <div class="pre-f-p">
+                        <p><a href="{{ url('news') }}">{{ 'nav.news'|trans }}</a></p>
+                        <p><a href="{{ url('news.add') }}">{{ 'nav.addrss'|trans }}</a></p>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <p class="m-b-1 dots btn-footer" style="border-color: #8bc34a;">
+                        <span class="p-x-1 text">FANS<span style="color: #8bc34a">AREA</span></span>
+                    </p>
+                    <div class="pre-f-p">
+                        <p><a href="{{ url('stream') }}">{{ 'nav.streams'|trans }}</a></p>
+                        <p><a href="{{ url('meme') }}">{{ 'nav.meme'|trans }}</a></p>
+                        <p><a href="{{ url('video') }}">{{ 'nav.video'|trans }}</a></p>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <p class="m-b-1 dots btn-footer" style="border-color: #8a8b8a;">
+                        <span class="p-x-1 text">SUPPORT<span style="color: #8a8b8a">AREA</span></span>
+                    </p>
+                    <div class="pre-f-p">
+                        <p>
+                            <a href="{{ url('redirect', {'url': 'http://blog.jestemgraczem.pl'}) }}">{{ 'nav.blog'|trans }}</a>
+                        </p>
+                        <p><a href="{{ url('cms',{'title': 'support'}) }}">{{ 'nav.support'|trans }}</a></p>
+                        <p><a href="{{ url('cms',{'title': 'regulamin'}) }}">{{ 'nav.rules'|trans }}</a></p>
+                        <p><a href="{{ url('cms',{'title': 'jak-stworzyc-turniej'}) }}">{{ 'nav.howto'|trans }}</a></p>
+                        <p><a href="{{ url('cms',{'title': 'program-partnerski'}) }}">{{ 'nav.ppartner'|trans }}</a></p>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
-</div>
-{% if color is defined %}
-<footer class="p-y-1 c-{{ color }}">
-{% else %}
-<footer class="p-y-1 c-red">
-{% endif %}
+    {% if color is defined %}
+        <footer class="p-y-1 c-{{ color }}">
+    {% else %}
+        <footer class="p-y-1 c-red">
+    {% endif %}
     <p class="text-xs-center m-y-0">
         Copyright &copy; {{ "now"|date('Y') }} <span style="color: #000000">JestemGraczem.pl</span>
     </p>
-</footer>
+    </footer>
+    </footer>
 {% endblock %}
 
 {% block javascripts %}
@@ -415,32 +433,32 @@
     <script src="{{ asset('assets/js/jquery.cookiesdirective.js') }}"></script>
     {% if app.session.flashBag.has('error') or app.session.flashBag.has('info') or app.session.flashBag.has('warning') or app.session.flashBag.has('success') %}
     <script src="{{ asset('assets/js/sweetalert.min.js') }}"></script>
-    <link rel="stylesheet" type="text/css" href="{{ asset('assets/js/sweetalert.css') }}" property="stylesheet">
+<link rel="stylesheet" type="text/css" href="{{ asset('assets/js/sweetalert.css') }}" property="stylesheet">
     {% endif %}
 
     <script type="text/javascript">
-        $( "#fun-a" ).click(function() {
-            $( "#games-m" ).hide();
-            $( "#turnaments-m" ).hide();
-            $( "#fun-m" ).slideToggle( "slow" );
+        $("#fun-a").click(function () {
+            $("#games-m").hide();
+            $("#turnaments-m").hide();
+            $("#fun-m").slideToggle("slow");
         });
-        $( "#games-a" ).click(function() {
-            $( "#turnaments-m" ).hide();
-            $( "#fun-m" ).hide();
-            $( "#games-m" ).slideToggle( "slow" );
+        $("#games-a").click(function () {
+            $("#turnaments-m").hide();
+            $("#fun-m").hide();
+            $("#games-m").slideToggle("slow");
         });
-        $( "#turnaments-a" ).click(function() {
-            $( "#games-m" ).hide();
-            $( "#fun-m" ).hide();
-            $( "#turnaments-m" ).slideToggle( "slow" );
+        $("#turnaments-a").click(function () {
+            $("#games-m").hide();
+            $("#fun-m").hide();
+            $("#turnaments-m").slideToggle("slow");
         });
-        $( "#b-meme" ).click(function() {
-            $( "#video-mm" ).hide();
-            $( "#meme-mm" ).toggle();
+        $("#b-meme").click(function () {
+            $("#video-mm").hide();
+            $("#meme-mm").toggle();
         });
-        $( "#b-video" ).click(function() {
-            $( "#meme-mm" ).hide();
-            $( "#video-mm" ).toggle();
+        $("#b-video").click(function () {
+            $("#meme-mm").hide();
+            $("#video-mm").toggle();
         });
     </script>
 
@@ -506,7 +524,7 @@
 
 {% endblock %}
 
-{{ include('adblock.html.twig') }}
+{#{{ include('adblock.html.twig') }}#}
 
 </body>
 </html>
