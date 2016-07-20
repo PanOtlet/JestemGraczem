@@ -443,14 +443,14 @@ footer {
     text-align: center;
     max-height: 56px;
     cursor: pointer;
-    text-decoration: none !important;
+
     cursor: pointer;
 }
 
-.last {
-    border-right: none;
+.t45 a{
+    text-decoration: none !important;
+    cursor: pointer;
 }
-
 
 .t-45:hover {
     background-color: #ccc;
@@ -460,6 +460,10 @@ footer {
 
 p {
     margin-bottom: 0px;
+}
+
+.last {
+    border-right: none;
 }
 
 .nav p {
