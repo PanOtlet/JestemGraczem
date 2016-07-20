@@ -7,15 +7,20 @@ use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 class DefaultControllerTest extends WebTestCase
 {
 
-    public function testIndex(){
+    public function testHomePage(){
 
         $client = static::createClient();
+        $client->request('GET', '/');
 
-        $crawler = $client->request('GET', '/');
-        
-        $this->assertGreaterThan(
-            0,
-            $crawler->count()
-        );
+        $this->assertEquals(200,$client->getResponse()->getStatusCode());
     }
+
+    public function testUser(){
+
+        $client = static::createClient();
+        $client->request('GET', '/u/otlet');
+
+        $this->assertEquals(404,$client->getResponse()->getStatusCode());
+    }
+
 }

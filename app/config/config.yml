@@ -85,6 +85,9 @@ fos_user:
 #SonataSeoBundle
 sonata_seo:
     encoding:         UTF-8
+    sitemap:
+        services:
+            - app.sitemap_service
     page:
         title:            JestemGraczem
 #        default:          sonata.seo.page.default
