@@ -20,6 +20,7 @@ nav:
     rules: 'Regulamin serwisu'
     ppartner: 'Program partnerski'
     howto: 'Jak stworzyć turniej'
+    status: 'Statusy serwerów'
 form:
     add: 'Dodaj'
 button:
@@ -47,6 +48,13 @@ button:
         new: 'NAJNOWSZE'
         meme: 'MEMY'
         video: 'FILMY'
+status:
+    name: 'Nazwa'
+    status: 'Status'
+    pop: 'Popluacja'
+    server: 'Typ serwera'
+    queue: 'Kolejka'
+    no-queue: 'BRAK KOLEJKI'
 team:
     name: 'Nazwa drużyny'
     divname: 'Nazwa dywizji'
