@@ -77,4 +77,17 @@ class StatusController extends Controller
         ]);
     }
 
+    /**
+     * @Route("/steam", name="status.steam")
+     */
+    public function steamStatusAction()
+    {
+        $seo = $this->container->get('sonata.seo.page');
+        $seo->setTitle('Steam Status :: JestemGraczem.pl')
+            ->addMeta('name', 'description', 'Status serwerów Steam!')
+            ->addMeta('property', 'og:title', 'Steam Status :: JestemGraczem.pl')
+            ->addMeta('property', 'og:url', $this->get('router')->generate('status.steam', [], UrlGeneratorInterface::ABSOLUTE_URL));
+
+        return $this->render('Status/steam.html.twig', []);
+    }
 }
