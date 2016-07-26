@@ -8,15 +8,22 @@ use AppBundle\Model\phpTools;
 
 class StatusController extends Controller
 {
+
     /**
      * @Route("/", name="status")
      */
     public function indexAction()
     {
-        return $this->render('Status/index.html.twig', [
+        $tools = new phpTools();
+        $steam = "http://api.steampowered.com/ISteamWebAPIUtil/GetServerInfo/v0001/";
 
+        $steam = $tools->getRemoteData($steam);
+
+        return $this->render('Status/index.html.twig', [
+            'steam' => json_decode($steam)
         ]);
     }
+
     /**
      * @Route("/wow", name="status.wow")
      */
@@ -25,11 +32,10 @@ class StatusController extends Controller
         $tools = new phpTools();
         $url = "https://eu.api.battle.net/wow/realm/status?locale=pl_PL&apikey=2u6schdhm434ng9uptswp8zjcf84267e";
 
-        $data = $tools->get_remote_data($url);
+        $data = $tools->getRemoteData($url);
 
         return $this->render('Status/wow.html.twig', [
             'data' => json_decode($data)
         ]);
     }
-
 }

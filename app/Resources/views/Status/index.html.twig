@@ -10,6 +10,14 @@
         </div>
     </div>
     <div class="container p-t-5 p-b-2">
-        <a href="{{ url('status.wow') }}" class="btn btn-danger">WoW</a>
+        <a href="{{ url('status.wow') }}" class="btn btn-danger btn-block">WoW Realms</a>
+        <a href="javascript:void(0)" class="btn btn-danger btn-block">
+            Steam
+            {% if steam.servertime %}
+                ONLINE
+            {% else %}
+                OFFLINE
+            {% endif %}
+        </a>
     </div>
 {% endblock %}

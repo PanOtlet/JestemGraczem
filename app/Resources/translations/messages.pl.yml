@@ -51,7 +51,7 @@ button:
 status:
     name: 'Nazwa'
     status: 'Status'
-    pop: 'Popluacja'
+    pop: 'Populacja'
     server: 'Typ serwera'
     queue: 'Kolejka'
     no-queue: 'BRAK KOLEJKI'

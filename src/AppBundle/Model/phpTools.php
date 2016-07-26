@@ -2,13 +2,17 @@
 
 namespace AppBundle\Model;
 
-
 use Symfony\Component\Config\Definition\Exception\Exception;
 
 class phpTools
 {
 
-    public function get_remote_data($url, $post_paramtrs = false)
+    /**
+     * @param $url
+     * @param bool $post_paramtrs
+     * @return mixed|Exception
+     */
+    public function getRemoteData($url, $post_paramtrs = false)
     {
         $c = curl_init();
         curl_setopt($c, CURLOPT_URL, $url);
