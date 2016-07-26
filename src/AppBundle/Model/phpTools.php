@@ -71,4 +71,12 @@ class phpTools
         return new Exception("ERROR with $url! Last status codes:" . json_encode($status) . ". Last data got: $data");
     }
 
+    public function isJson($json)
+    {
+        if (json_decode($json)) {
+            return true;
+        }
+        return false;
+    }
+
 }
