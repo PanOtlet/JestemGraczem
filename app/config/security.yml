@@ -37,6 +37,6 @@ security:
         - { path: ^/news/add, role: ROLE_USER }
         - { path: ^/video/add, role: ROLE_USER }
         - { path: ^/stream/add, role: ROLE_USER }
-        - { path: ^/meme/add, role: ROLE_USER }
+        - { path: ^/mem/add, role: ROLE_USER }
         - { path: ^/druzyny/add, role: ROLE_USER }
         - { path: ^/dywizja/add, role: ROLE_USER }
