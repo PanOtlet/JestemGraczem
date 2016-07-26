@@ -116,6 +116,11 @@ class User extends BaseUser
      */
     protected $partner = 0;
 
+    /**
+     * @ORM\Column(type="boolean", nullable=false)
+     */
+    protected $premium = 0;
+
     public function __construct()
     {
         parent::__construct();
@@ -161,6 +166,11 @@ class User extends BaseUser
         return $this->partner;
     }
 
+    public function getPremium()
+    {
+        return $this->premium;
+    }
+
     public function setSteam($steam)
     {
         $this->steam = $steam;
@@ -199,6 +209,11 @@ class User extends BaseUser
     public function setPartner($partner)
     {
         $this->partner = $partner;
+    }
+
+    public function setPremium($premium)
+    {
+        $this->premium = $premium;
     }
 
     /**
