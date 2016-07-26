@@ -18,9 +18,10 @@
             i['GoogleAnalyticsObject'] = r;
             i[r] = i[r] || function () {
                         (i[r].q = i[r].q || []).push(arguments)
-                    }, i[r].l = 1 * new Date();
-            a = s.createElement(o),
-                    m = s.getElementsByTagName(o)[0];
+                    };
+            i[r].l = 1 * new Date();
+            a = s.createElement(o);
+            m = s.getElementsByTagName(o)[0];
             a.async = 1;
             a.src = g;
             m.parentNode.insertBefore(a, m)
@@ -317,14 +318,15 @@
                 <div class="modal-body">
                     <div class="row p-x-1 p-y-1">
                         <div class="col-xs-6 p-x-0">
-                            <a href="{{ url('meme') }}" type="button"
-                               class="btn btn-primary btn-lg btn-block"
-                               style="border-radius: 0px;">{{ 'nav.meme'|trans }}</a>
+                            <a href="{{ url('meme') }}" type="button" class="btn btn-primary btn-lg btn-block"
+                               style="border-radius: 0;">
+                                {{ 'nav.meme'|trans }}
+                            </a>
                         </div>
                         <div class="col-xs-6 p-x-0">
                             <button type="button" class="btn btn-primary btn-lg dropdown-toggle btn-block"
                                     data-toggle="dropdown"
-                                    aria-haspopup="true" aria-expanded="false" style="border-radius: 0px;">
+                                    aria-haspopup="true" aria-expanded="false" style="border-radius: 0;">
                                 <span class="sr-only">Toggle Dropdown</span>
                             </button>
                             <div class="dropdown-menu">
@@ -339,13 +341,13 @@
                        class="btn btn-primary btn-lg btn-block">{{ 'nav.streams'|trans }}</a>
                     <div class="row p-x-1 p-y-1">
                         <div class="col-xs-6 p-x-0">
-                            <a href="{{ url('video') }}" type="button" style="border-radius: 0px;"
+                            <a href="{{ url('video') }}" type="button" style="border-radius: 0;"
                                class="btn btn-primary btn-lg btn-block">{{ 'nav.video'|trans }}</a>
                         </div>
                         <div class="col-xs-6 p-x-0">
                             <button type="button" class="btn btn-primary btn-lg dropdown-toggle btn-block"
                                     data-toggle="dropdown"
-                                    aria-haspopup="true" aria-expanded="false" style="border-radius: 0px;">
+                                    aria-haspopup="true" aria-expanded="false" style="border-radius: 0;">
                                 <span class="sr-only">Toggle Dropdown</span>
                             </button>
                             <div class="dropdown-menu">
@@ -422,7 +424,8 @@
         <footer class="p-y-1 c-red">
     {% endif %}
     <p class="text-xs-center m-y-0">
-        Copyright &copy; {{ "now"|date('Y') }} <span style="color: #000000">JestemGraczem.pl</span>
+        Copyright &copy; {{ "now"|date('Y') }} <span style="color: #000000">JestemGraczem.pl</span> <br>
+        Made with &hearts; by DeepWebServices &amp; Otlet.pl
     </p>
     </footer>
     </footer>
