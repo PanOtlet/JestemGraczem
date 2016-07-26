@@ -21,19 +21,8 @@ class StatusController extends Controller
         $tools = new phpTools();
         $status = $tools->getRemoteData('https://crowbar.steamdb.info/Barney');
 
-        $encoders = [
-            new XmlEncoder(),
-            new JsonEncoder()
-        ];
-
-        $normalizers = [
-            new ObjectNormalizer()
-        ];
-
-        $serializer = new Serializer($normalizers, $encoders);
-
         return new Response(
-            $serializer->serialize($status, 'json'),
+            $status,
             Response::HTTP_OK,
             ['content-type' => 'application/json']
         );
