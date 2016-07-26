@@ -10,14 +10,22 @@
         </div>
     </div>
     <div class="container p-t-5 p-b-2">
-        <a href="{{ url('status.wow') }}" class="btn btn-danger btn-block">WoW Realms</a>
-        <a href="javascript:void(0)" class="btn btn-danger btn-block">
-            Steam
+        <div class="col-md-4">
+            <a href="{{ url('status.wow') }}" class="btn btn-primary btn-block">
+                <img class="img-fluid" src="{{ asset('assets/img/wow.png') }}" alt="wow">
+            </a>
+            <a href="{{ url('status.lol') }}" class="btn btn-primary btn-block">
+                <img class="img-fluid" src="{{ asset('assets/img/lol.png') }}" alt="lol">
+            </a>
             {% if steam.servertime %}
-                ONLINE
+                <a href="javascript:void(0)" class="btn btn-success btn-block">
+                    <img class="img-fluid" src="{{ asset('assets/img/steam.png') }}" alt="lol">
+                </a>
             {% else %}
-                OFFLINE
+                <a href="javascript:void(0)" class="btn btn-danger btn-block">
+                    <img class="img-fluid" src="{{ asset('assets/img/steam.png') }}" alt="lol">
+                </a>
             {% endif %}
-        </a>
+        </div>
     </div>
 {% endblock %}
