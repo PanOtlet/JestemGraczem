@@ -17,15 +17,9 @@
             <a href="{{ url('status.lol') }}" class="btn btn-primary btn-block">
                 <img class="img-fluid" src="{{ asset('assets/img/lol.png') }}" alt="lol">
             </a>
-            {% if steam.servertime %}
-                <a href="javascript:void(0)" class="btn btn-success btn-block">
-                    <img class="img-fluid" src="{{ asset('assets/img/steam.png') }}" alt="lol">
-                </a>
-            {% else %}
-                <a href="javascript:void(0)" class="btn btn-danger btn-block">
-                    <img class="img-fluid" src="{{ asset('assets/img/steam.png') }}" alt="lol">
-                </a>
-            {% endif %}
+            <a href="{{ url('status.steam') }}" class="btn btn-primary btn-block">
+                <img class="img-fluid" src="{{ asset('assets/img/steam.png') }}" alt="lol">
+            </a>
         </div>
     </div>
 {% endblock %}

@@ -15,24 +15,13 @@ class StatusController extends Controller
      */
     public function indexAction()
     {
-        $tools = new phpTools();
-        $steam = "http://api.steampowered.com/ISteamWebAPIUtil/GetServerInfo/v0001/";
-
-        $steam = $tools->getRemoteData($steam);
-
         $seo = $this->container->get('sonata.seo.page');
         $seo->setTitle('Statusy serwerów gier :: JestemGraczem.pl')
             ->addMeta('name', 'description', 'Statusy serwerów gier multiplayer i popularnych platform!')
             ->addMeta('property', 'og:title', 'Statusy serwerów gier :: JestemGraczem.pl')
             ->addMeta('property', 'og:url', $this->get('router')->generate('status', [], UrlGeneratorInterface::ABSOLUTE_URL));
 
-        if (!$tools->isJson($steam)) {
-            return $this->render('Status/index.html.twig', []);
-        }
-
-        return $this->render('Status/index.html.twig', [
-            'steam' => json_decode($steam)
-        ]);
+        return $this->render('Status/index.html.twig', []);
     }
 
     /**
