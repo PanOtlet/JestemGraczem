@@ -10,13 +10,10 @@
         </div>
     </div>
     <div class="container p-t-5 p-b-2">
-
+        {{ status.success }}
     </div>
 {% endblock %}
 
 {% block javascripts %}
     {{ parent() }}
-    <script>
-        alert('Dupa');
-    </script>
 {% endblock %}

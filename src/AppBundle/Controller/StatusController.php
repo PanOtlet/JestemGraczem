@@ -71,6 +71,7 @@ class StatusController extends Controller
      */
     public function steamStatusAction()
     {
+
         $seo = $this->container->get('sonata.seo.page');
         $seo->setTitle('Steam Status :: JestemGraczem.pl')
             ->addMeta('name', 'description', 'Status serwerów Steam!')
