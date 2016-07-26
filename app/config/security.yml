@@ -40,4 +40,4 @@ security:
         - { path: ^/mem/add, role: ROLE_USER }
         - { path: ^/druzyny/add, role: ROLE_USER }
         - { path: ^/dywizja/add, role: ROLE_USER }
-        - { path: ^/status/*, role: ROLE_USER }
+        - { path: ^/status*, role: ROLE_USER }

@@ -38,4 +38,20 @@ class StatusController extends Controller
             'data' => json_decode($data)
         ]);
     }
+
+    /**
+     * @Route("/lol", name="status.lol")
+     */
+    public function lolStatusAction()
+    {
+        $tools = new phpTools();
+        $eune = "http://status.leagueoflegends.com/shards/eune";
+        $euw = "http://status.leagueoflegends.com/shards/euw";
+
+        return $this->render('Status/lol.html.twig', [
+            'eune' => json_decode($tools->getRemoteData($eune)),
+            'euw' => json_decode($tools->getRemoteData($euw))
+        ]);
+    }
+
 }

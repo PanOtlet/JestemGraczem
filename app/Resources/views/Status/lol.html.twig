@@ -1,0 +1,22 @@
+{% extends "base.html.twig" %}
+
+{% block body %}
+
+    <div class="container-fluid top p-t-3 p-b-2">
+        <div class="container">
+            <div class="col-sm-12 btn-clear-lg p-l-1 ">
+                <span style="color: #8bc34a;">LoL</span>Status
+            </div>
+        </div>
+    </div>
+    <div class="container p-t-5 p-b-2">
+        <h1>EUNE</h1>
+        {% for server in eune.services %}
+            {{ server.name }} - {{ server.status }} <br>
+        {% endfor %}
+        <h1>EUW</h1>
+        {% for server in euw.services %}
+            {{ server.name }} - {{ server.status }} <br>
+        {% endfor %}
+    </div>
+{% endblock %}
