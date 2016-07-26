@@ -10,51 +10,96 @@
         </div>
     </div>
     <div class="container p-t-5 p-b-2">
-        <div id="status">
-            <div class="">
+        <div class="col-md-6" id="status">
+            <h3 class="">
                 <span class="">
                     Steam CMs
                 </span>
-                <span class="" id="cms">
+                <span class="pull-right" id="cms">
 
                 </span>
-            </div>
+            </h3>
 
-            <div class="">
+            <h3 class="">
                 <span class="">
                     Steam Store
                 </span>
-                <span class="" id="store">
+                <span class="pull-right" id="store">
 
                 </span>
-            </div>
+            </h3>
 
-            <div class="">
+            <h3 class="">
                 <span class="">
                     Steam Community
                 </span>
-                <span class="" id="community">
+                <span class="pull-right" id="community">
 
                 </span>
-            </div>
+            </h3>
 
-            <div class="">
+            <h3 class="">
                 <span class="">
                     Steam Web API
                 </span>
-                <span class="" id="webapi">
+                <span class="pull-right" id="webapi">
 
                 </span>
-            </div>
+            </h3>
 
-            <div class="">
+            <h3 class="">
                 <span class="">
+                    TF2 Services
+                </span>
+                <span class="pull-right" id="tf2">
 
                 </span>
-                <span class="" id="">
+            </h3>
+
+            <h3 class="">
+                <span class="">
+                    Dota 2 Services
+                </span>
+                <span class="pull-right" id="dota2">
 
                 </span>
-            </div>
+            </h3>
+
+            <h3 class="">
+                <span class="">
+                    CS:GO Services
+                </span>
+                <span class="pull-right" id="csgo">
+
+                </span>
+            </h3>
+
+            <h3 class="">
+                <span class="">
+                    Sessions Logon
+                </span>
+                <span class="pull-right" id="csgo_sessions">
+
+                </span>
+            </h3>
+
+            <h3 class="">
+                <span class="">
+                    Player Inventories
+                </span>
+                <span class="pull-right" id="csgo_community">
+
+                </span>
+            </h3>
+
+            <h3>
+                <span class="">
+                    Matchmaking Scheduler
+                </span>
+                <span class="pull-right" id="csgo_mm_scheduler">
+
+                </span>
+            </h3>
 
         </div>
     </div>
@@ -63,15 +108,15 @@
 {% block javascripts %}
     {{ parent() }}
     <script>
-        var id_array=["cms", "store", "community","webapi"];
-        steam();
+        var id_array=["cms", "store", "community","webapi","tf2","dota2","csgo","csgo_sessions","csgo_community","csgo_mm_scheduler"];
+        setInterval(steam(), 45000);
 
         function steam() {
             $.ajax({
                 url: '{{ url('api.steam') }}',
                 dataType: 'json',
                 success: function (data) {
-                    console.log(data);
+//                    console.log(data);
                     for (var i=0;i<id_array.length;i++){
 //                        console.log(id_array[i]);
                         $("#"+id_array[i]).html(data['services'][id_array[i]]['title']);

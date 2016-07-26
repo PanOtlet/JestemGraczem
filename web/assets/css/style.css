@@ -490,3 +490,13 @@ p a:hover {
 .pre-f-p a:hover{
     color: #303030;
 }
+
+.minor{
+    color: #26C6DA;
+}
+.major{
+    color: #FFC107;
+}
+.good{
+    color: #4aa172;
+}
