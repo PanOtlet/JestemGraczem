@@ -1,0 +1,46 @@
+{% extends "base.html.twig" %}
+
+{% block body %}
+
+    <div class="container-fluid top p-t-3 p-b-2">
+        <div class="container">
+            <div class="col-sm-12 btn-clear-lg p-l-1 ">
+                <span style="color: #8bc34a;">WoW</span>EU<span style="color: #8bc34a;">Realms</span>Status
+            </div>
+        </div>
+    </div>
+    <div class="container p-t-5 p-b-2 table-responsive">
+        <table class="table">
+            <thead class="thead-inverse">
+            <tr>
+                <th>#</th>
+                <th>Nazwa</th>
+                <th>Status</th>
+                <th>Kolejka</th>
+                <th>Populacja</th>
+                <th>Typ serwera</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for server in data.realms %}
+                <tr>
+                    <th scope="row">{{ loop.index }}</th>
+                    <td>{{ server.name }}</td>
+                    {% if server.status == 1 %}
+                        <td class="table-success">ONLINE</td>
+                    {% else %}
+                        <td class="table-danger">OFFLINE</td>
+                    {% endif %}
+                    {% if server.queue == 1 %}
+                        <td class="table-danger">KOLEJKA</td>
+                    {% else %}
+                        <td class="table-success">BRAK KOLEJKI</td>
+                    {% endif %}
+                    <td>{{ server.population }}</td>
+                    <td>{{ server.type }}</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+{% endblock %}

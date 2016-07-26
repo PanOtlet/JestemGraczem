@@ -10,31 +10,6 @@
         </div>
     </div>
     <div class="container p-t-5 p-b-2">
-        <p id="pokemongo"></p>
+        <a href="{{ url('status.wow') }}" class="btn btn-danger">WoW</a>
     </div>
-{% endblock %}
-
-{% block javascripts %}
-    {{ parent() }}
-
-    <script>
-        start();
-
-        function pokemongo() {
-            $.ajax({
-                url: 'https://go.jooas.com/status',
-                dataType: 'json',
-                success: function (stream) {
-                    if (stream["go_online"] === false) {
-                        $("#pokemongo").html("OFFLINE")
-                    } else {
-                        $("#pokemongo").html("ONLINE")
-                    }
-                },
-                error: function () {
-                    console.log("Coś poszło nie tak podczas łączenia z api jestemgraczem");
-                }
-            });
-        }
-    </script>
 {% endblock %}
