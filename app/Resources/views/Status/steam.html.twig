@@ -11,6 +11,50 @@
     </div>
     <div class="container p-t-5 p-b-2">
         <div id="status">
+            <div class="">
+                <span class="">
+                    Steam CMs
+                </span>
+                <span class="" id="cms">
+
+                </span>
+            </div>
+
+            <div class="">
+                <span class="">
+                    Steam Store
+                </span>
+                <span class="" id="store">
+
+                </span>
+            </div>
+
+            <div class="">
+                <span class="">
+                    Steam Community
+                </span>
+                <span class="" id="community">
+
+                </span>
+            </div>
+
+            <div class="">
+                <span class="">
+                    Steam Web API
+                </span>
+                <span class="" id="webapi">
+
+                </span>
+            </div>
+
+            <div class="">
+                <span class="">
+
+                </span>
+                <span class="" id="">
+
+                </span>
+            </div>
 
         </div>
     </div>
@@ -19,14 +63,20 @@
 {% block javascripts %}
     {{ parent() }}
     <script>
+        var id_array=["cms", "store", "community","webapi"];
         steam();
 
         function steam() {
             $.ajax({
-                url: 'https://crowbar.steamdb.info/Barney',
+                url: '{{ url('api.steam') }}',
                 dataType: 'json',
                 success: function (data) {
-                    $("#status").append(data);
+                    console.log(data);
+                    for (var i=0;i<id_array.length;i++){
+//                        console.log(id_array[i]);
+                        $("#"+id_array[i]).html(data['services'][id_array[i]]['title']);
+                        $("#"+id_array[i]).addClass(data['services'][id_array[i]]['status']);
+                    }
                 }, error: function () {
                     console.log("Coś poszło nie tak podczas łączenia z api steam");
                 }
