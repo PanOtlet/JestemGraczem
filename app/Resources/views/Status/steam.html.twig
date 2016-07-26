@@ -10,13 +10,27 @@
         </div>
     </div>
     <div class="container p-t-5 p-b-2">
+        <div id="status">
 
+        </div>
     </div>
 {% endblock %}
 
 {% block javascripts %}
     {{ parent() }}
     <script>
-        alert('Dupa');
+        steam();
+
+        function steam() {
+            $.ajax({
+                url: 'https://crowbar.steamdb.info/Barney',
+                dataType: 'json',
+                success: function (data) {
+                    $("#status").append(data);
+                }, error: function () {
+                    console.log("Coś poszło nie tak podczas łączenia z api steam");
+                }
+            });
+        }
     </script>
 {% endblock %}
