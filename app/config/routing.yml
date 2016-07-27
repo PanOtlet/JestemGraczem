@@ -37,6 +37,11 @@ status:
     type:     annotation
     prefix:   /status
 
+center:
+    resource: "@AppBundle/Controller/GameCenterController.php"
+    type:     annotation
+    prefix:   /game
+
 fos_user:
     resource: "@FOSUserBundle/Resources/config/routing/all.xml"
 easy_admin_bundle:

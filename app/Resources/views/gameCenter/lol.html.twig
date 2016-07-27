@@ -1,0 +1,81 @@
+{% extends "base.html.twig" %}
+
+{% block body %}
+    <div class="container-fluid top p-t-3 p-b-2">
+        <div class="container">
+            <div class="col-sm-12 btn-clear-lg p-l-1 ">
+                League<span style="color: #8bc34a;">of</span>Legends
+            </div>
+        </div>
+    </div>
+    <div class="container p-t-5 p-b-2">
+        {% block adbanner %}{{ parent() }}{% endblock %}
+        <div class="row">
+            <div class="col-md-8">
+                <div class="row">
+                    <div class="col-md-4" id="official">
+                        Oficjalne
+                    </div>
+                    <div class="col-md-4" id="mmo24">
+                        MMO24
+                    </div>
+                    <div class="col-md-4" id="cybersport">
+                        Cybersport
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                {% block sidebar %}
+                    <div style="margin-bottom: 10px">
+                        <h4>Aktualna rotacja:</h4>
+                        {% for champion in rotacja %}
+                            <span class="label label-default">{{ champion }}</span>
+                        {% endfor %}
+                    </div>
+                    {{ parent() }}
+                {% endblock %}
+                {% block adsidebar %}{{ parent() }}{% endblock %}
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.8.4/moment.min.js"></script>
+    <script src="{{ asset('assets/js/jquery.rss.js') }}"></script>
+    <script>
+        jQuery(function ($) {
+            $("#official").rss("http://eune.leagueoflegends.com/pl/rss.xml", {
+                limit: 10,
+                effect: 'slideFastSynced',
+                offsetStart: false,
+                offsetEnd: false,
+                ssl: false,
+                layoutTemplate: '{entries}',
+                entryTemplate: '<a href="{{ path('redirect') }}?url={url}" target="_blank"><h4>{title} <small>{date}</small></h4></a><p>{shortBodyPlain}...</p><hr>',
+                dateFormat: 'HH:mm D/MM/YYYY'
+            });
+            $("#cybersport").rss("http://cybersport.pl/category/gry/league-of-legends/feed/", {
+                limit: 10,
+                effect: 'slideFastSynced',
+                offsetStart: false,
+                offsetEnd: false,
+                ssl: false,
+                layoutTemplate: '{entries}',
+                entryTemplate: '<a href="{{ path('redirect') }}?url={url}" target="_blank"><h4>{title} <small>{date}</small></h4></a><p>{shortBodyPlain}...</p><hr>',
+                dateFormat: 'HH:mm D/MM/YYYY'
+            });
+            $("#mmo24").rss("http://mmo24.pl/gry/lol/feed/", {
+                limit: 10,
+                effect: 'slideFastSynced',
+                offsetStart: false,
+                offsetEnd: false,
+                ssl: false,
+                layoutTemplate: '{entries}',
+                entryTemplate: '<a href="{{ path('redirect') }}?url={url}" target="_blank"><h4>{title} <small>{date}</small></h4></a><p>{shortBodyPlain}...</p><hr>',
+                dateFormat: 'HH:mm D/MM/YYYY'
+            });
+        })
+    </script>
+{% endblock %}
