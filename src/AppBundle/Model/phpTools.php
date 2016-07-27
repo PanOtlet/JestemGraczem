@@ -6,7 +6,6 @@ use Symfony\Component\Config\Definition\Exception\Exception;
 
 class phpTools
 {
-
     /**
      * @param $url
      * @param bool $post_paramtrs
@@ -78,5 +77,4 @@ class phpTools
         }
         return false;
     }
-
 }

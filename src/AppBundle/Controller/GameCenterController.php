@@ -20,6 +20,11 @@ class GameCenterController extends Controller
                     'url' => 'center.lol',
                     'img' => 'lol'
                 ],
+                [
+                    'title' => 'Counter-Strike: Global Offensive',
+                    'url' => 'center.csgo',
+                    'img' => 'csgo'
+                ],
             ]
         ]);
     }
@@ -35,19 +40,7 @@ class GameCenterController extends Controller
             ->addMeta('property', 'og:title', 'League of Legends - Centrum Gracza :: JestemGraczem.pl')
             ->addMeta('property', 'og:url', $this->get('router')->generate('center.lol', [], UrlGeneratorInterface::ABSOLUTE_URL));
 
-        $json_output = file_get_contents("https://eune.api.pvp.net/api/lol/eune/v1.2/champion?freeToPlay=true&api_key=dc0b664f-8284-4732-b680-63e418a0ecc7");
-        $json = json_decode($json_output, true);
-
-        $json_output = file_get_contents("https://eune.api.pvp.net/api/lol/static-data/eune/v1.2/champion?locale=pl_PL&dataById=true&api_key=dc0b664f-8284-4732-b680-63e418a0ecc7");
-        $champions = json_decode($json_output, true);
-
-        foreach ($json['champions'] as $hero) {
-            $rotacja[] = $champions['data'][$hero['id']]['name'];
-        }
-
-        return $this->render('gameCenter/lol.html.twig', [
-            'rotacja' => $rotacja
-        ]);
+        return $this->render('gameCenter/lol.html.twig', []);
     }
 
     /**

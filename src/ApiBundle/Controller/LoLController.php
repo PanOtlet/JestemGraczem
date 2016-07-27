@@ -33,14 +33,9 @@ class LoLController extends Controller
             $rotation[] = $champions['data'][$hero['id']]['name'];
         }
 
-        $encoders = [
-            new XmlEncoder(),
-            new JsonEncoder()
-        ];
+        $encoders = [new XmlEncoder(), new JsonEncoder()];
 
-        $normalizers = [
-            new ObjectNormalizer()
-        ];
+        $normalizers = [new ObjectNormalizer()];
 
         $serializer = new Serializer($normalizers, $encoders);
 
