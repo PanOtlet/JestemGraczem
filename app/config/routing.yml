@@ -18,6 +18,11 @@ api:
     type:     annotation
     prefix:   /api
 
+api.lol:
+    resource: "@ApiBundle/Controller/LoLController.php"
+    type:     annotation
+    prefix:   /api/lol
+
 app:
     resource: "@AppBundle/Controller/"
     type:     annotation

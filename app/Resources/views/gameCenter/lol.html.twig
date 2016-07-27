@@ -20,16 +20,23 @@
                         MMO24
                     </div>
                     <div class="col-md-4" id="cybersport">
-                        Cybersport
+                        Cybersport {{ 'kupa dupa' }}
                     </div>
                 </div>
             </div>
             <div class="col-md-4">
                 {% block sidebar %}
-                    <div style="margin-bottom: 10px">
+                    <div class="row" style="margin-bottom: 10px">
                         <h4>Aktualna rotacja:</h4>
                         {% for champion in rotacja %}
-                            <span class="label label-default">{{ champion }}</span>
+                            <div class="col-md-6">
+                                <div class="card">
+                                    <img class="card-img-top img-responsive" src="{{ asset('assets/img/lol') }}/{{ champion|trim(' ') }}.png" alt="{{ champion }}">
+                                    <div class="card-block">
+                                        <h4 class="card-title text-md-center">{{ champion }}</h4>
+                                    </div>
+                                </div>
+                            </div>
                         {% endfor %}
                     </div>
                     {{ parent() }}
