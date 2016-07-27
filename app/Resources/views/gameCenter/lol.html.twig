@@ -28,16 +28,9 @@
                 {% block sidebar %}
                     <div id="rot" class="row" style="margin-bottom: 10px">
                         <h4>Aktualna rotacja:</h4>
-                        {#{% for champion in rotacja %}#}
-                            {#<div class="col-md-6">#}
-                                {#<div class="card">#}
-                                    {#<img class="card-img-top img-responsive" src="{{ asset('assets/img/lol') }}/{{ champion|trim(' ') }}.png" alt="{{ champion }}">#}
-                                    {#<div class="card-block">#}
-                                        {#<h4 class="card-title text-md-center">{{ champion }}</h4>#}
-                                    {#</div>#}
-                                {#</div>#}
-                            {#</div>#}
-                        {#{% endfor %}#}
+                        <div class="text-xs-center" id="loading">
+                            <i class="fa fa-spinner fa-pulse fa-4x p-y-1" aria-hidden="true"></i>
+                        </div>
                     </div>
                     {{ parent() }}
                 {% endblock %}
@@ -58,17 +51,13 @@
                 url: '{{ url('api.lol.free') }}',
                 dataType: 'json',
                 success: function (data) {
-                    console.log(data);
+//                    console.log(data);
+                    $('#loading').remove();
                     for (var i=0;i<data.length;i++){
-                        console.log(data[i]);
-                        $("#rot").append('<div class="col-md-6">'+
-                                            '<div class="card">'+
+//                        console.log(data[i]);
+                        $("#rot").append('<div class="col-md-6"><div class="card">'+
                                                 '<img class="card-img-top img-responsive" src="{{ asset("assets/img/lol") }}/'+data[i]+'.png" alt="'+data[i]+'">'+
-                                                '<div class="card-block">'+
-                                                    '<h4 class="card-title text-md-center m-b-0">'+data[i]+'</h4>'+
-                                                 '</div>'+
-                                             '</div>'+
-                                         '</div>');
+                                                '<div class="card-block"><h4 class="card-title text-md-center m-b-0">'+data[i]+'</h4></div></div></div>');
                     }
                 }, error: function () {
                     console.log("Coś poszło nie tak podczas łączenia z api steam");
