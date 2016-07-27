@@ -45,7 +45,25 @@ class GameCenterController extends Controller
             ->addMeta('property', 'og:title', 'League of Legends - Centrum Gracza :: JestemGraczem.pl')
             ->addMeta('property', 'og:url', $this->get('router')->generate('center.lol', [], UrlGeneratorInterface::ABSOLUTE_URL));
 
-        return $this->render('gameCenter/lol.html.twig', []);
+        $feeds = [
+            [
+                'url' => 'http://eune.leagueoflegends.com/pl/rss.xml',
+                'name' => 'Oficjalny'
+            ],
+            [
+                'url' => 'http://cybersport.pl/category/gry/league-of-legends/feed/',
+                'name' => 'Cybersport'
+            ],
+            [
+                'url' => 'http://mmo24.pl/gry/lol/feed/',
+                'name' => 'MMO24'
+            ]
+        ];
+
+        return $this->render('gameCenter/lol.html.twig', [
+            'feeds' => $feeds,
+            'json' => json_encode($feeds,true)
+        ]);
     }
 
     /**
