@@ -21,6 +21,7 @@ nav:
     ppartner: 'Program partnerski'
     howto: 'Jak stworzyć turniej'
     status: 'Statusy serwerów'
+    center: 'Centrum gier'
 form:
     add: 'Dodaj'
 button:

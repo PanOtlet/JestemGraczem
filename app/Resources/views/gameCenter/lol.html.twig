@@ -26,18 +26,18 @@
             </div>
             <div class="col-md-4">
                 {% block sidebar %}
-                    <div class="row" style="margin-bottom: 10px">
+                    <div id="rot" class="row" style="margin-bottom: 10px">
                         <h4>Aktualna rotacja:</h4>
-                        {% for champion in rotacja %}
-                            <div class="col-md-6">
-                                <div class="card">
-                                    <img class="card-img-top img-responsive" src="{{ asset('assets/img/lol') }}/{{ champion|trim(' ') }}.png" alt="{{ champion }}">
-                                    <div class="card-block">
-                                        <h4 class="card-title text-md-center">{{ champion }}</h4>
-                                    </div>
-                                </div>
-                            </div>
-                        {% endfor %}
+                        {#{% for champion in rotacja %}#}
+                            {#<div class="col-md-6">#}
+                                {#<div class="card">#}
+                                    {#<img class="card-img-top img-responsive" src="{{ asset('assets/img/lol') }}/{{ champion|trim(' ') }}.png" alt="{{ champion }}">#}
+                                    {#<div class="card-block">#}
+                                        {#<h4 class="card-title text-md-center">{{ champion }}</h4>#}
+                                    {#</div>#}
+                                {#</div>#}
+                            {#</div>#}
+                        {#{% endfor %}#}
                     </div>
                     {{ parent() }}
                 {% endblock %}
@@ -51,6 +51,31 @@
     {{ parent() }}
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.8.4/moment.min.js"></script>
     <script src="{{ asset('assets/js/jquery.rss.js') }}"></script>
+    <script>
+        api();
+        function api() {
+            $.ajax({
+                url: '{{ url('api.lol.free') }}',
+                dataType: 'json',
+                success: function (data) {
+                    console.log(data);
+                    for (var i=0;i<data.length;i++){
+                        console.log(data[i]);
+                        $("#rot").append('<div class="col-md-6">'+
+                                            '<div class="card">'+
+                                                '<img class="card-img-top img-responsive" src="{{ asset("assets/img/lol") }}/'+data[i]+'.png" alt="'+data[i]+'">'+
+                                                '<div class="card-block">'+
+                                                    '<h4 class="card-title text-md-center m-b-0">'+data[i]+'</h4>'+
+                                                 '</div>'+
+                                             '</div>'+
+                                         '</div>');
+                    }
+                }, error: function () {
+                    console.log("Coś poszło nie tak podczas łączenia z api steam");
+                }
+            });
+        }
+    </script>
     <script>
         jQuery(function ($) {
             $("#official").rss("http://eune.leagueoflegends.com/pl/rss.xml", {

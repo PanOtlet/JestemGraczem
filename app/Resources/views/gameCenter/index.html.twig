@@ -9,11 +9,15 @@
         </div>
     </div>
     <div class="container p-t-5 p-b-2">
-        {% for game in games %}
-            <a href="{{ url(game.url) }}">
-                <img src="{{ asset('assets/img/') ~ game.img }}" class="img-responsive" alt="{{ game.title }}">
-                {{ game.title }}
-            </a>
-        {% endfor %}
+        <div class="row">
+            {% for game in games %}
+                <div class="col-md-4">
+                    <a href="{{ url(game.url) }}">
+                        <img src="{{ asset('assets/img/') ~ game.img }}.png" class="img-responsive" alt="{{ game.title }}">
+                        <h4 class="m-b-0 text-md-center" style="color: #000000;">{{ game.title }}</h4>
+                    </a>
+                </div>
+            {% endfor %}
+        </div>
     </div>
 {% endblock %}
