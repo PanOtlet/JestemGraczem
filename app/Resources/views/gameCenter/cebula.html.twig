@@ -16,8 +16,8 @@
                     <div class="col-md-6" id="lg">
                         Lowcygier.pl
                     </div>
-                    <div class="col-md-6" id="cebula">
-                        Cebula
+                    <div class="col-md-6" id="sn">
+                        Salenauts
                     </div>
                 </div>
             </div>
@@ -47,7 +47,7 @@
                 entryTemplate: '<a href="{{ path('redirect') }}?url={url}" target="_blank"><h4>{title} <small>{date}</small></h4></a><p>{shortBodyPlain}...</p><hr>',
                 dateFormat: 'HH:mm D/MM/YYYY'
             });
-            $("#cebula").rss("https://salenauts.com/pl/news/feed/", {
+            $("#sn").rss("https://salenauts.com/pl/news/feed/", {
                 limit: 10,
                 effect: 'slideFastSynced',
                 offsetStart: false,
