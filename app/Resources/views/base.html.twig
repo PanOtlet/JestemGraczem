@@ -216,12 +216,12 @@
                     <div class="row p-y-1">
                         <div class="col-md-4">
 
-                            <div class="list-group">
+                            <div class="list-group text-md-center">
                                 <button type="button" class="list-group-item"
-                                        id="b-meme">{{ 'nav.meme'|trans }}</button>
-                                <a href="{{ url('stream') }}" class="list-group-item">{{ 'nav.streams'|trans }}</a>
+                                        id="b-meme"><i class="fa fa-picture-o" aria-hidden="true"></i> {{ 'nav.meme'|trans }}</button>
+                                <a href="{{ url('stream') }}" class="list-group-item"><i class="fa fa-twitch" aria-hidden="true"></i> {{ 'nav.streams'|trans }}</a>
                                 <button type="button" class="list-group-item"
-                                        id="b-video">{{ 'nav.video'|trans }}</button>
+                                        id="b-video"><i class="fa fa-youtube-play" aria-hidden="true"></i> {{ 'nav.video'|trans }}</button>
 
                             </div>
                         </div>
@@ -243,17 +243,17 @@
                 </div>
             </div>
             <div class="menu" id="games-m">
-                <div class="list-group">
-                    <a href="{{ url('news') }}" class="list-group-item">{{ 'nav.news'|trans }}</a>
-                    <a href="{{ url('news.add') }}" class="list-group-item">{{ 'nav.addrss'|trans }}</a>
-                    <a href="{{ url('status') }}" class="list-group-item">{{ 'nav.status'|trans }}</a>
-                    <a href="{{ url('center') }}" class="list-group-item">{{ 'nav.center'|trans }}</a>
+                <div class="list-group text-md-center">
+                    <a href="{{ url('news') }}" class="list-group-item"><i class="fa fa-newspaper-o" aria-hidden="true"></i> {{ 'nav.news'|trans }}</a>
+                    <a href="{{ url('news.add') }}" class="list-group-item"><i class="fa fa-pencil" aria-hidden="true"></i> {{ 'nav.addrss'|trans }}</a>
+                    <a href="{{ url('status') }}" class="list-group-item"><i class="fa fa-power-off" aria-hidden="true"></i> {{ 'nav.status'|trans }}</a>
+                    <a href="{{ url('center') }}" class="list-group-item"><i class="fa fa-gamepad" aria-hidden="true"></i> {{ 'nav.center'|trans }}</a>
                 </div>
             </div>
             <div class="menu" id="turnaments-m">
-                <div class="list-group">
-                    <a href="{{ url('tournament') }}" class="list-group-item">{{ 'nav.turnaments'|trans }}</a>
-                    <a href="{{ url('team') }}" class="list-group-item">{{ 'nav.teams'|trans }}</a>
+                <div class="list-group text-md-center">
+                    <a href="{{ url('tournament') }}" class="list-group-item"><i class="fa fa-trophy" aria-hidden="true"></i> {{ 'nav.turnaments'|trans }}</a>
+                    <a href="{{ url('team') }}" class="list-group-item"><i class="fa fa-users" aria-hidden="true"></i> {{ 'nav.teams'|trans }}</a>
                 </div>
             </div>
         </div>
