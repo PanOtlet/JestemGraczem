@@ -61,7 +61,21 @@ class GameCenterController extends Controller
      */
     public function cebulaAction()
     {
-        return $this->render('gameCenter/cebula.html.twig', []);
+        $feeds = [
+            [
+                'url' => 'http://lowcygier.pl/feed/',
+                'name' => 'LowcyGier.pl'
+            ],
+            [
+                'url' => 'https://salenauts.com/pl/news/feed/',
+                'name' => 'Salenauts'
+            ]
+        ];
+
+        return $this->render('gameCenter/cebula.html.twig', [
+            'feeds' => $feeds,
+            'json' => json_encode($feeds,true)
+        ]);
     }
 
     /**
