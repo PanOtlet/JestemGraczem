@@ -53,7 +53,25 @@ class GameCenterController extends Controller
      */
     public function csgoAction()
     {
-        return $this->render('gameCenter/csgo.html.twig', []);
+        $feeds = [
+            [
+                'url' => 'http://blog.counter-strike.net/index.php/feed/',
+                'name' => 'Oficjalny'
+            ],
+            [
+                'url' => 'http://cybersport.pl/category/gry/counter-strike-global-offensive/feed/',
+                'name' => 'Cybersport'
+            ],
+            [
+                'url' => 'http://gocs.pl/feed/',
+                'name' => 'GOCS'
+            ]
+        ];
+
+        return $this->render('gameCenter/csgo.html.twig', [
+            'feeds' => $feeds,
+            'json' => json_encode($feeds,true)
+        ]);
     }
 
     /**
