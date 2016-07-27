@@ -27,6 +27,9 @@
 
 {% block javascripts %}
     {{ parent() }}
-    <script async src="{{ asset('assets/js/stream-stream.js') }}"></script>
+    <script src="{{ asset('assets/js/stream-stream.js') }}"></script>
+    <script>
+        getStream('{{ url("api.stream") }}','{{ url('stream.id') }}');
+    </script>
 
 {% endblock %}

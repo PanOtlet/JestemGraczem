@@ -1,6 +1,3 @@
-/**
- * Created by Pudzian on 27.07.2016.
- */
 var u_twitch = "";
 var limit = 4;
 
@@ -61,7 +58,7 @@ function topStream(channel, type) {
             console.log("Coś poszło nie tak podczas łączenia z api jestemgraczem");
         }
     });
-        $('#topstream').hide().attr('src', "http://player.twitch.tv/?channel=" + channel["channel"]["name"]).fadeIn(1000);
+        $('#topstream').hide().attr('src', "http://player.twitch.tv/?html5=true&channel=" + channel["channel"]["name"]).fadeIn(1000);
         $('#viewers').hide().html(channel["viewers"]).fadeIn(1000);
         $('#link').hide().html("www.twitch.tv/" + channel["channel"]["name"]).fadeIn(1000);
         $('#display_name').hide().html(channel["channel"]["display_name"]).fadeIn(1000);
