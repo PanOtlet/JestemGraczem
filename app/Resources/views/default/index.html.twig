@@ -121,8 +121,8 @@
 
 {% block javascripts %}
     {{ parent() }}
-    <script async src="{{ asset('assets/js/home-stream.js') }}"></script>
-
-
-
+    <script src="{{ asset('assets/js/home-stream.js') }}"></script>
+    <script>
+        getStream('{{ url("api.stream") }}');
+    </script>
 {% endblock %}

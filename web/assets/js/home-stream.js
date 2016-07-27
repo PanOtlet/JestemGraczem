@@ -3,11 +3,10 @@
  */
 var u_twitch = "";
 var limit = 4;
-getStream();
 
-function getStream() {
+function getStream(url) {
     $.ajax({
-        url: '{{ url("api.stream") }}',
+        url: url,
         dataType: 'json',
         success: function (stream) {
         for (var i = 0; i < stream.length; i++) {
