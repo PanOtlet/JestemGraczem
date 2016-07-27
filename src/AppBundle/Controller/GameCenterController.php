@@ -16,6 +16,11 @@ class GameCenterController extends Controller
         return $this->render('gameCenter/index.html.twig', [
             'games' => [
                 [
+                    'title' => 'Promocje na gry',
+                    'url' => 'center.cebula',
+                    'img' => 'cebula'
+                ],
+                [
                     'title' => 'League of Legends',
                     'url' => 'center.lol',
                     'img' => 'lol'
@@ -48,9 +53,15 @@ class GameCenterController extends Controller
      */
     public function csgoAction()
     {
-        return $this->render('gameCenter/csgo.html.twig', [
-            // ...
-        ]);
+        return $this->render('gameCenter/csgo.html.twig', []);
+    }
+
+    /**
+     * @Route("/cebula", name="center.cebula")
+     */
+    public function cebulaAction()
+    {
+        return $this->render('gameCenter/cebula.html.twig', []);
     }
 
     /**
