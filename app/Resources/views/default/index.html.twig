@@ -116,6 +116,25 @@
                 </div>
             </div>
         </div>
+        <div class="row">
+            <h4 class="text-md-center">Bądź na bieżąco z najnowszymi wiadomościami dotyczacymi serwisu Jestemgraczem</h4>
+            <div class="col-md-4">
+                <div id="fb-root"></div>
+
+                <div class="fb-page" data-href="https://www.facebook.com/jestemgraczempl/" data-small-header="false"
+                     data-adapt-container-width="true" data-hide-cover="false" data-show-facepile="false">
+                    <blockquote cite="https://www.facebook.com/jestemgraczempl/" class="fb-xfbml-parse-ignore"><a
+                                href="https://www.facebook.com/jestemgraczempl/">JestemGraczem.pl</a></blockquote>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="g-ytsubscribe" data-channelid="UCwyKvaFQcBfJ7dCxM_uX5EQ" data-layout="full" data-count="default"></div>
+            </div>
+            <div class="col-md-4">
+                <div class="g-page" data-href="//plus.google.com/u/4/116516903644267522146" data-layout="landscape" data-rel="publisher"></div>
+
+            </div>
+        </div>
     </div>
 {% endblock %}
 
@@ -125,4 +144,24 @@
     <script>
         getStream('{{ url("api.stream") }}');
     </script>
+
+    <script type="text/javascript">
+        window.___gcfg = {lang: 'pl'};
+        (function() {
+            var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
+            po.src = 'https://apis.google.com/js/platform.js';
+            var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
+        })();
+    </script>
+
+    <script src="https://apis.google.com/js/platform.js"></script>
+
+    <script>(function (d, s, id) {
+            var js, fjs = d.getElementsByTagName(s)[0];
+            if (d.getElementById(id)) return;
+            js = d.createElement(s);
+            js.id = id;
+            js.src = "//connect.facebook.net/pl_PL/sdk.js#xfbml=1&version=v2.7&appId=1792775277616619";
+            fjs.parentNode.insertBefore(js, fjs);
+        }(document, 'script', 'facebook-jssdk'));</script>
 {% endblock %}
