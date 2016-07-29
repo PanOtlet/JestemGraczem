@@ -41,41 +41,41 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.8.4/moment.min.js"></script>
     <script src="{{ asset('assets/js/jquery.rss.js') }}"></script>
     <script>
-        api();
-        function api() {
-            $.ajax({
-                url: '{{ url('api.lol.free') }}',
-                dataType: 'json',
-                success: function (data) {
-//                    console.log(data);
-                    $('#loading').remove();
-                    for (var i=0;i<data.length;i++){
-//                        console.log(data[i]);
-                        $("#rot").append('<div class="col-md-6"><div class="card">'+
-                                                '<img class="card-img-top img-responsive" src="{{ asset("assets/img/lol") }}/'+data[i]+'.png" alt="'+data[i]+'">'+
-                                                '<div class="card-block"><h4 class="card-title text-md-center m-b-0">'+data[i]+'</h4></div></div></div>');
+        $(document).ready(function(){
+            api();
+            function api() {
+                $.ajax({
+                    url: '{{ url('api.lol.free') }}',
+                    dataType: 'json',
+                    success: function (data) {
+                        $('#loading').remove();
+                        for (var i=0;i<data.length;i++){
+                            $("#rot").append('<div class="col-md-6"><div class="card">'+
+                                    '<img class="card-img-top img-responsive" src="{{ asset("assets/img/lol") }}/'+data[i]+'.png" alt="'+data[i]+'">'+
+                                    '<div class="card-block"><h4 class="card-title text-md-center m-b-0">'+data[i]+'</h4></div></div></div>');
+                        }
+                    }, error: function () {
+                        console.log("Coś poszło nie tak podczas łączenia z api steam");
                     }
-                }, error: function () {
-                    console.log("Coś poszło nie tak podczas łączenia z api steam");
-                }
-            });
-        }
-
-        var data;
-        data = {{ json|raw }};
-        jQuery(function ($) {
-            for (var i = 0; i < data.length; i++) {
-                $("#feed" + i).rss(data[i]['url'], {
-                    limit: 10,
-                    effect: 'slideFastSynced',
-                    offsetStart: false,
-                    offsetEnd: false,
-                    ssl: false,
-                    layoutTemplate: '{entries}',
-                    entryTemplate: '<a href="{{ path('redirect') }}?url={url}" target="_blank"><h4>{title} <small>{date}</small></h4></a><p>{shortBodyPlain}...</p><hr>',
-                    dateFormat: 'HH:mm D/MM/YYYY'
                 });
             }
-        })
+
+            var data;
+            data = {{ json|raw }};
+            jQuery(function ($) {
+                for (var i = 0; i < data.length; i++) {
+                    $("#feed" + i).rss(data[i]['url'], {
+                        limit: 10,
+                        effect: 'slideFastSynced',
+                        offsetStart: false,
+                        offsetEnd: false,
+                        ssl: false,
+                        layoutTemplate: '{entries}',
+                        entryTemplate: '<a href="{{ path('redirect') }}?url={url}" target="_blank"><h4>{title} <small>{date}</small></h4></a><p>{shortBodyPlain}...</p><hr>',
+                        dateFormat: 'HH:mm D/MM/YYYY'
+                    });
+                }
+            })
+        });
     </script>
 {% endblock %}
