@@ -5,7 +5,7 @@ body {
 .navbar-nav .nav-item+.nav-item {
     margin-left: 0;
 }
-.navbar-nav .nav-item {
+.navbar-nav .nav-item-d {
     width: 25%;
 }
 .navbar-brand {
@@ -500,3 +500,18 @@ p a:hover {
 .good{
     color: #4aa172;
 }
+
+
+.color-green{
+    color: #8bc34a;
+}
+.color-orange{
+     color: #ff9800;
+}
+.color-magenta{
+    color: #e91e63;
+}
+.color-black{
+    color: #303030 !important;
+}
+
