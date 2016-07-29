@@ -442,7 +442,7 @@
     <script src="{{ asset('assets/js/jquery.cookiesdirective.js') }}"></script>
     {% if app.session.flashBag.has('error') or app.session.flashBag.has('info') or app.session.flashBag.has('warning') or app.session.flashBag.has('success') %}
     <script src="{{ asset('assets/js/sweetalert.min.js') }}"></script>
-<link rel="stylesheet" type="text/css" href="{{ asset('assets/js/sweetalert.css') }}" property="stylesheet">
+    <link rel="stylesheet" type="text/css" href="{{ asset('assets/js/sweetalert.css') }}" property="stylesheet">
     {% endif %}
 
     <script type="text/javascript">
@@ -469,9 +469,7 @@
             $("#meme-mm").hide();
             $("#video-mm").toggle();
         });
-    </script>
 
-    <script type="text/javascript">
         $(document).ready(function () {
             {% for flash_message in app.session.flashBag.get('error') %}
             sweetAlert("Oops...", "{{ flash_message }}", "error");
