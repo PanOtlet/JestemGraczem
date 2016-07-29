@@ -8,13 +8,13 @@
             </div>
         </div>
     </div>
-    <div class="container p-t-5 p-b-2">
+    <div class="container p-t-1 p-b-2">
         <div class="row">
             {% for game in games %}
-                <div class="col-md-4">
+                <div class="col-md-4 p-b-3">
                     <a href="{{ url(game.url) }}">
                         <img src="{{ asset('assets/img/') ~ game.img }}.png" class="img-responsive" alt="{{ game.title }}">
-                        <h4 class="m-b-0 text-md-center" style="color: #000000;">{{ game.title }}</h4>
+                        <h4 class="m-b-0 text-md-center" style="color: #000000;"></h4>
                     </a>
                 </div>
             {% endfor %}
