@@ -114,7 +114,7 @@ body {
     text-decoration: none;
 }
 .nav-tabs{
-    background-color: purple;
+    background-color: #800080;
 }
 .m-title h3{
     margin-top: 0px;
@@ -242,7 +242,7 @@ footer {
     color: #eaeaea;
 }
 .stream{
-    border: solid 4px black;
+    border: solid 4px #000000;
     -webkit-filter: grayscale(100%); /* Chrome, Safari, Opera */
     filter: grayscale(100%);
 }
@@ -254,13 +254,13 @@ footer {
 }
 
 .stream-active{
-    border: solid 4px darkblue;
+    border: solid 4px #00008b;
     -webkit-filter: grayscale(0%); /* Chrome, Safari, Opera */
     filter: grayscale(0%);
 }
 .stream-active:hover{
     cursor: pointer;
-    border: solid 4px blue;
+    border: solid 4px #0000ff;
     -webkit-filter: grayscale(10%); /* Chrome, Safari, Opera */
     filter: grayscale(10%);
 }
@@ -334,7 +334,7 @@ footer {
     border-radius: 0px;
 }
 .btn-white-lp .text{
-    background-color: white;
+    background-color: #ffffff;
 }
 .grey-box{
     background-color: #eaeaea;
