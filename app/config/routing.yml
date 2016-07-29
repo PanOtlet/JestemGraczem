@@ -1,3 +1,9 @@
+app:
+    resource: "@AppBundle/Controller/"
+    type:     annotation
+
+#TurniejBundle
+
 turniej:
     resource: "@TurniejBundle/Controller/"
     type:     annotation
@@ -13,6 +19,8 @@ division:
     type:     annotation
     prefix:   /dywizja
 
+#API
+
 api:
     resource: "@ApiBundle/Controller/"
     type:     annotation
@@ -23,9 +31,7 @@ api.lol:
     type:     annotation
     prefix:   /api/lol
 
-app:
-    resource: "@AppBundle/Controller/"
-    type:     annotation
+#Default
 
 cms:
     resource: "@AppBundle/Controller/CMSController.php"
@@ -42,10 +48,30 @@ status:
     type:     annotation
     prefix:   /status
 
-center:
-    resource: "@AppBundle/Controller/GameCenterController.php"
+#GameBundle
+
+game:
+    resource: "@GameBundle/Controller/DefaultController.php"
     type:     annotation
     prefix:   /game
+
+game.lol:
+    resource: "@GameBundle/Controller/LoLController.php"
+    type:     annotation
+    prefix:   /game/lol
+
+game.csgo:
+    resource: "@GameBundle/Controller/CSGOController.php"
+    type:     annotation
+    prefix:   /game/csgo
+
+game.hots:
+    resource: "@GameBundle/Controller/HotSController.php"
+    type:     annotation
+    prefix:   /game/hots
+
+
+#SYSTEM
 
 fos_user:
     resource: "@FOSUserBundle/Resources/config/routing/all.xml"

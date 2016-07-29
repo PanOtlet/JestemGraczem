@@ -23,6 +23,7 @@ class AppKernel extends Kernel
             new AppBundle\AppBundle(),
             new ApiBundle\ApiBundle(),
             new TurniejBundle\TurniejBundle(),
+            new GameBundle\GameBundle()
         ];
 
         if (in_array($this->getEnvironment(), ['dev', 'test'], true)) {
