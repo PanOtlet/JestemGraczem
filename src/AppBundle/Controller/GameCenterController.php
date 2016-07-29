@@ -35,6 +35,46 @@ class GameCenterController extends Controller
                     'url' => 'centrum.hots',
                     'img' => 'hots'
                 ],
+                [
+                    'title' => 'World of Warcraft',
+                    'url' => 'centrum.wow',
+                    'img' => 'wow'
+                ],
+                [
+                    'title' => 'Overwatch',
+                    'url' => 'centrum.overwatch',
+                    'img' => 'overwatch'
+                ],
+                [
+                    'title' => 'Hearthstone',
+                    'url' => 'centrum.hs',
+                    'img' => 'hs'
+                ],
+                [
+                    'title' => 'World of Tanks',
+                    'url' => 'centrum.wot',
+                    'img' => 'wot'
+                ],
+                [
+                    'title' => 'Grand Theft Auto',
+                    'url' => 'centrum.gta',
+                    'img' => 'gta'
+                ],
+                [
+                    'title' => 'DotA2',
+                    'url' => 'centrum.dota',
+                    'img' => 'dota'
+                ],
+                [
+                    'title' => 'Pokemon',
+                    'url' => 'centrum.pokemon',
+                    'img' => 'pokemon'
+                ],
+                [
+                    'title' => 'Fifa',
+                    'url' => 'centrum.fifa',
+                    'img' => 'fifa'
+                ]
             ]
         ]);
     }
@@ -164,26 +204,6 @@ class GameCenterController extends Controller
     }
 
     /**
-     * @Route("/wow", name="centrum.wow")
-     */
-    public function wowAction()
-    {
-        return $this->render('gameCenter/wow.html.twig', [
-            // ...
-        ]);
-    }
-
-    /**
-     * @Route("/dota", name="centrum.dota")
-     */
-    public function dotaAction()
-    {
-        return $this->render('gameCenter/dota.html.twig', [
-            // ...
-        ]);
-    }
-
-    /**
      * @Route("/overwatch", name="centrum.overwatch")
      */
     public function overwatchAction()
@@ -194,21 +214,11 @@ class GameCenterController extends Controller
     }
 
     /**
-     * @Route("/gta", name="centrum.gta")
+     * @Route("/wow", name="centrum.wow")
      */
-    public function gtaAction()
+    public function wowAction()
     {
-        return $this->render('gameCenter/gta.html.twig', [
-            // ...
-        ]);
-    }
-
-    /**
-     * @Route("/fifa", name="centrum.fifa")
-     */
-    public function fifaAction()
-    {
-        return $this->render('gameCenter/fifa.html.twig', [
+        return $this->render('gameCenter/wow.html.twig', [
             // ...
         ]);
     }
@@ -224,6 +234,16 @@ class GameCenterController extends Controller
     }
 
     /**
+     * @Route("/dota", name="centrum.dota")
+     */
+    public function dotaAction()
+    {
+        return $this->render('gameCenter/dota.html.twig', [
+            // ...
+        ]);
+    }
+
+    /**
      * @Route("/pokemon", name="centrum.pokemon")
      */
     public function pokemonAction()
@@ -234,11 +254,31 @@ class GameCenterController extends Controller
     }
 
     /**
+     * @Route("/gta", name="centrum.gta")
+     */
+    public function gtaAction()
+    {
+        return $this->render('gameCenter/gta.html.twig', [
+            // ...
+        ]);
+    }
+
+    /**
      * @Route("/wot", name="centrum.wot")
      */
     public function wotAction()
     {
         return $this->render('gameCenter/wot.html.twig', [
+            // ...
+        ]);
+    }
+
+    /**
+     * @Route("/fifa", name="centrum.fifa")
+     */
+    public function fifaAction()
+    {
+        return $this->render('gameCenter/fifa.html.twig', [
             // ...
         ]);
     }
