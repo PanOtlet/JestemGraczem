@@ -9,7 +9,7 @@ use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 class GameCenterController extends Controller
 {
     /**
-     * @Route("/", name="center")
+     * @Route("/", name="centrum")
      */
     public function indexAction()
     {
@@ -17,17 +17,17 @@ class GameCenterController extends Controller
             'games' => [
                 [
                     'title' => 'Promocje na gry',
-                    'url' => 'center.cebula',
+                    'url' => 'centrum.cebula',
                     'img' => 'cebula'
                 ],
                 [
                     'title' => 'League of Legends',
-                    'url' => 'center.lol',
+                    'url' => 'centrum.lol',
                     'img' => 'lol'
                 ],
                 [
                     'title' => 'Counter-Strike: Global Offensive',
-                    'url' => 'center.csgo',
+                    'url' => 'centrum.csgo',
                     'img' => 'csgo'
                 ],
             ]
@@ -35,7 +35,7 @@ class GameCenterController extends Controller
     }
 
     /**
-     * @Route("/lol", name="center.lol")
+     * @Route("/lol", name="centrum.lol")
      */
     public function lolAction()
     {
@@ -43,7 +43,7 @@ class GameCenterController extends Controller
         $seo->setTitle('League of Legends - Centrum Gracza :: JestemGraczem.pl')
             ->addMeta('name', 'description', "Centrum gracza League of Legends! Najświeższe i najciekawsze newsy tylko u nas!")
             ->addMeta('property', 'og:title', 'League of Legends - Centrum Gracza :: JestemGraczem.pl')
-            ->addMeta('property', 'og:url', $this->get('router')->generate('center.lol', [], UrlGeneratorInterface::ABSOLUTE_URL));
+            ->addMeta('property', 'og:url', $this->get('router')->generate('centrum.lol', [], UrlGeneratorInterface::ABSOLUTE_URL));
 
         $feeds = [
             [
@@ -67,10 +67,16 @@ class GameCenterController extends Controller
     }
 
     /**
-     * @Route("/csgo", name="center.csgo")
+     * @Route("/csgo", name="centrum.csgo")
      */
     public function csgoAction()
     {
+        $seo = $this->container->get('sonata.seo.page');
+        $seo->setTitle('CounterStrike: Global Offensive - Centrum Gracza :: JestemGraczem.pl')
+            ->addMeta('name', 'description', "Centrum gracza CounterStrike: Global Offensive! Najświeższe i najciekawsze newsy tylko u nas!")
+            ->addMeta('property', 'og:title', 'CounterStrike: Global Offensive - Centrum Gracza :: JestemGraczem.pl')
+            ->addMeta('property', 'og:url', $this->get('router')->generate('centrum.csgo', [], UrlGeneratorInterface::ABSOLUTE_URL));
+
         $feeds = [
             [
                 'url' => 'http://blog.counter-strike.net/index.php/feed/',
@@ -93,10 +99,16 @@ class GameCenterController extends Controller
     }
 
     /**
-     * @Route("/cebula", name="center.cebula")
+     * @Route("/cebula", name="centrum.cebula")
      */
     public function cebulaAction()
     {
+        $seo = $this->container->get('sonata.seo.page');
+        $seo->setTitle('Promocje na gry - Centrum Gracza :: JestemGraczem.pl')
+            ->addMeta('name', 'description', "Centrum każdego gracza chcącego grać po najniższych cenach! Najświeższe i najciekawsze newsy tylko u nas!")
+            ->addMeta('property', 'og:title', 'Promocje na gry - Centrum Gracza :: JestemGraczem.pl')
+            ->addMeta('property', 'og:url', $this->get('router')->generate('centrum.cebula', [], UrlGeneratorInterface::ABSOLUTE_URL));
+
         $feeds = [
             [
                 'url' => 'http://lowcygier.pl/feed/',
@@ -115,7 +127,7 @@ class GameCenterController extends Controller
     }
 
     /**
-     * @Route("/hots", name="center.hots")
+     * @Route("/hots", name="centrum.hots")
      */
     public function hotsAction()
     {
@@ -125,7 +137,7 @@ class GameCenterController extends Controller
     }
 
     /**
-     * @Route("/wow", name="center.wow")
+     * @Route("/wow", name="centrum.wow")
      */
     public function wowAction()
     {
@@ -135,7 +147,7 @@ class GameCenterController extends Controller
     }
 
     /**
-     * @Route("/dota", name="center.dota")
+     * @Route("/dota", name="centrum.dota")
      */
     public function dotaAction()
     {
@@ -145,7 +157,7 @@ class GameCenterController extends Controller
     }
 
     /**
-     * @Route("/overwatch", name="center.overwatch")
+     * @Route("/overwatch", name="centrum.overwatch")
      */
     public function overwatchAction()
     {
@@ -155,7 +167,7 @@ class GameCenterController extends Controller
     }
 
     /**
-     * @Route("/gta", name="center.gta")
+     * @Route("/gta", name="centrum.gta")
      */
     public function gtaAction()
     {
@@ -165,7 +177,7 @@ class GameCenterController extends Controller
     }
 
     /**
-     * @Route("/fifa", name="center.fifa")
+     * @Route("/fifa", name="centrum.fifa")
      */
     public function fifaAction()
     {
@@ -175,7 +187,7 @@ class GameCenterController extends Controller
     }
 
     /**
-     * @Route("/hs", name="center.hs")
+     * @Route("/hs", name="centrum.hs")
      */
     public function hsAction()
     {
@@ -185,7 +197,7 @@ class GameCenterController extends Controller
     }
 
     /**
-     * @Route("/pokemon", name="center.pokemon")
+     * @Route("/pokemon", name="centrum.pokemon")
      */
     public function pokemonAction()
     {
@@ -195,7 +207,7 @@ class GameCenterController extends Controller
     }
 
     /**
-     * @Route("/wot", name="center.wot")
+     * @Route("/wot", name="centrum.wot")
      */
     public function wotAction()
     {
