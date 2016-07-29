@@ -5,7 +5,7 @@
 {% block body %}
     <div class="container-fluid user-bdrop hidden-lg-down">
         {% if user.profilePicturePath is not empty %}
-            <img class="img-fluid img-bd center-block" src="{{ asset(user.webProfilePicturePath) }}">
+            <img class="img-fluid img-bd center-block" src="{{ asset('assets/user/profilepics/' ~ user.profilePicturePath) }}">
         {% else %}
             <img class="img-fluid img-bd center-block" src="{{ asset('assets/img/bg-lol.jpg') }}">
         {% endif %}

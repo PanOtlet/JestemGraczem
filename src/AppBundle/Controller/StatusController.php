@@ -10,6 +10,8 @@ use AppBundle\Model\phpTools;
 class StatusController extends Controller
 {
 
+    protected $color = "orange";
+
     /**
      * @Route("/", name="status")
      */
@@ -21,7 +23,9 @@ class StatusController extends Controller
             ->addMeta('property', 'og:title', 'Statusy serwerów gier :: JestemGraczem.pl')
             ->addMeta('property', 'og:url', $this->get('router')->generate('status', [], UrlGeneratorInterface::ABSOLUTE_URL));
 
-        return $this->render('Status/index.html.twig', []);
+        return $this->render('Status/index.html.twig', [
+            'color' => $this->color
+        ]);
     }
 
     /**
@@ -41,6 +45,7 @@ class StatusController extends Controller
             ->addMeta('property', 'og:url', $this->get('router')->generate('status.wow', [], UrlGeneratorInterface::ABSOLUTE_URL));
 
         return $this->render('Status/wow.html.twig', [
+            'color' => $this->color,
             'data' => json_decode($data)
         ]);
     }
@@ -61,6 +66,7 @@ class StatusController extends Controller
             ->addMeta('property', 'og:url', $this->get('router')->generate('status.lol', [], UrlGeneratorInterface::ABSOLUTE_URL));
 
         return $this->render('Status/lol.html.twig', [
+            'color' => $this->color,
             'eune' => json_decode($tools->getRemoteData($eune)),
             'euw' => json_decode($tools->getRemoteData($euw))
         ]);
@@ -78,6 +84,8 @@ class StatusController extends Controller
             ->addMeta('property', 'og:title', 'Steam Status :: JestemGraczem.pl')
             ->addMeta('property', 'og:url', $this->get('router')->generate('status.steam', [], UrlGeneratorInterface::ABSOLUTE_URL));
 
-        return $this->render('Status/steam.html.twig', []);
+        return $this->render('Status/steam.html.twig', [
+            'color' => $this->color
+        ]);
     }
 }

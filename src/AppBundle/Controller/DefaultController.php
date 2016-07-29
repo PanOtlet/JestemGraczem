@@ -24,12 +24,11 @@ class DefaultController extends Controller
             ->addMeta('property', 'og:url', $this->get('router')->generate('homepage', [], UrlGeneratorInterface::ABSOLUTE_URL));
 
         $meme = $this->getDoctrine()->getRepository('AppBundle:Meme')->findOneBy(['promoted' => true], ['id' => 'DESC']);
-        $stream = $this->getDoctrine()->getRepository('AppBundle:User')->findBy(['partner' => true]);
 
         $video = $this->getDoctrine()->getRepository('AppBundle:Video')->createQueryBuilder('m')
             ->where('m.promoted = 1')
             ->orderBy('m.id', 'DESC')
-            ->setMaxResults(6)
+            ->setMaxResults(8)
             ->getQuery()->getResult();
 
         $avatar = ($this->getUser()) ? md5($this->getUser()->getEmail()) : md5('thejestemgraczemsquad@gmail.com');
@@ -38,7 +37,6 @@ class DefaultController extends Controller
             'color' => $this->color,
             'meme' => $meme,
             'video' => $video,
-            'stream' => $stream,
             'avatar' => $avatar
         ]);
     }
@@ -59,23 +57,45 @@ class DefaultController extends Controller
      */
     public function userSiteAction($user)
     {
-        $user = $this->getDoctrine()->getRepository('AppBundle:User')->findOneBy(['username' => $user]);
+//        $user = $this->getDoctrine()->getRepository('AppBundle:User')->findOneBy(['username' => $user]);
+
+        $em = $this->getDoctrine()->getRepository('AppBundle:User');
+
+        $user = $em->createQueryBuilder('p')
+            ->select(
+                'p.id',
+                'p.username',
+                'p.twitch',
+                'p.partner',
+                'p.description',
+                'p.email',
+                'p.steam',
+                'p.battlenet',
+                'p.lol',
+                'p.steam',
+                'p.localization',
+                'p.profilePicturePath'
+            )
+            ->where('p.username = :user')
+            ->setParameter('user', $user)
+            ->getQuery()
+            ->getSingleResult();
 
         if (!$user) {
             throw $this->createNotFoundException('Nie ma takiego użytkownika!');
         }
 
-        $meme = $this->getDoctrine()->getRepository('AppBundle:Meme')->findOneBy(['user' => $user->getId()]);
-        $video = $this->getDoctrine()->getRepository('AppBundle:Video')->findOneBy(['user' => $user->getId()]);
+        $meme = $this->getDoctrine()->getRepository('AppBundle:Meme')->findOneBy(['user' => $user['id']]);
+        $video = $this->getDoctrine()->getRepository('AppBundle:Video')->findOneBy(['user' => $user['id']]);
 
         $seo = $this->container->get('sonata.seo.page');
-        $seo->setTitle('Profil: ' . $user->getUsername() . ' :: JestemGraczem.pl')
-            ->addMeta('name', 'description', "Profil użytkownika " . $user->getUsername() . " na portalu JestemGraczem.pl")
-            ->addMeta('property', 'og:title', $user->getUsername())
+        $seo->setTitle('Profil: ' . $user['username'] . ' :: JestemGraczem.pl')
+            ->addMeta('name', 'description', "Profil użytkownika " . $user['username'] . " na portalu JestemGraczem.pl")
+            ->addMeta('property', 'og:title', $user['username'])
             ->addMeta('property', 'og:type', 'profile')
-            ->addMeta('property', 'og:url', $this->get('router')->generate('user', ['user' => $user], UrlGeneratorInterface::ABSOLUTE_URL));
+            ->addMeta('property', 'og:url', $this->get('router')->generate('user', ['user' => $user['username']], UrlGeneratorInterface::ABSOLUTE_URL));
 
-        $avatar = md5($user->getEmail());
+        $avatar = md5($user['email']);
 
         return $this->render('default/user.html.twig', [
             'color' => $this->color,
