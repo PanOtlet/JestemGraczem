@@ -69,11 +69,6 @@ class DefaultController extends Controller
                     'title' => 'Pokemon',
                     'url' => 'centrum.pokemon',
                     'img' => 'pokemon'
-                ],
-                [
-                    'title' => 'Fifa',
-                    'url' => 'centrum.fifa',
-                    'img' => 'fifa'
                 ]
             ]
         ]);
@@ -104,86 +99,6 @@ class DefaultController extends Controller
         return $this->render('gameCenter/cebula.html.twig', [
             'feeds' => $feeds,
             'json' => json_encode($feeds,true)
-        ]);
-    }
-
-    /**
-     * @Route("/overwatch", name="centrum.overwatch")
-     */
-    public function overwatchAction()
-    {
-        return $this->render('gameCenter/overwatch.html.twig', [
-            // ...
-        ]);
-    }
-
-    /**
-     * @Route("/wow", name="centrum.wow")
-     */
-    public function wowAction()
-    {
-        return $this->render('gameCenter/wow.html.twig', [
-            // ...
-        ]);
-    }
-
-    /**
-     * @Route("/hs", name="centrum.hs")
-     */
-    public function hsAction()
-    {
-        return $this->render('gameCenter/hs.html.twig', [
-            // ...
-        ]);
-    }
-
-    /**
-     * @Route("/dota", name="centrum.dota")
-     */
-    public function dotaAction()
-    {
-        return $this->render('gameCenter/dota.html.twig', [
-            // ...
-        ]);
-    }
-
-    /**
-     * @Route("/pokemon", name="centrum.pokemon")
-     */
-    public function pokemonAction()
-    {
-        return $this->render('gameCenter/pokemon.html.twig', [
-            // ...
-        ]);
-    }
-
-    /**
-     * @Route("/gta", name="centrum.gta")
-     */
-    public function gtaAction()
-    {
-        return $this->render('gameCenter/gta.html.twig', [
-            // ...
-        ]);
-    }
-
-    /**
-     * @Route("/wot", name="centrum.wot")
-     */
-    public function wotAction()
-    {
-        return $this->render('gameCenter/wot.html.twig', [
-            // ...
-        ]);
-    }
-
-    /**
-     * @Route("/fifa", name="centrum.fifa")
-     */
-    public function fifaAction()
-    {
-        return $this->render('gameCenter/fifa.html.twig', [
-            // ...
         ]);
     }
 
