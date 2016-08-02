@@ -1,13 +1,13 @@
 {% extends "base.html.twig" %}
 
 {% block body %}
-    <div class="container-fluid user-bdrop hidden-lg-down">
-        {% if team.logo is empty %}
-            <img class="img-fluid img-bd center-block" src="{{ asset('assets/img/bg-defoult.png') }}">
-        {% else %}
-            <img class="img-fluid img-bd center-block" src="{{ asset(team.webPath) }}">
-        {% endif %}
-    </div>
+    {#<div class="container-fluid user-bdrop hidden-lg-down">#}
+        {#{% if team.logo is empty %}#}
+            {#<img class="img-fluid img-bd center-block" src="{{ asset('assets/img/bg-defoult.png') }}">#}
+        {#{% else %}#}
+            {#<img class="img-fluid img-bd center-block" src="{{ asset(team.webPath) }}">#}
+        {#{% endif %}#}
+    {#</div>#}
     <div class="container p-t-1 p-b-2">
         <div class="row">
             <div class="col-md-4">
