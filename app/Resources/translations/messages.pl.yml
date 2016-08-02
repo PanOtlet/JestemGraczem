@@ -117,3 +117,5 @@ admin:
     partner: 'Partner'
     promoted: 'Promowany'
     roles: 'Rangi'
+error:
+    filetype: 'Niedozwolony typ pliku!'

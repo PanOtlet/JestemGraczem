@@ -57,7 +57,6 @@ class DefaultController extends Controller
      */
     public function userSiteAction($user)
     {
-//        $user = $this->getDoctrine()->getRepository('AppBundle:User')->findOneBy(['username' => $user]);
 
         $em = $this->getDoctrine()->getRepository('AppBundle:User');
 
