@@ -166,14 +166,14 @@
     </nav>
 
     {# Główny Navbar desktop #}
-    <nav class="hidden-md-down navbar-desktop" style="margin-bottom: -21px;">
+    <nav class="navbar-desktop hidden-md-down" style="margin-bottom: -21px;">
         {% if color is defined %}
             <div class="bar-nav c-{{ color }}"></div>
         {% else %}
             <div class="bar-nav c-red"></div>
         {% endif %}
         <div class="container">
-            <div class="trap navbar-brand">
+            <div class="navbar-brand trap">
                 <div class="trap-">
                     <a href="{{ url('homepage') }}">
                         <img class="" src="{{ asset('assets/img/Logo1.png') }}"
