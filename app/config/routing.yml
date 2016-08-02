@@ -1,3 +1,9 @@
+app:
+    resource: "@AppBundle/Controller/"
+    type:     annotation
+
+#TurniejBundle
+
 turniej:
     resource: "@TurniejBundle/Controller/"
     type:     annotation
@@ -13,14 +19,19 @@ division:
     type:     annotation
     prefix:   /dywizja
 
+#API
+
 api:
     resource: "@ApiBundle/Controller/"
     type:     annotation
     prefix:   /api
 
-app:
-    resource: "@AppBundle/Controller/"
+api.lol:
+    resource: "@ApiBundle/Controller/LoLController.php"
     type:     annotation
+    prefix:   /api/lol
+
+#Default
 
 cms:
     resource: "@AppBundle/Controller/CMSController.php"
@@ -36,6 +47,66 @@ status:
     resource: "@AppBundle/Controller/StatusController.php"
     type:     annotation
     prefix:   /status
+
+#GameBundle
+
+game:
+    resource: "@GameBundle/Controller/DefaultController.php"
+    type:     annotation
+    prefix:   /game
+
+game.lol:
+    resource: "@GameBundle/Controller/LoLController.php"
+    type:     annotation
+    prefix:   /game/lol
+
+game.csgo:
+    resource: "@GameBundle/Controller/CSGOController.php"
+    type:     annotation
+    prefix:   /game/csgo
+
+game.hots:
+    resource: "@GameBundle/Controller/HotSController.php"
+    type:     annotation
+    prefix:   /game/hots
+
+game.wow:
+    resource: "@GameBundle/Controller/WoWController.php"
+    type:     annotation
+    prefix:   /game/wow
+
+game.overwatch:
+    resource: "@GameBundle/Controller/OverwatchController.php"
+    type:     annotation
+    prefix:   /game/overwatch
+
+game.hs:
+    resource: "@GameBundle/Controller/HearthstoneController.php"
+    type:     annotation
+    prefix:   /game/hearthstone
+
+game.wot:
+    resource: "@GameBundle/Controller/WoTController.php"
+    type:     annotation
+    prefix:   /game/wot
+
+game.gta:
+    resource: "@GameBundle/Controller/GTAController.php"
+    type:     annotation
+    prefix:   /game/gta
+
+game.dota:
+    resource: "@GameBundle/Controller/DotaController.php"
+    type:     annotation
+    prefix:   /game/dota
+
+game.pokemon:
+    resource: "@GameBundle/Controller/PokemonController.php"
+    type:     annotation
+    prefix:   /game/pokemon
+
+
+#SYSTEM
 
 fos_user:
     resource: "@FOSUserBundle/Resources/config/routing/all.xml"

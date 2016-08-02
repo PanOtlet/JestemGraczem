@@ -3,12 +3,21 @@
 {% block title %}{{ user.username }}{% endblock %}
 
 {% block body %}
-    <div class="container-fluid user-bdrop hidden-lg-down">
-        {% if user.profilePicturePath is not empty %}
-            <img class="img-fluid img-bd center-block" src="{{ asset(user.webProfilePicturePath) }}">
-        {% else %}
-            <img class="img-fluid img-bd center-block" src="{{ asset('assets/img/bg-lol.jpg') }}">
-        {% endif %}
+    {#<div class="container-fluid hidden-lg-down p-x-0">#}
+        {#<div class="user-bdrop">#}
+            {#{% if user.profilePicturePath is not empty %}#}
+                {#<img class=" img-bd " src="{{ asset('assets/user/profilepics/' ~ user.profilePicturePath) }}">#}
+            {#{% else %}#}
+                {#<img class=" img-bd center-block" src="{{ asset('assets/img/bg-lol.jpg') }}">#}
+            {#{% endif %}#}
+        {#</div>#}
+    {#</div>#}
+    <div class="container-fluid top p-t-3 p-b-2">
+        <div class="container">
+            <div class="col-sm-12 btn-clear-lg p-l-1 ">
+                Użytkownik: <span style="color: #8bc34a;">{{ user.username }}</span>
+            </div>
+        </div>
     </div>
     <div class="container p-t-1 p-b-2">
         {% block adbanner %}{{ parent() }}{% endblock %}

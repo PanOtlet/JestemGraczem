@@ -29,8 +29,9 @@ class StreamController extends Controller
 
         if ($stream == NULL) {
             return new Response(
-                "{name:NULL,status:-1,message:'ERROR 404 - Streamów nie znaleziono!'}",
-                Response::HTTP_NOT_FOUND,
+//                "{name:NULL,status:-1,message:'ERROR 404 - Streamów nie znaleziono!'}",
+                "[]",
+                Response::HTTP_OK,
                 ['content-type' => 'application/json']
             );
         }

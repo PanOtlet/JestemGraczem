@@ -7,7 +7,7 @@
                 <div class="col-sm-8 p-b-1">
                     <div class="embed-responsive embed-responsive-16by9">
                         <iframe id="topstream" class="embed-responsive-item"
-                                src="http://player.twitch.tv/?channel=monstercat"></iframe>
+                                src="http://player.twitch.tv/?channel=monstercat&html5=true"></iframe>
                     </div>
                 </div>
                 <div class="col-sm-4">
@@ -116,98 +116,58 @@
                 </div>
             </div>
         </div>
+        <div class="row p-t-2">
+            <div class="btn-white-lg dots m-b-1">
+                <span class="p-x-1 text">
+                    <span style="color: #303030;">
+                        Bądź na bieżąco z najnowszymi wiadomościami dotyczacymi serwisu Jestemgraczem
+                    </span>
+                </span>
+            </div>
+            <div class="col-md-4">
+                <div id="fb-root"></div>
+
+                <div class="fb-page" data-href="https://www.facebook.com/jestemgraczempl/" data-small-header="false"
+                     data-adapt-container-width="true" data-hide-cover="false" data-show-facepile="false">
+                    <blockquote cite="https://www.facebook.com/jestemgraczempl/" class="fb-xfbml-parse-ignore"><a
+                                href="https://www.facebook.com/jestemgraczempl/">JestemGraczem.pl</a></blockquote>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="g-ytsubscribe" data-channelid="UCwyKvaFQcBfJ7dCxM_uX5EQ" data-layout="full" data-count="default"></div>
+            </div>
+            <div class="col-md-4">
+                <div class="g-page" data-href="//plus.google.com/u/4/116516903644267522146" data-layout="landscape" data-rel="publisher"></div>
+
+            </div>
+        </div>
     </div>
 {% endblock %}
 
 {% block javascripts %}
     {{ parent() }}
+    <script src="{{ asset('assets/js/home-stream.js') }}"></script>
     <script>
-        var u_twitch = "";
-        var limit = 4;
-        getStream();
-
-        function getStream() {
-            $.ajax({
-                url: '{{ url('api.stream') }}',
-                dataType: 'json',
-                success: function (stream) {
-                    for (var i = 0; i < stream.length; i++) {
-                        u_twitch += stream[i]["twitch"] + ",";
-                    }
-                    getTwitch(u_twitch);
-                },
-                error: function () {
-                    console.log("Coś poszło nie tak podczas łączenia z API JestemGraczem.pl");
-                }
-            });
-        }
-
-        function getTwitch(stream) {
-            $.ajax({
-                url: 'https://api.twitch.tv/kraken/streams/?channel=' + stream,
-                dataType: 'jsonp',
-                success: function (channel) {
-                    $('#loading').remove();
-                    topStream(channel["streams"][0], 1);
-                    setTimeout(function () {
-                        $('#image' + channel["streams"][0]["channel"]["name"]).addClass("stream-active");
-                    }, 3000);
-                    for (var i = 0; i < limit; i++) {
-                        renderBottomStreamList(channel["streams"][i]);
-                    }
-                }, error: function () {
-                    console.log("Coś poszło nie tak podczas łączenia z api twitch");
-                }
-            });
-        }
-
-        function renderBottomStreamList(channel) {
-            var name = channel["channel"]["name"];
-            $("#streams-container").append('<div class="col-sm-3" id="' + name + '"><div class=""><div class="v-title" id="' + name + '_title"></div><div class="v-img" id="' + name + '_img"></div><div class="v-bottom" id="' + name + '_bottom"></div></div></div>');
-            $("#" + name).addClass('danger');
-            $("#" + name + "_status").html('ONLINE').css('font-weight', 'bold');
-            $("#" + name + "_game").html(channel["game"]);
-            $("#" + name + "_viewers").html(channel["viewers"]);
-            $("#" + name + "_img").html('<img onclick="topStream(\'' + name + '\',0)" class="img-responsive stream" src="https://static-cdn.jtvnw.net/previews-ttv/live_user_' + name + '-320x180.jpg" id="image' + name + '" alt="' + name + '">');
-        }
-
-        function topStream(channel, type) {
-            if (channel != null && type === 1) {
-                $.ajax({
-                    url: '{{ url('api.stream.name') }}/' + channel["channel"]["name"],
-                    dataType: 'json',
-                    success: function (description) {
-                        $('#description').hide().html(description[0]['description']).fadeIn(1000);
-                    },
-                    error: function () {
-                        console.log("Coś poszło nie tak podczas łączenia z api jestemgraczem");
-                    }
-                });
-                $('#topstream').hide().attr('src', "http://player.twitch.tv/?channel=" + channel["channel"]["name"]).fadeIn(1000);
-                $('#viewers').hide().html(channel["viewers"]).fadeIn(1000);
-                $('#link').hide().html("www.twitch.tv/" + channel["channel"]["name"]).fadeIn(1000);
-                $('#display_name').hide().html(channel["channel"]["display_name"]).fadeIn(1000);
-                $('#profile').attr('href', "{{ url('stream.id') }}/" + channel["channel"]["name"]);
-                $('#avatar').hide().attr('src', channel["channel"]["logo"]).fadeIn(1000);
-                $('#game').hide().attr('src', "https://static-cdn.jtvnw.net/ttv-boxart/" + channel["game"] + "-50x50.jpg").fadeIn(1000);
-
-                return 0;
-            }
-            $.ajax({
-                url: 'https://api.twitch.tv/kraken/streams/?channel=' + channel,
-                dataType: 'jsonp',
-                success: function (channel) {
-                    $('.stream-active').addClass('stream').removeClass('stream-active');
-                    $('#image' + channel["streams"][0]["channel"]["name"]).addClass("stream-active");
-                    topStream(channel["streams"][0], 1);
-                }, error: function () {
-                    console.log("Błąd z działaniem funkcji");
-                }
-            });
-        }
-
+        getStream('{{ url("api.stream") }}');
     </script>
 
+    <script type="text/javascript">
+        window.___gcfg = {lang: 'pl'};
+        (function() {
+            var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
+            po.src = 'https://apis.google.com/js/platform.js';
+            var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
+        })();
+    </script>
 
+    <script src="https://apis.google.com/js/platform.js"></script>
 
+    <script>(function (d, s, id) {
+            var js, fjs = d.getElementsByTagName(s)[0];
+            if (d.getElementById(id)) return;
+            js = d.createElement(s);
+            js.id = id;
+            js.src = "//connect.facebook.net/pl_PL/sdk.js#xfbml=1&version=v2.7&appId=1792775277616619";
+            fjs.parentNode.insertBefore(js, fjs);
+        }(document, 'script', 'facebook-jssdk'));</script>
 {% endblock %}
