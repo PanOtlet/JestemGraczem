@@ -241,6 +241,7 @@ footer {
     background-image: url("../img/bg-lol.jpg");
     color: #eaeaea;
 }
+
 .stream{
     border: solid 4px #000000;
     -webkit-filter: grayscale(100%); /* Chrome, Safari, Opera */

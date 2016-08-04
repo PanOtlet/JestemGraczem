@@ -12,13 +12,14 @@
             {#{% endif %}#}
         {#</div>#}
     {#</div>#}
-    <div class="container-fluid top p-t-3 p-b-2">
-        <div class="container">
-            <div class="col-sm-12 btn-clear-lg p-l-1 ">
-                Użytkownik: <span style="color: #8bc34a;">{{ user.username }}</span>
-            </div>
-        </div>
+    <div class="container-fluid top p-t-3 p-b-3"
+    {% if user.profilePicturePath is not empty %}
+       style=" background: url('{{ asset('assets/user/profilepics/' ~ user.profilePicturePath) }}'); background-size: cover;"
+    {% endif %}
+    >
+
     </div>
+
     <div class="container p-t-1 p-b-2">
         {% block adbanner %}{{ parent() }}{% endblock %}
         <div class="row">
@@ -88,6 +89,7 @@
                         <span style="color: #303030;">{{ 'button.my.desc'|trans }}</span>
                     </span>
                 </div>
+
                 <div class="grey-box p-y-1 p-l-1 m-b-1">
                     <p>{{ user.description }}</p>
                 </div>
