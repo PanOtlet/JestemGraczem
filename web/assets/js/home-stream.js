@@ -1,11 +1,14 @@
 var u_twitch = "";
 var limit = 4;
+var g_url="",g_exitUrl="";
 
-function getStream(url) {
+function getStream(url, exitUrl) {
     $.ajax({
         url: url,
         dataType: 'json',
         success: function (stream) {
+            g_url=url;
+            g_exitUrl=exitUrl;
         for (var i = 0; i < stream.length; i++) {
             u_twitch += stream[i]["twitch"] + ",";
         }
@@ -49,7 +52,7 @@ function renderBottomStreamList(channel) {
 function topStream(channel, type) {
     if (channel != null && type === 1) {
         $.ajax({
-            url: '{{ url("api.stream.name") }}/' + channel["channel"]["name"],
+            url: g_url+"/"+ channel["channel"]["name"],
             dataType: 'json',
             success: function (description) {
             $('#description').hide().html(description[0]['description']).fadeIn(1000);
@@ -62,7 +65,7 @@ function topStream(channel, type) {
         $('#viewers').hide().html(channel["viewers"]).fadeIn(1000);
         $('#link').hide().html("www.twitch.tv/" + channel["channel"]["name"]).fadeIn(1000);
         $('#display_name').hide().html(channel["channel"]["display_name"]).fadeIn(1000);
-        $('#profile').attr('href', "{{ url('stream.id') }}/" + channel["channel"]["name"]);
+        $('#profile').attr('href', g_exitUrl+"/" + channel["channel"]["name"]);
         $('#avatar').hide().attr('src', channel["channel"]["logo"]).fadeIn(1000);
         $('#game').hide().attr('src', "https://static-cdn.jtvnw.net/ttv-boxart/" + channel["game"] + "-50x50.jpg").fadeIn(1000);
 
