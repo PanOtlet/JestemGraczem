@@ -160,98 +160,241 @@
         </div>
     </nav>
 
-    {# Główny Navbar desktop #}
-    <nav class="navbar-desktop hidden-md-down" style="margin-bottom: -21px;">
+
+    {# Główny Navbar desktop v1.0 #}
+    <nav class="hidden-md-down" style="margin-bottom: -16px;">
         {% if color is defined %}
             <div class="bar-nav c-{{ color }}"></div>
         {% else %}
             <div class="bar-nav c-red"></div>
         {% endif %}
         <div class="container">
-            <div class="navbar-brand trap">
-                <div class="trap-">
-                    <a href="{{ url('homepage') }}">
-                        <img class="" src="{{ asset('assets/img/Logo1.png') }}"
-                             style="padding: 4px 4px;width: 100%;margin-top: -5px;" alt="Logo JestemGraczem">
-                    </a>
+            <div class="row">
+                <div class="col-md-3 p-x-0" style="height: 56px">
+                    <div class="trap">
+                        <div class="trap-">
+                            <a href="{{ url('homepage') }}">
+                                <img class="" src="{{ asset('assets/img/Logo1.png') }}"
+                                     style="padding: 4px 4px;width: 100%;margin-top: -5px;" alt="Logo JestemGraczem">
+                            </a>
+                        </div>
+                    </div>
                 </div>
-            </div>
-            <ul class="nav navbar-nav">
-                <li class="nav-item nav-item-d active">
+                <div class="col-md-3 p-x-0">
                     <div class="t-45 first" style="border-bottom-color: #e91e63;">
-                        <div class="t45 p-l-1" id="turnaments-a">
-                            <a class="font-weight-bold color-black">
+                        <div id="turnaments-a">
+                            <p class="t45 p-l-1 font-weight-bold color-black">
                                 TOURNAMENTS<span class="color-magenta">AREA</span>
-                            </a>
+                            </p>
                         </div>
                     </div>
-                </li>
-                <li class="nav-item nav-item-d">
+                </div>
+                <div class="col-md-3 p-x-0">
                     <div class="t-45" style="border-bottom-color: #ff9800;">
-                        <div class="t45 p-l-1" id="games-a">
-                            <a  class="font-weight-bold color-black">
+                        <div  id="games-a">
+                            <p class="t45 p-l-1 font-weight-bold color-black" >
                                 GAMES<span class="color-orange">AREA</span>
-                            </a>
+                            </p>
                         </div>
                     </div>
-                </li>
-                <li class="nav-item nav-item-d">
-                    <div class="t-45 last" style="border-bottom-color: #8bc34a;">
-                        <div class="t45 p-l-1" id="fun-a">
-                            <a  class="font-weight-bold color-black">
+                </div>
+                <div class="col-md-3 p-x-0">
+                    <div class="t-45 last">
+                        <div id="fun-a">
+                            <p class="t45 p-l-1 font-weight-bold color-black">
                                 FANS<span class="color-green">AREA</span>
-                            </a>
+                            </p>
                         </div>
                     </div>
-                </li>
-            </ul>
-            <div class="menu" id="fun-m">
-                <div class="container-fluid">
-                    <div class="row p-y-1">
-                        <div class="col-md-4">
-
-                            <div class="list-group text-md-center">
-                                <button type="button" class="list-group-item"
-                                        id="b-meme"><i class="fa fa-picture-o" aria-hidden="true"></i> {{ 'nav.meme'|trans }} <i class="fa fa-picture-o" aria-hidden="true"></i></button>
-                                <a href="{{ url('stream') }}" class="list-group-item"><i class="fa fa-twitch" aria-hidden="true"></i> {{ 'nav.streams'|trans }} <i class="fa fa-twitch" aria-hidden="true"></i></a>
-                                <button type="button" class="list-group-item"
-                                        id="b-video"><i class="fa fa-youtube-play" aria-hidden="true"></i> {{ 'nav.video'|trans }} <i class="fa fa-youtube-play" aria-hidden="true"></i></button>
-
-                            </div>
-                        </div>
-                        <div class="col-md-8">
-                            <div class="list-group mini-menu" id="meme-mm">
-                                <a href="{{ url('meme') }}" class="list-group-item">{{ 'nav.meme'|trans }}</a>
-                                <a href="{{ url('meme.wait') }}"
-                                   class="list-group-item">{{ 'button.waitingroom'|trans }}</a>
-                                <a href="{{ url('meme.add') }}" class="list-group-item">{{ 'form.add'|trans }}</a>
-                            </div>
-                            <div class="list-group mini-menu" id="video-mm">
-                                <a href="{{ url('video') }}" class="list-group-item ">{{ 'nav.video'|trans }}</a>
-                                <a href="{{ url('video.wait') }}"
-                                   class="list-group-item">{{ 'button.waitingroom'|trans }}</a>
-                                <a href="{{ url('video.add') }}" class="list-group-item">{{ 'form.add'|trans }}</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="menu" id="games-m">
-                <div class="list-group text-md-center">
-                    <a href="{{ url('news') }}" class="list-group-item"><i class="fa fa-newspaper-o" aria-hidden="true"></i> {{ 'nav.news'|trans }} <i class="fa fa-newspaper-o" aria-hidden="true"></i></a>
-                    <a href="{{ url('news.add') }}" class="list-group-item"><i class="fa fa-pencil" aria-hidden="true"></i> {{ 'nav.addrss'|trans }} <i class="fa fa-pencil" aria-hidden="true"></i></a>
-                    <a href="{{ url('status') }}" class="list-group-item"><i class="fa fa-power-off" aria-hidden="true"></i> {{ 'nav.status'|trans }} <i class="fa fa-power-off" aria-hidden="true"></i></a>
-                    <a href="{{ url('centrum') }}" class="list-group-item"><i class="fa fa-gamepad" aria-hidden="true"></i> {{ 'nav.center'|trans }} <i class="fa fa-gamepad" aria-hidden="true"></i></a>
-                </div>
-            </div>
-            <div class="menu" id="turnaments-m">
-                <div class="list-group text-md-center">
-                    <a href="{{ url('tournament') }}" class="list-group-item"><i class="fa fa-trophy" aria-hidden="true"></i> {{ 'nav.turnaments'|trans }} <i class="fa fa-trophy" aria-hidden="true"></i></a>
-                    <a href="{{ url('team') }}" class="list-group-item"><i class="fa fa-users" aria-hidden="true"></i> {{ 'nav.teams'|trans }} <i class="fa fa-users" aria-hidden="true"></i></a>
                 </div>
             </div>
         </div>
     </nav>
+
+
+
+    {# Główny Navbar desktop v2.0#}
+    {#<nav class="navbar-desktop hidden-md-down" style="margin-bottom: -21px;">#}
+        {#{% if color is defined %}#}
+            {#<div class="bar-nav c-{{ color }}"></div>#}
+        {#{% else %}#}
+            {#<div class="bar-nav c-red"></div>#}
+        {#{% endif %}#}
+        {#<div class="container">#}
+            {#<div class="navbar-brand trap">#}
+                {#<div class="trap-">#}
+                    {#<a href="{{ url('homepage') }}">#}
+                        {#<img class="" src="{{ asset('assets/img/Logo1.png') }}"#}
+                             {#style="padding: 4px 4px;width: 100%;margin-top: -5px;" alt="Logo JestemGraczem">#}
+                    {#</a>#}
+                {#</div>#}
+            {#</div>#}
+            {#<ul class="nav navbar-nav">#}
+                {#<li class="nav-item nav-item-d active">#}
+                    {#<div class="t-45 first" style="border-bottom-color: #e91e63;">#}
+                        {#<div class="t45 p-l-1" id="turnaments-a">#}
+                            {#<a class="font-weight-bold color-black">#}
+                                {#TOURNAMENTS<span class="color-magenta">AREA</span>#}
+                            {#</a>#}
+                        {#</div>#}
+                    {#</div>#}
+                {#</li>#}
+                {#<li class="nav-item nav-item-d">#}
+                    {#<div class="t-45" style="border-bottom-color: #ff9800;">#}
+                        {#<div class="t45 p-l-1" id="games-a">#}
+                            {#<a  class="font-weight-bold color-black">#}
+                                {#GAMES<span class="color-orange">AREA</span>#}
+                            {#</a>#}
+                        {#</div>#}
+                    {#</div>#}
+                {#</li>#}
+                {#<li class="nav-item nav-item-d">#}
+                    {#<div class="t-45 last" style="border-bottom-color: #8bc34a;">#}
+                        {#<div class="t45 p-l-1" id="fun-a">#}
+                            {#<a  class="font-weight-bold color-black">#}
+                                {#FANS<span class="color-green">AREA</span>#}
+                            {#</a>#}
+                        {#</div>#}
+                    {#</div>#}
+                {#</li>#}
+            {#</ul>#}
+        {#</div>#}
+    {#</nav>#}
+
+
+    {# Menus lg#}
+
+    {#menu dla v1.0#}
+    <div class="container">
+    <div class="menu-v1" id="fun-m">
+        <div class="container-fluid">
+            <div class="row p-y-1">
+                <div class="col-md-4">
+
+                    <div class="list-group text-md-center">
+                        <button type="button" class="list-group-item"
+                                id="b-meme"><i class="fa fa-picture-o"
+                                               aria-hidden="true"></i> {{ 'nav.meme'|trans }} <i
+                                    class="fa fa-picture-o" aria-hidden="true"></i></button>
+                        <a href="{{ url('stream') }}" class="list-group-item"><i class="fa fa-twitch"
+                                                                                 aria-hidden="true"></i> {{ 'nav.streams'|trans }}
+                            <i class="fa fa-twitch" aria-hidden="true"></i></a>
+                        <button type="button" class="list-group-item"
+                                id="b-video"><i class="fa fa-youtube-play"
+                                                aria-hidden="true"></i> {{ 'nav.video'|trans }} <i
+                                    class="fa fa-youtube-play" aria-hidden="true"></i></button>
+
+                    </div>
+                </div>
+                <div class="col-md-8">
+                    <div class="list-group mini-menu" id="meme-mm">
+                        <a href="{{ url('meme') }}" class="list-group-item">{{ 'nav.meme'|trans }}</a>
+                        <a href="{{ url('meme.wait') }}"
+                           class="list-group-item">{{ 'button.waitingroom'|trans }}</a>
+                        <a href="{{ url('meme.add') }}" class="list-group-item">{{ 'form.add'|trans }}</a>
+                    </div>
+                    <div class="list-group mini-menu" id="video-mm">
+                        <a href="{{ url('video') }}" class="list-group-item ">{{ 'nav.video'|trans }}</a>
+                        <a href="{{ url('video.wait') }}"
+                           class="list-group-item">{{ 'button.waitingroom'|trans }}</a>
+                        <a href="{{ url('video.add') }}" class="list-group-item">{{ 'form.add'|trans }}</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="menu-v1" id="games-m">
+        <div class="list-group text-md-center">
+            <a href="{{ url('news') }}" class="list-group-item"><i class="fa fa-newspaper-o"
+                                                                   aria-hidden="true"></i> {{ 'nav.news'|trans }} <i
+                        class="fa fa-newspaper-o" aria-hidden="true"></i></a>
+            <a href="{{ url('news.add') }}" class="list-group-item"><i class="fa fa-pencil"
+                                                                       aria-hidden="true"></i> {{ 'nav.addrss'|trans }}
+                <i class="fa fa-pencil" aria-hidden="true"></i></a>
+            <a href="{{ url('status') }}" class="list-group-item"><i class="fa fa-power-off"
+                                                                     aria-hidden="true"></i> {{ 'nav.status'|trans }}
+                <i class="fa fa-power-off" aria-hidden="true"></i></a>
+            <a href="{{ url('centrum') }}" class="list-group-item"><i class="fa fa-gamepad"
+                                                                      aria-hidden="true"></i> {{ 'nav.center'|trans }}
+                <i class="fa fa-gamepad" aria-hidden="true"></i></a>
+        </div>
+    </div>
+    <div class="menu-v1" id="turnaments-m">
+        <div class="list-group text-md-center">
+            <a href="{{ url('tournament') }}" class="list-group-item"><i class="fa fa-trophy"
+                                                                         aria-hidden="true"></i> {{ 'nav.turnaments'|trans }}
+                <i class="fa fa-trophy" aria-hidden="true"></i></a>
+            <a href="{{ url('team') }}" class="list-group-item"><i class="fa fa-users"
+                                                                   aria-hidden="true"></i> {{ 'nav.teams'|trans }}
+                <i class="fa fa-users" aria-hidden="true"></i></a>
+        </div>
+    </div>
+    </div>
+
+    {#menu dla v2.0#}
+    {#<div class="menu-v2" id="fun-m">#}
+        {#<div class="container-fluid">#}
+            {#<div class="row p-y-1">#}
+                {#<div class="col-md-4">#}
+
+                    {#<div class="list-group text-md-center">#}
+                        {#<button type="button" class="list-group-item"#}
+                                {#id="b-meme"><i class="fa fa-picture-o"#}
+                                               {#aria-hidden="true"></i> {{ 'nav.meme'|trans }} <i#}
+                                    {#class="fa fa-picture-o" aria-hidden="true"></i></button>#}
+                        {#<a href="{{ url('stream') }}" class="list-group-item"><i class="fa fa-twitch"#}
+                                                                                 {#aria-hidden="true"></i> {{ 'nav.streams'|trans }}#}
+                            {#<i class="fa fa-twitch" aria-hidden="true"></i></a>#}
+                        {#<button type="button" class="list-group-item"#}
+                                {#id="b-video"><i class="fa fa-youtube-play"#}
+                                                {#aria-hidden="true"></i> {{ 'nav.video'|trans }} <i#}
+                                    {#class="fa fa-youtube-play" aria-hidden="true"></i></button>#}
+
+                    {#</div>#}
+                {#</div>#}
+                {#<div class="col-md-8">#}
+                    {#<div class="list-group mini-menu" id="meme-mm">#}
+                        {#<a href="{{ url('meme') }}" class="list-group-item">{{ 'nav.meme'|trans }}</a>#}
+                        {#<a href="{{ url('meme.wait') }}"#}
+                           {#class="list-group-item">{{ 'button.waitingroom'|trans }}</a>#}
+                        {#<a href="{{ url('meme.add') }}" class="list-group-item">{{ 'form.add'|trans }}</a>#}
+                    {#</div>#}
+                    {#<div class="list-group mini-menu" id="video-mm">#}
+                        {#<a href="{{ url('video') }}" class="list-group-item ">{{ 'nav.video'|trans }}</a>#}
+                        {#<a href="{{ url('video.wait') }}"#}
+                           {#class="list-group-item">{{ 'button.waitingroom'|trans }}</a>#}
+                        {#<a href="{{ url('video.add') }}" class="list-group-item">{{ 'form.add'|trans }}</a>#}
+                    {#</div>#}
+                {#</div>#}
+            {#</div>#}
+        {#</div>#}
+    {#</div>#}
+    {#<div class="menu-v2" id="games-m">#}
+        {#<div class="list-group text-md-center">#}
+            {#<a href="{{ url('news') }}" class="list-group-item"><i class="fa fa-newspaper-o"#}
+                                                                   {#aria-hidden="true"></i> {{ 'nav.news'|trans }} <i#}
+                        {#class="fa fa-newspaper-o" aria-hidden="true"></i></a>#}
+            {#<a href="{{ url('news.add') }}" class="list-group-item"><i class="fa fa-pencil"#}
+                                                                       {#aria-hidden="true"></i> {{ 'nav.addrss'|trans }}#}
+                {#<i class="fa fa-pencil" aria-hidden="true"></i></a>#}
+            {#<a href="{{ url('status') }}" class="list-group-item"><i class="fa fa-power-off"#}
+                                                                     {#aria-hidden="true"></i> {{ 'nav.status'|trans }}#}
+                {#<i class="fa fa-power-off" aria-hidden="true"></i></a>#}
+            {#<a href="{{ url('centrum') }}" class="list-group-item"><i class="fa fa-gamepad"#}
+                                                                      {#aria-hidden="true"></i> {{ 'nav.center'|trans }}#}
+                {#<i class="fa fa-gamepad" aria-hidden="true"></i></a>#}
+        {#</div>#}
+    {#</div>#}
+    {#<div class="menu-v2" id="turnaments-m">#}
+        {#<div class="list-group text-md-center">#}
+            {#<a href="{{ url('tournament') }}" class="list-group-item"><i class="fa fa-trophy"#}
+                                                                         {#aria-hidden="true"></i> {{ 'nav.turnaments'|trans }}#}
+                {#<i class="fa fa-trophy" aria-hidden="true"></i></a>#}
+            {#<a href="{{ url('team') }}" class="list-group-item"><i class="fa fa-users"#}
+                                                                   {#aria-hidden="true"></i> {{ 'nav.teams'|trans }}#}
+                {#<i class="fa fa-users" aria-hidden="true"></i></a>#}
+        {#</div>#}
+    {#</div>#}
 
 
     {# Modale #}

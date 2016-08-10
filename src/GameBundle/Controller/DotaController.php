@@ -15,9 +15,9 @@ class DotaController extends Controller
     public function indexAction()
     {
         $seo = $this->container->get('sonata.seo.page');
-        $seo->setTitle('World of Warcraft - Centrum Gracza :: JestemGraczem.pl')
-            ->addMeta('name', 'description', "Centrum każdego gracza World of Warcraft! Najświeższe i najciekawsze newsy tylko u nas!")
-            ->addMeta('property', 'og:title', 'World of Warcraft - Centrum Gracza :: JestemGraczem.pl')
+        $seo->setTitle('DotA2 - Centrum Gracza :: JestemGraczem.pl')
+            ->addMeta('name', 'description', "Centrum każdego gracza DotA2! Najświeższe i najciekawsze newsy tylko u nas!")
+            ->addMeta('property', 'og:title', 'DotA2 - Centrum Gracza :: JestemGraczem.pl')
             ->addMeta('property', 'og:url', $this->get('router')->generate('centrum.dota', [], UrlGeneratorInterface::ABSOLUTE_URL));
 
         $feeds = [

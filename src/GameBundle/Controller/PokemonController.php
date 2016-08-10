@@ -15,9 +15,9 @@ class PokemonController extends Controller
     public function indexAction()
     {
         $seo = $this->container->get('sonata.seo.page');
-        $seo->setTitle('Grand Theft Auto - Centrum Gracza :: JestemGraczem.pl')
-            ->addMeta('name', 'description', "Centrum każdego gracza Grand Theft Auto! Najświeższe i najciekawsze newsy tylko u nas!")
-            ->addMeta('property', 'og:title', 'Grand Theft Auto - Centrum Gracza :: JestemGraczem.pl')
+        $seo->setTitle('Pokemon: GO - Centrum Gracza :: JestemGraczem.pl')
+            ->addMeta('name', 'description', "Centrum każdego gracza Pokemon: GO! Najświeższe i najciekawsze newsy tylko u nas!")
+            ->addMeta('property', 'og:title', 'Pokemon: GO - Centrum Gracza :: JestemGraczem.pl')
             ->addMeta('property', 'og:url', $this->get('router')->generate('centrum.pokemon', [], UrlGeneratorInterface::ABSOLUTE_URL));
 
         $feeds = [
