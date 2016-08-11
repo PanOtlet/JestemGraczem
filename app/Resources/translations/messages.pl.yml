@@ -82,8 +82,6 @@ video:
     url: 'Link do filmu na YouTube'
     title: 'Tytuł filmu'
     add: 'Dodaj film'
-error:
-    filetype: 'Zły format pliku!'
 #User Form
 Battlenet: 'BattleTag'
 Twitch: 'Nick Twitch'
@@ -100,8 +98,10 @@ tournament:
     dateStart: 'Data startu rozgrywek'
     dateStop: 'Planowana data zakończenia turnieju'
     description: 'Opis'
-    game: 'gra'
-    type: 'typ turnieju'
+    game: 'Gra'
+    type: 'Typ turnieju'
+    cost: 'Wpisowe'
+    free: 'Brak'
     countTeam: 'Maksymalna liczba uczetników'
     playerType: 'Rodzaj zawodów'
     open: 'Otwarty'

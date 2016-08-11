@@ -400,6 +400,16 @@ footer {
     margin-bottom: 5px;
     border-radius: 0px;
 }
+.btn-clear-lp {
+     text-align: left;
+     border-left: solid 4px #e91e63;
+     background-color: transparent;
+     color: #FFFFFF;
+     font-weight: bold;
+     font-size: 1.6rem;
+     margin-bottom: 5px;
+     border-radius: 0px;
+ }
 
 .btn-green {
     background-color: #8bc34a;
