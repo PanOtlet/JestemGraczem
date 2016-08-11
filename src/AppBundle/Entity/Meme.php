@@ -65,7 +65,8 @@ class Meme
      *      "image/gif",
      *      "image/jpg",
      *      "image/jpeg",
-     *      "video/mp4"
+     *      "video/mp4",
+     *      "video/webm"
      * },
      *     mimeTypesMessage = "error.filetype"
      * )
