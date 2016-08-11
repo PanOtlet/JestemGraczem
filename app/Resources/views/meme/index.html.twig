@@ -38,7 +38,7 @@
                                     </div>
                                 </div>
                             </div>
-                        {% elseif mem.url | slice(-4) == '.mp4' %}
+                        {% elseif mem.url | slice(-4) == '.mp4' or mem.url | slice(-5) == '.webm' %}
                             <div class="meme">
                                 <div class="m-title">
                                     <a class="text-center" href="{{ url('meme.id',{'id': mem.id}) }}">
