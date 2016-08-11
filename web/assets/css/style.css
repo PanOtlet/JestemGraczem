@@ -275,7 +275,8 @@ footer {
     padding-top: 30px;
     padding-bottom: 60px;
     text-align: center;
-    background-image: url("../img/bg-lol.jpg");
+    background: url("../img/bg-lol.jpg") no-repeat;
+    background-size:cover;
     color: #eaeaea;
 }
 
@@ -320,7 +321,8 @@ footer {
     padding-top: 10px;
     padding-bottom: 20px;
     text-align: center;
-    background-image: url("../img/bg-lol.jpg");
+    background: url("../img/bg-lol.jpg") no-repeat;
+    background-size:cover;
     color: #eaeaea;
 }
 .row-streams {
