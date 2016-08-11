@@ -171,22 +171,22 @@ class DefaultController extends Controller
                 'label' => 'tournament.game',
                 'required' => true,
                 'choices' => [
-                    'csgo' => 1,
-                    'lol' => 2,
-                    'hots' => 3,
-                    'sc2' => 4,
-                    'hs' => 5,
-                    'dota2' => 6,
-                    'wot' => 7,
-                    'other' => 666,
+                    'tournament.csgo' => 1,
+                    'tournament.lol' => 2,
+                    'tournament.hots' => 3,
+                    'tournament.sc2' => 4,
+                    'tournament.hs' => 5,
+                    'tournament.dota2' => 6,
+                    'tournament.wot' => 7,
+                    'tournament.other' => 666,
                 ],
             ])
             ->add('type', ChoiceType::class, [
                 'label' => 'tournament.type',
                 'required' => true,
                 'choices' => [
-                    'open' => 0,
-                    'invite' => 1,
+                    'tournament.open' => 0,
+                    'tournament.invite' => 1,
                 ],
             ])
             ->add('countTeam', IntegerType::class, [
@@ -197,8 +197,8 @@ class DefaultController extends Controller
                 'label' => 'tournament.playerType',
                 'required' => true,
                 'choices' => [
-                    'team' => 0,
-                    'individual' => 1
+                    'tournament.team' => 0,
+                    'tournament.individual' => 1
                 ]
             ])
             ->add('save', SubmitType::class, ['label' => 'tournament.create'])
