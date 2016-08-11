@@ -189,6 +189,13 @@ class DefaultController extends Controller
                     'tournament.invite' => 1,
                 ],
             ])
+            ->add('cost', ChoiceType::class, [
+                'label' => 'tournament.cost',
+                'required' => true,
+                'choices' => [
+                    'tournament.free' => 0,
+                ],
+            ])
             ->add('countTeam', IntegerType::class, [
                 'label' => 'tournament.countTeam',
                 'required' => true,
@@ -214,7 +221,7 @@ class DefaultController extends Controller
             $data->setOwner($this->getUser()->getId());
             $data->setDyscyplina($form->get('game')->getViewData());
             $data->setType($form->get('type')->getViewData());
-            $data->setCost(0);
+            $data->setCost($form->get('cost')->getViewData());
             $data->setCountTeam($form->get('countTeam')->getViewData());
             $data->setPrizePool(0);
             $data->setCostPerTeam(0);
