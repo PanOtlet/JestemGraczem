@@ -123,5 +123,18 @@ admin:
     turnieje: 'Turnieje'
     entry: 'Zapisani'
 ID: 'ID'
+tournament:
+    name: 'Nazwa turnieju'
+    dateStart: 'Data startu rozgrywek'
+    dateStop: 'Planowana data zakończenia turnieju'
+    description: 'Opis'
+    game: 'gra'
+    type: 'typ turnieju'
+    countTeam: 'Maksymalna liczba uczetników'
+    playerType: 'Rodzaj zawodów'
+    open: 'Otwarty'
+    invite: 'Na zaproszenie'
+    team: 'Drużyna'
+    individual: 'Indywidualny'
 error:
     filetype: 'Niedozwolony typ pliku!'
