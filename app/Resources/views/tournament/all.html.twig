@@ -7,7 +7,7 @@
                 <span style="color: #8bc34a;">Turnieje</span>
             </div>
             {#<div class="col-sm-6">#}
-                {#<a href="{{ url('team.add') }}" type="button" class="btn btn-green pull-sm-right"><span class="p-x-3">Dodaj nową</span></a>#}
+            {#<a href="{{ url('team.add') }}" type="button" class="btn btn-green pull-sm-right"><span class="p-x-3">Dodaj nową</span></a>#}
             {#</div>#}
         </div>
     </div>
@@ -16,17 +16,17 @@
             {% for turniej in turnieje %}
                 <div class="container">
                     <div class="row m-t-1" style="background-color: #eaeaea">
-                        {#<a href="{{ url('team',{'tag': turniej.tag}) }}">#}
-                        <div class="col-md-12 p-x-0">
-                            <div class="btn-white-lp dots m-b-0" style="border-left: 0px; border-right: 0px">
-                                <span class="p-x-1 text">{{ turniej.name }}</span>
-                            </div>
-                            <div class="grey-box p-y-1 p-l-1 m-b-1 ">
-                                <p>{{ turniej.description | slice(0,300)}}</p>
+                        <a href="{{ url('tournament.id',{'id': turniej.id}) }}">
+                            <div class="col-md-12 p-x-0">
+                                <div class="btn-white-lp dots m-b-0" style="border-left: 0px; border-right: 0px">
+                                    <span class="p-x-1 text">{{ turniej.name }}</span>
+                                </div>
+                                <div class="grey-box p-y-1 p-l-1 m-b-1 ">
+                                    <p>{{ turniej.description | slice(0,300) }}</p>
 
+                                </div>
                             </div>
-                        </div>
-                        {#</a>#}
+                        </a>
                     </div>
                 </div>
             {% endfor %}

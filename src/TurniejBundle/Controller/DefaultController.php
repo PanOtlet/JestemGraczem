@@ -147,4 +147,16 @@ class DefaultController extends Controller
         ]);
     }
 
+    /**
+     * @Route("/utworz", name="tournament.create")
+     */
+    public function createAction()
+    {
+        $seo = $this->container->get('sonata.seo.page')->setTitle('Utwórz turniej :: JestemGraczem.pl');
+
+        return $this->render('tournament/create.html.twig', [
+            'color' => $this->color,
+        ]);
+    }
+
 }

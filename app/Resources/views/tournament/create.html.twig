@@ -1,0 +1,17 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <div class="container-fluid top p-t-3 p-b-2">
+        <div class="container">
+            <div class="col-sm-6 btn-clear-lg p-l-1 ">
+                <span style="color: #8bc34a;">{{ turniej.name }}</span>
+            </div>
+        </div>
+    </div>
+    <div class="container">
+        <div class="jumbotron t-title">
+            <h1>{{ turniej.dyscyplina }}</h1>
+            <p>{{ turniej.description }}</p>
+        </div>
+    </div>
+{% endblock %}
