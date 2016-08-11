@@ -126,4 +126,25 @@ class DefaultController extends Controller
             'color' => $this->color,
         ]);
     }
+
+    /**
+     * @Route("/turniej/{id}", name="tournament.id")
+     */
+    public function turniejAction($id)
+    {
+        $seo = $this->container->get('sonata.seo.page');
+        $seo->setTitle('Zapowiedziane turnieje :: JestemGraczem.pl')
+            ->addMeta('name', 'description', 'Przyszłe turnieje na platformie JestemGraczem.pl!')
+            ->addMeta('property', 'og:title', 'Turnieje')
+            ->addMeta('property', 'og:description', 'Przyszłe turnieje na platformie JestemGraczem.pl!')
+            ->addMeta('property', 'og:url', $this->get('router')->generate('tournament.id', ['id' => $id], UrlGeneratorInterface::ABSOLUTE_URL));
+
+        $turniej = $this->getDoctrine()->getRepository('TurniejBundle:Turnieje')->findOneBy(['id'=>$id]);
+
+        return $this->render('tournament/turniej.html.twig', [
+            'turniej' => $turniej,
+            'color' => $this->color,
+        ]);
+    }
+
 }
