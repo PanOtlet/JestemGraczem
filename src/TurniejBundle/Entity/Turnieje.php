@@ -65,6 +65,11 @@ class Turnieje
      * @var int
      *
      * Wpisowe, free, czy dotacje?
+     *
+     * Free 0
+     * Wpisowe 1
+     * Dotacje 2
+     *
      * @ORM\Column(name="cost", type="smallint")
      */
     private $cost;
@@ -310,6 +315,22 @@ class Turnieje
     public function getCountTeam()
     {
         return $this->countTeam;
+    }
+
+    /**
+     * @return int
+     */
+    public function getPrizePool()
+    {
+        return $this->prizePool;
+    }
+
+    /**
+     * @param int $prizePool
+     */
+    public function setPrizePool($prizePool)
+    {
+        $this->prizePool = $prizePool;
     }
 
     /**

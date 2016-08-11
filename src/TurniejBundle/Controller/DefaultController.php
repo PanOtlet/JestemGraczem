@@ -4,7 +4,15 @@ namespace TurniejBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
+use Symfony\Component\Form\Extension\Core\Type\DateType;
+use Symfony\Component\Form\Extension\Core\Type\IntegerType;
+use Symfony\Component\Form\Extension\Core\Type\SubmitType;
+use Symfony\Component\Form\Extension\Core\Type\TextareaType;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
+use TurniejBundle\Entity\Turnieje;
 
 class DefaultController extends Controller
 {
@@ -139,7 +147,7 @@ class DefaultController extends Controller
             ->addMeta('property', 'og:description', 'Przyszłe turnieje na platformie JestemGraczem.pl!')
             ->addMeta('property', 'og:url', $this->get('router')->generate('tournament.id', ['id' => $id], UrlGeneratorInterface::ABSOLUTE_URL));
 
-        $turniej = $this->getDoctrine()->getRepository('TurniejBundle:Turnieje')->findOneBy(['id'=>$id]);
+        $turniej = $this->getDoctrine()->getRepository('TurniejBundle:Turnieje')->findOneBy(['id' => $id]);
 
         return $this->render('tournament/turniej.html.twig', [
             'turniej' => $turniej,
@@ -150,12 +158,86 @@ class DefaultController extends Controller
     /**
      * @Route("/utworz", name="tournament.create")
      */
-    public function createAction()
+    public function createAction(Request $request)
     {
-        $seo = $this->container->get('sonata.seo.page')->setTitle('Utwórz turniej :: JestemGraczem.pl');
+        $this->container->get('sonata.seo.page')->setTitle('Utwórz turniej :: JestemGraczem.pl');
+
+        $form = $this->createFormBuilder()
+            ->add('name', TextType::class, ['label' => 'tournament.name', 'required' => true])
+            ->add('description', TextareaType::class, ['label' => 'tournament.description', 'required' => true])
+            ->add('dateStart', DateType::class, ['label' => 'tournament.dateStart', 'required' => true])
+            ->add('dateStop', DateType::class, ['label' => 'tournament.dateStop', 'required' => true])
+            ->add('game', ChoiceType::class, [
+                'label' => 'tournament.game',
+                'required' => true,
+                'choices' => [
+                    'Counter-Strike: Global Offensive' => 1,
+                    'League of Legends' => 2,
+                    'Heroes of the Storm' => 3,
+                    'StarCraft II' => 4,
+                    'Hearthstone: Heroes of Warcraft' => 5,
+                    'DotA2' => 6,
+                    'World of Tanks' => 7,
+                    'Inne' => 666,
+                ],
+            ])
+            ->add('type', ChoiceType::class, [
+                'label' => 'tournament.type',
+                'required' => true,
+                'choices' => [
+                    'Otwarty' => 0,
+                    'Na zaproszenie' => 1,
+                ],
+            ])
+            ->add('countTeam', IntegerType::class, [
+                'label' => 'tournament.countTeam',
+                'required' => true,
+            ])
+            ->add('playerType', ChoiceType::class, [
+                'label' => 'tournament.playerType',
+                'required' => true,
+                'choices' => [
+                    'Drużynowe' => 0,
+                    'Indywidualne' => 1
+                ]
+            ])
+            ->add('save', SubmitType::class, ['label' => 'tournament.create'])
+            ->getForm();
+
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+
+            $data = new Turnieje();
+            $data->setName($form->get('name')->getViewData());
+            $data->setDescription($form->get('description')->getViewData());
+            $data->setOwner($this->getUser()->getId());
+            $data->setDyscyplina($form->get('game')->getViewData());
+            $data->setType($form->get('type')->getViewData());
+            $data->setCost(0);
+            $data->setCountTeam($form->get('countTeam')->getViewData());
+            $data->setPrizePool(0);
+            $data->setCostPerTeam(0);
+            $data->setCostOrg(0);
+            $data->setDataStart($form->get('dateStart')->getViewData());
+            $data->setDataStop($form->get('dateStop')->getViewData());
+            $data->setPlayerType($form->get('playerType')->getViewData());
+            $data->setPromoted(0);
+
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($data);
+            $em->flush();
+
+            $this->addFlash(
+                'success',
+                'Dodano turniej!'
+            );
+            return $this->redirectToRoute('tournament');
+        }
 
         return $this->render('tournament/create.html.twig', [
             'color' => $this->color,
+            'form' => $form->createView()
         ]);
     }
 
