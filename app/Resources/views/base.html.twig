@@ -324,16 +324,39 @@
                 <i class="fa fa-gamepad" aria-hidden="true"></i></a>
         </div>
     </div>
-    <div class="menu-v1" id="turnaments-m">
-        <div class="list-group text-md-center">
-            <a href="{{ url('tournament') }}" class="list-group-item"><i class="fa fa-trophy"
-                                                                         aria-hidden="true"></i> {{ 'nav.turnaments'|trans }}
-                <i class="fa fa-trophy" aria-hidden="true"></i></a>
-            <a href="{{ url('team') }}" class="list-group-item"><i class="fa fa-users"
-                                                                   aria-hidden="true"></i> {{ 'nav.teams'|trans }}
-                <i class="fa fa-users" aria-hidden="true"></i></a>
+
+
+
+        <div class="menu-v1" id="turnaments-m">
+            <div class="container-fluid">
+                <div class="row p-y-1">
+                    <div class="col-md-4">
+
+                        <div class="list-group text-md-center">
+                            <button type="button" class="list-group-item"
+                                    id="b-turnaments"><i class="fa fa-trophy"
+                                                         aria-hidden="true"></i> {{ 'nav.turnaments'|trans }}
+                                <i class="fa fa-trophy" aria-hidden="true"></i></button>
+
+
+                            <a href="{{ url('team') }}" class="list-group-item"><i class="fa fa-users"
+                                                                                   aria-hidden="true"></i> {{ 'nav.teams'|trans }}
+                                <i class="fa fa-users" aria-hidden="true"></i></a>
+
+                        </div>
+                    </div>
+                    <div class="col-md-8">
+                        <div class="list-group mini-menu" id="turnaments-mm">
+                            <a href="{{ url('tournament') }}" class="list-group-item"> {{ 'nav.turnaments'|trans }}</a>
+                            <a href="{{ url('tournament.create') }}" class="list-group-item"> {{ 'nav.create-turnament'|trans }}</a>
+                            <a href="{{ url('tournament.aktualne') }}" class="list-group-item"> {{ 'nav.turnaments-0'|trans }}</a>
+                            <a href="{{ url('tournament.zapowiedziane') }}" class="list-group-item"> {{ 'nav.turnaments-1'|trans }}</a>
+                            <a href="{{ url('tournament.zakonczone') }}" class="list-group-item"> {{ 'nav.turnaments-2'|trans }}</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
-    </div>
     </div>
 
     {#menu dla v2.0#}
@@ -413,10 +436,35 @@
                     <h4 class="modal-title">TOURNAMENTSAREA</h4>
                 </div>
                 <div class="modal-body">
-                    <a href="{{ url('tournament') }}" type="button"
-                       class="btn btn-primary btn-lg btn-block">{{ 'nav.turnaments'|trans }}</a>
+                    <div class="row p-x-1 p-y-1">
+                        <div class="col-xs-6 p-x-0">
+                            <a href="{{ url('tournament') }}" type="button"
+                               class="btn btn-primary btn-lg btn-block"  style="border-radius: 0;">{{ 'nav.turnaments'|trans }}</a>
+                        </div>
+                        <div class="col-xs-6 p-x-0">
+                            <button type="button" class="btn btn-primary btn-lg dropdown-toggle btn-block"
+                                    data-toggle="dropdown"
+                                    aria-haspopup="true" aria-expanded="false" style="border-radius: 0;">
+                                <span class="sr-only">Toggle Dropdown</span>
+                            </button>
+                            <div class="dropdown-menu">
+                                <a href="{{ url('tournament.create') }}" class="dropdown-item"> {{ 'nav.create-turnament'|trans }}</a>
+                                <div class="dropdown-divider"></div>
+                                <a href="{{ url('tournament.aktualne') }}" class="dropdown-item"> {{ 'nav.turnaments-0'|trans }}</a>
+                                <a href="{{ url('tournament.zapowiedziane') }}" class="dropdown-item"> {{ 'nav.turnaments-1'|trans }}</a>
+                                <a href="{{ url('tournament.zakonczone') }}" class="dropdown-item"> {{ 'nav.turnaments-2'|trans }}</a>
+
+                            </div>
+                        </div>
+                    </div>
+
+
+
                     <a href="{{ url('team') }}" type="button"
                        class="btn btn-primary btn-lg btn-block">{{ 'nav.teams'|trans }}</a>
+
+
+
                 </div>
                 <div class="modal-footer">
                 </div>
@@ -616,6 +664,9 @@
         $("#b-video").click(function () {
             $("#meme-mm").hide();
             $("#video-mm").toggle();
+        });
+        $("#b-turnaments").click(function () {
+            $("#turnaments-mm").toggle();
         });
 
         $(document).ready(function () {
