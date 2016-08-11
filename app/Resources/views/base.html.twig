@@ -71,14 +71,19 @@
                     </nav>
                     <nav class="nav navbar-nav pull-xs-right">
                         <p>
+                        {% if is_granted('ROLE_ADMIN') %}
+                            <a href="{{ url('easyadmin') }}">
+                                <i class="fa fa-terminal" aria-hidden="true"></i> AdminCP
+                            </a>
+                        {% endif %}
                             <a href="{{ url('user',{'user': app.user.username}) }}">
                                 <i class="fa fa-user"
                                    aria-hidden="true"></i> {{ 'profile.publicprofil'|trans({}, 'FOSUserBundle') }}
                             </a>
-                            <a href="{{ url('fos_user_profile_show') }}">
-                                <i class="fa fa-user-secret"
-                                   aria-hidden="true"></i> {{ 'profile.profil'|trans({}, 'FOSUserBundle') }}
-                            </a>
+                            {#<a href="{{ url('fos_user_profile_show') }}">#}
+                                {#<i class="fa fa-user-secret"#}
+                                   {#aria-hidden="true"></i> {{ 'profile.profil'|trans({}, 'FOSUserBundle') }}#}
+                            {#</a>#}
                             <a href="{{ url('fos_user_change_password') }}">
                                 <i class="fa fa-key"
                                    aria-hidden="true"></i> {{ 'change_password.submit'|trans({}, 'FOSUserBundle') }}
