@@ -109,7 +109,7 @@ class Turnieje
     /**
      * @var \DateTime
      *
-     * Data rozpoczęcia turnieju
+     * Data rozpoczęcia zapisów
      * @ORM\Column(name="dataStart", type="date")
      */
     private $dataStart;
@@ -117,7 +117,7 @@ class Turnieje
     /**
      * @var \DateTime
      *
-     * Data zakończenia turnieju
+     * Data rozpoczęcia turnieju
      * @ORM\Column(name="dataStop", type="date")
      */
     private $dataStop;

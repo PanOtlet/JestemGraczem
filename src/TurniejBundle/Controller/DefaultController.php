@@ -12,6 +12,7 @@ use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
+use TurniejBundle\Entity\EntryTournament;
 use TurniejBundle\Entity\Turnieje;
 
 class DefaultController extends Controller
@@ -248,4 +249,59 @@ class DefaultController extends Controller
         ]);
     }
 
+    /**
+     * @Route("/dolacz/{id}", name="tournament.join")
+     */
+    public function joinAction($id)
+    {
+        $seo = $this->container->get('sonata.seo.page');
+        $seo->setTitle('Dołącz do turnieju :: JestemGraczem.pl');
+
+        $em = $this->getDoctrine()->getManager();
+        $turniej = $em->getRepository('TurniejBundle:Turnieje')->findOneBy(['id' => $id]);
+
+        if ($turniej == NULL) {
+            throw $this->createNotFoundException('Turniej do którego chcesz dołączyć nie istnieje!');
+        }
+
+        $date = new \DateTime('now');
+
+        if ($turniej->getDataStop() < $date) {
+            throw $this->createNotFoundException('Turniej oficjalnie zamknął możliwość zapisów!');
+        }
+
+        switch ($turniej->getType()) {
+            case 0:
+                $zapis = TRUE;
+                break;
+            case 1:
+                $zapis = $this->getDoctrine()->getRepository('TurniejBundle:EntryTournament')->findOneBy([
+                    'tournamentId' => $turniej->getId(),
+                    'playerId' => $this->getUser()->getId()
+                ]);
+                break;
+            default:
+                $zapis = NULL;
+        }
+
+        if ($zapis == NULL) {
+            throw $this->createNotFoundException('Nie masz dostępu do turnieju!');
+        }
+
+        /*
+         * @TODO: Dodać sprawdzenie, czy jest turniej na wpisowe!
+         */
+
+        $zapis = new EntryTournament();
+        $zapis->setPlayerId($this->getUser()->getId());
+        $zapis->setTournamentId($id);
+        $zapis->setStatus(2);
+        $em->persist($zapis);
+        $em->flush();
+
+        return $this->render('tournament/turniej.html.twig', [
+            'turniej' => $turniej,
+            'color' => $this->color,
+        ]);
+    }
 }
