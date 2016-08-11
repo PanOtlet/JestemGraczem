@@ -5,36 +5,39 @@
 {% block body %}
     <div class="container-fluid top p-t-3 p-b-2">
         <div class="container">
-            <div class="col-sm-6 btn-clear-lg p-l-1 ">
-                <span style="color: #8bc34a;">UTWÓRZ</span>TURNIEJ
+            <div class="row">
+                <div class="col-sm-6 btn-clear-lp p-l-1 m-b-3 ">
+                    <span class="color-magenta">UTWÓRZ</span>TURNIEJ
+                </div>
+            </div>
+            <div class="col-md-6 text-xs-left">
+                {{ form_start(form) }}
+
+                {{ form_label(form.name) }}
+                {{ form_errors(form.name) }}
+                {{ form_widget(form.name) }}
+                <hr>
+                {{ form_label(form.dateStart) }}
+                {{ form_errors(form.dateStart) }}
+                {{ form_widget(form.dateStart) }}
+                <hr>
+                {{ form_label(form.dateStop) }}
+                {{ form_errors(form.dateStop) }}
+                {{ form_widget(form.dateStop) }}
+                <hr>
+                {{ form_label(form.description) }}
+                {{ form_errors(form.description) }}
+                {{ form_widget(form.description) }}
+                <hr>
+
+                {{ form_end(form) }}
+            </div>
+            <div class="col-md-6">
+                Wygląd musi być zmieniony na ten z projektu!
             </div>
         </div>
     </div>
     <div class="container p-t-5 p-b-2">
-        <div class="col-md-6">
-            {{ form_start(form) }}
 
-            {{ form_label(form.name) }}
-            {{ form_errors(form.name) }}
-            {{ form_widget(form.name) }}
-            <hr>
-            {{ form_label(form.dateStart) }}
-            {{ form_errors(form.dateStart) }}
-            {{ form_widget(form.dateStart) }}
-            <hr>
-            {{ form_label(form.dateStop) }}
-            {{ form_errors(form.dateStop) }}
-            {{ form_widget(form.dateStop) }}
-            <hr>
-            {{ form_label(form.description) }}
-            {{ form_errors(form.description) }}
-            {{ form_widget(form.description) }}
-            <hr>
-
-            {{ form_end(form) }}
-        </div>
-        <div class="col-md-6">
-            Wygląd musi być zmieniony na ten z projektu!
-        </div>
     </div>
 {% endblock %}
