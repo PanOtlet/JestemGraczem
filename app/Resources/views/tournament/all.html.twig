@@ -12,10 +12,27 @@
         </div>
     </div>
     <div class="container">
-        <div class="jumbotron t-title">
-            {% for turniej in turnieje %}
-                {{ turniej.name }}
-            {% endfor %}
-        </div>
+
+            <div class="col-md-8">
+                {% for turniej in turnieje %}
+                <div class="col-md-6">
+                    <div class="container">
+                        <div class="row m-t-1" style="background-color: #eaeaea">
+                            {#<a href="{{ url('team',{'tag': turniej.tag}) }}">#}
+                                <div class="col-md-12 p-x-0">
+                                    <div class="btn-white-lp dots m-b-0" style="border-left: 0px; border-right: 0px">
+                                        <span class="p-x-1 text">{{ turniej.name }}</span>
+                                    </div>
+                                    <div class="grey-box p-y-1 p-l-1 m-b-1 ">
+                                        <p>{{ turniej.description}}</p>
+
+                                    </div>
+                                </div>
+                            {#</a>#}
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
     </div>
 {% endblock %}
