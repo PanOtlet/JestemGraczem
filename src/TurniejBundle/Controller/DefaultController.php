@@ -166,8 +166,14 @@ class DefaultController extends Controller
         $form = $this->createFormBuilder()
             ->add('name', TextType::class, ['label' => 'tournament.name', 'required' => true])
             ->add('description', TextareaType::class, ['label' => 'tournament.description', 'required' => true])
-            ->add('dateStart', DateType::class, ['label' => 'tournament.dateStart', 'required' => true])
-            ->add('dateStop', DateType::class, ['label' => 'tournament.dateStop', 'required' => true])
+            ->add('dateStart', DateType::class, [
+                'label' => 'tournament.dateStart',
+                'required' => true
+            ])
+            ->add('dateStop', DateType::class, [
+                'label' => 'tournament.dateStop',
+                'required' => true
+            ])
             ->add('game', ChoiceType::class, [
                 'label' => 'tournament.game',
                 'required' => true,
@@ -227,8 +233,8 @@ class DefaultController extends Controller
             $data->setPrizePool(0);
             $data->setCostPerTeam(0);
             $data->setCostOrg(0);
-            $data->setDataStart($form->get('dateStart')->getViewData());
-            $data->setDataStop($form->get('dateStop')->getViewData());
+            $data->setDataStart($form->get('dateStart')->getData());
+            $data->setDataStop($form->get('dateStop')->getData());
             $data->setPlayerType($form->get('playerType')->getViewData());
             $data->setPromoted(0);
 
