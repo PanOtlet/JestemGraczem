@@ -10,7 +10,7 @@
                     <span class="color-magenta">UTWÓRZ</span>TURNIEJ
                 </div>
             </div>
-            <div class="col-md-6 text-xs-left">
+            <div class="col-md-6 text-xs-left form-turnament">
                 {{ form_start(form) }}
 
                 {{ form_label(form.name) }}
@@ -34,7 +34,7 @@
                 {{ form_widget(form.cost) }}
                 <hr>
             </div>
-            <div class="col-md-6">
+            <div class="col-md-6 text-xs-left form-turnament">
                 {{ form_label(form.dateStart) }}
                 {{ form_errors(form.dateStart) }}
                 {{ form_widget(form.dateStart) }}

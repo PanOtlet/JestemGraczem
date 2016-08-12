@@ -8,10 +8,54 @@
             </div>
         </div>
     </div>
-    <div class="container">
-        <div class="jumbotron t-title">
-            <h1>{{ turniej.dyscyplina }}</h1>
-            <p>{{ turniej.description }}</p>
+    <div class="container p-t-1">
+        <div class="col-md-4">
+            <div class="btn-white-lg dots m-b-0">
+                {% if turniej.dyscyplina == 1 %}
+                    <span class="p-x-1 text"> {{ 'tournament.game'|trans }}: <span style="color: #303030;">{{ 'tournament.csgo'|trans }}</span></span>
+                {% elseif turniej.dyscyplina == 2 %}
+                    <span class="p-x-1 text"> {{ 'tournament.game'|trans }}: <span style="color: #303030;">{{ 'tournament.lol'|trans }}</span></span>
+                {% elseif turniej.dyscyplina == 3 %}
+                    <span class="p-x-1 text"> {{ 'tournament.game'|trans }}: <span style="color: #303030;">{{ 'tournament.hots'|trans }}</span></span>
+                {% elseif turniej.dyscyplina == 4 %}
+                    <span class="p-x-1 text"> {{ 'tournament.game'|trans }}: <span style="color: #303030;">{{ 'tournament.sc2'|trans }}</span></span>
+                {% elseif turniej.dyscyplina == 5 %}
+                    <span class="p-x-1 text"> {{ 'tournament.game'|trans }}: <span style="color: #303030;">{{ 'tournament.hs'|trans }}</span></span>
+                {% elseif turniej.dyscyplina == 6 %}
+                    <span class="p-x-1 text"> {{ 'tournament.game'|trans }}: <span style="color: #303030;">{{ 'tournament.dota2'|trans }}</span></span>
+                {% elseif turniej.dyscyplina == 7 %}
+                    <span class="p-x-1 text"> {{ 'tournament.game'|trans }}: <span style="color: #303030;">{{ 'tournament.wot'|trans }}</span></span>
+
+                {% else %}
+                    <span class="p-x-1 text"> {{ 'tournament.game'|trans }}: <span style="color: #303030;">{{ 'tournament.other'|trans }}</span></span>
+                {% endif %}
+            </div>
+            {%  if turniej.cost !=0%}
+            <div class="grey-box p-y-1 p-l-1 m-b-1">
+                <p>{{ 'tournament.cost'|trans }}: {{ turniej.cost }}</p>
+            </div>
+            {% endif %}
         </div>
+        <div class="col-md-8">
+            <div class="btn-white-lp dots m-b-1">
+                <span class="p-x-1 text">{{ 'tournament.countTeam'|trans }}: <span style="color: #303030;">{{ turniej.countTeam }}</span></span>
+            </div>
+            <div class="btn-white-lg dots m-b-1">
+                <span class="p-x-1 text">{{ 'tournament.playerType'|trans }}: <span style="color: #303030;">{{ turniej.playerType }}</span></span>
+            </div>
+            <div class="btn-white-lp dots m-b-1">
+                <span class="p-x-1 text">{{ 'tournament.type'|trans }}: <span style="color: #303030;">{{ turniej.type }}</span></span>
+            </div>
+
+            <div class="btn-white-lg dots m-b-0">
+                <span class="p-x-1 text">{{ 'tournament.description'|trans }}: <span style="color: #303030;"></span></span>
+            </div>
+            <div class="grey-box p-y-1 p-l-1 m-b-1">
+                <p>{{ turniej.description }}</p>
+            </div>
+
+        </div>
+
+
     </div>
 {% endblock %}
