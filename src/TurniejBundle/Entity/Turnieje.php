@@ -133,6 +133,14 @@ class Turnieje
     /**
      * @var bool
      *
+     * Zakończony?
+     * @ORM\Column(name="end", type="boolean")
+     */
+    private $end;
+
+    /**
+     * @var bool
+     *
      * Promowany?
      * @ORM\Column(name="promoted", type="boolean")
      */
@@ -475,6 +483,24 @@ class Turnieje
     public function getPlayerType()
     {
         return $this->playerType;
+    }
+
+    /**
+     * @param boolean $end
+     */
+    public function setEnd($end)
+    {
+        $this->end = $end;
+    }
+
+    /**
+     * Get end time
+     *
+     * @return boolean
+     */
+    public function getEnd()
+    {
+        return $this->end;
     }
 
     /**

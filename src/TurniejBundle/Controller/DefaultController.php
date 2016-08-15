@@ -42,16 +42,16 @@ class DefaultController extends Controller
     }
 
     /**
-     * @Route("/aktualne/{page}", name="tournament.aktualne")
+     * @Route("/otwarte/{page}", name="tournament.open")
      */
-    public function aktualneAction($page = 0)
+    public function openAction($page = 0)
     {
         $seo = $this->container->get('sonata.seo.page');
-        $seo->setTitle('Turnieje w trakcie rozgrywek :: JestemGraczem.pl')
-            ->addMeta('name', 'description', 'Aktualnie odbywające się turnieje na platformie JestemGraczem.pl!')
-            ->addMeta('property', 'og:title', 'Turnieje w trakcie rozgrywek :: JestemGraczem.pl')
-            ->addMeta('property', 'og:description', 'Aktualnie odbywające się turnieje na platformie JestemGraczem.pl!')
-            ->addMeta('property', 'og:url', $this->get('router')->generate('tournament.aktualne', ['page' => $page], UrlGeneratorInterface::ABSOLUTE_URL));
+        $seo->setTitle('Turnieje w trakcie zapisów :: JestemGraczem.pl')
+            ->addMeta('name', 'description', 'Turnieje w trakcie zapisów na platformie JestemGraczem.pl!')
+            ->addMeta('property', 'og:title', 'Turnieje w trakcie zapisów :: JestemGraczem.pl')
+            ->addMeta('property', 'og:description', 'Turnieje w trakcie zapisów na platformie JestemGraczem.pl!')
+            ->addMeta('property', 'og:url', $this->get('router')->generate('tournament.open', ['page' => $page], UrlGeneratorInterface::ABSOLUTE_URL));
 
         $date = new \DateTime("now");
 
@@ -74,16 +74,16 @@ class DefaultController extends Controller
     }
 
     /**
-     * @Route("/zapowiedziane/{page}", name="tournament.zapowiedziane")
+     * @Route("/zapowiedziane/{page}", name="tournament.incoming")
      */
-    public function zapowiedzianeAction($page = 0)
+    public function incommingAction($page = 0)
     {
         $seo = $this->container->get('sonata.seo.page');
         $seo->setTitle('Zapowiedziane turnieje :: JestemGraczem.pl')
             ->addMeta('name', 'description', 'Przyszłe turnieje na platformie JestemGraczem.pl!')
-            ->addMeta('property', 'og:title', 'Turnieje')
+            ->addMeta('property', 'og:title', 'Zapowiedziane turnieje :: JestemGraczem.pl')
             ->addMeta('property', 'og:description', 'Przyszłe turnieje na platformie JestemGraczem.pl!')
-            ->addMeta('property', 'og:url', $this->get('router')->generate('tournament.zapowiedziane', ['page' => $page], UrlGeneratorInterface::ABSOLUTE_URL));
+            ->addMeta('property', 'og:url', $this->get('router')->generate('tournament.incoming', ['page' => $page], UrlGeneratorInterface::ABSOLUTE_URL));
 
         $date = new \DateTime("now");
 
@@ -105,16 +105,16 @@ class DefaultController extends Controller
     }
 
     /**
-     * @Route("/zakonczone/{page}", name="tournament.zakonczone")
+     * @Route("/zamkniete/{page}", name="tournament.close")
      */
-    public function zakonczoneAction($page = 0)
+    public function closeAction($page = 0)
     {
         $seo = $this->container->get('sonata.seo.page');
-        $seo->setTitle('Zapowiedziane turnieje :: JestemGraczem.pl')
-            ->addMeta('name', 'description', 'Przyszłe turnieje na platformie JestemGraczem.pl!')
-            ->addMeta('property', 'og:title', 'Turnieje')
-            ->addMeta('property', 'og:description', 'Przyszłe turnieje na platformie JestemGraczem.pl!')
-            ->addMeta('property', 'og:url', $this->get('router')->generate('tournament.zapowiedziane', ['page' => $page], UrlGeneratorInterface::ABSOLUTE_URL));
+        $seo->setTitle('Trwające turnieje :: JestemGraczem.pl')
+            ->addMeta('name', 'description', 'Trwające turnieje na platformie JestemGraczem.pl!')
+            ->addMeta('property', 'og:title', 'Trwające turnieje :: JestemGraczem.pl')
+            ->addMeta('property', 'og:description', 'Trwające turnieje na platformie JestemGraczem.pl!')
+            ->addMeta('property', 'og:url', $this->get('router')->generate('tournament.close', ['page' => $page], UrlGeneratorInterface::ABSOLUTE_URL));
 
         $date = new \DateTime("now");
 
@@ -137,18 +137,54 @@ class DefaultController extends Controller
     }
 
     /**
+     * @Route("/zakonczone/{page}", name="tournament.end")
+     */
+    public function endAction($page = 0)
+    {
+        $seo = $this->container->get('sonata.seo.page');
+        $seo->setTitle('Turnieje zakończone :: JestemGraczem.pl')
+            ->addMeta('name', 'description', 'Turnieje zakończone na platformie JestemGraczem.pl!')
+            ->addMeta('property', 'og:title', 'Turnieje zakończone :: JestemGraczem.pl')
+            ->addMeta('property', 'og:description', 'Turnieje zakończone na platformie JestemGraczem.pl!')
+            ->addMeta('property', 'og:url', $this->get('router')->generate('tournament.end', ['page' => $page], UrlGeneratorInterface::ABSOLUTE_URL));
+
+
+        $em = $this->getDoctrine()->getRepository('TurniejBundle:Turnieje');
+        $query = $em->createQueryBuilder('p')
+            ->where('p.end = TRUE')
+            ->setFirstResult($page * 10)
+            ->orderBy('p.id', 'DESC')
+            ->getQuery()
+            ->setMaxResults(10);
+
+        $turnieje = $query->getResult();
+
+        return $this->render('tournament/all.html.twig', [
+            'turnieje' => $turnieje,
+            'color' => $this->color,
+        ]);
+    }
+
+    /**
      * @Route("/turniej/{id}", name="tournament.id")
      */
     public function turniejAction($id)
     {
+        $em = $this->getDoctrine()->getManager();
+        $turniej = $em->getRepository('TurniejBundle:Turnieje')->find($id);
+
+        if ($turniej == NULL){
+            throw $this->createNotFoundException('Turniej nie istnieje!');
+        }
+
         $seo = $this->container->get('sonata.seo.page');
-        $seo->setTitle('Zapowiedziane turnieje :: JestemGraczem.pl')
-            ->addMeta('name', 'description', 'Przyszłe turnieje na platformie JestemGraczem.pl!')
-            ->addMeta('property', 'og:title', 'Turnieje')
-            ->addMeta('property', 'og:description', 'Przyszłe turnieje na platformie JestemGraczem.pl!')
+        $seo->setTitle('Turniej '.$turniej->getName().' :: JestemGraczem.pl')
+            ->addMeta('name', 'description', 'Turniej '.$turniej->getName().' jest dostępny dzięki platformie JestemGraczem.pl')
+            ->addMeta('property', 'og:title', 'Turniej '.$turniej->getName().' :: JestemGraczem.pl')
+            ->addMeta('property', 'og:description', 'Turniej '.$turniej->getName().' jest dostępny dzięki platformie JestemGraczem.pl')
             ->addMeta('property', 'og:url', $this->get('router')->generate('tournament.id', ['id' => $id], UrlGeneratorInterface::ABSOLUTE_URL));
 
-        $turniej = $this->getDoctrine()->getRepository('TurniejBundle:Turnieje')->findOneBy(['id' => $id]);
+        $entry = $em->getRepository('TurniejBundle:EntryTournament')->findBy(['id' => $id]);
 
         return $this->render('tournament/turniej.html.twig', [
             'turniej' => $turniej,
@@ -167,10 +203,12 @@ class DefaultController extends Controller
             ->add('name', TextType::class, ['label' => 'tournament.name', 'required' => true])
             ->add('description', TextareaType::class, ['label' => 'tournament.description', 'required' => true])
             ->add('dateStart', DateType::class, [
+                'years' => range(date('Y'), date('Y') + 4),
                 'label' => 'tournament.dateStart',
                 'required' => true
             ])
             ->add('dateStop', DateType::class, [
+                'years' => range(date('Y'), date('Y') + 4),
                 'label' => 'tournament.dateStop',
                 'required' => true
             ])
