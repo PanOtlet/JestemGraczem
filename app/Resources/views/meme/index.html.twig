@@ -23,7 +23,7 @@
                                 <div class="m-title">
                                     <a class="text-center" href="{{ url('meme.id',{'id': mem.id}) }}">
                                         <h3 class="m-b-0">
-                                            {{ mem.title|slice(0,50) }}
+                                            {{ mem.title|slice(0,50) }} <small>{{ mem.username }}</small>
                                         </h3>
                                     </a>
                                 </div>
@@ -32,6 +32,7 @@
                                          data-entry-url="{{ asset('assets/mem/') ~ mem.url | slice(-4) }}"
                                          data-state="static" class="img-responsive pull-xs-left video p-b-0"
                                          alt="{{ mem.title }}"/>
+
                                 </div>
                                 <div class="m-bottom">
                                     <div class="fb-like" data-href="{{ url('meme.id',{'id': mem.id}) }}"
@@ -45,7 +46,7 @@
                                 <div class="m-title">
                                     <a class="text-center" href="{{ url('meme.id',{'id': mem.id}) }}">
                                         <h3 class="m-b-0">
-                                            {{ mem.title|slice(0,50) }}
+                                            {{ mem.title|slice(0,50) }} <small>{{ mem.username }}</small>
                                         </h3>
                                     </a>
                                 </div>
@@ -70,7 +71,7 @@
                                 <div class="m-title">
                                     <a class="text-center" href="{{ url('meme.id',{'id': mem.id}) }}">
                                         <h3 class="m-b-0">
-                                            {{ mem.title|slice(0,50) }}
+                                            {{ mem.title|slice(0,50) }} <small>{{ mem.username }}</small>
                                         </h3>
                                     </a>
                                 </div>
@@ -116,7 +117,7 @@
                 {% endfor %}
             </div>
             <div class="col-md-3">
-                <a href="{{ url('meme.wait') }}" type="button" class="btn btn-green btn-block"><span
+                <a href="{{ url('meme.all') }}" type="button" class="btn btn-green btn-block"><span
                             class="p-x-3">{{ 'button.waitingroom'|trans }}</span></a>
                 {% block sidebar %}
                     {{ parent() }}

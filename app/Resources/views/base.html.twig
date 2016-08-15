@@ -294,7 +294,7 @@
                 <div class="col-md-8">
                     <div class="list-group mini-menu" id="meme-mm">
                         <a href="{{ url('meme') }}" class="list-group-item">{{ 'nav.meme'|trans }}</a>
-                        <a href="{{ url('meme.wait') }}"
+                        <a href="{{ url('meme.all') }}"
                            class="list-group-item">{{ 'button.waitingroom'|trans }}</a>
                         <a href="{{ url('meme.add') }}" class="list-group-item">{{ 'form.add'|trans }}</a>
                     </div>
@@ -383,7 +383,7 @@
                 {#<div class="col-md-8">#}
                     {#<div class="list-group mini-menu" id="meme-mm">#}
                         {#<a href="{{ url('meme') }}" class="list-group-item">{{ 'nav.meme'|trans }}</a>#}
-                        {#<a href="{{ url('meme.wait') }}"#}
+                        {#<a href="{{ url('meme.all') }}"#}
                            {#class="list-group-item">{{ 'button.waitingroom'|trans }}</a>#}
                         {#<a href="{{ url('meme.add') }}" class="list-group-item">{{ 'form.add'|trans }}</a>#}
                     {#</div>#}
@@ -522,7 +522,7 @@
                             </button>
                             <div class="dropdown-menu">
                                 <a class="dropdown-item"
-                                   href="{{ url('meme.wait') }}">{{ 'button.waitingroom'|trans }}</a>
+                                   href="{{ url('meme.all') }}">{{ 'button.waitingroom'|trans }}</a>
                                 <div class="dropdown-divider"></div>
                                 <a class="dropdown-item" href="{{ url('meme.add') }}">{{ 'form.add'|trans }}</a>
                             </div>

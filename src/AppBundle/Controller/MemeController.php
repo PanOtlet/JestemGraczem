@@ -110,9 +110,9 @@ class MemeController extends Controller
     }
 
     /**
-     * @Route("/poczekalnia/{page}", name="meme.wait")
+     * @Route("/wszystkie/{page}", name="meme.all")
      */
-    public function waitAction($page = 0)
+    public function allAction($page = 0)
     {
         if ($page < 0 || !is_numeric($page)) {
             return $this->redirectToRoute('meme.wait');
@@ -122,6 +122,9 @@ class MemeController extends Controller
         $query = $em->createQueryBuilder('p')
             ->setFirstResult($page * 10)
             ->orderBy('p.id', 'DESC')
+            ->leftJoin("AppBundle:User", "u", "WITH", "u.id=p.user")
+            ->select('p.id, p.title, p.source, p.url, p.date, p.category')
+            ->addSelect('u.username')
             ->getQuery()
             ->setMaxResults(10);
 
@@ -161,18 +164,17 @@ class MemeController extends Controller
         $em = $this->getDoctrine()->getRepository('AppBundle:Meme');
         $query = $em->createQueryBuilder('p')
             ->where('p.accept = true')
+            ->setMaxResults(10)
             ->setFirstResult($page * 10)
             ->orderBy('p.id', 'DESC')
-            ->getQuery()
-            ->setMaxResults(10);
+            ->leftJoin("AppBundle:User", "u", "WITH", "u.id=p.user")
+            ->select('p.id, p.title, p.source, p.url, p.date, p.category')
+            ->addSelect('u.username')
+            ->getQuery();
 
         $meme = $query->getResult();
 
         if ($meme == NULL) {
-            $this->addFlash(
-                'error',
-                'Kurde, nie znaleźliśmy tego co poszukujesz :('
-            );
             throw $this->createNotFoundException('Kurde, nie znaleźliśmy tego co poszukujesz :(');
         }
 
