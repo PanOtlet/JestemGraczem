@@ -33,7 +33,7 @@ class DefaultController extends Controller
             ->addMeta('property', 'og:url', $this->get('router')->generate('tournament', [], UrlGeneratorInterface::ABSOLUTE_URL));
 
         $em = $this->getDoctrine()->getManager();
-        $turnieje = $em->getRepository('TurniejBundle:Turnieje')->findBy(['promoted' => 1]);
+        $turnieje = $em->getRepository('TurniejBundle:Turnieje')->findBy(['promoted' => 1, 'end' => FALSE]);
 
         return $this->render('tournament/index.html.twig', [
             'turnieje' => $turnieje,
@@ -59,6 +59,7 @@ class DefaultController extends Controller
         $query = $em->createQueryBuilder('p')
             ->where('p.dataStart < :date')
             ->andWhere('p.dataStop > :date')
+            ->andWhere('p.end = FALSE')
             ->setParameter('date', $date)
             ->setFirstResult($page * 10)
             ->orderBy('p.id', 'DESC')
@@ -90,6 +91,7 @@ class DefaultController extends Controller
         $em = $this->getDoctrine()->getRepository('TurniejBundle:Turnieje');
         $query = $em->createQueryBuilder('p')
             ->where('p.dataStart > :date')
+            ->andWhere('p.end = FALSE')
             ->setParameter('date', $date)
             ->setFirstResult($page * 10)
             ->orderBy('p.id', 'DESC')
@@ -122,6 +124,7 @@ class DefaultController extends Controller
         $query = $em->createQueryBuilder('p')
             ->where('p.dataStop < :date')
             ->andWhere('p.dataStart < :date')
+            ->andWhere('p.end = FALSE')
             ->setParameter('date', $date)
             ->setFirstResult($page * 10)
             ->orderBy('p.id', 'DESC')
