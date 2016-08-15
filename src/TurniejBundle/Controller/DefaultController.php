@@ -44,7 +44,7 @@ class DefaultController extends Controller
     /**
      * @Route("/otwarte/{page}", name="tournament.open")
      */
-    public function openAction($page = 0)
+    public function openAction(Request $request, $page = 0)
     {
         $seo = $this->container->get('sonata.seo.page');
         $seo->setTitle('Turnieje w trakcie zapisów :: JestemGraczem.pl')
@@ -63,10 +63,14 @@ class DefaultController extends Controller
             ->setParameter('date', $date)
             ->setFirstResult($page * 10)
             ->orderBy('p.id', 'DESC')
-            ->getQuery()
             ->setMaxResults(10);
 
-        $turnieje = $query->getResult();
+        $sort = $request->query->get('sort');
+        if ($sort && $sort >= 0 && $sort <= 7) {
+            $query->andWhere('p.dyscyplina = :game')->setParameter('game', $request->query->get('sort'));
+        }
+
+        $turnieje = $query->getQuery()->getResult();
 
         return $this->render('tournament/all.html.twig', [
             'turnieje' => $turnieje,
@@ -77,7 +81,7 @@ class DefaultController extends Controller
     /**
      * @Route("/zapowiedziane/{page}", name="tournament.incoming")
      */
-    public function incommingAction($page = 0)
+    public function incommingAction(Request $request, $page = 0)
     {
         $seo = $this->container->get('sonata.seo.page');
         $seo->setTitle('Zapowiedziane turnieje :: JestemGraczem.pl')
@@ -95,10 +99,14 @@ class DefaultController extends Controller
             ->setParameter('date', $date)
             ->setFirstResult($page * 10)
             ->orderBy('p.id', 'DESC')
-            ->getQuery()
             ->setMaxResults(10);
 
-        $turnieje = $query->getResult();
+        $sort = $request->query->get('sort');
+        if ($sort && $sort >= 0 && $sort <= 7) {
+            $query->andWhere('p.dyscyplina = :game')->setParameter('game', $request->query->get('sort'));
+        }
+
+        $turnieje = $query->getQuery()->getResult();
 
         return $this->render('tournament/all.html.twig', [
             'turnieje' => $turnieje,
@@ -109,7 +117,7 @@ class DefaultController extends Controller
     /**
      * @Route("/zamkniete/{page}", name="tournament.close")
      */
-    public function closeAction($page = 0)
+    public function closeAction(Request $request, $page = 0)
     {
         $seo = $this->container->get('sonata.seo.page');
         $seo->setTitle('Trwające turnieje :: JestemGraczem.pl')
@@ -128,10 +136,14 @@ class DefaultController extends Controller
             ->setParameter('date', $date)
             ->setFirstResult($page * 10)
             ->orderBy('p.id', 'DESC')
-            ->getQuery()
             ->setMaxResults(10);
 
-        $turnieje = $query->getResult();
+        $sort = $request->query->get('sort');
+        if ($sort && $sort >= 0 && $sort <= 7) {
+            $query->andWhere('p.dyscyplina = :game')->setParameter('game', $request->query->get('sort'));
+        }
+
+        $turnieje = $query->getQuery()->getResult();
 
         return $this->render('tournament/all.html.twig', [
             'turnieje' => $turnieje,
@@ -142,7 +154,7 @@ class DefaultController extends Controller
     /**
      * @Route("/zakonczone/{page}", name="tournament.end")
      */
-    public function endAction($page = 0)
+    public function endAction(Request $request, $page = 0)
     {
         $seo = $this->container->get('sonata.seo.page');
         $seo->setTitle('Turnieje zakończone :: JestemGraczem.pl')
@@ -157,10 +169,14 @@ class DefaultController extends Controller
             ->where('p.end = TRUE')
             ->setFirstResult($page * 10)
             ->orderBy('p.id', 'DESC')
-            ->getQuery()
             ->setMaxResults(10);
 
-        $turnieje = $query->getResult();
+        $sort = $request->query->get('sort');
+        if ($sort && $sort >= 0 && $sort <= 7) {
+            $query->andWhere('p.dyscyplina = :game')->setParameter('game', $request->query->get('sort'));
+        }
+
+        $turnieje = $query->getQuery()->getResult();
 
         return $this->render('tournament/all.html.twig', [
             'turnieje' => $turnieje,
@@ -176,23 +192,23 @@ class DefaultController extends Controller
         $em = $this->getDoctrine()->getManager();
         $turniej = $em->getRepository('TurniejBundle:Turnieje')->find($id);
 
-        if ($turniej == NULL){
+        if ($turniej == NULL) {
             throw $this->createNotFoundException('Turniej nie istnieje!');
         }
 
         $seo = $this->container->get('sonata.seo.page');
-        $seo->setTitle('Turniej '.$turniej->getName().' :: JestemGraczem.pl')
-            ->addMeta('name', 'description', 'Turniej '.$turniej->getName().' jest dostępny dzięki platformie JestemGraczem.pl')
-            ->addMeta('property', 'og:title', 'Turniej '.$turniej->getName().' :: JestemGraczem.pl')
-            ->addMeta('property', 'og:description', 'Turniej '.$turniej->getName().' jest dostępny dzięki platformie JestemGraczem.pl')
+        $seo->setTitle('Turniej ' . $turniej->getName() . ' :: JestemGraczem.pl')
+            ->addMeta('name', 'description', 'Turniej ' . $turniej->getName() . ' jest dostępny dzięki platformie JestemGraczem.pl')
+            ->addMeta('property', 'og:title', 'Turniej ' . $turniej->getName() . ' :: JestemGraczem.pl')
+            ->addMeta('property', 'og:description', 'Turniej ' . $turniej->getName() . ' jest dostępny dzięki platformie JestemGraczem.pl')
             ->addMeta('property', 'og:url', $this->get('router')->generate('tournament.id', ['id' => $id], UrlGeneratorInterface::ABSOLUTE_URL));
 
         $entry = $em->getRepository('TurniejBundle:EntryTournament')->findBy(['id' => $id]);
 
-
         return $this->render('tournament/turniej.html.twig', [
-            'turniej' => $turniej,
             'color' => $this->color,
+            'turniej' => $turniej,
+            'entry' => $entry,
         ]);
     }
 
@@ -218,8 +234,10 @@ class DefaultController extends Controller
             ])
             ->add('game', ChoiceType::class, [
                 'label' => 'tournament.game',
+                'placeholder' => 'tournament.game',
                 'required' => true,
                 'choices' => [
+                    'tournament.other' => 0,
                     'tournament.csgo' => 1,
                     'tournament.lol' => 2,
                     'tournament.hots' => 3,
@@ -227,7 +245,6 @@ class DefaultController extends Controller
                     'tournament.hs' => 5,
                     'tournament.dota2' => 6,
                     'tournament.wot' => 7,
-                    'tournament.other' => 666,
                 ],
             ])
             ->add('type', ChoiceType::class, [
@@ -279,6 +296,7 @@ class DefaultController extends Controller
             $data->setDataStop($form->get('dateStop')->getData());
             $data->setPlayerType($form->get('playerType')->getViewData());
             $data->setPromoted(0);
+            $data->setEnd(0);
 
             $em = $this->getDoctrine()->getManager();
             $em->persist($data);

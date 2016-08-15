@@ -49,6 +49,14 @@ class Turnieje
      * @var int
      *
      * Gra, która będzie rozgrywana
+     * 0. Inna
+     * 1. CS:GO
+     * 2. LoL
+     * 3. HotS
+     * 4. SC2
+     * 5. HS
+     * 6. Dota2
+     * 7. WoT
      * @ORM\Column(name="dyscyplina", type="smallint")
      */
     private $dyscyplina;

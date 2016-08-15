@@ -6,13 +6,26 @@
             <div class="col-sm-6 btn-clear-lg p-l-1 ">
                 <span style="color: #8bc34a;">Turnieje</span>
             </div>
-            {#<div class="col-sm-6">#}
-            {#<a href="{{ url('team.add') }}" type="button" class="btn btn-green pull-sm-right"><span class="p-x-3">Dodaj nową</span></a>#}
-            {#</div>#}
         </div>
     </div>
     <div class="container">
         <div class="col-md-8">
+            <div class="btn-group">
+                <button type="button" class="btn btn-danger dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Gra
+                </button>
+                <div class="dropdown-menu">
+                    <a class="dropdown-item" href="{{ app.request.baseUrl }}{{ app.request.pathInfo }}?sort=1">Counter-Strike: Global Offensive</a>
+                    <a class="dropdown-item" href="{{ app.request.baseUrl }}{{ app.request.pathInfo }}?sort=2">Gra</a>
+                    <a class="dropdown-item" href="{{ app.request.baseUrl }}{{ app.request.pathInfo }}?sort=3">Gra-Strike: Global Offensive</a>
+                    <a class="dropdown-item" href="{{ app.request.baseUrl }}{{ app.request.pathInfo }}?sort=4">Counter-Gra: Global Offensive</a>
+                    <a class="dropdown-item" href="{{ app.request.baseUrl }}{{ app.request.pathInfo }}?sort=5">Counter-Strike: Gra Offensive</a>
+                    <a class="dropdown-item" href="{{ app.request.baseUrl }}{{ app.request.pathInfo }}?sort=6">Counter-Strike: Global Gra</a>
+                    <a class="dropdown-item" href="{{ app.request.baseUrl }}{{ app.request.pathInfo }}?sort=7">Gra</a>
+                    <div class="dropdown-divider"></div>
+                    <a class="dropdown-item" href="{{ app.request.baseUrl }}{{ app.request.pathInfo }}?sort=0">Inne</a>
+                </div>
+            </div>
             {% for turniej in turnieje %}
                 <div class="container">
                     <div class="row m-t-1" style="background-color: #eaeaea">
