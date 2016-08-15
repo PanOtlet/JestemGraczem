@@ -49,7 +49,15 @@ class DefaultController extends Controller
         if (isset($_GET['url']) && !preg_match('|^http(s)?://[a-z0-9-]+(.[a-z0-9-]+)*(:[0-9]+)?(/.*)?$|i', $_GET['url'])) {
             return $this->redirectToRoute('homepage');
         }
-        return $this->redirect($_GET['url']);
+
+        if (isset($_GET['r']) && $_GET['r'] == TRUE){
+            return $this->redirect($_GET['url']);
+        }
+
+        return $this->render('default/frame.html.twig', [
+            'color' => $this->color,
+            'url' => $_GET['url'],
+        ]);
     }
 
     /**

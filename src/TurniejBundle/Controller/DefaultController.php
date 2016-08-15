@@ -189,6 +189,7 @@ class DefaultController extends Controller
 
         $entry = $em->getRepository('TurniejBundle:EntryTournament')->findBy(['id' => $id]);
 
+
         return $this->render('tournament/turniej.html.twig', [
             'turniej' => $turniej,
             'color' => $this->color,
