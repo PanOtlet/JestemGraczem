@@ -88,7 +88,7 @@ class User extends BaseUser
     protected $localization = null;
 
     /**
-     * @ORM\Column(type="string", nullable=true)
+     * @ORM\Column(type="text", nullable=true)
      *
      * @Assert\Length(
      *     min=3,
