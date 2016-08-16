@@ -339,6 +339,7 @@ class DefaultController extends Controller
 
         /*
          * @TODO: Dodać sprawdzenie, czy jest turniej na wpisowe!
+         * @TODO: Dodać sprawdzenie, by uczestnik już jest zapisany w turnieju!
          */
 
         $zapis = new EntryTournament();
@@ -348,9 +349,6 @@ class DefaultController extends Controller
         $em->persist($zapis);
         $em->flush();
 
-        return $this->render('tournament/turniej.html.twig', [
-            'turniej' => $turniej,
-            'color' => $this->color,
-        ]);
+        return $this->redirectToRoute('tournament');
     }
 }
