@@ -74,6 +74,16 @@
                 </div>
                 {% endif %}
 
+                <div class="btn-white-lg dots m-b-0">
+                    <span class="p-x-1 text"> {{ 'tournament.players'|trans }}</span>
+                </div>
+                <div class="grey-box p-y-1 p-l-1 m-b-1">
+                    {% for player in entry %}
+                        <p class="game">{{ player.username }} ({{ player.status }})</p>
+                    {% endfor %}
+                </div>
+
+
             {% if turniej.cost !=0 %}
                 <div class="grey-box p-y-1 p-l-1 m-b-1">
                     <p>{{ 'tournament.cost'|trans }}: {{ turniej.cost }}</p>
