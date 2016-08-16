@@ -23,7 +23,10 @@
                                 <div class="m-title">
                                     <a class="text-center" href="{{ url('meme.id',{'id': mem.id}) }}">
                                         <h3 class="m-b-0">
-                                            {{ mem.title|slice(0,50) }} <small>{{ mem.username }}</small>
+                                            {{ mem.title|slice(0,50) }}
+                                            <a href="{{ url('user',{'user': mem.username}) }}">
+                                                <small>{{ mem.username }}</small>
+                                            </a>
                                         </h3>
                                     </a>
                                 </div>
@@ -46,7 +49,10 @@
                                 <div class="m-title">
                                     <a class="text-center" href="{{ url('meme.id',{'id': mem.id}) }}">
                                         <h3 class="m-b-0">
-                                            {{ mem.title|slice(0,50) }} <small>{{ mem.username }}</small>
+                                            {{ mem.title|slice(0,50) }}
+                                            <a href="{{ url('user',{'user': mem.username}) }}">
+                                                <small>{{ mem.username }}</small>
+                                            </a>
                                         </h3>
                                     </a>
                                 </div>
@@ -71,7 +77,10 @@
                                 <div class="m-title">
                                     <a class="text-center" href="{{ url('meme.id',{'id': mem.id}) }}">
                                         <h3 class="m-b-0">
-                                            {{ mem.title|slice(0,50) }} <small>{{ mem.username }}</small>
+                                            {{ mem.title|slice(0,50) }}
+                                            <a href="{{ url('user',{'user': mem.username}) }}">
+                                                <small>{{ mem.username }}</small>
+                                            </a>
                                         </h3>
                                     </a>
                                 </div>

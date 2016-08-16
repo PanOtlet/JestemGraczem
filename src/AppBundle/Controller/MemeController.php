@@ -115,7 +115,7 @@ class MemeController extends Controller
     public function allAction($page = 0)
     {
         if ($page < 0 || !is_numeric($page)) {
-            return $this->redirectToRoute('meme.wait');
+            return $this->redirectToRoute('meme.all');
         }
 
         $em = $this->getDoctrine()->getRepository('AppBundle:Meme');
@@ -143,7 +143,7 @@ class MemeController extends Controller
             ->addMeta('name', 'description', 'To miejsce na wszystkie memy, które jeszcze nie przeszły walidacji lub pozostaną w czyściu! Strona ' . $page)
             ->addMeta('property', 'og:title', 'Poczekalnia dla memów. Strona ' . $page)
             ->addMeta('property', 'og:description', 'To miejsce na wszystkie memy, które jeszcze nie przeszły walidacji lub pozostaną w czyściu! Strona ' . $page)
-            ->addMeta('property', 'og:url', $this->get('router')->generate('meme.wait', ['page' => $page], UrlGeneratorInterface::ABSOLUTE_URL));
+            ->addMeta('property', 'og:url', $this->get('router')->generate('meme.all', ['page' => $page], UrlGeneratorInterface::ABSOLUTE_URL));
 
         return $this->render('meme/wait.html.twig', [
             'color' => $this->color,

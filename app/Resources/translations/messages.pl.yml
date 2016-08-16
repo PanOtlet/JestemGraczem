@@ -39,6 +39,7 @@ button:
     next: 'Następne'
     prev: 'Poprzednie'
     waitingroom: 'Poczekalnia'
+    all: 'Wszystkie'
     actual: 'AKTUALNE'
     turnaments: 'TURNIEJE'
     seeprofile: 'Zobacz profil'
