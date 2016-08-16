@@ -122,6 +122,7 @@ tournament:
     dota2: 'Dota 2'
     wot: 'World of Tanks'
     other: 'Inne'
+    players: 'Uczestnicy'
 admin:
     id: 'ID'
     title: 'Tytuł'
