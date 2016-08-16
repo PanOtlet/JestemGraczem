@@ -220,7 +220,6 @@ class DefaultController extends Controller
                 'placeholder' => 'tournament.game',
                 'required' => true,
                 'choices' => [
-                    'tournament.other' => 0,
                     'tournament.csgo' => 1,
                     'tournament.lol' => 2,
                     'tournament.hots' => 3,
@@ -228,6 +227,7 @@ class DefaultController extends Controller
                     'tournament.hs' => 5,
                     'tournament.dota2' => 6,
                     'tournament.wot' => 7,
+                    'tournament.other' => 0,
                 ],
             ])
             ->add('type', ChoiceType::class, [
