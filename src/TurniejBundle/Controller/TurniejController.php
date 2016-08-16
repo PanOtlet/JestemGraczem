@@ -39,12 +39,24 @@ class TurniejController extends Controller
             ->addMeta('property', 'og:description', 'Turniej ' . $turniej->getName() . ' jest dostępny dzięki platformie JestemGraczem.pl')
             ->addMeta('property', 'og:url', $this->get('router')->generate('tournament.id', ['id' => $id], UrlGeneratorInterface::ABSOLUTE_URL));
 
+        if ($turniej->getPlayerType() == 0){
+            $data = [
+                'entity' => 'AppBundle:User',
+                'name' => 'u.username'
+            ];
+        } else {
+            $data = [
+                'entity' => 'TurniejBundle:Division',
+                'name' => 'u.name'
+            ];
+        }
+
         $query = $em->getRepository('TurniejBundle:EntryTournament')->createQueryBuilder('p')
             ->where('p.tournamentId = :id')
             ->setParameter('id', $turniej->getId())
-            ->leftJoin("AppBundle:User", "u", "WITH", "u.id=p.playerId")
-            ->select('u.username, p.status')
-            ->orderBy('u.username', 'ASC')
+            ->leftJoin($data['entity'], "u", "WITH", "u.id=p.playerId")
+            ->select($data['name'].', p.status')
+            ->orderBy($data['name'], 'ASC')
             ->getQuery();
 
         $entry = $query->getResult();

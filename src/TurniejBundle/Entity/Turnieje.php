@@ -133,7 +133,7 @@ class Turnieje
     /**
      * @var bool
      *
-     * Czy turniej jest dla drużyn, czy dla graczy
+     * Czy turniej jest dla drużyn (1), czy dla graczy (0)
      * @ORM\Column(name="playerType", type="boolean")
      */
     private $playerType;

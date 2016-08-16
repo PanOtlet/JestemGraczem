@@ -253,8 +253,8 @@ class DefaultController extends Controller
                 'label' => 'tournament.playerType',
                 'required' => true,
                 'choices' => [
-                    'tournament.team' => 0,
-                    'tournament.individual' => 1
+                    'tournament.individual' => 0,
+                    'tournament.team' => 1
                 ]
             ])
             ->add('save', SubmitType::class, ['label' => 'tournament.create'])

@@ -79,7 +79,11 @@
                 </div>
                 <div class="grey-box p-y-1 p-l-1 m-b-1">
                     {% for player in entry %}
-                        <p class="game">{{ player.username }} ({{ player.status }})</p>
+                        {% if player.name is defined %}
+                            <p class="game">{{ player.name }} ({{ player.status }})</p>
+                        {% else %}
+                            <p class="game">{{ player.username }} ({{ player.status }})</p>
+                        {% endif %}
                     {% endfor %}
                 </div>
 
