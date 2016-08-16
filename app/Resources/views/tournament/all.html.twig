@@ -34,8 +34,11 @@
 
             {% for turniej in turnieje %}
                 <div class="container">
-                    <div class="row m-t-1" style="background-color: #eaeaea">
+                    <div class="row m-t-1">
                         <a href="{{ url('tournament.id',{'id': turniej.id}) }}">
+                            <div class="col-md-6 p-x-0">
+                                <img class="img-fluid" src="{{ asset('assets/img/shield/'~turniej.dyscyplina~'.png') }}">
+
                             <div class="col-md-12 p-x-0">
                                 <div class="btn-white-lp dots m-b-0" style="border-left: 0px; border-right: 0px">
                                     <span class="p-x-1 text">{{ turniej.name }}</span>
@@ -44,6 +47,7 @@
                                     <p>{{ turniej.description | slice(0,300) }}</p>
 
                                 </div>
+                            </div>
                             </div>
                         </a>
                     </div>

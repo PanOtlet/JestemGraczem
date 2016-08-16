@@ -11,8 +11,6 @@
                     <a href="{{ url('tournament.join', {'id':turniej.id}) }}" type="button"
                        class="btn btn-green pull-sm-right"><span class="p-x-3">{{ 'tournament.join'|trans }}</span></a>
                 </div>
-            {% else %}
-
             {% endif %}
         </div>
     </div>
@@ -97,8 +95,13 @@
                 {% endif %}
             </div>
             <div class="btn-white-lp dots m-b-1">
-                <span class="p-x-1 text">{{ 'tournament.type'|trans }}: <span
-                            style="color: #303030;">{{ turniej.type }}</span></span>
+                {% if turniej.type %}
+                    <span class="p-x-1 text">{{ 'tournament.playerType'|trans }}: <span
+                                style="color: #303030;">{{ 'tournament.invite'|trans }}</span></span>
+                {% else%}
+                    <span class="p-x-1 text">{{ 'tournament.playerType'|trans }}: <span
+                                style="color: #303030;">{{ 'tournament.open'|trans }}</span></span>
+                {% endif %}
             </div>
 
             <div class="btn-white-lg dots m-b-0">
