@@ -4,7 +4,14 @@ namespace TurniejBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
+use Symfony\Component\Form\Extension\Core\Type\RadioType;
+use Symfony\Component\Form\Extension\Core\Type\SubmitType;
+use Symfony\Component\Form\Extension\Core\Type\TextareaType;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
+use TurniejBundle\Entity\EntryTournament;
 
 class TurniejController extends Controller
 {
@@ -13,6 +20,8 @@ class TurniejController extends Controller
 
     /**
      * @Route("/turniej/{id}", name="tournament.id")
+     * @param $id
+     * @return \Symfony\Component\HttpFoundation\Response
      */
     public function indexAction($id)
     {
@@ -39,4 +48,81 @@ class TurniejController extends Controller
         ]);
     }
 
+    /**
+     * @Route("/turniej/{id}/edit", name="tournament.id.edit")
+     * @param null $id
+     * @param Request $request
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse|\Symfony\Component\HttpFoundation\Response
+     */
+    public function editAction($id = NULL, Request $request)
+    {
+        $em = $this->getDoctrine()->getManager();
+        $turniej = $em->getRepository('TurniejBundle:Turnieje')->findOneBy(['id' => $id]);
+
+        $this->container->get('sonata.seo.page')->setTitle('Edycja turnieju :: JestemGraczem.pl');
+
+        if ($id == NULL || $turniej == NULL) {
+            return $this->createNotFoundException('Brak takiego turnieju!');
+        }
+
+        if ($this->getUser()->getId() != $turniej->getOwner()) {
+            $this->addFlash(
+                'danger',
+                'Nie jesteś organizatorem drużyny!'
+            );
+            return $this->redirectToRoute('tournament.id', ['id' => $id]);
+        }
+
+        $form = $this->createFormBuilder($turniej)
+            ->add('name', NULL, [
+                'label' => 'team.name'
+            ])
+            ->add('description', TextareaType::class, [
+                'label' => 'team.desc'
+            ])
+            ->add('dyscyplina', ChoiceType::class, [
+                'label' => 'tournament.game',
+                'placeholder' => 'tournament.game',
+                'required' => true,
+                'choices' => [
+                    'tournament.csgo' => 1,
+                    'tournament.lol' => 2,
+                    'tournament.hots' => 3,
+                    'tournament.sc2' => 4,
+                    'tournament.hs' => 5,
+                    'tournament.dota2' => 6,
+                    'tournament.wot' => 7,
+                    'tournament.other' => 0,
+                ],
+            ])
+            ->add('end', CheckboxType::class, [
+                'label' => 'tournament.end'
+            ])
+            ->add('save', SubmitType::class, [
+                'label' => 'save',
+                'attr' => [
+                    'class' => 'btn-raised btn-danger'
+                ]
+            ])
+            ->getForm();
+
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+
+            $turniej->setName($form->get('name')->getViewData());
+            $turniej->setDescription($form->get('description')->getViewData());
+            $turniej->setDyscyplina($form->get('dyscyplina')->getViewData());
+            $turniej->setEnd($form->get('end')->getViewData());
+
+            $em->flush();
+
+            return $this->redirectToRoute('tournament.id', ['id' => $turniej->getId()]);
+        }
+
+        return $this->render('tournament/edit.html.twig', [
+            'color' => $this->color,
+            'form' => $form->createView(),
+        ]);
+    }
 }
