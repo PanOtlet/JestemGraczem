@@ -12,6 +12,12 @@
         <div class="jumbotron t-title">
             <h1>Wkrótce!</h1>
             <p>Obecnie trwają prace, by przygotować system turniejowy! Liczymy, że cierpliwość się Wam opłaci :)</p>
+            {% for turniej in promo %}
+                {{ turniej.name }} |
+            {% endfor %}
+            {% for turniej in my %}
+                {{ turniej.id }} - {{ turniej.name }} - {{ turniej.status }}<br>
+            {% endfor %}
         </div>
     </div>
 {% endblock %}

@@ -33,11 +33,22 @@ class DefaultController extends Controller
             ->addMeta('property', 'og:url', $this->get('router')->generate('tournament', [], UrlGeneratorInterface::ABSOLUTE_URL));
 
         $em = $this->getDoctrine()->getManager();
-        $turnieje = $em->getRepository('TurniejBundle:Turnieje')->findBy(['promoted' => 1, 'end' => FALSE]);
+        $promoted = $em->getRepository('TurniejBundle:Turnieje')->findBy(['promoted' => 1, 'end' => FALSE]);
+        $em = $this->getDoctrine()->getRepository('TurniejBundle:EntryTournament');
+        $query = $em->createQueryBuilder('p')
+            ->where('p.playerId = :playerId')
+            ->setParameter('playerId', $this->getUser()->getId())
+            ->orderBy('p.id', 'DESC')
+            ->leftJoin("TurniejBundle:Turnieje", "t", "WITH", "t.id=p.tournamentId")
+            ->select('t.id, t.name, p.status')
+            ->getQuery();
+
+        $my = $query->getResult();
 
         return $this->render('tournament/index.html.twig', [
-            'turnieje' => $turnieje,
             'color' => $this->color,
+            'promo' => $promoted,
+            'my' => $my
         ]);
     }
 
