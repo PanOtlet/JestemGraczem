@@ -160,6 +160,10 @@ class GameCenterController extends Controller
                 'name' => 'LowcyGier.pl'
             ],
             [
+                'url' => 'http://store.steampowered.com/feeds/news.xml',
+                'name' => 'Steam'
+            ],
+            [
                 'url' => 'https://salenauts.com/pl/news/feed/',
                 'name' => 'Salenauts'
             ]
