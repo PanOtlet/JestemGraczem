@@ -1,0 +1,16 @@
+<h3>Zostałeś zaproszony do udziału w turnieju!</h3>
+
+<p>
+    Użytkowniku {{ name }}, zostałeś zaproszony do udziału w turnieju {{ turniej.name }}!
+</p>
+<p>
+    Taką oto wiadomość napisał do Ciebie organizator: <br>
+    {{ desc }}
+</p>
+<p>
+    Jeśli chcesz zaakceptować zaproszenie, udaj się na tą stronę
+    <a href="{{ url('tournament.id.invite.accept', {'id':turniej.id}) }}">
+        {{ url('tournament.id.invite.accept', {'id':turniej.id}) }}
+    </a>
+</p>
+
