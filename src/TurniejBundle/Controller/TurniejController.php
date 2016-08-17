@@ -42,7 +42,8 @@ class TurniejController extends Controller
         if ($turniej->getPlayerType() == 0){
             $data = [
                 'entity' => 'AppBundle:User',
-                'name' => 'u.username'
+                'name' => 'u.username',
+                'email' => ', u.email'
             ];
         } else {
             $data = [
@@ -55,7 +56,7 @@ class TurniejController extends Controller
             ->where('p.tournamentId = :id')
             ->setParameter('id', $turniej->getId())
             ->leftJoin($data['entity'], "u", "WITH", "u.id=p.playerId")
-            ->select($data['name'].', p.status')
+            ->select($data['name'].', p.status'.$data['email'])
             ->orderBy($data['name'], 'ASC')
             ->getQuery();
 
