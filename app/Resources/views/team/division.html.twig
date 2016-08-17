@@ -1,44 +1,45 @@
 {% extends "base.html.twig" %}
 
 {% block body %}
-<div class="container-fluid top p-t-3 p-b-2">
-    <div class="container">
-        <div class="col-sm-6 btn-clear-lg p-l-1 ">
-            <span style="color: #8bc34a;">{{ team.name }}</span>
-        </div>
-    </div>
-</div>
-<div class="container">
-    <div class="jumbotron">
-        <div class="container-fluid">
-            <div class="row">
-                <div class="col-md-4">
-                    <img src="https://www.gravatar.com/avatar/{{ team.name }}?s=160" class="img-responsive">
-                </div>
-                <div class="col-md-8">
-                    <h2>Nazwa dywizi {{ team.name }}</h2>
-                </div>
-                <div class="col-md-8">
-                    <h2>Krótki opis: {{ team.description }}</h2>
-                </div>
+    <div class="container-fluid top p-t-3 p-b-2">
+        <div class="container">
+            <div class="col-sm-6 btn-clear-lg p-l-1 ">
+                <span style="color: #8bc34a;">{{ team.name }}</span>
             </div>
         </div>
     </div>
-    <div class="jumbotron">
-        <h2>Członkowie</h2>
-        <div class="row">
-            {% if team.team %}
-                {% for member in team.members %}
+    <div class="container">
+        <div class="jumbotron">
+            <div class="container-fluid">
+                <div class="row">
                     <div class="col-md-4">
-                        <div class="jumbotron teams">
-                            <a href="{{ url('user', {'user':member.user}) }}">{{ member.user }} ({{ member.role }})</a>
-                        </div>
+                        <img src="https://www.gravatar.com/avatar/{{ team.name }}?s=160" class="img-responsive">
                     </div>
-                {% endfor %}
-            {% else %}
-                <h1>Brak Członków :( Smutek.jpg</h1>
-            {% endif %}
+                    <div class="col-md-8">
+                        <h2>Nazwa dywizi {{ team.name }}</h2>
+                    </div>
+                    <div class="col-md-8">
+                        <h2>Krótki opis: {{ team.description }}</h2>
+                    </div>
+                </div>
+            </div>
         </div>
-    </div>
+        <div class="jumbotron">
+            <h2>Członkowie</h2>
+            <div class="row">
+                {% if m8 %}
+                    {% for member in m8 %}
+                        <div class="col-md-4">
+                            <div class="jumbotron teams">
+                                <a href="{{ url('user', {'user':member.username}) }}">{{ member.username }}
+                                    ({{ member.role }})</a>
+                            </div>
+                        </div>
+                    {% endfor %}
+                {% else %}
+                    <h1>Brak Członków :( Smutek.jpg</h1>
+                {% endif %}
+            </div>
+        </div>
     </div>
 {% endblock %}

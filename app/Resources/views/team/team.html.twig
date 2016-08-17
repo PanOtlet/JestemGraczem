@@ -86,16 +86,16 @@
                                 {#{% endif %}#}
                             </div>
                             <div class="row m-t-1">
-                                {% if division.members %}
-                                    {% for member in division.members %}
+                                {% if m8 %}
+                                    {% for member in m8 %}
                                         <div class="col-md-3">
-                                            <img src="https://www.gravatar.com/avatar/{{ hash.hashmd5(member.user) }}?s=2048"
+                                            <img src="https://www.gravatar.com/avatar/{{ member.email|md5 }}?s=2048"
                                                  class="img-responsive">
                                             <div class="btn-white p-y-06 text-ta text-xs-center">
-                                                <p>{{ member.user }}</p>
+                                                <p>{{ member.username }}</p>
                                             </div>
                                             <div class="text-xs-center btn-pink m-b-1">
-                                                <a href="{{ url('user', {'user':member.user}) }}">{{ 'button.seeprofile'|trans }}</a>
+                                                <a href="{{ url('user', {'user':member.username}) }}">{{ 'button.seeprofile'|trans }}</a>
                                             </div>
                                         </div>
                                     {% endfor %}

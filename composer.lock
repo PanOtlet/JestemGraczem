@@ -2180,16 +2180,16 @@
         },
         {
             "name": "sonata-project/exporter",
-            "version": "1.6.0",
+            "version": "1.7.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sonata-project/exporter.git",
-                "reference": "48905105792aa2bfbea234b6a9d6a168ff8c19fd"
+                "reference": "3be6e971533bf2cbb24803e2ccb06c6e3046d5d2"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sonata-project/exporter/zipball/48905105792aa2bfbea234b6a9d6a168ff8c19fd",
-                "reference": "48905105792aa2bfbea234b6a9d6a168ff8c19fd",
+                "url": "https://api.github.com/repos/sonata-project/exporter/zipball/3be6e971533bf2cbb24803e2ccb06c6e3046d5d2",
+                "reference": "3be6e971533bf2cbb24803e2ccb06c6e3046d5d2",
                 "shasum": ""
             },
             "require": {
@@ -2245,7 +2245,7 @@
                 "export",
                 "xls"
             ],
-            "time": "2016-08-01 08:13:04"
+            "time": "2016-08-17 08:25:58"
         },
         {
             "name": "sonata-project/seo-bundle",

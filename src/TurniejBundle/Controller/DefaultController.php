@@ -12,6 +12,7 @@ use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
+use TurniejBundle\Entity\Division;
 use TurniejBundle\Entity\EntryTournament;
 use TurniejBundle\Entity\Turnieje;
 
@@ -299,7 +300,7 @@ class DefaultController extends Controller
     }
 
     /**
-     * @Route("/dolacz/{id}", name="tournament.join")
+     * @Route("/dolacz/{id}/indywidualnie", name="tournament.join")
      */
     public function joinAction($id)
     {
@@ -309,16 +310,41 @@ class DefaultController extends Controller
         $em = $this->getDoctrine()->getManager();
         $turniej = $em->getRepository('TurniejBundle:Turnieje')->findOneBy(['id' => $id]);
 
+        //Sprawdzenie, czy turniej istnieje
         if ($turniej == NULL) {
             throw $this->createNotFoundException('Turniej do którego chcesz dołączyć nie istnieje!');
         }
 
+        //Sprawdzenie, czy drużynowe, czy indywidualne
+        if ($turniej->getPlayerType() == 1) {
+            return $this->redirectToRoute('tournament.joins', ['id' => $id]);
+        }
+
+        //Sprawdzenie, czy turniej jeszcze pozwala na zapis
         $date = new \DateTime('now');
 
         if ($turniej->getDataStop() < $date) {
-            throw $this->createNotFoundException('Turniej oficjalnie zamknął możliwość zapisów!');
+            $this->addFlash(
+                'error',
+                'Turniej oficjalnie zamknął możliwość zapisu!'
+            );
+            return $this->redirectToRoute('tournament');
         }
 
+        //Sprawdzenie, czy turniej nie jest pełen
+        $zapis = $this->getDoctrine()->getRepository('TurniejBundle:EntryTournament')->findBy([
+            'tournamentId' => $turniej->getId()
+        ]);
+
+        if (count($zapis) >= $turniej->getCountTeam()) {
+            $this->addFlash(
+                'error',
+                'Niestety! Turniej już zapełniony po brzegi!'
+            );
+            return $this->redirectToRoute('tournament');
+        }
+
+        //Sprawdzanie, czy turniej jest Open, czy Invite
         switch ($turniej->getType()) {
             case 0:
                 $zapis = TRUE;
@@ -334,7 +360,11 @@ class DefaultController extends Controller
         }
 
         if ($zapis == NULL) {
-            throw $this->createNotFoundException('Nie masz dostępu do turnieju!');
+            $this->addFlash(
+                'error',
+                'Nie masz dostępu do turnieju!'
+            );
+            return $this->redirectToRoute('tournament');
         }
 
         /*
@@ -342,6 +372,7 @@ class DefaultController extends Controller
          * @TODO: Dodać sprawdzenie, by uczestnik już jest zapisany w turnieju!
          */
 
+        //Zapisanie uczestnika
         $zapis = new EntryTournament();
         $zapis->setPlayerId($this->getUser()->getId());
         $zapis->setTournamentId($id);
@@ -349,6 +380,121 @@ class DefaultController extends Controller
         $em->persist($zapis);
         $em->flush();
 
+        $this->addFlash(
+            'success',
+            'Gratulacje! Dołączyłeś do turnieju! Oczekuj teraz informacji od organizatorów!'
+        );
+        return $this->redirectToRoute('tournament');
+    }
+
+    /**
+     * @Route("/dolacz/{id}/druzynowo", name="tournament.joins")
+     */
+    public function joinsAction(Request $request, $id)
+    {
+        $seo = $this->container->get('sonata.seo.page');
+        $seo->setTitle('Dołącz do turnieju :: JestemGraczem.pl');
+
+
+
+        $form = $this->createFormBuilder()
+            ->add('team', ChoiceType::class, [
+                'label' => 'team.name',
+                'placeholder' => 'team.name',
+                'required' => true,
+                'choices' => [
+                    'kupa' => 1,
+                    'tournament.lol' => 2,
+                    'tournament.hots' => 3,
+                    'tournament.sc2' => 4,
+                    'tournament.hs' => 5,
+                    'tournament.dota2' => 6,
+                    'tournament.wot' => 7,
+                    'tournament.other' => 0,
+                ],
+            ])
+            ->add('save', SubmitType::class, ['label' => 'tournament.join'])
+            ->getForm();
+
+        $form->handleRequest($request);
+
+        $em = $this->getDoctrine()->getManager();
+        $turniej = $em->getRepository('TurniejBundle:Turnieje')->findOneBy(['id' => $id]);
+
+        //Sprawdzenie, czy turniej istnieje
+        if ($turniej == NULL) {
+            throw $this->createNotFoundException('Turniej do którego chcesz dołączyć nie istnieje!');
+        }
+
+        //Sprawdzenie, czy drużynowe, czy indywidualne
+        if ($turniej->getPlayerType() == 0) {
+            return $this->redirectToRoute('tournament.join', ['id' => $id]);
+        }
+
+        //Sprawdzenie, czy turniej jeszcze pozwala na zapis
+        $date = new \DateTime('now');
+
+        if ($turniej->getDataStop() < $date) {
+            $this->addFlash(
+                'error',
+                'Turniej oficjalnie zamknął możliwość zapisu!'
+            );
+            return $this->redirectToRoute('tournament');
+        }
+
+        //Sprawdzenie, czy turniej nie jest pełen
+        $zapis = $this->getDoctrine()->getRepository('TurniejBundle:EntryTournament')->findBy([
+            'tournamentId' => $turniej->getId()
+        ]);
+
+        if (count($zapis) >= $turniej->getCountTeam()) {
+            $this->addFlash(
+                'error',
+                'Niestety! Turniej już zapełniony po brzegi!'
+            );
+            return $this->redirectToRoute('tournament');
+        }
+
+        //Sprawdzanie, czy turniej jest Open, czy Invite
+        switch ($turniej->getType()) {
+            case 0:
+                $zapis = TRUE;
+                break;
+            case 1:
+                $zapis = $this->getDoctrine()->getRepository('TurniejBundle:EntryTournament')->findOneBy([
+                    'tournamentId' => $turniej->getId(),
+                    'playerId' => $this->getUser()->getId()
+                ]);
+                break;
+            default:
+                $zapis = NULL;
+        }
+
+        if ($zapis == NULL) {
+            $this->addFlash(
+                'error',
+                'Nie masz dostępu do turnieju!'
+            );
+            return $this->redirectToRoute('tournament');
+        }
+
+        /*
+         * @TODO: Dodać sprawdzenie, czy jest turniej na wpisowe!
+         * @TODO: Dodać sprawdzenie, by uczestnik już jest zapisany w turnieju!
+         */
+
+        //Zapisanie uczestnika
+        $zapis = new EntryTournament();
+        $zapis->setPlayerId($this->getUser()->getId());
+        $zapis->setTournamentId($id);
+        $zapis->setStatus(2);
+        $em->persist($zapis);
+        $em->flush();
+
+        $this->addFlash(
+            'success',
+            'Gratulacje! Dołączyłeś do turnieju! Oczekuj teraz informacji od organizatorów!'
+        );
         return $this->redirectToRoute('tournament');
     }
 }
