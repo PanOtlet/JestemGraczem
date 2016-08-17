@@ -382,7 +382,6 @@ class DefaultController extends Controller
 
         /*
          * @TODO: Dodać sprawdzenie, czy jest turniej na wpisowe!
-         * @TODO: Dodać sprawdzenie, by uczestnik już jest zapisany w turnieju!
          */
 
         //Zapisanie uczestnika
@@ -500,7 +499,6 @@ class DefaultController extends Controller
 
             /*
              * @TODO: Dodać sprawdzenie, czy jest turniej na wpisowe!
-             * @TODO: Dodać sprawdzenie, by uczestnik już jest zapisany w turnieju!
              */
 
             //Zapisanie uczestnika

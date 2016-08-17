@@ -48,7 +48,8 @@ class TurniejController extends Controller
         } else {
             $data = [
                 'entity' => 'TurniejBundle:Division',
-                'name' => 'u.name'
+                'name' => 'u.name',
+                'email' => ''
             ];
         }
 
