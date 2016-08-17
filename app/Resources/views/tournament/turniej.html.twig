@@ -21,56 +21,56 @@
                     <span class="p-x-1 text"> {{ 'tournament.game'|trans }}</span>
                 </div>
                 <div class="grey-box p-y-1 p-l-1 m-b-1">
-                    <p class="game"><span style="color: #303030;">{{ 'tournament.csgo'|trans }}</span></p>
+                    <p class="game">{{ 'tournament.csgo'|trans }}</p>
                 </div>
                 {% elseif turniej.dyscyplina == 2 %}
                     <div class="btn-white-lg dots m-b-0">
                         <span class="p-x-1 text"> {{ 'tournament.game'|trans }}</span>
                     </div>
                     <div class="grey-box p-y-1 p-l-1 m-b-1">
-                        <p class="game"><span style="color: #303030;">{{ 'tournament.lol'|trans }}</span></p>
+                        <p class="game">{{ 'tournament.lol'|trans }}</p>
                     </div>
                 {% elseif turniej.dyscyplina == 3 %}
                 <div class="btn-white-lg dots m-b-0">
                     <span class="p-x-1 text"> {{ 'tournament.game'|trans }}</span>
                 </div>
                 <div class="grey-box p-y-1 p-l-1 m-b-1">
-                    <p class="game"><span style="color: #303030;">{{ 'tournament.tournament.hots'|trans }}</span></p>
+                    <p class="game">{{ 'tournament.tournament.hots'|trans }}</p>
                 </div>
                 {% elseif turniej.dyscyplina == 4 %}
                 <div class="btn-white-lg dots m-b-0">
                     <span class="p-x-1 text"> {{ 'tournament.game'|trans }}</span>
                 </div>
                 <div class="grey-box p-y-1 p-l-1 m-b-1">
-                    <p class="game"><span style="color: #303030;">{{ 'tournament.sc2'|trans }}</span></p>
+                    <p class="game">{{ 'tournament.sc2'|trans }}</p>
                 </div>
                 {% elseif turniej.dyscyplina == 5 %}
                 <div class="btn-white-lg dots m-b-0">
                     <span class="p-x-1 text"> {{ 'tournament.game'|trans }}</span>
                 </div>
                 <div class="grey-box p-y-1 p-l-1 m-b-1">
-                    <p class="game"><span style="color: #303030;">{{ 'tournament.hs'|trans }}</span></p>
+                    <p class="game">{{ 'tournament.hs'|trans }}</p>
                 </div>
                 {% elseif turniej.dyscyplina == 6 %}
                 <div class="btn-white-lg dots m-b-0">
                     <span class="p-x-1 text"> {{ 'tournament.game'|trans }}</span>
                 </div>
                 <div class="grey-box p-y-1 p-l-1 m-b-1">
-                    <p class="game"><span style="color: #303030;">{{ 'tournament.dota2'|trans }}</span></p>
+                    <p class="game">{{ 'tournament.dota2'|trans }}</p>
                 </div>
                 {% elseif turniej.dyscyplina == 7 %}
                 <div class="btn-white-lg dots m-b-0">
                     <span class="p-x-1 text"> {{ 'tournament.game'|trans }}</span>
                 </div>
                 <div class="grey-box p-y-1 p-l-1 m-b-1">
-                    <p class="game"><span style="color: #303030;">{{ 'tournament.wot'|trans }}</span></p>
+                    <p class="game">{{ 'tournament.wot'|trans }}</p>
                 </div>
                 {% else %}
                 <div class="btn-white-lg dots m-b-0">
                     <span class="p-x-1 text"> {{ 'tournament.game'|trans }}</span>
                 </div>
                 <div class="grey-box p-y-1 p-l-1 m-b-1">
-                    <p class="game"><span style="color: #303030;">{{ 'tournament.other'|trans }}</span></p>
+                    <p class="game">{{ 'tournament.other'|trans }}</p>
                 </div>
                 {% endif %}
 
@@ -101,10 +101,10 @@
                             style="color: #303030;">{{ turniej.countTeam }}</span></span>
             </div>
             <div class="btn-white-lg dots m-b-1">
-                {% if turniej.playerType == 0 %}
+                {% if turniej.playerType == 1 %}
                 <span class="p-x-1 text">{{ 'tournament.playerType'|trans }}: <span
                             style="color: #303030;">{{ 'tournament.team'|trans }}</span></span>
-                {% elseif turniej.playerType == 1 %}
+                {% elseif turniej.playerType == 0 %}
                     <span class="p-x-1 text">{{ 'tournament.playerType'|trans }}: <span
                                 style="color: #303030;">{{ 'tournament.individual'|trans }}</span></span>
                 {% endif %}
