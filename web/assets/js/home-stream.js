@@ -1,6 +1,5 @@
-var u_twitch = "";
-var limit = 4;
-var g_url="",g_exitUrl="";
+var u_twitch = "" , g_url="" , g_exitUrl="";
+var limit = 4 , count = 0;
 
 function getStream(url, exitUrl) {
     $.ajax({
@@ -25,13 +24,21 @@ function getTwitch(stream) {
         url: 'https://api.twitch.tv/kraken/streams/?channel=' + stream,
         dataType: 'jsonp',
         success: function (channel) {
-            $('#loading').remove();
-            topStream(channel["streams"][0], 1);
+            if (count==0){
+                $('#loading').remove();
+                topStream(channel["streams"][count], 1);
+                setTimeout(function () {
+                    $('#image' + channel["streams"][count]["channel"]["name"]).addClass("stream-active");
+                }, 3000);
+            }
+            for (count; count < limit; count++) {
+                renderBottomStreamList(channel["streams"][count]);
+            }
             setTimeout(function () {
-                $('#image' + channel["streams"][0]["channel"]["name"]).addClass("stream-active");
-            }, 3000);
-            for (var i = 0; i < limit; i++) {
-                renderBottomStreamList(channel["streams"][i]);
+                count=4;
+            }, 15000);
+            if(count< limit){
+
             }
         }, error: function () {
             console.log("Coś poszło nie tak podczas łączenia z api twitch");

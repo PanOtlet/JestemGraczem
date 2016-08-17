@@ -82,8 +82,10 @@
                         {% if player.name is defined %}
                             <p class="game">{{ player.name }} ({{ player.status }})</p>
                         {% else %}
-                            <img src="https://www.gravatar.com/avatar/{{ player.email|md5 }}?s=666" alt="" class="img-responsive">
-                            <p class="game">{{ player.username }} ({{ player.status }})</p>
+                            <div class="contestants p-b-1">
+                                <img class="img-responsive img-circle " src="https://www.gravatar.com/avatar/{{ player.email|md5 }}?s=100" alt="{{ player.username }}">
+                                <p class="game">{{ player.username }}</p>
+                            </div>
                         {% endif %}
                     {% endfor %}
                 </div>
