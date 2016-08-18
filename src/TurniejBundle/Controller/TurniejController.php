@@ -151,8 +151,6 @@ class TurniejController extends Controller
         $em = $this->getDoctrine()->getManager();
         $turniej = $em->getRepository('TurniejBundle:Turnieje')->findOneBy(['id' => $id]);
 
-        $this->container->get('sonata.seo.page')->setTitle('Edycja turnieju :: JestemGraczem.pl');
-
         if ($id == NULL || $turniej == NULL) {
             return $this->createNotFoundException('Brak takiego turnieju!');
         }
@@ -172,11 +170,15 @@ class TurniejController extends Controller
             ->add('description', TextareaType::class, [
                 'label' => 'team.desc'
             ])
+            ->add('playerType', ChoiceType::class, [
+                'label' => 'tournament.playerType',
+                'choices' => [
+                    'Użytkownik' => 0,
+                    'Drużyna' => 1,
+                ],
+            ])
             ->add('save', SubmitType::class, [
-                'label' => 'save',
-                'attr' => [
-                    'class' => 'btn-raised btn-danger'
-                ]
+                'label' => 'save'
             ])
             ->getForm();
 
@@ -184,46 +186,103 @@ class TurniejController extends Controller
 
         if ($form->isSubmitted() && $form->isValid()) {
 
-            $user = $em->getRepository('AppBundle:User')->findOneBy(['username' => $form->get('name')->getViewData()]);
+            switch ($form->get('playerType')->getViewData()) {
+                case 0:
+                    $user = $em->getRepository('AppBundle:User')->findOneBy(['username' => $form->get('name')->getViewData()]);
 
-            if ($user == NULL) {
-                $this->addFlash(
-                    'error',
-                    'Wiesz, że taki użytkownik nie istnieje?'
-                );
-                return $this->redirectToRoute('tournament.id.invite', ['id' => $id]);
+                    if ($user == NULL) {
+                        $this->addFlash(
+                            'error',
+                            'Wiesz, że taki użytkownik nie istnieje?'
+                        );
+                        return $this->redirectToRoute('tournament.id.invite', ['id' => $id]);
+                    }
+
+                    $entry = new EntryTournament();
+                    $entry->setPlayerId($user->getId());
+                    $entry->setTournamentId($id);
+                    $entry->setStatus(0);
+
+                    $em->persist($entry);
+                    $em->flush();
+
+                    $message = \Swift_Message::newInstance()
+                        ->setSubject('Zaproszenie do udziału w turnieju ' . $turniej->getName() . '!')
+                        ->setFrom('invite@jestemgraczem.pl')
+                        ->setTo($user->getEmail())
+                        ->setBody(
+                            $this->renderView(
+                                ':email:tournament_invite.email.twig',
+                                [
+                                    'name' => $user->getUsername(),
+                                    'turniej' => $turniej,
+                                    'desc' => $form->get('description')->getViewData(),
+                                ]
+                            ),
+                            'text/html'
+                        );
+
+                    $this->get('mailer')->send($message);
+
+                    $this->addFlash(
+                        'success',
+                        'Użytkownik został zaproszony do udziału w turnieju!'
+                    );
+                    break;
+                case 1:
+                    $team = $em->getRepository('TurniejBundle:Division')->findOneBy(['tag' => $form->get('name')->getViewData()]);
+
+                    if ($team == NULL) {
+                        $this->addFlash(
+                            'error',
+                            'Wiesz, że taka drużyna nie istnieje?'
+                        );
+                        return $this->redirectToRoute('tournament.id.invite', ['id' => $id]);
+                    }
+
+                    $entry = new EntryTournament();
+                    $entry->setPlayerId($team->getId());
+                    $entry->setTournamentId($id);
+                    $entry->setStatus(0);
+
+                    $em->persist($entry);
+                    $em->flush();
+
+                    $owner = $em->getRepository('TurniejBundle:Team')->findOneBy(['id' => $team->getTeam()]);
+                    $user = $em->getRepository('AppBundle:User')->findOneBy(['id' => $owner->getOwner()]);
+
+                    $message = \Swift_Message::newInstance()
+                        ->setSubject('Zaproszenie do udziału w turnieju ' . $turniej->getName() . '!')
+                        ->setFrom('invite@jestemgraczem.pl')
+                        ->setTo($user->getEmail())
+                        ->setBody(
+                            $this->renderView(
+                                ':email:tournament_invite_team.email.twig',
+                                [
+                                    'name' => $team->getName(),
+                                    'team' => $owner->getName(),
+                                    'id' => $team->getId(),
+                                    'turniej' => $turniej,
+                                    'desc' => $form->get('description')->getViewData(),
+                                ]
+                            ),
+                            'text/html'
+                        );
+
+                    $this->get('mailer')->send($message);
+
+                    $this->addFlash(
+                        'success',
+                        'Drużyna została zaproszona do udziału w turnieju!'
+                    );
+                    break;
+                default:
+                    $this->addFlash(
+                        'error',
+                        'Coco Jumbo i do przodu, dobre nie?!'
+                    );
             }
 
-            $entry = new EntryTournament();
-            $entry->setPlayerId($user->getId());
-            $entry->setTournamentId($id);
-            $entry->setStatus(0);
-
-            $em->persist($entry);
-            $em->flush();
-
-            $message = \Swift_Message::newInstance()
-                ->setSubject('Zaproszenie do udziału w turnieju ' . $turniej->getName() . '!')
-                ->setFrom('invite@jestemgraczem.pl')
-                ->setTo($user->getEmail())
-                ->setBody(
-                    $this->renderView(
-                        ':email:tournament_invite.email.twig',
-                        [
-                            'name' => $user->getUsername(),
-                            'turniej' => $turniej,
-                            'desc' => $form->get('description')->getViewData(),
-                        ]
-                    ),
-                    'text/html'
-                );
-
-            $this->get('mailer')->send($message);
-
-            $this->addFlash(
-                'success',
-                'Użytkownik został zaproszony do udziału w turnieju!'
-            );
             return $this->redirectToRoute('tournament.id', ['id' => $turniej->getId()]);
         }
 
@@ -234,9 +293,9 @@ class TurniejController extends Controller
     }
 
     /**
-     * @Route("/turniej/{id}/invite/accept", name="tournament.id.invite.accept")
+     * @Route("/turniej/{id}/invite/accept/{team}", name="tournament.id.invite.accept")
      */
-    public function inviteAcceptAction($id = NULL, Request $request)
+    public function inviteAcceptAction($id = NULL, $team = NULL)
     {
         $em = $this->getDoctrine()->getManager();
         $turniej = $em->getRepository('TurniejBundle:Turnieje')->findOneBy(['id' => $id]);
@@ -245,17 +304,41 @@ class TurniejController extends Controller
             return $this->createNotFoundException('Brak takiego turnieju!');
         }
 
-        $entry = $em->getRepository('TurniejBundle:EntryTournament')->findOneBy([
-            'playerId' => $this->getUser()->getId(),
-            'tournamentId' => $id
-        ]);
+        switch ($turniej->getPlayerType()) {
+            case 0:
+                $entry = $em->getRepository('TurniejBundle:EntryTournament')->findOneBy([
+                    'playerId' => $this->getUser()->getId(),
+                    'tournamentId' => $id
+                ]);
 
-        if ($entry == NULL) {
-            $this->addFlash(
-                'error',
-                'Ale nie masz zaproszenia!'
-            );
-            return $this->redirectToRoute('tournament.id', ['id' => $id]);
+                if ($entry == NULL) {
+                    $this->addFlash(
+                        'error',
+                        'Ale nie masz zaproszenia!'
+                    );
+                    return $this->redirectToRoute('tournament.id', ['id' => $id]);
+                }
+                break;
+            case 1:
+                $entry = $em->getRepository('TurniejBundle:EntryTournament')->findOneBy([
+                    'playerId' => $team,
+                    'tournamentId' => $id
+                ]);
+
+                if ($entry == NULL) {
+                    $this->addFlash(
+                        'error',
+                        'Ale nie masz zaproszenia!'
+                    );
+                    return $this->redirectToRoute('tournament.id', ['id' => $id]);
+                }
+                break;
+            default:
+                $this->addFlash(
+                    'error',
+                    'Coś się popsuło i nie było mnie słychać!'
+                );
+                return $this->redirectToRoute('tournament.id', ['id' => $id]);
         }
 
         $entry->setStatus(2);
