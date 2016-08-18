@@ -87,6 +87,10 @@ class DefaultController extends Controller
 
         $feeds = [
             [
+                'url' => 'http://store.steampowered.com/feeds/newreleases.xml',
+                'name' => 'Steam'
+            ],
+            [
                 'url' => 'http://lowcygier.pl/feed/',
                 'name' => 'LowcyGier.pl'
             ],
