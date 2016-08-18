@@ -2,6 +2,7 @@
 
 namespace GameBundle\Controller;
 
+use GameBundle\GameBundle;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
@@ -27,6 +28,7 @@ class HearthstoneController extends Controller
         ];
 
         return $this->render('gameCenter/hs.html.twig', [
+            'color' => GameBundle::getColor(),
             'feeds' => $feeds,
             'json' => json_encode($feeds,true)
         ]);
