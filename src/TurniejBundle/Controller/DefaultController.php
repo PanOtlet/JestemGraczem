@@ -246,9 +246,17 @@ class DefaultController extends Controller
                     'tournament.free' => 0,
                 ],
             ])
-            ->add('countTeam', IntegerType::class, [
+            ->add('countTeam', ChoiceType::class, [
                 'label' => 'tournament.countTeam',
                 'required' => true,
+                'choices' => [
+                    '4' => 4,
+                    '8' => 8,
+                    '16' => 16,
+                    '24' => 24,
+                    '32' => 32,
+                    '48' => 48
+                ]
             ])
             ->add('playerType', ChoiceType::class, [
                 'label' => 'tournament.playerType',
