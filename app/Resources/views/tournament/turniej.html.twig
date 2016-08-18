@@ -87,12 +87,13 @@
                 </div>
                 <div class="grey-box p-y-1 p-l-1 m-b-1">
                     {% for player in entry %}
+                        {% set status = 'tournament.status.' ~ player.status %}
                         {% if player.name is defined %}
-                            <p class="game">{{ player.name }} ({{ player.status }})</p>
+                            <p class="game">{{ player.name }} <small>{{ status|trans }}</small></p>
                         {% else %}
                             <div class="contestants p-b-1">
                                 <img class="img-responsive img-circle " src="https://www.gravatar.com/avatar/{{ player.email|md5 }}?s=100" alt="{{ player.username }}">
-                                <p class="game">{{ player.username }} {{ player.status }}</p>
+                                <p class="game">{{ player.username }} <small>{{ status|trans }}</small></p>
                             </div>
                         {% endif %}
                     {% endfor %}

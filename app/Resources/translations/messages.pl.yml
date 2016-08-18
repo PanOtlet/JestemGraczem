@@ -123,6 +123,12 @@ tournament:
     wot: 'World of Tanks'
     other: 'Inne'
     players: 'Uczestnicy'
+    status:
+        0: 'Zaproszony'
+        1: 'Zapisany, ale nie opłacony'
+        2: 'Zapisany'
+        3: 'Wyrzucony'
+        4: 'Wypisany'
 admin:
     id: 'ID'
     title: 'Tytuł'
