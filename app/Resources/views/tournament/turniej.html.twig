@@ -8,7 +8,11 @@
                 <span style="color: #8bc34a;">{{ turniej.name }}</span>
             </div>
             {% if app.user and turniej.owner == app.user.id %}
-                <div class="col-sm-2 col-sm-offset-2">
+                <div class="col-sm-2">
+                    <a href="{{ url('tournament.id.edit', {'id':turniej.id}) }}" type="button"
+                       class="btn btn-green pull-sm-right"><span class="p-x-3">{{ 'button.edit'|trans }}</span></a>
+                </div>
+                <div class="col-sm-2">
                     <a href="{{ url('tournament.id.edit', {'id':turniej.id}) }}" type="button"
                        class="btn btn-green pull-sm-right"><span class="p-x-3">{{ 'button.edit'|trans }}</span></a>
                 </div>
