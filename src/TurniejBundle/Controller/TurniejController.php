@@ -168,7 +168,7 @@ class TurniejController extends Controller
                 'label' => 'tournament.invite.name'
             ])
             ->add('description', TextareaType::class, [
-                'label' => 'team.desc'
+                'label' => 'tournament.invite.desc'
             ])
             ->add('playerType', ChoiceType::class, [
                 'label' => 'tournament.playerType',
