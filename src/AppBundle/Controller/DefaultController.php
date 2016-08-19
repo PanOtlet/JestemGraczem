@@ -101,12 +101,9 @@ class DefaultController extends Controller
             ->addMeta('property', 'og:type', 'profile')
             ->addMeta('property', 'og:url', $this->get('router')->generate('user', ['user' => $user['username']], UrlGeneratorInterface::ABSOLUTE_URL));
 
-        $avatar = md5($user['email']);
-
         return $this->render('default/user.html.twig', [
             'color' => $this->color,
             'user' => $user,
-            'avatar' => $avatar,
             'meme' => $meme,
             'video' => $video
         ]);
