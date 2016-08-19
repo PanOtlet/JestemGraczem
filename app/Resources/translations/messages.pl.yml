@@ -112,6 +112,7 @@ tournament:
     playerType: 'Rodzaj zawodów'
     open: 'Otwarty'
     invite: 'Na zaproszenie'
+    invitation: 'Zaproś'
     team: 'Drużyna'
     individual: 'Indywidualny'
     csgo: 'Counter-Strike: Global Offensive'
