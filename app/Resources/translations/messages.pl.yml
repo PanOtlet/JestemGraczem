@@ -112,6 +112,8 @@ tournament:
     playerType: 'Rodzaj zawodów'
     open: 'Otwarty'
     invite: 'Na zaproszenie'
+    invite-name: 'Login lub kod dywizji'
+    invite-desc: 'Treść zaproszenia'
     invitation: 'Zaproś'
     team: 'Drużyna'
     individual: 'Indywidualny'
