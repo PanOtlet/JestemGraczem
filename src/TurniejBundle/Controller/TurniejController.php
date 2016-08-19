@@ -165,7 +165,7 @@ class TurniejController extends Controller
 
         $form = $this->createFormBuilder()
             ->add('name', NULL, [
-                'label' => 'admin.username'
+                'label' => 'tournament.invite.name'
             ])
             ->add('description', TextareaType::class, [
                 'label' => 'team.desc'
