@@ -18,6 +18,9 @@ class DivisionController extends Controller
 
     /**
      * @Route("/add/{tag}", name="division.add")
+     * @param null $tag
+     * @param Request $request
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse|\Symfony\Component\HttpFoundation\Response
      */
     public function addAction($tag = NULL, Request $request)
     {
@@ -87,6 +90,8 @@ class DivisionController extends Controller
 
     /**
      * @Route("/join", name="team.join")
+     * @param Request $request
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse|\Symfony\Component\HttpFoundation\Response
      */
     public function joinAction(Request $request)
     {
@@ -152,6 +157,9 @@ class DivisionController extends Controller
 
     /**
      * @Route("/join/{tag}", name="team.join.tag")
+     * @param null $tag
+     * @param Request $request
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse|\Symfony\Component\HttpFoundation\Response
      */
     public function joinTagAction($tag = NULL, Request $request)
     {
@@ -214,6 +222,8 @@ class DivisionController extends Controller
 
     /**
      * @Route("/{id}", name="division")
+     * @param null $id
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse|\Symfony\Component\HttpFoundation\Response
      */
     public function divisionAction($id = NULL)
     {

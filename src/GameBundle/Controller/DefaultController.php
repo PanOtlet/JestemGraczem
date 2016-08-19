@@ -12,6 +12,7 @@ class DefaultController extends Controller
 
     /**
      * @Route("/", name="centrum")
+     * @return \Symfony\Component\HttpFoundation\Response
      */
     public function indexAction()
     {
@@ -79,6 +80,7 @@ class DefaultController extends Controller
 
     /**
      * @Route("/cebula", name="centrum.cebula")
+     * @return \Symfony\Component\HttpFoundation\Response
      */
     public function cebulaAction()
     {

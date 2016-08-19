@@ -12,6 +12,7 @@ class HotSController extends Controller
 
     /**
      * @Route("/", name="centrum.hots")
+     * @return \Symfony\Component\HttpFoundation\Response
      */
     public function hotsAction()
     {

@@ -16,6 +16,8 @@ class MemeController extends Controller
 
     /**
      * @Route("/img/{id}", name="meme.id")
+     * @param $id
+     * @return \Symfony\Component\HttpFoundation\Response
      */
     public function memAction($id)
     {
@@ -45,6 +47,8 @@ class MemeController extends Controller
 
     /**
      * @Route("/add", name="meme.add")
+     * @param Request $request
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse|\Symfony\Component\HttpFoundation\Response
      */
     public function addAction(Request $request)
     {
@@ -111,6 +115,8 @@ class MemeController extends Controller
 
     /**
      * @Route("/wszystkie/{page}", name="meme.all")
+     * @param int $page
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse|\Symfony\Component\HttpFoundation\Response
      */
     public function allAction($page = 0)
     {
@@ -154,6 +160,8 @@ class MemeController extends Controller
 
     /**
      * @Route("/{page}", name="meme")
+     * @param int $page
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse|\Symfony\Component\HttpFoundation\Response
      */
     public function indexAction($page = 0)
     {

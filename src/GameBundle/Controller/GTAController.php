@@ -12,6 +12,7 @@ class GTAController extends Controller
 
     /**
      * @Route("/", name="centrum.gta")
+     * @return \Symfony\Component\HttpFoundation\Response
      */
     public function indexAction()
     {

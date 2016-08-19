@@ -12,6 +12,7 @@ class WoTController extends Controller
 
     /**
      * @Route("/", name="centrum.wot")
+     * @return \Symfony\Component\HttpFoundation\Response
      */
     public function indexAction()
     {

@@ -12,6 +12,7 @@ class DotaController extends Controller
 
     /**
      * @Route("/", name="centrum.dota")
+     * @return \Symfony\Component\HttpFoundation\Response
      */
     public function indexAction()
     {

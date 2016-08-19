@@ -20,6 +20,8 @@ class TurniejController extends Controller
 
     /**
      * @Route("/turniej/{id}", name="tournament.id")
+     * @param $id
+     * @return \Symfony\Component\HttpFoundation\Response
      */
     public function indexAction($id)
     {
@@ -70,6 +72,9 @@ class TurniejController extends Controller
 
     /**
      * @Route("/turniej/{id}/edit", name="tournament.id.edit")
+     * @param null $id
+     * @param Request $request
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse|\Symfony\Component\HttpFoundation\Response|\Symfony\Component\HttpKernel\Exception\NotFoundHttpException
      */
     public function editAction($id = NULL, Request $request)
     {
@@ -145,6 +150,9 @@ class TurniejController extends Controller
 
     /**
      * @Route("/turniej/{id}/invite", name="tournament.id.invite")
+     * @param null $id
+     * @param Request $request
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse|\Symfony\Component\HttpFoundation\Response
      */
     public function inviteAction($id = NULL, Request $request)
     {
@@ -294,6 +302,9 @@ class TurniejController extends Controller
 
     /**
      * @Route("/turniej/{id}/invite/accept/{team}", name="tournament.id.invite.accept")
+     * @param null $id
+     * @param null $team
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse
      */
     public function inviteAcceptAction($id = NULL, $team = NULL)
     {
@@ -355,6 +366,8 @@ class TurniejController extends Controller
 
     /**
      * @Route("/dolacz/{id}/indywidualnie", name="tournament.join")
+     * @param $id
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse
      */
     public function joinAction($id)
     {
@@ -455,6 +468,9 @@ class TurniejController extends Controller
 
     /**
      * @Route("/dolacz/{id}/druzynowo", name="tournament.joins")
+     * @param Request $request
+     * @param $id
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse|\Symfony\Component\HttpFoundation\Response
      */
     public function joinsAction(Request $request, $id)
     {
@@ -462,7 +478,6 @@ class TurniejController extends Controller
         $seo->setTitle('Dołącz do turnieju :: JestemGraczem.pl');
 
         $em = $this->getDoctrine()->getManager();
-//        $teams = $em->getRepository('TurniejBundle:TeamM8')->findBy(['playerId' => $this->getUser()->getId()]);
         $query = $this->getDoctrine()->getRepository('TurniejBundle:TeamM8')->createQueryBuilder('p')
             ->where('p.playerId = :playerId')
             ->setParameter('playerId', $this->getUser()->getId())
@@ -473,7 +488,6 @@ class TurniejController extends Controller
 
         $teams = $query->getResult();
 
-//        var_dump($teams);die();
         foreach ($teams as $team) {
             $teamz[$team['name']] = $team['id'];
         }

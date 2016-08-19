@@ -19,6 +19,8 @@ class TeamController extends Controller
 
     /**
      * @Route("/add", name="team.add")
+     * @param Request $request
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse|\Symfony\Component\HttpFoundation\Response
      */
     public function addAction(Request $request)
     {
@@ -88,6 +90,8 @@ class TeamController extends Controller
 
     /**
      * @Route("/{tag}", name="team")
+     * @param null $tag
+     * @return \Symfony\Component\HttpFoundation\Response
      */
     public function indexAction($tag = NULL)
     {
@@ -140,6 +144,9 @@ class TeamController extends Controller
 
     /**
      * @Route("/{tag}/edit", name="team.edit")
+     * @param null $tag
+     * @param Request $request
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse|\Symfony\Component\HttpFoundation\Response
      */
     public function editAction($tag = NULL, Request $request)
     {
@@ -208,6 +215,8 @@ class TeamController extends Controller
 
     /**
      * @Route("/{tag}/remove", name="team.remove")
+     * @param null $tag
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse
      */
     public function removeAction($tag = NULL)
     {

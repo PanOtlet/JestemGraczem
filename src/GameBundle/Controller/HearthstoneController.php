@@ -12,6 +12,7 @@ class HearthstoneController extends Controller
 
     /**
      * @Route("/", name="centrum.hs")
+     * @return \Symfony\Component\HttpFoundation\Response
      */
     public function indexAction()
     {

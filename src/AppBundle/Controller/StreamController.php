@@ -38,6 +38,8 @@ class StreamController extends Controller
 
     /**
      * @Route("/player/{twitch}", name="stream.id")
+     * @param null $twitch
+     * @return \Symfony\Component\HttpFoundation\Response
      */
     public function streamAction($twitch = NULL)
     {

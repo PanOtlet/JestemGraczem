@@ -12,6 +12,7 @@ class PokemonController extends Controller
 
     /**
      * @Route("/", name="centrum.pokemon")
+     * @return \Symfony\Component\HttpFoundation\Response
      */
     public function indexAction()
     {

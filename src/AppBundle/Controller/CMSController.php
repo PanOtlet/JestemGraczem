@@ -13,6 +13,8 @@ class CMSController extends Controller
 
     /**
      * @Route("/{title}", name="cms")
+     * @param null $title
+     * @return \Symfony\Component\HttpFoundation\Response
      */
     public function indexAction($title = NULL)
     {

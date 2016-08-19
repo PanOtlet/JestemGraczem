@@ -13,6 +13,7 @@ class DefaultController extends Controller
 
     /**
      * @Route("/", name="homepage")
+     * @return \Symfony\Component\HttpFoundation\Response
      */
     public function indexAction()
     {
@@ -42,6 +43,7 @@ class DefaultController extends Controller
 
     /**
      * @Route("/redirect", name="redirect")
+     * @return \Symfony\Component\HttpFoundation\Response
      */
     public function redirectAction()
     {
@@ -61,6 +63,8 @@ class DefaultController extends Controller
 
     /**
      * @Route("/u/{user}", name="user")
+     * @param $user
+     * @return \Symfony\Component\HttpFoundation\Response
      */
     public function userSiteAction($user)
     {

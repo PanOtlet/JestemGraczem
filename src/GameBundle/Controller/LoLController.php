@@ -12,6 +12,7 @@ class LoLController extends Controller
 
     /**
      * @Route("/", name="centrum.lol")
+     * @return \Symfony\Component\HttpFoundation\Response
      */
     public function indexAction()
     {

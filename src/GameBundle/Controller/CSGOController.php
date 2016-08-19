@@ -12,6 +12,7 @@ class CSGOController extends Controller
 
     /**
      * @Route("/", name="centrum.csgo")
+     * @return \Symfony\Component\HttpFoundation\Response
      */
     public function indexAction()
     {

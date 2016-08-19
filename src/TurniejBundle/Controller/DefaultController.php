@@ -23,6 +23,7 @@ class DefaultController extends Controller
 
     /**
      * @Route("/", name="tournament")
+     * @return \Symfony\Component\HttpFoundation\Response
      */
     public function indexAction()
     {
@@ -55,6 +56,9 @@ class DefaultController extends Controller
 
     /**
      * @Route("/otwarte/{page}", name="tournament.open")
+     * @param Request $request
+     * @param int $page
+     * @return \Symfony\Component\HttpFoundation\Response
      */
     public function openAction(Request $request, $page = 0)
     {
@@ -92,8 +96,11 @@ class DefaultController extends Controller
 
     /**
      * @Route("/zapowiedziane/{page}", name="tournament.incoming")
+     * @param Request $request
+     * @param int $page
+     * @return \Symfony\Component\HttpFoundation\Response
      */
-    public function incommingAction(Request $request, $page = 0)
+    public function incomingAction(Request $request, $page = 0)
     {
         $seo = $this->container->get('sonata.seo.page');
         $seo->setTitle('Zapowiedziane turnieje :: JestemGraczem.pl')
@@ -128,6 +135,9 @@ class DefaultController extends Controller
 
     /**
      * @Route("/zamkniete/{page}", name="tournament.close")
+     * @param Request $request
+     * @param int $page
+     * @return \Symfony\Component\HttpFoundation\Response
      */
     public function closeAction(Request $request, $page = 0)
     {
@@ -165,6 +175,9 @@ class DefaultController extends Controller
 
     /**
      * @Route("/zakonczone/{page}", name="tournament.end")
+     * @param Request $request
+     * @param int $page
+     * @return \Symfony\Component\HttpFoundation\Response
      */
     public function endAction(Request $request, $page = 0)
     {
@@ -198,6 +211,8 @@ class DefaultController extends Controller
 
     /**
      * @Route("/utworz", name="tournament.create")
+     * @param Request $request
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse|\Symfony\Component\HttpFoundation\Response
      */
     public function createAction(Request $request)
     {

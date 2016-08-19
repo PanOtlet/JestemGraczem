@@ -19,6 +19,8 @@ class VideoController extends Controller
 
     /**
      * @Route("/video/add", name="video.add")
+     * @param Request $request
+     * @return RedirectResponse|\Symfony\Component\HttpFoundation\Response
      */
     public function addAction(Request $request)
     {
@@ -86,6 +88,8 @@ class VideoController extends Controller
 
     /**
      * @Route("/video/poczekalnia/{page}", name="video.wait")
+     * @param int $page
+     * @return \Symfony\Component\HttpFoundation\Response
      */
     public function waitAction($page = 0)
     {
@@ -122,6 +126,8 @@ class VideoController extends Controller
 
     /**
      * @Route("/video/{page}", name="video")
+     * @param int $page
+     * @return \Symfony\Component\HttpFoundation\Response
      */
     public function indexAction($page = 0)
     {
@@ -161,6 +167,8 @@ class VideoController extends Controller
 
     /**
      * @Route("/tv/{id}", name="video.id")
+     * @param $id
+     * @return \Symfony\Component\HttpFoundation\Response
      */
     public function tvAction($id)
     {

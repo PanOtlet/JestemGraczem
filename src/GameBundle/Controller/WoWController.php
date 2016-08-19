@@ -12,6 +12,7 @@ class WoWController extends Controller
 
     /**
      * @Route("/", name="centrum.wow")
+     * @return \Symfony\Component\HttpFoundation\Response
      */
     public function indexAction()
     {

@@ -12,6 +12,7 @@ class OverwatchController extends Controller
 
     /**
      * @Route("/", name="centrum.overwatch")
+     * @return \Symfony\Component\HttpFoundation\Response
      */
     public function indexAction()
     {

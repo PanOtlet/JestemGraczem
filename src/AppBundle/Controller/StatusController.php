@@ -14,6 +14,7 @@ class StatusController extends Controller
 
     /**
      * @Route("/", name="status")
+     * @return \Symfony\Component\HttpFoundation\Response
      */
     public function indexAction()
     {
@@ -30,6 +31,7 @@ class StatusController extends Controller
 
     /**
      * @Route("/wow", name="status.wow")
+     * @return \Symfony\Component\HttpFoundation\Response
      */
     public function wowStatusAction()
     {
@@ -52,6 +54,7 @@ class StatusController extends Controller
 
     /**
      * @Route("/lol", name="status.lol")
+     * @return \Symfony\Component\HttpFoundation\Response
      */
     public function lolStatusAction()
     {
@@ -74,6 +77,7 @@ class StatusController extends Controller
 
     /**
      * @Route("/steam", name="status.steam")
+     * @return \Symfony\Component\HttpFoundation\Response
      */
     public function steamStatusAction()
     {
