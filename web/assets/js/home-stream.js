@@ -19,11 +19,14 @@ function getStream(url, exitUrl) {
 });
 }
 
+
 function getTwitch(stream) {
     $.ajax({
         url: 'https://api.twitch.tv/kraken/streams/?channel=' + stream,
         dataType: 'jsonp',
         success: function (channel) {
+            // console.log(channel);
+            // console.log(channel["streams"].length);
             if (count==0){
                 $('#loading').remove();
                 topStream(channel["streams"][count], 1);
@@ -31,15 +34,18 @@ function getTwitch(stream) {
                     $('#image' + channel["streams"][count]["channel"]["name"]).addClass("stream-active");
                 }, 3000);
             }
-            for (count; count < limit; count++) {
+
+            for (count; count < channel["streams"].length && count<limit; count++) {
                 renderBottomStreamList(channel["streams"][count]);
+            }
+
+            if(count< limit){
+                //tu ma być callback do api którego jeszcze nie ma
+                getTwitch("bonkol,sunrisgaming,dragostas,zavadahs,mamut_sw")
             }
             setTimeout(function () {
                 count=4;
-            }, 15000);
-            if(count< limit){
-
-            }
+            }, 5000);
         }, error: function () {
             console.log("Coś poszło nie tak podczas łączenia z api twitch");
         }
