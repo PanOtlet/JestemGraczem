@@ -165,10 +165,10 @@ class TurniejController extends Controller
 
         $form = $this->createFormBuilder()
             ->add('name', NULL, [
-                'label' => 'tournament.invite.name'
+                'label' => 'tournament.invite-name'
             ])
             ->add('description', TextareaType::class, [
-                'label' => 'tournament.invite.desc'
+                'label' => 'tournament.invite-desc'
             ])
             ->add('playerType', ChoiceType::class, [
                 'label' => 'tournament.playerType',
