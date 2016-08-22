@@ -1,38 +1,51 @@
-var u_twitch = "";
-var limit = 4;
-var g_url="",g_exitUrl="";
+var u_twitch = "", g_url = "", g_exitUrl = "";
+var limit = 4, count = 0;
 
 function getStream(url, exitUrl) {
     $.ajax({
         url: url,
         dataType: 'json',
         success: function (stream) {
-            g_url=url;
-            g_exitUrl=exitUrl;
-        for (var i = 0; i < stream.length; i++) {
-            u_twitch += stream[i]["twitch"] + ",";
+            g_url = url;
+            g_exitUrl = exitUrl;
+            for (var i = 0; i < stream.length; i++) {
+                u_twitch += stream[i]["twitch"] + ",";
+            }
+            getTwitch(u_twitch);
+        },
+        error: function () {
+            console.log("Coś poszło nie tak podczas łączenia z API JestemGraczem.pl");
         }
-        getTwitch(u_twitch);
-    },
-    error: function () {
-        console.log("Coś poszło nie tak podczas łączenia z API JestemGraczem.pl");
-    }
-});
+    });
 }
+
 
 function getTwitch(stream) {
     $.ajax({
         url: 'https://api.twitch.tv/kraken/streams/?channel=' + stream,
         dataType: 'jsonp',
         success: function (channel) {
-            $('#loading').remove();
-            topStream(channel["streams"][0], 1);
-            setTimeout(function () {
-                $('#image' + channel["streams"][0]["channel"]["name"]).addClass("stream-active");
-            }, 3000);
-            for (var i = 0; i < limit; i++) {
-                renderBottomStreamList(channel["streams"][i]);
+            // console.log(channel);
+            // console.log(channel["streams"].length);
+            if (count == 0) {
+                $('#loading').remove();
+                topStream(channel["streams"][count], 1);
+                setTimeout(function () {
+                    $('#image' + channel["streams"][count]["channel"]["name"]).addClass("stream-active");
+                }, 3000);
             }
+
+            for (count; count < channel["streams"].length && count < limit; count++) {
+                renderBottomStreamList(channel["streams"][count]);
+            }
+
+            // if (count < limit) {
+            //     //tu ma być callback do api którego jeszcze nie ma
+            //     getTwitch("bonkol,sunrisgaming,dragostas,zavadahs,mamut_sw")
+            // }
+            setTimeout(function () {
+                count = 4;
+            }, 5000);
         }, error: function () {
             console.log("Coś poszło nie tak podczas łączenia z api twitch");
         }
@@ -52,20 +65,20 @@ function renderBottomStreamList(channel) {
 function topStream(channel, type) {
     if (channel != null && type === 1) {
         $.ajax({
-            url: g_url+"/"+ channel["channel"]["name"],
+            url: g_url + "/" + channel["channel"]["name"],
             dataType: 'json',
             success: function (description) {
-            $('#description').hide().html(description[0]['description']).fadeIn(1000);
-        },
-        error: function () {
-            console.log("Coś poszło nie tak podczas łączenia z api jestemgraczem");
-        }
-    });
+                $('#description').hide().html(description[0]['description']).fadeIn(1000);
+            },
+            error: function () {
+                console.log("Coś poszło nie tak podczas łączenia z api jestemgraczem");
+            }
+        });
         $('#topstream').hide().attr('src', "http://player.twitch.tv/?html5=true&channel=" + channel["channel"]["name"]).fadeIn(1000);
         $('#viewers').hide().html(channel["viewers"]).fadeIn(1000);
         $('#link').hide().html("www.twitch.tv/" + channel["channel"]["name"]).fadeIn(1000);
         $('#display_name').hide().html(channel["channel"]["display_name"]).fadeIn(1000);
-        $('#profile').attr('href', g_exitUrl+"/" + channel["channel"]["name"]);
+        $('#profile').attr('href', g_exitUrl + "/" + channel["channel"]["name"]);
         $('#avatar').hide().attr('src', channel["channel"]["logo"]).fadeIn(1000);
         $('#game').hide().attr('src', "https://static-cdn.jtvnw.net/ttv-boxart/" + channel["game"] + "-50x50.jpg").fadeIn(1000);
 

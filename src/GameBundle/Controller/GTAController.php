@@ -2,6 +2,7 @@
 
 namespace GameBundle\Controller;
 
+use GameBundle\GameBundle;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
@@ -11,6 +12,7 @@ class GTAController extends Controller
 
     /**
      * @Route("/", name="centrum.gta")
+     * @return \Symfony\Component\HttpFoundation\Response
      */
     public function indexAction()
     {
@@ -27,6 +29,7 @@ class GTAController extends Controller
         ];
 
         return $this->render('gameCenter/hs.html.twig', [
+            'color' => GameBundle::getColor(),
             'feeds' => $feeds,
             'json' => json_encode($feeds,true)
         ]);

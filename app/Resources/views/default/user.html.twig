@@ -19,7 +19,7 @@
         {% block adbanner %}{{ parent() }}{% endblock %}
         <div class="row">
             <div class="col-md-4">
-                <img src="https://www.gravatar.com/avatar/{{ avatar }}?s=2048" class="img-responsive">
+                <img src="https://www.gravatar.com/avatar/{{ user.email|md5 }}?s=2048" class="img-responsive">
                 <div class="btn-white p-y-06 text-ta text-xs-center m-b-0">
                     {{ user.username }}
                 </div>

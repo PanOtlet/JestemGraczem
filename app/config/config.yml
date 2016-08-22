@@ -111,6 +111,8 @@ sonata_seo:
             http-equiv:
                 'Content-Type':         text/html; charset=utf-8
                 #'X-Ua-Compatible':      IE=EmulateIE7
+                'cache-control': 'public'
+                'cache-control': 'max-age=86400'
 
             charset:
                 UTF-8:    ''
@@ -143,6 +145,7 @@ easy_admin:
                     - { property: 'source', label: 'admin.source'}
                     - { property: 'url', type: 'image', base_path: 'http://jestemgraczem.pl/assets/mem/', label: 'admin.img' }
         YouTube:
+            label: admin.youtube
             class: AppBundle\Entity\Video
             list:
                 fields:
@@ -200,6 +203,12 @@ easy_admin:
                     - { property: 'name', label: 'turniej.name'}
                     - { property: 'tag', label: 'turniej.tag'}
                     - { property: 'logo', type: 'image', base_path: 'http://jestemgraczem.pl/assets/team/logo/', label: 'admin.img' }
+        tournaments:
+            label: admin.turnieje
+            class: TurniejBundle\Entity\Turnieje
+        entry:
+            label: admin.entry
+            class: TurniejBundle\Entity\EntryTournament
         RSS:
             label: admin.rss
             class: AppBundle\Entity\News

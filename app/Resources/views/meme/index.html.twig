@@ -3,12 +3,13 @@
 {% block body %}
     <div class="container-fluid top p-t-3 p-b-2">
         <div class="container">
-        <div class="col-sm-6 btn-clear-lg p-l-1 ">
-            <span style="color: #8bc34a;">{{ 'button.newest.new'|trans }}</span>{{ 'button.newest.meme'|trans }}
-        </div>
-        <div class="col-sm-6">
-            <a href="{{ url('meme.add') }}" type="button" class="btn btn-green pull-sm-right"><span class="p-x-3">{{ 'button.add'|trans }}</span></a>
-        </div>
+            <div class="col-sm-6 btn-clear-lg p-l-1 ">
+                <span style="color: #8bc34a;">{{ 'button.newest.new'|trans }}</span>{{ 'button.newest.meme'|trans }}
+            </div>
+            <div class="col-sm-6">
+                <a href="{{ url('meme.add') }}" type="button" class="btn btn-green pull-sm-right"><span
+                            class="p-x-3">{{ 'button.add'|trans }}</span></a>
+            </div>
         </div>
     </div>
     <div class="container p-t-5 p-b-2">
@@ -23,13 +24,18 @@
                                     <a class="text-center" href="{{ url('meme.id',{'id': mem.id}) }}">
                                         <h3 class="m-b-0">
                                             {{ mem.title|slice(0,50) }}
+                                            <a href="{{ url('user',{'user': mem.username}) }}">
+                                                <small>{{ mem.username }}</small>
+                                            </a>
                                         </h3>
                                     </a>
                                 </div>
                                 <div class="m-img gif">
-                                    <img src="{{ asset('assets/mem/') ~ mem.url }}" data-entry-url="{{ asset('assets/mem/') ~ mem.url | slice(-4)}}"
-                                         data-state= "static" class="img-responsive pull-xs-left video p-b-0"
+                                    <img src="{{ asset('assets/mem/') ~ mem.url }}"
+                                         data-entry-url="{{ asset('assets/mem/') ~ mem.url | slice(-4) }}"
+                                         data-state="static" class="img-responsive pull-xs-left video p-b-0"
                                          alt="{{ mem.title }}"/>
+
                                 </div>
                                 <div class="m-bottom">
                                     <div class="fb-like" data-href="{{ url('meme.id',{'id': mem.id}) }}"
@@ -38,19 +44,23 @@
                                     </div>
                                 </div>
                             </div>
-                        {% elseif mem.url | slice(-4) == '.mp4' %}
+                        {% elseif mem.url | slice(-4) == '.mp4' or mem.url | slice(-5) == '.webm' %}
                             <div class="meme">
                                 <div class="m-title">
                                     <a class="text-center" href="{{ url('meme.id',{'id': mem.id}) }}">
                                         <h3 class="m-b-0">
                                             {{ mem.title|slice(0,50) }}
+                                            <a href="{{ url('user',{'user': mem.username}) }}">
+                                                <small>{{ mem.username }}</small>
+                                            </a>
                                         </h3>
                                     </a>
                                 </div>
                                 <div class="m-img gif">
                                     <div class="embed-responsive embed-responsive-16by9 shadow">
                                         <video controls>
-                                            <source src="{{ asset('assets/mem/') ~ mem.url }}" type="video/mp4" class="embed-responsive-item">
+                                            <source src="{{ asset('assets/mem/') ~ mem.url }}" type="video/mp4"
+                                                    class="embed-responsive-item">
                                             Masz kiepską przeglądarkę! Użyj GOOGLE CHROME!
                                         </video>
                                     </div>
@@ -63,32 +73,38 @@
                                 </div>
                             </div>
                         {% else %}
-                        <div class="meme">
-                            <div class="m-title">
-                                <a class="text-center" href="{{ url('meme.id',{'id': mem.id}) }}">
-                                    <h3 class="m-b-0">
-                                        {{ mem.title|slice(0,50) }}
-                                    </h3>
-                                </a>
-                            </div>
-                            <div class="m-img">
-                                <a href="{{ url('meme.id',{'id': mem.id}) }}">
-                                    <img src="{{ asset('assets/mem/') ~ mem.url }}" alt="{{ mem.title|slice(0,50) }}" class="img-responsive pull-xs-left video p-b-0">
-                                </a>
-                            </div>
-                            <div class="m-bottom">
-                                <div class="fb-like" data-href="{{ url('meme.id',{'id': mem.id}) }}"
-                                     data-layout="standard" data-action="like" data-show-faces="false"
-                                     data-share="true">
+                            <div class="meme">
+                                <div class="m-title">
+                                    <a class="text-center" href="{{ url('meme.id',{'id': mem.id}) }}">
+                                        <h3 class="m-b-0">
+                                            {{ mem.title|slice(0,50) }}
+                                            <a href="{{ url('user',{'user': mem.username}) }}">
+                                                <small>{{ mem.username }}</small>
+                                            </a>
+                                        </h3>
+                                    </a>
+                                </div>
+                                <div class="m-img">
+                                    <a href="{{ url('meme.id',{'id': mem.id}) }}">
+                                        <img src="{{ asset('assets/mem/') ~ mem.url }}"
+                                             alt="{{ mem.title|slice(0,50) }}"
+                                             class="img-responsive pull-xs-left video p-b-0">
+                                    </a>
+                                </div>
+                                <div class="m-bottom">
+                                    <div class="fb-like" data-href="{{ url('meme.id',{'id': mem.id}) }}"
+                                         data-layout="standard" data-action="like" data-show-faces="false"
+                                         data-share="true">
+                                    </div>
                                 </div>
                             </div>
-                        </div>
                         {% endif %}
                     {% endfor %}
                     <div class="row">
                         <div class="col-md-6">
                             {% if page > 0 %}
-                                <a href="{{ url('meme',{'page': page-1}) }}" class="btn btn-raised btn-danger btn-block">{{ 'button.prev'|trans }}</a>
+                                <a href="{{ url('meme',{'page': page-1}) }}"
+                                   class="btn btn-raised btn-danger btn-block">{{ 'button.prev'|trans }}</a>
                             {% endif %}
                         </div>
                         <div class="col-md-6">
@@ -104,12 +120,14 @@
                 <span class="label label-pill label-danger center-block">Polecane!</span>
                 {% for mem in promoted %}
                     <a href="{{ url('meme.id',{'id': mem.id}) }}">
-                        <img src="{{ asset('assets/mem/') ~ mem.url }}" alt="{{ mem.title }}" class="img-rounded img-responsive" style="margin-top: 10px">
+                        <img src="{{ asset('assets/mem/') ~ mem.url }}" alt="{{ mem.title }}"
+                             class="img-rounded img-responsive" style="margin-top: 10px">
                     </a>
                 {% endfor %}
             </div>
             <div class="col-md-3">
-                <a href="{{ url('meme.wait') }}" type="button" class="btn btn-green btn-block"><span class="p-x-3">{{ 'button.waitingroom'|trans }}</span></a>
+                <a href="{{ url('meme.all') }}" type="button" class="btn btn-green btn-block"><span
+                            class="p-x-3">{{ 'button.waitingroom'|trans }}</span></a>
                 {% block sidebar %}
                     {{ parent() }}
                 {% endblock %}

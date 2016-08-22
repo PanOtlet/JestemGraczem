@@ -16,6 +16,8 @@ class MemeController extends Controller
 
     /**
      * @Route("/img/{id}", name="meme.id")
+     * @param $id
+     * @return \Symfony\Component\HttpFoundation\Response
      */
     public function memAction($id)
     {
@@ -45,6 +47,8 @@ class MemeController extends Controller
 
     /**
      * @Route("/add", name="meme.add")
+     * @param Request $request
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse|\Symfony\Component\HttpFoundation\Response
      */
     public function addAction(Request $request)
     {
@@ -110,18 +114,23 @@ class MemeController extends Controller
     }
 
     /**
-     * @Route("/poczekalnia/{page}", name="meme.wait")
+     * @Route("/wszystkie/{page}", name="meme.all")
+     * @param int $page
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse|\Symfony\Component\HttpFoundation\Response
      */
-    public function waitAction($page = 0)
+    public function allAction($page = 0)
     {
         if ($page < 0 || !is_numeric($page)) {
-            return $this->redirectToRoute('meme.wait');
+            return $this->redirectToRoute('meme.all');
         }
 
         $em = $this->getDoctrine()->getRepository('AppBundle:Meme');
         $query = $em->createQueryBuilder('p')
             ->setFirstResult($page * 10)
             ->orderBy('p.id', 'DESC')
+            ->leftJoin("AppBundle:User", "u", "WITH", "u.id=p.user")
+            ->select('p.id, p.title, p.source, p.url, p.date, p.category')
+            ->addSelect('u.username')
             ->getQuery()
             ->setMaxResults(10);
 
@@ -140,7 +149,7 @@ class MemeController extends Controller
             ->addMeta('name', 'description', 'To miejsce na wszystkie memy, które jeszcze nie przeszły walidacji lub pozostaną w czyściu! Strona ' . $page)
             ->addMeta('property', 'og:title', 'Poczekalnia dla memów. Strona ' . $page)
             ->addMeta('property', 'og:description', 'To miejsce na wszystkie memy, które jeszcze nie przeszły walidacji lub pozostaną w czyściu! Strona ' . $page)
-            ->addMeta('property', 'og:url', $this->get('router')->generate('meme.wait', ['page' => $page], UrlGeneratorInterface::ABSOLUTE_URL));
+            ->addMeta('property', 'og:url', $this->get('router')->generate('meme.all', ['page' => $page], UrlGeneratorInterface::ABSOLUTE_URL));
 
         return $this->render('meme/wait.html.twig', [
             'color' => $this->color,
@@ -151,6 +160,8 @@ class MemeController extends Controller
 
     /**
      * @Route("/{page}", name="meme")
+     * @param int $page
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse|\Symfony\Component\HttpFoundation\Response
      */
     public function indexAction($page = 0)
     {
@@ -161,18 +172,17 @@ class MemeController extends Controller
         $em = $this->getDoctrine()->getRepository('AppBundle:Meme');
         $query = $em->createQueryBuilder('p')
             ->where('p.accept = true')
+            ->setMaxResults(10)
             ->setFirstResult($page * 10)
             ->orderBy('p.id', 'DESC')
-            ->getQuery()
-            ->setMaxResults(10);
+            ->leftJoin("AppBundle:User", "u", "WITH", "u.id=p.user")
+            ->select('p.id, p.title, p.source, p.url, p.date, p.category')
+            ->addSelect('u.username')
+            ->getQuery();
 
         $meme = $query->getResult();
 
         if ($meme == NULL) {
-            $this->addFlash(
-                'error',
-                'Kurde, nie znaleźliśmy tego co poszukujesz :('
-            );
             throw $this->createNotFoundException('Kurde, nie znaleźliśmy tego co poszukujesz :(');
         }
 

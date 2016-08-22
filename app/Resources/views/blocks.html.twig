@@ -1,11 +1,11 @@
 {% block adbanner %}
     {% if app.user.premium is defined %}
         {% if not app.user.premium %}
-            <script type="text/javascript" id="AdTaily_Widget" src="http://static.adtaily.pl/widget.js#W4OY4l6LDlauyr9"></script>
+            <script async type="text/javascript" id="AdTaily_Widget" src="http://static.adtaily.pl/widget.js#W4OY4l6LDlauyr9"></script>
             <noscript><a href="http://www.adtaily.pl">Reklama w internecie</a></noscript>
         {% endif %}
     {% else %}
-        <script type="text/javascript" id="AdTaily_Widget" src="http://static.adtaily.pl/widget.js#W4OY4l6LDlauyr9"></script>
+        <script async type="text/javascript" id="AdTaily_Widget" src="http://static.adtaily.pl/widget.js#W4OY4l6LDlauyr9"></script>
         <noscript><a href="http://www.adtaily.pl">Reklama w internecie</a></noscript>
     {% endif %}
 {% endblock %}

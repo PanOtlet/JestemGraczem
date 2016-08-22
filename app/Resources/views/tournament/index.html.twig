@@ -6,15 +6,42 @@
             <div class="col-sm-6 btn-clear-lg p-l-1 ">
                 <span style="color: #8bc34a;">Turnieje</span>
             </div>
-            {#<div class="col-sm-6">#}
-                {#<a href="{{ url('team.add') }}" type="button" class="btn btn-green pull-sm-right"><span class="p-x-3">Dodaj nową</span></a>#}
-            {#</div>#}
         </div>
     </div>
     <div class="container">
         <div class="jumbotron t-title">
             <h1>Wkrótce!</h1>
             <p>Obecnie trwają prace, by przygotować system turniejowy! Liczymy, że cierpliwość się Wam opłaci :)</p>
+            {% for turniej in promo %}
+                {{ turniej.name }} |
+            {% endfor %}
+            {% for turniej in my %}
+                {{ turniej.id }} - {{ turniej.name }} - {{ turniej.status }}<br>
+            {% endfor %}
+        </div>
+        <div class="demo" id="minimal">
+
         </div>
     </div>
+{% endblock %}
+{% block javascripts %}
+    {{ parent() }}
+    {#<script>#}
+        {#var minimalData = {#}
+            {#teams : [#}
+                {#["Team 1", "Team 2"], /* first matchup */#}
+                {#["Team 3", "Team 4"]  /* second matchup */#}
+            {#],#}
+            {#results : [#}
+                {#[[1,2], [3,4]],       /* first round */#}
+                {#[[4,6], [2,1]]        /* second round */#}
+            {#]#}
+        {#}#}
+
+        {#$(function() {#}
+            {#$('#minimal').bracket({#}
+                {#init: minimalData /* data to initialize the bracket with */ })#}
+        {#})#}
+    {#</script>#}
+
 {% endblock %}

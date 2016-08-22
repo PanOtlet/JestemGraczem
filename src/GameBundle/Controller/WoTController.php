@@ -2,6 +2,7 @@
 
 namespace GameBundle\Controller;
 
+use GameBundle\GameBundle;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
@@ -11,6 +12,7 @@ class WoTController extends Controller
 
     /**
      * @Route("/", name="centrum.wot")
+     * @return \Symfony\Component\HttpFoundation\Response
      */
     public function indexAction()
     {
@@ -27,6 +29,7 @@ class WoTController extends Controller
         ];
 
         return $this->render('gameCenter/wot.html.twig', [
+            'color' => GameBundle::getColor(),
             'feeds' => $feeds,
             'json' => json_encode($feeds,true)
         ]);

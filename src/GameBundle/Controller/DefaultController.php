@@ -2,18 +2,22 @@
 
 namespace GameBundle\Controller;
 
+use GameBundle\GameBundle;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 
 class DefaultController extends Controller
 {
+
     /**
      * @Route("/", name="centrum")
+     * @return \Symfony\Component\HttpFoundation\Response
      */
     public function indexAction()
     {
         return $this->render('gameCenter/index.html.twig', [
+            'color' => GameBundle::getColor(),
             'games' => [
                 [
                     'title' => 'Promocje na gry',
@@ -76,6 +80,7 @@ class DefaultController extends Controller
 
     /**
      * @Route("/cebula", name="centrum.cebula")
+     * @return \Symfony\Component\HttpFoundation\Response
      */
     public function cebulaAction()
     {
@@ -87,6 +92,10 @@ class DefaultController extends Controller
 
         $feeds = [
             [
+                'url' => 'http://store.steampowered.com/feeds/newreleases.xml',
+                'name' => 'Steam'
+            ],
+            [
                 'url' => 'http://lowcygier.pl/feed/',
                 'name' => 'LowcyGier.pl'
             ],
@@ -97,6 +106,7 @@ class DefaultController extends Controller
         ];
 
         return $this->render('gameCenter/cebula.html.twig', [
+            'color' => GameBundle::getColor(),
             'feeds' => $feeds,
             'json' => json_encode($feeds,true)
         ]);

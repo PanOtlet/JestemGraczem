@@ -9,3 +9,8 @@ services:
 #        arguments: ["@another_service_name", "plain_value", "%parameter_name%"]
     app.sitemap_service:
         class: AppBundle\Model\SitemapIterator
+    app.twig_extension:
+        class: AppBundle\Twig\AppExtension
+        public: false
+        tags:
+            - { name: twig.extension }

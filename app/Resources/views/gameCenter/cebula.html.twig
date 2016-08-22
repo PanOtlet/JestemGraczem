@@ -11,16 +11,16 @@
     <div class="container p-t-5 p-b-2">
         {% block adbanner %}{{ parent() }}{% endblock %}
         <div class="row">
-            <div class="col-md-8">
+            <div class="col-md-9">
                 <div class="row">
                     {% for feed in feeds %}
-                        <div class="col-md-6" id="feed{{ loop.index0 }}">
+                        <div class="col-md-4" id="feed{{ loop.index0 }}">
                             {{ feed.name }}
                         </div>
                     {% endfor %}
                 </div>
             </div>
-            <div class="col-md-4">
+            <div class="col-md-3">
                 {% block sidebar %}
                     {{ parent() }}
                 {% endblock %}

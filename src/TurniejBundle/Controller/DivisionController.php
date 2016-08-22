@@ -9,6 +9,7 @@ use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\HttpFoundation\Request;
 use TurniejBundle\Entity\Division;
 use TurniejBundle\Entity\Team;
+use TurniejBundle\Entity\TeamM8;
 
 class DivisionController extends Controller
 {
@@ -17,6 +18,9 @@ class DivisionController extends Controller
 
     /**
      * @Route("/add/{tag}", name="division.add")
+     * @param null $tag
+     * @param Request $request
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse|\Symfony\Component\HttpFoundation\Response
      */
     public function addAction($tag = NULL, Request $request)
     {
@@ -65,7 +69,6 @@ class DivisionController extends Controller
             $division->setName($form->get('name')->getViewData());
             $division->setTag(md5($form->get('name')->getViewData()));
             $division->setPass($form->get('pass')->getViewData());
-            $division->setMembers(json_encode(NULL));
             $division->setDescription($form->get('description')->getViewData());
             $em->persist($division);
             $em->flush();
@@ -87,6 +90,8 @@ class DivisionController extends Controller
 
     /**
      * @Route("/join", name="team.join")
+     * @param Request $request
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse|\Symfony\Component\HttpFoundation\Response
      */
     public function joinAction(Request $request)
     {
@@ -127,34 +132,14 @@ class DivisionController extends Controller
                 return $this->redirectToRoute('team');
             }
 
-            $members = $division->getMembers();
+            $members = new TeamM8();
 
-            if (is_array($members)) {
-                foreach ($members as $member) {
-                    if ($member['user'] == $this->getUser()->getUsername()) {
-                        $this->addFlash(
-                            'danger',
-                            'Już jesteś w drużynie!'
-                        );
-                        return $this->redirectToRoute('division', ['id' => $division->getName()]);
-                    }
-                }
+            $members->setDivisionId($division->getId());
+            $members->setPlayerId($this->getUser()->getId());
+            $members->setRole('NEWBIE');
 
-                $members[] = [
-                    'user' => $this->getUser()->getUsername(),
-                    'role' => 'Nowy'
-                ];
-            } else {
-                $members = [
-                    [
-                        'user' => $this->getUser()->getUsername(),
-                        'role' => 'Nowy'
-                    ],
-                ];
-            }
-
-            $division->setMembers($members);
-
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($members);
             $em->flush();
 
             $this->addFlash(
@@ -172,6 +157,9 @@ class DivisionController extends Controller
 
     /**
      * @Route("/join/{tag}", name="team.join.tag")
+     * @param null $tag
+     * @param Request $request
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse|\Symfony\Component\HttpFoundation\Response
      */
     public function joinTagAction($tag = NULL, Request $request)
     {
@@ -209,35 +197,14 @@ class DivisionController extends Controller
                 return $this->redirectToRoute('team.join');
             }
 
-            $members = $division->getMembers();
+            $members = new TeamM8();
 
-            if (is_array($members)) {
-                foreach ($members as $member) {
-                    if ($member['user'] == $this->getUser()->getUsername()) {
-                        $this->addFlash(
-                            'danger',
-                            'Już jesteś w drużynie!'
-                        );
-                        return $this->redirectToRoute('division', ['id' => $division->getName()]);
-                    }
-                }
+            $members->setDivisionId($division->getId());
+            $members->setPlayerId($this->getUser()->getId());
+            $members->setRole('NEWBIE');
 
-                $members[] = [
-                    'user' => $this->getUser()->getUsername(),
-                    'role' => 'Nowy'
-                ];
-
-            } else {
-                $members = [
-                    [
-                        'user' => $this->getUser()->getUsername(),
-                        'role' => 'Nowy'
-                    ],
-                ];
-            }
-
-            $division->setMembers($members);
-
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($members);
             $em->flush();
 
             $this->addFlash(
@@ -255,10 +222,22 @@ class DivisionController extends Controller
 
     /**
      * @Route("/{id}", name="division")
+     * @param null $id
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse|\Symfony\Component\HttpFoundation\Response
      */
     public function divisionAction($id = NULL)
     {
         $team = $this->getDoctrine()->getRepository('TurniejBundle:Division')->findOneBy(['id' => $id]);
+        $em = $this->getDoctrine()->getRepository('TurniejBundle:TeamM8');
+        $query = $em->createQueryBuilder('p')
+            ->where('p.divisionId = :id')
+            ->setParameter('id', $id)
+            ->orderBy('p.id', 'ASC')
+            ->leftJoin("AppBundle:User", "u", "WITH", "u.id=p.playerId")
+            ->select('p.id, p.divisionId, p.playerId, p.role, u.username, u.email')
+            ->getQuery();
+
+        $m8 = $query->getResult();
 
         if ($id == NULL || $team == NULL) {
             return $this->redirectToRoute('tournament');
@@ -266,7 +245,8 @@ class DivisionController extends Controller
 
         return $this->render('team/division.html.twig', [
             'color' => $this->color,
-            'team' => $team
+            'team' => $team,
+            'm8' => $m8
         ]);
     }
 }

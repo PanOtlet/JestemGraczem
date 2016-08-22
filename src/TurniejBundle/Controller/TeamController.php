@@ -19,6 +19,8 @@ class TeamController extends Controller
 
     /**
      * @Route("/add", name="team.add")
+     * @param Request $request
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse|\Symfony\Component\HttpFoundation\Response
      */
     public function addAction(Request $request)
     {
@@ -88,6 +90,8 @@ class TeamController extends Controller
 
     /**
      * @Route("/{tag}", name="team")
+     * @param null $tag
+     * @return \Symfony\Component\HttpFoundation\Response
      */
     public function indexAction($tag = NULL)
     {
@@ -117,18 +121,32 @@ class TeamController extends Controller
 
         $owner = $this->getDoctrine()->getRepository('AppBundle:User')->findOneBy(['id' => $team->getOwner()]);
         $division = $this->getDoctrine()->getRepository('TurniejBundle:Division')->findBy(['team' => $team->getId()]);
+        $em = $this->getDoctrine()->getRepository('TurniejBundle:TeamM8');
+        $query = $em->createQueryBuilder('p')
+            ->where('p.divisionId = :id')
+            ->setParameter('id', $team->getId())
+            ->orderBy('p.id', 'ASC')
+            ->leftJoin("AppBundle:User", "u", "WITH", "u.id=p.playerId")
+            ->select('p.id, p.divisionId, p.playerId, p.role, u.username, u.email')
+            ->getQuery();
+
+        $m8 = $query->getResult();
 
         return $this->render('team/team.html.twig', [
             'color' => $this->color,
             'team' => $team,
             'divisions' => $division,
             'owner' => $owner,
+            'm8' => $m8,
             'hash' => new AppBundle
         ]);
     }
 
     /**
      * @Route("/{tag}/edit", name="team.edit")
+     * @param null $tag
+     * @param Request $request
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse|\Symfony\Component\HttpFoundation\Response
      */
     public function editAction($tag = NULL, Request $request)
     {
@@ -197,6 +215,8 @@ class TeamController extends Controller
 
     /**
      * @Route("/{tag}/remove", name="team.remove")
+     * @param null $tag
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse
      */
     public function removeAction($tag = NULL)
     {

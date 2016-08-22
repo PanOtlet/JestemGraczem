@@ -2,6 +2,7 @@
 
 namespace GameBundle\Controller;
 
+use GameBundle\GameBundle;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
@@ -11,6 +12,7 @@ class CSGOController extends Controller
 
     /**
      * @Route("/", name="centrum.csgo")
+     * @return \Symfony\Component\HttpFoundation\Response
      */
     public function indexAction()
     {
@@ -36,6 +38,7 @@ class CSGOController extends Controller
         ];
 
         return $this->render('gameCenter/csgo.html.twig', [
+            'color' => GameBundle::getColor(),
             'feeds' => $feeds,
             'json' => json_encode($feeds,true)
         ]);

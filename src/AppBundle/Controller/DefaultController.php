@@ -5,7 +5,6 @@ namespace AppBundle\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
-use AppBundle\Model\SitemapIterator;
 
 class DefaultController extends Controller
 {
@@ -14,6 +13,7 @@ class DefaultController extends Controller
 
     /**
      * @Route("/", name="homepage")
+     * @return \Symfony\Component\HttpFoundation\Response
      */
     public function indexAction()
     {
@@ -43,17 +43,28 @@ class DefaultController extends Controller
 
     /**
      * @Route("/redirect", name="redirect")
+     * @return \Symfony\Component\HttpFoundation\Response
      */
     public function redirectAction()
     {
         if (isset($_GET['url']) && !preg_match('|^http(s)?://[a-z0-9-]+(.[a-z0-9-]+)*(:[0-9]+)?(/.*)?$|i', $_GET['url'])) {
             return $this->redirectToRoute('homepage');
         }
-        return $this->redirect($_GET['url']);
+
+        if (isset($_GET['r']) && $_GET['r'] == TRUE){
+            return $this->redirect($_GET['url']);
+        }
+
+        return $this->render('default/frame.html.twig', [
+            'color' => $this->color,
+            'url' => $_GET['url'],
+        ]);
     }
 
     /**
      * @Route("/u/{user}", name="user")
+     * @param $user
+     * @return \Symfony\Component\HttpFoundation\Response
      */
     public function userSiteAction($user)
     {
@@ -94,12 +105,9 @@ class DefaultController extends Controller
             ->addMeta('property', 'og:type', 'profile')
             ->addMeta('property', 'og:url', $this->get('router')->generate('user', ['user' => $user['username']], UrlGeneratorInterface::ABSOLUTE_URL));
 
-        $avatar = md5($user['email']);
-
         return $this->render('default/user.html.twig', [
             'color' => $this->color,
             'user' => $user,
-            'avatar' => $avatar,
             'meme' => $meme,
             'video' => $video
         ]);

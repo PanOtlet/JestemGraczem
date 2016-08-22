@@ -114,6 +114,18 @@ body {
     text-align: center;
     word-break: break-all;
 }
+
+
+.form-turnament .form-control{
+    background-color: transparent;
+    color: #FFFFFF;
+    border-radius: 0;
+    border: solid 3px;
+}
+.form-turnament .form-control option{
+    color: #55595c;
+}
+
 .v-steam{
 
 }
@@ -263,7 +275,8 @@ footer {
     padding-top: 30px;
     padding-bottom: 60px;
     text-align: center;
-    background-image: url("../img/bg-lol.jpg");
+    background: url("../img/bg-lol.jpg") no-repeat;
+    background-size:cover;
     color: #eaeaea;
 }
 
@@ -308,7 +321,8 @@ footer {
     padding-top: 10px;
     padding-bottom: 20px;
     text-align: center;
-    background-image: url("../img/bg-lol.jpg");
+    background: url("../img/bg-lol.jpg") no-repeat;
+    background-size:cover;
     color: #eaeaea;
 }
 .row-streams {
@@ -333,7 +347,16 @@ footer {
     color: #e91e63;
 }
 
-
+.btn-sort{
+    background-color: #e91e63;
+    border-radius: 0;
+    color: #FFFFFF;
+}
+.btn-sort-label{
+    background-color: #FFFFFF;
+    border: solid 1px #EAEAEA;
+    border-radius: 0;
+}
 
 .btn-white-lg {
     border: solid 1px #EAEAEA;
@@ -377,7 +400,20 @@ footer {
     color: #afaeae;
 }
 
+.contestants img{
+    display: inline-block;
+    max-width: 50px;
+}
+.contestants p{
+    display: inline-block;
+    vertical-align: middle;
+}
 
+.game{
+    font-size: 1.6rem;
+    font-weight: bold;
+    color: #303030!important;
+}
 
 .btn-footer{
     font-weight: bold;
@@ -400,6 +436,16 @@ footer {
     margin-bottom: 5px;
     border-radius: 0px;
 }
+.btn-clear-lp {
+     text-align: left;
+     border-left: solid 4px #e91e63;
+     background-color: transparent;
+     color: #FFFFFF;
+     font-weight: bold;
+     font-size: 1.6rem;
+     margin-bottom: 5px;
+     border-radius: 0px;
+ }
 
 .btn-green {
     background-color: #8bc34a;
