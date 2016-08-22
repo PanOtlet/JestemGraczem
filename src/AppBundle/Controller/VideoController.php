@@ -37,7 +37,7 @@ class VideoController extends Controller
 
             $video = new YouTube($form->get('url')->getViewData());
 
-            if ($video->exist() != "200") {
+            if ($video->HttpStatus() != '200') {
                 $this->addFlash(
                     'error',
                     'Błąd! Film nie istnieje lub nie pochodzi z serwisu YouTube!'

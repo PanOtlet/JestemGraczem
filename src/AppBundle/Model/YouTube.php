@@ -35,7 +35,7 @@ class YouTube
         return get_headers($this->getUrl());
     }
 
-    public function exist()
+    public function HttpStatus()
     {
         $status = $this->getHeaders();
         return substr($status[0], 9, 3);
