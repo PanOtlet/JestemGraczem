@@ -6,13 +6,13 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
-use Symfony\Component\Form\Extension\Core\Type\IntegerType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 use TurniejBundle\Entity\Division;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use TurniejBundle\Entity\EntryTournament;
 use TurniejBundle\Entity\Turnieje;
 
@@ -212,6 +212,7 @@ class DefaultController extends Controller
     /**
      * @Route("/utworz", name="tournament.create")
      * @param Request $request
+     * @Security("has_role('ROLE_USER')")
      * @return \Symfony\Component\HttpFoundation\RedirectResponse|\Symfony\Component\HttpFoundation\Response
      */
     public function createAction(Request $request)

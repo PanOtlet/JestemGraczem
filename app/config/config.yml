@@ -111,6 +111,8 @@ sonata_seo:
             http-equiv:
                 'Content-Type':         text/html; charset=utf-8
                 #'X-Ua-Compatible':      IE=EmulateIE7
+                'cache-control': 'public'
+                'cache-control': 'max-age=86400'
 
             charset:
                 UTF-8:    ''
