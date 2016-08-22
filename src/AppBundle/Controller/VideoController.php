@@ -10,6 +10,7 @@ use Symfony\Component\Form\Extension\Core\Type\UrlType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use AppBundle\Entity\Video;
+use AppBundle\Model\YouTube;
 use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 
 class VideoController extends Controller
@@ -34,14 +35,9 @@ class VideoController extends Controller
 
         if ($form->isSubmitted() && $form->isValid()) {
 
-            $videoId = parse_url($form->get('url')->getViewData(), PHP_URL_QUERY);
-            parse_str($videoId, $videoIdParsed);
+            $video = new YouTube($form->get('url')->getViewData());
 
-            $videoUrl = 'https://www.youtube.com/oembed?url=https://www.youtube.com/watch?v=' . $videoIdParsed['v'];
-
-            $response = substr(get_headers($videoUrl)[0], 9, 3);
-
-            if ($response != "200") {
+            if ($video->exist() != "200") {
                 $this->addFlash(
                     'error',
                     'Błąd! Film nie istnieje lub nie pochodzi z serwisu YouTube!'
@@ -52,7 +48,7 @@ class VideoController extends Controller
             $data = new Video();
             $data->setUser($this->getUser()->getId());
             $data->setTitle($form->get('title')->getViewData());
-            $data->setVideoid($videoIdParsed['v']);
+            $data->setVideoid($video->getId());
             if ($this->getUser()->getPartner() == 1) {
                 $data->setPromoted(true);
                 $data->setAccept(true);
