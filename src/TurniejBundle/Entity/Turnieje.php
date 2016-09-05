@@ -528,5 +528,24 @@ class Turnieje
     {
         return $this->promoted;
     }
+
+    public function createTournament($data)
+    {
+        $this->setName($data['name']);
+        $this->setDescription($data['description']);
+        $this->setOwner($data['owner']);
+        $this->setDyscyplina($data['dyscyplina']);
+        $this->setType($data['type']);
+        $this->setCost($data['cost']);
+        $this->setCountTeam($data['countTeam']);
+        $this->setPrizePool(0);
+        $this->setCostPerTeam(0);
+        $this->setCostOrg(0);
+        $this->setDataStart($data['dataStart']);
+        $this->setDataStop($data['dataStop']);
+        $this->setPlayerType($data['playerType']);
+        $this->setPromoted(0);
+        $this->setEnd(0);
+    }
 }
 
