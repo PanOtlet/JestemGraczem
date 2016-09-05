@@ -104,7 +104,7 @@ class MemeController extends Controller
                 'success',
                 'Dodano mem! Teraz Twój mem pojawił się w poczekalni i oczekuje akceptacji przez administrację, by pojawić się na głównej!'
             );
-            return $this->redirectToRoute('meme.wait');
+            return $this->redirectToRoute('meme.all');
         }
 
         return $this->render('meme/add.html.twig', [
