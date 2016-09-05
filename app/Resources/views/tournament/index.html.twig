@@ -8,40 +8,78 @@
             </div>
         </div>
     </div>
-    <div class="container">
-        <div class="jumbotron t-title">
-            <h1>Wkrótce!</h1>
-            <p>Obecnie trwają prace, by przygotować system turniejowy! Liczymy, że cierpliwość się Wam opłaci :)</p>
-            {% for turniej in promo %}
-                {{ turniej.name }} |
-            {% endfor %}
-            {% for turniej in my %}
-                {{ turniej.id }} - {{ turniej.name }} - {{ turniej.status }}<br>
-            {% endfor %}
-        </div>
-        <div class="demo" id="minimal">
+    <div class="container p-t-1">
 
+        <div class="btn-white-lg dots m-b-1">
+                    <span class="p-x-1 text">Wybierz <span
+                                style="color: #303030;">grę</span></span>
+        </div>
+        <div class="row m-b-2">
+            <div class="col-md-4">
+                <a href="{{ url('tournament.open') }}?sort=1">
+                    <img class="img-fluid" data-toggle="tooltip"  title="{{ 'tournament.csgo'|trans }}" src="{{ asset('assets/img/bg/csgo.jpg') }}">
+                </a>
+            </div>
+            <div class="col-md-4">
+                <a href="{{ url('tournament.open') }}?sort=2">
+                    <img class="img-fluid" data-toggle="tooltip"  title="{{ 'tournament.lol'|trans }}" src="{{ asset('assets/img/bg/lol.jpg') }}">
+                </a>
+            </div>
+            <div class="col-md-4">
+                <a href="{{ url('tournament.open') }}?sort=3">
+                    <img class="img-fluid" data-toggle="tooltip"  title="{{ 'tournament.hots'|trans }}" src="{{ asset('assets/img/bg/hots.jpg') }}">
+                </a>
+            </div>
+        </div>
+        <div class="row m-b-2">
+            <div class="col-md-4">
+                <a href="{{ url('tournament.open') }}?sort=4">
+                    <img class="img-fluid" data-toggle="tooltip"  title="{{ 'tournament.sc2'|trans }}" src="{{ asset('assets/img/bg/sc2.jpg') }}">
+                </a>
+            </div>
+            <div class="col-md-4">
+                <a href="{{ url('tournament.open') }}?sort=5">
+                    <img class="img-fluid" data-toggle="tooltip"  title="{{ 'tournament.hs'|trans }}" src="{{ asset('assets/img/bg/hs.jpg') }}">
+                </a>
+            </div>
+            <div class="col-md-4">
+                <a href="{{ url('tournament.open') }}?sort=6">
+                    <img class="img-fluid" data-toggle="tooltip"  title="{{ 'tournament.dota2'|trans }}" src="{{ asset('assets/img/bg/dota2.jpg') }}">
+                </a>
+            </div>
+        </div>
+        <div class="row m-b-2">
+            <div class="col-md-4">
+                <a href="{{ url('tournament.open') }}?sort=0">
+                    <img class="img-fluid" data-toggle="tooltip"  title="{{ 'tournament.other'|trans }}" src="{{ asset('assets/img/bg/defoult.jpg') }}">
+                </a>
+            </div>
+        </div>
+
+        {#<div class="jumbotron t-title">#}
+            {#<h1>Wkrótce!</h1>#}
+            {#<p>Obecnie trwają prace, by przygotować system turniejowy! Liczymy, że cierpliwość się Wam opłaci :)</p>#}
+            {##}
+            {#{% for turniej in promo %}#}
+                {#{{ turniej.name }} |#}
+            {#{% endfor %}#}
+            {#{% for turniej in my %}#}
+                {#{{ turniej.id }} - {{ turniej.name }} - {{ turniej.status }}<br>#}
+            {#{% endfor %}#}
+        {#</div>#}
+        <div class="bracet" id="view">
+        </div>
+        <div class="bracet" id="save">
         </div>
     </div>
+
 {% endblock %}
 {% block javascripts %}
     {{ parent() }}
-    {#<script>#}
-        {#var minimalData = {#}
-            {#teams : [#}
-                {#["Team 1", "Team 2"], /* first matchup */#}
-                {#["Team 3", "Team 4"]  /* second matchup */#}
-            {#],#}
-            {#results : [#}
-                {#[[1,2], [3,4]],       /* first round */#}
-                {#[[4,6], [2,1]]        /* second round */#}
-            {#]#}
-        {#}#}
-
-        {#$(function() {#}
-            {#$('#minimal').bracket({#}
-                {#init: minimalData /* data to initialize the bracket with */ })#}
-        {#})#}
-    {#</script>#}
-
+    <script src="{{ asset('assets/js/bracket.js') }}"></script>
+    <script>
+        //tu bedzie triger
+        view();
+        edit();
+    </script>
 {% endblock %}
