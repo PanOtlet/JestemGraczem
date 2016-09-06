@@ -67,7 +67,8 @@ class DivisionController extends Controller
 
             $division->setTeam($team->getId());
             $division->setName($form->get('name')->getViewData());
-            $division->setTag(md5($form->get('name')->getViewData()));
+//            $division->setTag(md5($form->get('name')->getViewData()));
+            $division->setTag(uniqid());
             $division->setPass($form->get('pass')->getViewData());
             $division->setDescription($form->get('description')->getViewData());
             $em->persist($division);
