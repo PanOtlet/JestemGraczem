@@ -350,30 +350,6 @@ class Turnieje
     }
 
     /**
-     * Set wpisowe
-     *
-     * @param integer $wpisowe
-     *
-     * @return turnieje
-     */
-    public function setWpisowe($wpisowe)
-    {
-        $this->wpisowe = $wpisowe;
-
-        return $this;
-    }
-
-    /**
-     * Get wpisowe
-     *
-     * @return int
-     */
-    public function getWpisowe()
-    {
-        return $this->wpisowe;
-    }
-
-    /**
      * Set costPerTeam
      *
      * @param integer $costPerTeam
