@@ -15,6 +15,7 @@ use TurniejBundle\Entity\Division;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use TurniejBundle\Entity\EntryTournament;
 use TurniejBundle\Entity\Turnieje;
+use TurniejBundle\Repository\TurniejeRepository;
 
 class DefaultController extends Controller
 {
@@ -260,18 +261,19 @@ class DefaultController extends Controller
                 'required' => true,
                 'choices' => [
                     'tournament.free' => 0,
+                    'tournament.fee' => 1,
                 ],
             ])
             ->add('countTeam', ChoiceType::class, [
                 'label' => 'tournament.countTeam',
                 'required' => true,
                 'choices' => [
-                    '4' => 4,
-                    '8' => 8,
-                    '16' => 16,
-                    '24' => 24,
-                    '32' => 32,
-                    '48' => 48
+                    'tournament.members.4' => 4,
+                    'tournament.members.8' => 8,
+                    'tournament.members.16' => 16,
+                    'tournament.members.24' => 24,
+                    'tournament.members.32' => 32,
+                    'tournament.members.48' => 48
                 ]
             ])
             ->add('playerType', ChoiceType::class, [
@@ -290,21 +292,20 @@ class DefaultController extends Controller
         if ($form->isSubmitted() && $form->isValid()) {
 
             $data = new Turnieje();
-            $data->setName($form->get('name')->getViewData());
-            $data->setDescription($form->get('description')->getViewData());
-            $data->setOwner($this->getUser()->getId());
-            $data->setDyscyplina($form->get('game')->getViewData());
-            $data->setType($form->get('type')->getViewData());
-            $data->setCost($form->get('cost')->getViewData());
-            $data->setCountTeam($form->get('countTeam')->getViewData());
-            $data->setPrizePool(0);
-            $data->setCostPerTeam(0);
-            $data->setCostOrg(0);
-            $data->setDataStart($form->get('dateStart')->getData());
-            $data->setDataStop($form->get('dateStop')->getData());
-            $data->setPlayerType($form->get('playerType')->getViewData());
-            $data->setPromoted(0);
-            $data->setEnd(0);
+            $datas = [
+                'name' => $form->get('name')->getViewData(),
+                'description' => $form->get('description')->getViewData(),
+                'owner' => $this->getUser()->getId(),
+                'dyscyplina' => $form->get('game')->getViewData(),
+                'type' => $form->get('type')->getViewData(),
+                'cost' => $form->get('cost')->getViewData(),
+                'countTeam' => $form->get('countTeam')->getViewData(),
+                'dataStart' => $form->get('dateStart')->getData(),
+                'dataStop' => $form->get('dateStop')->getData(),
+                'playerType' => $form->get('playerType')->getViewData(),
+            ];
+
+            $data->createTournament($datas);
 
             $em = $this->getDoctrine()->getManager();
             $em->persist($data);
