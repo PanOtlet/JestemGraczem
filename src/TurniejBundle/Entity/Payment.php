@@ -5,7 +5,7 @@ use Doctrine\ORM\Mapping as ORM;
 use Payum\Core\Model\Payment as BasePayment;
 
 /**
- * @ORM\Table
+ * @ORM\Table(name="payment")
  * @ORM\Entity
  */
 class Payment extends BasePayment

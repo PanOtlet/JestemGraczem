@@ -64,7 +64,8 @@ class Turnieje
     /**
      * @var bool
      *
-     * Open/Invite
+     * true Open
+     * false Invite
      * @ORM\Column(name="type", type="boolean")
      */
     private $type;
@@ -101,7 +102,7 @@ class Turnieje
     /**
      * @var int
      *
-     * Koszt wpisowego na drużynę
+     * Koszt wpisowego na drużynę/gracza
      * @ORM\Column(name="costPerTeam", type="integer")
      */
     private $costPerTeam;
