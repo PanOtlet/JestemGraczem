@@ -6,13 +6,42 @@ var Data ={};
 Data = { //dummy data for testing
     teams : [
         ["Team 1", "Team 2"], /* first matchup */
-        ["Team 3", "Team 4"]  /* second matchup */
+        ["Team 3", "Team 4"]//,  /* second matchup */
+       /* ["Team 5", "Team 6"],
+        ["Team 7", "Team 8"],
+        ["Team 9", "Team 10"],
+        ["Team 11", "Team 12"],
+        ["Team 13", "Team 14"],
+        ["Team 15", "Team 16"]*/
+
     ],
     results : [
-        [[1,2], [3,4]],       /* first round */
-        [[4,6], [2,1]]        /* second round */
-    ]
+        [[4,6],[5,7]],
+        [[8,9],[4,3]]
+    ],
+    next : []
 };
+
+
+function test() {
+    for(var i=0;i<Data["teams"].length;i++){
+        $( "#test" ).append('<label for="match-resoult-'+i+'">'+Data["teams"][i][0]+'</label><input type="number" class="form-control" id="r-'+Data["teams"][i][0]+'" aria-describedby="pointsHelp" placeholder="">' +"<br>");
+
+        $( "#test" ).append('<label for="match-resoult-'+i+'">'+Data["teams"][i][1]+'</label><input type="number" class="form-control" id="r-'+Data["teams"][i][1]+'" aria-describedby="pointsHelp" placeholder="">' +"<br>");
+
+    }
+}
+
+function add_in() {
+    for(var i=0;i<Data["teams"].length;i++){
+        Data["results"][0].push ([parseInt(document.getElementById("r-"+Data["teams"][i][0]).value), parseInt(document.getElementById("r-"+Data["teams"][i][1]).value)]);
+        console.log(Data);
+    }
+
+    view();
+}
+
+
 
 function api_Data() {
     $.ajax({
@@ -57,11 +86,12 @@ function saveFn(data, userData) {
     view();
     //var json = jQuery.toJSON(data)
     // $('#saveOutput').text('POST '+userData+' '+json)
-    /* You probably want to do something like this
-     jQuery.ajax("rest/"+userData, {contentType: 'application/json',
-     dataType: 'json',
-     type: 'post',
-     data: json})
-     */
+    // You probably want to do something like this
+     jQuery.ajax("rest/"+userData, {
+         contentType: 'application/json',
+        dataType: 'json',
+        type: 'post',
+        data: Data});
+
 };
 
