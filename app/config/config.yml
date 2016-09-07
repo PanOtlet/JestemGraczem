@@ -82,6 +82,19 @@ fos_user:
         address:        noreply@jestemgraczem.pl
         sender_name:    JestemGraczem
 
+# Payum configuration
+payum:
+    security:
+        token_storage:
+            Acme\PaymentBundle\Entity\PaymentToken: { doctrine: orm }
+
+    storages:
+        Acme\PaymentBundle\Entity\Payment: { doctrine: orm }
+
+    gateways:
+        offline:
+            factory: offline
+
 #SonataSeoBundle
 sonata_seo:
     encoding:         UTF-8
@@ -122,6 +135,7 @@ sonata_seo:
             'xmlns:og':           http://opengraphprotocol.org/schema/
             'xmlns:fb':           http://www.facebook.com/2008/fbml
 
+# Admin Panel
 easy_admin:
     entities:
         CMS:

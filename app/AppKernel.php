@@ -20,6 +20,7 @@ class AppKernel extends Kernel
             new JMS\SerializerBundle\JMSSerializerBundle(),
             new JavierEguiluz\Bundle\EasyAdminBundle\EasyAdminBundle(),
             new Knp\Bundle\MarkdownBundle\KnpMarkdownBundle(),
+            new Payum\Bundle\PayumBundle\PayumBundle(),
             new AppBundle\AppBundle(),
             new ApiBundle\ApiBundle(),
             new TurniejBundle\TurniejBundle(),
