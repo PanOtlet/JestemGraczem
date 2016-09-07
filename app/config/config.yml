@@ -86,10 +86,10 @@ fos_user:
 payum:
     security:
         token_storage:
-            Acme\PaymentBundle\Entity\PaymentToken: { doctrine: orm }
+            TurniejBundle\Entity\PaymentToken: { doctrine: orm }
 
     storages:
-        Acme\PaymentBundle\Entity\Payment: { doctrine: orm }
+        TurniejBundle\Entity\Payment: { doctrine: orm }
 
     gateways:
         offline:
