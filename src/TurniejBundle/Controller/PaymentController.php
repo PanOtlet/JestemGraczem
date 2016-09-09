@@ -11,9 +11,12 @@ use Symfony\Component\HttpFoundation\Request;
 class PaymentController extends Controller
 {
     /**
-     * @Route("/jackpot/{id}", name="payment.jackpot")
+     * @Route("/fee/{id}", name="payment.fee")
+     * @param $id
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse
+     * @throws \Exception
      */
-    public function addJackpotAction($id)
+    public function feeAction($id)
     {
         $em = $this->getDoctrine()->getManager();
         $turniej = $em->getRepository('TurniejBundle:Turnieje')->find($id);
@@ -22,95 +25,47 @@ class PaymentController extends Controller
             throw $this->createNotFoundException('Turniej nie istnieje!');
         }
 
-        $storage = $this->get('payum')->getStorage('TurniejBundle\Entity\Payment');
-
-        /** @var \TurniejBundle\Entity\Payment $details */
-        $details = $storage->create();
-
-        $details->setNumber(uniqid());
-        $details->setCurrencyCode('PLN');
-        $details->setTotalAmount($turniej->getCostPerTeam());
-        $details->setDescription('A description');
-        $details->setClientId($this->getUser()->getId());
-        $details->setClientEmail($this->getUser()->getEmail());
-//        $details['PAYMENTREQUEST_0_CURRENCYCODE'] = 'PLN';
-//        $details['PAYMENTREQUEST_0_AMT'] = $turniej->getCostPerTeam();
-        $storage->update($details);
-
-        $captureToken = $this->get('payum')->getTokenFactory()->createCaptureToken(
-            'paypal',
-            $details,
-            'payment.jackpot.status'
-        );
-
-        return $this->redirect($captureToken->getTargetUrl());
-    }
-
-    /**
-     * @Route("/jackpot/status", name="payment.jackpot.status")
-     */
-    public function statusJackpotAction()
-    {
-        return $this->render('Payment/success_jackpot.html.twig', [
-            // ...
+        $fee = $em->getRepository('TurniejBundle:EntryTournament')->findOneBy([
+            'tournamentId' => $turniej->getId(),
+            'playerId' => $this->getUser()->getId()
         ]);
-    }
 
-    /**
-     * @Route("/fee/{id}", name="payment.fee")
-     */
-    public function addFeeAction($id)
-    {
-        return $this->render('Payment/add_fee.html.twig', [
-            // ...
-        ]);
-    }
+        if ($fee == NULL) {
+            switch ($turniej->getPlayerType()){
+                case 0: return $this->redirectToRoute('tournament.join',['id'=>$id]);
+                case 1: return $this->redirectToRoute('tournament.joins',['id'=>$id]);
+                default: throw new \Exception('Błąd w typie graczy na turnieju!');
+            }
+        }
 
-    /**
-     * @Route("/jackpot/{id}/success", name="payment.jackpot.success")
-     */
-    public function successJackpotAction($id)
-    {
-        return $this->render('Payment/success_jackpot.html.twig', [
-            // ...
-        ]);
-    }
+        if ($fee->getStatus() != 1){
+            return $this->redirectToRoute('tournament.id',['id'=>$id]);
+        }
 
-    /**
-     * @Route("/jackpot/{id}/fail", name="payment.jackpot.fail")
-     */
-    public function failJackpotAction($id)
-    {
-        return $this->render('Payment/fail_jackpot.html.twig', [
-            // ...
-        ]);
-    }
-
-    /**
-     * @Route("/fee/{id}/success", name="payment.fee.success")
-     */
-    public function successFeeAction($id)
-    {
-        return $this->render('Payment/success_fee.html.twig', [
-            // ...
-        ]);
-    }
-
-    /**
-     * @Route("/fee/{id}/fail", name="payment.fee.fail")
-     */
-    public function failFeeAction($id)
-    {
-        return $this->render('Payment/fail_fee.html.twig', [
-            // ...
+        return $this->forward('TurniejBundle:Payment:prepare', [
+            'request' => [
+                'fee' => $fee,
+                'cost' => $turniej->getCostPerTeam(),
+                'description' => 'Opłata wpisowa dla turnieju: '.$turniej->getName().'.'
+            ]
         ]);
     }
 
     /**
      * @Route("/payment/prepare", name="payment.prepare")
+     * @param Request $request
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse
      */
     public function prepareAction(Request $request)
     {
+        var_dump($request->get('fee'));
+        die();
+        $em = $this->getDoctrine()->getManager();
+        $fee = $em->getRepository('TurniejBundle:EntryTournament')->findOneBy([
+            'tournamentId' => $request->get('fee')->tournamentId(),
+            'playerId' => $this->getUser()->getId()
+        ]);
+
         $gatewayName = 'paypal';
 
         $storage = $this->get('payum')->getStorage('TurniejBundle\Entity\Payment');
@@ -118,8 +73,8 @@ class PaymentController extends Controller
         $payment = $storage->create();
         $payment->setNumber(uniqid());
         $payment->setCurrencyCode('PLN');
-        $payment->setTotalAmount(1.23);
-        $payment->setDescription('A description');
+        $payment->setTotalAmount($request->get('cost')->getViewData());
+        $payment->setDescription($request->get('description')->getViewData());
         $payment->setClientId($this->getUser()->getId());
         $payment->setClientEmail($this->getUser()->getEmail());
 
@@ -128,14 +83,28 @@ class PaymentController extends Controller
         $captureToken = $this->get('payum')->getTokenFactory()->createCaptureToken(
             $gatewayName,
             $payment,
-            'payment.status'
+            'payment.check'
         );
 
         return $this->redirect($captureToken->getTargetUrl());
     }
 
     /**
+     * @Route("/fee/{id}/check", name="payment.check")
+     * @param $id
+     * @return \Symfony\Component\HttpFoundation\Response
+     */
+    public function successFeeAction($id)
+    {
+        return $this->render('Payment/fee.html.twig', [
+            // ...
+        ]);
+    }
+
+    /**
      * @Route("/payment/status", name="payment.status")
+     * @param Request $request
+     * @return JsonResponse
      */
     public function doneAction(Request $request)
     {
