@@ -20,22 +20,22 @@ class TurniejController extends Controller
      */
     public function setBracketAction(Request $request)
     {
-//        if (!$request->isXmlHttpRequest()){
-//            return \ApiBundle\Controller\DefaultController::badRequest();
-//        }
+        if (!$request->isXmlHttpRequest()){
+            return \ApiBundle\Controller\DefaultController::badRequest();
+        }
 
         $em = $this->getDoctrine()->getManager();
 
-//        $turniej = $em->find($request->get('id')->getViewData());
-        $turniej = $em->getRepository('TurniejBundle:Turnieje')->findOneBy(['id' => 1]);
+        $turniej = $em->getRepository('TurniejBundle:Turnieje')->findOneBy(['id' => $request->get('id')->getViewData()]);
+//        $turniej = $em->getRepository('TurniejBundle:Turnieje')->findOneBy(['id' => 1]);
 
         if ($turniej == NULL || $turniej->getOwner() != $this->getUser()->getId()) {
             return \ApiBundle\Controller\DefaultController::badRequest();
         }
 
-//        $bracket = json_decode($request->get('Data')->getViewData(), true);
-        $json = '{"teams":[["Team 1","Team 2"],["Team 3","Team 4"]],"results":[[[[4,6],[5,7]],[[8,9],[4,3]]]]}';
-        $bracket = json_decode($json, true);
+        $bracket = json_decode($request->get('Data')->getViewData(), true);
+//        $json = '{"teams":[["Team 1","Team 2"],["Team 3","Team 4"]],"results":[[[[4,6],[5,7]],[[8,9],[4,3]]]]}';
+//        $bracket = json_decode($json, true);
 
         $turniej->setBracket(json_encode($bracket['results']));
         $em->persist($turniej);
