@@ -71,7 +71,15 @@ function saveFn(data, userData) {
         contentType: 'application/json',
         dataType: 'json',
         type: 'post',
-        data: {data: Data ,id: Id}
+        data: {data: Data ,id: Id},
+    success: function(result) {
+            console.log({data: Data ,id: Id});
+            console.log(JSON.stringify({data: Data ,id: Id}));
+        },
+        error:function(exception){
+            console.log({data: Data ,id: Id});
+            console.log(JSON.stringify({data: Data ,id: Id}));
+        }
     });
 
 }
