@@ -24,6 +24,8 @@ class TurniejController extends Controller
             return \ApiBundle\Controller\DefaultController::badRequest();
         }
 
+        $this->get('logger')->info(var_dump($request));
+
         $em = $this->getDoctrine()->getManager();
 
         $turniej = $em->getRepository('TurniejBundle:Turnieje')->findOneBy(['id' => $request->get('id')->getViewData()]);
