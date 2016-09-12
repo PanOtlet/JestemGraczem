@@ -42,7 +42,7 @@ class EntryTournament
      * 1 - Zapisany, ale nie opłacony
      * 2 - Zapisany
      * 3 - Wyrzucony
-     * 4 - Wypisany
+     * 4 - Wypisany1
      * @ORM\Column(name="status", type="integer")
      */
     private $status;

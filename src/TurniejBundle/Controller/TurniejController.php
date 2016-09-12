@@ -455,7 +455,11 @@ class TurniejController extends Controller
         $zapis = new EntryTournament();
         $zapis->setPlayerId($this->getUser()->getId());
         $zapis->setTournamentId($id);
-        $zapis->setStatus(2);
+        if ($turniej->getCost() == 1) {
+            $zapis->setStatus(1);
+        } else {
+            $zapis->setStatus(2);
+        }
         $em->persist($zapis);
         $em->flush();
 
