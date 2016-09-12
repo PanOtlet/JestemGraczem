@@ -58,13 +58,11 @@ class PaymentController extends Controller
      */
     public function prepareAction(Request $request)
     {
-        var_dump($request->get('fee'));
-        die();
         $em = $this->getDoctrine()->getManager();
-        $fee = $em->getRepository('TurniejBundle:EntryTournament')->findOneBy([
-            'tournamentId' => $request->get('fee')->tournamentId(),
-            'playerId' => $this->getUser()->getId()
-        ]);
+//        $fee = $em->getRepository('TurniejBundle:EntryTournament')->findOneBy([
+//            'tournamentId' => $request->get('fee')->tournamentId(),
+//            'playerId' => $this->getUser()->getId()
+//        ]);
 
         $gatewayName = 'paypal';
 

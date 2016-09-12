@@ -1,35 +1,34 @@
 /**
  * Created by Pudzian on 26.08.2016.
  */
-var Data ={};
+var Data = {};
 
 Data = { //dummy data for testing
-    teams : [
+    teams: [
         ["Team 1", "Team 2"], /* first matchup */
         ["Team 3", "Team 4"]//,  /* second matchup */
-       /* ["Team 5", "Team 6"],
-        ["Team 7", "Team 8"],
-        ["Team 9", "Team 10"],
-        ["Team 11", "Team 12"],
-        ["Team 13", "Team 14"],
-        ["Team 15", "Team 16"]*/
+        /* ["Team 5", "Team 6"],
+         ["Team 7", "Team 8"],
+         ["Team 9", "Team 10"],
+         ["Team 11", "Team 12"],
+         ["Team 13", "Team 14"],
+         ["Team 15", "Team 16"]*/
 
     ],
-    results : [
-        [[4,6],[5,7]],
-        [[8,9],[4,3]]
+    results: [
+        [[4, 6], [5, 7]],
+        [[8, 9], [4, 3]]
     ]
 };
 
 function add_in() {
-    for(var i=0;i<Data["teams"].length;i++){
-        Data["results"][0].push ([parseInt(document.getElementById("r-"+Data["teams"][i][0]).value), parseInt(document.getElementById("r-"+Data["teams"][i][1]).value)]);
+    for (var i = 0; i < Data["teams"].length; i++) {
+        Data["results"][0].push([parseInt(document.getElementById("r-" + Data["teams"][i][0]).value), parseInt(document.getElementById("r-" + Data["teams"][i][1]).value)]);
         console.log(Data);
     }
 
     view();
 }
-
 
 
 function api_Data() {
@@ -47,20 +46,22 @@ function api_Data() {
 
 function view() {
     $('#view').bracket({
-        init: Data /* data to initialize the bracket with */ })
-};
+        init: Data /* data to initialize the bracket with */
+    })
+}
 
-function edit() {
-    var container = $('div#save')
+function edit(api) {
+    var container = $('div#save');
     container.bracket({
         init: Data,
         save: saveFn,
-        userData: "http://myapi"})
+        userData: api
+    });
 
     /* You can also inquiry the current data */
-    var data = container.bracket('data')
+    var data = container.bracket('data');
     //$('#dataOutput').text(jQuery.toJSON(data))
-};
+}
 
 
 //black magic no idea what so ever
@@ -72,16 +73,17 @@ function edit() {
 function saveFn(data, userData) {
     console.log(data);
 
-    Data=data;
+    Data = data;
     view();
     //var json = jQuery.toJSON(data)
     // $('#saveOutput').text('POST '+userData+' '+json)
     // You probably want to do something like this
-     jQuery.ajax("rest/"+userData, {
-         contentType: 'application/json',
+    jQuery.ajax("rest/" + userData, {
+        contentType: 'application/json',
         dataType: 'json',
         type: 'post',
-        data: Data});
+        data: Data
+    });
 
-};
+}
 

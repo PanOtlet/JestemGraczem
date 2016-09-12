@@ -155,6 +155,22 @@ class Turnieje
      */
     private $promoted;
 
+    /**
+     * @var object
+     *
+     * Bracket teams
+     * @ORM\Column(name="teams", type="json_array")
+     */
+    private $teams;
+
+    /**
+     * @var object
+     *
+     * Bracket
+     * @ORM\Column(name="bracket", type="json_array")
+     */
+    private $bracket;
+
 
     /**
      * Get id
@@ -504,6 +520,38 @@ class Turnieje
     public function getPromoted()
     {
         return $this->promoted;
+    }
+
+    /**
+     * @param object $teams
+     */
+    public function setTeams($teams)
+    {
+        $this->teams = $teams;
+    }
+
+    /**
+     * @return object
+     */
+    public function getTeams()
+    {
+        return $this->teams;
+    }
+
+    /**
+     * @param object $bracket
+     */
+    public function setBracket($bracket)
+    {
+        $this->bracket = $bracket;
+    }
+
+    /**
+     * @return object
+     */
+    public function getBracket()
+    {
+        return $this->bracket;
     }
 
     public function createTournament($data)
