@@ -1,18 +1,29 @@
 /**
  * Created by Pudzian on 26.08.2016.
  */
-var Data ={};
+var Data = {};
 
 Data = { //dummy data for testing
-    teams : [
-        ["Team 1", "Team 2"], /* first matchup */
-        ["Team 3", "Team 4"]  /* second matchup */
+    teams: [
+        ["Team 1", "Team 2"],
+        ["Team 3", "Team 4"]
+
     ],
-    results : [
-        [[1,2], [3,4]],       /* first round */
-        [[4,6], [2,1]]        /* second round */
+    results: [
+        [[4, 6], [5, 7]],
+        [[8, 9], [4, 3]]
     ]
 };
+
+function add_in() {
+    for (var i = 0; i < Data["teams"].length; i++) {
+        Data["results"][0].push([parseInt(document.getElementById("r-" + Data["teams"][i][0]).value), parseInt(document.getElementById("r-" + Data["teams"][i][1]).value)]);
+        console.log(Data);
+    }
+
+    view();
+}
+
 
 function api_Data() {
     $.ajax({
@@ -29,20 +40,19 @@ function api_Data() {
 
 function view() {
     $('#view').bracket({
-        init: Data /* data to initialize the bracket with */ })
-};
+        init: Data /* data to initialize the bracket with */
+    })
+}
 
-function edit() {
-    var container = $('div#save')
+function edit(api,id) {
+    var container = $('div#save');
     container.bracket({
         init: Data,
         save: saveFn,
-        userData: "http://myapi"})
-
-    /* You can also inquiry the current data */
-    var data = container.bracket('data')
-    //$('#dataOutput').text(jQuery.toJSON(data))
-};
+        userData: api
+    });
+    var data = container.bracket('data');
+}
 
 
 //black magic no idea what so ever
@@ -53,15 +63,14 @@ function edit() {
  */
 function saveFn(data, userData) {
     console.log(data);
-    Data=data;
-    view();
-    //var json = jQuery.toJSON(data)
-    // $('#saveOutput').text('POST '+userData+' '+json)
-    /* You probably want to do something like this
-     jQuery.ajax("rest/"+userData, {contentType: 'application/json',
-     dataType: 'json',
-     type: 'post',
-     data: json})
-     */
-};
+
+    Data = data;
+    jQuery.ajax("rest/" + userData, {
+        contentType: 'application/json',
+        dataType: 'json',
+        type: 'post',
+        data: Data
+    });
+
+}
 

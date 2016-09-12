@@ -17,34 +17,34 @@
         <div class="row m-b-2">
             <div class="col-md-4">
                 <a href="{{ url('tournament.open') }}?sort=1">
-                    <img class="img-fluid" data-toggle="tooltip"  title="{{ 'tournament.csgo'|trans }}" src="{{ asset('assets/img/bg/csgo.jpg') }}">
+                    <img class="img-fluid" data-toggle="tooltip"  title="{{ 'tournament.csgo'|trans }}" src="{{ asset('assets/img/csgo.png') }}">
                 </a>
             </div>
             <div class="col-md-4">
                 <a href="{{ url('tournament.open') }}?sort=2">
-                    <img class="img-fluid" data-toggle="tooltip"  title="{{ 'tournament.lol'|trans }}" src="{{ asset('assets/img/bg/lol.jpg') }}">
+                    <img class="img-fluid" data-toggle="tooltip"  title="{{ 'tournament.lol'|trans }}" src="{{ asset('assets/img/lol.png') }}">
                 </a>
             </div>
             <div class="col-md-4">
                 <a href="{{ url('tournament.open') }}?sort=3">
-                    <img class="img-fluid" data-toggle="tooltip"  title="{{ 'tournament.hots'|trans }}" src="{{ asset('assets/img/bg/hots.jpg') }}">
+                    <img class="img-fluid" data-toggle="tooltip"  title="{{ 'tournament.hots'|trans }}" src="{{ asset('assets/img/hots.png') }}">
                 </a>
             </div>
         </div>
         <div class="row m-b-2">
             <div class="col-md-4">
                 <a href="{{ url('tournament.open') }}?sort=4">
-                    <img class="img-fluid" data-toggle="tooltip"  title="{{ 'tournament.sc2'|trans }}" src="{{ asset('assets/img/bg/sc2.jpg') }}">
+                    <img class="img-fluid" data-toggle="tooltip"  title="{{ 'tournament.sc2'|trans }}" src="{{ asset('assets/img/starcraft.png') }}">
                 </a>
             </div>
             <div class="col-md-4">
                 <a href="{{ url('tournament.open') }}?sort=5">
-                    <img class="img-fluid" data-toggle="tooltip"  title="{{ 'tournament.hs'|trans }}" src="{{ asset('assets/img/bg/hs.jpg') }}">
+                    <img class="img-fluid" data-toggle="tooltip"  title="{{ 'tournament.hs'|trans }}" src="{{ asset('assets/img/hs.png') }}">
                 </a>
             </div>
             <div class="col-md-4">
                 <a href="{{ url('tournament.open') }}?sort=6">
-                    <img class="img-fluid" data-toggle="tooltip"  title="{{ 'tournament.dota2'|trans }}" src="{{ asset('assets/img/bg/dota2.jpg') }}">
+                    <img class="img-fluid" data-toggle="tooltip"  title="{{ 'tournament.dota2'|trans }}" src="{{ asset('assets/img/dota.png') }}">
                 </a>
             </div>
         </div>
@@ -67,19 +67,8 @@
                 {#{{ turniej.id }} - {{ turniej.name }} - {{ turniej.status }}<br>#}
             {#{% endfor %}#}
         {#</div>#}
-        <div class="bracet" id="view">
-        </div>
-        <div class="bracet" id="save">
-        </div>
+
+
     </div>
 
-{% endblock %}
-{% block javascripts %}
-    {{ parent() }}
-    <script src="{{ asset('assets/js/bracket.js') }}"></script>
-    <script>
-        //tu bedzie triger
-        view();
-        edit();
-    </script>
 {% endblock %}

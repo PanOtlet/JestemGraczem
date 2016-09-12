@@ -32,9 +32,9 @@ security:
 
     access_control:
 #        - { path: ^/, requires_channel: https, host: jestemgraczem\.pl$ }
-#        - { path: ^/, requires_channel: https, host: beta\.jestemgraczem\.pl$ }
 #        - { path: ^/, requires_channel: https, host: localhost$ }
-        - { path: ^/admin/, role: ROLE_ADMIN }
+#        - { path: ^/*, requires_channel: https }
+        - { path: ^/admin/, requires_channel: https, role: ROLE_ADMIN }
         - { path: ^/login$, role: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/register, role: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/resetting, role: IS_AUTHENTICATED_ANONYMOUSLY }

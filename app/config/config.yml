@@ -82,6 +82,25 @@ fos_user:
         address:        noreply@jestemgraczem.pl
         sender_name:    JestemGraczem
 
+# Payum configuration
+payum:
+    security:
+        token_storage:
+            TurniejBundle\Entity\PaymentToken: { doctrine: orm }
+
+    storages:
+        TurniejBundle\Entity\Payment: { doctrine: orm }
+
+    gateways:
+        offline:
+            factory: offline
+        paypal:
+            factory: paypal_express_checkout
+            username:  'panotlet-facilitator_api1.gmail.com'
+            password:  'H5KUNB7AVPVYMD72'
+            signature: 'AFcWxV21C7fd0v3bYYYRCpSSRl31Anczwdw7nBepY8qU-2kZ2RCYloWg'
+            sandbox: true
+
 #SonataSeoBundle
 sonata_seo:
     encoding:         UTF-8
@@ -122,6 +141,7 @@ sonata_seo:
             'xmlns:og':           http://opengraphprotocol.org/schema/
             'xmlns:fb':           http://www.facebook.com/2008/fbml
 
+# Admin Panel
 easy_admin:
     entities:
         CMS:
