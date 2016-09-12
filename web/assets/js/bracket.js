@@ -71,7 +71,8 @@ function saveFn(data, userData) {
         contentType: 'application/json',
         dataType: 'json',
         type: 'post',
-        data: {data: Data ,id: Id}
+        // data: {data: Data ,id: Id}
+        data: "data="+Data+"&id="+Id
     });
 
 }
