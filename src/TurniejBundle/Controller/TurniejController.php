@@ -447,10 +447,6 @@ class TurniejController extends Controller
             return $this->redirectToRoute('tournament.id', ['id' => $id]);
         }
 
-        /*
-         * @TODO: Dodać sprawdzenie, czy jest turniej na wpisowe!
-         */
-
         //Zapisanie uczestnika
         $zapis = new EntryTournament();
         $zapis->setPlayerId($this->getUser()->getId());
