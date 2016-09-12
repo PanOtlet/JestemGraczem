@@ -5,14 +5,8 @@ var Data = {};
 
 Data = { //dummy data for testing
     teams: [
-        ["Team 1", "Team 2"], /* first matchup */
-        ["Team 3", "Team 4"]//,  /* second matchup */
-        /* ["Team 5", "Team 6"],
-         ["Team 7", "Team 8"],
-         ["Team 9", "Team 10"],
-         ["Team 11", "Team 12"],
-         ["Team 13", "Team 14"],
-         ["Team 15", "Team 16"]*/
+        ["Team 1", "Team 2"],
+        ["Team 3", "Team 4"]
 
     ],
     results: [
@@ -50,17 +44,14 @@ function view() {
     })
 }
 
-function edit(api) {
+function edit(api,id) {
     var container = $('div#save');
     container.bracket({
         init: Data,
         save: saveFn,
         userData: api
     });
-
-    /* You can also inquiry the current data */
     var data = container.bracket('data');
-    //$('#dataOutput').text(jQuery.toJSON(data))
 }
 
 
@@ -74,10 +65,6 @@ function saveFn(data, userData) {
     console.log(data);
 
     Data = data;
-    view();
-    //var json = jQuery.toJSON(data)
-    // $('#saveOutput').text('POST '+userData+' '+json)
-    // You probably want to do something like this
     jQuery.ajax("rest/" + userData, {
         contentType: 'application/json',
         dataType: 'json',

@@ -164,9 +164,9 @@
     <script src="{{ asset('assets/js/bracket.js') }}"></script>
     <script>
         //tu bedzie triger
-        {{ turniej.id }}
+
         view();
-        edit('{{ url('api.bracket') }}');
+        edit('{{ url('api.bracket') }}','{{ turniej.id }}');
     </script>
 {% endblock %}
 
