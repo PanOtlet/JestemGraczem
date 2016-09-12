@@ -18,19 +18,8 @@ Data = { //dummy data for testing
     results : [
         [[4,6],[5,7]],
         [[8,9],[4,3]]
-    ],
-    next : []
+    ]
 };
-
-
-function test() {
-    for(var i=0;i<Data["teams"].length;i++){
-        $( "#test" ).append('<label for="match-resoult-'+i+'">'+Data["teams"][i][0]+'</label><input type="number" class="form-control" id="r-'+Data["teams"][i][0]+'" aria-describedby="pointsHelp" placeholder="">' +"<br>");
-
-        $( "#test" ).append('<label for="match-resoult-'+i+'">'+Data["teams"][i][1]+'</label><input type="number" class="form-control" id="r-'+Data["teams"][i][1]+'" aria-describedby="pointsHelp" placeholder="">' +"<br>");
-
-    }
-}
 
 function add_in() {
     for(var i=0;i<Data["teams"].length;i++){
@@ -82,6 +71,7 @@ function edit() {
  */
 function saveFn(data, userData) {
     console.log(data);
+
     Data=data;
     view();
     //var json = jQuery.toJSON(data)
