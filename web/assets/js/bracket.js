@@ -2,7 +2,7 @@
  * Created by Pudzian on 26.08.2016.
  */
 var Data = {};
-
+var Id;
 Data = { //dummy data for testing
     teams: [
         ["Team 1", "Team 2"],
@@ -45,11 +45,12 @@ function view() {
 }
 
 function edit(api,id) {
+    Id = id;
     var container = $('div#save');
     container.bracket({
         init: Data,
         save: saveFn,
-        userData: api
+        userData: api,
     });
     var data = container.bracket('data');
 }
@@ -65,11 +66,12 @@ function saveFn(data, userData) {
     console.log(data);
 
     Data = data;
-    jQuery.ajax("rest/" + userData, {
+
+    jQuery.ajax(userData, {
         contentType: 'application/json',
         dataType: 'json',
         type: 'post',
-        data: Data
+        data: {data: Data ,id: Id}
     });
 
 }
