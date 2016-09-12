@@ -23,7 +23,7 @@ class DefaultController extends Controller
             ->addMeta('property', 'og:title', 'Strona główna :: JestemGraczem.pl')
             ->addMeta('property', 'og:url', $this->get('router')->generate('homepage', [], UrlGeneratorInterface::ABSOLUTE_URL));
 
-        $meme = $this->getDoctrine()->getRepository('AppBundle:Meme')->findOneBy(['promoted' => true], ['id' => 'DESC']);
+        $mem = $this->getDoctrine()->getRepository('AppBundle:Meme')->findOneBy(['promoted' => true], ['id' => 'DESC']);
 
         $video = $this->getDoctrine()->getRepository('AppBundle:Video')->createQueryBuilder('m')
             ->where('m.promoted = 1')
@@ -35,7 +35,7 @@ class DefaultController extends Controller
 
         return $this->render('default/index.html.twig', [
             'color' => $this->color,
-            'meme' => $meme,
+            'meme' => $mem,
             'video' => $video,
             'avatar' => $avatar
         ]);
@@ -95,7 +95,7 @@ class DefaultController extends Controller
             throw $this->createNotFoundException('Nie ma takiego użytkownika!');
         }
 
-        $meme = $this->getDoctrine()->getRepository('AppBundle:Meme')->findOneBy(['user' => $user['id']]);
+        $mem = $this->getDoctrine()->getRepository('AppBundle:Meme')->findOneBy(['user' => $user['id']]);
         $video = $this->getDoctrine()->getRepository('AppBundle:Video')->findOneBy(['user' => $user['id']]);
 
         $seo = $this->container->get('sonata.seo.page');
@@ -108,7 +108,7 @@ class DefaultController extends Controller
         return $this->render('default/user.html.twig', [
             'color' => $this->color,
             'user' => $user,
-            'meme' => $meme,
+            'meme' => $mem,
             'video' => $video
         ]);
     }
