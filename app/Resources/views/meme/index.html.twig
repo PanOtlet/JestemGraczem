@@ -18,7 +18,7 @@
             <div class="col-md-6">
                 {% if meme %}
                     {% for mem in meme %}
-                        {% if mem.url | slice(-4) == '.gif' %}
+                        {% if meme.url | slice(-4) == '.gif' %}
                             <div class="meme">
                                 <div class="m-title">
                                     <a class="text-center" href="{{ url('mem.id',{'id': mem.id}) }}">
@@ -31,8 +31,8 @@
                                     </a>
                                 </div>
                                 <div class="m-img gif">
-                                    <img src="{{ asset('assets/mem/') ~ mem.url }}"
-                                         data-entry-url="{{ asset('assets/mem/') ~ mem.url | slice(-4) }}"
+                                    <img src="{{ asset('assets/mem/') ~ meme.url }}"
+                                         data-entry-url="{{ asset('assets/mem/') ~ meme.url | slice(-4) }}"
                                          data-state="static" class="img-responsive pull-xs-left video p-b-0"
                                          alt="{{ mem.title }}"/>
 
@@ -44,7 +44,7 @@
                                     </div>
                                 </div>
                             </div>
-                        {% elseif mem.url | slice(-4) == '.mp4' or mem.url | slice(-5) == '.webm' %}
+                        {% elseif meme.url | slice(-4) == '.mp4' or meme.url | slice(-5) == '.webm' %}
                             <div class="meme">
                                 <div class="m-title">
                                     <a class="text-center" href="{{ url('mem.id',{'id': mem.id}) }}">
@@ -59,7 +59,7 @@
                                 <div class="m-img gif">
                                     <div class="embed-responsive embed-responsive-16by9 shadow">
                                         <video controls>
-                                            <source src="{{ asset('assets/mem/') ~ mem.url }}" type="video/mp4"
+                                            <source src="{{ asset('assets/mem/') ~ meme.url }}" type="video/mp4"
                                                     class="embed-responsive-item">
                                             Masz kiepską przeglądarkę! Użyj GOOGLE CHROME!
                                         </video>
@@ -86,7 +86,7 @@
                                 </div>
                                 <div class="m-img">
                                     <a href="{{ url('mem.id',{'id': mem.id}) }}">
-                                        <img src="{{ asset('assets/mem/') ~ mem.url }}"
+                                        <img src="{{ asset('assets/mem/') ~ meme.url }}"
                                              alt="{{ mem.title|slice(0,50) }}"
                                              class="img-responsive pull-xs-left video p-b-0">
                                     </a>
@@ -120,7 +120,7 @@
                 <span class="label label-pill label-danger center-block">Polecane!</span>
                 {% for mem in promoted %}
                     <a href="{{ url('mem.id',{'id': mem.id}) }}">
-                        <img src="{{ asset('assets/mem/') ~ mem.url }}" alt="{{ mem.title }}"
+                        <img src="{{ asset('assets/mem/') ~ meme.url }}" alt="{{ mem.title }}"
                              class="img-rounded img-responsive" style="margin-top: 10px">
                     </a>
                 {% endfor %}
