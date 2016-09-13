@@ -117,9 +117,6 @@ class TurniejController extends Controller
                     'tournament.other' => 0,
                 ],
             ])
-            ->add('end', CheckboxType::class, [
-                'label' => 'tournament.end'
-            ])
             ->add('save', SubmitType::class, [
                 'label' => 'save',
                 'attr' => [
@@ -135,7 +132,7 @@ class TurniejController extends Controller
             $turniej->setName($form->get('name')->getViewData());
             $turniej->setDescription($form->get('description')->getViewData());
             $turniej->setDyscyplina($form->get('dyscyplina')->getViewData());
-            $turniej->setEnd($form->get('end')->getViewData());
+            $turniej->setEnd(0);
 
             $em->flush();
 

@@ -40,7 +40,7 @@ class TurniejController extends Controller
 
         $bracket = $request->get('data');
 
-        $turniej->setBracket(json_encode($bracket['results']));
+        $turniej->setBracket($bracket['results']);
         $em->persist($turniej);
         $em->flush();
 
