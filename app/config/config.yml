@@ -96,10 +96,10 @@ payum:
             factory: offline
         paypal:
             factory: paypal_express_checkout
-            username:  'panotlet-facilitator_api1.gmail.com'
-            password:  'H5KUNB7AVPVYMD72'
-            signature: 'AFcWxV21C7fd0v3bYYYRCpSSRl31Anczwdw7nBepY8qU-2kZ2RCYloWg'
-            sandbox: true
+            username:  "%paypal_username%"
+            password:  "%paypal_password%"
+            signature: "%paypal_signature%"
+            sandbox: "%paypal_sandbox%"
 
 #SonataSeoBundle
 sonata_seo:
