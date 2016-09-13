@@ -3,6 +3,7 @@
 namespace ApiBundle\Controller;
 
 use ApiBundle\Controller\DefaultController;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Component\HttpFoundation\Request;
@@ -16,12 +17,13 @@ class TurniejController extends Controller
 {
     /**
      * @Route("/bracket", name="api.bracket")
+     * @Security("has_role('ROLE_USER')")
      * @param Request $request
      * @return Response
      */
     public function setBracketAction(Request $request)
     {
-        if (!$request->isXmlHttpRequest()){
+        if (!$request->isXmlHttpRequest() || !$request->get('id') || !$request->get('data')){
             return \ApiBundle\Controller\DefaultController::badRequest();
         }
 
@@ -33,7 +35,7 @@ class TurniejController extends Controller
             return DefaultController::badRequest();
         }
 
-        $bracket = json_decode($request->get('Data')->getViewData(), true);
+        $bracket = json_decode($request->get('data'), true);
 
         $turniej->setBracket(json_encode($bracket['results']));
         $em->persist($turniej);
