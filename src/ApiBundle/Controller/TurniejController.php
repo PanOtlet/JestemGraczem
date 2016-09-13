@@ -2,6 +2,7 @@
 
 namespace ApiBundle\Controller;
 
+use ApiBundle\Controller\DefaultController;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Component\HttpFoundation\Request;
@@ -24,20 +25,15 @@ class TurniejController extends Controller
             return \ApiBundle\Controller\DefaultController::badRequest();
         }
 
-        $this->get('logger')->info(var_dump($request));
-
         $em = $this->getDoctrine()->getManager();
 
-        $turniej = $em->getRepository('TurniejBundle:Turnieje')->findOneBy(['id' => $request->get('id')->getViewData()]);
-//        $turniej = $em->getRepository('TurniejBundle:Turnieje')->findOneBy(['id' => 1]);
+        $turniej = $em->getRepository('TurniejBundle:Turnieje')->findOneBy(['id' => $request->get('id')]);
 
         if ($turniej == NULL || $turniej->getOwner() != $this->getUser()->getId()) {
-            return \ApiBundle\Controller\DefaultController::badRequest();
+            return DefaultController::badRequest();
         }
 
         $bracket = json_decode($request->get('Data')->getViewData(), true);
-//        $json = '{"teams":[["Team 1","Team 2"],["Team 3","Team 4"]],"results":[[[[4,6],[5,7]],[[8,9],[4,3]]]]}';
-//        $bracket = json_decode($json, true);
 
         $turniej->setBracket(json_encode($bracket['results']));
         $em->persist($turniej);

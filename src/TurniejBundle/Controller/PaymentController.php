@@ -97,7 +97,7 @@ class PaymentController extends Controller
         $captureToken = $this->get('payum')->getTokenFactory()->createCaptureToken(
             $gatewayName,
             $payment,
-            'payment.check'
+            'payment.status'
         );
 
         return $this->redirect($captureToken->getTargetUrl());
