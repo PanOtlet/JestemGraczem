@@ -99,6 +99,11 @@ class User extends BaseUser
     protected $description = null;
 
     /**
+     * @ORM\Column(type="boolean")
+     */
+    protected $subscribeMailingList = true;
+
+    /**
      * @Assert\File(maxSize="8M")
      * @Assert\Image(mimeTypesMessage="Zły plik!")
      */
@@ -214,6 +219,22 @@ class User extends BaseUser
     public function setPremium($premium)
     {
         $this->premium = $premium;
+    }
+
+    /**
+     * @param mixed $subscribeMailingList
+     */
+    public function setSubscribeMailingList($subscribeMailingList)
+    {
+        $this->subscribeMailingList = $subscribeMailingList;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getSubscribeMailingList()
+    {
+        return $this->subscribeMailingList;
     }
 
     /**
