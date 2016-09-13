@@ -164,7 +164,7 @@
     <script src="{{ asset('assets/js/bracket.js') }}"></script>
     <script>
         //tu bedzie triger
-
+        Data = {{ turniej.fullBracket|raw }};
         view();
         edit('{{ url('api.bracket') }}','{{ turniej.id }}');
     </script>

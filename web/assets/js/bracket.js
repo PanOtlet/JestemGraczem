@@ -3,17 +3,17 @@
  */
 var Data = {};
 var Id;
-Data = {
-    teams: [
-        ["Team 1", "Team 2"],
-        ["Team 3", "Team 4"]
-
-    ],
-    results: [
-        [[4, 6], [5, 7]],
-        [[8, 9], [4, 3]]
-    ]
-};
+// Data = {
+//     teams: [
+//         ["Team 1", "Team 2"],
+//         ["Team 3", "Team 4"]
+//
+//     ],
+//     results: [
+//         [[4, 6], [5, 7]],
+//         [[8, 9], [4, 3]]
+//     ]
+// };
 
 function add_in() {
     for (var i = 0; i < Data["teams"].length; i++) {
