@@ -554,6 +554,15 @@ class Turnieje
         return $this->bracket;
     }
 
+    public function getFullBracket(){
+        $bracket = [
+            'teams' => $this->getTeams(),
+            'results' => $this->getBracket()
+        ];
+
+        return json_encode($bracket);
+    }
+
     public function createTournament($data)
     {
         $this->setName($data['name']);
