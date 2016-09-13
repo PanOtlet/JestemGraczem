@@ -3,7 +3,7 @@
  */
 var Data = {};
 var Id;
-Data = { //dummy data for testing
+Data = {
     teams: [
         ["Team 1", "Team 2"],
         ["Team 3", "Team 4"]
@@ -66,22 +66,29 @@ function saveFn(data, userData) {
     console.log(data);
 
     Data = data;
-
-    jQuery.ajax(userData, {
-        contentType: 'application/json',
-        dataType: 'json',
-        type: 'post',
-        // data: {data: Data ,id: Id}
-        data: "data="+Data+"&id="+Id,
-        success: function(result) {
-                console.log({data: Data ,id: Id});
-                console.log(JSON.stringify({data: Data ,id: Id}));
-            },
-        error:function(exception){
+    var str_data ='{"data":{"teams":[["Team 1","Team 2"],["Team 3","Team 4"]],"results":[[[[4,6],[5,7]],[[7,9],[4,3]]]]},"id":"3"}';
+    jQuery.ajax({
+        url: userData,
+        //dataType:'json',
+        //dataType: 'text',
+        type: 'POST',
+        // data: {data: Data ,id: Id},
+        //data: "data="+Data+"&id="+Id,
+       // data: JSON.stringify({data: Data ,id: Id}),
+        data: str_data,
+        processData: false,
+        contentType: "application/json; charset=UTF-8",
+        success: function(data) {
+            console.log("success");
+            console.log( data);
+            console.log(JSON.stringify({data: Data ,id: Id}));
+        },
+        error:function(data){
+            console.log("error");
             console.log({data: Data ,id: Id});
+            alert('response data = ' + data);
             console.log(JSON.stringify({data: Data ,id: Id}));
         }
     });
 
 }
-
