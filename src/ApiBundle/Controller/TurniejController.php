@@ -23,19 +23,22 @@ class TurniejController extends Controller
      */
     public function setBracketAction(Request $request)
     {
-        if (!$request->isXmlHttpRequest() || !$request->get('id') || !$request->get('data')){
+        if (!$request->isXmlHttpRequest() || !$request->get('id') || !$request->get('data')) {
             return \ApiBundle\Controller\DefaultController::badRequest();
         }
 
         $em = $this->getDoctrine()->getManager();
 
-        $turniej = $em->getRepository('TurniejBundle:Turnieje')->findOneBy(['id' => $request->get('id')]);
+        $turniej = $em->getRepository('TurniejBundle:Turnieje')->findOneBy([
+            'id' => $request->get('id'),
+            'owner' => $this->getUser()->getId()
+        ]);
 
-        if ($turniej == NULL || $turniej->getOwner() != $this->getUser()->getId()) {
+        if ($turniej == NULL) {
             return DefaultController::badRequest();
         }
 
-        $bracket = json_decode($request->get('data'), true);
+        $bracket = $request->get('data');
 
         $turniej->setBracket(json_encode($bracket['results']));
         $em->persist($turniej);
