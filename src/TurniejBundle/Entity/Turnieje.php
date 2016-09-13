@@ -159,7 +159,7 @@ class Turnieje
      * @var object
      *
      * Bracket teams
-     * @ORM\Column(name="teams", type="json_array")
+     * @ORM\Column(name="teams", type="json_array", nullable=true)
      */
     private $teams;
 
@@ -167,7 +167,7 @@ class Turnieje
      * @var object
      *
      * Bracket
-     * @ORM\Column(name="bracket", type="json_array")
+     * @ORM\Column(name="bracket", type="json_array", nullable=true)
      */
     private $bracket;
 
