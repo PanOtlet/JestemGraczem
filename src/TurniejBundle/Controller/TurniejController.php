@@ -175,13 +175,6 @@ class TurniejController extends Controller
             ->add('description', TextareaType::class, [
                 'label' => 'tournament.invite-desc'
             ])
-            ->add('playerType', ChoiceType::class, [
-                'label' => 'tournament.playerType',
-                'choices' => [
-                    'Użytkownik' => 0,
-                    'Drużyna' => 1,
-                ],
-            ])
             ->add('save', SubmitType::class, [
                 'label' => 'save'
             ])
@@ -191,7 +184,7 @@ class TurniejController extends Controller
 
         if ($form->isSubmitted() && $form->isValid()) {
 
-            switch ($form->get('playerType')->getViewData()) {
+            switch ($turniej->getPlayerType()) {
                 case 0:
                     $user = $em->getRepository('AppBundle:User')->findOneBy(['username' => $form->get('name')->getViewData()]);
 
