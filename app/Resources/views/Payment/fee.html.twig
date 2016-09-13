@@ -9,6 +9,28 @@
         </div>
     </div>
     <div class="container p-t-1">
-
+        <div class="text-xs-center" id="loading">
+            <h1>Sprawdzanie Płatności Paypal</h1>
+            <i class="fa fa-spinner fa-pulse fa-4x p-y-1" aria-hidden="true"></i>
+        </div>
     </div>
+{% endblock %}
+{% block javascripts %}
+    {{ parent() }}
+    <script>
+        payment_status("{{ url("payment.status")}}","{{ token }}");
+        function payment_status(url, token) {
+            $.ajax({
+                url: url,
+                dataType: 'json',
+                data: token,
+                success: function (data) {
+
+                },
+                error: function () {
+                    console.log("Coś poszło nie tak podczas łączenia z API JestemGraczem.pl");
+                }
+            });
+        }
+    </script>
 {% endblock %}
