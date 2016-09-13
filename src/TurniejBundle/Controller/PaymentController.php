@@ -11,6 +11,17 @@ use Symfony\Component\HttpFoundation\Request;
 class PaymentController extends Controller
 {
     /**
+     * @Route("/fee/check", name="payment.check")
+     * @return \Symfony\Component\HttpFoundation\Response
+     */
+    public function successFeeAction()
+    {
+        return $this->render('Payment/fee.html.twig', [
+            // ...
+        ]);
+    }
+
+    /**
      * @Route("/fee/{id}", name="payment.fee")
      * @param $id
      * @return \Symfony\Component\HttpFoundation\RedirectResponse
@@ -19,7 +30,7 @@ class PaymentController extends Controller
     public function feeAction($id)
     {
         $em = $this->getDoctrine()->getManager();
-        $turniej = $em->getRepository('TurniejBundle:Turnieje')->find($id);
+        $turniej = $em->getRepository('TurniejBundle:Turnieje')->findOneBy(['id' => $id]);
 
         if ($turniej == NULL) {
             throw $this->createNotFoundException('Turniej nie istnieje!');
@@ -31,24 +42,25 @@ class PaymentController extends Controller
         ]);
 
         if ($fee == NULL) {
-            switch ($turniej->getPlayerType()){
-                case 0: return $this->redirectToRoute('tournament.join',['id'=>$id]);
-                case 1: return $this->redirectToRoute('tournament.joins',['id'=>$id]);
-                default: throw new \Exception('Błąd w typie graczy na turnieju!');
+            switch ($turniej->getPlayerType()) {
+                case 0:
+                    return $this->redirectToRoute('tournament.join', ['id' => $id]);
+                case 1:
+                    return $this->redirectToRoute('tournament.joins', ['id' => $id]);
+                default:
+                    throw new \Exception('Błąd w typie graczy na turnieju!');
             }
         }
 
-        if ($fee->getStatus() != 1){
-            return $this->redirectToRoute('tournament.id',['id'=>$id]);
+        if ($fee->getStatus() != 1) {
+            return $this->redirectToRoute('tournament.id', ['id' => $id]);
         }
 
-        return $this->forward('TurniejBundle:Payment:prepare', [
-            'request' => [
-                'fee' => $fee,
-                'cost' => $turniej->getCostPerTeam(),
-                'description' => 'Opłata wpisowa dla turnieju: '.$turniej->getName().'.'
-            ]
-        ]);
+        return $this->redirectToRoute('payment.prepare', [
+            'fee' => $fee,
+            'cost' => $turniej->getCostPerTeam(),
+            'description' => 'Opłata wpisowa dla turnieju: ' . $turniej->getName() . '.'
+        ], 307);
     }
 
     /**
@@ -71,8 +83,8 @@ class PaymentController extends Controller
         $payment = $storage->create();
         $payment->setNumber(uniqid());
         $payment->setCurrencyCode('PLN');
-        $payment->setTotalAmount($request->get('cost')->getViewData());
-        $payment->setDescription($request->get('description')->getViewData());
+        $payment->setTotalAmount($request->get('cost'));
+        $payment->setDescription($request->get('description'));
         $payment->setClientId($this->getUser()->getId());
         $payment->setClientEmail($this->getUser()->getEmail());
 
@@ -85,18 +97,6 @@ class PaymentController extends Controller
         );
 
         return $this->redirect($captureToken->getTargetUrl());
-    }
-
-    /**
-     * @Route("/fee/{id}/check", name="payment.check")
-     * @param $id
-     * @return \Symfony\Component\HttpFoundation\Response
-     */
-    public function successFeeAction($id)
-    {
-        return $this->render('Payment/fee.html.twig', [
-            // ...
-        ]);
     }
 
     /**
