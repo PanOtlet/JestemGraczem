@@ -14,10 +14,14 @@ class PaymentController extends Controller
      * @Route("/fee/check", name="payment.check")
      * @return \Symfony\Component\HttpFoundation\Response
      */
-    public function successFeeAction()
+    public function successFeeAction(Request $request)
     {
+        if (!($token = $request->get('payum_token'))) {
+            $token = NULL;
+        }
+
         return $this->render('Payment/fee.html.twig', [
-            // ...
+            'token' => $token
         ]);
     }
 
