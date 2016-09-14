@@ -103,7 +103,7 @@
                 <div class="row">
                     {% for vod in video %}
                         <div class="col-md-6 video">
-                            <a href="{{ url('video.id', { 'id':vod.id }) }}">
+                            <a href="{{ url('video.id', { 'id':vod.id }) }}" data-toggle="tooltip" title="{{ vod.title }}">
                                 <img class="img-responsive"
                                      src="http://img.youtube.com/vi/{{ vod.videoid }}/mqdefault.jpg"
                                      alt="{{ vod.title }}">
