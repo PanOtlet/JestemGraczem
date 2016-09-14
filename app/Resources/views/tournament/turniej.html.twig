@@ -163,7 +163,7 @@
     {{ parent() }}
     <script src="{{ asset('assets/js/bracket.js') }}"></script>
     <script>
-        {% if turniej.teams is not null %}
+        {% if turniej.fullBracket is not null %}
             Data = {{ turniej.fullBracket|raw }};
             {% if app.user and turniej.owner == app.user.id %}
                 edit('{{ url('api.bracket') }}','{{ turniej.id }}');
