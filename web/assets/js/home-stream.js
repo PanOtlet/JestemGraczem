@@ -25,20 +25,22 @@ function getTwitch(stream) {
         url: 'https://api.twitch.tv/kraken/streams/?channel=' + stream,
         dataType: 'jsonp',
         success: function (channel) {
-            if (count == 0) {
-                $('#loading').remove();
-                topStream(channel["streams"][count], 1);
-                setTimeout(function () {
-                    $('#image' + channel["streams"][count]["channel"]["name"]).addClass("stream-active");
-                }, 3000);
+            if(channel["streams"].length!=0){
+                if (count == 0) {
+                    $('#loading').remove();
+                    topStream(channel["streams"][count], 1);
+                    setTimeout(function () {
+                        $('#image' + channel["streams"][count]["channel"]["name"]).addClass("stream-active");
+                    }, 3000);
+                }
             }
-
             for (count; count < channel["streams"].length && count < limit; count++) {
                 renderBottomStreamList(channel["streams"][count]);
             }
 
             setTimeout(function () {
                 count = 4;
+                $('#loading').remove();
             }, 5000);
         }, error: function () {
             console.log("Coś poszło nie tak podczas łączenia z api twitch");
@@ -82,9 +84,11 @@ function topStream(channel, type) {
         url: 'https://api.twitch.tv/kraken/streams/?channel=' + channel,
         dataType: 'jsonp',
         success: function (channel) {
-            $('.stream-active').addClass('stream').removeClass('stream-active');
-            $('#image' + channel["streams"][0]["channel"]["name"]).addClass("stream-active");
-            topStream(channel["streams"][0], 1);
+            if(channel["streams"].length!=0){
+                $('.stream-active').addClass('stream').removeClass('stream-active');
+                $('#image' + channel["streams"][0]["channel"]["name"]).addClass("stream-active");
+                topStream(channel["streams"][0], 1);
+            }
         }, error: function () {
             console.log("Błąd z działaniem funkcji");
         }
