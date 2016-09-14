@@ -93,11 +93,13 @@
                     {% for player in entry %}
                         {% set status = 'tournament.status.' ~ player.status %}
                         {% if player.name is defined %}
-                            <p class="game">{{ player.name }} <small>{{ status|trans }}</small></p>
+                            <div class="contestants p-b-1" data-toggle="tooltip" data-placement="left" title="{{ status|trans }}">
+                                <p class="game">{{ player.name }} </p>
+                            </div>
                         {% else %}
-                            <div class="contestants p-b-1">
+                            <div class="contestants p-b-1" data-toggle="tooltip" data-placement="left" title="{{ status|trans }}">
                                 <img class="img-responsive img-circle " src="https://www.gravatar.com/avatar/{{ player.email|md5 }}?s=100" alt="{{ player.username }}">
-                                <p class="game">{{ player.username }} <small>{{ status|trans }}</small></p>
+                                <p class="game">{{ player.username }}</p>
                             </div>
                         {% endif %}
                     {% endfor %}
