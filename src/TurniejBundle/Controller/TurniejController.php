@@ -117,9 +117,6 @@ class TurniejController extends Controller
                     'tournament.other' => 0,
                 ],
             ])
-            ->add('end', CheckboxType::class, [
-                'label' => 'tournament.end'
-            ])
             ->add('save', SubmitType::class, [
                 'label' => 'save',
                 'attr' => [
@@ -135,7 +132,7 @@ class TurniejController extends Controller
             $turniej->setName($form->get('name')->getViewData());
             $turniej->setDescription($form->get('description')->getViewData());
             $turniej->setDyscyplina($form->get('dyscyplina')->getViewData());
-            $turniej->setEnd($form->get('end')->getViewData());
+            $turniej->setEnd(0);
 
             $em->flush();
 
@@ -178,13 +175,6 @@ class TurniejController extends Controller
             ->add('description', TextareaType::class, [
                 'label' => 'tournament.invite-desc'
             ])
-            ->add('playerType', ChoiceType::class, [
-                'label' => 'tournament.playerType',
-                'choices' => [
-                    'Użytkownik' => 0,
-                    'Drużyna' => 1,
-                ],
-            ])
             ->add('save', SubmitType::class, [
                 'label' => 'save'
             ])
@@ -194,7 +184,7 @@ class TurniejController extends Controller
 
         if ($form->isSubmitted() && $form->isValid()) {
 
-            switch ($form->get('playerType')->getViewData()) {
+            switch ($turniej->getPlayerType()) {
                 case 0:
                     $user = $em->getRepository('AppBundle:User')->findOneBy(['username' => $form->get('name')->getViewData()]);
 
@@ -447,15 +437,15 @@ class TurniejController extends Controller
             return $this->redirectToRoute('tournament.id', ['id' => $id]);
         }
 
-        /*
-         * @TODO: Dodać sprawdzenie, czy jest turniej na wpisowe!
-         */
-
         //Zapisanie uczestnika
         $zapis = new EntryTournament();
         $zapis->setPlayerId($this->getUser()->getId());
         $zapis->setTournamentId($id);
-        $zapis->setStatus(2);
+        if ($turniej->getCost() == 1) {
+            $zapis->setStatus(1);
+        } else {
+            $zapis->setStatus(2);
+        }
         $em->persist($zapis);
         $em->flush();
 

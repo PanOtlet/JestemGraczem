@@ -7,7 +7,8 @@
                 <div class="col-sm-8 p-b-1">
                     <div class="embed-responsive embed-responsive-16by9">
                         <iframe id="topstream" class="embed-responsive-item"
-                                src="http://player.twitch.tv/?channel=monstercat&autoplay=false&html5=true"></iframe>
+                                src="{{ url('api.mario')}}"></iframe>
+                                {#src="http://player.twitch.tv/?channel=monstercat&autoplay=false&html5=true"></iframe>#}
                     </div>
                 </div>
                 <div class="col-sm-4">
@@ -69,8 +70,16 @@
                         <span class="p-x-1 text">{{ 'button.newest.new'|trans }}<span
                                     style="color: #303030;">{{ 'button.newest.meme'|trans }}</span></span>
                     </div>
-                    <img class="img-fluid center-block video p-b-0"
-                         src="{{ asset('assets/mem/') ~ meme.url }}" alt="{{ meme.title }}">
+                    {% if meme.url | slice(-4) == '.mp4' or meme.url | slice(-5) == '.webm' %}
+                        <video controls>
+                            <source src="{{ asset('assets/mem/') ~ meme.url }}" type="video/mp4"
+                                    class="embed-responsive-item">
+                            Masz kiepską przeglądarkę! Użyj GOOGLE CHROME!
+                        </video>
+                    {% else %}
+                        <img class="img-fluid center-block video p-b-0"
+                             src="{{ asset('assets/mem/') ~ meme.url }}" alt="{{ meme.title }}">
+                    {% endif %}
                     <div class="row p-y-0 m-x-0 grey">
                         <div class="col-xs-1 p-x-0">
                             <img class="img-fluid pull-xl-left p-b-0 grey"
@@ -78,7 +87,7 @@
                         </div>
                         <div class="col-xs-10 p-l-0">
                             <p class="text-xs-left  m-b-0" style="padding-top: 0.3rem;">
-                                <a class="font-weight-bold" href="{{ url('meme.id', {'id': meme.id}) }}"
+                                <a class="font-weight-bold" href="{{ url('mem.id', {'id': meme.id}) }}"
                                    style="color: #000000;font-size: 0.9rem; text-decoration: none;">
                                     {{ 'button.comments'|trans }}
                                 </a>
@@ -91,7 +100,7 @@
                     </div>
                     <div class="btn-white p-l-1 p-y-06">{{ meme.title }}</div>
                     <div class="btn-green text-xs-center m-b-1">
-                        <a href="{{ url('meme') }}">{{ 'button.more'|trans }}</a>
+                        <a href="{{ url('mem') }}">{{ 'button.more'|trans }}</a>
                     </div>
                 {% endif %}
             </div>
@@ -103,7 +112,7 @@
                 <div class="row">
                     {% for vod in video %}
                         <div class="col-md-6 video">
-                            <a href="{{ url('video.id', { 'id':vod.id }) }}">
+                            <a href="{{ url('video.id', { 'id':vod.id }) }}" data-toggle="tooltip" title="{{ vod.title }}">
                                 <img class="img-responsive"
                                      src="http://img.youtube.com/vi/{{ vod.videoid }}/mqdefault.jpg"
                                      alt="{{ vod.title }}">
@@ -135,10 +144,11 @@
             </div>
             <div class="col-md-4">
                 <div class="g-ytsubscribe" data-channelid="UCwyKvaFQcBfJ7dCxM_uX5EQ" data-layout="full" data-count="default"></div>
+                <br>
+                <div class="g-ytsubscribe" data-channel="PanOtlet" data-layout="full" data-count="default"></div>
             </div>
             <div class="col-md-4">
                 <div class="g-page" data-href="//plus.google.com/u/4/116516903644267522146" data-layout="landscape" data-rel="publisher"></div>
-
             </div>
         </div>
     </div>

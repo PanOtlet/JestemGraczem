@@ -89,15 +89,17 @@
                 <div class="btn-white-lg dots m-b-0">
                     <span class="p-x-1 text"> {{ 'tournament.players'|trans }}</span>
                 </div>
-                <div class="grey-box p-y-1 p-l-1 m-b-1">
+                <div class="grey-box p-y-1 p-l-1 m-b-1" style="text-align: center">
                     {% for player in entry %}
                         {% set status = 'tournament.status.' ~ player.status %}
                         {% if player.name is defined %}
-                            <p class="game">{{ player.name }} <small>{{ status|trans }}</small></p>
+                            <div class="contestants p-b-1" data-toggle="tooltip" data-placement="top" title="{{ status|trans }}">
+                                <p class="game">{{ player.name }} </p>
+                            </div>
                         {% else %}
-                            <div class="contestants p-b-1">
+                            <div class="contestants p-b-1" data-toggle="tooltip" data-placement="top" title="{{ status|trans }}">
                                 <img class="img-responsive img-circle " src="https://www.gravatar.com/avatar/{{ player.email|md5 }}?s=100" alt="{{ player.username }}">
-                                <p class="game">{{ player.username }} <small>{{ status|trans }}</small></p>
+                                <p class="game">{{ player.username }}</p>
                             </div>
                         {% endif %}
                     {% endfor %}
@@ -163,10 +165,14 @@
     {{ parent() }}
     <script src="{{ asset('assets/js/bracket.js') }}"></script>
     <script>
-        //tu bedzie triger
-
-        view();
-        edit('{{ url('api.bracket') }}','{{ turniej.id }}');
+        {% if turniej.fullBracket is not null %}
+            Data = {{ turniej.fullBracket|raw }};
+            {% if app.user and turniej.owner == app.user.id %}
+                edit('{{ url('api.bracket') }}','{{ turniej.id }}');
+            {% else %}
+                view();
+            {% endif %}
+        {% endif %}
     </script>
 {% endblock %}
 

@@ -16,6 +16,14 @@ class DefaultController extends Controller
         return $this->render('ApiBundle::index.html.twig');
     }
 
+    /**
+     * @Route("/nostream", name="api.mario")
+     */
+    public function noStreamAction()
+    {
+        return $this->render(':default:fullPageMario.html.twig');
+    }
+
     public static function badRequest($json = "[]"){
         return new Response(
             $json,

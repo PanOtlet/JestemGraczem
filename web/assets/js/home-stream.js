@@ -25,26 +25,22 @@ function getTwitch(stream) {
         url: 'https://api.twitch.tv/kraken/streams/?channel=' + stream,
         dataType: 'jsonp',
         success: function (channel) {
-            // console.log(channel);
-            // console.log(channel["streams"].length);
-            if (count == 0) {
-                $('#loading').remove();
-                topStream(channel["streams"][count], 1);
-                setTimeout(function () {
-                    $('#image' + channel["streams"][count]["channel"]["name"]).addClass("stream-active");
-                }, 3000);
+            if(channel["streams"].length!=0){
+                if (count == 0) {
+                    $('#loading').remove();
+                    topStream(channel["streams"][count], 1);
+                    setTimeout(function () {
+                        $('#image' + channel["streams"][count]["channel"]["name"]).addClass("stream-active");
+                    }, 3000);
+                }
             }
-
             for (count; count < channel["streams"].length && count < limit; count++) {
                 renderBottomStreamList(channel["streams"][count]);
             }
 
-            // if (count < limit) {
-            //     //tu ma być callback do api którego jeszcze nie ma
-            //     getTwitch("bonkol,sunrisgaming,dragostas,zavadahs,mamut_sw")
-            // }
             setTimeout(function () {
                 count = 4;
+                $('#loading').remove();
             }, 5000);
         }, error: function () {
             console.log("Coś poszło nie tak podczas łączenia z api twitch");
@@ -59,7 +55,7 @@ function renderBottomStreamList(channel) {
     $("#" + name + "_status").html('ONLINE').css('font-weight', 'bold');
     $("#" + name + "_game").html(channel["game"]);
     $("#" + name + "_viewers").html(channel["viewers"]);
-    $("#" + name + "_img").html('<img onclick="topStream(\'' + name + '\',0)" class="img-responsive stream" src="https://static-cdn.jtvnw.net/previews-ttv/live_user_' + name + '-320x180.jpg" id="image' + name + '" alt="' + name + '">');
+    $("#" + name + "_img").html('<img onclick="topStream(\'' + name + '\',0)" data-toggle="tooltip" title="' + name + '" class="img-responsive stream" src="https://static-cdn.jtvnw.net/previews-ttv/live_user_' + name + '-320x180.jpg" id="image' + name + '" alt="' + name + '">');
 }
 
 function topStream(channel, type) {
@@ -88,9 +84,11 @@ function topStream(channel, type) {
         url: 'https://api.twitch.tv/kraken/streams/?channel=' + channel,
         dataType: 'jsonp',
         success: function (channel) {
-            $('.stream-active').addClass('stream').removeClass('stream-active');
-            $('#image' + channel["streams"][0]["channel"]["name"]).addClass("stream-active");
-            topStream(channel["streams"][0], 1);
+            if(channel["streams"].length!=0){
+                $('.stream-active').addClass('stream').removeClass('stream-active');
+                $('#image' + channel["streams"][0]["channel"]["name"]).addClass("stream-active");
+                topStream(channel["streams"][0], 1);
+            }
         }, error: function () {
             console.log("Błąd z działaniem funkcji");
         }

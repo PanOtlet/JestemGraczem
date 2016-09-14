@@ -238,10 +238,10 @@
                     </div>
                     <div class="col-md-8">
                         <div class="list-group mini-menu" id="meme-mm">
-                            <a href="{{ url('meme') }}" class="list-group-item">{{ 'nav.meme'|trans }}</a>
-                            <a href="{{ url('meme.all') }}"
+                            <a href="{{ url('mem') }}" class="list-group-item">{{ 'nav.meme'|trans }}</a>
+                            <a href="{{ url('mem.all') }}"
                                class="list-group-item">{{ 'button.all'|trans }}</a>
-                            <a href="{{ url('meme.add') }}" class="list-group-item">{{ 'form.add'|trans }}</a>
+                            <a href="{{ url('mem.add') }}" class="list-group-item">{{ 'form.add'|trans }}</a>
                         </div>
                         <div class="list-group mini-menu" id="video-mm">
                             <a href="{{ url('video') }}" class="list-group-item ">{{ 'nav.video'|trans }}</a>
@@ -383,7 +383,7 @@
                 <div class="modal-body">
                     <div class="row p-x-1 p-y-1">
                         <div class="col-xs-6 p-x-0">
-                            <a href="{{ url('meme') }}" type="button" class="btn btn-primary btn-lg btn-block"
+                            <a href="{{ url('mem') }}" type="button" class="btn btn-primary btn-lg btn-block"
                                style="border-radius: 0;">
                                 {{ 'nav.meme'|trans }}
                             </a>
@@ -396,9 +396,9 @@
                             </button>
                             <div class="dropdown-menu">
                                 <a class="dropdown-item"
-                                   href="{{ url('meme.all') }}">{{ 'button.waitingroom'|trans }}</a>
+                                   href="{{ url('mem.all') }}">{{ 'button.waitingroom'|trans }}</a>
                                 <div class="dropdown-divider"></div>
-                                <a class="dropdown-item" href="{{ url('meme.add') }}">{{ 'form.add'|trans }}</a>
+                                <a class="dropdown-item" href="{{ url('mem.add') }}">{{ 'form.add'|trans }}</a>
                             </div>
                         </div>
                     </div>
@@ -464,7 +464,7 @@
                     </p>
                     <div class="pre-f-p">
                         <p><a href="{{ url('stream') }}">{{ 'nav.streams'|trans }}</a></p>
-                        <p><a href="{{ url('meme') }}">{{ 'nav.meme'|trans }}</a></p>
+                        <p><a href="{{ url('mem') }}">{{ 'nav.meme'|trans }}</a></p>
                         <p><a href="{{ url('video') }}">{{ 'nav.video'|trans }}</a></p>
                     </div>
                 </div>
@@ -509,6 +509,7 @@
 
 {% block javascripts %}
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+    <script src="{{ asset('assets/js/tether.min.js') }}"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.2/js/bootstrap.min.js"
             crossorigin="anonymous"></script>
     <script async src="https://use.fontawesome.com/c0b3ee6d21.js"></script>
@@ -520,6 +521,9 @@
     {% endif %}
 
     <script type="text/javascript">
+        $(function () {
+            $('[data-toggle="tooltip"]').tooltip()
+        })
         $("#fun-a").click(function () {
             $("#games-m").hide();
             $("#turnaments-m").hide();

@@ -159,7 +159,7 @@ class Turnieje
      * @var object
      *
      * Bracket teams
-     * @ORM\Column(name="teams", type="json_array")
+     * @ORM\Column(name="teams", type="json_array", nullable=true)
      */
     private $teams;
 
@@ -167,7 +167,7 @@ class Turnieje
      * @var object
      *
      * Bracket
-     * @ORM\Column(name="bracket", type="json_array")
+     * @ORM\Column(name="bracket", type="json_array", nullable=true)
      */
     private $bracket;
 
@@ -552,6 +552,20 @@ class Turnieje
     public function getBracket()
     {
         return $this->bracket;
+    }
+
+    public function getFullBracket()
+    {
+        if ($this->getTeams() != NULL) {
+            $bracket = [
+                'teams' => $this->getTeams(),
+                'results' => $this->getBracket()
+            ];
+            return json_encode($bracket);
+        }
+
+        return null;
+
     }
 
     public function createTournament($data)

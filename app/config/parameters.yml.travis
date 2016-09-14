@@ -10,3 +10,7 @@ parameters:
     mailer_user:
     mailer_password:
     secret: 53bdbcefedb2c4410523ba2783ebeea6924a388b
+    paypal_username:  ''
+    paypal_password:  ''
+    paypal_signature: ''
+    paypal_sandbox: true

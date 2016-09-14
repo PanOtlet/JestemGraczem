@@ -2,6 +2,8 @@
 
 namespace ApiBundle\Controller;
 
+use ApiBundle\Controller\DefaultController;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Component\HttpFoundation\Request;
@@ -15,29 +17,30 @@ class TurniejController extends Controller
 {
     /**
      * @Route("/bracket", name="api.bracket")
+     * @Security("has_role('ROLE_USER')")
      * @param Request $request
      * @return Response
      */
     public function setBracketAction(Request $request)
     {
-        if (!$request->isXmlHttpRequest()){
+        if (!$request->isXmlHttpRequest() || !$request->get('id') || !$request->get('data')) {
             return \ApiBundle\Controller\DefaultController::badRequest();
         }
 
         $em = $this->getDoctrine()->getManager();
 
-        $turniej = $em->getRepository('TurniejBundle:Turnieje')->findOneBy(['id' => $request->get('id')->getViewData()]);
-//        $turniej = $em->getRepository('TurniejBundle:Turnieje')->findOneBy(['id' => 1]);
+        $turniej = $em->getRepository('TurniejBundle:Turnieje')->findOneBy([
+            'id' => $request->get('id'),
+            'owner' => $this->getUser()->getId()
+        ]);
 
-        if ($turniej == NULL || $turniej->getOwner() != $this->getUser()->getId()) {
-            return \ApiBundle\Controller\DefaultController::badRequest();
+        if ($turniej == NULL) {
+            return DefaultController::badRequest();
         }
 
-        $bracket = json_decode($request->get('Data')->getViewData(), true);
-//        $json = '{"teams":[["Team 1","Team 2"],["Team 3","Team 4"]],"results":[[[[4,6],[5,7]],[[8,9],[4,3]]]]}';
-//        $bracket = json_decode($json, true);
+        $bracket = $request->get('data');
 
-        $turniej->setBracket(json_encode($bracket['results']));
+        $turniej->setBracket($bracket['results']);
         $em->persist($turniej);
         $em->flush();
 
