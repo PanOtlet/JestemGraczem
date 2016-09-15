@@ -170,3 +170,7 @@ admin:
 ID: 'ID'
 error:
     filetype: 'Niedozwolony typ pliku!'
+payment:
+    success: 'Transakcja powiodła się'
+    error: 'Błąd w transakcji!'
+    wait: 'Transakcja oczekuje na zaksięgowanie'
