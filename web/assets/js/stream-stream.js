@@ -22,11 +22,18 @@ function getTwitch(stream,exitUrl) {
         url: 'https://api.twitch.tv/kraken/streams/?channel=' + stream,
         dataType: 'jsonp',
         success: function (channel) {
-            document.getElementById("loading").remove();
-            first(channel["streams"][0],exitUrl);
-            for (var i = 1; i < channel["streams"].length; i++) {
-                render(channel["streams"][i],exitUrl);
+            if(channel["status"]!=400){
+                if(channel["streams"].length!=0) {
+                    document.getElementById("loading").remove();
+                    first(channel["streams"][0], exitUrl);
+                    for (var i = 1; i < channel["streams"].length; i++) {
+                        render(channel["streams"][i], exitUrl);
+                    }
+                }
             }
+            setTimeout(function () {
+                $('#loading').remove();
+            }, 10000);
         }, error: function () {
             console.log("Coś poszło nie tak podczas łączenia z api twitch");
         }
