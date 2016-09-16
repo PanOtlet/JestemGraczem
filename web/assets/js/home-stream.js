@@ -1,14 +1,12 @@
 var u_twitch = "", g_url = "", g_exitUrl = "";
 var limit = 4, count = 0;
-var api = "";
 
 function getStream(url, exitUrl, apiKey) {
-    api = apiKey;
     $.ajax({
         url: url,
         dataType: 'json',
         headers: {
-            'Client-ID': api
+            'Client-ID': apiKey
         },
         success: function (stream) {
             g_url = url;
@@ -16,7 +14,7 @@ function getStream(url, exitUrl, apiKey) {
             for (var i = 0; i < stream.length; i++) {
                 u_twitch += stream[i]["twitch"] + ",";
             }
-            getTwitch(u_twitch);
+            getTwitch(u_twitch, apiKey);
         },
         error: function () {
             console.log("Coś poszło nie tak podczas łączenia z API JestemGraczem.pl");
@@ -25,12 +23,12 @@ function getStream(url, exitUrl, apiKey) {
 }
 
 
-function getTwitch(stream) {
+function getTwitch(stream, apiKey) {
     $.ajax({
         url: 'https://api.twitch.tv/kraken/streams/?channel=' + stream,
         dataType: 'jsonp',
         headers: {
-            'Client-ID': api
+            'Client-ID': apiKey
         },
         success: function (channel) {
             if(channel["status"]!=400){
@@ -44,7 +42,7 @@ function getTwitch(stream) {
                 }
             }
             for (count; count < channel["streams"].length && count < limit; count++) {
-                renderBottomStreamList(channel["streams"][count]);
+                renderBottomStreamList(channel["streams"][count], apiKey);
             }
             }
 
@@ -58,23 +56,23 @@ function getTwitch(stream) {
     });
 }
 
-function renderBottomStreamList(channel) {
+function renderBottomStreamList(channel, apiKey) {
     var name = channel["channel"]["name"];
     $("#streams-container").append('<div class="col-sm-3" id="' + name + '"><div class=""><div class="v-title" id="' + name + '_title"></div><div class="v-img" id="' + name + '_img"></div><div class="v-bottom" id="' + name + '_bottom"></div></div></div>');
     $("#" + name).addClass('danger');
     $("#" + name + "_status").html('ONLINE').css('font-weight', 'bold');
     $("#" + name + "_game").html(channel["game"]);
     $("#" + name + "_viewers").html(channel["viewers"]);
-    $("#" + name + "_img").html('<img onclick="topStream(\'' + name + '\',0)" data-toggle="tooltip" title="' + name + '" class="img-responsive stream" src="https://static-cdn.jtvnw.net/previews-ttv/live_user_' + name + '-320x180.jpg" id="image' + name + '" alt="' + name + '">');
+    $("#" + name + "_img").html('<img onclick="topStream(\'' + name + '\',0,\''+apiKey+'\')" data-toggle="tooltip" title="' + name + '" class="img-responsive stream" src="https://static-cdn.jtvnw.net/previews-ttv/live_user_' + name + '-320x180.jpg" id="image' + name + '" alt="' + name + '">');
 }
 
-function topStream(channel, type) {
+function topStream(channel, type, apiKey) {
     if (channel != null && type === 1) {
         $.ajax({
             url: g_url + "/" + channel["channel"]["name"],
             dataType: 'json',
             headers: {
-                'Client-ID': api
+                'Client-ID': apiKey
             },
             success: function (description) {
                 $('#description').hide().html(description[0]['description']).fadeIn(1000);
