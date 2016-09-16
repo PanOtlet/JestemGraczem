@@ -25,6 +25,7 @@ function getTwitch(stream) {
         url: 'https://api.twitch.tv/kraken/streams/?channel=' + stream,
         dataType: 'jsonp',
         success: function (channel) {
+            if(channel["status"]!=400){
             if(channel["streams"].length!=0){
                 if (count == 0) {
                     $('#loading').remove();
@@ -36,6 +37,7 @@ function getTwitch(stream) {
             }
             for (count; count < channel["streams"].length && count < limit; count++) {
                 renderBottomStreamList(channel["streams"][count]);
+            }
             }
 
             setTimeout(function () {
