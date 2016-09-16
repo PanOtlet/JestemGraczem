@@ -63,10 +63,16 @@ class TurniejController extends Controller
 
         $entry = $query->getResult();
 
+        $user = $em->getRepository('TurniejBundle:EntryTournament')->findOneBy([
+            'tournamentId' => $id,
+            'playerId' => $this->getUser()->getId()
+        ]);
+
         return $this->render('tournament/turniej.html.twig', [
             'color' => $this->color,
             'turniej' => $turniej,
             'entry' => $entry,
+            'user' => $user
         ]);
     }
 

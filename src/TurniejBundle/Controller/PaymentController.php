@@ -85,7 +85,9 @@ class PaymentController extends Controller
             'playerId' => $this->getUser()->getId()
         ]);
 
-        $storage = $this->get('payum')->getStorage('TurniejBundle\Entity\Payment');
+        if ($fee == NULL) {
+            $this->redirectToRoute('tournament.id', ['id' => $request->get('tournamentID')]);
+        }
 
         $id = uniqid();
 
@@ -93,11 +95,13 @@ class PaymentController extends Controller
         $em->persist($fee);
         $em->flush();
 
+        $storage = $this->get('payum')->getStorage('TurniejBundle\Entity\Payment');
         $payment = $storage->create();
+
         $payment->setNumber($id);
         $payment->setCurrencyCode('PLN');
         $payment->setTotalAmount($request->get('cost') * 100);
-        $payment->setDescription($request->get('description'));
+        $payment->setDescription($request->get('description') . ' (' . $id . ')');
         $payment->setClientId($this->getUser()->getId());
         $payment->setClientEmail($this->getUser()->getEmail());
 

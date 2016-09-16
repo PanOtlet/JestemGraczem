@@ -174,3 +174,4 @@ payment:
     success: 'Transakcja powiodła się'
     error: 'Błąd w transakcji!'
     wait: 'Transakcja oczekuje na zaksięgowanie'
+    fee: 'Opłać wpisowe'
