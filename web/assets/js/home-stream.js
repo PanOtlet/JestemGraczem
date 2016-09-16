@@ -1,10 +1,15 @@
 var u_twitch = "", g_url = "", g_exitUrl = "";
 var limit = 4, count = 0;
+var api = "";
 
-function getStream(url, exitUrl) {
+function getStream(url, exitUrl, apiKey) {
+    api = apiKey;
     $.ajax({
         url: url,
         dataType: 'json',
+        headers: {
+            'Client-ID': api
+        },
         success: function (stream) {
             g_url = url;
             g_exitUrl = exitUrl;
@@ -24,6 +29,9 @@ function getTwitch(stream) {
     $.ajax({
         url: 'https://api.twitch.tv/kraken/streams/?channel=' + stream,
         dataType: 'jsonp',
+        headers: {
+            'Client-ID': api
+        },
         success: function (channel) {
             if(channel["streams"].length!=0){
                 if (count == 0) {
@@ -63,6 +71,9 @@ function topStream(channel, type) {
         $.ajax({
             url: g_url + "/" + channel["channel"]["name"],
             dataType: 'json',
+            headers: {
+                'Client-ID': api
+            },
             success: function (description) {
                 $('#description').hide().html(description[0]['description']).fadeIn(1000);
             },
@@ -83,6 +94,9 @@ function topStream(channel, type) {
     $.ajax({
         url: 'https://api.twitch.tv/kraken/streams/?channel=' + channel,
         dataType: 'jsonp',
+        headers: {
+            'Client-ID': api
+        },
         success: function (channel) {
             if(channel["streams"].length!=0){
                 $('.stream-active').addClass('stream').removeClass('stream-active');
