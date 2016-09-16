@@ -71,7 +71,7 @@
                                     style="color: #303030;">{{ 'button.newest.meme'|trans }}</span></span>
                     </div>
                     {% if meme.url | slice(-4) == '.mp4' or meme.url | slice(-5) == '.webm' %}
-                        <div class="embed-responsive embed-responsive-16by9 shadow">
+                        <div class="embed-responsive embed-responsive-16by9">
                             <video controls>
                                 <source src="{{ asset('assets/mem/') ~ meme.url }}" type="video/mp4"
                                         class="embed-responsive-item">
