@@ -45,8 +45,15 @@ class EntryTournament
      * 4 - Wypisany
      * @ORM\Column(name="status", type="integer")
      */
-    private $status;
+    private $status = 0;
 
+    /**
+     * @var string
+     *
+     * Payment id
+     * @ORM\Column(name="paymentId", type="string", nullable=true)
+     */
+    private $paymentId;
 
     /**
      * Get id
@@ -128,6 +135,22 @@ class EntryTournament
     public function getStatus()
     {
         return $this->status;
+    }
+
+    /**
+     * @param string $paymentId
+     */
+    public function setPaymentId($paymentId)
+    {
+        $this->paymentId = $paymentId;
+    }
+
+    /**
+     * @return string
+     */
+    public function getPaymentId()
+    {
+        return $this->paymentId;
     }
 }
 

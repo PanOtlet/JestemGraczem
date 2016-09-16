@@ -10,8 +10,11 @@ use Symfony\Component\HttpFoundation\Request;
 
 class PaymentController extends Controller
 {
+    private $gatewayName = 'paypal';
+
     /**
      * @Route("/fee/check", name="payment.check")
+     * @param Request $request
      * @return \Symfony\Component\HttpFoundation\Response
      */
     public function successFeeAction(Request $request)
@@ -61,7 +64,7 @@ class PaymentController extends Controller
         }
 
         return $this->redirectToRoute('payment.prepare', [
-            'fee' => $fee,
+            'tournamentID' => $fee->getTournamentId(),
             'cost' => $turniej->getCostPerTeam(),
             'description' => 'Opłata wpisowa dla turnieju: ' . $turniej->getName() . '.'
         ], 307);
@@ -74,28 +77,38 @@ class PaymentController extends Controller
      */
     public function prepareAction(Request $request)
     {
-        $em = $this->getDoctrine()->getManager();
-//        $fee = $em->getRepository('TurniejBundle:EntryTournament')->findOneBy([
-//            'tournamentId' => $request->get('fee')->tournamentId(),
-//            'playerId' => $this->getUser()->getId()
-//        ]);
 
-        $gatewayName = 'paypal';
+        $em = $this->getDoctrine()->getManager();
+
+        $fee = $em->getRepository('TurniejBundle:EntryTournament')->findOneBy([
+            'tournamentId' => $request->get('tournamentID'),
+            'playerId' => $this->getUser()->getId()
+        ]);
+
+        if ($fee == NULL) {
+            $this->redirectToRoute('tournament.id', ['id' => $request->get('tournamentID')]);
+        }
+
+        $id = uniqid();
+
+        $fee->setPaymentId($id);
+        $em->persist($fee);
+        $em->flush();
 
         $storage = $this->get('payum')->getStorage('TurniejBundle\Entity\Payment');
-
         $payment = $storage->create();
-        $payment->setNumber(uniqid());
+
+        $payment->setNumber($id);
         $payment->setCurrencyCode('PLN');
-        $payment->setTotalAmount($request->get('cost'));
-        $payment->setDescription($request->get('description'));
+        $payment->setTotalAmount($request->get('cost') * 100);
+        $payment->setDescription($request->get('description') . ' (' . $id . ')');
         $payment->setClientId($this->getUser()->getId());
         $payment->setClientEmail($this->getUser()->getEmail());
 
         $storage->update($payment);
 
         $captureToken = $this->get('payum')->getTokenFactory()->createCaptureToken(
-            $gatewayName,
+            $this->gatewayName,
             $payment,
             'payment.status'
         );
@@ -124,7 +137,43 @@ class PaymentController extends Controller
         $gateway->execute($status = new GetHumanStatus($token));
         $payment = $status->getFirstModel();
 
-        return new JsonResponse([
+        switch ($status->getValue()) {
+            case 'canceled':
+            case 'suspended':
+            case 'failed':
+            case 'unknown':
+                $message = 'payment.error';
+                break;
+            case 'authorized':
+            case 'captured':
+                $em = $this->getDoctrine()->getManager();
+                $fee = $em->getRepository('TurniejBundle:EntryTournament')->findOneBy([
+                    'paymentId' => $payment->getDetails()['INVNUM']
+                ]);
+
+                $fee->setStatus(2);
+                $em->persist($fee);
+                $em->flush();
+                $this->get('payum')->getHttpRequestVerifier()->invalidate($token);
+                $message = 'payment.success';
+                break;
+            default:
+                $message = 'payment.waiting';
+                break;
+        }
+
+//        return new JsonResponse([
+//            'status' => $status->getValue(),
+//            'payment' => [
+//                'total_amount' => $payment->getTotalAmount(),
+//                'currency_code' => $payment->getCurrencyCode(),
+//                'details' => $payment->getDetails(),
+//            ],
+//        ]);
+
+        return $this->render('Payment/fee.html.twig', [
+            'message' => $message,
+            'token' => $token,
             'status' => $status->getValue(),
             'payment' => [
                 'total_amount' => $payment->getTotalAmount(),

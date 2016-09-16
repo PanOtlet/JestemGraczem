@@ -9,28 +9,21 @@
         </div>
     </div>
     <div class="container p-t-1">
-        <div class="text-xs-center" id="loading">
-            <h1>Sprawdzanie Płatności Paypal</h1>
-            <i class="fa fa-spinner fa-pulse fa-4x p-y-1" aria-hidden="true"></i>
-        </div>
+        {% if message=='payment.success'%}
+            <div class="bg-success p-l-1 p-y-06 text-md-center">
+                <h4><i class="fa fa-check-circle" aria-hidden="true"></i> {{ message|trans }}</h4>
+            </div>
+        {% elseif message=='payment.waiting' %}
+            <div class="bg-warning p-l-1 p-y-06 text-md-center">
+                <h4><i class="fa fa-exclamation-triangle" aria-hidden="true"></i> {{ message|trans }}</h4>
+            </div>
+        {% elseif message=='payment.error' %}
+            <div class="bg-danger p-l-1 p-y-06 text-md-center">
+                <h4><i class="fa fa-times-circle" aria-hidden="true"></i> {{ message|trans }}</h4>
+            </div>
+        {% endif %}
+        <h4>Kwota: {{ payment.total_amount/100 }}{{ payment.currency_code }}</h4>
+        <h4>W razie problemów z płatnością lub rekamacjami prosimy o kontakt na adres: support@jestemgraczem.pl</h4>
+        <p>Token tranzakcji: {{ token.hash }}</p>
     </div>
-{% endblock %}
-{% block javascripts %}
-    {{ parent() }}
-    <script>
-        payment_status("{{ url("payment.status")}}","{{ token }}");
-        function payment_status(url, token) {
-            $.ajax({
-                url: url,
-                dataType: 'json',
-                data: token,
-                success: function (data) {
-
-                },
-                error: function () {
-                    console.log("Coś poszło nie tak podczas łączenia z API JestemGraczem.pl");
-                }
-            });
-        }
-    </script>
 {% endblock %}

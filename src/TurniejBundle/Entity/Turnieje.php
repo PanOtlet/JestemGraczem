@@ -100,10 +100,10 @@ class Turnieje
     private $prizePool;
 
     /**
-     * @var int
+     * @var float
      *
      * Koszt wpisowego na drużynę/gracza
-     * @ORM\Column(name="costPerTeam", type="integer")
+     * @ORM\Column(name="costPerTeam", type="float")
      */
     private $costPerTeam;
 
