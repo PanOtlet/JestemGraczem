@@ -128,7 +128,7 @@ tournament:
     wot: 'World of Tanks'
     other: 'Inne'
     players: 'Uczestnicy'
-    costPerTeam: 'Koszt na drużynę'
+    costPerTeam: 'Cena wpisowego'
     costOrg: 'Procent dla organizatora'
     status:
         0: 'Zaproszony'
