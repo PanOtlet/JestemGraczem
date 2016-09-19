@@ -40,7 +40,7 @@ security:
         - { path: ^/resetting, role: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/.*/add, role: ROLE_USER }
         - { path: ^/status*, role: ROLE_USER }
-#        - { path: ^/turniej/dolacz/*, role: ROLE_USER }
-#        - { path: ^/turniej/.*/edit, role: ROLE_USER }
-#        - { path: ^/turniej/.*/invite*, role: ROLE_USER }
-        - { path: ^/turniej/.*/*, role: ROLE_ADMIN }
+        - { path: ^/turniej/dolacz/*, role: ROLE_USER }
+        - { path: ^/turniej/.*/edit, role: ROLE_USER }
+        - { path: ^/turniej/.*/invite*, role: ROLE_USER }
+#        - { path: ^/turniej/.*/*, role: ROLE_ADMIN }

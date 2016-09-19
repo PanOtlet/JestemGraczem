@@ -4,9 +4,7 @@ namespace TurniejBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
-use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
-use Symfony\Component\Form\Extension\Core\Type\RadioType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\HttpFoundation\Request;
@@ -561,15 +559,15 @@ class TurniejController extends Controller
                 return $this->redirectToRoute('tournament.id', ['id' => $id]);
             }
 
-            /*
-             * @TODO: Dodać sprawdzenie, czy jest turniej na wpisowe!
-             */
-
             //Zapisanie uczestnika
             $zapis = new EntryTournament();
             $zapis->setPlayerId($this->getUser()->getId());
             $zapis->setTournamentId($id);
-            $zapis->setStatus(2);
+            if ($turniej->getCost() == 1) {
+                $zapis->setStatus(1);
+            } else {
+                $zapis->setStatus(2);
+            }
             $em->persist($zapis);
             $em->flush();
 

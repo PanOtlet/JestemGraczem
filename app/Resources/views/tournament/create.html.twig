@@ -16,7 +16,7 @@
                 {{ form_label(form.name) }}
                 {{ form_errors(form.name) }}
                 {{ form_widget(form.name) }}
-                <hr>
+
                 {{ form_label(form.type) }}
                 {{ form_errors(form.type) }}
                 {{ form_widget(form.type) }}
@@ -32,6 +32,14 @@
                 {{ form_label(form.cost) }}
                 {{ form_errors(form.cost) }}
                 {{ form_widget(form.cost) }}
+
+                {{ form_label(form.costPerTeam) }}
+                {{ form_errors(form.costPerTeam) }}
+                {{ form_widget(form.costPerTeam) }}
+
+                {{ form_label(form.costOrg) }}
+                {{ form_errors(form.costOrg) }}
+                {{ form_widget(form.costOrg) }}
                 <hr>
             </div>
             <div class="col-md-6 text-xs-left form-turnament">
@@ -51,6 +59,7 @@
                 {{ form_errors(form.description) }}
                 {{ form_widget(form.description) }}
                 <hr>
+
 
                 {{ form_end(form) }}
             </div>
