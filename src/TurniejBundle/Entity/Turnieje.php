@@ -92,10 +92,10 @@ class Turnieje
     private $countTeam;
 
     /**
-     * @var int
+     * @var float
      *
      * Pula nagród
-     * @ORM\Column(name="prizePool", type="integer")
+     * @ORM\Column(name="prizePool", type="float")
      */
     private $prizePool;
 
@@ -108,10 +108,10 @@ class Turnieje
     private $costPerTeam;
 
     /**
-     * @var int
+     * @var float
      *
      * Koszty organizacyjne
-     * @ORM\Column(name="costOrg", type="smallint")
+     * @ORM\Column(name="costOrg", type="float")
      */
     private $costOrg;
 
@@ -577,9 +577,10 @@ class Turnieje
         $this->setType($data['type']);
         $this->setCost($data['cost']);
         $this->setCountTeam($data['countTeam']);
-        $this->setPrizePool(0);
-        $this->setCostPerTeam(0);
-        $this->setCostOrg(0);
+        $this->setCostPerTeam($data['costPerTeam']);
+        $this->setCostOrg($data['costOrg']);
+        $prizePool = ($data['countTeam']*$data['costPerTeam']*0.8)*(1.0-($data['costOrg']/100));
+        $this->setPrizePool($prizePool);
         $this->setDataStart($data['dataStart']);
         $this->setDataStop($data['dataStop']);
         $this->setPlayerType($data['playerType']);

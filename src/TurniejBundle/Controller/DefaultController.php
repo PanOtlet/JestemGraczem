@@ -311,6 +311,8 @@ class DefaultController extends Controller
                 'dyscyplina' => $form->get('game')->getViewData(),
                 'type' => $form->get('type')->getViewData(),
                 'cost' => $form->get('cost')->getViewData(),
+                'costPerTeam' => $form->get('costPerTeam')->getViewData(),
+                'costOrg' => $form->get('costOrg')->getViewData(),
                 'countTeam' => $form->get('countTeam')->getViewData(),
                 'dataStart' => $form->get('dateStart')->getData(),
                 'dataStop' => $form->get('dateStop')->getData(),
