@@ -25,8 +25,8 @@ function getStream(url, exitUrl, apiKey) {
 
 function getTwitch(stream, apiKey) {
     $.ajax({
+        type: 'GET',
         url: 'https://api.twitch.tv/kraken/streams/?channel=' + stream,
-        dataType: 'jsonp',
         headers: {
             'Client-ID': apiKey
         },
@@ -70,7 +70,7 @@ function topStream(channel, type, apiKey) {
     if (channel != null && type === 1) {
         $.ajax({
             url: g_url + "/" + channel["channel"]["name"],
-            dataType: 'json',
+            type: 'GET',
             headers: {
                 'Client-ID': apiKey
             },
@@ -92,10 +92,10 @@ function topStream(channel, type, apiKey) {
         return 0;
     }
     $.ajax({
+        type: 'GET',
         url: 'https://api.twitch.tv/kraken/streams/?channel=' + channel,
-        dataType: 'jsonp',
         headers: {
-            'Client-ID': api
+            'Client-ID': apiKey
         },
         success: function (channel) {
             if(channel["streams"].length!=0){

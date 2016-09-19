@@ -1,6 +1,6 @@
 var u_twitch = "";
 
-function getStream(url, exitUrl) {
+function getStream(url, exitUrl,apiKey) {
     $.ajax({
         url: url,
         dataType: 'json',
@@ -8,7 +8,7 @@ function getStream(url, exitUrl) {
             for (var i = 0; i < stream.length; i++) {
                 u_twitch += stream[i]["twitch"] + ",";
             }
-            getTwitch(u_twitch, exitUrl);
+            getTwitch(u_twitch, exitUrl,apiKey);
         },
         error: function () {
             console.log("Coś poszło nie tak podczas łączenia z api jestemgraczem");
@@ -17,11 +17,15 @@ function getStream(url, exitUrl) {
     });
 }
 
-function getTwitch(stream,exitUrl) {
+function getTwitch(stream,exitUrl,apiKey) {
     $.ajax({
+        type: 'GET',
         url: 'https://api.twitch.tv/kraken/streams/?channel=' + stream,
-        dataType: 'jsonp',
+        headers: {
+            'Client-ID': apiKey
+        },
         success: function (channel) {
+            console.log(channel);
             if(channel["status"]!=400){
                 if(channel["streams"].length!=0) {
                     document.getElementById("loading").remove();
