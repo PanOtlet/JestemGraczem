@@ -6,6 +6,8 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
+use Symfony\Component\Form\Extension\Core\Type\NumberType;
+use Symfony\Component\Form\Extension\Core\Type\PercentType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
@@ -263,6 +265,16 @@ class DefaultController extends Controller
                     'tournament.free' => 0,
                     'tournament.fee' => 1,
                 ],
+            ])
+            ->add('costPerTeam', NumberType::class, [
+                'label' => 'tournament.costPerTeam',
+                'required' => true,
+                'data' => 1.0,
+            ])
+            ->add('costOrg', PercentType::class, [
+                'label' => 'tournament.costOrg',
+                'required' => true,
+                'data' => 0.1,
             ])
             ->add('countTeam', ChoiceType::class, [
                 'label' => 'tournament.countTeam',

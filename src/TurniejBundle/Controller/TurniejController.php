@@ -561,15 +561,15 @@ class TurniejController extends Controller
                 return $this->redirectToRoute('tournament.id', ['id' => $id]);
             }
 
-            /*
-             * @TODO: Dodać sprawdzenie, czy jest turniej na wpisowe!
-             */
-
             //Zapisanie uczestnika
             $zapis = new EntryTournament();
             $zapis->setPlayerId($this->getUser()->getId());
             $zapis->setTournamentId($id);
-            $zapis->setStatus(2);
+            if ($turniej->getCost() == 1) {
+                $zapis->setStatus(1);
+            } else {
+                $zapis->setStatus(2);
+            }
             $em->persist($zapis);
             $em->flush();
 
