@@ -91,7 +91,12 @@
                     <p class="game">{{ 'tournament.other'|trans }}</p>
                 </div>
             {% endif %}
-
+            {% if turniej.cost !=0 %}
+                <div class="btn-white-lp dots m-b-1">
+                    <span class="p-x-1 text">{{ 'tournament.cost'|trans }}: <span
+                                style="color: #303030;">{{ turniej.cost }} zł</span></span>
+                </div>
+            {% endif %}
             <div class="btn-white-lg dots m-b-0">
                 <span class="p-x-1 text"> {{ 'tournament.players'|trans }}</span>
             </div>
@@ -116,11 +121,7 @@
             </div>
 
 
-            {% if turniej.cost !=0 %}
-                <div class="grey-box p-y-1 p-l-1 m-b-1">
-                    <p>{{ 'tournament.cost'|trans }}: {{ turniej.cost }}</p>
-                </div>
-            {% endif %}
+
         </div>
         <div class="col-md-8">
             <div class="container m-b-1">
