@@ -317,6 +317,11 @@ footer {
 
 }
 
+.control-label{
+    margin-bottom: 0;
+    margin-top: 0.5rem;
+}
+
 .top{
     padding-top: 10px;
     padding-bottom: 20px;
