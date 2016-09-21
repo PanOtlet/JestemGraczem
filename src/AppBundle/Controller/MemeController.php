@@ -36,8 +36,19 @@ class MemeController extends Controller
             ->addMeta('name', 'description', 'Najlepsze memy tylko u nas! ' . $mem->getTitle())
             ->addMeta('property', 'og:title', $mem->getTitle())
             ->addMeta('property', 'og:description', 'Najlepsze memy tylko u nas! ' . $mem->getTitle())
-            ->addMeta('property', 'og:image', $this->get('router')->generate('homepage', [], UrlGeneratorInterface::ABSOLUTE_URL) . '/assets/mem/' . $mem->getFile())
             ->addMeta('property', 'og:url', $this->get('router')->generate('mem.id', ['id' => $id], UrlGeneratorInterface::ABSOLUTE_URL));
+
+        $format = substr($mem->getUrl(), -4);
+        if ($format != '.mp4' && $format != 'webm'){
+            $seo->addMeta(
+                'property',
+                'og:image',
+                $this->get('router')->generate(
+                    'homepage',
+                    [],
+                    UrlGeneratorInterface::ABSOLUTE_URL) . 'assets/mem/' . $mem->getUrl()
+            );
+        }
 
         return $this->render('meme/mem.html.twig', [
             'color' => $this->color,
@@ -188,7 +199,7 @@ class MemeController extends Controller
 
         $promoted = $em->createQueryBuilder('e')
             ->where('e.promoted = true')
-            ->orderBy('e.id','DESC')
+            ->orderBy('e.id', 'DESC')
             ->setMaxResults(10)
             ->getQuery()
             ->getResult();
