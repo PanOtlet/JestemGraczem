@@ -182,7 +182,7 @@ class VideoController extends Controller
         $seo->setTitle($video->getTitle() . ' :: JestemGraczem.pl')
             ->addMeta('name', 'description', 'Film ' . $video->getTitle() . ' dostępny jest na platformie JestemGraczem.pl bez ograniczeń!')
             ->addMeta('property', 'og:title', $video->getTitle())
-            ->addMeta('property', 'og:video', 'https://www.youtube.com/v/' . $video->getVideoid())
+            ->addMeta('property', 'og:image', 'http://img.youtube.com/vi/' . $video->getVideoid() . '/hqdefault.jpg')
             ->addMeta('property', 'og:description', 'Film ' . $video->getTitle() . ' dostępny jest na platformie JestemGraczem.pl bez ograniczeń!')
             ->addMeta('property', 'og:url', $this->get('router')->generate('video.id', ['id' => $id], UrlGeneratorInterface::ABSOLUTE_URL));
 
