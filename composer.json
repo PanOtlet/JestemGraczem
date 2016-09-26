@@ -9,17 +9,15 @@
           "name": "Paweł Otlewski",
           "email": "otlet@protonmail.com",
           "homepage": "http://otlet.pl",
-          "role": "PHP Developer"
+          "role": "Backend & FrontEnd Developer"
         },
         {
           "name": "Jacek Bątkowski",
-          "email": "jmbatkowski@gmail.com",
           "homepage": "http://23games.pl",
-          "role": "FrontEnd Developer"
+          "role": "exFrontEnd Developer"
         },
         {
           "name": "Rafał Chudoba",
-          "email": "grafik@hotprintz.co.uk",
           "role": "Graphic Designer"
         }
     ],
