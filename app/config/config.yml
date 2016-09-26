@@ -214,6 +214,16 @@ easy_admin:
                     - { property: 'pass', label: 'turniej.pass'}
                     - { property: 'members', label: 'turniej.members'}
                     - { property: 'descriptions', label: 'turniej.opis'}
+        servers:
+            label: admin.servers
+            class: GameBundle\Entity\Servers
+            list:
+                fields:
+                    - 'id'
+                    - { property: 'game', label: 'servers.game'}
+                    - { property: 'name', label: 'servers.name'}
+                    - { property: 'ip', label: 'servers.ip'}
+                    - { property: 'descriptions', label: 'servers.opis'}
         teams:
             label: admin.team
             class: TurniejBundle\Entity\Team
