@@ -45,7 +45,7 @@ class DefaultController extends Controller
             ->setParameter('playerId', $this->getUser()->getId())
             ->orderBy('p.id', 'DESC')
             ->leftJoin("TurniejBundle:Turnieje", "t", "WITH", "t.id=p.tournamentId")
-            ->select('t.id, t.name, p.status')
+            ->select('t.id, t.name, p.status, t.dyscyplina, t.description')
             ->getQuery();
 
         $my = $query->getResult();
