@@ -302,8 +302,7 @@ class DefaultController extends Controller
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            var_dump($form->get('costPerTeam')->getViewData());
-            die();
+
             $data = new Turnieje();
             $datas = [
                 'name' => $form->get('name')->getViewData(),
@@ -312,7 +311,7 @@ class DefaultController extends Controller
                 'dyscyplina' => $form->get('game')->getViewData(),
                 'type' => $form->get('type')->getViewData(),
                 'cost' => $form->get('cost')->getViewData(),
-                'costPerTeam' => $form->get('costPerTeam')->getViewData(),
+                'costPerTeam' => str_replace(",", ".", $form->get('costPerTeam')->getViewData()),
                 'costOrg' => $form->get('costOrg')->getViewData(),
                 'countTeam' => $form->get('countTeam')->getViewData(),
                 'dataStart' => $form->get('dateStart')->getData(),
@@ -330,7 +329,7 @@ class DefaultController extends Controller
                 'success',
                 'Dodano turniej!'
             );
-            return $this->redirectToRoute('tournament.id',[
+            return $this->redirectToRoute('tournament.id', [
                 'id' => $data->getId(),
             ]);
         }
