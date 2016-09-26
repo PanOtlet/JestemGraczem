@@ -11,69 +11,112 @@
     <div class="container p-t-1">
 
         <div class="btn-white-lg dots m-b-1">
-                    <span class="p-x-1 text">Wybierz <span
-                                style="color: #303030;">grę</span></span>
+            <span class="p-x-1 text">Wybierz <span style="color: #303030;">grę</span></span>
         </div>
         <div class="row m-b-2">
             <div class="col-md-4">
                 <a href="{{ url('tournament.open') }}?sort=1">
-                    <img class="img-fluid" data-toggle="tooltip" title="{{ 'tournament.csgo'|trans }}" src="{{ asset('assets/img/csgo.png') }}">
+                    <img class="img-fluid" data-toggle="tooltip" title="{{ 'tournament.csgo'|trans }}"
+                         src="{{ asset('assets/img/csgo.png') }}">
                 </a>
             </div>
             <div class="col-md-4">
                 <a href="{{ url('tournament.open') }}?sort=2">
-                    <img class="img-fluid" data-toggle="tooltip"  title="{{ 'tournament.lol'|trans }}" src="{{ asset('assets/img/lol.png') }}">
+                    <img class="img-fluid" data-toggle="tooltip" title="{{ 'tournament.lol'|trans }}"
+                         src="{{ asset('assets/img/lol.png') }}">
                 </a>
             </div>
             <div class="col-md-4">
                 <a href="{{ url('tournament.open') }}?sort=3">
-                    <img class="img-fluid" data-toggle="tooltip"  title="{{ 'tournament.hots'|trans }}" src="{{ asset('assets/img/hots.png') }}">
+                    <img class="img-fluid" data-toggle="tooltip" title="{{ 'tournament.hots'|trans }}"
+                         src="{{ asset('assets/img/hots.png') }}">
                 </a>
             </div>
         </div>
         <div class="row m-b-2">
             <div class="col-md-4">
                 <a href="{{ url('tournament.open') }}?sort=4">
-                    <img class="img-fluid" data-toggle="tooltip"  title="{{ 'tournament.sc2'|trans }}" src="{{ asset('assets/img/starcraft.png') }}">
+                    <img class="img-fluid" data-toggle="tooltip" title="{{ 'tournament.sc2'|trans }}"
+                         src="{{ asset('assets/img/starcraft.png') }}">
                 </a>
             </div>
             <div class="col-md-4">
                 <a href="{{ url('tournament.open') }}?sort=5">
-                    <img class="img-fluid" data-toggle="tooltip"  title="{{ 'tournament.hs'|trans }}" src="{{ asset('assets/img/hs.png') }}">
+                    <img class="img-fluid" data-toggle="tooltip" title="{{ 'tournament.hs'|trans }}"
+                         src="{{ asset('assets/img/hs.png') }}">
                 </a>
             </div>
             <div class="col-md-4">
                 <a href="{{ url('tournament.open') }}?sort=6">
-                    <img class="img-fluid" data-toggle="tooltip"  title="{{ 'tournament.dota2'|trans }}" src="{{ asset('assets/img/dota.png') }}">
+                    <img class="img-fluid" data-toggle="tooltip" title="{{ 'tournament.dota2'|trans }}"
+                         src="{{ asset('assets/img/dota.png') }}">
                 </a>
             </div>
         </div>
         <div class="row m-b-2">
             <div class="col-md-4">
                 <a href="{{ url('tournament.open') }}?sort=7">
-                    <img class="img-fluid" data-toggle="tooltip"  title="{{ 'tournament.wot'|trans }}" src="{{ asset('assets/img/wot.png') }}">
+                    <img class="img-fluid" data-toggle="tooltip" title="{{ 'tournament.wot'|trans }}"
+                         src="{{ asset('assets/img/wot.png') }}">
                 </a>
             </div>
             <div class="col-md-4">
                 <a href="{{ url('tournament.open') }}?sort=0">
-                    <img class="img-fluid" data-toggle="tooltip"  title="{{ 'tournament.other'|trans }}" src="{{ asset('assets/img/rg.png') }}">
+                    <img class="img-fluid" data-toggle="tooltip" title="{{ 'tournament.other'|trans }}"
+                         src="{{ asset('assets/img/rg.png') }}">
                 </a>
             </div>
         </div>
 
-        {#<div class="jumbotron t-title">#}
-            {#<h1>Wkrótce!</h1>#}
-            {#<p>Obecnie trwają prace, by przygotować system turniejowy! Liczymy, że cierpliwość się Wam opłaci :)</p>#}
-            {##}
-            {#{% for turniej in promo %}#}
-                {#{{ turniej.name }} |#}
-            {#{% endfor %}#}
-            {#{% for turniej in my %}#}
-                {#{{ turniej.id }} - {{ turniej.name }} - {{ turniej.status }}<br>#}
-            {#{% endfor %}#}
-        {#</div>#}
+        {% if promo %}
+            <div class="btn-white-lg dots m-b-1">
+                <span class="p-x-1 text">Promowane <span style="color: #303030;">turnieje</span></span>
+            </div>
+            <div class="row">
+                {% for turniej in promo %}
+                    <a href="{{ url('tournament.id',{'id': turniej.id}) }}">
+                        <div class="col-md-3">
+                            <img class="img-fluid"
+                                 src="{{ asset('assets/img/shield/'~turniej.dyscyplina~'.png') }}">
 
+                            <div class="col-md-12 p-x-0">
+                                <div class="btn-white-lp dots m-b-0" style="border-left: 0px; border-right: 0px">
+                                    <span class="p-x-1 text">{{ turniej.name }}</span>
+                                </div>
+                                <div class="grey-box p-y-1 p-l-1 m-b-1 ">
+                                    <p>{{ turniej.description | slice(0,300) }}</p>
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                {% endfor %}
+            </div>
+            <br>
+        {% endif %}
+        {% if my %}
+            <div class="btn-white-lg dots m-b-1">
+                <span class="p-x-1 text">Moje <span style="color: #303030;">turnieje</span></span>
+            </div>
+            <div class="row">
+                {% for turniej in my %}
+                    <a href="{{ url('tournament.id',{'id': turniej.id}) }}">
+                        <div class="col-md-3">
+                            <img class="img-fluid"
+                                 src="{{ asset('assets/img/shield/'~turniej.dyscyplina~'.png') }}">
+
+                            <div class="col-md-12 p-x-0">
+                                <div class="btn-white-lp dots m-b-0" style="border-left: 0px; border-right: 0px">
+                                    <span class="p-x-1 text">{{ turniej.name }}</span>
+                                </div>
+                                <div class="grey-box p-y-1 p-l-1 m-b-1 ">
+                                    <p>{{ turniej.description | slice(0,300) }}</p>
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                {% endfor %}
+            </div>
+        {% endif %}
 
     </div>
-
 {% endblock %}

@@ -12,48 +12,54 @@
         <div class="col-md-8">
             <div class="btn-group" role="group" aria-label="Basic example">
 
-                <div class="btn btn-sort-label">Sortuj według: </div>
-                <button type="button" class="btn btn-sort dropdown-toggle " data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <div class="btn btn-sort-label">Sortuj według:</div>
+                <button type="button" class="btn btn-sort dropdown-toggle " data-toggle="dropdown" aria-haspopup="true"
+                        aria-expanded="false">
                     Gra
                 </button>
                 <div class="dropdown-menu">
-                    <a class="dropdown-item" href="{{ app.request.baseUrl }}{{ app.request.pathInfo }}?sort=1">{{ 'tournament.csgo'|trans }}</a>
-                    <a class="dropdown-item" href="{{ app.request.baseUrl }}{{ app.request.pathInfo }}?sort=2">{{ 'tournament.lol'|trans }}</a>
-                    <a class="dropdown-item" href="{{ app.request.baseUrl }}{{ app.request.pathInfo }}?sort=3">{{ 'tournament.hots'|trans }}</a>
-                    <a class="dropdown-item" href="{{ app.request.baseUrl }}{{ app.request.pathInfo }}?sort=4">{{ 'tournament.sc2'|trans }}</a>
-                    <a class="dropdown-item" href="{{ app.request.baseUrl }}{{ app.request.pathInfo }}?sort=5">{{ 'tournament.hs'|trans }}</a>
-                    <a class="dropdown-item" href="{{ app.request.baseUrl }}{{ app.request.pathInfo }}?sort=6">{{ 'tournament.dota2'|trans }}</a>
-                    <a class="dropdown-item" href="{{ app.request.baseUrl }}{{ app.request.pathInfo }}?sort=7">{{ 'tournament.wot'|trans }}</a>
+                    <a class="dropdown-item"
+                       href="{{ app.request.baseUrl }}{{ app.request.pathInfo }}?sort=1">{{ 'tournament.csgo'|trans }}</a>
+                    <a class="dropdown-item"
+                       href="{{ app.request.baseUrl }}{{ app.request.pathInfo }}?sort=2">{{ 'tournament.lol'|trans }}</a>
+                    <a class="dropdown-item"
+                       href="{{ app.request.baseUrl }}{{ app.request.pathInfo }}?sort=3">{{ 'tournament.hots'|trans }}</a>
+                    <a class="dropdown-item"
+                       href="{{ app.request.baseUrl }}{{ app.request.pathInfo }}?sort=4">{{ 'tournament.sc2'|trans }}</a>
+                    <a class="dropdown-item"
+                       href="{{ app.request.baseUrl }}{{ app.request.pathInfo }}?sort=5">{{ 'tournament.hs'|trans }}</a>
+                    <a class="dropdown-item"
+                       href="{{ app.request.baseUrl }}{{ app.request.pathInfo }}?sort=6">{{ 'tournament.dota2'|trans }}</a>
+                    <a class="dropdown-item"
+                       href="{{ app.request.baseUrl }}{{ app.request.pathInfo }}?sort=7">{{ 'tournament.wot'|trans }}</a>
                     <div class="dropdown-divider"></div>
-                    <a class="dropdown-item" href="{{ app.request.baseUrl }}{{ app.request.pathInfo }}?sort=0">{{ 'tournament.other'|trans }}</a>
+                    <a class="dropdown-item"
+                       href="{{ app.request.baseUrl }}{{ app.request.pathInfo }}?sort=0">{{ 'tournament.other'|trans }}</a>
                 </div>
             </div>
 
-
-
-
-
-                <div class="container">
-                    <div class="row m-t-1">
-                        {% for turniej in turnieje %}
+            <div class="container">
+                <div class="row m-t-1">
+                    {% for turniej in turnieje %}
                         <a href="{{ url('tournament.id',{'id': turniej.id}) }}">
                             <div class="col-md-6 ">
-                                <img class="img-fluid" src="{{ asset('assets/img/shield/'~turniej.dyscyplina~'.png') }}">
+                                <img class="img-fluid"
+                                     src="{{ asset('assets/img/shield/'~turniej.dyscyplina~'.png') }}">
 
-                            <div class="col-md-12 p-x-0">
-                                <div class="btn-white-lp dots m-b-0" style="border-left: 0px; border-right: 0px">
-                                    <span class="p-x-1 text">{{ turniej.name }}</span>
-                                </div>
-                                <div class="grey-box p-y-1 p-l-1 m-b-1 ">
-                                    <p>{{ turniej.description | slice(0,300) }}</p>
+                                <div class="col-md-12 p-x-0">
+                                    <div class="btn-white-lp dots m-b-0" style="border-left: 0px; border-right: 0px">
+                                        <span class="p-x-1 text">{{ turniej.name }}</span>
+                                    </div>
+                                    <div class="grey-box p-y-1 p-l-1 m-b-1 ">
+                                        <p>{{ turniej.description | slice(0,300) }}</p>
 
+                                    </div>
                                 </div>
-                            </div>
                             </div>
                         </a>
-                        {% endfor %}
-                    </div>
+                    {% endfor %}
                 </div>
+            </div>
 
         </div>
         <div class="col-md-4">
