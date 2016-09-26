@@ -269,7 +269,7 @@ class DefaultController extends Controller
             ->add('costPerTeam', NumberType::class, [
                 'label' => 'tournament.costPerTeam',
                 'required' => true,
-                'data' => 1.0,
+                'data' => 2.5,
             ])
             ->add('costOrg', PercentType::class, [
                 'label' => 'tournament.costOrg',
@@ -302,7 +302,8 @@ class DefaultController extends Controller
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-
+            var_dump($form->get('costPerTeam')->getViewData());
+            die();
             $data = new Turnieje();
             $datas = [
                 'name' => $form->get('name')->getViewData(),
@@ -329,7 +330,9 @@ class DefaultController extends Controller
                 'success',
                 'Dodano turniej!'
             );
-            return $this->redirectToRoute('tournament');
+            return $this->redirectToRoute('tournament.id',[
+                'id' => $data->getId(),
+            ]);
         }
 
         return $this->render('tournament/create.html.twig', [

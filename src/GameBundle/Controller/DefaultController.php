@@ -16,8 +16,17 @@ class DefaultController extends Controller
      */
     public function indexAction()
     {
+        $seo = $this->container->get('sonata.seo.page');
+        $seo->setTitle('Centrum Gracza :: JestemGraczem.pl')
+            ->addMeta('name', 'description', "Centrum każdego gracza! Newsy, serwery gier, promocje!")
+            ->addMeta('property', 'og:title', 'Centrum Gracza :: JestemGraczem.pl')
+            ->addMeta('property', 'og:url', $this->get('router')->generate('centrum', [], UrlGeneratorInterface::ABSOLUTE_URL));
+
+        $servers = $this->getDoctrine()->getRepository('GameBundle:Servers')->findAll();
+
         return $this->render('gameCenter/index.html.twig', [
             'color' => GameBundle::getColor(),
+            'servers' => $servers,
             'games' => [
                 [
                     'title' => 'Promocje na gry',
