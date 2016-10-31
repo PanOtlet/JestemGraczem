@@ -20,16 +20,22 @@ class StreamController extends Controller
     {
         $em = $this->getDoctrine()->getRepository('AppBundle:User');
 
-        $stream = $em->createQueryBuilder('p')
+        $beampro = $em->createQueryBuilder('p')
+            ->select('p.username', 'p.beampro', 'p.partner', 'p.description')
+            ->where('p.beampro IS NOT NULL')
+            ->orderBy('p.partner', 'DESC')
+            ->getQuery()
+            ->getResult();
+
+        $twitch = $em->createQueryBuilder('p')
             ->select('p.username', 'p.twitch', 'p.partner', 'p.description')
             ->where('p.twitch IS NOT NULL')
             ->orderBy('p.partner', 'DESC')
             ->getQuery()
             ->getResult();
 
-        if ($stream == NULL) {
+        if ($twitch == NULL && $beampro == NULL) {
             return new Response(
-//                "{name:NULL,status:-1,message:'ERROR 404 - Streamów nie znaleziono!'}",
                 "[]",
                 Response::HTTP_OK,
                 ['content-type' => 'application/json']
@@ -47,8 +53,13 @@ class StreamController extends Controller
 
         $serializer = new Serializer($normalizers, $encoders);
 
+        $response = [
+            'beampro' => $beampro,
+            'twitch' => $twitch
+        ];
+
         return new Response(
-            $serializer->serialize($stream, 'json'),
+            $serializer->serialize($twitch, 'json'),
             Response::HTTP_OK,
             ['content-type' => 'application/json']
         );
