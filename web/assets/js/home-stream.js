@@ -5,9 +5,6 @@ function getStream(url, exitUrl, apiKey) {
     $.ajax({
         url: url,
         dataType: 'json',
-        headers: {
-            'Client-ID': apiKey
-        },
         success: function (stream) {
             g_url = url;
             g_exitUrl = exitUrl;
@@ -22,7 +19,6 @@ function getStream(url, exitUrl, apiKey) {
     });
 }
 
-
 function getTwitch(stream, apiKey) {
     $.ajax({
         type: 'GET',
@@ -31,19 +27,19 @@ function getTwitch(stream, apiKey) {
             'Client-ID': apiKey
         },
         success: function (channel) {
-            if(channel["status"]!=400){
-            if(channel["streams"].length!=0){
-                if (count == 0) {
-                    $('#loading').remove();
-                    topStream(channel["streams"][count], 1);
-                    setTimeout(function () {
-                        $('#image' + channel["streams"][count]["channel"]["name"]).addClass("stream-active");
-                    }, 3000);
+            if (channel["status"] != 400) {
+                if (channel["streams"].length != 0) {
+                    if (count == 0) {
+                        $('#loading').remove();
+                        topStream(channel["streams"][count], 1);
+                        setTimeout(function () {
+                            $('#image' + channel["streams"][count]["channel"]["name"]).addClass("stream-active");
+                        }, 3000);
+                    }
                 }
-            }
-            for (count; count < channel["streams"].length && count < limit; count++) {
-                renderBottomStreamList(channel["streams"][count], apiKey);
-            }
+                for (count; count < channel["streams"].length && count < limit; count++) {
+                    renderBottomStreamList(channel["streams"][count], apiKey);
+                }
             }
 
             setTimeout(function () {
@@ -63,7 +59,7 @@ function renderBottomStreamList(channel, apiKey) {
     $("#" + name + "_status").html('ONLINE').css('font-weight', 'bold');
     $("#" + name + "_game").html(channel["game"]);
     $("#" + name + "_viewers").html(channel["viewers"]);
-    $("#" + name + "_img").html('<img onclick="topStream(\'' + name + '\',0,\''+apiKey+'\')" data-toggle="tooltip" title="' + name + '" class="img-responsive stream" src="https://static-cdn.jtvnw.net/previews-ttv/live_user_' + name + '-320x180.jpg" id="image' + name + '" alt="' + name + '">');
+    $("#" + name + "_img").html('<img onclick="topStream(\'' + name + '\',0,\'' + apiKey + '\')" data-toggle="tooltip" title="' + name + '" class="img-responsive stream" src="https://static-cdn.jtvnw.net/previews-ttv/live_user_' + name + '-320x180.jpg" id="image' + name + '" alt="' + name + '">');
 }
 
 function topStream(channel, type, apiKey) {
@@ -98,7 +94,7 @@ function topStream(channel, type, apiKey) {
             'Client-ID': apiKey
         },
         success: function (channel) {
-            if(channel["streams"].length!=0){
+            if (channel["streams"].length != 0) {
                 $('.stream-active').addClass('stream').removeClass('stream-active');
                 $('#image' + channel["streams"][0]["channel"]["name"]).addClass("stream-active");
                 topStream(channel["streams"][0], 1);
@@ -108,3 +104,21 @@ function topStream(channel, type, apiKey) {
         }
     });
 }
+
+var homeStream = {
+    twitchStreamers: "",
+    limit: 4,
+    count: 0,
+    getStream: function(url, exitUrl, apiKey){
+        $.ajax({
+            url: url,
+            dataType: 'json',
+            success: function (stream) {
+                console.log(stream);
+            },
+            error: function () {
+                console.log("Coś poszło nie tak podczas łączenia z API JestemGraczem.pl");
+            }
+        });
+    }
+};
