@@ -1,58 +1,23 @@
-function Stream(url,apiKey) {
+function Stream(url, apiKey) {
 
     this.url = url;
     this.apiKey = apiKey;
 
-    this.twitchList = {};
-    this.beamList = {};
-
-    this.twitchNameList = "";
+    this.list = [];
+    this.beamList = [];
+    this.twitchList = "";
 
     this.streams = 0;
 
-    this.setTwitchList = function (list) {
-        this.twitchList = list;
-    };
-
-    this.setBeamList = function (list) {
-        this.beamList = list;
-    };
-
-    this.getTwitchStatus = function () {
-        for (var i = 0; i < this.twitchList.length; i++) {
-            this.twitchNameList += this.twitchList[i]["twitch"] + ",";
-        }
-        $.ajax({
-            type: 'GET',
-            url: 'https://api.twitch.tv/kraken/streams/?channel=' + stream,
-            headers: {
-                'Client-ID': this.apiKey
-            },
-            success: function (channel) {
-                if (channel["status"] != 400) {
-                    if (channel["streams"].length != 0) {
-                        if (count == 0) {
-                            $('#loading').remove();
-                            topStream(channel["streams"][count], 1);
-                            setTimeout(function () {
-                                $('#image' + channel["streams"][count]["channel"]["name"]).addClass("stream-active");
-                            }, 3000);
-                        }
-                    }
-                    for (count; count < channel["streams"].length && count < limit; count++) {
-                        renderBottomStreamList(channel["streams"][count], apiKey);
-                    }
-                }
-
-                setTimeout(function () {
-                    count = 4;
-                    $('#loading').remove();
-                }, 5000);
-            }, error: function () {
-                console.log("Coś poszło nie tak podczas łączenia z api twitch");
-            }
-        });
-    };
+    function sorter(first, second)
+    {
+        if (first['viewers'] == second['viewers'])
+            return 0;
+        if (first['viewers'] < second['viewers'])
+            return -1;
+        else
+            return 1;
+    }
 
     this.getStreamerList = function () {
         var info = false;
@@ -70,8 +35,51 @@ function Stream(url,apiKey) {
         return info;
     };
 
+    this.createBeamActiveList = function () {
+        var beamList = [];
+        for (var i = 0; i < this.list.length; i++) {
+            if (this.list[i]['beampro'] != null)
+                $.ajax({
+                    type: 'GET',
+                    url: 'https://beam.pro/api/v1/channels/' + this.list[i]['beampro'],
+                    success: function (channel) {
+                        if (channel['online'] == true)
+                            beamList.push({
+                                'viewers': channel['viewersCurrent'],
+                                'name': channel['token'],
+                                'url': 'https://beam.pro/embed/player/' + channel['token']
+                            });
+                    },
+                    error: function () {
+                        console.log("Api Beam się zjebało!");
+                    },
+                    async: false
+                });
+        }
+        beamList.sort(sorter);
+        return beamList;
+    };
+
+    this.createTwitchActiveList = function () {
+        for (var i = 0; i < this.twitchList.length; i++) {
+            this.twitchNameList += this.twitchList[i]["twitch"] + ",";
+        }
+        $.ajax({
+            type: 'GET',
+            url: 'https://api.twitch.tv/kraken/streams/?channel=' + this.twitchNameList,
+            headers: {
+                'Client-ID': this.apiKey
+            },
+            success: function (channel) {
+                // this.beamList.push(channel['token']);
+            },
+            error: function () {
+                console.log("Api Twitch się zjebało!");
+            }
+        });
+    };
+
     this.generateMainVideos = function (data) {
-        console.log('WIN')
     };
 
     this.start = function () {
@@ -82,10 +90,8 @@ function Stream(url,apiKey) {
             return false;
         }
 
-        this.setTwitchList(this.list['twitch']);
-        this.setBeamList(this.list['beampro']);
-
-
+        this.beamList = this.createBeamActiveList();
+        // this.createTwitchActiveList();
 
     };
 }
