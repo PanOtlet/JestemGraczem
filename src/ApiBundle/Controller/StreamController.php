@@ -20,21 +20,15 @@ class StreamController extends Controller
     {
         $em = $this->getDoctrine()->getRepository('AppBundle:User');
 
-        $beampro = $em->createQueryBuilder('p')
-            ->select('p.username', 'p.beampro', 'p.partner', 'p.description')
-            ->where('p.beampro IS NOT NULL')
-            ->orderBy('p.partner', 'DESC')
-            ->getQuery()
-            ->getResult();
-
-        $twitch = $em->createQueryBuilder('p')
-            ->select('p.username', 'p.twitch', 'p.partner', 'p.description')
+        $response = $em->createQueryBuilder('p')
+            ->select('p.username', 'p.twitch', 'p.beampro', 'p.partner', 'p.description')
             ->where('p.twitch IS NOT NULL')
+            ->orWhere('p.beampro IS NOT NULL')
             ->orderBy('p.partner', 'DESC')
             ->getQuery()
             ->getResult();
 
-        if ($twitch == NULL && $beampro == NULL) {
+        if (!$response) {
             return new Response(
                 "[]",
                 Response::HTTP_OK,
@@ -53,14 +47,8 @@ class StreamController extends Controller
 
         $serializer = new Serializer($normalizers, $encoders);
 
-        $response = [
-            'beampro' => $beampro,
-            'twitch' => $twitch
-        ];
-
         return new Response(
             $serializer->serialize($response, 'json'),
-//            $serializer->serialize($twitch, 'json'),
             Response::HTTP_OK,
             ['content-type' => 'application/json']
         );
