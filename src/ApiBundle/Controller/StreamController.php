@@ -59,7 +59,8 @@ class StreamController extends Controller
         ];
 
         return new Response(
-            $serializer->serialize($twitch, 'json'),
+            $serializer->serialize($response, 'json'),
+//            $serializer->serialize($twitch, 'json'),
             Response::HTTP_OK,
             ['content-type' => 'application/json']
         );
