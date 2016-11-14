@@ -24,7 +24,7 @@ class StreamController extends Controller
             ->select('p.username', 'p.twitch', 'p.beampro', 'p.partner', 'p.description')
             ->where('p.twitch IS NOT NULL')
             ->orWhere('p.beampro IS NOT NULL')
-            ->orderBy('p.partner', 'DESC')
+            ->andWhere('p.partner = 1')
             ->getQuery()
             ->getResult();
 

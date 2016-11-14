@@ -9,8 +9,7 @@ function Stream(url, apiKey) {
 
     this.streams = 0;
 
-    function sorter(first, second)
-    {
+    function sorter(first, second) {
         if (first['viewers'] == second['viewers'])
             return 0;
         if (first['viewers'] < second['viewers'])
@@ -51,7 +50,7 @@ function Stream(url, apiKey) {
                             });
                     },
                     error: function () {
-                        console.log("Api Beam się zjebało!");
+                        console.log("Error with Beam.pro API!");
                     },
                     async: false
                 });
@@ -61,9 +60,12 @@ function Stream(url, apiKey) {
     };
 
     this.createTwitchActiveList = function () {
-        for (var i = 0; i < this.twitchList.length; i++) {
-            this.twitchNameList += this.twitchList[i]["twitch"] + ",";
+        for (var i = 0; i < this.list.length; i++) {
+            this.twitchNameList += this.list[i]["twitch"] + ",";
         }
+
+        var twitchList = [];
+
         $.ajax({
             type: 'GET',
             url: 'https://api.twitch.tv/kraken/streams/?channel=' + this.twitchNameList,
@@ -71,27 +73,47 @@ function Stream(url, apiKey) {
                 'Client-ID': this.apiKey
             },
             success: function (channel) {
-                // this.beamList.push(channel['token']);
+                console.log(channel["status"]);
+                // for (var i = 0; i < channel.streams; i++)
+                //     // console.log(channel.streams);
+                //     twitchList.push({
+                //         'viewers': channel['streams'][i]['viewers'],
+                //         'name': channel['streams'][i]['channel']['display_name'],
+                //         'url': 'http://player.twitch.tv/?channel=' + channel['streams'][i]['channel']['name']
+                //     })
             },
             error: function () {
-                console.log("Api Twitch się zjebało!");
-            }
+                console.log("Error with Twitch API!");
+            },
+            async: false
         });
+        return twitchList;
     };
 
     this.generateMainVideos = function (data) {
+        for (var i = 0; i < data['beam'].lenght; i++){
+
+        }
     };
 
     this.start = function () {
         this.list = this.getStreamerList();
 
         if (this.list === false) {
-            console.log("Błąd z pobraniem listy streamerów!");
+            console.log("Error with JGApp API!");
             return false;
         }
 
         this.beamList = this.createBeamActiveList();
-        // this.createTwitchActiveList();
+        // this.twitchList = this.createTwitchActiveList();
 
+        var data = {
+            'beam': this.beamList,
+            // 'twitch': this.twitchList
+        };
+
+        console.log(data);
+
+        this.generateMainVideos(data)
     };
 }
