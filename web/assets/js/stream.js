@@ -68,8 +68,8 @@ function Stream(url, twitchApiKey) {
                     url: 'https://beam.pro/api/v1/channels/' + this.list[i]['beampro'],
                     success: function (channel) {
                         if (channel['online'] == true) {
-                            // var dupa = channel['type']["name"] === 'null' ? channel['type']['name'] : 'Nie ustalono';
                             beamList.push({
+                                'platform': 'beam',
                                 'viewers': channel['viewersCurrent'],
                                 'name': channel['token'],
                                 'url': 'https://beam.pro/embed/player/' + channel['token'],
@@ -109,6 +109,7 @@ function Stream(url, twitchApiKey) {
             success: function (channel) {
                 for (var i = 0; i < streamCount; i++)
                     twitchList.push({
+                        'platform': 'twitch',
                         'viewers': channel['streams'][i]['viewers'],
                         'name': channel['streams'][i]['channel']['display_name'],
                         'url': 'http://player.twitch.tv/?channel=' + channel['streams'][i]['channel']['name'],
@@ -130,7 +131,7 @@ function Stream(url, twitchApiKey) {
      * @param array
      */
     this.renderTopStream = function (array) {
-        if (typeof array !== 'object'){
+        if (typeof array !== 'object') {
             array = array.replace(/\\"/g, '"');
             array = JSON.parse(array);
         }
@@ -148,15 +149,15 @@ function Stream(url, twitchApiKey) {
      * @param array
      */
     this.renderBottomStream = function (array) {
-        console.log('generuję ' + array['name']);
-        $("#streams-container").append('<div class="col-sm-3" id="' + array["name"] + '"><div class=""><div class="v-title" id="' + array["name"] + '_title"></div><div class="v-img" id="' + array["name"] + '_img"></div><div class="v-bottom" id="' + array["name"] + '_bottom"></div></div></div>');
-        $("#" + array["name"]).addClass('danger');
-        $("#" + array["name"] + "_status").html('ONLINE').css('font-weight', 'bold');
-        $("#" + array["name"] + "_game").html(array["game"]);
-        $("#" + array["name"] + "_viewers").html(array["viewers"]);
+        var name = array['name'] + "_" + array['platform'];
+        $("#streams-container").append('<div class="col-sm-3" id="' + name + '"><div class=""><div class="v-title" id="' + name + '_title"></div><div class="v-img" id="' + name + '_img"></div><div class="v-bottom" id="' + name + '_bottom"></div></div></div>');
+        $("#" + name).addClass('danger');
+        $("#" + name + "_status").html('ONLINE').css('font-weight', 'bold');
+        $("#" + name + "_game").html(array["game"]);
+        $("#" + name + "_viewers").html(array["viewers"]);
         var json = JSON.stringify(array);
         json = json.replace(/"/g, '\\"');
-        $("#" + array["name"] + "_img").html("<img onclick='stream.renderTopStream(\"" + json + "\")' data-toggle='tooltip' title='" + array['name'] + "' class='img-responsive stream' src='" + array["image"] + "' id='image_" + array['name'] + "' alt='" + array['name'] + "'>");
+        $("#" + name + "_img").html("<img onclick='stream.renderTopStream(\"" + json + "\")' data-toggle='tooltip' title='" + name + "' class='img-responsive stream' src='" + array['image'] + "' id='image_" + name + "' alt='" + name + "'>");
     };
 
     /**
@@ -211,6 +212,6 @@ function Stream(url, twitchApiKey) {
             'twitch': this.twitchList
         };
 
-        this.generateMainVideos(this.fullData)
+        this.generateMainVideos(this.fullData);
     };
 }
