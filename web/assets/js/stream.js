@@ -74,8 +74,7 @@ function Stream(url, twitchApiKey) {
                                 'name': channel['token'],
                                 'url': 'https://beam.pro/embed/player/' + channel['token'],
                                 'title': channel['name'],
-                                'game': 'Dupa',
-                                'image': channel['thumbnail']['url']
+                                'image': channel['thumbnail']['url'] === 'null' ? '#' : channel['thumbnail']['url']
                             });
                         }
                     },
@@ -114,7 +113,6 @@ function Stream(url, twitchApiKey) {
                         'name': channel['streams'][i]['channel']['display_name'],
                         'url': 'http://player.twitch.tv/?channel=' + channel['streams'][i]['channel']['name'],
                         'title': channel['streams'][i]['channel']['status'],
-                        'game': channel['streams'][i]['channel']['game'],
                         'image': channel['streams'][i]['preview']['medium']
                     })
             },
