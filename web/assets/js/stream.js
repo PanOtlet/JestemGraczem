@@ -2,15 +2,18 @@
  * Generator streamów na stronie
  * @constructor
  * @param {string} url - Adres URL do API pobierającego dane o użyszkodnikach
- * @param {string} apiKey - Klucz API do streamów na Twitch
+ * @param {string} twitchApiKey - Klucz API do streamów na Twitch
  */
-function Stream(url, apiKey) {
+function Stream(url, twitchApiKey) {
 
     this.url = url;
-    this.apiKey = apiKey;
+    this.apiKey = twitchApiKey;
+
+    this.fullData = {};
 
     this.list = [];
     this.beamList = [];
+
     this.twitchList = "";
     this.twitchNameList = '';
 
@@ -64,7 +67,7 @@ function Stream(url, apiKey) {
                     type: 'GET',
                     url: 'https://beam.pro/api/v1/channels/' + this.list[i]['beampro'],
                     success: function (channel) {
-                        if (channel['online'] == true){
+                        if (channel['online'] == true) {
                             // var dupa = channel['type']["name"] === 'null' ? channel['type']['name'] : 'Nie ustalono';
                             beamList.push({
                                 'viewers': channel['viewersCurrent'],
@@ -96,7 +99,7 @@ function Stream(url, apiKey) {
         }
 
         var twitchList = [];
-        stream = this.streams;
+        var streamCount = this.streams;
         $.ajax({
             type: 'GET',
             url: 'https://api.twitch.tv/kraken/streams?channel=' + this.twitchNameList,
@@ -104,7 +107,7 @@ function Stream(url, apiKey) {
                 'Client-ID': this.apiKey
             },
             success: function (channel) {
-                for (var i = 0; i < stream ; i++)
+                for (var i = 0; i < streamCount; i++)
                     twitchList.push({
                         'viewers': channel['streams'][i]['viewers'],
                         'name': channel['streams'][i]['channel']['display_name'],
@@ -122,10 +125,28 @@ function Stream(url, apiKey) {
         return twitchList;
     };
 
+    /**
+     * Funkcja odpowiedzialna za render głównego streamu
+     * @param array
+     */
     this.renderTopStream = function (array) {
-
+        if (typeof array !== 'object'){
+            array = array.replace(/\\"/g, '"');
+            array = JSON.parse(array);
+        }
+        $('#topstream').hide().attr('src', array['url']).fadeIn(1000);
+        $('#viewers').hide().html(array["viewers"]).fadeIn(1000);
+        $('#link').hide().html("www.twitch.tv/" + array['name']).fadeIn(1000);
+        $('#display_name').hide().html(array['name']).fadeIn(1000);
+        // $('#profile').attr('href', g_exitUrl + "/" + channel["channel"]["name"]);
+        $('#avatar').hide().attr('src', array['image']).fadeIn(1000);
+        $('#game').hide().attr('src', array['image']).fadeIn(1000);
     };
 
+    /**
+     * Funkcja odpowiedzialna za rendering miniatur na stronie głównej
+     * @param array
+     */
     this.renderBottomStream = function (array) {
         console.log('generuję ' + array['name']);
         $("#streams-container").append('<div class="col-sm-3" id="' + array["name"] + '"><div class=""><div class="v-title" id="' + array["name"] + '_title"></div><div class="v-img" id="' + array["name"] + '_img"></div><div class="v-bottom" id="' + array["name"] + '_bottom"></div></div></div>');
@@ -133,7 +154,9 @@ function Stream(url, apiKey) {
         $("#" + array["name"] + "_status").html('ONLINE').css('font-weight', 'bold');
         $("#" + array["name"] + "_game").html(array["game"]);
         $("#" + array["name"] + "_viewers").html(array["viewers"]);
-        $("#" + array["name"] + "_img").html('<img onclick="stream.renderTopStream(\'' + JSON.stringify(array) + '\')" data-toggle="tooltip" title="' + array["name"] + '" class="img-responsive stream" src="' + array["image"] + '" id="image_' + array["name"] + '" alt="' + array["name"] + '">');
+        var json = JSON.stringify(array);
+        json = json.replace(/"/g, '\\"');
+        $("#" + array["name"] + "_img").html("<img onclick='stream.renderTopStream(\"" + json + "\")' data-toggle='tooltip' title='" + array['name'] + "' class='img-responsive stream' src='" + array["image"] + "' id='image_" + array['name'] + "' alt='" + array['name'] + "'>");
     };
 
     /**
@@ -145,6 +168,7 @@ function Stream(url, apiKey) {
 
         if (data.beam.length < 5) {
             lenght = data.beam.length;
+            this.renderTopStream(data.beam[0]);
         } else {
             lenght = 4;
         }
@@ -152,6 +176,10 @@ function Stream(url, apiKey) {
         for (var i = 0; i < lenght; i++) {
             this.renderBottomStream(data.beam[i]);
             this.streams--;
+        }
+
+        if (this.streams == 0) {
+            this.renderTopStream(data.twitch[0]);
         }
 
         if (this.streams > 0) {
@@ -178,11 +206,11 @@ function Stream(url, apiKey) {
         this.beamList = this.createBeamActiveList();
         this.twitchList = this.createTwitchActiveList();
 
-        var data = {
+        this.fullData = {
             'beam': this.beamList,
             'twitch': this.twitchList
         };
 
-        this.generateMainVideos(data)
+        this.generateMainVideos(this.fullData)
     };
 }
