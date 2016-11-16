@@ -55,26 +55,6 @@ function Stream(url, twitchApiKey) {
     };
 
     /**
-     * Funkcja pobierająca JSON z wewnętrznego API
-     * @returns {boolean}
-     */
-    this.getFullStreamerList = function () {
-        var info = false;
-        $.ajax({
-            url: this.url,
-            dataType: 'json',
-            success: function (stream) {
-                info = stream
-            },
-            error: function () {
-                info = false
-            },
-            async: false
-        });
-        return info;
-    };
-
-    /**
      * Funkcja sprawdzająca, czy użytkownik streamujący na Beam.pro jest aktualnie online i zwraca tablicę zaraz
      * po próbie posortowania jej według ilości widzów
      * @returns {Array}
@@ -100,7 +80,7 @@ function Stream(url, twitchApiKey) {
                         }
                     },
                     error: function () {
-                        console.log("Error with Beam.pro API!");
+                        console.error("Error with Beam.pro API!");
                     },
                     async: false
                 });
@@ -139,7 +119,7 @@ function Stream(url, twitchApiKey) {
                     })
             },
             error: function () {
-                console.log("Error with Twitch API!");
+                console.error("Error with Twitch API!");
             },
             async: false
         });
@@ -253,7 +233,7 @@ function Stream(url, twitchApiKey) {
         this.list = this.getStreamerList();
 
         if (this.list === false) {
-            console.log("Error with JGApp API!");
+            console.error("Error with JGApp API!");
             return false;
         }
 
@@ -273,10 +253,10 @@ function Stream(url, twitchApiKey) {
      * @returns {boolean}
      */
     this.startStreamList = function () {
-        this.list = this.getFullStreamerList();
+        this.list = this.getStreamerList();
 
         if (this.list === false) {
-            console.log("Error with JGApp API!");
+            console.error("Error with JGApp API!");
             return false;
         }
 
