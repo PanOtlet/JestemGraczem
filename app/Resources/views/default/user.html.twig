@@ -23,9 +23,6 @@
                 <div class="btn-white p-y-06 text-ta text-xs-center m-b-0">
                     {{ user.username }}
                 </div>
-                {#<div class="grey-box p-y-1 p-l-1 m-b-1">#}
-                {#lorep ipsum#}
-                {#</div>#}
 
                 <div class="btn-white-lg dots m-b-0">
                     <span class="p-x-1 text"><i class="fa fa-video-camera"
@@ -88,17 +85,6 @@
                 <div class="grey-box p-y-1 p-l-1 m-b-1">
                     <p>{{ user.description }}</p>
                 </div>
-
-
-                {#<div class="btn-white-lp dots m-b-0">#}
-                    {#<span class="p-x-1 text">#}
-                        {#<i class="fa fa-users" aria-hidden="true"></i> {{ 'button.my.my'|trans }}#}
-                        {#<span style="color: #303030;">{{ 'button.my.teams'|trans }}</span>#}
-                    {#</span>#}
-                {#</div>#}
-                {#<div class="grey-box p-y-1 p-l-1 m-b-1">#}
-                    {#lorep ipsum#}
-                {#</div>#}
             </div>
             <div class="col-md-8">
                 {% if user.twitch %}
@@ -128,7 +114,8 @@
                 </div>
                 {% if video %}
                     <div class="btn-white-lg dots">
-                    <span class="p-x-1 text"><i class="fa fa-video-camera" aria-hidden="true"></i> {{ 'button.my.my'|trans }}
+                    <span class="p-x-1 text"><i class="fa fa-video-camera"
+                                                aria-hidden="true"></i> {{ 'button.my.my'|trans }}
                         <span style="color: #303030;">{{ 'button.newest.video'|trans }}</span>
                     </span>
                     </div>

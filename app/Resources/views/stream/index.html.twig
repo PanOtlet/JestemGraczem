@@ -31,7 +31,6 @@
     <script>
         var stream = new Stream('{{ url("api.stream.all") }}', 'dd80eugsisvxdq2h689e6m8e3tqqzuw');
         stream.startStreamList();
-        {#getStream('{{ url("api.stream.all") }}','{{ url('stream.id') }}','dd80eugsisvxdq2h689e6m8e3tqqzuw');#}
     </script>
 
 {% endblock %}
