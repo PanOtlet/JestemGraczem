@@ -6,8 +6,6 @@
         {% if team.logo is empty %}
             <img class="img-fluid img-bd center-block" src="{{ asset('assets/img/bg_defoult.png') }}">
         {% else %}
-                {#jeszcze nie zaimplementowane#}
-            {#<img class="img-fluid img-bd center-block" src="{{ asset(team.webPath) }}">#}
             <img class="img-fluid img-bd center-block" src="{{ asset('assets/img/bg_defoult.png') }}">
         {% endif %}
     </div>
@@ -48,9 +46,6 @@
                 <div class="btn-white p-y-06 text-ta text-xs-center m-b-0">
                     <span style="color: #303030;">Tag: </span>{{ team.tag }}
                 </div>
-                {#<div class="grey-box p-y-1 p-l-1 m-b-1">#}
-                {#siew siew#}
-                {#</div>#}
                 <div class="btn-white-lp dots m-b-0">
                     <span class="p-x-1 text">{{ 'button.my.short'|trans }}<span
                                 style="color: #303030;">{{ 'button.my.desc'|trans }}</span></span>
@@ -69,21 +64,12 @@
                 {% if divisions %}
                     {% for division in divisions %}
                         <div class="container-fluid">
-
-                            {#{% if app.user and team.owner == app.user.id %}#}
-                            {#<div class="btn-white-lp dots m-b-0">#}
-                            {#<span class="p-x-1 text">#}
-                            {#<i class="fa fa-users" aria-hidden="true"></i>#}
-                            {#<span style="color: #303030;">{{ division.tag }}</span>: <span style="color: #cccccc;">{{ division.name }}</span>#}
-                            {#</span>#}
-                            {#{% else %}#}
                             <div class="btn-white-lp dots m-b-0">
                                     <span class="p-x-1 text">
                                     <i class="fa fa-users" aria-hidden="true"></i>
                                         <a href="{{ url('team.join.tag',{'tag':division.tag}) }}">{{ 'team.join'|trans }}</a> <span
                                                 style="color: #cccccc;">{{ division.name }}</span>
                                 </span>
-                                {#{% endif %}#}
                             </div>
                             <div class="row m-t-1">
                                 {% if m8 %}
@@ -103,21 +89,6 @@
                                     <h1>Brak Członków :( Smutek.jpg</h1>
                                 {% endif %}
                             </div>
-
-                            {#<div class="teams">#}
-                            {#<div class="t-img">#}
-                            {#<a href="{{ url('division',{'id': division.id}) }}">#}
-                            {#<img src="{{ asset('assets/img/lol_50.png') }}" class="img-responsive">#}
-                            {#</a>#}
-                            {#</div>#}
-                            {#<div class="t-title">#}
-                            {#<a href="{{ url('division',{'id': division.id}) }}">#}
-                            {#<h3>#}
-                            {#{{ division.name }}#}
-                            {#</h3>#}
-                            {#</a>#}
-                            {#</div>#}
-                            {#</div>#}
                         </div>
                     {% endfor %}
                 {% else %}

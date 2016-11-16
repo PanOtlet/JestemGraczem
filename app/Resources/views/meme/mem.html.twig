@@ -22,16 +22,17 @@
                         </h3>
                     </div>
                     {% if mem.url | slice(-4) == '.mp4' or mem.url | slice(-5) == '.webm' %}
-                    <div class="embed-responsive embed-responsive-16by9 shadow">
-                        <video controls>
-                            <source src="{{ asset('assets/mem/') ~ mem.url }}" type="video/mp4" class="embed-responsive-item">
-                            Masz kiepską przeglądarkę! Użyj GOOGLE CHROME!
-                        </video>
-                    </div>
+                        <div class="embed-responsive embed-responsive-16by9 shadow">
+                            <video controls>
+                                <source src="{{ asset('assets/mem/') ~ mem.url }}" type="video/mp4"
+                                        class="embed-responsive-item">
+                                Masz kiepską przeglądarkę! Użyj GOOGLE CHROME!
+                            </video>
+                        </div>
                     {% else %}
-                    <div class="m-img">
-                        <img src="{{ asset('assets/mem/') ~ mem.url }}" alt="" class="img-responsive">
-                    </div>
+                        <div class="m-img">
+                            <img src="{{ asset('assets/mem/') ~ mem.url }}" alt="" class="img-responsive">
+                        </div>
                     {% endif %}
                     <div class="m-bottom">
                         <div class="fb-like" data-href="{{ url('mem.id',{'id': mem.id}) }}"

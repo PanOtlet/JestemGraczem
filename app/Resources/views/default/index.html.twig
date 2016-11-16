@@ -8,7 +8,7 @@
                     <div class="embed-responsive embed-responsive-16by9">
                         <iframe id="topstream" class="embed-responsive-item"
                                 {#src="{{ url('api.mario')}}"></iframe>#}
-                                src="http://player.twitch.tv/?channel=&autoplay=false&html5=true"></iframe>
+                                src="https://beam.pro/embed/player/otlet"></iframe>
                     </div>
                 </div>
                 <div class="col-sm-4">
@@ -114,7 +114,8 @@
                 <div class="row">
                     {% for vod in video %}
                         <div class="col-md-6 video">
-                            <a href="{{ url('video.id', { 'id':vod.id }) }}" data-toggle="tooltip" title="{{ vod.title }}">
+                            <a href="{{ url('video.id', { 'id':vod.id }) }}" data-toggle="tooltip"
+                               title="{{ vod.title }}">
                                 <img class="img-responsive"
                                      src="//img.youtube.com/vi/{{ vod.videoid }}/mqdefault.jpg"
                                      alt="{{ vod.title }}">
@@ -145,14 +146,17 @@
                 </div>
             </div>
             <div class="col-md-4">
-                <div class="g-ytsubscribe" data-channelid="UCwyKvaFQcBfJ7dCxM_uX5EQ" data-layout="full" data-count="default"></div>
+                <div class="g-ytsubscribe" data-channelid="UCwyKvaFQcBfJ7dCxM_uX5EQ" data-layout="full"
+                     data-count="default"></div>
                 <br>
                 <div class="g-ytsubscribe" data-channel="PanOtlet" data-layout="full" data-count="default"></div>
                 <br>
-                <div class="g-ytsubscribe" data-channelid="UCepCNuYZY9KzbzpSP1552Wg" data-layout="full" data-count="default"></div>
+                {#<div class="g-ytsubscribe" data-channelid="UCepCNuYZY9KzbzpSP1552Wg" data-layout="full"#}
+                {#data-count="default"></div>#}
             </div>
             <div class="col-md-4">
-                <div class="g-page" data-href="//plus.google.com/u/4/116516903644267522146" data-layout="landscape" data-rel="publisher"></div>
+                <div class="g-page" data-href="//plus.google.com/u/4/116516903644267522146" data-layout="landscape"
+                     data-rel="publisher"></div>
             </div>
         </div>
     </div>
@@ -160,28 +164,29 @@
 
 {% block javascripts %}
     {{ parent() }}
-    <script src="{{ asset('assets/js/home-stream.js') }}"></script>
-    <script>
-        getStream('{{ url("api.stream") }}','{{ url('stream.id') }}','dd80eugsisvxdq2h689e6m8e3tqqzuw');
-    </script>
-
-    <script type="text/javascript">
-        window.___gcfg = {lang: 'pl'};
-        (function() {
-            var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
-            po.src = 'https://apis.google.com/js/platform.js';
-            var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
-        })();
-    </script>
-
+    <script src="{{ asset('assets/js/stream.js') }}"></script>
     <script src="https://apis.google.com/js/platform.js"></script>
+    <script>
+        var stream = new Stream('{{ url("api.stream") }}', 'dd80eugsisvxdq2h689e6m8e3tqqzuw');
+        stream.start();
 
-    <script>(function (d, s, id) {
+        window.___gcfg = {lang: 'pl'};
+        (function () {
+            var po = document.createElement('script');
+            po.type = 'text/javascript';
+            po.async = true;
+            po.src = 'https://apis.google.com/js/platform.js';
+            var s = document.getElementsByTagName('script')[0];
+            s.parentNode.insertBefore(po, s);
+        })
+        ();
+        (function (d, s, id) {
             var js, fjs = d.getElementsByTagName(s)[0];
             if (d.getElementById(id)) return;
             js = d.createElement(s);
             js.id = id;
             js.src = "//connect.facebook.net/pl_PL/sdk.js#xfbml=1&version=v2.7&appId=1792775277616619";
             fjs.parentNode.insertBefore(js, fjs);
-        }(document, 'script', 'facebook-jssdk'));</script>
+        }(document, 'script', 'facebook-jssdk'));
+    </script>
 {% endblock %}

@@ -40,6 +40,20 @@ class DefaultController extends Controller
             'avatar' => $avatar
         ]);
     }
+    /**
+     * @Route("/test", name="test")
+     * @return \Symfony\Component\HttpFoundation\Response
+     */
+    public function testAction()
+    {
+
+        $avatar = ($this->getUser()) ? md5($this->getUser()->getEmail()) : md5('thejestemgraczemsquad@gmail.com');
+
+        return $this->render('default/test.html.twig', [
+            'color' => $this->color,
+            'avatar' => $avatar
+        ]);
+    }
 
     /**
      * @Route("/redirect", name="redirect")

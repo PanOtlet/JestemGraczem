@@ -7,7 +7,8 @@
                 <span style="color: #8bc34a;">POCZEKALNIA</span>MEMÓW
             </div>
             <div class="col-sm-8">
-                <a href="{{ url('mem.add') }}" type="button" class="btn btn-green pull-sm-right"><span class="p-x-3">{{ 'button.add'|trans }}</span></a>
+                <a href="{{ url('mem.add') }}" type="button" class="btn btn-green pull-sm-right"><span
+                            class="p-x-3">{{ 'button.add'|trans }}</span></a>
             </div>
         </div>
     </div>
@@ -27,8 +28,9 @@
                                     </a>
                                 </div>
                                 <div class="m-img gif">
-                                    <img src="{{ asset('assets/mem/') ~ mem.url }}" data-entry-url="{{ asset('assets/mem/') ~ mem.url | slice(-4)}}"
-                                         data-state= "static" class="img-responsive pull-xs-left video p-b-0"
+                                    <img src="{{ asset('assets/mem/') ~ mem.url }}"
+                                         data-entry-url="{{ asset('assets/mem/') ~ mem.url | slice(-4) }}"
+                                         data-state="static" class="img-responsive pull-xs-left video p-b-0"
                                          alt="{{ mem.title }}"/>
                                 </div>
                                 <div class="m-bottom">
@@ -50,7 +52,8 @@
                                 <div class="m-img gif">
                                     <div class="embed-responsive embed-responsive-16by9 shadow">
                                         <video controls>
-                                            <source src="{{ asset('assets/mem/') ~ mem.url }}" type="video/mp4" class="embed-responsive-item">
+                                            <source src="{{ asset('assets/mem/') ~ mem.url }}" type="video/mp4"
+                                                    class="embed-responsive-item">
                                             Masz kiepską przeglądarkę! Użyj GOOGLE CHROME!
                                         </video>
                                     </div>
@@ -73,7 +76,9 @@
                                 </div>
                                 <div class="m-img">
                                     <a href="{{ url('mem.id',{'id': mem.id}) }}">
-                                        <img src="{{ asset('assets/mem/') ~ mem.url }}" alt="{{ mem.title|slice(0,50) }}" class="img-responsive pull-xs-left video p-b-0">
+                                        <img src="{{ asset('assets/mem/') ~ mem.url }}"
+                                             alt="{{ mem.title|slice(0,50) }}"
+                                             class="img-responsive pull-xs-left video p-b-0">
                                     </a>
                                 </div>
                                 <div class="m-bottom">
@@ -88,7 +93,8 @@
                     <div class="row">
                         <div class="col-md-6">
                             {% if page > 0 %}
-                                <a href="{{ url('mem',{'page': page-1}) }}" class="btn btn-raised btn-danger btn-block">{{ 'button.prev'|trans }}</a>
+                                <a href="{{ url('mem',{'page': page-1}) }}"
+                                   class="btn btn-raised btn-danger btn-block">{{ 'button.prev'|trans }}</a>
                             {% endif %}
                         </div>
                         <div class="col-md-6">

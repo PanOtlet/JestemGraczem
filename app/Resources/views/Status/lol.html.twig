@@ -20,11 +20,16 @@
                     </div>
                     <ul class="list-group list-group-flush">
                         {% for server in eune.services %}
-                        {% if server.status == 'online' %}
-                            <li class="list-group-item" style="background-color: #179a17; border-color: #333; color: #FFFFFF;"><h3 class="m-b-0"><i class="fa fa-check" aria-hidden="true"></i> {{ server.name }}</h3></li>
-                        {% else %}
-                            <li class="list-group-item" style="background-color: #ce2924; border-color: #333; color: #FFFFFF;"><h4><i class="fa fa-times" aria-hidden="true"></i> {{ server.name }}</h4></li>
-                        {% endif %}
+                            {% if server.status == 'online' %}
+                                <li class="list-group-item"
+                                    style="background-color: #179a17; border-color: #333; color: #FFFFFF;"><h3
+                                            class="m-b-0"><i class="fa fa-check"
+                                                             aria-hidden="true"></i> {{ server.name }}</h3></li>
+                            {% else %}
+                                <li class="list-group-item"
+                                    style="background-color: #ce2924; border-color: #333; color: #FFFFFF;"><h4><i
+                                                class="fa fa-times" aria-hidden="true"></i> {{ server.name }}</h4></li>
+                            {% endif %}
                         {% endfor %}
                     </ul>
                 </div>
@@ -39,9 +44,14 @@
                     <ul class="list-group list-group-flush">
                         {% for server in euw.services %}
                             {% if server.status == 'online' %}
-                                <li class="list-group-item" style="background-color: #179a17; border-color: #333; color: #FFFFFF;"><h3 class="m-b-0"><i class="fa fa-check" aria-hidden="true"></i> {{ server.name }}</h3></li>
+                                <li class="list-group-item"
+                                    style="background-color: #179a17; border-color: #333; color: #FFFFFF;"><h3
+                                            class="m-b-0"><i class="fa fa-check"
+                                                             aria-hidden="true"></i> {{ server.name }}</h3></li>
                             {% else %}
-                                <li class="list-group-item" style="background-color: #ce2924; border-color: #333; color: #FFFFFF;"><h4><i class="fa fa-times" aria-hidden="true"></i> {{ server.name }}</h4></li>
+                                <li class="list-group-item"
+                                    style="background-color: #ce2924; border-color: #333; color: #FFFFFF;"><h4><i
+                                                class="fa fa-times" aria-hidden="true"></i> {{ server.name }}</h4></li>
                             {% endif %}
                         {% endfor %}
                     </ul>

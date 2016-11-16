@@ -63,6 +63,17 @@ class User extends BaseUser
      *     groups={"Registration", "Profile"}
      * )
      */
+    protected $beampro = null;
+
+    /**
+     * @ORM\Column(type="string", nullable=true)
+     *
+     * @Assert\Length(
+     *     min=3,
+     *     minMessage="The name is too short.",
+     *     groups={"Registration", "Profile"}
+     * )
+     */
     protected $twitch = null;
 
     /**
@@ -146,6 +157,11 @@ class User extends BaseUser
         return $this->lol;
     }
 
+    public function getBeampro()
+    {
+        return $this->beampro;
+    }
+
     public function getTwitch()
     {
         return $this->twitch;
@@ -189,6 +205,11 @@ class User extends BaseUser
     public function setLol($lol)
     {
         $this->lol = $lol;
+    }
+
+    public function setBeampro($beampro)
+    {
+        $this->beampro = $beampro;
     }
 
     public function setTwitch($twitch)

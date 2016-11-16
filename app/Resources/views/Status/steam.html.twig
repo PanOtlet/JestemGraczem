@@ -108,7 +108,7 @@
 {% block javascripts %}
     {{ parent() }}
     <script>
-        var id_array=["cms", "store", "community","webapi","tf2","dota2","csgo","csgo_sessions","csgo_community","csgo_mm_scheduler"];
+        var id_array = ["cms", "store", "community", "webapi", "tf2", "dota2", "csgo", "csgo_sessions", "csgo_community", "csgo_mm_scheduler"];
         setInterval(steam(), 45000);
 
         function steam() {
@@ -117,10 +117,10 @@
                 dataType: 'json',
                 success: function (data) {
 //                    console.log(data);
-                    for (var i=0;i<id_array.length;i++){
+                    for (var i = 0; i < id_array.length; i++) {
 //                        console.log(id_array[i]);
-                        $("#"+id_array[i]).html(data['services'][id_array[i]]['title']);
-                        $("#"+id_array[i]).addClass(data['services'][id_array[i]]['status']);
+                        $("#" + id_array[i]).html(data['services'][id_array[i]]['title']);
+                        $("#" + id_array[i]).addClass(data['services'][id_array[i]]['status']);
                     }
                 }, error: function () {
                     console.log("Coś poszło nie tak podczas łączenia z api steam");
