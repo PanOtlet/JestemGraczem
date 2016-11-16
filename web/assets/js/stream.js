@@ -231,14 +231,16 @@ function Stream(url, twitchApiKey) {
      */
     this.generateStreamListVideos = function (data) {
 
-        for (var i = 0; i < data.beam.length; i++) {
-            this.renderStreamList(data.beam[i]);
-            this.streams--;
-        }
+        if (data.beam.length > 0)
+            for (var i = 0; i < data.beam.length; i++) {
+                this.renderStreamList(data.beam[i]);
+                this.streams--;
+            }
 
-        for (i = 0; i < data.twitch.length; i++) {
-            this.renderStreamList(data.twitch[i]);
-        }
+        if (data.twitch.length > 0)
+            for (i = 0; i < data.twitch.length; i++) {
+                this.renderStreamList(data.twitch[i]);
+            }
 
         $('#loading').remove();
     };
