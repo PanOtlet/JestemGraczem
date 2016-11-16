@@ -69,6 +69,7 @@ function Stream(url, twitchApiKey) {
                     success: function (channel) {
                         if (channel['online'] == true) {
                             beamList.push({
+                                'domain': 'beam.pro',
                                 'platform': 'beam',
                                 'viewers': channel['viewersCurrent'],
                                 'name': channel['token'],
@@ -108,6 +109,7 @@ function Stream(url, twitchApiKey) {
             success: function (channel) {
                 for (var i = 0; i < streamCount; i++)
                     twitchList.push({
+                        'domain': 'twitch.tv',
                         'platform': 'twitch',
                         'viewers': channel['streams'][i]['viewers'],
                         'name': channel['streams'][i]['channel']['display_name'],
@@ -135,7 +137,7 @@ function Stream(url, twitchApiKey) {
         }
         $('#topstream').hide().attr('src', array['url']).fadeIn(1000);
         $('#viewers').hide().html(array["viewers"]).fadeIn(1000);
-        $('#link').hide().html("www.twitch.tv/" + array['name']).fadeIn(1000);
+        $('#link').hide().html(array['domain'] + "/" + array['name']).fadeIn(1000);
         $('#display_name').hide().html(array['name']).fadeIn(1000);
         // $('#profile').attr('href', g_exitUrl + "/" + channel["channel"]["name"]);
         $('#avatar').hide().attr('src', array['image']).fadeIn(1000);
