@@ -117,10 +117,10 @@ sonata_seo:
                 robots:               index, follow
                 author:               Otlet
                 viewport:             width=device-width, initial-scale=1, shrink-to-fit=no
-                'twitter:card:'       summary
-                'twitter:site:'       "@PanOtlet"
-                'twitter:title:'      JestemGraczem.pl
-                'twitter:description:'JestemGraczem.pl jest to pierwszy w Polsce portal poświęcony graczom, a nie samym grom!
+                'twitter:card':        summary
+                'twitter:site':        "@PanOtlet"
+                'twitter:title':       JestemGraczem.pl
+                'twitter:description': JestemGraczem.pl jest to pierwszy w Polsce portal poświęcony graczom, a nie samym grom!
             property:
                 # Facebook application settings
                 'fb:app_id':          '1792775277616619'
