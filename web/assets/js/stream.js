@@ -55,6 +55,26 @@ function Stream(url, twitchApiKey) {
     };
 
     /**
+     * Funkcja pobierająca JSON z wewnętrznego API
+     * @returns {boolean}
+     */
+    this.getFullStreamerList = function () {
+        var info = false;
+        $.ajax({
+            url: this.url,
+            dataType: 'json',
+            success: function (stream) {
+                info = stream
+            },
+            error: function () {
+                info = false
+            },
+            async: false
+        });
+        return info;
+    };
+
+    /**
      * Funkcja sprawdzająca, czy użytkownik streamujący na Beam.pro jest aktualnie online i zwraca tablicę zaraz
      * po próbie posortowania jej według ilości widzów
      * @returns {Array}
@@ -161,6 +181,19 @@ function Stream(url, twitchApiKey) {
     };
 
     /**
+     * Funkcja odpowiedzialna za rendering miniatur na stronie głównej
+     * @param array
+     */
+    this.renderStreamList = function (array) {
+        var name = array['name'] + "_" + array['platform'];
+        $("#streams-container").append('<div class="col-sm-3" id="' + name + '"><div class=""><div class="v-title" id="' + name + '_title"></div><div class="v-img" id="' + name + '_img"></div><div class="v-bottom" id="' + name + '_bottom"></div></div></div>');
+        $("#" + name).addClass('danger');
+        $("#" + name + "_status").html('ONLINE').css('font-weight', 'bold');
+        $("#" + name + "_game").html(array["game"]);
+        $("#" + name + "_viewers").html(array["viewers"]);
+    };
+
+    /**
      * Wybiórcze generowanie wybranych streamów
      * @param data
      */
@@ -193,6 +226,24 @@ function Stream(url, twitchApiKey) {
     };
 
     /**
+     * Wybiórcze generowanie wybranych streamów
+     * @param data
+     */
+    this.generateStreamListVideos = function (data) {
+
+        for (var i = 0; i < data.beam.length; i++) {
+            this.renderStreamList(data.beam[i]);
+            this.streams--;
+        }
+
+        for (i = 0; i < data.twitch.length; i++) {
+            this.renderStreamList(data.twitch[i]);
+        }
+
+        $('#loading').remove();
+    };
+
+    /**
      * Funkcja main, której zadaniem jest uruchamiać po kolei funkcje
      * @returns {boolean}
      */
@@ -213,5 +264,21 @@ function Stream(url, twitchApiKey) {
         };
 
         this.generateMainVideos(this.fullData);
+    };
+
+    /**
+     * Funkcja main, której zadaniem jest uruchamiać po kolei funkcje
+     * @returns {boolean}
+     */
+    this.startStreamList = function () {
+        this.list = this.getFullStreamerList();
+
+        if (this.list === false) {
+            console.log("Error with JGApp API!");
+            return false;
+        }
+
+        this.generateStreamListVideos(this.createBeamActiveList());
+        this.generateStreamListVideos(this.createTwitchActiveList());
     };
 }

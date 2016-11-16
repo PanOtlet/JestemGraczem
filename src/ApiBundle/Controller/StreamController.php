@@ -53,6 +53,47 @@ class StreamController extends Controller
             ['content-type' => 'application/json']
         );
     }
+
+    /**
+     * @Route("/stream/all", name="api.stream.all")
+     */
+    public function fullAction()
+    {
+        $em = $this->getDoctrine()->getRepository('AppBundle:User');
+
+        $response = $em->createQueryBuilder('p')
+            ->select('p.username', 'p.twitch', 'p.beampro', 'p.partner', 'p.description')
+            ->where('p.twitch IS NOT NULL')
+            ->orWhere('p.beampro IS NOT NULL')
+            ->getQuery()
+            ->getResult();
+
+        if (!$response) {
+            return new Response(
+                "[]",
+                Response::HTTP_OK,
+                ['content-type' => 'application/json']
+            );
+        }
+
+        $encoders = [
+            new XmlEncoder(),
+            new JsonEncoder()
+        ];
+
+        $normalizers = [
+            new ObjectNormalizer()
+        ];
+
+        $serializer = new Serializer($normalizers, $encoders);
+
+        return new Response(
+            $serializer->serialize($response, 'json'),
+            Response::HTTP_OK,
+            ['content-type' => 'application/json']
+        );
+    }
+
     /**
      * @Route("/stream/{name}", name="api.stream.name")
      */

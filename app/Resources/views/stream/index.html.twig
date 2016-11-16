@@ -27,9 +27,11 @@
 
 {% block javascripts %}
     {{ parent() }}
-    <script src="{{ asset('assets/js/stream-stream.js') }}"></script>
+    <script src="{{ asset('assets/js/stream.js') }}"></script>
     <script>
-        getStream('{{ url("api.stream") }}','{{ url('stream.id') }}','dd80eugsisvxdq2h689e6m8e3tqqzuw');
+        var stream = new Stream('{{ url("api.stream.all") }}', 'dd80eugsisvxdq2h689e6m8e3tqqzuw');
+        stream.startStreamList();
+        {#getStream('{{ url("api.stream.all") }}','{{ url('stream.id') }}','dd80eugsisvxdq2h689e6m8e3tqqzuw');#}
     </script>
 
 {% endblock %}
