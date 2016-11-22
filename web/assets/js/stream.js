@@ -207,8 +207,6 @@ function Stream(url, twitchApiKey) {
             this.renderBottomStream(data.twitch[i]);
             this.streams--;
         }
-        $('#loading').remove();
-
     };
 
     /**
@@ -227,8 +225,6 @@ function Stream(url, twitchApiKey) {
             for (i = 0; i < data.twitch.length; i++) {
                 this.renderStreamList(data.twitch[i]);
             }
-
-        $('#loading').remove();
     };
 
     /**
@@ -252,6 +248,8 @@ function Stream(url, twitchApiKey) {
         };
 
         this.generateMainVideos(this.fullData);
+
+        $('#loading').remove();
     };
 
     /**
@@ -267,5 +265,7 @@ function Stream(url, twitchApiKey) {
 
         this.generateStreamListVideos(this.createBeamActiveList());
         this.generateStreamListVideos(this.createTwitchActiveList());
+
+        $('#loading').remove();
     };
 }
