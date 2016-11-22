@@ -173,12 +173,6 @@ body {
     font-weight: bold;
 }
 
-.m-img {
-}
-
-.m-bottom {
-}
-
 .m-add {
     opacity: 1 !important;
     position: relative !important;
@@ -273,7 +267,7 @@ footer {
 }
 
 .pre-f-p p {
-    margin-bottom: 0.5rem !important;
+    margin-bottom: 0.5rem;
 }
 
 .nav-green {
@@ -286,7 +280,7 @@ footer {
 }
 
 .p-t-5 {
-    padding-top: 5rem !important;
+    padding-top: 5rem;
 }
 
 .p-y-06 {
@@ -298,6 +292,15 @@ footer {
 
     padding-top: 30px;
     padding-bottom: 60px;
+    text-align: center;
+    background: url("../img/bg-lol.jpg") no-repeat;
+    background-size: cover;
+    color: #eaeaea;
+}
+
+.top {
+    padding-top: 10px;
+    padding-bottom: 20px;
     text-align: center;
     background: url("../img/bg-lol.jpg") no-repeat;
     background-size: cover;
@@ -347,15 +350,6 @@ footer {
 .control-label {
     margin-bottom: 0;
     margin-top: 0.5rem;
-}
-
-.top {
-    padding-top: 10px;
-    padding-bottom: 20px;
-    text-align: center;
-    background: url("../img/bg-lol.jpg") no-repeat;
-    background-size: cover;
-    color: #eaeaea;
 }
 
 .row-streams {
@@ -453,7 +447,7 @@ footer {
 .game {
     font-size: 1.6rem;
     font-weight: bold;
-    color: #303030 !important;
+    color: #303030;
 }
 
 .btn-footer {
@@ -548,10 +542,6 @@ footer {
     transform: skewX(-45deg); /* Standard syntax */
     background-color: #FFFFFF;
     border-right: solid #ccc 3px;
-
-}
-
-.t-45-active {
 
 }
 
