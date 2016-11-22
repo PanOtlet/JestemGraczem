@@ -157,7 +157,7 @@
       }
     });
 
-    if (!!this.options.entryTemplate) {
+    if (this.options.entryTemplate) {
       // we have an entryTemplate
       result.layout = this.wrapContent(
         this.options.layoutTemplate.replace('{entries}', '<entries></entries>')
