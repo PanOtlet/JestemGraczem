@@ -537,7 +537,7 @@ footer {
 }
 
 .t-45 {
-    -ms-transform: skewX(-45deg); /* IE 9 */
+    /*-ms-transform: skewX(-45deg); !* IE 9 *!*/
     -webkit-transform: skewX(-45deg); /* Safari */
     transform: skewX(-45deg); /* Standard syntax */
     background-color: #FFFFFF;
@@ -546,7 +546,7 @@ footer {
 }
 
 .t45 {
-    -ms-transform: skewX(45deg); /* IE 9 */
+    /*-ms-transform: skewX(45deg); !* IE 9 *!*/
     -webkit-transform: skewX(45deg); /* Safari */
     transform: skewX(45deg); /* Standard syntax */
     padding-top: 16px;
