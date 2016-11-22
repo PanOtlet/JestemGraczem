@@ -269,5 +269,5 @@ function Stream(url, twitchApiKey) {
         this.generateStreamListVideos(this.createTwitchActiveList());
     };
 
-    return this;
+    console.log('JestemGraczem Stream.js')
 }
