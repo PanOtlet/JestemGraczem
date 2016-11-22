@@ -268,6 +268,4 @@ function Stream(url, twitchApiKey) {
         this.generateStreamListVideos(this.createBeamActiveList());
         this.generateStreamListVideos(this.createTwitchActiveList());
     };
-
-    console.log('JestemGraczem Stream.js')
 }
