@@ -225,17 +225,21 @@
                     <div class="row p-y-1">
                         <div class="col-md-4">
                             <div class="list-group text-md-center">
-                                <button type="button" class="list-group-item"
-                                        id="b-meme"><i class="fa fa-picture-o"
-                                                       aria-hidden="true"></i> {{ 'nav.meme'|trans }} <i
-                                            class="fa fa-picture-o" aria-hidden="true"></i></button>
-                                <a href="{{ url('stream') }}" class="list-group-item"><i class="fa fa-twitch"
-                                                                                         aria-hidden="true"></i> {{ 'nav.streams'|trans }}
-                                    <i class="fa fa-twitch" aria-hidden="true"></i></a>
-                                <button type="button" class="list-group-item"
-                                        id="b-video"><i class="fa fa-youtube-play"
-                                                        aria-hidden="true"></i> {{ 'nav.video'|trans }} <i
-                                            class="fa fa-youtube-play" aria-hidden="true"></i></button>
+                                <button type="button" class="list-group-item" id="b-meme">
+                                    <i class="fa fa-picture-o" aria-hidden="true"></i>
+                                    {{ 'nav.meme'|trans }}
+                                    <i class="fa fa-picture-o" aria-hidden="true"></i>
+                                </button>
+                                <a href="{{ url('stream') }}" class="list-group-item">
+                                    <i class="fa fa-twitch" aria-hidden="true"></i>
+                                    {{ 'nav.streams'|trans }}
+                                    <i class="fa fa-twitch" aria-hidden="true"></i>
+                                </a>
+                                <button type="button" class="list-group-item" id="b-video">
+                                    <i class="fa fa-youtube-play" aria-hidden="true"></i>
+                                    {{ 'nav.video'|trans }}
+                                    <i class="fa fa-youtube-play" aria-hidden="true"></i>
+                                </button>
                             </div>
                         </div>
                         <div class="col-md-8">
@@ -479,6 +483,9 @@
                         <div class="pre-f-p">
                             <p>
                                 <a href="{{ url('redirect', {'url': 'http://blog.jestemgraczem.pl'}) }}">{{ 'nav.blog'|trans }}</a>
+                            </p>
+                            <p>
+                                <a href="{{ url('redirect', {'url': 'http://forum.jestemgraczem.pl'}) }}">{{ 'nav.forum'|trans }}</a>
                             </p>
                             <p><a href="{{ url('cms',{'title': 'support'}) }}">{{ 'nav.support'|trans }}</a></p>
                             <p><a href="{{ url('cms',{'title': 'regulamin'}) }}">{{ 'nav.rules'|trans }}</a></p>
