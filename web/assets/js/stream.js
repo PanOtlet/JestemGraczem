@@ -26,12 +26,12 @@ function Stream(url, twitchApiKey) {
      * @returns {int} - zwraca status operacji
      */
     function sorter(first, second) {
-        if (first['viewers'] == second['viewers'])
-            return 0;
-        if (first['viewers'] < second['viewers'])
+        if (first['viewers'] > second['viewers'])
             return -1;
-        else
+        if (first['viewers'] < second['viewers'])
             return 1;
+        else
+            return 0;
     }
 
     /**
@@ -85,7 +85,7 @@ function Stream(url, twitchApiKey) {
                     async: false
                 });
         }
-        beamList.sort(sorter);
+        console.log(beamList.sort(sorter));
         return beamList;
     };
 
@@ -99,7 +99,6 @@ function Stream(url, twitchApiKey) {
         }
 
         var twitchList = [];
-        var streamCount = this.streams;
         $.ajax({
             type: 'GET',
             url: 'https://api.twitch.tv/kraken/streams?channel=' + this.twitchNameList,
