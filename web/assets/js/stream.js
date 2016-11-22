@@ -85,7 +85,7 @@ function Stream(url, twitchApiKey) {
                     async: false
                 });
         }
-        console.log(beamList.sort(sorter));
+        beamList.sort(sorter);
         return beamList;
     };
 
@@ -135,7 +135,7 @@ function Stream(url, twitchApiKey) {
                 array = array.replace(/\\"/g, '"');
                 array = JSON.parse(array);
             } catch (e) {
-                console.error(array);
+                console.error(e);
             }
         }
 
@@ -201,7 +201,6 @@ function Stream(url, twitchApiKey) {
             this.renderTopStream(data.twitch[0]);
         }
 
-        console.log(this.streams);
         for (i = 0; i < this.streams; i++) {
             this.renderBottomStream(data.twitch[i]);
             this.streams--;
