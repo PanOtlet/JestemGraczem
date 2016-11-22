@@ -1,3 +1,4 @@
+/*eslint no-console: ["error", { allow: ["warn", "error"] }] */
 /**
  * Generator streamów na stronie
  * @constructor
