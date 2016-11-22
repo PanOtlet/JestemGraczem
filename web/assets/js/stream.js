@@ -3,6 +3,7 @@
  * @constructor
  * @param {string} url - Adres URL do API pobierającego dane o użyszkodnikach
  * @param {string} twitchApiKey - Klucz API do streamów na Twitch
+ * @return {object}
  */
 function Stream(url, twitchApiKey) {
 
@@ -261,10 +262,11 @@ function Stream(url, twitchApiKey) {
 
         if (this.list === false) {
             console.error("Error with JGApp API!");
-            return false;
         }
 
         this.generateStreamListVideos(this.createBeamActiveList());
         this.generateStreamListVideos(this.createTwitchActiveList());
     };
+
+    return this;
 }
