@@ -1,3 +1,4 @@
+/*eslint no-console: ["error", { allow: ["warn", "error"] }] */
 /**
  * Generator streamów na stronie
  * @constructor
@@ -267,6 +268,4 @@ function Stream(url, twitchApiKey) {
         this.generateStreamListVideos(this.createBeamActiveList());
         this.generateStreamListVideos(this.createTwitchActiveList());
     };
-
-    return this;
 }

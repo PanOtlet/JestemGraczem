@@ -1,6 +1,3 @@
-/**
- * Created by Pudzian on 05.09.2016.
- */
 /* jQuery Bracket | Copyright (c) Teijo Laine 2011-2015 | Licenced under the MIT licence */
 !function (a) {
     function b(a) {
@@ -44,11 +41,13 @@
         return {
             highlight: function () {
                 e.each(function () {
-                    a(this).addClass(f), a(this).hasClass("win") && a(this).parent().find(".connector").addClass(f)
+                    a(this).addClass(f);
+                    a(this).hasClass("win") && a(this).parent().find(".connector").addClass(f)
                 })
             }, deHighlight: function () {
                 e.each(function () {
-                    a(this).removeClass(f), a(this).parent().find(".connector").removeClass(f)
+                    a(this).removeClass(f);
+                    a(this).parent().find(".connector").removeClass(f)
                 })
             }
         }
@@ -74,7 +73,7 @@
         })
     }
 
-    function l(a, b, c) {
+    function l(a, b) {
         a.append(b)
     }
 
@@ -266,29 +265,29 @@
         return i.css("width", f + "px"), i.css(e, -f + "px"), g ? i.css("bottom", "0px") : i.css("top", "0px"), h
     }
 
-    function u(b, c, d) {
-        var e = a('<div class="tools"></div>').appendTo(b), f = a('<span class="increment">+</span>').appendTo(e);
-        if (f.click(function () {
-                for (var a = c.teams.length, b = 0; a > b; b += 1)c.teams.push(["", ""]);
-                return z(d)
-            }), c.teams.length > 1 && 1 === c.results.length || c.teams.length > 2 && 3 === c.results.length) {
-            var g = a('<span class="decrement">-</span>').appendTo(e);
-            g.click(function () {
-                return c.teams.length > 1 ? (c.teams = c.teams.slice(0, c.teams.length / 2), z(d)) : void 0
-            })
-        }
-        if (1 === c.results.length && c.teams.length > 1) {
-            var h = a('<span class="doubleElimination">de</span>').appendTo(e);
-            h.click(function () {
-                return c.teams.length > 1 && c.results.length < 3 ? (c.results.push([], []), z(d)) : void 0
-            })
-        } else if (3 === c.results.length && c.teams.length > 1) {
-            var h = a('<span class="singleElimination">se</span>').appendTo(e);
-            h.click(function () {
-                return 3 === c.results.length ? (c.results = c.results.slice(0, 1), z(d)) : void 0
-            })
-        }
-    }
+    // function u(b, c, d) {
+    //     var e = a('<div class="tools"></div>').appendTo(b), f = a('<span class="increment">+</span>').appendTo(e);
+    //     if (f.click(function () {
+    //             for (var a = c.teams.length, b = 0; a > b; b += 1)c.teams.push(["", ""]);
+    //             return z(d)
+    //         }), c.teams.length > 1 && 1 === c.results.length || c.teams.length > 2 && 3 === c.results.length) {
+    //         var g = a('<span class="decrement">-</span>').appendTo(e);
+    //         g.click(function () {
+    //             return c.teams.length > 1 ? (c.teams = c.teams.slice(0, c.teams.length / 2), z(d)) : void 0
+    //         })
+    //     }
+    //     if (1 === c.results.length && c.teams.length > 1) {
+    //         var h = a('<span class="doubleElimination">de</span>').appendTo(e);
+    //         h.click(function () {
+    //             return c.teams.length > 1 && c.results.length < 3 ? (c.results.push([], []), z(d)) : void 0
+    //         })
+    //     } else if (3 === c.results.length && c.teams.length > 1) {
+    //         var h = a('<span class="singleElimination">se</span>').appendTo(e);
+    //         h.click(function () {
+    //             return 3 === c.results.length ? (c.results = c.results.slice(0, 1), z(d)) : void 0
+    //         })
+    //     }
+    // }
 
     var v = function (a, b) {
         return function () {
@@ -328,34 +327,34 @@
                 var o = d.name ? d.name : "--", p = a('<div class="team"></div>'), q = a('<div class="label empty"></div>').appendTo(p);
                 return 0 === c && p.attr("data-resultid", "team-" + j), e.decorator.render(q, o, l), b(d.idx) && p.attr("data-teamid", d.idx), null === d.name ? p.addClass("na") : g(m).name === d.name ? p.addClass("win") : h(m).name === d.name && p.addClass("lose"), p.append(k), null !== d.name && i && e.save && e.save && (q.addClass("editable"), q.click(function () {
                     /*function b() {
-                        function h(h, i) {
-                            h && (e.init.teams[~~(d.idx / 2)][d.idx % 2] = h), f(!0), g.click(b);
-                            var j = e.el.find(".team[data-teamid=" + (d.idx + 1) + "] div.label:first");
-                            j.length && i === !0 && 0 === c && a(j).click()
-                        }
+                     function h(h, i) {
+                     h && (e.init.teams[~~(d.idx / 2)][d.idx % 2] = h), f(!0), g.click(b);
+                     var j = e.el.find(".team[data-teamid=" + (d.idx + 1) + "] div.label:first");
+                     j.length && i === !0 && 0 === c && a(j).click()
+                     }
 
-                        g.unbind(), e.decorator.edit(g, d.name, h)
-                    }*/
+                     g.unbind(), e.decorator.edit(g, d.name, h)
+                     }*/
 
-                    var g = a(this);
+                    // var g = a(this);
                     b()
                 }), d.name && (k.addClass("editable"), k.click(function () {
                     function c() {
-                     e.unbind();
-                     var g = b(d.score) ? e.text() : "0", h = a('<input type="text">');
-                     h.val(g), e.html(h), h.focus().select(), h.keydown(function (c) {
-                     b(a(this).val()) ? a(this).removeClass("error") : a(this).addClass("error");
-                     var d = c.keyCode || c.which;
-                     if (9 === d || 13 === d || 27 === d) {
-                     if (c.preventDefault(), a(this).blur(), 27 === d)return;
-                     var e = z.find("div.score[data-resultid=result-" + (j + 1) + "]");
-                     e && e.click()
-                     }
-                     }), h.blur(function () {
-                     var a = h.val();
-                     a && b(a) || b(d.score) ? a && b(a) || !b(d.score) || (a = d.score) : a = "0", e.html(a), b(a) && (d.score = parseInt(a, 10), f(!0)), e.click(c)
-                     })
-                     }
+                        e.unbind();
+                        var g = b(d.score) ? e.text() : "0", h = a('<input type="text">');
+                        h.val(g), e.html(h), h.focus().select(), h.keydown(function (c) {
+                            b(a(this).val()) ? a(this).removeClass("error") : a(this).addClass("error");
+                            var d = c.keyCode || c.which;
+                            if (9 === d || 13 === d || 27 === d) {
+                                if (c.preventDefault(), a(this).blur(), 27 === d)return;
+                                var e = z.find("div.score[data-resultid=result-" + (j + 1) + "]");
+                                e && e.click()
+                            }
+                        }), h.blur(function () {
+                            var a = h.val();
+                            a && b(a) || b(d.score) ? a && b(a) || !b(d.score) || (a = d.score) : a = "0", e.html(a), b(a) && (d.score = parseInt(a, 10), f(!0)), e.click(c)
+                        })
+                    }
 
                     var e = a(this);
                     c()
