@@ -107,7 +107,7 @@ function Stream(url, twitchApiKey) {
                 'Client-ID': this.apiKey
             },
             success: function (channel) {
-                for (var i = 0; i < streamCount; i++)
+                for (var i = 0; i < Object.keys(channel['streams']).length; i++)
                     twitchList.push({
                         'domain': 'twitch.tv',
                         'platform': 'twitch',
@@ -132,9 +132,14 @@ function Stream(url, twitchApiKey) {
      */
     this.renderTopStream = function (array) {
         if (typeof array !== 'object') {
-            array = array.replace(/\\"/g, '"');
-            array = JSON.parse(array);
+            try {
+                array = array.replace(/\\"/g, '"');
+                array = JSON.parse(array);
+            } catch (e) {
+                console.error(array);
+            }
         }
+
         $('#topstream').hide().attr('src', array['url']).fadeIn(1000);
         $('#viewers').hide().html(array["viewers"]).fadeIn(1000);
         $('#link').hide().html(array['domain'] + "/" + array['name']).fadeIn(1000);
@@ -178,28 +183,29 @@ function Stream(url, twitchApiKey) {
      * @param data
      */
     this.generateMainVideos = function (data) {
-        var lenght;
+        var lenght, beamLenght = data.beam.length;
 
-        if (data.beam.length < 5) {
+        if (beamLenght < 5 && beamLenght > 0) {
             lenght = data.beam.length;
             this.renderTopStream(data.beam[0]);
         } else {
             lenght = 4;
         }
 
-        for (var i = 0; i < lenght; i++) {
-            this.renderBottomStream(data.beam[i]);
-            this.streams--;
-        }
+        if (beamLenght > 0)
+            for (var i = 0; i < lenght; i++) {
+                this.renderBottomStream(data.beam[i]);
+                this.streams--;
+            }
 
-        if (this.streams == 0) {
+        if (this.streams == 4) {
             this.renderTopStream(data.twitch[0]);
         }
 
-        if (this.streams > 0) {
-            for (i = 0; i < (4 - this.streams); i++) {
-                this.renderBottomStream(data.twitch[i]);
-            }
+        console.log(this.streams);
+        for (i = 0; i < this.streams; i++) {
+            this.renderBottomStream(data.twitch[i]);
+            this.streams--;
         }
         $('#loading').remove();
 
