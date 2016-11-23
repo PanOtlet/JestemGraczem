@@ -132,22 +132,20 @@ function Stream(url, twitchApiKey) {
      * @param array
      */
     this.renderTopStream = function (array) {
-        if (typeof array !== 'object') {
+        if (Object.prototype.toString.call(array) === '[object Array]') {
             try {
                 array = array.replace(/\\"/g, '"');
                 array = JSON.parse(array);
+                $('#topstream').hide().attr('src', array['url']).fadeIn(1000);
+                $('#viewers').hide().html(array["viewers"]).fadeIn(1000);
+                $('#link').hide().html(array['domain'] + "/" + array['name']).fadeIn(1000);
+                $('#display_name').hide().html(array['name']).fadeIn(1000);
+                $('#avatar').hide().attr('src', array['image']).fadeIn(1000);
+                $('#game').hide().attr('src', array['image']).fadeIn(1000);
             } catch (e) {
                 console.error(e);
             }
         }
-
-        $('#topstream').hide().attr('src', array['url']).fadeIn(1000);
-        $('#viewers').hide().html(array["viewers"]).fadeIn(1000);
-        $('#link').hide().html(array['domain'] + "/" + array['name']).fadeIn(1000);
-        $('#display_name').hide().html(array['name']).fadeIn(1000);
-        // $('#profile').attr('href', g_exitUrl + "/" + channel["channel"]["name"]);
-        $('#avatar').hide().attr('src', array['image']).fadeIn(1000);
-        $('#game').hide().attr('src', array['image']).fadeIn(1000);
     };
 
     /**
@@ -155,15 +153,31 @@ function Stream(url, twitchApiKey) {
      * @param array
      */
     this.renderBottomStream = function (array) {
-        var name = array['name'] + "_" + array['platform'];
-        $("#streams-container").append('<div class="col-sm-3" id="' + name + '"><div class=""><div class="v-title" id="' + name + '_title"></div><div class="v-img" id="' + name + '_img"></div><div class="v-bottom" id="' + name + '_bottom"></div></div></div>');
-        $("#" + name).addClass('danger');
-        $("#" + name + "_status").html('ONLINE').css('font-weight', 'bold');
-        $("#" + name + "_game").html(array["game"]);
-        $("#" + name + "_viewers").html(array["viewers"]);
-        var json = JSON.stringify(array);
-        json = json.replace(/"/g, '\\"');
-        $("#" + name + "_img").html("<img onclick='stream.renderTopStream(\"" + json + "\")' data-toggle='tooltip' title='" + name + "' class='img-responsive stream' src='" + array['image'] + "' id='image_" + name + "' alt='" + name + "'>");
+        if (Object.prototype.toString.call(array) === '[object Array]') {
+            try {
+                var name = array['name'] + "_" + array['platform'];
+                $("#streams-container").append('' +
+                    '<div class="col-sm-3" id="' + name + '">' +
+                    '<div class="">' +
+                    '<div class="v-title" id="' + name + '_title"></div>' +
+                    '<div class="v-img" id="' + name + '_img"></div>' +
+                    '<div class="v-bottom" id="' + name + '_bottom"></div>' +
+                    '</div>' +
+                    '</div>');
+                $("#" + name).addClass('danger');
+                $("#" + name + "_status").html('ONLINE').css('font-weight', 'bold');
+                $("#" + name + "_game").html(array["game"]);
+                $("#" + name + "_viewers").html(array["viewers"]);
+                var json = JSON.stringify(array);
+                json = json.replace(/"/g, '\\"');
+                $("#" + name + "_img").html("" +
+                    "<img onclick='stream.renderTopStream(\"" + json + "\")' data-toggle='tooltip' " +
+                    "title='" + name + "' class='img-responsive stream' src='" + array['image'] + "' " +
+                    "id='image_" + name + "' alt='" + name + "'>");
+            } catch (e) {
+                console.error(e);
+            }
+        }
     };
 
     /**
@@ -172,7 +186,14 @@ function Stream(url, twitchApiKey) {
      */
     this.renderStreamList = function (array) {
         var name = array['name'] + "_" + array['platform'];
-        $("#streams-container").append('<div class="col-sm-3" id="' + name + '"><div class=""><div class="v-title" id="' + name + '_title"></div><div class="v-img" id="' + name + '_img"></div><div class="v-bottom" id="' + name + '_bottom"></div></div></div>');
+        $("#streams-container").append('' +
+            '<div class="col-sm-3" id="' + name + '">' +
+            '<div class="">' +
+            '<div class="v-title" id="' + name + '_title"></div>' +
+            '<div class="v-img" id="' + name + '_img"></div>' +
+            '<div class="v-bottom" id="' + name + '_bottom"></div>' +
+            '</div>' +
+            '</div>');
         $("#" + name).addClass('danger');
         $("#" + name + "_status").html('ONLINE').css('font-weight', 'bold');
         $("#" + name + "_game").html(array["game"]);
