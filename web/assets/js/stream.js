@@ -156,24 +156,14 @@ function Stream(url, twitchApiKey) {
         if (Object.prototype.toString.call(array) === '[object Object]') {
             try {
                 var name = array['name'] + "_" + array['platform'];
-                $("#streams-container").append('' +
-                    '<div class="col-sm-3" id="' + name + '">' +
-                    '<div class="">' +
-                    '<div class="v-title" id="' + name + '_title"></div>' +
-                    '<div class="v-img" id="' + name + '_img"></div>' +
-                    '<div class="v-bottom" id="' + name + '_bottom"></div>' +
-                    '</div>' +
-                    '</div>');
+                $("#streams-container").append('<div class="col-sm-3" id="' + name + '"><div class=""><div class="v-title" id="' + name + '_title"></div><div class="v-img" id="' + name + '_img"></div><div class="v-bottom" id="' + name + '_bottom"></div></div></div>');
                 $("#" + name).addClass('danger');
                 $("#" + name + "_status").html('ONLINE').css('font-weight', 'bold');
                 $("#" + name + "_game").html(array["game"]);
                 $("#" + name + "_viewers").html(array["viewers"]);
                 var json = JSON.stringify(array);
                 json = json.replace(/"/g, '\\"');
-                $("#" + name + "_img").html("" +
-                    "<img onclick='stream.renderTopStream(\"" + json + "\")' data-toggle='tooltip' " +
-                    "title='" + name + "' class='img-responsive stream' src='" + array['image'] + "' " +
-                    "id='image_" + name + "' alt='" + name + "'>");
+                $("#" + name + "_img").html("<img onclick='stream.renderTopStream(\"" + json + "\")' data-toggle='tooltip' title='" + name + "' class='img-responsive stream' src='" + array['image'] + "' id='image_" + name + "' alt='" + name + "'>");
             } catch (e) {
                 console.error(e);
             }
@@ -186,14 +176,7 @@ function Stream(url, twitchApiKey) {
      */
     this.renderStreamList = function (array) {
         var name = array['name'] + "_" + array['platform'];
-        $("#streams-container").append('' +
-            '<div class="col-sm-3" id="' + name + '">' +
-            '<div class="">' +
-            '<div class="v-title" id="' + name + '_title"></div>' +
-            '<div class="v-img" id="' + name + '_img"></div>' +
-            '<div class="v-bottom" id="' + name + '_bottom"></div>' +
-            '</div>' +
-            '</div>');
+        $("#streams-container").append('<div class="col-sm-3" id="' + name + '"><div class=""><div class="v-title" id="' + name + '_title"></div><div class="v-img" id="' + name + '_img"></div><div class="v-bottom" id="' + name + '_bottom"></div></div></div>');
         $("#" + name).addClass('danger');
         $("#" + name + "_status").html('ONLINE').css('font-weight', 'bold');
         $("#" + name + "_game").html(array["game"]);
