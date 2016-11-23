@@ -132,19 +132,19 @@ function Stream(url, twitchApiKey) {
      * @param array
      */
     this.renderTopStream = function (array) {
-        if (Object.prototype.toString.call(array) === '[object Array]') {
-            try {
+        try {
+            if (Object.prototype.toString.call(array) === '[object String]'){
                 array = array.replace(/\\"/g, '"');
                 array = JSON.parse(array);
-                $('#topstream').hide().attr('src', array['url']).fadeIn(1000);
-                $('#viewers').hide().html(array["viewers"]).fadeIn(1000);
-                $('#link').hide().html(array['domain'] + "/" + array['name']).fadeIn(1000);
-                $('#display_name').hide().html(array['name']).fadeIn(1000);
-                $('#avatar').hide().attr('src', array['image']).fadeIn(1000);
-                $('#game').hide().attr('src', array['image']).fadeIn(1000);
-            } catch (e) {
-                console.error(e);
             }
+            $('#topstream').hide().attr('src', array['url']).fadeIn(1000);
+            $('#viewers').hide().html(array["viewers"]).fadeIn(1000);
+            $('#link').hide().html(array['domain'] + "/" + array['name']).fadeIn(1000);
+            $('#display_name').hide().html(array['name']).fadeIn(1000);
+            $('#avatar').hide().attr('src', array['image']).fadeIn(1000);
+            $('#game').hide().attr('src', array['image']).fadeIn(1000);
+        } catch (e) {
+            console.error(e);
         }
     };
 
@@ -153,7 +153,7 @@ function Stream(url, twitchApiKey) {
      * @param array
      */
     this.renderBottomStream = function (array) {
-        if (Object.prototype.toString.call(array) === '[object Array]') {
+        if (Object.prototype.toString.call(array) === '[object Object]') {
             try {
                 var name = array['name'] + "_" + array['platform'];
                 $("#streams-container").append('' +
