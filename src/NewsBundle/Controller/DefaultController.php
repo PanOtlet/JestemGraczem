@@ -44,9 +44,9 @@ class DefaultController extends Controller
 
         $seo = $this->container->get('sonata.seo.page');
         $seo->setTitle($article->getTitle() . ' :: JestemGraczem.pl')
-            ->addMeta('name', 'description', $article->getIntroduction())
+            ->addMeta('name', 'description', substr($article->getIntroduction(), 0, 120))
             ->addMeta('property', 'og:title', $article->getTitle())
-            ->addMeta('property', 'og:description', $article->getIntroduction())
+            ->addMeta('property', 'og:description', substr($article->getIntroduction(), 0, 120))
             ->addMeta('property', 'og:url', $this->get('router')->generate('article.id', ['id' => $id], UrlGeneratorInterface::ABSOLUTE_URL));
 
         return $this->render('news/news.html.twig', [
