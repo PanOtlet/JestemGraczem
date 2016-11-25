@@ -62,6 +62,45 @@
             {#<img class="img-fluid center-block" src="{{ asset('assets/img/ad.png') }}">#}
         </div>
 
+        <div class="row p-t-2">
+            <div class="col-md-6">
+                <div class="btn-white-lg dots m-b-1">
+                <span class="p-x-1 text">
+                    <span style="color: #303030;">
+                        {{ articles.0.title|slice(0,30) }}
+                    </span>
+                </span>
+                </div>
+                <div>
+                    <p>{{ articles.0.introduction }}</p>
+                    <a href="{{ url('article.id',{'id': articles.0.id, 'title': articles.0.title|replace({' ': '-'})}) }}">
+                        Czytaj dalej...
+                    </a>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="btn-white-lg dots m-b-1">
+                <span class="p-x-1 text">
+                    <span style="color: #303030;">
+                        {{ articles.1.title|slice(0,30) }}
+                    </span>
+                </span>
+                </div>
+                <div>
+                    <p>{{ articles.1.introduction }}</p>
+                    <a href="{{ url('article.id',{'id': articles.1.id, 'title': articles.1.title|replace({' ': '-'})}) }}">
+                        Czytaj dalej...
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <div class="btn-green text-xs-center m-b-1">
+            <a href="{{ url('articles') }}">
+                Czytaj więcej...
+            </a>
+        </div>
+
         <div class="row p-t-1">
             <div class="col-md-6">
                 {% if meme %}

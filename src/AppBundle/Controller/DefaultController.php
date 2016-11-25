@@ -23,6 +23,12 @@ class DefaultController extends Controller
             ->addMeta('property', 'og:title', 'Strona główna :: JestemGraczem.pl')
             ->addMeta('property', 'og:url', $this->get('router')->generate('homepage', [], UrlGeneratorInterface::ABSOLUTE_URL));
 
+        $articles = $this->getDoctrine()->getRepository('NewsBundle:News')->createQueryBuilder('m')
+            ->where('m.promoted = 1')
+            ->orderBy('m.id', 'DESC')
+            ->setMaxResults(2)
+            ->getQuery()->getResult();
+
         $mem = $this->getDoctrine()->getRepository('AppBundle:Meme')->findOneBy(['promoted' => true], ['id' => 'DESC']);
 
         $video = $this->getDoctrine()->getRepository('AppBundle:Video')->createQueryBuilder('m')
@@ -35,6 +41,7 @@ class DefaultController extends Controller
 
         return $this->render('default/index.html.twig', [
             'color' => $this->color,
+            'articles' => $articles,
             'meme' => $mem,
             'video' => $video,
             'avatar' => $avatar
