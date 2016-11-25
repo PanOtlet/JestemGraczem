@@ -15,6 +15,7 @@ nav:
     turnaments-2: 'Trwające turnieje'
     teams: 'Drużyny'
     news: 'Newsy'
+    rss: 'RSS'
     addrss: 'Dodaj RSS'
     meme: 'Memy'
     streams: 'Streamy'
@@ -27,6 +28,12 @@ nav:
     howto: 'Jak stworzyć turniej'
     status: 'Statusy serwerów'
     center: 'Centrum gier'
+article:
+    title: 'Tytuł'
+    add: 'Dodaj artykuł do bazy'
+    introduction: 'Wstęp'
+    body: 'Treść artykułu'
+    source: 'Źródła informacji i materiałów wykorzystanych w artykule'
 form:
     add: 'Dodaj'
 button:
@@ -160,6 +167,8 @@ admin:
     enabled: 'Aktywny'
     cms: 'CMS'
     mems: 'Memy'
+    articles: 'Artykuły'
+    servers: 'Serwery'
     youtube: 'Video'
     users: 'Użytkownicy'
     rss: 'Kanały RSS'
@@ -171,6 +180,7 @@ admin:
     team: 'Drużyny'
     turnieje: 'Turnieje'
     entry: 'Zapisani'
+    author: 'ID Autora'
 ID: 'ID'
 error:
     filetype: 'Niedozwolony typ pliku!'

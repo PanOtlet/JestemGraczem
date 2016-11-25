@@ -22,7 +22,7 @@ division:
 #NewsBundle
 
 news:
-    resource: "@NewsBundle/Controller/"
+    resource: "@NewsBundle/Controller/DefaultController.php"
     type:     annotation
     prefix:   /news
 

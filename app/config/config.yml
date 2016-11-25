@@ -150,6 +150,16 @@ sonata_seo:
 # Admin Panel
 easy_admin:
     entities:
+        Articles:
+            label: admin.articles
+            class: NewsBundle\Entity\News
+            list:
+                fields:
+                    - 'id'
+                    - { property: 'accepted', label: 'admin.accept'}
+                    - { property: 'promoted', label: 'admin.promoted'}
+                    - { property: 'title', label: 'admin.title'}
+                    - { property: 'author', label: 'admin.author'}
         CMS:
             label: admin.cms
             class: AppBundle\Entity\CMS
