@@ -8,6 +8,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
+use Ivory\CKEditorBundle\Form\Type\CKEditorType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 
@@ -77,7 +78,9 @@ class DefaultController extends Controller
             ->add('introduction', TextareaType::class, [
                 'label' => 'article.introduction'
             ])
-            ->add('body', TextareaType::class, [
+            ->add('body', CKEditorType::class, [
+                'base_path' => 'ckeditor',
+                'js_path'   => 'ckeditor/ckeditor.js',
                 'label' => 'article.body'
             ])
             ->add('source', TextareaType::class, [

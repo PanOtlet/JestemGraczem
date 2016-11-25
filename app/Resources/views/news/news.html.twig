@@ -18,7 +18,7 @@
                 <div class="jumbotron">
                     <p style="font-weight: bold">{{ article.introduction }}</p>
                     <hr>
-                    <p>{{ article.body }}</p>
+                    <p>{{ article.body|raw }}</p>
                     <hr>
                     <p style="font-style: italic">{{ article.source }}</p>
                     <div class="m-bottom">

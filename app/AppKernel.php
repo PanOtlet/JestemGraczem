@@ -21,6 +21,7 @@ class AppKernel extends Kernel
             new JavierEguiluz\Bundle\EasyAdminBundle\EasyAdminBundle(),
             new Knp\Bundle\MarkdownBundle\KnpMarkdownBundle(),
             new Payum\Bundle\PayumBundle\PayumBundle(),
+            new Ivory\CKEditorBundle\IvoryCKEditorBundle(),
             new AppBundle\AppBundle(),
             new ApiBundle\ApiBundle(),
             new TurniejBundle\TurniejBundle(),
