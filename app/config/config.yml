@@ -201,6 +201,7 @@ easy_admin:
                     - { property: 'partner', label: 'admin.partner'}
                     - { property: 'roles', label: 'admin.roles'}
                     - { property: 'steam', label: 'Steam'}
+                    - { property: 'beampro', label: 'Beam'}
                     - { property: 'battlenet', label: 'Battlenet'}
                     - { property: 'lol', label: 'Lol'}
                     - { property: 'twitch', label: 'Twitch'}
