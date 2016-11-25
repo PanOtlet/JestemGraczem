@@ -173,6 +173,7 @@ admin:
     users: 'Użytkownicy'
     rss: 'Kanały RSS'
     partner: 'Partner'
+    editor: 'Redaktor'
     promoted: 'Promowany'
     roles: 'Rangi'
     mem: 'Memy'
