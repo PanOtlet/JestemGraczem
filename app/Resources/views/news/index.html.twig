@@ -1,0 +1,77 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <div class="container-fluid top p-t-3 p-b-2">
+        <div class="container">
+            <div class="col-sm-6 btn-clear-lg p-l-1 ">
+                NAJNOWSZE<span style="color: #8bc34a;">NEWSY</span>
+            </div>
+            <div class="col-sm-6">
+                <a href="{{ url('article.add') }}" type="button" class="btn btn-green pull-sm-right"><span
+                            class="p-x-3">{{ 'button.add'|trans }}</span></a>
+            </div>
+        </div>
+    </div>
+    <div class="container p-t-5 p-b-2">
+        {% block adbanner %}{{ parent() }}{% endblock %}
+        <div class="row">
+            <div class="col-md-6">
+                <div class="container-fluid">
+                    {% for article in articles %}
+                        {% if loop.index%2 or loop.first %}
+                            <div class="row">
+                        {% endif %}
+                        <div class="col-md-6">
+                            <div class="m-title">
+                                <h3 class="m-b-0">
+                                    {{ article.title|slice(0,25) }}
+                                    <a href="{{ url('user',{'user': article.username}) }}">
+                                        <small style="font-size: 40%">by {{ article.username }}</small>
+                                    </a>
+                                </h3>
+                                <p>{{ article.introduction|slice(0,100) }}</p>
+                                <a class="text-center"
+                                   href="{{ url('article.id',{'id': article.id, 'title': article.title|replace({' ': '-'})}) }}">
+                                    Czytaj dalej...
+                                </a>
+                            </div>
+                        </div>
+                        {% if not loop.index%2 or loop.last %}
+                            </div>
+                        {% endif %}
+                    {% endfor %}
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        {% if page > 0 %}
+                            <a href="{{ url('articles',{'page': page-1}) }}"
+                               class="btn btn-raised btn-danger btn-block">{{ 'button.prev'|trans }}</a>
+                        {% endif %}
+                    </div>
+                    <div class="col-md-6">
+                        <a href="{{ url('articles',{'page': page+1}) }}"
+                           class="btn btn-raised btn-danger btn-block">{{ 'button.next'|trans }}</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3 hidden-sm" style="text-align: center">
+                <span class="label label-pill label-danger center-block">Najciekawsze!</span>
+                <hr>
+                {% for article in promoted %}
+                    <a href="{{ url('article.id',{'id': article.id, 'title': article.title|replace({' ': '-'})}) }}">
+                        {{ article.title }}
+                    </a>
+                    <hr>
+                {% endfor %}
+            </div>
+            <div class="col-md-3">
+                <a href="{{ url('article.all') }}" type="button" class="btn btn-green btn-block"><span
+                            class="p-x-3">{{ 'button.waitingroom'|trans }}</span></a>
+                {% block sidebar %}
+                    {{ parent() }}
+                {% endblock %}
+                {% block adsidebar %}{{ parent() }}{% endblock %}
+            </div>
+        </div>
+    </div>
+{% endblock %}

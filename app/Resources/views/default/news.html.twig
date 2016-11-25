@@ -7,7 +7,7 @@
                 NEWS
             </div>
             <div class="col-sm-6">
-                <a href="{{ url('news.add') }}" type="button" class="btn btn-green pull-sm-right"><span
+                <a href="{{ url('rss.add') }}" type="button" class="btn btn-green pull-sm-right"><span
                             class="p-x-3">{{ 'nav.addrss'|trans }}</span></a>
             </div>
         </div>
@@ -49,7 +49,7 @@
             <div class="col-md-4">
                 <div class="card">
                     <div class="card-block" style="background-color: #{{ news.css }}">
-                        <h4 class="card-title">{{ news.name }} <a href="{{ url('news.remove',{'id': news.id }) }}"
+                        <h4 class="card-title">{{ news.name }} <a href="{{ url('rss.remove',{'id': news.id }) }}"
                                                                   class="btn btn-raised btn-danger">Usuń</a></h4>
                     </div>
                     <ul class="list-group list-group-flush" id="{{ news.name }}"></ul>

@@ -150,6 +150,16 @@ sonata_seo:
 # Admin Panel
 easy_admin:
     entities:
+        Articles:
+            label: admin.articles
+            class: NewsBundle\Entity\News
+            list:
+                fields:
+                    - 'id'
+                    - { property: 'accepted', label: 'admin.accept'}
+                    - { property: 'promoted', label: 'admin.promoted'}
+                    - { property: 'title', label: 'admin.title'}
+                    - { property: 'author', label: 'admin.author'}
         CMS:
             label: admin.cms
             class: AppBundle\Entity\CMS
@@ -201,6 +211,7 @@ easy_admin:
                     - { property: 'partner', label: 'admin.partner'}
                     - { property: 'roles', label: 'admin.roles'}
                     - { property: 'steam', label: 'Steam'}
+                    - { property: 'beampro', label: 'Beam'}
                     - { property: 'battlenet', label: 'Battlenet'}
                     - { property: 'lol', label: 'Lol'}
                     - { property: 'twitch', label: 'Twitch'}

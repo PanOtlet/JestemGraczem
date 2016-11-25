@@ -21,10 +21,12 @@ class AppKernel extends Kernel
             new JavierEguiluz\Bundle\EasyAdminBundle\EasyAdminBundle(),
             new Knp\Bundle\MarkdownBundle\KnpMarkdownBundle(),
             new Payum\Bundle\PayumBundle\PayumBundle(),
+            new Ivory\CKEditorBundle\IvoryCKEditorBundle(),
             new AppBundle\AppBundle(),
             new ApiBundle\ApiBundle(),
             new TurniejBundle\TurniejBundle(),
-            new GameBundle\GameBundle()
+            new GameBundle\GameBundle(),
+            new NewsBundle\NewsBundle(),
         ];
 
         if (in_array($this->getEnvironment(), ['dev', 'test'], true)) {

@@ -19,6 +19,13 @@ division:
     type:     annotation
     prefix:   /dywizja
 
+#NewsBundle
+
+news:
+    resource: "@NewsBundle/Controller/DefaultController.php"
+    type:     annotation
+    prefix:   /news
+
 #API
 
 api:

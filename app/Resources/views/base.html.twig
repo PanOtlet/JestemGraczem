@@ -13,8 +13,8 @@
             (function (i, s, o, g, r, a, m) {
                 i['GoogleAnalyticsObject'] = r;
                 i[r] = i[r] || function () {
-                            (i[r].q = i[r].q || []).push(arguments)
-                        };
+                        (i[r].q = i[r].q || []).push(arguments)
+                    };
                 i[r].l = 1 * new Date();
                 a = s.createElement(o);
                 m = s.getElementsByTagName(o)[0];
@@ -244,15 +244,21 @@
                         </div>
                         <div class="col-md-8">
                             <div class="list-group mini-menu" id="meme-mm">
-                                <a href="{{ url('mem') }}" class="list-group-item">{{ 'nav.meme'|trans }}</a>
-                                <a href="{{ url('mem.all') }}"
-                                   class="list-group-item">{{ 'button.all'|trans }}</a>
-                                <a href="{{ url('mem.add') }}" class="list-group-item">{{ 'form.add'|trans }}</a>
+                                <a href="{{ url('mem') }}" class="list-group-item">
+                                    {{ 'nav.meme'|trans }}
+                                </a>
+                                <a href="{{ url('mem.all') }}" class="list-group-item">
+                                    {{ 'button.all'|trans }}
+                                </a>
+                                <a href="{{ url('mem.add') }}" class="list-group-item">
+                                    {{ 'form.add'|trans }}
+                                </a>
                             </div>
                             <div class="list-group mini-menu" id="video-mm">
                                 <a href="{{ url('video') }}" class="list-group-item ">{{ 'nav.video'|trans }}</a>
-                                <a href="{{ url('video.wait') }}"
-                                   class="list-group-item">{{ 'button.waitingroom'|trans }}</a>
+                                <a href="{{ url('video.wait') }}" class="list-group-item">
+                                    {{ 'button.waitingroom'|trans }}
+                                </a>
                                 <a href="{{ url('video.add') }}" class="list-group-item">{{ 'form.add'|trans }}</a>
                             </div>
                         </div>
@@ -261,19 +267,26 @@
             </div>
             <div class="menu-v1" id="games-m">
                 <div class="list-group text-md-center">
-                    <a href="{{ url('news') }}" class="list-group-item"><i class="fa fa-newspaper-o"
-                                                                           aria-hidden="true"></i> {{ 'nav.news'|trans }}
-                        <i
-                                class="fa fa-newspaper-o" aria-hidden="true"></i></a>
-                    <a href="{{ url('news.add') }}" class="list-group-item"><i class="fa fa-pencil"
-                                                                               aria-hidden="true"></i> {{ 'nav.addrss'|trans }}
-                        <i class="fa fa-pencil" aria-hidden="true"></i></a>
-                    <a href="{{ url('status') }}" class="list-group-item"><i class="fa fa-power-off"
-                                                                             aria-hidden="true"></i> {{ 'nav.status'|trans }}
-                        <i class="fa fa-power-off" aria-hidden="true"></i></a>
-                    <a href="{{ url('centrum') }}" class="list-group-item"><i class="fa fa-gamepad"
-                                                                              aria-hidden="true"></i> {{ 'nav.center'|trans }}
-                        <i class="fa fa-gamepad" aria-hidden="true"></i></a>
+                    <a href="{{ url('articles') }}" class="list-group-item">
+                        <i class="fa fa-newspaper-o" aria-hidden="true"></i>
+                        {{ 'nav.news'|trans }}
+                        <i class="fa fa-newspaper-o" aria-hidden="true"></i>
+                    </a>
+                    <a href="{{ url('rss') }}" class="list-group-item">
+                        <i class="fa fa-rss-square" aria-hidden="true"></i>
+                        {{ 'nav.rss'|trans }}
+                        <i class="fa fa-rss-square" aria-hidden="true"></i>
+                    </a>
+                    <a href="{{ url('status') }}" class="list-group-item">
+                        <i class="fa fa-power-off" aria-hidden="true"></i>
+                        {{ 'nav.status'|trans }}
+                        <i class="fa fa-power-off" aria-hidden="true"></i>
+                    </a>
+                    <a href="{{ url('centrum') }}" class="list-group-item">
+                        <i class="fa fa-gamepad" aria-hidden="true"></i>
+                        {{ 'nav.center'|trans }}
+                        <i class="fa fa-gamepad" aria-hidden="true"></i>
+                    </a>
                 </div>
             </div>
             <div class="menu-v1" id="turnaments-m">
@@ -281,27 +294,35 @@
                     <div class="row p-y-1">
                         <div class="col-md-4">
                             <div class="list-group text-md-center">
-                                <button type="button" class="list-group-item"
-                                        id="b-turnaments"><i class="fa fa-trophy"
-                                                             aria-hidden="true"></i> {{ 'nav.turnaments'|trans }}
-                                    <i class="fa fa-trophy" aria-hidden="true"></i></button>
-                                <a href="{{ url('team') }}" class="list-group-item"><i class="fa fa-users"
-                                                                                       aria-hidden="true"></i> {{ 'nav.teams'|trans }}
-                                    <i class="fa fa-users" aria-hidden="true"></i></a>
+                                <button type="button" class="list-group-item" id="b-turnaments">
+                                    <i class="fa fa-trophy" aria-hidden="true"></i>
+                                    {{ 'nav.turnaments'|trans }}
+                                    <i class="fa fa-trophy" aria-hidden="true"></i>
+                                </button>
+                                <a href="{{ url('team') }}" class="list-group-item">
+                                    <i class="fa fa-users" aria-hidden="true"></i>
+                                    {{ 'nav.teams'|trans }}
+                                    <i class="fa fa-users" aria-hidden="true"></i>
+                                </a>
                             </div>
                         </div>
                         <div class="col-md-8">
                             <div class="list-group mini-menu" id="turnaments-mm">
-                                <a href="{{ url('tournament') }}"
-                                   class="list-group-item"> {{ 'nav.turnaments'|trans }}</a>
-                                <a href="{{ url('tournament.create') }}"
-                                   class="list-group-item"> {{ 'nav.create-turnament'|trans }}</a>
-                                <a href="{{ url('tournament.open') }}"
-                                   class="list-group-item"> {{ 'nav.turnaments-0'|trans }}</a>
-                                <a href="{{ url('tournament.incoming') }}"
-                                   class="list-group-item"> {{ 'nav.turnaments-1'|trans }}</a>
-                                <a href="{{ url('tournament.close') }}"
-                                   class="list-group-item"> {{ 'nav.turnaments-2'|trans }}</a>
+                                <a href="{{ url('tournament') }}" class="list-group-item">
+                                    {{ 'nav.turnaments'|trans }}
+                                </a>
+                                <a href="{{ url('tournament.create') }}" class="list-group-item">
+                                    {{ 'nav.create-turnament'|trans }}
+                                </a>
+                                <a href="{{ url('tournament.open') }}" class="list-group-item">
+                                    {{ 'nav.turnaments-0'|trans }}
+                                </a>
+                                <a href="{{ url('tournament.incoming') }}" class="list-group-item">
+                                    {{ 'nav.turnaments-1'|trans }}
+                                </a>
+                                <a href="{{ url('tournament.close') }}" class="list-group-item">
+                                    {{ 'nav.turnaments-2'|trans }}
+                                </a>
                             </div>
                         </div>
                     </div>
@@ -322,26 +343,32 @@
                     <div class="modal-body">
                         <div class="row p-x-1 p-y-1">
                             <div class="col-xs-6 p-x-0">
-                                <a href="{{ url('tournament') }}" type="button"
-                                   class="btn btn-primary btn-lg btn-block"
-                                   style="border-radius: 0;">{{ 'nav.turnaments'|trans }}</a>
+                                <a href="{{ url('tournament') }}" type="button" class="btn btn-primary btn-lg btn-block"
+                                   style="border-radius: 0;">
+                                    {{ 'nav.turnaments'|trans }}
+                                </a>
                             </div>
                             <div class="col-xs-6 p-x-0">
                                 <button type="button" class="btn btn-primary btn-lg dropdown-toggle btn-block"
-                                        data-toggle="dropdown"
-                                        aria-haspopup="true" aria-expanded="false" style="border-radius: 0;">
+                                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="border-radius: 0;">
                                     <span class="sr-only">Toggle Dropdown</span>
                                 </button>
                                 <div class="dropdown-menu">
-                                    <a href="{{ url('tournament.create') }}"
-                                       class="dropdown-item"> {{ 'nav.create-turnament'|trans }}</a>
+                                    <a href="{{ url('tournament.create') }}" class="dropdown-item">
+                                        {{ 'nav.create-turnament'|trans }}
+                                    </a>
+
                                     <div class="dropdown-divider"></div>
-                                    <a href="{{ url('tournament.open') }}"
-                                       class="dropdown-item"> {{ 'nav.turnaments-0'|trans }}</a>
-                                    <a href="{{ url('tournament.incoming') }}"
-                                       class="dropdown-item"> {{ 'nav.turnaments-1'|trans }}</a>
-                                    <a href="{{ url('tournament.close') }}"
-                                       class="dropdown-item"> {{ 'nav.turnaments-2'|trans }}</a>
+
+                                    <a href="{{ url('tournament.open') }}" class="dropdown-item">
+                                        {{ 'nav.turnaments-0'|trans }}
+                                    </a>
+                                    <a href="{{ url('tournament.incoming') }}" class="dropdown-item">
+                                        {{ 'nav.turnaments-1'|trans }}
+                                    </a>
+                                    <a href="{{ url('tournament.close') }}" class="dropdown-item">
+                                        {{ 'nav.turnaments-2'|trans }}
+                                    </a>
 
                                 </div>
                             </div>
@@ -364,14 +391,18 @@
                         <h4 class="modal-title">GAMESAREA</h4>
                     </div>
                     <div class="modal-body">
-                        <a href="{{ url('news') }}" type="button"
-                           class="btn btn-primary btn-lg btn-block">{{ 'nav.news'|trans }}</a>
-                        <a href="{{ url('news.add') }}" type="button"
-                           class="btn btn-primary btn-lg btn-block">{{ 'nav.addrss'|trans }}</a>
-                        <a href="{{ url('status') }}" type="button"
-                           class="btn btn-primary btn-lg btn-block">{{ 'nav.status'|trans }}</a>
-                        <a href="{{ url('centrum') }}" type="button"
-                           class="btn btn-primary btn-lg btn-block">{{ 'nav.center'|trans }}</a>
+                        <a href="{{ url('articles') }}" type="button" class="btn btn-primary btn-lg btn-block">
+                            {{ 'nav.news'|trans }}
+                        </a>
+                        <a href="{{ url('rss') }}" type="button" class="btn btn-primary btn-lg btn-block">
+                            {{ 'nav.rss'|trans }}
+                        </a>
+                        <a href="{{ url('status') }}" type="button" class="btn btn-primary btn-lg btn-block">
+                            {{ 'nav.status'|trans }}
+                        </a>
+                        <a href="{{ url('centrum') }}" type="button" class="btn btn-primary btn-lg btn-block">
+                            {{ 'nav.center'|trans }}
+                        </a>
                     </div>
                     <div class="modal-footer">
                     </div>
@@ -442,6 +473,35 @@
     {% block body %}{% endblock %}
 
     {% block footer %}
+        <div class="container">
+            <div class="row p-t-2">
+                <div class="btn-white-lg dots m-b-1">
+                <span class="p-x-1 text">
+                    <span style="color: #303030;">
+                        Partnerzy:
+                    </span>
+                </span>
+                </div>
+                <div class="col-md-4">
+                    <a href="https://sklep.otlet.pl" target="_blank">
+                        <img src="{{ asset('assets/img/partners/gn.png') }}" alt="Geek and Nerd Shop"
+                             class="img-responsive">
+                    </a>
+                </div>
+                <div class="col-md-4">
+                    <a href="https://23games.pl" target="_blank">
+                        <img src="{{ asset('assets/img/partners/games.png') }}"
+                             alt="Najlepszy TeamSpeak3" class="img-responsive">
+                    </a>
+                </div>
+                <div class="col-md-4">
+                    <a href="https://beam.pro/otlet" target="_blank">
+                        <img src="{{ asset('assets/img/partners/beam.png') }}"
+                             alt="Beam.pro" class="img-responsive">
+                    </a>
+                </div>
+            </div>
+        </div>
         <div class="pre-footer m-t-2">
             <div class="container">
                 <div class="row p-y-1">
@@ -460,8 +520,8 @@
                             <span class="p-x-1 text">GAMES<span style="color: #ff9800">AREA</span></span>
                         </p>
                         <div class="pre-f-p">
-                            <p><a href="{{ url('news') }}">{{ 'nav.news'|trans }}</a></p>
-                            <p><a href="{{ url('news.add') }}">{{ 'nav.addrss'|trans }}</a></p>
+                            <p><a href="{{ url('articles') }}">{{ 'nav.news'|trans }}</a></p>
+                            <p><a href="{{ url('rss') }}">{{ 'nav.rss'|trans }}</a></p>
                             <p><a href="{{ url('status') }}">{{ 'nav.status'|trans }}</a></p>
                             <p><a href="{{ url('centrum') }}">{{ 'nav.center'|trans }}</a></p>
                         </div>
@@ -482,10 +542,10 @@
                         </p>
                         <div class="pre-f-p">
                             <p>
-                                <a href="{{ url('redirect', {'url': 'http://blog.jestemgraczem.pl'}) }}">{{ 'nav.blog'|trans }}</a>
+                                <a href="http://blog.jestemgraczem.pl">{{ 'nav.blog'|trans }}</a>
                             </p>
                             <p>
-                                <a href="{{ url('redirect', {'url': 'http://forum.jestemgraczem.pl'}) }}">{{ 'nav.forum'|trans }}</a>
+                                <a href="http://forum.jestemgraczem.pl">{{ 'nav.forum'|trans }}</a>
                             </p>
                             <p><a href="{{ url('cms',{'title': 'support'}) }}">{{ 'nav.support'|trans }}</a></p>
                             <p><a href="{{ url('cms',{'title': 'regulamin'}) }}">{{ 'nav.rules'|trans }}</a></p>

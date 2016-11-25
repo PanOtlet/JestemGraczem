@@ -17,7 +17,7 @@ class NewsController extends Controller
     protected $color = "orange";
 
     /**
-     * @Route("/news", name="news")
+     * @Route("/rss", name="rss")
      * @param Request $request
      * @return \Symfony\Component\HttpFoundation\Response
      */
@@ -33,7 +33,7 @@ class NewsController extends Controller
             ->addMeta('property', 'og:title', 'Najnowsze newsy ze świata gier!')
             ->addMeta('property', 'og:type', 'article')
             ->addMeta('property', 'og:description', 'Najnowsze i najciekawsze newsy ze świata zgromadzonego wokół gier komputerowych!')
-            ->addMeta('property', 'og:url', $this->get('router')->generate('news', [], UrlGeneratorInterface::ABSOLUTE_URL));
+            ->addMeta('property', 'og:url', $this->get('router')->generate('rss', [], UrlGeneratorInterface::ABSOLUTE_URL));
 
         $rss = $this->getDoctrine()->getRepository('AppBundle:News')->findBy(['user' => $this->getUser()->getId()]);
         return $this->render('default/news.html.twig', [
@@ -43,7 +43,7 @@ class NewsController extends Controller
     }
 
     /**
-     * @Route("/news/add", name="news.add")
+     * @Route("/rss/add", name="rss.add")
      * @param Request $request
      * @return \Symfony\Component\HttpFoundation\RedirectResponse|\Symfony\Component\HttpFoundation\Response
      */
@@ -74,7 +74,7 @@ class NewsController extends Controller
                 'success',
                 'Dodano prywatny kanał informacji!'
             );
-            return $this->redirectToRoute('news');
+            return $this->redirectToRoute('rss');
         }
 
         $seo = $this->container->get('sonata.seo.page');
@@ -82,7 +82,7 @@ class NewsController extends Controller
             ->addMeta('name', 'description', 'Dodaj swóje własne kanały z newsami, byś zawsze był na bieżąco!')
             ->addMeta('property', 'og:title', 'Dodaj swój własny news!')
             ->addMeta('property', 'og:description', 'Dodaj swóje własne kanały z newsami, byś zawsze był na bieżąco!')
-            ->addMeta('property', 'og:url', $this->get('router')->generate('news.add', [], UrlGeneratorInterface::ABSOLUTE_URL));
+            ->addMeta('property', 'og:url', $this->get('router')->generate('rss.add', [], UrlGeneratorInterface::ABSOLUTE_URL));
 
         return $this->render('default/newsadd.html.twig', [
             'color' => $this->color,
@@ -91,7 +91,7 @@ class NewsController extends Controller
     }
 
     /**
-     * @Route("/news/remove/{id}", name="news.remove")
+     * @Route("/rss/remove/{id}", name="rss.remove")
      * @param $id
      * @return \Symfony\Component\HttpFoundation\RedirectResponse
      */

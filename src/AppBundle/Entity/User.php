@@ -135,6 +135,11 @@ class User extends BaseUser
     /**
      * @ORM\Column(type="boolean", nullable=false)
      */
+    protected $editor = 0;
+
+    /**
+     * @ORM\Column(type="boolean", nullable=false)
+     */
     protected $premium = 0;
 
     public function __construct()
@@ -187,6 +192,11 @@ class User extends BaseUser
         return $this->partner;
     }
 
+    public function getEditor()
+    {
+        return $this->editor;
+    }
+
     public function getPremium()
     {
         return $this->premium;
@@ -235,6 +245,11 @@ class User extends BaseUser
     public function setPartner($partner)
     {
         $this->partner = $partner;
+    }
+
+    public function setEditor($editor)
+    {
+        $this->editor = $editor;
     }
 
     public function setPremium($premium)
