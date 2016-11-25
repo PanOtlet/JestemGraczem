@@ -202,6 +202,7 @@ easy_admin:
                     - { property: 'locked', label: 'admin.locked'}
                     - { property: 'enabled', label: 'admin.enabled'}
                     - { property: 'partner', label: 'admin.partner'}
+                    - { property: 'editor', label: 'admin.editor'}
             form:
                 fields:
                     - { property: 'username', label: 'admin.username'}
