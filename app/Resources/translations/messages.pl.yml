@@ -135,6 +135,7 @@ tournament:
     hs: 'Hearthstone: Heroes of Warcraft'
     dota2: 'Dota 2'
     wot: 'World of Tanks'
+    overwatch: 'Overwatch'
     other: 'Inne'
     players: 'Uczestnicy'
     costPerTeam: 'Cena wpisowego'

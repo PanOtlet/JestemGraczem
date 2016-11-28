@@ -8,6 +8,8 @@
  */
 function Stream(url, twitchApiKey) {
 
+    this.ad = '';
+
     this.url = url;
     this.apiKey = twitchApiKey;
 
@@ -132,20 +134,43 @@ function Stream(url, twitchApiKey) {
      * @param array
      */
     this.renderTopStream = function (array) {
-        try {
-            if (Object.prototype.toString.call(array) === '[object String]'){
-                array = array.replace(/\\"/g, '"');
-                array = JSON.parse(array);
+        if (!this.ad){
+            this.antyTopStream()
+        } else {
+            try {
+                if (Object.prototype.toString.call(array) === '[object String]') {
+                    array = array.replace(/\\"/g, '"');
+                    array = JSON.parse(array);
+                }
+                $('#topstream').hide().attr('src', array['url']).fadeIn(1000);
+                $('#viewers').hide().html(array["viewers"]).fadeIn(1000);
+                $('#link').hide().html(array['domain'] + "/" + array['name']).fadeIn(1000);
+                $('#display_name').hide().html(array['name']).fadeIn(1000);
+                $('#avatar').hide().attr('src', array['image']).fadeIn(1000);
+                $('#game').hide().attr('src', array['image']).fadeIn(1000);
+            } catch (e) {
+                console.error(e);
             }
-            $('#topstream').hide().attr('src', array['url']).fadeIn(1000);
-            $('#viewers').hide().html(array["viewers"]).fadeIn(1000);
-            $('#link').hide().html(array['domain'] + "/" + array['name']).fadeIn(1000);
-            $('#display_name').hide().html(array['name']).fadeIn(1000);
-            $('#avatar').hide().attr('src', array['image']).fadeIn(1000);
-            $('#game').hide().attr('src', array['image']).fadeIn(1000);
-        } catch (e) {
-            console.error(e);
         }
+    };
+
+    /**
+     * A ja wam dam małę gnoje AdBlocka!
+     * @param array
+     */
+    this.antyTopStream = function () {
+        $('#topstream').hide().attr('src', 'https://www.youtube.com/embed/DLzxrzFCyOs?autoplay=true').fadeIn(1000);
+        $('#troll').hide().html(
+            '<p>' +
+            'JestemGraczem.pl utrzymuje się między innymi z reklam.<br><br>' +
+            'Wyłącz adBlock, byśmy mogli się dalej rozwijać!<br><br>' +
+            'Ciebie to nic nie kosztuje, nie mamy natrętnych reklam i jest ich niewiele, ale nam pomogą w rozwoju!' +
+            '</p>'
+        ).fadeIn(1000);
+        $('#link').hide().html('www.jestemgraczem.pl').fadeIn(1000);
+        $('#display_name').hide().html('Rick Astley').fadeIn(1000);
+        $('#avatar').hide().attr('src', 'http://i3.kym-cdn.com/photos/images/newsfeed/000/247/207/813.gif').fadeIn(1000);
+        $('#game').hide().attr('src', 'http://i3.kym-cdn.com/photos/images/newsfeed/000/247/207/813.gif').fadeIn(1000);
     };
 
     /**
@@ -235,7 +260,9 @@ function Stream(url, twitchApiKey) {
      * Funkcja main, której zadaniem jest uruchamiać po kolei funkcje
      * @returns {boolean}
      */
-    this.start = function () {
+    this.start = function (ad) {
+        this.ad = ad;
+
         this.list = this.getStreamerList();
 
         if (this.list === false) {

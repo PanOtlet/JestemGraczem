@@ -111,10 +111,13 @@
                     {% else %}
                         <div class="contestants p-b-1" data-toggle="tooltip" data-placement="top"
                              title="{{ status|trans }}">
-                            <img class="img-responsive img-circle "
+                            <img class="img-responsive img-circle"
                                  src="https://www.gravatar.com/avatar/{{ player.email|md5 }}?s=100"
                                  alt="{{ player.username }}">
                             <p class="game">{{ player.username }}</p>
+                            <img class="img-responsive img-circle"
+                                 src="https://www.gravatar.com/avatar/{{ player.email|md5 }}?s=100"
+                                 alt="{{ player.username }}">
                         </div>
                     {% endif %}
                 {% endfor %}

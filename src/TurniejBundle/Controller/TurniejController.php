@@ -118,6 +118,7 @@ class TurniejController extends Controller
                     'tournament.hs' => 5,
                     'tournament.dota2' => 6,
                     'tournament.wot' => 7,
+                    'tournament.overwatch' => 8,
                     'tournament.other' => 0,
                 ],
             ])
