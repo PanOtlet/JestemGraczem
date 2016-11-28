@@ -590,12 +590,23 @@
         <script async src="https://use.fontawesome.com/c0b3ee6d21.js"></script>
         <script src="{{ asset('assets/js/jquery.cookiesdirective.js') }}"></script>
         <script src="{{ asset('assets/js/jquery.bracket.js') }}"></script>
+        <script src="https://cdn.onesignal.com/sdks/OneSignalSDK.js"></script>
 
         {% if app.session.flashBag.has('error') or app.session.flashBag.has('info') or app.session.flashBag.has('warning') or app.session.flashBag.has('success') %}
         <script src="{{ asset('assets/js/sweetalert.min.js') }}"></script>
         {% endif %}
 
         <script type="text/javascript">
+            var OneSignal = window.OneSignal || [];
+            OneSignal.push(["init", {
+                appId: "5611cf12-14a7-45d2-8f8f-d767df85e768",
+                autoRegister: true,
+                subdomainName: 'jestemgraczem',
+                notifyButton: {
+                    enable: true
+                }
+            }]);
+
             $(function () {
                 $('[data-toggle="tooltip"]').tooltip()
             });
