@@ -85,7 +85,7 @@ class DefaultController extends Controller
             ->setMaxResults(10);
 
         $sort = $request->query->get('sort');
-        if ($sort && $sort >= 0 && $sort <= 7) {
+        if ($sort && $sort >= 0 && $sort <= 8) {
             $query->andWhere('p.dyscyplina = :game')->setParameter('game', $request->query->get('sort'));
         }
 
@@ -124,7 +124,7 @@ class DefaultController extends Controller
             ->setMaxResults(10);
 
         $sort = $request->query->get('sort');
-        if ($sort && $sort >= 0 && $sort <= 7) {
+        if ($sort && $sort >= 0 && $sort <= 8) {
             $query->andWhere('p.dyscyplina = :game')->setParameter('game', $request->query->get('sort'));
         }
 
@@ -164,7 +164,7 @@ class DefaultController extends Controller
             ->setMaxResults(10);
 
         $sort = $request->query->get('sort');
-        if ($sort && $sort >= 0 && $sort <= 7) {
+        if ($sort && $sort >= 0 && $sort <= 8) {
             $query->andWhere('p.dyscyplina = :game')->setParameter('game', $request->query->get('sort'));
         }
 
@@ -200,7 +200,7 @@ class DefaultController extends Controller
             ->setMaxResults(10);
 
         $sort = $request->query->get('sort');
-        if ($sort && $sort >= 0 && $sort <= 7) {
+        if ($sort && $sort >= 0 && $sort <= 8) {
             $query->andWhere('p.dyscyplina = :game')->setParameter('game', $request->query->get('sort'));
         }
 
@@ -247,6 +247,7 @@ class DefaultController extends Controller
                     'tournament.hs' => 5,
                     'tournament.dota2' => 6,
                     'tournament.wot' => 7,
+                    'tournament.overwatch' => 8,
                     'tournament.other' => 0,
                 ],
             ])

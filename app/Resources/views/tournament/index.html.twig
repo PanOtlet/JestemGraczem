@@ -61,11 +61,19 @@
                 </a>
             </div>
             <div class="col-md-4">
+                <a href="{{ url('tournament.open') }}?sort=8">
+                    <img class="img-fluid" data-toggle="tooltip" title="{{ 'tournament.overwatch'|trans }}"
+                         src="{{ asset('assets/img/overwatch.png') }}">
+                </a>
+            </div>
+            <div class="col-md-4">
                 <a href="{{ url('tournament.open') }}?sort=0">
                     <img class="img-fluid" data-toggle="tooltip" title="{{ 'tournament.other'|trans }}"
                          src="{{ asset('assets/img/rg.png') }}">
                 </a>
             </div>
+        </div>
+        <div class="row m-b-2">
         </div>
 
         {% if promo %}
