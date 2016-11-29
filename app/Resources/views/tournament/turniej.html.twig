@@ -7,21 +7,21 @@
                 <div class="col-sm-6 btn-clear-lg p-l-1 ">
                     <span style="color: #8bc34a;">{{ turniej.name }}</span>
                 </div>
+                {% if turniej.type == 0 and app.user and turniej.owner != app.user.id %}
+                    <div class="col-md-6">
+                        <a href="{{ url('tournament.join', {'id':turniej.id}) }}" type="button"
+                           class="btn btn-green pull-sm-right"><span class="p-x-3">{{ 'tournament.join'|trans }}</span></a>
+                    </div>
+                {% endif %}
                 {% if app.user and turniej.owner == app.user.id %}
-                    <div class="col-sm-2">
+                    <div class="col-md-3">
                         <a href="{{ url('tournament.id.edit', {'id':turniej.id}) }}" type="button"
                            class="btn btn-green pull-sm-right"><span class="p-x-3">{{ 'button.edit'|trans }}</span></a>
                     </div>
-                    <div class="col-sm-2">
+                    <div class="col-md-3">
                         <a href="{{ url('tournament.id.invite', {'id':turniej.id}) }}" type="button"
                            class="btn btn-green pull-sm-right"><span
                                     class="p-x-3">{{ 'tournament.invitation'|trans }}</span></a>
-                    </div>
-                {% endif %}
-                {% if turniej.type == 0 %}
-                    <div class="col-sm-2">
-                        <a href="{{ url('tournament.join', {'id':turniej.id}) }}" type="button"
-                           class="btn btn-green pull-sm-right"><span class="p-x-3">{{ 'tournament.join'|trans }}</span></a>
                     </div>
                 {% endif %}
             </div>
@@ -122,8 +122,6 @@
                     {% endif %}
                 {% endfor %}
             </div>
-
-
         </div>
         <div class="col-md-8">
             <div class="container m-b-1">
@@ -131,7 +129,6 @@
                     <div class="bracet" id="save"></div>
                 {% else %}
                     <div class="bracet" id="view"></div>
-
                 {% endif %}
             </div>
             <div class="row"></div>
@@ -158,7 +155,6 @@
                                 style="color: #303030;">{{ 'tournament.open'|trans }}</span></span>
                 {% endif %}
             </div>
-
             <div class="btn-white-lg dots m-b-0">
                 <span class="p-x-1 text">{{ 'tournament.description'|trans }}: <span
                             style="color: #303030;"></span></span>
@@ -166,10 +162,7 @@
             <div class="grey-box p-y-1 p-l-1 m-b-1">
                 <p>{{ turniej.description }}</p>
             </div>
-
         </div>
-
-
     </div>
 {% endblock %}
 
