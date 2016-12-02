@@ -554,7 +554,7 @@ body.stop-scrolling {
 
 @-webkit-keyframes slideFromTop {
     0% {
-        top: 0%;
+        top: 0;
     }
     100% {
         top: 50%;
@@ -563,7 +563,7 @@ body.stop-scrolling {
 
 @keyframes slideFromTop {
     0% {
-        top: 0%;
+        top: 0;
     }
     100% {
         top: 50%;
@@ -575,7 +575,7 @@ body.stop-scrolling {
         top: 50%;
     }
     100% {
-        top: 0%;
+        top: 0;
     }
 }
 
@@ -584,7 +584,7 @@ body.stop-scrolling {
         top: 50%;
     }
     100% {
-        top: 0%;
+        top: 0;
     }
 }
 
