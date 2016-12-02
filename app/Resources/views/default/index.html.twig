@@ -110,10 +110,13 @@
                     </div>
                     {% if meme.url | slice(-4) == '.mp4' or meme.url | slice(-5) == '.webm' %}
                         <div class="embed-responsive embed-responsive-16by9">
-                            <video controls>
+                            <video id="promotedMemes" class="video-js embed-responsive-item" controls preload="auto"
+                                   data-setup="{}">
                                 <source src="{{ asset('assets/mem/') ~ meme.url }}" type="video/mp4"
                                         class="embed-responsive-item">
-                                Masz kiepską przeglądarkę! Użyj GOOGLE CHROME!
+                                <p class="vjs-no-js">
+                                    Masz kiepską przeglądarkę! Użyj GOOGLE CHROME!
+                                </p>
                             </video>
                         </div>
                     {% else %}
@@ -200,10 +203,16 @@
     </div>
 {% endblock %}
 
+{% block stylesheets %}
+    {{  parent() }}
+    <link href="http://vjs.zencdn.net/5.12.6/video-js.css" rel="stylesheet">
+{% endblock %}
+
 {% block javascripts %}
     {{ parent() }}
     <script src="{{ asset('assets/js/stream.js') }}"></script>
     <script src="{{ asset('assets/js/ads.js') }}"></script>
+    <script src="http://vjs.zencdn.net/5.12.6/video.js"></script>
     <script src="https://apis.google.com/js/platform.js"></script>
     <script>
         var stream = new Stream('{{ url("api.stream") }}', 'dd80eugsisvxdq2h689e6m8e3tqqzuw');

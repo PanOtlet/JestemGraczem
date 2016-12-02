@@ -58,10 +58,13 @@
                                 </div>
                                 <div class="m-img gif">
                                     <div class="embed-responsive embed-responsive-16by9 shadow">
-                                        <video controls>
+                                        <video id="promotedMemes" class="video-js embed-responsive-item" controls preload="auto"
+                                               data-setup="{}">
                                             <source src="{{ asset('assets/mem/') ~ mem.url }}" type="video/mp4"
                                                     class="embed-responsive-item">
-                                            Masz kiepską przeglądarkę! Użyj GOOGLE CHROME!
+                                            <p class="vjs-no-js">
+                                                Masz kiepską przeglądarkę! Użyj GOOGLE CHROME!
+                                            </p>
                                         </video>
                                     </div>
                                 </div>
@@ -135,4 +138,14 @@
             </div>
         </div>
     </div>
+{% endblock %}
+
+{% block stylesheets %}
+    {{  parent() }}
+    <link href="http://vjs.zencdn.net/5.12.6/video-js.css" rel="stylesheet">
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script src="http://vjs.zencdn.net/5.12.6/video.js"></script>
 {% endblock %}
