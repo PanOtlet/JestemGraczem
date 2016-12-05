@@ -350,7 +350,8 @@
                             </div>
                             <div class="col-xs-6 p-x-0">
                                 <button type="button" class="btn btn-primary btn-lg dropdown-toggle btn-block"
-                                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="border-radius: 0;">
+                                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
+                                        style="border-radius: 0;">
                                     <span class="sr-only">Toggle Dropdown</span>
                                 </button>
                                 <div class="dropdown-menu">
@@ -589,7 +590,6 @@
                 crossorigin="anonymous"></script>
         <script async src="https://use.fontawesome.com/c0b3ee6d21.js"></script>
         <script src="{{ asset('assets/js/jquery.cookiesdirective.js') }}"></script>
-        <script src="{{ asset('assets/js/jquery.bracket.js') }}"></script>
         <script src="https://cdn.onesignal.com/sdks/OneSignalSDK.js"></script>
 
         {% if app.session.flashBag.has('error') or app.session.flashBag.has('info') or app.session.flashBag.has('warning') or app.session.flashBag.has('success') %}
@@ -597,47 +597,6 @@
         {% endif %}
 
         <script type="text/javascript">
-            var OneSignal = window.OneSignal || [];
-            OneSignal.push(["init", {
-                appId: "5611cf12-14a7-45d2-8f8f-d767df85e768",
-                autoRegister: true,
-                subdomainName: 'jestemgraczem',
-                notifyButton: {
-                    enable: true
-                }
-            }]);
-
-            $(function () {
-                $('[data-toggle="tooltip"]').tooltip()
-            });
-
-            $("#fun-a").click(function () {
-                $("#games-m").hide();
-                $("#turnaments-m").hide();
-                $("#fun-m").slideToggle("slow");
-            });
-            $("#games-a").click(function () {
-                $("#turnaments-m").hide();
-                $("#fun-m").hide();
-                $("#games-m").slideToggle("slow");
-            });
-            $("#turnaments-a").click(function () {
-                $("#games-m").hide();
-                $("#fun-m").hide();
-                $("#turnaments-m").slideToggle("slow");
-            });
-            $("#b-meme").click(function () {
-                $("#video-mm").hide();
-                $("#meme-mm").toggle();
-            });
-            $("#b-video").click(function () {
-                $("#meme-mm").hide();
-                $("#video-mm").toggle();
-            });
-            $("#b-turnaments").click(function () {
-                $("#turnaments-mm").toggle();
-            });
-
             $(document).ready(function () {
                 {% for flash_message in app.session.flashBag.get('error') %}
                 sweetAlert("Oops...", "{{ flash_message }}", "error");
@@ -655,45 +614,54 @@
                 sweetAlert("Jupi!", "{{ flash_message }}", "success");
                 {% endfor %}
 
+                $(function () {
+                    $('[data-toggle="tooltip"]').tooltip()
+                });
+
+                $("#fun-a").click(function () {
+                    $("#games-m").hide();
+                    $("#turnaments-m").hide();
+                    $("#fun-m").slideToggle("slow");
+                });
+                $("#games-a").click(function () {
+                    $("#turnaments-m").hide();
+                    $("#fun-m").hide();
+                    $("#games-m").slideToggle("slow");
+                });
+                $("#turnaments-a").click(function () {
+                    $("#games-m").hide();
+                    $("#fun-m").hide();
+                    $("#turnaments-m").slideToggle("slow");
+                });
+                $("#b-meme").click(function () {
+                    $("#video-mm").hide();
+                    $("#meme-mm").toggle();
+                });
+                $("#b-video").click(function () {
+                    $("#meme-mm").hide();
+                    $("#video-mm").toggle();
+                });
+                $("#b-turnaments").click(function () {
+                    $("#turnaments-mm").toggle();
+                });
+
                 $.cookiesDirective({
                     privacyPolicyUri: '{{ url('cms',{'title':'regulamin'}) }}',
                     explicitConsent: false,
                     position: 'top',
-                    backgroundColor: '#FF0000',
-                    linkColor: '#00FF00'
+                    backgroundColor: '#000000',
+                    linkColor: '#FF0000'
                 });
 
-                window.doorbellOptions = {
-                    appKey: 'eFPzjPWMWqQC1VUSI4EZkKJIEZPpptfouJbYhkDtSerECdUi7QKz7QWclpzZnFCr'
-                };
-                (function (w, d, t) {
-                    var hasLoaded = false;
-
-                    function l() {
-                        if (hasLoaded) {
-                            return;
-                        }
-                        hasLoaded = true;
-                        window.doorbellOptions.windowLoaded = true;
-                        var g = d.createElement(t);
-                        g.id = 'doorbellScript';
-                        g.type = 'text/javascript';
-                        g.async = true;
-                        g.src = 'https://embed.doorbell.io/button/3971?t=' + (new Date().getTime());
-                        (d.getElementsByTagName('head')[0] || d.getElementsByTagName('body')[0]).appendChild(g);
+                var OneSignal = window.OneSignal || [];
+                OneSignal.push(["init", {
+                    appId: "5611cf12-14a7-45d2-8f8f-d767df85e768",
+                    autoRegister: true,
+                    subdomainName: 'jestemgraczem',
+                    notifyButton: {
+                        enable: true
                     }
-
-                    if (w.attachEvent) {
-                        w.attachEvent('onload', l);
-                    } else if (w.addEventListener) {
-                        w.addEventListener('load', l, false);
-                    } else {
-                        l();
-                    }
-                    if (d.readyState == 'complete') {
-                        l();
-                    }
-                }(window, document, 'script'));
+                }]);
             });
         </script>
 
