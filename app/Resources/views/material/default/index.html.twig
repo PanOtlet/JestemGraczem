@@ -1,57 +1,65 @@
-{% extends 'base.html.twig' %}
+{% extends "material/base.html.twig" %}
 
 {% block body %}
-    <div class="container-fluid top-stream p-t-5 p-b-2" xmlns="http://www.w3.org/1999/html">
-        <div class="container">
+    {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+        <div class="view hm-black-strong">
+            <div class="full-bg-img flex-center">
+                <ul>
+                    <li>
+                        <h1 class="h1-responsive wow fadeInDown" data-wow-delay="0.2s">JestemGraczem.pl</h1></li>
+                    <li>
+                        <p class="wow fadeInDown">Platforma zrobiona przez graczy dla graczy!</p>
+                    </li>
+                    <li>
+                        <a target="_blank" href="{{ url('fos_user_security_login') }}"
+                           class="btn btn-primary btn-lg wow fadeInLeft" data-wow-delay="0.2s">Zaloguj się!</a>
+                        <a target="_blank" href="{{ url('fos_user_registration_register') }}"
+                           class="btn btn-secondary btn-lg wow fadeInLeft" data-wow-delay="0.2s">Zarejestruj się!</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    {% endif %}
+
+    <div class="container">
+        <div class="divider-new">
+            <h2 class="h2-responsive wow bounceIn">Top Stream</h2>
+        </div>
+
+        <section id="stream">
             <div class="row">
-                <div class="col-sm-8 p-b-1">
+                <div class="col-md-8">
                     <div class="embed-responsive embed-responsive-16by9">
                         <iframe id="topstream" class="embed-responsive-item"
                                 src="https://beam.pro/embed/player/jestemgraczemtv"></iframe>
                     </div>
                 </div>
-                <div class="col-sm-4">
-                    <div class="btn-clear-lg p-l-1">
-                        WEEK<span style="color: #8bc34a;">TOP</span>STREAM
-                    </div>
-                    <div class="row p-y-2">
-                        <div class="col-xs-2 p-r-0">
+                <div class="col-md-4">
+                    <ul class="text-xs-center">
+                        <li class="wow fadeInUp" data-wow-delay="0.5s">
                             <img id="avatar" class="img-fluid pull-xl-left p-b-0"
                                  src="https://www.gravatar.com/avatar/{{ avatar }}?s=48" alt="Gravatar Avatar">
-                        </div>
-                        <div class="col-xs-8">
-                            <h3 id="display_name" class="text-xs-left font-weight-bold m-b-0">Brak</h3>
-                            <p id="link" class="text-xs-left">Niestety nikt nie streamuje :(</p>
-                        </div>
-                        <div class="col-xs-2 p-l-0">
-                            <img id="game" class="img-fluid pull-xs-right p-b-0"
-                                 src="https://www.gravatar.com/avatar/{{ avatar }}?s=48" alt="GameLogo">
-                        </div>
-                    </div>
-                    <p id="description" class="text-justify">
+                            <h3 id="display_name">Brak</h3>
+                        </li>
 
-                    </p>
-                    <div class="row" id="troll">
-                        <div class="col-lg-6">
-                            <p class="text-xs-left font-weight-bold">
-                                Widzów: <span id="viewers" style="color: #8bc34a;">n/d</span>
-                            </p>
-                        </div>
-                        <div class="col-lg-6">
-                            <div class="pull-right btn btn-green">
-                                <a id="profile" href="{{ url('stream') }}">{{ 'button.player'|trans }}</a>
-                            </div>
-                        </div>
-                    </div>
+                        <li class="wow fadeInUp" data-wow-delay="1.0s">
+                            <p id="link">Niestety nikt nie streamuje :(</p>
+                        </li>
+
+                        <li class="wow fadeInUp" data-wow-delay="1.5s">
+                            Widzów: <span id="viewers" style="color: #8bc34a;">n/d</span>
+                        </li>
+                    </ul>
                 </div>
             </div>
-        </div>
-    </div>
-    <div class="container">
-        <div class="row p-t-1">
             <div class="container-fluid" id="streams-container">
 
             </div>
+        </section>
+    </div>
+
+    <div class="container">
+        <div class="row p-t-1">
             <div class="text-xs-center" id="loading">
                 <i class="fa fa-spinner fa-pulse fa-4x p-y-1" aria-hidden="true"></i>
             </div>
@@ -204,7 +212,7 @@
 {% endblock %}
 
 {% block stylesheets %}
-    {{  parent() }}
+    {{ parent() }}
     <link href="http://vjs.zencdn.net/5.12.6/video-js.css" rel="stylesheet">
 {% endblock %}
 

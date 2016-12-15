@@ -166,7 +166,7 @@ function Stream(url, twitchApiKey) {
      */
     this.antyTopStream = function () {
         $('#topstream').hide().attr('src', 'https://www.youtube.com/embed/DLzxrzFCyOs?autoplay=true').fadeIn(1000);
-        $('#troll').hide().html(
+        $('#viewers').hide().html(
             '<p>' +
             'JestemGraczem.pl utrzymuje się między innymi z reklam.<br><br>' +
             'Wyłącz adBlock, byśmy mogli się dalej rozwijać!<br><br>' +
@@ -176,7 +176,7 @@ function Stream(url, twitchApiKey) {
         $('#link').hide().html('www.jestemgraczem.pl').fadeIn(1000);
         $('#display_name').hide().html('Rick Astley').fadeIn(1000);
         $('#avatar').hide().attr('src', 'http://i3.kym-cdn.com/photos/images/newsfeed/000/247/207/813.gif').fadeIn(1000);
-        $('#game').hide().attr('src', 'http://i3.kym-cdn.com/photos/images/newsfeed/000/247/207/813.gif').fadeIn(1000);
+        // $('#game').hide().attr('src', 'http://i3.kym-cdn.com/photos/images/newsfeed/000/247/207/813.gif').fadeIn(1000);
     };
 
     /**
