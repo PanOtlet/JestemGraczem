@@ -13,7 +13,11 @@ class DefaultController extends Controller
      */
     public function indexAction()
     {
-        return $this->render('ApiBundle::index.html.twig');
+        return new Response(
+            "",
+            Response::HTTP_BAD_REQUEST,
+            ['content-type' => 'application/json']
+        );
     }
 
     /**
@@ -21,10 +25,11 @@ class DefaultController extends Controller
      */
     public function noStreamAction()
     {
-        return $this->render(':default:fullPageMario.html.twig');
+        return $this->render($this->getParameter('theme') . '/default/fullPageMario.html.twig');
     }
 
-    public static function badRequest($json = "[]"){
+    public static function badRequest($json = "[]")
+    {
         return new Response(
             $json,
             Response::HTTP_BAD_REQUEST,

@@ -24,7 +24,7 @@ class DefaultController extends Controller
 
         $servers = $this->getDoctrine()->getRepository('GameBundle:Servers')->findAll();
 
-        return $this->render('gameCenter/index.html.twig', [
+        return $this->render($this->getParameter('theme') . '/gameCenter/index.html.twig', [
             'color' => GameBundle::getColor(),
             'servers' => $servers,
             'games' => [
@@ -114,7 +114,7 @@ class DefaultController extends Controller
             ]
         ];
 
-        return $this->render('gameCenter/cebula.html.twig', [
+        return $this->render($this->getParameter('theme') . '/gameCenter/cebula.html.twig', [
             'color' => GameBundle::getColor(),
             'feeds' => $feeds,
             'json' => json_encode($feeds,true)

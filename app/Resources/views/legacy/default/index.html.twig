@@ -1,0 +1,243 @@
+{% extends "legacy/base.html.twig" %}
+
+{% block body %}
+    <div class="container-fluid top-stream p-t-5 p-b-2" xmlns="http://www.w3.org/1999/html">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-8 p-b-1">
+                    <div class="embed-responsive embed-responsive-16by9">
+                        <iframe id="topstream" class="embed-responsive-item"
+                                src="https://beam.pro/embed/player/jestemgraczemtv"></iframe>
+                    </div>
+                </div>
+                <div class="col-sm-4">
+                    <div class="btn-clear-lg p-l-1">
+                        WEEK<span style="color: #8bc34a;">TOP</span>STREAM
+                    </div>
+                    <div class="row p-y-2">
+                        <div class="col-xs-2 p-r-0">
+                            <img id="avatar" class="img-fluid pull-xl-left p-b-0"
+                                 src="https://www.gravatar.com/avatar/{{ avatar }}?s=48" alt="Gravatar Avatar">
+                        </div>
+                        <div class="col-xs-8">
+                            <h3 id="display_name" class="text-xs-left font-weight-bold m-b-0">Brak</h3>
+                            <p id="link" class="text-xs-left">Niestety nikt nie streamuje :(</p>
+                        </div>
+                        <div class="col-xs-2 p-l-0">
+                            <img id="game" class="img-fluid pull-xs-right p-b-0"
+                                 src="https://www.gravatar.com/avatar/{{ avatar }}?s=48" alt="GameLogo">
+                        </div>
+                    </div>
+                    <p id="description" class="text-justify">
+
+                    </p>
+                    <div class="row" id="troll">
+                        <div class="col-lg-6">
+                            <p class="text-xs-left font-weight-bold">
+                                Widzów: <span id="viewers" style="color: #8bc34a;">n/d</span>
+                            </p>
+                        </div>
+                        <div class="col-lg-6">
+                            <div class="pull-right btn btn-green">
+                                <a id="profile" href="{{ url('stream') }}">{{ 'button.player'|trans }}</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container">
+        <div class="row p-t-1">
+            <div class="container-fluid" id="streams-container">
+
+            </div>
+            <div class="text-xs-center" id="loading">
+                <i class="fa fa-spinner fa-pulse fa-4x p-y-1" aria-hidden="true"></i>
+            </div>
+        </div>
+
+        <div class="container-fluid p-t-1">
+            {% block adbanner %}{{ parent() }}{% endblock %}
+            {#<img class="img-fluid center-block" src="{{ asset('assets/img/ad.png') }}">#}
+        </div>
+
+        <div class="row p-t-2">
+            <div class="col-md-6">
+                <div class="btn-white-lg dots m-b-1">
+                <span class="p-x-1 text">
+                    <span style="color: #303030;">
+                        {{ articles.0.title|slice(0,30) }}...
+                    </span>
+                </span>
+                </div>
+                <div>
+                    <p>{{ articles.0.introduction }}</p>
+                    <a href="{{ url('article.id',{'id': articles.0.id, 'title': articles.0.title|replace({' ': '-'})}) }}">
+                        Czytaj dalej...
+                    </a>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="btn-white-lg dots m-b-1">
+                <span class="p-x-1 text">
+                    <span style="color: #303030;">
+                        {{ articles.1.title|slice(0,30) }}...
+                    </span>
+                </span>
+                </div>
+                <div>
+                    <p>{{ articles.1.introduction }}</p>
+                    <a href="{{ url('article.id',{'id': articles.1.id, 'title': articles.1.title|replace({' ': '-'})}) }}">
+                        Czytaj dalej...
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <div class="btn-green text-xs-center m-b-1">
+            <a href="{{ url('articles') }}">
+                Czytaj więcej...
+            </a>
+        </div>
+
+        <div class="row p-t-1">
+            <div class="col-md-6">
+                {% if meme %}
+                    <div class="btn-white-lg dots">
+                        <span class="p-x-1 text">{{ 'button.newest.new'|trans }}<span
+                                    style="color: #303030;">{{ 'button.newest.meme'|trans }}</span></span>
+                    </div>
+                    {% if meme.url | slice(-4) == '.mp4' or meme.url | slice(-5) == '.webm' %}
+                        <div class="embed-responsive embed-responsive-16by9">
+                            <video id="promotedMemes" class="video-js embed-responsive-item" controls preload="auto"
+                                   data-setup="{}">
+                                <source src="{{ asset('assets/mem/') ~ meme.url }}" type="video/mp4"
+                                        class="embed-responsive-item">
+                                <p class="vjs-no-js">
+                                    Masz kiepską przeglądarkę! Użyj GOOGLE CHROME!
+                                </p>
+                            </video>
+                        </div>
+                    {% else %}
+                        <img class="img-fluid center-block video p-b-0"
+                             src="{{ asset('assets/mem/') ~ meme.url }}" alt="{{ meme.title }}">
+                    {% endif %}
+                    <div class="row p-y-0 m-x-0 grey">
+                        <div class="col-xs-1 p-x-0">
+                            <img class="img-fluid pull-xl-left p-b-0 grey"
+                                 src="https://www.gravatar.com/avatar/{{ avatar }}?s=48" alt="Gravatar Avatar">
+                        </div>
+                        <div class="col-xs-10 p-l-0">
+                            <p class="text-xs-left  m-b-0" style="padding-top: 0.3rem;">
+                                <a class="font-weight-bold" href="{{ url('mem.id', {'id': meme.id}) }}"
+                                   style="color: #000000;font-size: 0.9rem; text-decoration: none;">
+                                    {{ 'button.comments'|trans }}
+                                </a>
+                            </p>
+                        </div>
+                        <div class="col-xs-1 p-x-0">
+                            <img class="img-fluid pull-xs-right p-b-0 grey"
+                                 src="https://www.gravatar.com/avatar/{{ avatar }}?s=48" alt="Gravatar Avatar">
+                        </div>
+                    </div>
+                    <div class="btn-white p-l-1 p-y-06">{{ meme.title }}</div>
+                    <div class="btn-green text-xs-center m-b-1">
+                        <a href="{{ url('mem') }}">{{ 'button.more'|trans }}</a>
+                    </div>
+                {% endif %}
+            </div>
+            <div class="col-md-6">
+                <div class="btn-white-lg dots">
+                    <span class="p-x-1 text">{{ 'button.newest.new'|trans }}<span
+                                style="color: #303030;">{{ 'button.newest.video'|trans }}</span></span>
+                </div>
+                <div class="row">
+                    {% for vod in video %}
+                        <div class="col-md-6 video">
+                            <a href="{{ url('video.id', { 'id':vod.id }) }}" data-toggle="tooltip"
+                               title="{{ vod.title }}">
+                                <img class="img-responsive"
+                                     src="//img.youtube.com/vi/{{ vod.videoid }}/mqdefault.jpg"
+                                     alt="{{ vod.title }}">
+                            </a>
+                        </div>
+                    {% endfor %}
+                </div>
+                <div class="btn-green text-xs-center">
+                    <a href="{{ url('video') }}">{{ 'button.more'|trans }}</a>
+                </div>
+            </div>
+        </div>
+        <div class="row p-t-2">
+            <div class="btn-white-lg dots m-b-1">
+                <span class="p-x-1 text">
+                    <span style="color: #303030;">
+                        Znajdź nas w Social Media oraz YouTube!
+                    </span>
+                </span>
+            </div>
+            <div class="col-md-4">
+                <div id="fb-root"></div>
+
+                <div class="fb-page" data-href="https://www.facebook.com/jestemgraczempl/" data-small-header="false"
+                     data-adapt-container-width="true" data-hide-cover="false" data-show-facepile="false">
+                    <blockquote cite="https://www.facebook.com/jestemgraczempl/" class="fb-xfbml-parse-ignore"><a
+                                href="https://www.facebook.com/jestemgraczempl/">JestemGraczem.pl</a></blockquote>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="g-ytsubscribe" data-channelid="UCwyKvaFQcBfJ7dCxM_uX5EQ" data-layout="full"
+                     data-count="default"></div>
+                <br>
+                <div class="g-ytsubscribe" data-channel="PanOtlet" data-layout="full" data-count="default"></div>
+                <br>
+                {#<div class="g-ytsubscribe" data-channelid="UCepCNuYZY9KzbzpSP1552Wg" data-layout="full"#}
+                {#data-count="default"></div>#}
+            </div>
+            <div class="col-md-4">
+                <div class="g-page" data-href="//plus.google.com/u/4/116516903644267522146" data-layout="landscape"
+                     data-rel="publisher"></div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block stylesheets %}
+    {{  parent() }}
+    <link href="http://vjs.zencdn.net/5.12.6/video-js.css" rel="stylesheet">
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script src="{{ asset('assets/js/stream.js') }}"></script>
+    <script src="{{ asset('assets/js/ads.js') }}"></script>
+    <script src="http://vjs.zencdn.net/5.12.6/video.js"></script>
+    <script src="https://apis.google.com/js/platform.js"></script>
+    <script>
+        var stream = new Stream('{{ url("api.stream") }}', 'dd80eugsisvxdq2h689e6m8e3tqqzuw');
+        if (typeof ads !== 'undefined')
+            stream.start(true);
+        else
+            stream.start(false);
+
+        window.___gcfg = {lang: 'pl'};
+        (function () {
+            var po = document.createElement('script');
+            po.type = 'text/javascript';
+            po.async = true;
+            po.src = 'https://apis.google.com/js/platform.js';
+            var s = document.getElementsByTagName('script')[0];
+            s.parentNode.insertBefore(po, s);
+        })
+        ();
+        (function (d, s, id) {
+            var js, fjs = d.getElementsByTagName(s)[0];
+            if (d.getElementById(id)) return;
+            js = d.createElement(s);
+            js.id = id;
+            js.src = "//connect.facebook.net/pl_PL/sdk.js#xfbml=1&version=v2.7&appId=1792775277616619";
+            fjs.parentNode.insertBefore(js, fjs);
+        }(document, 'script', 'facebook-jssdk'));
+    </script>
+{% endblock %}

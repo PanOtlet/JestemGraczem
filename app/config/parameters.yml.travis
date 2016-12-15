@@ -14,3 +14,4 @@ parameters:
     paypal_password:  ''
     paypal_signature: ''
     paypal_sandbox: true
+    theme: legacy

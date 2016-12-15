@@ -1,0 +1,111 @@
+{% extends "legacy/base.html.twig" %}
+
+{% block body %}
+    <div class="container-fluid top p-t-3 p-b-2">
+        <div class="container">
+            <div class="col-sm-6 btn-clear-lg p-l-1 ">
+                NEWS
+            </div>
+            <div class="col-sm-6">
+                <a href="{{ url('rss.add') }}" type="button" class="btn btn-green pull-sm-right"><span
+                            class="p-x-3">{{ 'nav.addrss'|trans }}</span></a>
+            </div>
+        </div>
+    </div>
+    <div class="container" style="margin-top: 10px">
+        {% block adbanner %}{{ parent() }}{% endblock %}
+        <div class="row">
+            <div class="col-md-4">
+                <div class="card">
+                    <div class="card-block">
+                        <h4 class="card-title">{{ 'nav.blog'|trans }}</h4>
+                    </div>
+                    <ul class="list-group list-group-flush" id="jestemgraczem"></ul>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card">
+                    <div class="card-block">
+                        <h4 class="card-title">CyberSport.pl</h4>
+                    </div>
+                    <ul class="list-group list-group-flush" id="cybersport"></ul>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card">
+                    <div class="card-block">
+                        <h4 class="card-title">LowcyGier.pl</h4>
+                    </div>
+                    <ul class="list-group list-group-flush" id="lowcygier"></ul>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            {% for news in rss %}
+            {% if loop.index0 % 3==0 and loop.index0 != 0 %}
+        </div>
+        <div class="row">
+            {% endif %}
+            <div class="col-md-4">
+                <div class="card">
+                    <div class="card-block" style="background-color: #{{ news.css }}">
+                        <h4 class="card-title">{{ news.name }} <a href="{{ url('rss.remove',{'id': news.id }) }}"
+                                                                  class="btn btn-raised btn-danger">Usuń</a></h4>
+                    </div>
+                    <ul class="list-group list-group-flush" id="{{ news.name }}"></ul>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script src="{{ asset('assets/js/jquery.rss.js') }}"></script>
+    <script>
+        var sites = [
+            {
+                name: "#jestemgraczem",
+                url: "http://blog.jestemgraczem.pl/rss",
+                css: "panel-info",
+                color: "#865DAC"
+            },
+            {
+                name: "#cybersport",
+                url: "http://cybersport.pl/feed",
+                css: "panel-warning",
+                color: "#99161b"
+            },
+            {
+                name: "#lowcygier",
+                url: "http://lowcygier.pl/feed/",
+                css: "panel-warning",
+                color: "#367ea8"
+            },
+            {% for news in rss %}
+            {
+                name: "#{{ news.name }}",
+                url: "{{ news.url }}",
+                color: "{{ news.css }}"
+            },
+            {% endfor %}
+        ];
+
+        jQuery(function ($) {
+            for (var i = 0; i < sites.length; i++) {
+                $(sites[i]['name']).rss(sites[i]['url'], {
+                    limit: 12,
+                    effect: 'slideFastSynced',
+                    offsetStart: false,
+                    offsetEnd: false,
+                    ssl: false,
+                    layoutTemplate: '{entries}',
+                    entryTemplate: '' +
+                    '<li class="list-group-item"><a href="{{ url('redirect') }}?url={url}" target="_blank">{title}</a></li>',
+                    dateFormat: 'HH:mm D/MM/YYYY'
+                });
+            }
+        });
+    </script>
+{% endblock %}

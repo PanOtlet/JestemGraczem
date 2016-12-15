@@ -28,7 +28,7 @@ class WoTController extends Controller
             ]
         ];
 
-        return $this->render('gameCenter/wot.html.twig', [
+        return $this->render($this->getParameter('theme') . '/gameCenter/wot.html.twig', [
             'color' => GameBundle::getColor(),
             'feeds' => $feeds,
             'json' => json_encode($feeds,true)

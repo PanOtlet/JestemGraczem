@@ -28,7 +28,7 @@ class HearthstoneController extends Controller
             ]
         ];
 
-        return $this->render('gameCenter/hs.html.twig', [
+        return $this->render($this->getParameter('theme') . '/gameCenter/hs.html.twig', [
             'color' => GameBundle::getColor(),
             'feeds' => $feeds,
             'json' => json_encode($feeds,true)

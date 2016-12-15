@@ -39,7 +39,7 @@ class DefaultController extends Controller
 
         $avatar = ($this->getUser()) ? md5($this->getUser()->getEmail()) : md5('thejestemgraczemsquad@gmail.com');
 
-        return $this->render('default/index.html.twig', [
+        return $this->render($this->getParameter('theme') . '/default/index.html.twig', [
             'color' => $this->color,
             'articles' => $articles,
             'meme' => $mem,
@@ -47,6 +47,7 @@ class DefaultController extends Controller
             'avatar' => $avatar
         ]);
     }
+
     /**
      * @Route("/test", name="test")
      * @return \Symfony\Component\HttpFoundation\Response
@@ -56,7 +57,7 @@ class DefaultController extends Controller
 
         $avatar = ($this->getUser()) ? md5($this->getUser()->getEmail()) : md5('thejestemgraczemsquad@gmail.com');
 
-        return $this->render('default/test.html.twig', [
+        return $this->render($this->getParameter('theme') . '/default/test.html.twig', [
             'color' => $this->color,
             'avatar' => $avatar
         ]);
@@ -72,11 +73,11 @@ class DefaultController extends Controller
             return $this->redirectToRoute('homepage');
         }
 
-        if (isset($_GET['r']) && $_GET['r'] == TRUE){
+        if (isset($_GET['r']) && $_GET['r'] == TRUE) {
             return $this->redirect($_GET['url']);
         }
 
-        return $this->render('default/frame.html.twig', [
+        return $this->render($this->getParameter('theme') . '/default/frame.html.twig', [
             'color' => $this->color,
             'url' => $_GET['url'],
         ]);
@@ -126,7 +127,7 @@ class DefaultController extends Controller
             ->addMeta('property', 'og:type', 'profile')
             ->addMeta('property', 'og:url', $this->get('router')->generate('user', ['user' => $user['username']], UrlGeneratorInterface::ABSOLUTE_URL));
 
-        return $this->render('default/user.html.twig', [
+        return $this->render($this->getParameter('theme') . '/default/user.html.twig', [
             'color' => $this->color,
             'user' => $user,
             'meme' => $mem,
