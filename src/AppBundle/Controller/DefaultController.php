@@ -37,6 +37,12 @@ class DefaultController extends Controller
             ->setMaxResults(8)
             ->getQuery()->getResult();
 
+        $sliders = $this->getDoctrine()->getRepository('AppBundle:Slider')->createQueryBuilder('m')
+            ->where('m.enabled = 1')
+            ->orderBy('m.id', 'DESC')
+            ->setMaxResults(5)
+            ->getQuery()->getResult();
+
         $avatar = ($this->getUser()) ? md5($this->getUser()->getEmail()) : md5('thejestemgraczemsquad@gmail.com');
 
         return $this->render($this->getParameter('theme') . '/default/index.html.twig', [
@@ -44,7 +50,8 @@ class DefaultController extends Controller
             'articles' => $articles,
             'meme' => $mem,
             'video' => $video,
-            'avatar' => $avatar
+            'avatar' => $avatar,
+            'sliders' => $sliders
         ]);
     }
 

@@ -34,7 +34,7 @@ footer.page-footer {
 }
 
 .view {
-    background: url("../../img/bease-bg-lol.jpg")no-repeat center center fixed;
+    background: url("../../img/bease-bg-lol.jpg") no-repeat center center fixed;
     -webkit-background-size: cover;
     -moz-background-size: cover;
     -o-background-size: cover;
@@ -71,4 +71,8 @@ footer.page-footer {
     border: solid 4px #0000ff;
     -webkit-filter: grayscale(10%); /* Chrome, Safari, Opera */
     filter: grayscale(10%);
+}
+
+#streams-container {
+    margin-top: 20px;
 }
