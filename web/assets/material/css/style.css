@@ -39,6 +39,9 @@ footer.page-footer {
     -moz-background-size: cover;
     -o-background-size: cover;
     background-size: cover;
+    overflow: hidden;
+    position: relative;
+    cursor: default;
 }
 
 #stream .fa {
