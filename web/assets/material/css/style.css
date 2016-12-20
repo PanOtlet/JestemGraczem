@@ -76,3 +76,9 @@ footer.page-footer {
 #streams-container {
     margin-top: 20px;
 }
+
+#stream-container {
+    padding: 20px;
+    background: url('http://i.imgur.com/4jaiQ2S.png') no-repeat fixed center;
+    background-size: cover;
+}

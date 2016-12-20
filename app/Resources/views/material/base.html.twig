@@ -26,6 +26,16 @@
             ga('send', 'pageview');
         </script>
 
+        {% block stylesheets %}
+            <link href="{{ asset('assets/material/css/bootstrap.min.css') }}" rel="stylesheet">
+            <link href="{{ asset('assets/material/css/mdb.min.css') }}" rel="stylesheet">
+            <link href="{{ asset('assets/material/css/style.css') }}" rel="stylesheet">
+
+            {% if app.session.flashBag.has('error') or app.session.flashBag.has('info') or app.session.flashBag.has('warning') or app.session.flashBag.has('success') %}
+                <link rel="stylesheet" type="text/css" href="{{ asset('assets/js/sweetalert.css') }}" property="stylesheet">
+            {% endif %}
+        {% endblock %}
+
         <link rel="apple-touch-icon" sizes="57x57" href="{{ asset('assets/img/favicon/apple-icon-57x57.png') }}">
         <link rel="apple-touch-icon" sizes="60x60" href="{{ asset('assets/img/favicon/apple-icon-60x60.png') }}">
         <link rel="apple-touch-icon" sizes="72x72" href="{{ asset('assets/img/favicon/apple-icon-72x72.png') }}">
@@ -57,7 +67,7 @@
                     <ul class="nav navbar-nav">
                         <a href="{{ url('homepage') }}" class="navbar-brand">JestemGraczem.pl</a>
                         <li class="nav-item">
-                            <a class="nav-link waves-effect waves-light" href="#home">Home</a>
+                            <a class="nav-link waves-effect waves-light" href="{{ url('homepage') }}">Home</a>
                         </li>
                         <li class="nav-item btn-group">
                             <a class="nav-link dropdown-toggle" id="dropdownTurnieje" data-toggle="dropdown"
@@ -279,17 +289,6 @@
                 </div>
             </div>
         </footer>
-    {% endblock %}
-
-
-    {% block stylesheets %}
-        <link href="{{ asset('assets/material/css/bootstrap.min.css') }}" rel="stylesheet">
-        <link href="{{ asset('assets/material/css/mdb.min.css') }}" rel="stylesheet">
-        <link href="{{ asset('assets/material/css/style.css') }}" rel="stylesheet">
-
-        {% if app.session.flashBag.has('error') or app.session.flashBag.has('info') or app.session.flashBag.has('warning') or app.session.flashBag.has('success') %}
-            <link rel="stylesheet" type="text/css" href="{{ asset('assets/js/sweetalert.css') }}" property="stylesheet">
-        {% endif %}
     {% endblock %}
 
     {% block javascripts %}

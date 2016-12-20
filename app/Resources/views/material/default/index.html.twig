@@ -1,7 +1,7 @@
 {% extends "material/base.html.twig" %}
 
 {% block body %}
-    {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+    {% if not is_granted("IS_AUTHENTICATED_REMEMBERED") %}
         <div class="view hm-black-strong">
             <div class="full-bg-img flex-center">
                 <ul>
@@ -80,41 +80,43 @@
         </div>
     {% endif %}
 
-    <div class="container">
-        <div class="divider-new">
-            <h2 class="h2-responsive wow bounceIn">Top Stream</h2>
-        </div>
+    <div class="divider-new">
+        <h2 class="h2-responsive wow bounceIn">Polecane streamy</h2>
+    </div>
 
-        <section id="stream">
-            <div class="row">
-                <div class="col-md-8">
-                    <div class="embed-responsive embed-responsive-16by9">
-                        <iframe id="topstream" class="embed-responsive-item"
-                                src="https://beam.pro/embed/player/jestemgraczemtv"></iframe>
+    <div id="stream-container">
+        <div class="container">
+            <section id="stream">
+                <div class="row">
+                    <div class="col-md-8">
+                        <div class="embed-responsive embed-responsive-16by9">
+                            <iframe id="topstream" class="embed-responsive-item"
+                                    src="https://beam.pro/embed/player/jestemgraczemtv"></iframe>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <ul class="text-xs-center">
+                            <li class="wow fadeInUp" data-wow-delay="0.5s">
+                                <img id="avatar" class="img-fluid visible-lg-block"
+                                     src="https://www.gravatar.com/avatar/{{ avatar }}?s=25" alt="Gravatar Avatar">
+                                <h3 id="display_name" style="margin-top: 30pt" class="h3-responsive tag red">Brak</h3>
+                            </li>
+
+                            <li class="wow fadeInUp" data-wow-delay="1.0s">
+                                <p id="link" class="tag grey">Niestety nikt nie streamuje :(</p>
+                            </li>
+
+                            <li class="wow fadeInUp tag black" data-wow-delay="1.5s">
+                                Widzów: <span id="viewers">n/d</span>
+                            </li>
+                        </ul>
                     </div>
                 </div>
-                <div class="col-md-4">
-                    <ul class="text-xs-center">
-                        <li class="wow fadeInUp" data-wow-delay="0.5s">
-                            <img id="avatar" class="img-fluid pull-xl-left p-b-0"
-                                 src="https://www.gravatar.com/avatar/{{ avatar }}?s=200" alt="Gravatar Avatar">
-                            <h3 id="display_name" style="margin-top: 30pt">Brak</h3>
-                        </li>
+                <div class="container-fluid" id="streams-container">
 
-                        <li class="wow fadeInUp" data-wow-delay="1.0s">
-                            <p id="link">Niestety nikt nie streamuje :(</p>
-                        </li>
-
-                        <li class="wow fadeInUp" data-wow-delay="1.5s">
-                            Widzów: <span id="viewers" style="color: #8bc34a;">n/d</span>
-                        </li>
-                    </ul>
                 </div>
-            </div>
-            <div class="container-fluid" id="streams-container">
-
-            </div>
-        </section>
+            </section>
+        </div>
     </div>
 
     <div class="container">
