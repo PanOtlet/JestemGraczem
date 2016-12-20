@@ -85,3 +85,9 @@ footer.page-footer {
     background: url('http://i.imgur.com/4jaiQ2S.png') no-repeat fixed center;
     background-size: cover;
 }
+
+#news {
+    padding: 20px;
+    background: url('http://i.imgur.com/vzRN4in.jpg') no-repeat fixed center;
+    background-size: cover;
+}

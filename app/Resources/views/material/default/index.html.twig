@@ -121,106 +121,87 @@
         </div>
     </div>
 
-    <div class="container">
-        <div class="row p-t-1">
-            <div class="text-xs-center" id="loading">
-                <i class="fa fa-spinner fa-pulse fa-4x p-y-1" aria-hidden="true"></i>
-            </div>
-        </div>
+    <div class="container-fluid p-t-1">
+        {% block adbanner %}{{ parent() }}{% endblock %}
+    </div>
 
-        <div class="container-fluid p-t-1">
-            {% block adbanner %}{{ parent() }}{% endblock %}
-        </div>
-
-        <div class="row p-t-2">
-            <div class="col-md-6">
-                <div class="btn-white-lg dots m-b-1">
-                <span class="p-x-1 text">
-                    <span style="color: #303030;">
-                        {{ articles.0.title|slice(0,30) }}...
-                    </span>
-                </span>
+    <div id="news">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="card">
+                        <div class="card-header danger-color-dark white-text">
+                            {{ articles.0.title|slice(0,30) }}...
+                        </div>
+                        <div class="card-block">
+                            <p class="card-text">{{ articles.0.introduction }}</p>
+                            <a href="{{ url('article.id',{'id': articles.0.id, 'title': articles.0.title|replace({' ': '-'})}) }}"
+                               class="btn btn-danger">Czytaj dalej...</a>
+                        </div>
+                    </div>
                 </div>
-                <div>
-                    <p>{{ articles.0.introduction }}</p>
-                    <a href="{{ url('article.id',{'id': articles.0.id, 'title': articles.0.title|replace({' ': '-'})}) }}">
-                        Czytaj dalej...
-                    </a>
-                </div>
-            </div>
-            <div class="col-md-6">
-                <div class="btn-white-lg dots m-b-1">
-                <span class="p-x-1 text">
-                    <span style="color: #303030;">
-                        {{ articles.1.title|slice(0,30) }}...
-                    </span>
-                </span>
-                </div>
-                <div>
-                    <p>{{ articles.1.introduction }}</p>
-                    <a href="{{ url('article.id',{'id': articles.1.id, 'title': articles.1.title|replace({' ': '-'})}) }}">
-                        Czytaj dalej...
-                    </a>
+                <div class="col-md-6">
+                    <div class="card">
+                        <div class="card-header danger-color-dark white-text">
+                            {{ articles.1.title|slice(0,30) }}...
+                        </div>
+                        <div class="card-block">
+                            <p class="card-text">{{ articles.1.introduction }}</p>
+                            <a href="{{ url('article.id',{'id': articles.1.id, 'title': articles.1.title|replace({' ': '-'})}) }}"
+                               class="btn btn-danger">Czytaj dalej...</a>
+                        </div>
+                    </div>
                 </div>
             </div>
-        </div>
 
-        <div class="btn-green text-xs-center m-b-1">
-            <a href="{{ url('articles') }}">
+            <a href="{{ url('articles') }}" class="btn btn-block btn-purple waves-effect">
                 Czytaj więcej...
             </a>
         </div>
+    </div>
 
+    <div id="media" class="container">
         <div class="row p-t-1">
             <div class="col-md-6">
                 {% if meme %}
-                    <div class="btn-white-lg dots">
-                        <span class="p-x-1 text">{{ 'button.newest.new'|trans }}<span
-                                    style="color: #303030;">{{ 'button.newest.meme'|trans }}</span></span>
+                    <div class="divider-new">
+                        <h2 class="h2-responsive wow bounceIn">
+                            {{ 'button.newest.new'|trans }} {{ 'button.newest.meme'|trans }}
+                        </h2>
                     </div>
-                    {% if meme.url | slice(-4) == '.mp4' or meme.url | slice(-5) == '.webm' %}
-                        <div class="embed-responsive embed-responsive-16by9">
-                            <video id="promotedMemes" class="video-js embed-responsive-item" controls preload="auto"
-                                   data-setup="{}">
-                                <source src="{{ asset('assets/mem/') ~ meme.url }}" type="video/mp4"
-                                        class="embed-responsive-item">
-                                <p class="vjs-no-js">
-                                    Masz kiepską przeglądarkę! Użyj GOOGLE CHROME!
-                                </p>
-                            </video>
+                    <div class="card">
+                        {% if meme.url | slice(-4) == '.mp4' or meme.url | slice(-5) == '.webm' %}
+                            <div class="embed-responsive embed-responsive-16by9">
+                                <video id="promotedMemes" class="video-js embed-responsive-item" controls preload="auto"
+                                       data-setup="{}">
+                                    <source src="{{ asset('assets/mem/') ~ meme.url }}" type="video/mp4"
+                                            class="embed-responsive-item">
+                                    <p class="vjs-no-js">
+                                        Masz kiepską przeglądarkę! Użyj GOOGLE CHROME!
+                                    </p>
+                                </video>
+                            </div>
+                        {% else %}
+                            <img class="img-fluid"
+                                 src="{{ asset('assets/mem/') ~ meme.url }}" alt="{{ meme.title }}">
+                        {% endif %}
+                        <div class="card-block">
+                            <h4 class="card-title">{{ meme.title }}</h4>
+                            <a href="{{ url('mem.id', {'id': meme.id}) }}" class="btn btn-primary">
+                                {{ 'button.comments'|trans }}
+                            </a>
+                            <a href="{{ url('mem') }}" class="btn btn-secondary">
+                                {{ 'button.more'|trans }}
+                            </a>
                         </div>
-                    {% else %}
-                        <img class="img-fluid center-block video p-b-0"
-                             src="{{ asset('assets/mem/') ~ meme.url }}" alt="{{ meme.title }}">
-                    {% endif %}
-                    <div class="row p-y-0 m-x-0 grey">
-                        <div class="col-xs-1 p-x-0">
-                            <img class="img-fluid pull-xl-left p-b-0 grey"
-                                 src="https://www.gravatar.com/avatar/{{ avatar }}?s=48" alt="Gravatar Avatar">
-                        </div>
-                        <div class="col-xs-10 p-l-0">
-                            <p class="text-xs-left  m-b-0" style="padding-top: 0.3rem;">
-                                <a class="font-weight-bold" href="{{ url('mem.id', {'id': meme.id}) }}"
-                                   style="color: #000000;font-size: 0.9rem; text-decoration: none;">
-                                    {{ 'button.comments'|trans }}
-                                </a>
-                            </p>
-                        </div>
-                        <div class="col-xs-1 p-x-0">
-                            <img class="img-fluid pull-xs-right p-b-0 grey"
-                                 src="https://www.gravatar.com/avatar/{{ avatar }}?s=48" alt="Gravatar Avatar">
-                        </div>
-                    </div>
-                    <div class="btn-white p-l-1 p-y-06">{{ meme.title }}</div>
-                    <div class="btn-green text-xs-center m-b-1">
-                        <a href="{{ url('mem') }}">{{ 'button.more'|trans }}</a>
                     </div>
                 {% endif %}
             </div>
             <div class="col-md-6">
-                <div class="btn-white-lg dots">
-                    <span class="p-x-1 text">{{ 'button.newest.new'|trans }}<span
-                                style="color: #303030;">{{ 'button.newest.video'|trans }}</span></span>
+                <div class="divider-new">
+                    <h2 class="h2-responsive wow bounceIn">
+                        {{ 'button.newest.new'|trans }} {{ 'button.newest.video'|trans }}
+                    </h2>
                 </div>
                 <div class="row">
                     {% for vod in video %}
