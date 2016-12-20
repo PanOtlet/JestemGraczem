@@ -91,3 +91,13 @@ footer.page-footer {
     background: url('http://i.imgur.com/vzRN4in.jpg') no-repeat fixed center;
     background-size: cover;
 }
+
+.divShadow {
+    -webkit-box-shadow: 0 0 30px 0 rgba(0, 0, 0, 0.75);
+    -moz-box-shadow: 0 0 30px 0 rgba(0, 0, 0, 0.75);
+    box-shadow: 0 0 30px 0 rgba(0, 0, 0, 0.75);
+}
+
+.marginus {
+    margin: 23px 0 23px 0;
+}

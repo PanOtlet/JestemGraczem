@@ -2,7 +2,7 @@
 
 {% block beforeBody %}
     {% if not is_granted("IS_AUTHENTICATED_REMEMBERED") %}
-        <div class="view hm-black-strong">
+        <div class="view hm-black-strong divShadow">
             <div class="full-bg-img flex-center">
                 <ul>
                     <li>
@@ -20,7 +20,7 @@
             </div>
         </div>
     {% else %}
-        <div id="slider" class="carousel slide carousel-fade" data-ride="carousel">
+        <div id="slider" class="carousel slide carousel-fade divShadow" data-ride="carousel">
             <ol class="carousel-indicators">
                 {% for slider in sliders %}
                     {% if loop.index == 1 %}
@@ -86,7 +86,7 @@
         <h2 class="h2-responsive wow bounceIn">Polecane streamy</h2>
     </div>
 
-    <div id="stream-container">
+    <div id="stream-container" class="divShadow">
         <div class="container">
             <section id="stream">
                 <div class="row">
@@ -121,11 +121,13 @@
         </div>
     </div>
 
-    <div class="container-fluid p-t-1">
-        {% block adbanner %}{{ parent() }}{% endblock %}
+    <div class="container-fluid">
+        <div class="marginus">
+            {% block adbanner %}{{ parent() }}{% endblock %}
+        </div>
     </div>
 
-    <div id="news">
+    <div id="news" class="divShadow">
         <div class="container">
             <div class="row">
                 <div class="col-md-6">
@@ -203,49 +205,62 @@
                         {{ 'button.newest.new'|trans }} {{ 'button.newest.video'|trans }}
                     </h2>
                 </div>
-                <div class="row">
-                    {% for vod in video %}
-                        <div class="col-md-6 video">
-                            <a href="{{ url('video.id', { 'id':vod.id }) }}" data-toggle="tooltip"
-                               title="{{ vod.title }}">
-                                <img class="img-responsive"
-                                     src="//img.youtube.com/vi/{{ vod.videoid }}/mqdefault.jpg"
-                                     alt="{{ vod.title }}">
-                            </a>
-                        </div>
-                    {% endfor %}
-                </div>
-                <div class="btn-green text-xs-center">
-                    <a href="{{ url('video') }}">{{ 'button.more'|trans }}</a>
+                <div class="container-fluid">
+                    <div class="row">
+                        {% for vod in video %}
+                            <div class="col-md-6 video">
+                                <a href="{{ url('video.id', { 'id':vod.id }) }}" data-toggle="tooltip"
+                                   title="{{ vod.title }}">
+                                    <img class="img-fluid img-thumbnail"
+                                         src="//img.youtube.com/vi/{{ vod.videoid }}/mqdefault.jpg"
+                                         alt="{{ vod.title }}">
+                                </a>
+                            </div>
+                        {% endfor %}
+                    </div>
+
+                    <a class="btn btn-purple btn-block" href="{{ url('video') }}">{{ 'button.more'|trans }}</a>
                 </div>
             </div>
         </div>
-        <div class="row p-t-2">
-            <div class="btn-white-lg dots m-b-1">
-                <span class="p-x-1 text">
-                    <span style="color: #303030;">
-                        Znajdź nas w Social Media oraz YouTube!
-                    </span>
-                </span>
-            </div>
-            <div class="col-md-4">
-                <div id="fb-root"></div>
+    </div>
 
-                <div class="fb-page" data-href="https://www.facebook.com/jestemgraczempl/" data-small-header="false"
-                     data-adapt-container-width="true" data-hide-cover="false" data-show-facepile="false">
-                    <blockquote cite="https://www.facebook.com/jestemgraczempl/" class="fb-xfbml-parse-ignore"><a
-                                href="https://www.facebook.com/jestemgraczempl/">JestemGraczem.pl</a></blockquote>
+    <div id="socialMedia">
+        <div class="container">
+            <div class="row">
+                <div class="divider-new">
+                    <h2 class="h2-responsive wow bounceIn">
+                        Znajdź nas w Social Media oraz YouTube!
+                    </h2>
                 </div>
-            </div>
-            <div class="col-md-4">
-                <div class="g-ytsubscribe" data-channelid="UCwyKvaFQcBfJ7dCxM_uX5EQ" data-layout="full"
-                     data-count="default"></div>
-                <br>
-                <div class="g-ytsubscribe" data-channel="PanOtlet" data-layout="full" data-count="default"></div>
-            </div>
-            <div class="col-md-4">
-                <div class="g-page" data-href="//plus.google.com/u/4/116516903644267522146" data-layout="landscape"
-                     data-rel="publisher"></div>
+
+                <div class="col-md-4">
+                    <div class="card card-block">
+                        <div id="fb-root"></div>
+                        <div class="fb-page" data-href="https://www.facebook.com/jestemgraczempl/" data-small-header="false"
+                             data-adapt-container-width="true" data-hide-cover="false" data-show-facepile="false">
+                            <blockquote cite="https://www.facebook.com/jestemgraczempl/" class="fb-xfbml-parse-ignore"><a
+                                        href="https://www.facebook.com/jestemgraczempl/">JestemGraczem.pl</a></blockquote>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-4">
+                    <div class="card card-block">
+                        <div class="g-ytsubscribe" data-channelid="UCwyKvaFQcBfJ7dCxM_uX5EQ" data-layout="full"
+                             data-count="default"></div>
+                        <br>
+                        <div class="g-ytsubscribe" data-channel="PanOtlet" data-layout="full" data-count="default"></div>
+                    </div>
+                </div>
+
+                <div class="col-md-4">
+                    <div class="card card-block">
+                        <div class="g-page" data-href="//plus.google.com/u/4/116516903644267522146" data-layout="landscape"
+                             data-rel="publisher"></div>
+                    </div>
+                </div>
+
             </div>
         </div>
     </div>

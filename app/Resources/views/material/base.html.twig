@@ -328,33 +328,6 @@
                     $('[data-toggle="tooltip"]').tooltip()
                 });
 
-                $("#fun-a").click(function () {
-                    $("#games-m").hide();
-                    $("#turnaments-m").hide();
-                    $("#fun-m").slideToggle("slow");
-                });
-                $("#games-a").click(function () {
-                    $("#turnaments-m").hide();
-                    $("#fun-m").hide();
-                    $("#games-m").slideToggle("slow");
-                });
-                $("#turnaments-a").click(function () {
-                    $("#games-m").hide();
-                    $("#fun-m").hide();
-                    $("#turnaments-m").slideToggle("slow");
-                });
-                $("#b-meme").click(function () {
-                    $("#video-mm").hide();
-                    $("#meme-mm").toggle();
-                });
-                $("#b-video").click(function () {
-                    $("#meme-mm").hide();
-                    $("#video-mm").toggle();
-                });
-                $("#b-turnaments").click(function () {
-                    $("#turnaments-mm").toggle();
-                });
-
                 $.cookiesDirective({
                     privacyPolicyUri: '{{ url('cms',{'title':'regulamin'}) }}',
                     explicitConsent: false,
