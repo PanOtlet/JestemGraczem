@@ -4,6 +4,18 @@ body,
     height: 100%;
 }
 
+.marginTop {
+    margin-top: 54px;
+}
+
+.marginTop2 {
+    margin-top: 100px;
+}
+
+.marginFor {
+    margin-bottom: 10px;
+}
+
 .navbar {
     background-color: transparent;
 }
@@ -100,4 +112,25 @@ footer.page-footer {
 
 .marginus {
     margin: 23px 0 23px 0;
+}
+
+#mems {
+    padding: 15px 0 15px 0;
+    background: url("../../img/bease-bg-lol.jpg") no-repeat center center fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    overflow: hidden;
+    position: relative;
+    cursor: default;
+}
+
+.img-full {
+    display: block;
+    width: 100%;
+}
+
+footer.page-footer {
+    margin-top: 0;
 }

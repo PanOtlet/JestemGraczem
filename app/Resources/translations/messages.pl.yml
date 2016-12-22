@@ -43,6 +43,7 @@ button:
     player: 'Zobacz w odtwarzaczu'
     more: 'Pokaż więcej'
     comments: 'Zobacz komentarze!'
+    main: 'Główna'
     add: 'Dodaj nowy'
     next: 'Następne'
     prev: 'Poprzednie'
