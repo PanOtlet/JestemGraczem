@@ -155,6 +155,13 @@ class MemeController extends Controller
             throw $this->createNotFoundException('Kurde, nie znaleźliśmy tego co poszukujesz :(');
         }
 
+        $promoted = $em->createQueryBuilder('e')
+            ->where('e.promoted = true')
+            ->orderBy('e.id', 'DESC')
+            ->setMaxResults(10)
+            ->getQuery()
+            ->getResult();
+
         $seo = $this->container->get('sonata.seo.page');
         $seo->setTitle('Poczekalnia dla memów. Strona ' . $page . ' :: JestemGraczem.pl')
             ->addMeta('name', 'description', 'To miejsce na wszystkie memy, które jeszcze nie przeszły walidacji lub pozostaną w czyściu! Strona ' . $page)
@@ -162,10 +169,11 @@ class MemeController extends Controller
             ->addMeta('property', 'og:description', 'To miejsce na wszystkie memy, które jeszcze nie przeszły walidacji lub pozostaną w czyściu! Strona ' . $page)
             ->addMeta('property', 'og:url', $this->get('router')->generate('mem.all', ['page' => $page], UrlGeneratorInterface::ABSOLUTE_URL));
 
-        return $this->render($this->getParameter('theme') . '/meme/wait.html.twig', [
+        return $this->render($this->getParameter('theme') . '/meme/index.html.twig', [
             'color' => $this->color,
             'meme' => $mem,
-            'page' => $page
+            'page' => $page,
+            'promoted' => $promoted
         ]);
     }
 
