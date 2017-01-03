@@ -132,5 +132,13 @@ footer.page-footer {
 }
 
 footer.page-footer {
-    margin-top: 0;
+    margin-top: 50px;
+}
+
+#underMenuDiv {
+    margin-top: 56px;
+}
+
+.white-text a {
+    color: white !important;
 }

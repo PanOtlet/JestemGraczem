@@ -198,7 +198,11 @@
     {% block beforeBody %}{% endblock %}
 
     <section id="body">
-        {% block body %}{% endblock %}
+        {% block body %}
+            <div id="underMenuDiv">
+                {% block bodyMenu %}{% endblock %}
+            </div>
+        {% endblock %}
     </section>
 
     {% block footer %}
