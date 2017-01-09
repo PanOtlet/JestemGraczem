@@ -1,24 +1,29 @@
 {% extends "material/base.html.twig" %}
 
-{% block body %}
-    <div class="container-fluid top p-t-3 p-b-2">
-        <div class="container">
-            <div class="col-sm-12 btn-clear-lg p-l-1 ">
-                Game<span style="color: #8bc34a;">Servers</span>Status
-            </div>
-        </div>
+{% block bodyMenu %}
+    {% block adbanner %}{{ parent() }}{% endblock %}
+    <div class="divider-new">
+        <h2 class="h2-responsive wow bounceIn">
+            Statusy serwerów gier
+        </h2>
     </div>
-    <div class="container p-t-5 p-b-2">
-        <div class="col-md-4">
-            <a href="{{ url('status.wow') }}" class="btn btn-primary btn-block">
-                <img class="img-fluid" src="{{ asset('assets/img/wow.png') }}" alt="wow">
-            </a>
-            <a href="{{ url('status.lol') }}" class="btn btn-primary btn-block">
-                <img class="img-fluid" src="{{ asset('assets/img/lol.png') }}" alt="lol">
-            </a>
-            <a href="{{ url('status.steam') }}" class="btn btn-primary btn-block">
-                <img class="img-fluid" src="{{ asset('assets/img/steam.png') }}" alt="lol">
-            </a>
+    <div class="container" style="margin-top: 10px">
+        <div class="row">
+            <div class="col-md-4">
+                <a href="{{ url('status.wow') }}" class="btn btn-primary btn-block">
+                    <img class="img-fluid" src="{{ asset('assets/img/wow.png') }}" alt="wow">
+                </a>
+            </div>
+            <div class="col-md-4">
+                <a href="{{ url('status.lol') }}" class="btn btn-primary btn-block">
+                    <img class="img-fluid" src="{{ asset('assets/img/lol.png') }}" alt="lol">
+                </a>
+            </div>
+            <div class="col-md-4">
+                <a href="{{ url('status.steam') }}" class="btn btn-primary btn-block">
+                    <img class="img-fluid" src="{{ asset('assets/img/steam.png') }}" alt="lol">
+                </a>
+            </div>
         </div>
     </div>
 {% endblock %}

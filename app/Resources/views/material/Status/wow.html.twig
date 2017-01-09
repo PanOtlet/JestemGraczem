@@ -1,15 +1,13 @@
 {% extends "material/base.html.twig" %}
 
-{% block body %}
-
-    <div class="container-fluid top p-t-3 p-b-2">
-        <div class="container">
-            <div class="col-sm-12 btn-clear-lg p-l-1 ">
-                <span style="color: #8bc34a;">WoW</span>EU<span style="color: #8bc34a;">Realms</span>Status
-            </div>
-        </div>
+{% block bodyMenu %}
+    {% block adbanner %}{{ parent() }}{% endblock %}
+    <div class="divider-new">
+        <h2 class="h2-responsive wow bounceIn">
+            <span style="color: #8bc34a;">WoW</span>EU<span style="color: #8bc34a;">Realms</span>Status
+        </h2>
     </div>
-    <div class="container p-t-5 p-b-2 table-responsive">
+    <div class="container table-responsive" style="margin-top: 10px">
         <table class="table">
             <thead class="thead-inverse">
             <tr>
