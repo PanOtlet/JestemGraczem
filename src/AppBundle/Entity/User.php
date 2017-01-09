@@ -63,6 +63,17 @@ class User extends BaseUser
      *     groups={"Registration", "Profile"}
      * )
      */
+    protected $wot = null;
+
+    /**
+     * @ORM\Column(type="string", nullable=true)
+     *
+     * @Assert\Length(
+     *     min=3,
+     *     minMessage="The name is too short.",
+     *     groups={"Registration", "Profile"}
+     * )
+     */
     protected $beampro = null;
 
     /**
@@ -162,6 +173,11 @@ class User extends BaseUser
         return $this->lol;
     }
 
+    public function getWot()
+    {
+        return $this->wot;
+    }
+
     public function getBeampro()
     {
         return $this->beampro;
@@ -215,6 +231,11 @@ class User extends BaseUser
     public function setLol($lol)
     {
         $this->lol = $lol;
+    }
+
+    public function setWot($wot)
+    {
+        $this->wot = $wot;
     }
 
     public function setBeampro($beampro)
