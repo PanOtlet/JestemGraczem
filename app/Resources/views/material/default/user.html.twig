@@ -2,191 +2,170 @@
 
 {% block title %}{{ user.username }}{% endblock %}
 
-{% block body %}
-
-    <div class="container-fluid hidden-lg-down p-x-0">
-        <div class="user-bdrop">
-            {% if user.profilePicturePath is not empty %}
-                <img class=" img-bd " src="{{ asset('assets/user/profilepics/' ~ user.profilePicturePath) }}">
-            {% else %}
-                <img class=" img-bd center-block" src="{{ asset('assets/img/bg-lol.jpg') }}">
-            {% endif %}
-        </div>
+{% block bodyMenu %}
+    {% block adbanner %}{{ parent() }}{% endblock %}
+    <div class="divider-new">
+        <h2 class="h2-responsive wow bounceIn">
+            {{ user.username }}
+        </h2>
     </div>
-
-
-    <div class="container p-t-1 p-b-2">
-        {% block adbanner %}{{ parent() }}{% endblock %}
-        <div class="row">
-            <div class="col-md-4">
-                <img src="https://www.gravatar.com/avatar/{{ user.email|md5 }}?s=2048" class="img-responsive">
-                <div class="btn-white p-y-06 text-ta text-xs-center m-b-0">
-                    {{ user.username }}
-                </div>
-
-                <div class="btn-white-lg dots m-b-0">
-                    <span class="p-x-1 text"><i class="fa fa-video-camera"
-                                                aria-hidden="true"></i> {{ 'button.my.me'|trans }}<span
-                                style="color: #303030;">STREAM</span></span>
-                </div>
-                <div class="grey-box p-y-1 p-l-1 m-b-1">
-                    <a href="https://twitch.tv/{{ user.twitch }}">{{ user.twitch }}</a>
-                </div>
-
-                <div class="btn-white-lg dots m-b-0">
-                    <span class="p-x-1 text">{{ 'button.my.my'|trans }}<span
-                                style="color: #303030;">{{ 'button.my.account'|trans }}</span></span>
-                </div>
-                <div class="container-fluid grey-box p-y-1 p-l-1 m-b-1">
-                    {% if user.steam %}
-                        <div class="row m-b-1">
-                            <div class="col-md-2 p-r-0">
-                                <a href="{{ url('redirect',{'url':user.steam}) }}">
-                                    <img class="img-fluid"
-                                         src="http://store.akamai.steamstatic.com/public/shared/images/responsive/share_steam_logo.png">
-                                </a>
-                            </div>
-                            <div class="col-md-10 p-l-0">
-                                <h3 class="">{{ user.steam|replace({'http://steamcommunity.com/id/':''}) }}</h3>
-                            </div>
-                        </div>
-                    {% endif %}
-                    {% if user.battlenet %}
-                        <div class="row m-b-1">
-                            <div class="col-md-2 p-r-0">
-                                <img class="img-fluid"
-                                     src="http://diablo3fans.pl/wp-content/uploads/2015/12/battlenet.png">
-                            </div>
-                            <div class="col-md-10 p-l-0">
-                                <h3 class="">{{ user.battlenet }}</h3>
-                            </div>
-                        </div>
-                    {% endif %}
-                    {% if user.lol %}
+    <div class="container" style="margin-top: 10px">
+        <ul class="nav nav-tabs" role="tablist">
+            <li class="nav-item">
+                <a class="nav-link active" data-toggle="tab" href="#home" role="tab">Informacje ogólne</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" data-toggle="tab" href="#memy" role="tab">Memy</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" data-toggle="tab" href="#videos" role="tab">Filmiki</a>
+            </li>
+        </ul>
+        <div class="tab-content">
+            <div class="tab-pane active" id="home" role="tabpanel">
+                <br>
+                <div class="row">
+                    <div class="col-md-3">
+                        <img src="https://www.gravatar.com/avatar/{{ user.email|md5 }}?s=256"
+                             alt="{{ user.username }}" class="img-fluid">
+                    </div>
+                    <div class="col-md-9">
                         <div class="row">
-                            <div class="col-md-2 p-r-0">
-                                <img class="img-fluid"
-                                     src="https://pbs.twimg.com/profile_images/2261044581/lollogo_400x400.png">
-                            </div>
-                            <div class="col-md-10 p-l-0">
-                                <h3 class="">{{ user.lol }}</h3>
-                            </div>
+                            {% if user.beampro %}
+                                <div class="col-md-3">
+                                    <a href="https://beam.pro/{{ user.beampro }}"
+                                       class="btn btn-block unique-color-dark">
+                                        Beam.pro
+                                    </a>
+                                </div>
+                            {% endif %}
+                            {% if user.twitch %}
+                                <div class="col-md-3">
+                                    <a href="https://twitch.tv/{{ user.twitch }}" class="btn btn-block primary-color">
+                                        <i class="fa fa-twitch" aria-hidden="true"></i> Twitch
+                                    </a>
+                                </div>
+                            {% endif %}
+                            {% if user.steam %}
+                                <div class="col-md-3">
+                                    <a href="{{ user.steam }}"
+                                       class="btn btn-block elegant-color">
+                                        <i class="fa fa-steam-square" aria-hidden="true"></i> Steam
+                                    </a>
+                                </div>
+                            {% endif %}
+                            {% if user.twitch %}
+                                <div class="col-md-3">
+                                    <a href="{{ user.youtube }}"
+                                       class="btn btn-block danger-color-dark">
+                                        <i class="fa fa-youtube" aria-hidden="true"></i> YouTube
+                                    </a>
+                                </div>
+                            {% endif %}
                         </div>
-                    {% endif %}
-                </div>
-
-                <div class="btn-white-lp dots m-b-0">
-                    <span class="p-x-1 text">
-                        <i class="fa fa-user" aria-hidden="true"></i> {{ 'button.my.short'|trans }}
-                        <span style="color: #303030;">{{ 'button.my.desc'|trans }}</span>
-                    </span>
-                </div>
-
-                <div class="grey-box p-y-1 p-l-1 m-b-1">
-                    <p>{{ user.description }}</p>
+                        <p>
+                            {{ user.description }}
+                        </p>
+                        <div class="btn-group" role="group" aria-label="Basic example">
+                            {% if user.battlenet %}
+                                <button type="button" class="btn btn-secondary">
+                                    Battle.net {{ user.battlenet }}
+                                </button>
+                            {% endif %}
+                            {% if user.lol %}
+                                <button type="button" class="btn btn-secondary">
+                                    League of Legends {{ user.lol }}
+                                </button>
+                            {% endif %}
+                        </div>
+                    </div>
                 </div>
             </div>
-            <div class="col-md-8">
-                {% if user.twitch %}
-                    <div id="twitch" class="panel panel-default">
-                        <div class="panel-body">
-                            <div class="embed-responsive embed-responsive-16by9">
-                                <iframe class="embed-responsive-item"
-                                        src="https://player.twitch.tv/?channel={{ user.twitch }}">
-                                </iframe>
+            <div class="tab-pane" id="memy" role="tabpanel">
+                {% for mem in meme %}
+                    {% if loop.index%2 or loop.first %}
+                        <div class="row">
+                    {% endif %}
+                    <div class="col-md-6">
+                        {% if mem.url | slice(-4) == '.mp4' or mem.url | slice(-5) == '.webm' %}
+                            <div class="card text-xs-center">
+                                <div class="card-header danger-color-dark white-text">
+                                    <a href="{{ url('mem.id',{'id': mem.id}) }}">
+                                        {{ mem.title|slice(0,50) }}
+                                    </a>
+                                </div>
+                                <div class="embed-responsive embed-responsive-16by9 shadow">
+                                    <video id="promotedMemes" class="video-js embed-responsive-item" controls
+                                           preload="auto"
+                                           data-setup="{}">
+                                        <source src="{{ asset('assets/mem/') ~ mem.url }}" type="video/mp4"
+                                                class="embed-responsive-item">
+                                        <p class="vjs-no-js">
+                                            Masz kiepską przeglądarkę! Użyj GOOGLE CHROME!
+                                        </p>
+                                    </video>
+                                </div>
+                                <div class="card-footer text-muted primary-color-dark white-text"
+                                     style="padding: 0">
+                                    <div style="margin-bottom: 5px" class="fb-like"
+                                         data-href="{{ url('mem.id',{'id': mem.id}) }}"
+                                         data-layout="standard" data-action="like" data-show-faces="false"
+                                         data-share="true">
+                                    </div>
+                                </div>
                             </div>
-                        </div>
-                        <div id="streaminfo" class="panel-footer">
-                            Gra: <span id="game" class="label label-danger">Ładowanie
-                                    <i class="fa fa-spinner fa-spin"></i>
-                                 </span>
-                            Widzów: <span id="viewers" class="label label-danger">Ładowanie
-                                        <i class="fa fa-spinner fa-spin"></i>
-                                    </span>
-                        </div>
+                        {% else %}
+                            <div class="card text-xs-center">
+                                <div class="card-header danger-color-dark white-text">
+                                    <a href="{{ url('mem.id',{'id': mem.id}) }}">
+                                        {{ mem.title|slice(0,50) }}
+                                    </a>
+                                </div>
+                                <a href="{{ url('mem.id',{'id': mem.id}) }}">
+                                    <img src="{{ asset('assets/mem/') ~ mem.url }}"
+                                         alt="{{ mem.title|slice(0,50) }}"
+                                         class="img-fluid">
+                                </a>
+                                <div class="card-footer text-muted primary-color-dark white-text"
+                                     style="padding: 0">
+                                    <div style="margin-bottom: 5px" class="fb-like"
+                                         data-href="{{ url('mem.id',{'id': mem.id}) }}"
+                                         data-layout="standard" data-action="like" data-show-faces="false"
+                                         data-share="true">
+                                    </div>
+                                </div>
+                            </div>
+                        {% endif %}
                     </div>
-                {% endif %}
-                <div class="btn-white-lp dots">
-                    <span class="p-x-1 text">
-                        <i class="fa fa-gamepad" aria-hidden="true"></i> {{ 'button.actual'|trans }}
-                        <span style="color: #303030;">{{ 'button.turnaments'|trans }}</span>
-                    </span>
+                    {% if not loop.index%2 or loop.last %}
+                        </div>
+                    {% endif %}
+                {% endfor %}
+            </div>
+            <div class="tab-pane" id="videos" role="tabpanel">
+                <div class="row">
+                    {% for vod in video %}
+                        <div class="col-md-3 video">
+                            <a href="{{ url('video.id', { 'id':vod.id }) }}" data-toggle="tooltip"
+                               title="{{ vod.title }}">
+                                <img class="img-fluid img-thumbnail"
+                                     src="//img.youtube.com/vi/{{ vod.videoid }}/mqdefault.jpg"
+                                     alt="{{ vod.title }}">
+                            </a>
+                        </div>
+                    {% endfor %}
                 </div>
-                {% if video %}
-                    <div class="btn-white-lg dots">
-                    <span class="p-x-1 text"><i class="fa fa-video-camera"
-                                                aria-hidden="true"></i> {{ 'button.my.my'|trans }}
-                        <span style="color: #303030;">{{ 'button.newest.video'|trans }}</span>
-                    </span>
-                    </div>
-                    <div class="row">
-                        {% for vod in video %}
-                            <div class="col-md-6 video">
-                                <a href="{{ url('video.id', { 'id':vod.id }) }}">
-                                    <img class="img-responsive"
-                                         src="http://img.youtube.com/vi/{{ vod.videoid }}/mqdefault.jpg">
-                                </a>
-                            </div>
-                        {% endfor %}
-                    </div>
-                    <div class="btn-green text-xs-center m-b-1">
-                        <a href="{{ url('video') }}">{{ 'button.more'|trans }}</a>
-                    </div>
-                {% endif %}
-                {% if meme %}
-                    <div class="btn-white-lg dots">
-                        <span class="p-x-1 text">{{ 'button.my.my'|trans }}
-                            <span style="color: #303030;">{{ 'button.newest.meme'|trans }}</span>
-                        </span>
-                    </div>
-                    <img class="img-fluid center-block video p-b-0"
-                         src="{{ asset('assets/mem/') ~ meme.url }}" alt="{{ meme.title }}">
-                    <div class="row p-y-0 m-x-0 grey">
-                        <div class="col-xs-1 p-x-0">
-                            <img class="img-fluid pull-xl-left p-b-0 grey"
-                                 src="https://www.gravatar.com/avatar/23?s=48">
-                        </div>
-                        <div class="col-xs-10 p-l-0">
-                            <p class="text-xs-left  m-b-0" style="padding-top: 0.3rem;">
-                                <a class="font-weight-bold" href="{{ url('mem.id', {'id': meme.id}) }}"
-                                   style="color: #000000;font-size: 0.9rem; text-decoration: none;">
-                                    {{ 'button.comments'|trans }}
-                                </a>
-                            </p>
-                        </div>
-                        <div class="col-xs-1 p-x-0">
-                            <img class="img-fluid pull-xs-right p-b-0 grey" src="{{ asset('assets/img/cs_50.png') }}">
-                        </div>
-                    </div>
-                    <div class="btn-white p-l-1 p-y-06">{{ meme.title }}</div>
-                    <div class="btn-green text-xs-center m-b-1">
-                        <a href="{{ url('mem') }}">{{ 'button.more'|trans }}</a>
-                    </div>
-                {% endif %}
             </div>
         </div>
     </div>
 {% endblock %}
 
+{% block stylesheets %}
+    {{ parent() }}
+    <link href="http://vjs.zencdn.net/5.12.6/video-js.css" rel="stylesheet">
+{% endblock %}
+
 {% block javascripts %}
     {{ parent() }}
-    <script>
-        function metadata() {
-            $.ajax({
-                url: 'https://api.twitch.tv/kraken/streams/{{ user.twitch }}',
-                dataType: 'jsonp',
-                success: function (channel) {
-                    if (channel["stream"] != null) {
-                        $("#viewers").html(channel["stream"]["viewers"]);
-                        $("#game").html(channel["stream"]["game"]);
-                    } else {
-                        $("#twitch").remove();
-
-                    }
-                }
-            });
-        }
-        metadata();
-        setInterval("metadata();", 10000);
-    </script>
+    <script src="http://vjs.zencdn.net/5.12.6/video.js"></script>
 {% endblock %}

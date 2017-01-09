@@ -9,8 +9,6 @@ use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 class DefaultController extends Controller
 {
 
-    protected $color = "green";
-
     /**
      * @Route("/", name="homepage")
      * @return \Symfony\Component\HttpFoundation\Response
@@ -46,7 +44,6 @@ class DefaultController extends Controller
         $avatar = ($this->getUser()) ? md5($this->getUser()->getEmail()) : md5('thejestemgraczemsquad@gmail.com');
 
         return $this->render($this->getParameter('theme') . '/default/index.html.twig', [
-            'color' => $this->color,
             'articles' => $articles,
             'meme' => $mem,
             'video' => $video,
@@ -65,7 +62,6 @@ class DefaultController extends Controller
         $avatar = ($this->getUser()) ? md5($this->getUser()->getEmail()) : md5('thejestemgraczemsquad@gmail.com');
 
         return $this->render($this->getParameter('theme') . '/default/test.html.twig', [
-            'color' => $this->color,
             'avatar' => $avatar
         ]);
     }
@@ -85,7 +81,6 @@ class DefaultController extends Controller
         }
 
         return $this->render($this->getParameter('theme') . '/default/frame.html.twig', [
-            'color' => $this->color,
             'url' => $_GET['url'],
         ]);
     }
@@ -105,7 +100,11 @@ class DefaultController extends Controller
                 'p.id',
                 'p.username',
                 'p.twitch',
+                'p.beampro',
+                'p.youtube',
                 'p.partner',
+                'p.premium',
+                'p.editor',
                 'p.description',
                 'p.email',
                 'p.steam',
@@ -124,8 +123,8 @@ class DefaultController extends Controller
             throw $this->createNotFoundException('Nie ma takiego użytkownika!');
         }
 
-        $mem = $this->getDoctrine()->getRepository('AppBundle:Meme')->findOneBy(['user' => $user['id']]);
-        $video = $this->getDoctrine()->getRepository('AppBundle:Video')->findOneBy(['user' => $user['id']]);
+        $mem = $this->getDoctrine()->getRepository('AppBundle:Meme')->findBy(['user' => $user['id']]);
+        $video = $this->getDoctrine()->getRepository('AppBundle:Video')->findBy(['user' => $user['id']]);
 
         $seo = $this->container->get('sonata.seo.page');
         $seo->setTitle('Profil: ' . $user['username'] . ' :: JestemGraczem.pl')
@@ -135,7 +134,6 @@ class DefaultController extends Controller
             ->addMeta('property', 'og:url', $this->get('router')->generate('user', ['user' => $user['username']], UrlGeneratorInterface::ABSOLUTE_URL));
 
         return $this->render($this->getParameter('theme') . '/default/user.html.twig', [
-            'color' => $this->color,
             'user' => $user,
             'meme' => $mem,
             'video' => $video
