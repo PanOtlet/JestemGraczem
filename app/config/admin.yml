@@ -10,15 +10,14 @@ easy_admin:
                     - { property: 'promoted', label: 'admin.promoted'}
                     - { property: 'title', label: 'admin.title'}
                     - { property: 'author', label: 'admin.author'}
-        CMS:
-            label: admin.cms
-            class: AppBundle\Entity\CMS
+        Sliders:
+            label: admin.sliders
+            class: AppBundle\Entity\Slider
             list:
                 fields:
                     - 'id'
+                    - { property: 'enabled', label: 'admin.enabled'}
                     - { property: 'title', label: 'admin.title'}
-                    - { property: 'url', label: 'admin.url'}
-                    - { property: 'text', label: 'admin.text'}
         Mems:
             label: admin.mem
             class: AppBundle\Entity\Meme
@@ -68,7 +67,26 @@ easy_admin:
                     - { property: 'youtube', label: 'Youtube'}
                     - { property: 'localization', label: 'Localization'}
                     - { property: 'description', label: 'Description'}
-        division:
+        CMS:
+            label: admin.cms
+            class: AppBundle\Entity\CMS
+            list:
+                fields:
+                    - 'id'
+                    - { property: 'title', label: 'admin.title'}
+                    - { property: 'url', label: 'admin.url'}
+                    - { property: 'text', label: 'admin.text'}
+        Teams:
+            label: admin.team
+            class: TurniejBundle\Entity\Team
+            list:
+                fields:
+                    - 'id'
+                    - { property: 'owner', label: 'turniej.owner'}
+                    - { property: 'name', label: 'turniej.name'}
+                    - { property: 'tag', label: 'turniej.tag'}
+                    - { property: 'logo', type: 'image', base_path: 'http://jestemgraczem.pl/assets/team/logo/', label: 'admin.img' }
+        Division:
             label: admin.division
             class: TurniejBundle\Entity\Division
             list:
@@ -80,23 +98,7 @@ easy_admin:
                     - { property: 'pass', label: 'turniej.pass'}
                     - { property: 'members', label: 'turniej.members'}
                     - { property: 'descriptions', label: 'turniej.opis'}
-        teams:
-            label: admin.team
-            class: TurniejBundle\Entity\Team
-            list:
-                fields:
-                    - 'id'
-                    - { property: 'owner', label: 'turniej.owner'}
-                    - { property: 'name', label: 'turniej.name'}
-                    - { property: 'tag', label: 'turniej.tag'}
-                    - { property: 'logo', type: 'image', base_path: 'http://jestemgraczem.pl/assets/team/logo/', label: 'admin.img' }
-        tournaments:
-            label: admin.turnieje
-            class: TurniejBundle\Entity\Turnieje
-        entry:
-            label: admin.entry
-            class: TurniejBundle\Entity\EntryTournament
-        servers:
+        Servers:
             label: admin.servers
             class: GameBundle\Entity\Servers
             list:
@@ -106,6 +108,12 @@ easy_admin:
                     - { property: 'name', label: 'servers.name'}
                     - { property: 'ip', label: 'servers.ip'}
                     - { property: 'descriptions', label: 'servers.opis'}
+        Tournaments:
+            label: admin.turnieje
+            class: TurniejBundle\Entity\Turnieje
+        Entry:
+            label: admin.entry
+            class: TurniejBundle\Entity\EntryTournament
         RSS:
             label: admin.rss
             class: AppBundle\Entity\News
