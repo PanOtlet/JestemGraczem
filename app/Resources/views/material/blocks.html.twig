@@ -1,9 +1,5 @@
 {% block adbanner %}
-    {% if app.user.premium is defined %}
-        {% if app.user.premium != 1 %}
-ASD
-        {% endif %}
-    {% else %}
+    {% if app.user.premium is defined and app.user.premium != 1 %}
         <script type="text/javascript" src="//www.adfreestyle.pl/show/LGHKSEPJvlO"></script>
         ASDASD
     {% endif %}

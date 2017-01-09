@@ -1,15 +1,13 @@
 {% extends "material/base.html.twig" %}
 
-{% block body %}
-    <div class="container-fluid top p-t-3 p-b-2">
-        <div class="container">
-            <div class="col-sm-12 btn-clear-lg p-l-1 ">
-                {{ cms.title }}
-            </div>
-        </div>
+{% block bodyMenu %}
+    {% block adbanner %}{{ parent() }}{% endblock %}
+    <div class="divider-new">
+        <h2 class="h2-responsive wow bounceIn">
+            {{ cms.title }}
+        </h2>
     </div>
     <div class="container" style="margin-top: 10px">
-        {% block adbanner %}{{ parent() }}{% endblock %}
         {{ cms.text|markdown }}
     </div>
 {% endblock %}
