@@ -1,45 +1,38 @@
 {% extends "material/base.html.twig" %}
 
-{% block body %}
+{% block bodyMenu %}
     {% block adbanner %}{{ parent() }}{% endblock %}
     <div class="divider-new">
         <h2 class="h2-responsive wow bounceIn">
-            {{ article.title }}
+            {{ post.title }}
+            <small>{{ post.date|date('d/m/Y') }}</small>
         </h2>
     </div>
     <div class="container" style="margin-top: 10px">
         <div class="row">
             <div class="col-md-8">
-                <div class="jumbotron">
-                    {% if article.imageName %}
-                        <img src="{{ app.request.basePath }}{{ vich_uploader_asset(article, 'imageFile', 'NewsBundle\\Entity\\News') }}"
-                             alt="{{ article.title }}" class="img-fluid">
-                    {% endif %}
-                    <p style="font-weight: bold">{{ article.introduction }}</p>
-                    <hr>
-                    <p>{{ article.body|raw }}</p>
-                    <hr>
-                    <p style="font-style: italic">{{ article.source }}</p>
-                    <div class="m-bottom">
-                        <div class="fb-like" data-href="{{ url('article.id',{'id': article.id, 'title': article.title|replace({' ': '-'})}) }}"
-                             data-layout="standard" data-action="like" data-show-faces="false"
-                             data-share="true"></div>
-                        <small>{{ article.date|date('d/m/Y') }}</small>
+                <div class="card card-primary text-xs-center z-depth-2">
+                    <div class="card-block">
+                        <p class="white-text">
+                            {{ post.text }}
+                        </p>
                     </div>
                 </div>
-                <div class="meme jumbotron">
-                    <div id="fb-root"></div>
-                    <script>(function (d, s, id) {
-                            var js, fjs = d.getElementsByTagName(s)[0];
-                            if (d.getElementById(id)) return;
-                            js = d.createElement(s);
-                            js.id = id;
-                            js.src = "//connect.facebook.net/pl_PL/sdk.js#xfbml=1&version=v2.6&appId=1792775277616619";
-                            fjs.parentNode.insertBefore(js, fjs);
-                        }(document, 'script', 'facebook-jssdk'));</script>
-                    <div class="fb-comments" data-href="{{ absolute_url(url('article.id', {'id': article.id})) }}"
-                         data-numposts="10"></div>
+                <div class="fb-like" data-href="{{ url('mikroblog.id',{'id': post.id}) }}"
+                     data-layout="standard" data-action="like" data-show-faces="false"
+                     data-share="true"></div>
+                {% for comment in comments %}
+                <hr>
+                <div class="media">
+                    <a class="media-left waves-light">
+                        <img class="rounded-circle" src="https://www.gravatar.com/avatar/{{ comment.email|md5 }}" alt="Generic placeholder image">
+                    </a>
+                    <div class="media-body">
+                        <h4 class="media-heading">{{ comment.username }}</h4>
+                        <p>{{ comment.text }}</p>
+                    </div>
                 </div>
+                {% endfor %}
             </div>
             <div class="col-md-4">
                 {% block sidebar %}{{ parent() }}{% endblock %}
