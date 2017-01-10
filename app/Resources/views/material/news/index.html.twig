@@ -21,6 +21,10 @@
                                     {{ article.title|slice(0,25) }}...
                                 </div>
                                 <div class="card-block">
+                                    {% if article.imageName %}
+                                        <img src="{{ app.request.basePath }}{{ vich_uploader_asset(article, 'imageFile', 'NewsBundle\\Entity\\News') }}"
+                                             alt="{{ article.title }}" class="img-fluid">
+                                    {% endif %}
                                     <p class="card-text">{{ article.introduction|slice(0,100) }}</p>
                                     <a href="{{ url('article.id',{'id': article.id, 'title': article.title|replace({' ': '-'})}) }}"
                                        class="btn btn-danger">Czytaj dalej...</a>

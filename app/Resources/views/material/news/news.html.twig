@@ -11,6 +11,10 @@
         <div class="row">
             <div class="col-md-8">
                 <div class="jumbotron">
+                    {% if article.imageName %}
+                        <img src="{{ app.request.basePath }}{{ vich_uploader_asset(article, 'imageFile', 'NewsBundle\\Entity\\News') }}"
+                             alt="{{ article.title }}" class="img-fluid">
+                    {% endif %}
                     <p style="font-weight: bold">{{ article.introduction }}</p>
                     <hr>
                     <p>{{ article.body|raw }}</p>

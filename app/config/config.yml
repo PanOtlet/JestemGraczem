@@ -148,4 +148,18 @@ sonata_seo:
             'xmlns:og':           http://opengraphprotocol.org/schema/
             'xmlns:fb':           http://www.facebook.com/2008/fbml
 
-# Admin Panel
+# Vich Upload Bundle
+vich_uploader:
+    db_driver: orm
+    mappings:
+        news:
+            uri_prefix:         /assets/images/news
+            upload_destination: '%kernel.root_dir%/../web/assets/images/news'
+            inject_on_load:     false
+            delete_on_update:   true
+            delete_on_remove:   true
+
+# Twig
+twig:
+    form_themes:
+        - 'VichUploaderBundle:Form:fields.html.twig'

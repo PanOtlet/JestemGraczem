@@ -11,6 +11,7 @@ use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Ivory\CKEditorBundle\Form\Type\CKEditorType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
+use Vich\UploaderBundle\Form\Type\VichImageType;
 
 class DefaultController extends Controller
 {
@@ -35,10 +36,10 @@ class DefaultController extends Controller
             throw $this->createNotFoundException('Kurde, nie znaleźliśmy tego co poszukujesz :(');
         }
 
-        if ($title == null || $title != str_replace(' ','-',$article->getTitle())){
+        if ($title == null || $title != str_replace(' ', '-', $article->getTitle())) {
             return $this->redirectToRoute('article.id', [
                 'id' => $id,
-                'title' => str_replace(' ','-',$article->getTitle())
+                'title' => str_replace(' ', '-', $article->getTitle())
             ]);
         }
 
@@ -47,6 +48,7 @@ class DefaultController extends Controller
             ->addMeta('name', 'description', substr($article->getIntroduction(), 0, 120))
             ->addMeta('property', 'og:title', $article->getTitle())
             ->addMeta('property', 'og:description', substr($article->getIntroduction(), 0, 120))
+            ->addMeta('property', 'og:image', $this->container->get('vich_uploader.templating.helper.uploader_helper')->asset($article, 'imageFile'))
             ->addMeta('property', 'og:url', $this->get('router')->generate('article.id', ['id' => $id], UrlGeneratorInterface::ABSOLUTE_URL));
 
         return $this->render($this->getParameter('theme') . '/news/news.html.twig', [
@@ -75,12 +77,17 @@ class DefaultController extends Controller
             ->add('title', TextType::class, [
                 'label' => 'article.title'
             ])
+            ->add('imageFile', VichImageType::class, [
+                'required' => false,
+                'allow_delete' => true,
+                'download_link' => true,
+            ])
             ->add('introduction', TextareaType::class, [
                 'label' => 'article.introduction'
             ])
             ->add('body', CKEditorType::class, [
                 'base_path' => 'ckeditor',
-                'js_path'   => 'ckeditor/ckeditor.js',
+                'js_path' => 'ckeditor/ckeditor.js',
                 'label' => 'article.body'
             ])
             ->add('source', TextareaType::class, [
@@ -107,7 +114,7 @@ class DefaultController extends Controller
             $article->setSource($form->get('source')->getViewData());
             $article->setDate(new \DateTime("now"));
             $article->setAccepted(false);
-            if ($this->getUser()->getEditor()){
+            if ($this->getUser()->getEditor()) {
                 $article->setAccepted(true);
             }
             $article->setPromoted(false);
@@ -145,7 +152,7 @@ class DefaultController extends Controller
             ->orderBy('p.id', 'DESC')
             ->leftJoin("AppBundle:User", "u", "WITH", "u.id=p.author")
             ->addSelect('u.username')
-            ->select('p.id, p.author, p.title, p.date, p.introduction, p.body, p.source, u.username, p.promoted')
+            ->select('p.id, p.author, p.title, p.date, p.introduction, p.body, p.source, u.username, p.promoted, p.imageName')
             ->getQuery();
 
         $articles = $query->getResult();
@@ -195,7 +202,7 @@ class DefaultController extends Controller
             ->orderBy('p.id', 'DESC')
             ->leftJoin("AppBundle:User", "u", "WITH", "u.id=p.author")
             ->addSelect('u.username')
-            ->select('p.id, p.author, p.title, p.date, p.introduction, p.body, p.source, u.username, p.promoted')
+            ->select('p.id, p.author, p.title, p.date, p.introduction, p.body, p.source, u.username, p.promoted, p.imageName')
             ->getQuery();
 
         $articles = $query->getResult();

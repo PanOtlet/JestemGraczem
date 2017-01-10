@@ -24,7 +24,7 @@ class DefaultController extends Controller
         $articles = $this->getDoctrine()->getRepository('NewsBundle:News')->createQueryBuilder('m')
             ->where('m.promoted = 1')
             ->orderBy('m.id', 'DESC')
-            ->setMaxResults(2)
+            ->setMaxResults(3)
             ->getQuery()->getResult();
 
         $mem = $this->getDoctrine()->getRepository('AppBundle:Meme')->findOneBy(['promoted' => true], ['id' => 'DESC']);
