@@ -67,22 +67,23 @@
                 <div class="collapse navbar-toggleable-xs" id="collapseEx">
                     <ul class="nav navbar-nav">
                         <a href="{{ url('homepage') }}" class="navbar-brand">
-                            <img src="{{ asset('assets/img/Logo3.png') }}" style="max-height: 30px" alt="JestemGraczem Logo">
+                            <img src="{{ asset('assets/img/Logo3.png') }}" style="max-height: 30px"
+                                 alt="JestemGraczem Logo">
                             JestemGraczem.pl
                         </a>
                         {#<li class="nav-item btn-group">#}
-                            {#<a class="nav-link dropdown-toggle" id="dropdownTurnieje" data-toggle="dropdown"#}
-                               {#aria-haspopup="true" aria-expanded="false">Turnieje</a>#}
-                            {#<div class="dropdown-menu" aria-labelledby="dropdownTurnieje">#}
-                                {#<a href="{{ url('tournament') }}" class="dropdown-item">#}
-                                    {#<i class="fa fa-trophy" aria-hidden="true"></i>#}
-                                    {#{{ 'nav.turnaments'|trans }}#}
-                                {#</a>#}
-                                {#<a href="{{ url('team') }}" class="dropdown-item">#}
-                                    {#<i class="fa fa-users" aria-hidden="true"></i>#}
-                                    {#{{ 'nav.teams'|trans }}#}
-                                {#</a>#}
-                            {#</div>#}
+                        {#<a class="nav-link dropdown-toggle" id="dropdownTurnieje" data-toggle="dropdown"#}
+                        {#aria-haspopup="true" aria-expanded="false">Turnieje</a>#}
+                        {#<div class="dropdown-menu" aria-labelledby="dropdownTurnieje">#}
+                        {#<a href="{{ url('tournament') }}" class="dropdown-item">#}
+                        {#<i class="fa fa-trophy" aria-hidden="true"></i>#}
+                        {#{{ 'nav.turnaments'|trans }}#}
+                        {#</a>#}
+                        {#<a href="{{ url('team') }}" class="dropdown-item">#}
+                        {#<i class="fa fa-users" aria-hidden="true"></i>#}
+                        {#{{ 'nav.teams'|trans }}#}
+                        {#</a>#}
+                        {#</div>#}
                         {#</li>#}
                         <li class="nav-item btn-group">
                             <a class="nav-link dropdown-toggle" id="dropdownGaming" data-toggle="dropdown"
@@ -120,6 +121,9 @@
                                     <i class="fa fa-youtube-play" aria-hidden="true"></i> {{ 'nav.video'|trans }}
                                 </a>
                             </div>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link">Mikroblog</a>
                         </li>
                     </ul>
 
@@ -175,17 +179,20 @@
                             </li>
                         {% endif %}
                         <li class="nav-item">
-                            <a href="http://youtube.com/PanOtlet" target="_blank" class="nav-link waves-effect waves-light">
+                            <a href="http://youtube.com/PanOtlet" target="_blank"
+                               class="nav-link waves-effect waves-light">
                                 <i class="fa fa-youtube"></i>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="http://twitter.com/PanOtlet" target="_blank" class="nav-link waves-effect waves-light">
+                            <a href="http://twitter.com/PanOtlet" target="_blank"
+                               class="nav-link waves-effect waves-light">
                                 <i class="fa fa-twitter"></i>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="http://facebook.com/JestemGraczemPL" target="_blank" class="nav-link waves-effect waves-light">
+                            <a href="http://facebook.com/JestemGraczemPL" target="_blank"
+                               class="nav-link waves-effect waves-light">
                                 <i class="fa fa-facebook"></i>
                             </a>
                         </li>
