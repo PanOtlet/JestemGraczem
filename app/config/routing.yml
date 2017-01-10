@@ -112,6 +112,12 @@ game.pokemon:
     type:     annotation
     prefix:   /game/pokemon
 
+# WykopBundle
+wykop:
+    resource: "@WykopBundle/Controller/DefaultController.php"
+    type:     annotation
+    prefix:   /mikroblog
+
 
 #SYSTEM
 
