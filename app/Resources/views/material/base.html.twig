@@ -72,8 +72,9 @@
                             JestemGraczem.pl
                         </a>
                         <li class="nav-item">
-                            <a class="nav-link disabled" data-toggle="tooltip" title="Wkrótce!" data-placement="bottom">
-                                Turnieje
+                            <a class="nav-link disabled" data-toggle="tooltip" title="Turnieje już wkrótce!"
+                               data-placement="bottom">
+                                <i class="fa fa-trophy" aria-hidden="true"></i> <span class="hide-md">Turnieje</span>
                             </a>
                         </li>
                         {#<li class="nav-item btn-group">#}
@@ -92,8 +93,18 @@
                         {#</li>#}
                         <li class="nav-item btn-group">
                             <a class="nav-link dropdown-toggle" id="dropdownGaming" data-toggle="dropdown"
-                               aria-haspopup="true" aria-expanded="false">Gaming</a>
+                               aria-haspopup="true" aria-expanded="false">
+                                <span data-toggle="tooltip" title="Strefa gier" data-placement="bottom">
+                                    <i class="fa fa-gamepad" aria-hidden="true"></i> <span
+                                            class="hide-md">Strefa gier</span>
+                                </span>
+                            </a>
                             <div class="dropdown-menu" aria-labelledby="dropdownGaming">
+                                <h6 class="dropdown-header">Strefa gier</h6>
+                                <a href="{{ url('centrum') }}" class="dropdown-item">
+                                    <i class="fa fa-gamepad" aria-hidden="true"></i>
+                                    {{ 'nav.center'|trans }}
+                                </a>
                                 <a href="{{ url('articles') }}" class="dropdown-item">
                                     <i class="fa fa-newspaper-o" aria-hidden="true"></i>
                                     {{ 'nav.news'|trans }}
@@ -106,16 +117,17 @@
                                     <i class="fa fa-power-off" aria-hidden="true"></i>
                                     {{ 'nav.status'|trans }}
                                 </a>
-                                <a href="{{ url('centrum') }}" class="dropdown-item">
-                                    <i class="fa fa-gamepad" aria-hidden="true"></i>
-                                    {{ 'nav.center'|trans }}
-                                </a>
                             </div>
                         </li>
                         <li class="nav-item btn-group">
                             <a class="nav-link dropdown-toggle" id="dropdownFun" data-toggle="dropdown"
-                               aria-haspopup="true" aria-expanded="false">Fun</a>
+                               aria-haspopup="true" aria-expanded="false">
+                                <span data-toggle="tooltip" title="Strefa Rozrywki" data-placement="bottom">
+                                    <i class="fa fa-smile-o" aria-hidden="true"></i> <span class="hide-md">Strefa Rozrywki</span>
+                                </span>
+                            </a>
                             <div class="dropdown-menu" aria-labelledby="dropdownFun">
+                                <h6 class="dropdown-header">Strefa rozrywki</h6>
                                 <a href="{{ url('mem') }}" class="dropdown-item">
                                     <i class="fa fa-picture-o" aria-hidden="true"></i> {{ 'nav.meme'|trans }}
                                 </a>
@@ -128,8 +140,10 @@
                             </div>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link disabled" data-toggle="tooltip" title="Wkrótce!" data-placement="bottom">
-                                Mikroblog
+                            <a class="nav-link" href="{{ url('mikroblog') }}">
+                                <span data-toggle="tooltip" title="Mikroblog" data-placement="bottom">
+                                    <i class="fa fa-commenting-o" aria-hidden="true"></i> <span class="hide-md">Mikroblog</span>
+                                </span>
                             </a>
                         </li>
                     </ul>
@@ -139,7 +153,9 @@
                             <li class="nav-item btn-group">
                                 <a class="nav-link dropdown-toggle" id="dropdownUser" data-toggle="dropdown"
                                    aria-haspopup="true" aria-expanded="false">
-                                    <i class="fa fa-user"></i>
+                                    {#<i class="fa fa-user"></i>#}
+                                    <img src="https://www.gravatar.com/avatar/{{ app.user.email|md5 }}" style="max-height: 30px"
+                                         alt="JestemGraczem Logo">
                                     {{ app.user.username }}
                                 </a>
                                 <div class="dropdown-menu" aria-labelledby="dropdownUser">
@@ -241,25 +257,17 @@
                         {#<li><a href="#!">Link 4</a></li>#}
                         {#</ul>#}
                     </div>
-                    {#<hr class="hidden-md-up">#}
+                    <hr class="hidden-md-up">
                     <div class="col-md-2">
-                        {#<h5 class="title">Links</h5>#}
-                        {#<ul>#}
-                        {#<li><a href="#!">Link 1</a></li>#}
-                        {#<li><a href="#!">Link 2</a></li>#}
-                        {#<li><a href="#!">Link 3</a></li>#}
-                        {#<li><a href="#!">Link 4</a></li>#}
-                        {#</ul>#}
+                        <h5 class="title">Sponsorzy</h5>
+                        <ul>
+                            <li><a href="https://deephosting.pro">Deephosting.pro</a></li>
+                        </ul>
                     </div>
                     <hr class="hidden-md-up">
                     <div class="col-md-2">
                         <h5 class="title">Support</h5>
                         <ul>
-                            <li>
-                                <a href="http://blog.jestemgraczem.pl">
-                                    {{ 'nav.blog'|trans }}
-                                </a>
-                            </li>
                             <li>
                                 <a href="{{ url('cms',{'title': 'support'}) }}">
                                     {{ 'nav.support'|trans }}

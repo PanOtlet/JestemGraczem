@@ -142,3 +142,9 @@ footer.page-footer {
 .white-text a {
     color: white !important;
 }
+
+@media screen and (min-width: 720px) {
+    .hide-md {
+        display: none !important;
+    }
+}

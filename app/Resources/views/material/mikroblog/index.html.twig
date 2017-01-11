@@ -14,7 +14,7 @@
                     <div class="list-group">
                         {% for blog in pagination %}
                             <a href="{{ url('mikroblog.id', {'id': blog.id}) }}" class="list-group-item">
-                                <h4 class="list-group-item-heading">{{ blog.id }}. {{ blog.title }}</h4>
+                                <h4 class="list-group-item-heading">{{ blog.title }}</h4>
                                 <p class="list-group-item-text">
                                     {{ blog.text|slice(0,100) }}
                                 </p>
