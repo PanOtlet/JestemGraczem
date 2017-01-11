@@ -88,7 +88,7 @@ class MemeController extends Controller
             ->add('save', SubmitType::class, [
                 'label' => 'mem.add',
                 'attr' => [
-                    'class' => 'btn-raised btn-danger'
+                    'class' => 'btn btn-danger'
                 ]
             ])
             ->getForm();

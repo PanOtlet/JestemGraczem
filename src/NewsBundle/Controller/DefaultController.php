@@ -96,7 +96,7 @@ class DefaultController extends Controller
             ->add('save', SubmitType::class, [
                 'label' => 'article.add',
                 'attr' => [
-                    'class' => 'btn-raised btn-danger'
+                    'class' => 'btn btn-danger'
                 ]
             ])
             ->getForm();
