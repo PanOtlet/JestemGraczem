@@ -50,17 +50,24 @@ class DefaultController extends Controller
      */
     public function simplePostAction(Request $request, $id)
     {
-        $post = $this->getDoctrine()->getRepository('WykopBundle:BlogPosts')->findOneBy(['id' => $id]);
+        $post = $this->getDoctrine()->getRepository('WykopBundle:BlogPosts')->createQueryBuilder('p')
+            ->orderBy('p.id', 'DESC')
+            ->where('p.id = :postId')
+            ->setParameter('postId', $id)
+            ->leftJoin("AppBundle:User", "u", "WITH", "u.id=p.author")
+            ->addSelect('u.username')
+            ->select('p.id, p.title, p.author, p.date, p.text, u.username, u.email')
+            ->getQuery()
+            ->getSingleResult();
 
-        $em = $this->getDoctrine()->getRepository('WykopBundle:BlogComments');
-        $query = $em->createQueryBuilder('p')
+        $comments = $this->getDoctrine()->getRepository('WykopBundle:BlogComments')->createQueryBuilder('p')
             ->orderBy('p.id', 'DESC')
             ->leftJoin("AppBundle:User", "u", "WITH", "u.id=p.author")
             ->addSelect('u.username')
+            ->where('p.postId = :postId')
+            ->setParameter('postId', $id)
             ->select('p.id, p.author, p.text, u.username, u.email')
-            ->getQuery();
-
-        $comments = $query->getResult();
+            ->getQuery()->getResult();
 //        $comments = $this->getDoctrine()->getRepository('WykopBundle:BlogComments')->findBy(['postId' => $id]);
 
         if ($post == NULL) {
@@ -72,10 +79,10 @@ class DefaultController extends Controller
         }
 
         $seo = $this->container->get('sonata.seo.page');
-        $seo->setTitle($post->getTitle() . ' :: JestemGraczem.pl')
-            ->addMeta('name', 'description', 'Najlepsze memy tylko u nas! ' . $post->getTitle())
-            ->addMeta('property', 'og:title', $post->getTitle())
-            ->addMeta('property', 'og:description', 'Najlepsze memy tylko u nas! ' . $post->getTitle())
+        $seo->setTitle($post['title'] . ' :: JestemGraczem.pl')
+            ->addMeta('name', 'description', 'Najlepsze memy tylko u nas! ' . $post['title'])
+            ->addMeta('property', 'og:title', $post['title'])
+            ->addMeta('property', 'og:description', 'Najlepsze memy tylko u nas! ' . $post['title'])
             ->addMeta('property', 'og:url', $this->get('router')->generate('mikroblog.id', ['id' => $id], UrlGeneratorInterface::ABSOLUTE_URL));
 
         $commentsPost = new BlogComments();
