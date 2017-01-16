@@ -197,7 +197,7 @@ class Slider
     /**
      * @param bool $enabled
      */
-    public function setEnabled(bool $enabled)
+    public function setEnabled($enabled)
     {
         $this->enabled = $enabled;
     }
