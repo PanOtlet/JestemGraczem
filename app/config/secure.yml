@@ -54,6 +54,7 @@ nelmio_security:
                 - www.adfreestyle.pl
             frame-src:
                 - www.youtube.com
+                - youtube.com
                 - connect.facebook.net
                 - jestemgraczem.onesignal.com
                 - beam.pro
