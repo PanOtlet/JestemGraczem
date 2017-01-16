@@ -14,8 +14,8 @@ nelmio_security:
     # prevents inline scripts, unsafe eval, external scripts/images/styles/frames, etc
     csp:
         hosts:
-            - localhost
             - jestemgraczem.pl
+            - localhost
         content_types: []
         report_logger_service: monolog.logger.security
         enforce:
@@ -100,9 +100,9 @@ nelmio_security:
         hsts_max_age: 2592000
         hsts_subdomains: true
 
-    cookie_session:
-        enabled: true
-        name: session
+#    cookie_session:
+#        enabled: true
+#        name: session
 
     # flexible HTTPS handling, read the detailed config info
     # and make sure you have SSL working on your site before enabling this
