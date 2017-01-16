@@ -307,6 +307,22 @@ class News
     }
 
     /**
+     * @param \DateTime $updatedAt
+     */
+    public function setUpdatedAt(\DateTime $updatedAt)
+    {
+        $this->updatedAt = $updatedAt;
+    }
+
+    /**
+     * @return \DateTime
+     */
+    public function getUpdatedAt(): \DateTime
+    {
+        return $this->updatedAt;
+    }
+
+    /**
      * @param File|\Symfony\Component\HttpFoundation\File\UploadedFile $image
      *
      * @return News
