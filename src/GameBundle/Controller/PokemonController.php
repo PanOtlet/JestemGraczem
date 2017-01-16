@@ -28,7 +28,7 @@ class PokemonController extends Controller
             ]
         ];
 
-        return $this->render('gameCenter/pokemon.html.twig', [
+        return $this->render($this->getParameter('theme') . '/gameCenter/pokemon.html.twig', [
             'color' => GameBundle::getColor(),
             'feeds' => $feeds,
             'json' => json_encode($feeds,true)

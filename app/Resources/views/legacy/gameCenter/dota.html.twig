@@ -1,0 +1,55 @@
+{% extends "legacy/base.html.twig" %}
+
+{% block body %}
+    <div class="container-fluid top p-t-3 p-b-2">
+        <div class="container">
+            <div class="col-sm-12 btn-clear-lg p-l-1 ">
+                D<span style="color: #8bc34a;">ot</span>A<span style="color: #8bc34a;">2</span>
+            </div>
+        </div>
+    </div>
+    <div class="container p-t-5 p-b-2">
+        {% block adbanner %}{{ parent() }}{% endblock %}
+        <div class="row">
+            <div class="col-md-8">
+                <div class="row">
+                    {% for feed in feeds %}
+                        <div class="col-md-6" id="feed{{ loop.index0 }}">
+                            {{ feed.name }}
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
+            <div class="col-md-4">
+                {% block sidebar %}
+                    {{ parent() }}
+                {% endblock %}
+                {% block adsidebar %}{{ parent() }}{% endblock %}
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.8.4/moment.min.js"></script>
+    <script src="{{ asset('assets/js/jquery.rss.js') }}"></script>
+    <script>
+        var data;
+        data = {{ json|raw }};
+        jQuery(function ($) {
+            for (var i = 0; i < data.length; i++) {
+                $("#feed" + i).rss(data[i]['url'], {
+                    limit: 10,
+                    effect: 'slideFastSynced',
+                    offsetStart: false,
+                    offsetEnd: false,
+                    ssl: false,
+                    layoutTemplate: '{entries}',
+                    entryTemplate: '<a href="{{ path('redirect') }}?url={url}" target="_blank"><h4>{title} <small>{date}</small></h4></a><p>{shortBodyPlain}...</p><hr>',
+                    dateFormat: 'HH:mm D/MM/YYYY'
+                });
+            }
+        })
+    </script>
+{% endblock %}

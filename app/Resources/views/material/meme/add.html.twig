@@ -1,0 +1,27 @@
+{% extends "material/base.html.twig" %}
+
+{% form_theme form ':material/Form:form.html.twig' %}
+
+{% block bodyMenu %}
+    <div class="divider-new">
+        <h2 class="h2-responsive wow bounceIn">
+            Dodaj {{ 'button.newest.meme'|trans }}
+        </h2>
+    </div>
+    <div class="container">
+        <div class="col-md-7">
+            {{ form_start(form) }}
+            {{ form_widget(form) }}
+            {{ form_end(form) }}
+        </div>
+        <div class="col-md-5">
+            <p>
+                Administracja nie ponosi odpowiedzialności za treści użytkowników na stronie.
+            </p>
+            <p>
+                Użytkownik wrzucają nowego mema na stronę jednocześnie oświadcza, że ma prawo do wykorzystania
+                materiałów na stronie.
+            </p>
+        </div>
+    </div>
+{% endblock %}

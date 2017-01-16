@@ -1,0 +1,71 @@
+{% extends "material/base.html.twig" %}
+
+{% block body %}
+    <div class="container-fluid top p-t-3 p-b-2">
+        <div class="container">
+            <div class="col-sm-6 btn-clear-lg p-l-1 ">
+                <span style="color: #8bc34a;">Turnieje</span>
+            </div>
+        </div>
+    </div>
+    <div class="container p-t-1">
+        <div class="col-md-8">
+            <div class="btn-group" role="group" aria-label="Basic example">
+
+                <div class="btn btn-sort-label">Sortuj według:</div>
+                <button type="button" class="btn btn-sort dropdown-toggle " data-toggle="dropdown" aria-haspopup="true"
+                        aria-expanded="false">
+                    Gra
+                </button>
+                <div class="dropdown-menu">
+                    <a class="dropdown-item"
+                       href="{{ app.request.baseUrl }}{{ app.request.pathInfo }}?sort=1">{{ 'tournament.csgo'|trans }}</a>
+                    <a class="dropdown-item"
+                       href="{{ app.request.baseUrl }}{{ app.request.pathInfo }}?sort=2">{{ 'tournament.lol'|trans }}</a>
+                    <a class="dropdown-item"
+                       href="{{ app.request.baseUrl }}{{ app.request.pathInfo }}?sort=3">{{ 'tournament.hots'|trans }}</a>
+                    <a class="dropdown-item"
+                       href="{{ app.request.baseUrl }}{{ app.request.pathInfo }}?sort=4">{{ 'tournament.sc2'|trans }}</a>
+                    <a class="dropdown-item"
+                       href="{{ app.request.baseUrl }}{{ app.request.pathInfo }}?sort=5">{{ 'tournament.hs'|trans }}</a>
+                    <a class="dropdown-item"
+                       href="{{ app.request.baseUrl }}{{ app.request.pathInfo }}?sort=6">{{ 'tournament.dota2'|trans }}</a>
+                    <a class="dropdown-item"
+                       href="{{ app.request.baseUrl }}{{ app.request.pathInfo }}?sort=7">{{ 'tournament.wot'|trans }}</a>
+                    <a class="dropdown-item"
+                       href="{{ app.request.baseUrl }}{{ app.request.pathInfo }}?sort=8">{{ 'tournament.overwatch'|trans }}</a>
+                    <div class="dropdown-divider"></div>
+                    <a class="dropdown-item"
+                       href="{{ app.request.baseUrl }}{{ app.request.pathInfo }}?sort=0">{{ 'tournament.other'|trans }}</a>
+                </div>
+            </div>
+
+            <div class="container">
+                <div class="row m-t-1">
+                    {% for turniej in turnieje %}
+                        <a href="{{ url('tournament.id',{'id': turniej.id}) }}">
+                            <div class="col-md-6 ">
+                                <img class="img-fluid"
+                                     src="{{ asset('assets/img/shield/'~turniej.dyscyplina~'.png') }}">
+
+                                <div class="col-md-12 p-x-0">
+                                    <div class="btn-white-lp dots m-b-0" style="border-left: 0px; border-right: 0px">
+                                        <span class="p-x-1 text">{{ turniej.name }}</span>
+                                    </div>
+                                    <div class="grey-box p-y-1 p-l-1 m-b-1 ">
+                                        <p>{{ turniej.description | slice(0,300) }}</p>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                    {% endfor %}
+                </div>
+            </div>
+
+        </div>
+        <div class="col-md-4">
+            {% block sidebar %}{{ parent() }}{% endblock %}
+        </div>
+    </div>
+{% endblock %}

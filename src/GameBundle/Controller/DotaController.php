@@ -33,7 +33,7 @@ class DotaController extends Controller
             ]
         ];
 
-        return $this->render('gameCenter/dota.html.twig', [
+        return $this->render($this->getParameter('theme') . '/gameCenter/dota.html.twig', [
             'color' => GameBundle::getColor(),
             'feeds' => $feeds,
             'json' => json_encode($feeds,true)

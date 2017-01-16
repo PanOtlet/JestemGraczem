@@ -125,7 +125,7 @@ class TurniejController extends Controller
             ->add('save', SubmitType::class, [
                 'label' => 'save',
                 'attr' => [
-                    'class' => 'btn-raised btn-danger'
+                    'class' => 'btn btn-danger'
                 ]
             ])
             ->getForm();

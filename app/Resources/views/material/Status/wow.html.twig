@@ -1,0 +1,44 @@
+{% extends "material/base.html.twig" %}
+
+{% block bodyMenu %}
+    {% block adbanner %}{{ parent() }}{% endblock %}
+    <div class="divider-new">
+        <h2 class="h2-responsive wow bounceIn">
+            <span style="color: #8bc34a;">WoW</span>EU<span style="color: #8bc34a;">Realms</span>Status
+        </h2>
+    </div>
+    <div class="container table-responsive" style="margin-top: 10px">
+        <table class="table">
+            <thead class="thead-inverse">
+            <tr>
+                <th>#</th>
+                <th>{{ 'status.name'|trans }}</th>
+                <th>{{ 'status.status'|trans }}</th>
+                <th>{{ 'status.queue'|trans }}</th>
+                <th>{{ 'status.pop'|trans }}</th>
+                <th>{{ 'status.server'|trans }}</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for server in data.realms %}
+                <tr>
+                    <th scope="row">{{ loop.index }}</th>
+                    <td>{{ server.name }}</td>
+                    {% if server.status == 1 %}
+                        <td class="table-success">ONLINE</td>
+                    {% else %}
+                        <td class="table-danger">OFFLINE</td>
+                    {% endif %}
+                    {% if server.queue == 1 %}
+                        <td class="table-danger">{{ 'status.queue'|trans }}</td>
+                    {% else %}
+                        <td class="table-success">{{ 'status.no-queue'|trans }}</td>
+                    {% endif %}
+                    <td>{{ server.population }}</td>
+                    <td>{{ server.type }}</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+{% endblock %}

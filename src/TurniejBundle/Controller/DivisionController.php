@@ -109,7 +109,7 @@ class DivisionController extends Controller
             ->add('save', SubmitType::class, [
                 'label' => 'form.add',
                 'attr' => [
-                    'class' => 'btn-raised btn-danger'
+                    'class' => 'btn btn-danger'
                 ]
             ])
             ->getForm();
@@ -174,7 +174,7 @@ class DivisionController extends Controller
             ->add('save', SubmitType::class, [
                 'label' => 'form.add',
                 'attr' => [
-                    'class' => 'btn-raised btn-danger'
+                    'class' => 'btn btn-danger'
                 ]
             ])
             ->getForm();

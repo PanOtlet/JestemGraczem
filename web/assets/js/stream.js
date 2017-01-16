@@ -162,21 +162,19 @@ function Stream(url, twitchApiKey) {
 
     /**
      * A ja wam dam małę gnoje AdBlocka!
-     * @param array
      */
     this.antyTopStream = function () {
         $('#topstream').hide().attr('src', 'https://www.youtube.com/embed/DLzxrzFCyOs?autoplay=true').fadeIn(1000);
-        $('#troll').hide().html(
-            '<p>' +
-            'JestemGraczem.pl utrzymuje się między innymi z reklam.<br><br>' +
-            'Wyłącz adBlock, byśmy mogli się dalej rozwijać!<br><br>' +
+        $('#streams-container').hide().html(
+            '<div class="card card-block"><p class="card-text">' +
+            'JestemGraczem.pl utrzymuje się między innymi z reklam.<br>' +
+            'Wyłącz adBlock, byśmy mogli się dalej rozwijać!<br>' +
             'Ciebie to nic nie kosztuje, nie mamy natrętnych reklam i jest ich niewiele, ale nam pomogą w rozwoju!' +
-            '</p>'
+            '</p></div>'
         ).fadeIn(1000);
-        $('#link').hide().html('www.jestemgraczem.pl').fadeIn(1000);
+        $('#viewers').hide().html('www.jestemgraczem.pl').fadeIn(1000);
         $('#display_name').hide().html('Rick Astley').fadeIn(1000);
         $('#avatar').hide().attr('src', 'http://i3.kym-cdn.com/photos/images/newsfeed/000/247/207/813.gif').fadeIn(1000);
-        $('#game').hide().attr('src', 'http://i3.kym-cdn.com/photos/images/newsfeed/000/247/207/813.gif').fadeIn(1000);
     };
 
     /**
@@ -187,14 +185,14 @@ function Stream(url, twitchApiKey) {
         if (Object.prototype.toString.call(array) === '[object Object]') {
             try {
                 var name = array['name'] + "_" + array['platform'];
-                $("#streams-container").append('<div class="col-sm-3" id="' + name + '"><div class=""><div class="v-title" id="' + name + '_title"></div><div class="v-img" id="' + name + '_img"></div><div class="v-bottom" id="' + name + '_bottom"></div></div></div>');
+                $("#streams-container").append('<div class="col-md-3" id="' + name + '"><div class="card" id="' + name + '_img"></div></div>');
                 $("#" + name).addClass('danger');
                 $("#" + name + "_status").html('ONLINE').css('font-weight', 'bold');
                 $("#" + name + "_game").html(array["game"]);
                 $("#" + name + "_viewers").html(array["viewers"]);
                 var json = JSON.stringify(array);
                 json = json.replace(/"/g, '\\"');
-                $("#" + name + "_img").html("<img onclick='stream.renderTopStream(\"" + json + "\")' data-toggle='tooltip' title='" + name + "' class='img-responsive stream' src='" + array['image'] + "' id='image_" + name + "' alt='" + name + "'>");
+                $("#" + name + "_img").html("<img onclick='stream.renderTopStream(\"" + json + "\")' data-toggle='tooltip' title='" + name + "' class='img-fluid stream' src='" + array['image'] + "' id='image_" + name + "' alt='Live Stream " + name + "'>");
             } catch (e) {
                 console.error(e);
             }
@@ -202,7 +200,7 @@ function Stream(url, twitchApiKey) {
     };
 
     /**
-     * Funkcja odpowiedzialna za rendering miniatur na stronie głównej
+     * Funkcja odpowiedzialna za rendering miniatur gdzieś
      * @param array
      */
     this.renderStreamList = function (array) {

@@ -1,0 +1,120 @@
+{% extends "material/base.html.twig" %}
+
+{% block bodyMenu %}
+    <div class="divider-new">
+        <h2 class="h2-responsive wow bounceIn">
+            {{ 'button.newest.new'|trans }} {{ 'button.newest.meme'|trans }}
+            <a href="{{ url('mem.add') }}" class="btn btn-primary"><span
+                        class="p-x-3">{{ 'button.add'|trans }}</span></a>
+        </h2>
+    </div>
+    <div class="container">
+        {% block adbanner %}{{ parent() }}{% endblock %}
+        <div class="row">
+            <div class="col-md-6">
+                {% if meme %}
+                    {% for mem in meme %}
+                        {% if mem.url | slice(-4) == '.mp4' or mem.url | slice(-5) == '.webm' %}
+                            <div class="card text-xs-center">
+                                <div class="card-header danger-color-dark white-text">
+                                    <a href="{{ url('mem.id',{'id': mem.id}) }}">
+                                        {{ mem.title|slice(0,50) }}
+                                    </a>
+                                    <a href="{{ url('user',{'user': mem.username}) }}">
+                                        <small>by {{ mem.username }}</small>
+                                    </a>
+                                </div>
+                                    <div class="embed-responsive embed-responsive-16by9 shadow">
+                                        <video id="promotedMemes" class="video-js embed-responsive-item" controls preload="auto"
+                                               data-setup="{}">
+                                            <source src="{{ asset('assets/mem/') ~ mem.url }}" type="video/mp4"
+                                                    class="embed-responsive-item">
+                                            <p class="vjs-no-js">
+                                                Masz kiepską przeglądarkę! Użyj GOOGLE CHROME!
+                                            </p>
+                                        </video>
+                                    </div>
+                                <div class="card-footer text-muted primary-color-dark white-text" style="padding: 0">
+                                    <div style="margin-bottom: 5px" class="fb-like" data-href="{{ url('mem.id',{'id': mem.id}) }}"
+                                         data-layout="standard" data-action="like" data-show-faces="false"
+                                         data-share="true">
+                                    </div>
+                                </div>
+                            </div>
+                        {% else %}
+                            <div class="card text-xs-center">
+                                <div class="card-header danger-color-dark white-text">
+                                    <a href="{{ url('mem.id',{'id': mem.id}) }}">
+                                        {{ mem.title|slice(0,50) }}
+                                    </a>
+                                    <a href="{{ url('user',{'user': mem.username}) }}">
+                                        <small>by {{ mem.username }}</small>
+                                    </a>
+                                </div>
+                                <a href="{{ url('mem.id',{'id': mem.id}) }}">
+                                    <img src="{{ asset('assets/mem/') ~ mem.url }}"
+                                         alt="{{ mem.title|slice(0,50) }}"
+                                         class="img-fluid">
+                                </a>
+                                <div class="card-footer text-muted primary-color-dark white-text" style="padding: 0">
+                                    <div style="margin-bottom: 5px" class="fb-like" data-href="{{ url('mem.id',{'id': mem.id}) }}"
+                                         data-layout="standard" data-action="like" data-show-faces="false"
+                                         data-share="true">
+                                    </div>
+                                </div>
+                            </div>
+                        {% endif %}
+                    {% endfor %}
+                    <div class="row">
+                        <div class="col-md-6">
+                            {% if page > 0 %}
+                                <a href="{{ url('mem',{'page': page-1}) }}"
+                                   class="btn btn-raised btn-danger btn-block">{{ 'button.prev'|trans }}</a>
+                            {% endif %}
+                        </div>
+                        <div class="col-md-6">
+                            <a href="{{ url('mem',{'page': page+1}) }}"
+                               class="btn btn-raised btn-danger btn-block">{{ 'button.next'|trans }}</a>
+                        </div>
+                    </div>
+                {% else %}
+                    <h1>Brak memów :( Smutek.jpg</h1>
+                {% endif %}
+            </div>
+            <div class="col-md-3 hidden-sm">
+                <div class="card">
+                    <div class="card-header danger-color-dark white-text">
+                        Polecane!
+                    </div>
+                    <div class="card-block">
+                        {% for mem in promoted %}
+                            <a href="{{ url('mem.id',{'id': mem.id}) }}">
+                                <img src="{{ asset('assets/mem/') ~ mem.url }}" alt="{{ mem.title }}"
+                                     class="img-rounded img-fluid" style="margin-top: 10px">
+                            </a>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-3">
+                <a href="{{ url('mem.all') }}" class="btn btn-danger btn-block"><span
+                            class="p-x-3">{{ 'button.waitingroom'|trans }}</span></a>
+                {% block sidebar %}
+                    {{ parent() }}
+                {% endblock %}
+                {% block adsidebar %}{{ parent() }}{% endblock %}
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block stylesheets %}
+    {{  parent() }}
+    <link href="http://vjs.zencdn.net/5.12.6/video-js.css" rel="stylesheet">
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script src="http://vjs.zencdn.net/5.12.6/video.js"></script>
+{% endblock %}

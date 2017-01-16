@@ -1,0 +1,150 @@
+html,
+body,
+.view {
+    height: 100%;
+}
+
+.marginTop {
+    margin-top: 54px;
+}
+
+.marginTop2 {
+    margin-top: 100px;
+}
+
+.marginFor {
+    margin-bottom: 10px;
+}
+
+.navbar {
+    background-color: transparent;
+}
+
+.scrolling-navbar {
+    -webkit-transition: background .5s ease-in-out, padding .5s ease-in-out;
+    -moz-transition: background .5s ease-in-out, padding .5s ease-in-out;
+    transition: background .5s ease-in-out, padding .5s ease-in-out;
+}
+
+.top-nav-collapse {
+    background-color: #1C2331;
+}
+
+footer.page-footer {
+    background-color: #1C2331;
+    margin-top: 2rem;
+}
+
+@media only screen and (max-width: 768px) {
+    .navbar {
+        background-color: #1C2331;
+    }
+}
+
+.flex-center {
+    color: #fff;
+}
+
+.view {
+    background: url("../../img/bease-bg-lol.jpg") no-repeat center center fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    overflow: hidden;
+    position: relative;
+    cursor: default;
+}
+
+#stream .fa {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+    color: #1C2331;
+}
+
+.stream {
+    border: solid 4px #000000;
+    -webkit-filter: grayscale(100%); /* Chrome, Safari, Opera */
+    filter: grayscale(100%);
+}
+
+.stream:hover {
+    border: solid 4px #2b2d2f;
+    -webkit-filter: grayscale(50%); /* Chrome, Safari, Opera */
+    filter: grayscale(50%);
+    cursor: pointer;
+}
+
+.stream-active {
+    border: solid 4px #00008b;
+    -webkit-filter: grayscale(0%); /* Chrome, Safari, Opera */
+    filter: grayscale(0%);
+}
+
+.stream-active:hover {
+    cursor: pointer;
+    border: solid 4px #0000ff;
+    -webkit-filter: grayscale(10%); /* Chrome, Safari, Opera */
+    filter: grayscale(10%);
+}
+
+#streams-container {
+    margin-top: 20px;
+}
+
+#stream-container {
+    padding: 20px;
+    background: url('http://i.imgur.com/4jaiQ2S.png') no-repeat fixed center;
+    background-size: cover;
+}
+
+#news {
+    padding: 20px;
+    background: url('http://i.imgur.com/vzRN4in.jpg') no-repeat fixed center;
+    background-size: cover;
+}
+
+.divShadow {
+    -webkit-box-shadow: 0 0 30px 0 rgba(0, 0, 0, 0.75);
+    -moz-box-shadow: 0 0 30px 0 rgba(0, 0, 0, 0.75);
+    box-shadow: 0 0 30px 0 rgba(0, 0, 0, 0.75);
+}
+
+.marginus {
+    margin: 23px 0 23px 0;
+}
+
+#mems {
+    padding: 15px 0 15px 0;
+    background: url("../../img/bease-bg-lol.jpg") no-repeat center center fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    overflow: hidden;
+    position: relative;
+    cursor: default;
+}
+
+.img-full {
+    display: block;
+    width: 100%;
+}
+
+footer.page-footer {
+    margin-top: 50px;
+}
+
+#underMenuDiv {
+    margin-top: 56px;
+}
+
+.white-text a {
+    color: white !important;
+}
+
+@media screen and (min-width: 720px) {
+    .hide-md {
+        display: none !important;
+    }
+}

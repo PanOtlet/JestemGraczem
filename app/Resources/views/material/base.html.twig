@@ -1,0 +1,491 @@
+{% spaceless %}
+    {% use 'material/blocks.html.twig' %}
+    <!DOCTYPE html>
+    <html lang="pl">
+    <head>
+        {{ sonata_seo_metadatas() }}
+
+        {{ sonata_seo_title() }}
+
+        {% block head %}{% endblock %}
+
+        <script>
+            (function (i, s, o, g, r, a, m) {
+                i['GoogleAnalyticsObject'] = r;
+                i[r] = i[r] || function () {
+                        (i[r].q = i[r].q || []).push(arguments)
+                    };
+                i[r].l = 1 * new Date();
+                a = s.createElement(o);
+                m = s.getElementsByTagName(o)[0];
+                a.async = 1;
+                a.src = g;
+                m.parentNode.insertBefore(a, m)
+            })(window, document, 'script', 'https://www.google-analytics.com/analytics.js', 'ga');
+            ga('create', 'UA-30138329-3', 'auto');
+            ga('send', 'pageview');
+        </script>
+
+        <link rel="apple-touch-icon" sizes="57x57" href="{{ asset('assets/img/favicon/apple-icon-57x57.png') }}">
+        <link rel="apple-touch-icon" sizes="60x60" href="{{ asset('assets/img/favicon/apple-icon-60x60.png') }}">
+        <link rel="apple-touch-icon" sizes="72x72" href="{{ asset('assets/img/favicon/apple-icon-72x72.png') }}">
+        <link rel="apple-touch-icon" sizes="76x76" href="{{ asset('assets/img/favicon/apple-icon-76x76.png') }}">
+        <link rel="apple-touch-icon" sizes="114x114" href="{{ asset('assets/img/favicon/apple-icon-114x114.png') }}">
+        <link rel="apple-touch-icon" sizes="120x120" href="{{ asset('assets/img/favicon/apple-icon-120x120.png') }}">
+        <link rel="apple-touch-icon" sizes="144x144" href="{{ asset('assets/img/favicon/apple-icon-144x144.png') }}">
+        <link rel="apple-touch-icon" sizes="152x152" href="{{ asset('assets/img/favicon/apple-icon-152x152.png') }}">
+        <link rel="apple-touch-icon" sizes="180x180" href="{{ asset('assets/img/favicon/apple-icon-180x180.png') }}">
+        <link rel="icon" type="image/png" sizes="192x192"
+              href="{{ asset('assets/img/favicon/android-icon-192x192.png') }}">
+        <link rel="icon" type="image/png" sizes="32x32" href="{{ asset('assets/img/favicon/favicon-32x32.png') }}">
+        <link rel="icon" type="image/png" sizes="96x96" href="{{ asset('assets/img/favicon/favicon-96x96.png') }}">
+        <link rel="icon" type="image/png" sizes="16x16" href="{{ asset('assets/img/favicon/favicon-16x16.png') }}">
+        <link rel="manifest" href="{{ asset('assets/img/favicon/manifest.json') }}">
+        <meta name="msapplication-TileColor" content="#500472">
+        <meta name="msapplication-TileImage" content="{{ asset('assets/img/favicon/ms-icon-144x144.png') }}">
+        <meta name="theme-color" content="#500472">
+
+        <style>
+            #loader-wrapper {
+                position: fixed;
+                top: 0;
+                left: 0;
+                background: #000;
+                width: 100%;
+                height: 100%;
+                z-index: 1000;
+            }
+
+            #loader {
+                display: block;
+                position: relative;
+                left: 50%;
+                top: 50%;
+                width: 150px;
+                height: 150px;
+                margin: -75px 0 0 -75px;
+                border-radius: 50%;
+                border: 3px solid transparent;
+                border-top-color: #3498db;
+
+                -webkit-animation: spin 2s linear infinite; /* Chrome, Opera 15+, Safari 5+ */
+                animation: spin 2s linear infinite; /* Chrome, Firefox 16+, IE 10+, Opera */
+            }
+
+            #loader:before {
+                content: "";
+                position: absolute;
+                top: 5px;
+                left: 5px;
+                right: 5px;
+                bottom: 5px;
+                border-radius: 50%;
+                border: 3px solid transparent;
+                border-top-color: #e74c3c;
+
+                -webkit-animation: spin 3s linear infinite; /* Chrome, Opera 15+, Safari 5+ */
+                animation: spin 3s linear infinite; /* Chrome, Firefox 16+, IE 10+, Opera */
+            }
+
+            #loader:after {
+                content: "";
+                position: absolute;
+                top: 15px;
+                left: 15px;
+                right: 15px;
+                bottom: 15px;
+                border-radius: 50%;
+                border: 3px solid transparent;
+                border-top-color: #f9c922;
+
+                -webkit-animation: spin 1.5s linear infinite; /* Chrome, Opera 15+, Safari 5+ */
+                animation: spin 1.5s linear infinite; /* Chrome, Firefox 16+, IE 10+, Opera */
+            }
+
+            @-webkit-keyframes spin {
+                0% {
+                    -webkit-transform: rotate(0deg); /* Chrome, Opera 15+, Safari 3.1+ */
+                    -ms-transform: rotate(0deg); /* IE 9 */
+                    transform: rotate(0deg); /* Firefox 16+, IE 10+, Opera */
+                }
+                100% {
+                    -webkit-transform: rotate(360deg); /* Chrome, Opera 15+, Safari 3.1+ */
+                    -ms-transform: rotate(360deg); /* IE 9 */
+                    transform: rotate(360deg); /* Firefox 16+, IE 10+, Opera */
+                }
+            }
+
+            @keyframes spin {
+                0% {
+                    -webkit-transform: rotate(0deg); /* Chrome, Opera 15+, Safari 3.1+ */
+                    -ms-transform: rotate(0deg); /* IE 9 */
+                    transform: rotate(0deg); /* Firefox 16+, IE 10+, Opera */
+                }
+                100% {
+                    -webkit-transform: rotate(360deg); /* Chrome, Opera 15+, Safari 3.1+ */
+                    -ms-transform: rotate(360deg); /* IE 9 */
+                    transform: rotate(360deg); /* Firefox 16+, IE 10+, Opera */
+                }
+            }
+        </style>
+
+    </head>
+    <body>
+    <div id="loader-wrapper">
+        <div id="loader"></div>
+
+        <div class="loader-section section-left"></div>
+        <div class="loader-section section-right"></div>
+
+    </div>
+    {% block navbar %}
+        <nav class="navbar navbar-dark navbar-fixed-top deep-purple">
+            <button class="navbar-toggler hidden-sm-up" type="button" data-toggle="collapse" data-target="#collapseEx">
+                <i class="fa fa-bars"></i></button>
+            <div class="container">
+                <div class="collapse navbar-toggleable-xs" id="collapseEx">
+                    <ul class="nav navbar-nav">
+                        <a href="{{ url('homepage') }}" class="navbar-brand">
+                            <img src="{{ asset('assets/img/Logo3.png') }}" style="max-height: 30px"
+                                 alt="JestemGraczem Logo">
+                            JestemGraczem.pl
+                        </a>
+                        <li class="nav-item">
+                            <a class="nav-link disabled" data-toggle="tooltip" title="Turnieje już wkrótce!"
+                               data-placement="bottom">
+                                <i class="fa fa-trophy" aria-hidden="true"></i> <span class="hide-md">Turnieje</span>
+                            </a>
+                        </li>
+                        {#<li class="nav-item btn-group">#}
+                        {#<a class="nav-link dropdown-toggle" id="dropdownTurnieje" data-toggle="dropdown"#}
+                        {#aria-haspopup="true" aria-expanded="false">Turnieje</a>#}
+                        {#<div class="dropdown-menu" aria-labelledby="dropdownTurnieje">#}
+                        {#<a href="{{ url('tournament') }}" class="dropdown-item">#}
+                        {#<i class="fa fa-trophy" aria-hidden="true"></i>#}
+                        {#{{ 'nav.turnaments'|trans }}#}
+                        {#</a>#}
+                        {#<a href="{{ url('team') }}" class="dropdown-item">#}
+                        {#<i class="fa fa-users" aria-hidden="true"></i>#}
+                        {#{{ 'nav.teams'|trans }}#}
+                        {#</a>#}
+                        {#</div>#}
+                        {#</li>#}
+                        <li class="nav-item btn-group">
+                            <a class="nav-link dropdown-toggle" id="dropdownGaming" data-toggle="dropdown"
+                               aria-haspopup="true" aria-expanded="false">
+                                <span data-toggle="tooltip" title="Strefa gier" data-placement="bottom">
+                                    <i class="fa fa-gamepad" aria-hidden="true"></i> <span
+                                            class="hide-md">Strefa gier</span>
+                                </span>
+                            </a>
+                            <div class="dropdown-menu" aria-labelledby="dropdownGaming">
+                                <h6 class="dropdown-header">Strefa gier</h6>
+                                <a href="{{ url('centrum') }}" class="dropdown-item">
+                                    <i class="fa fa-gamepad" aria-hidden="true"></i>
+                                    {{ 'nav.center'|trans }}
+                                </a>
+                                <a href="{{ url('articles') }}" class="dropdown-item">
+                                    <i class="fa fa-newspaper-o" aria-hidden="true"></i>
+                                    {{ 'nav.news'|trans }}
+                                </a>
+                                <a href="{{ url('rss') }}" class="dropdown-item">
+                                    <i class="fa fa-rss-square" aria-hidden="true"></i>
+                                    {{ 'nav.rss'|trans }}
+                                </a>
+                                <a href="{{ url('status') }}" class="dropdown-item">
+                                    <i class="fa fa-power-off" aria-hidden="true"></i>
+                                    {{ 'nav.status'|trans }}
+                                </a>
+                            </div>
+                        </li>
+                        <li class="nav-item btn-group">
+                            <a class="nav-link dropdown-toggle" id="dropdownFun" data-toggle="dropdown"
+                               aria-haspopup="true" aria-expanded="false">
+                                <span data-toggle="tooltip" title="Strefa Rozrywki" data-placement="bottom">
+                                    <i class="fa fa-smile-o" aria-hidden="true"></i> <span class="hide-md">Strefa Rozrywki</span>
+                                </span>
+                            </a>
+                            <div class="dropdown-menu" aria-labelledby="dropdownFun">
+                                <h6 class="dropdown-header">Strefa rozrywki</h6>
+                                <a href="{{ url('mem') }}" class="dropdown-item">
+                                    <i class="fa fa-picture-o" aria-hidden="true"></i> {{ 'nav.meme'|trans }}
+                                </a>
+                                <a href="{{ url('stream') }}" class="dropdown-item disabled">
+                                    <i class="fa fa-twitch" aria-hidden="true"></i> {{ 'nav.streams'|trans }}
+                                </a>
+                                <a href="{{ url('video') }}" class="dropdown-item">
+                                    <i class="fa fa-youtube-play" aria-hidden="true"></i> {{ 'nav.video'|trans }}
+                                </a>
+                            </div>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ url('mikroblog') }}">
+                                <span data-toggle="tooltip" title="Mikroblog" data-placement="bottom">
+                                    <i class="fa fa-commenting-o" aria-hidden="true"></i> <span class="hide-md">Mikroblog</span>
+                                </span>
+                            </a>
+                        </li>
+                    </ul>
+
+                    <ul class="nav navbar-nav nav-flex-icons">
+                        {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+                            <li class="nav-item btn-group">
+                                <a class="nav-link dropdown-toggle" id="dropdownUser" data-toggle="dropdown"
+                                   aria-haspopup="true" aria-expanded="false">
+                                    {#<i class="fa fa-user"></i>#}
+                                    <img src="https://www.gravatar.com/avatar/{{ app.user.email|md5 }}"
+                                         style="max-height: 30px"
+                                         alt="JestemGraczem Gravatar">
+                                    {{ app.user.username }}
+                                </a>
+                                <div class="dropdown-menu" aria-labelledby="dropdownUser">
+                                    {% if is_granted('ROLE_ADMIN') %}
+                                        <a class="dropdown-item" href="{{ url('easyadmin') }}" target="_blank">
+                                            <i class="fa fa-terminal" aria-hidden="true"></i> AdminCP
+                                        </a>
+                                    {% endif %}
+                                    <a class="dropdown-item" href="{{ url('user',{'user': app.user.username}) }}">
+                                        <i class="fa fa-user"
+                                           aria-hidden="true"></i> {{ 'profile.publicprofil'|trans({}, 'FOSUserBundle') }}
+                                    </a>
+                                    <a class="dropdown-item" href="{{ url('fos_user_change_password') }}">
+                                        <i class="fa fa-key"
+                                           aria-hidden="true"></i> {{ 'change_password.submit'|trans({}, 'FOSUserBundle') }}
+                                    </a>
+                                    <a class="dropdown-item" href="{{ url('fos_user_profile_edit') }}">
+                                        <i class="fa fa-pencil"
+                                           aria-hidden="true"></i> {{ 'profile.edit.edit'|trans({}, 'FOSUserBundle') }}
+                                    </a>
+                                    <a class="dropdown-item" href="{{ url('fos_user_security_logout') }}">
+                                        <i class="fa fa-sign-out"
+                                           aria-hidden="true"></i> {{ 'layout.logout'|trans({}, 'FOSUserBundle') }}
+                                    </a>
+                                </div>
+                            </li>
+                        {% else %}
+                            <li class="nav-item btn-group">
+                                <a class="nav-link dropdown-toggle" id="dropdownUser" data-toggle="dropdown"
+                                   aria-haspopup="true" aria-expanded="false">
+                                    <i class="fa fa-user"></i>
+                                </a>
+                                <div class="dropdown-menu" aria-labelledby="dropdownUser">
+                                    <a class="dropdown-item" href="{{ url('fos_user_security_login') }}">
+                                        {{ 'layout.login'|trans({}, 'FOSUserBundle') }}
+                                    </a>
+                                    <a class="dropdown-item" href="{{ url('fos_user_registration_register') }}">
+                                        {{ 'account.register'|trans }} {{ 'account.now'|trans }}
+                                    </a>
+                                    <a class="dropdown-item" href="{{ url('fos_user_resetting_request') }}">
+                                        {{ 'account.forgotpass'|trans }}
+                                    </a>
+                                </div>
+                            </li>
+                        {% endif %}
+                        <li class="nav-item">
+                            <a href="http://youtube.com/PanOtlet" target="_blank"
+                               class="nav-link waves-effect waves-light">
+                                <i class="fa fa-youtube"></i>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="http://twitter.com/PanOtlet" target="_blank"
+                               class="nav-link waves-effect waves-light">
+                                <i class="fa fa-twitter"></i>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="http://facebook.com/JestemGraczemPL" target="_blank"
+                               class="nav-link waves-effect waves-light">
+                                <i class="fa fa-facebook"></i>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    {% endblock %}
+
+    {% block beforeBody %}{% endblock %}
+
+    <section id="body">
+        {% block body %}
+            <div id="underMenuDiv">
+                {% block bodyMenu %}{% endblock %}
+            </div>
+        {% endblock %}
+    </section>
+
+    {% block footer %}
+        <footer class="page-footer center-on-small-only">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-md-3 offset-md-1">
+                        <h5 class="title">JestemGraczem.pl</h5>
+                        <p style="text-align: justify">
+                            JestemGraczem.pl jest innowacyjną platformą turniejową i nie tylko!
+                            Naszym głównym założeniem było stworzyć portal dostosowany pod każdego gracza,
+                            gdzie każdy członek społeczności gamingowej znajdzie coś dla siebie!
+                        </p>
+                    </div>
+                    <hr class="hidden-md-up">
+                    <div class="col-md-2 offset-md-1">
+                        <h5 class="title">Partnerzy medialni</h5>
+                        <ul>
+                            <li>
+                                <a href="https://www.youtube.com/user/PanOtlet">
+                                    <i class="fa fa-youtube-play" aria-hidden="true"></i> PanOtlet
+                                </a>
+                            </li>
+                            <li>
+                                <a href="https://www.youtube.com/channel/UCepCNuYZY9KzbzpSP1552Wg">
+                                    <i class="fa fa-youtube-play" aria-hidden="true"></i> itsKocyk
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                    <hr class="hidden-md-up">
+                    <div class="col-md-2">
+                        <h5 class="title">Sponsorzy</h5>
+                        <ul>
+                            <li><a href="https://deephosting.pro">Deephosting.pro</a></li>
+                            <li><a href="https://otlet.pl">Otlet.pl</a></li>
+                            <li><a href="https://sklep.otlet.pl">Geek && Nerd Shop</a></li>
+                        </ul>
+                    </div>
+                    <hr class="hidden-md-up">
+                    <div class="col-md-2">
+                        <h5 class="title">Support</h5>
+                        <ul>
+                            <li>
+                                <a href="{{ url('cms',{'title': 'support'}) }}">
+                                    {{ 'nav.support'|trans }}
+                                </a>
+                            </li>
+                            <li>
+                                <a href="{{ url('cms',{'title': 'regulamin'}) }}">
+                                    {{ 'nav.rules'|trans }}
+                                </a>
+                            </li>
+                            <li>
+                                <a href="{{ url('cms',{'title': 'jak-stworzyc-turniej'}) }}">
+                                    {{ 'nav.howto'|trans }}
+                                </a>
+                            </li>
+                            <li>
+                                <a href="{{ url('cms',{'title': 'program-partnerski'}) }}">
+                                    {{ 'nav.ppartner'|trans }}
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <hr>
+            <div class="call-to-action container">
+                <div class="row">
+                    <div class="col-md-4">
+                        <a href="https://sklep.otlet.pl" target="_blank">
+                            <img src="{{ asset('assets/img/partners/gn.png') }}" alt="Geek and Nerd Shop"
+                                 class="img-responsive">
+                        </a>
+                    </div>
+                    <div class="col-md-4">
+                        <a href="https://23games.pl" target="_blank">
+                            <img src="{{ asset('assets/img/partners/games.png') }}"
+                                 alt="Najlepszy TeamSpeak3 23games" class="img-responsive">
+                        </a>
+                    </div>
+                    <div class="col-md-4">
+                        <a href="https://beam.pro/otlet" target="_blank">
+                            <img src="{{ asset('assets/img/partners/beam.png') }}"
+                                 alt="Beam.pro Otlet" class="img-responsive">
+                        </a>
+                    </div>
+                </div>
+                <br>
+            </div>
+            <div class="footer-copyright">
+                <div class="container-fluid">
+                    Copyright &copy; {{ "now"|date('Y') }} <span style="color: #000000">JestemGraczem.pl</span> <br>
+                    Made with &hearts; by DeepWebServices &amp; Otlet.pl
+                </div>
+            </div>
+        </footer>
+    {% endblock %}
+
+    {% block stylesheets %}
+        <link href="{{ asset('assets/material/css/bootstrap.min.css') }}" media="none"
+              onload="if(media!='all')media='all'" rel="stylesheet">
+        <link href="{{ asset('assets/material/css/mdb.min.css') }}" media="none" onload="if(media!='all')media='all'"
+              rel="stylesheet">
+        <link href="{{ asset('assets/material/css/style.css') }}" media="none" onload="if(media!='all')media='all'"
+              rel="stylesheet">
+
+        {% if app.session.flashBag.has('error') or app.session.flashBag.has('info') or app.session.flashBag.has('warning') or app.session.flashBag.has('success') %}
+            <link rel="stylesheet" type="text/css" href="{{ asset('assets/js/sweetalert.css') }}"
+                  media="none" onload="if(media!='all')media='all'" property="stylesheet">
+        {% endif %}
+    {% endblock %}
+
+    {% block javascripts %}
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+        <script src="{{ asset('assets/material/js/tether.min.js') }}"></script>
+        <script src="{{ asset('assets/material/js/bootstrap.min.js') }}"></script>
+        <script src="{{ asset('assets/material/js/mdb.min.js') }}"></script>
+        <script async src="https://use.fontawesome.com/c0b3ee6d21.js"></script>
+        <script src="{{ asset('assets/js/jquery.cookiesdirective.js') }}"></script>
+        <script src="https://cdn.onesignal.com/sdks/OneSignalSDK.js"></script>
+
+        {% if app.session.flashBag.has('error') or app.session.flashBag.has('info') or app.session.flashBag.has('warning') or app.session.flashBag.has('success') %}
+        <script src="{{ asset('assets/js/sweetalert.min.js') }}"></script>
+        {% endif %}
+
+        <script type="text/javascript">
+            $(document).ready(function () {
+                {% for flash_message in app.session.flashBag.get('error') %}
+                sweetAlert("Oops...", "{{ flash_message }}", "error");
+                {% endfor %}
+
+                {% for flash_message in app.session.flashBag.get('info') %}
+                sweetAlert("Informacja", "{{ flash_message }}", "info");
+                {% endfor %}
+
+                {% for flash_message in app.session.flashBag.get('warning') %}
+                sweetAlert("Ostrzeżenie", "{{ flash_message }}", "warning");
+                {% endfor %}
+
+                {% for flash_message in app.session.flashBag.get('success') %}
+                sweetAlert("Jupi!", "{{ flash_message }}", "success");
+                {% endfor %}
+
+                $(function () {
+                    $('[data-toggle="tooltip"]').tooltip()
+                });
+
+                $.cookiesDirective({
+                    privacyPolicyUri: '{{ url('cms',{'title':'regulamin'}) }}',
+                    explicitConsent: false,
+                    position: 'top',
+                    backgroundColor: '#000000',
+                    linkColor: '#FF0000'
+                });
+
+                var OneSignal = window.OneSignal || [];
+                OneSignal.push(["init", {
+                    appId: "5611cf12-14a7-45d2-8f8f-d767df85e768",
+                    autoRegister: true,
+                    subdomainName: 'jestemgraczem',
+                    notifyButton: {
+                        enable: true
+                    }
+                }]);
+
+                $("#loader-wrapper").remove();
+            });
+        </script>
+
+    {% endblock %}
+
+    </body>
+    </html>
+{% endspaceless %}

@@ -1,0 +1,36 @@
+{% extends "legacy/base.html.twig" %}
+
+{% block body %}
+    <div class="container-fluid top p-t-3 p-b-2">
+        <div class="container">
+            <div class="col-sm-6 btn-clear-lg p-l-1 ">
+                <span style="color: #8bc34a;">{{ video.title }}</span>
+            </div>
+            <div class="col-sm-6">
+                <a href="{{ url('video.add') }}" type="button" class="btn btn-green pull-sm-right">
+                    <span class="p-x-3">{{ 'button.add'|trans }}</span>
+                </a>
+            </div>
+        </div>
+    </div>
+    <div class="container">
+        {% block adbanner %}{{ parent() }}{% endblock %}
+        <div class="video">
+            <div class="v-img embed-responsive embed-responsive-16by9">
+                <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/{{ video.videoid }}"
+                        frameborder="0" allowfullscreen></iframe>
+            </div>
+        </div>
+        <div id="fb-root"></div>
+        <script>(function (d, s, id) {
+                var js, fjs = d.getElementsByTagName(s)[0];
+                if (d.getElementById(id)) return;
+                js = d.createElement(s);
+                js.id = id;
+                js.src = "//connect.facebook.net/pl_PL/sdk.js#xfbml=1&version=v2.6&appId=1792775277616619";
+                fjs.parentNode.insertBefore(js, fjs);
+            }(document, 'script', 'facebook-jssdk'));</script>
+        <div class="fb-comments" data-href="{{ url('video.id', {'id': video.id}) }}"
+             data-numposts="10"></div>
+    </div>
+{% endblock %}

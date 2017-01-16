@@ -76,7 +76,7 @@ class VideoController extends Controller
             ->addMeta('property', 'og:description', 'Dodaj swój własny film do naszej bazy!')
             ->addMeta('property', 'og:url', $this->get('router')->generate('video.add', [], UrlGeneratorInterface::ABSOLUTE_URL));
 
-        return $this->render('video/add.html.twig', [
+        return $this->render($this->getParameter('theme') . '/video/add.html.twig', [
             'color' => $this->color,
             'form' => $form->createView(),
         ]);
@@ -113,7 +113,7 @@ class VideoController extends Controller
             ->addMeta('property', 'og:description', 'Poczekalnia z najciekawszymi filmami dostępnymi w internecie! Strona ' . $page)
             ->addMeta('property', 'og:url', $this->get('router')->generate('video.wait', ['page' => $page], UrlGeneratorInterface::ABSOLUTE_URL));
 
-        return $this->render('video/index.html.twig', [
+        return $this->render($this->getParameter('theme') . '/video/index.html.twig', [
             'color' => $this->color,
             'videos' => $video,
             'page' => $page
@@ -153,7 +153,7 @@ class VideoController extends Controller
             ->addMeta('property', 'og:description', 'Poszukujesz ciekawych filmów w internecie? Zapraszamy do oglądania twórczości naszych użytkowników! Strona ' . $page)
             ->addMeta('property', 'og:url', $this->get('router')->generate('video.wait', ['page' => $page], UrlGeneratorInterface::ABSOLUTE_URL));
 
-        return $this->render('video/index.html.twig', [
+        return $this->render($this->getParameter('theme') . '/video/index.html.twig', [
             'color' => $this->color,
             'videos' => $video,
             'promoted' => $promoted,
@@ -186,7 +186,7 @@ class VideoController extends Controller
             ->addMeta('property', 'og:description', 'Film ' . $video->getTitle() . ' dostępny jest na platformie JestemGraczem.pl bez ograniczeń!')
             ->addMeta('property', 'og:url', $this->get('router')->generate('video.id', ['id' => $id], UrlGeneratorInterface::ABSOLUTE_URL));
 
-        return $this->render('video/tv.html.twig', [
+        return $this->render($this->getParameter('theme') . '/video/tv.html.twig', [
             'color' => $this->color,
             'video' => $video
         ]);

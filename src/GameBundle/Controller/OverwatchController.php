@@ -33,7 +33,7 @@ class OverwatchController extends Controller
             ]
         ];
 
-        return $this->render('gameCenter/overwatch.html.twig', [
+        return $this->render($this->getParameter('theme') . '/gameCenter/overwatch.html.twig', [
             'color' => GameBundle::getColor(),
             'feeds' => $feeds,
             'json' => json_encode($feeds,true)

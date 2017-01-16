@@ -1,0 +1,47 @@
+{% block adbanner %}
+    {% if app.user.premium is defined and app.user.premium != 1 %}
+        Reklama!
+        <script type="text/javascript" src="//www.adfreestyle.pl/show/LGHKSEPJvlO"></script>
+    {% endif %}
+{% endblock %}
+
+{% block adsidebar %}
+    <a href="{{ url('redirect',{'url':'https://23games.pl'}) }}">
+        <img src="{{ asset('assets/img/banner_23Games.png') }}" alt="23Games" class="img-responsive">
+    </a>
+{% endblock %}
+
+{% block sidebar %}
+    <div id="fb-root" style="margin-top: 10px"></div>
+    <script>(function (d, s, id) {
+            var js, fjs = d.getElementsByTagName(s)[0];
+            if (d.getElementById(id)) return;
+            js = d.createElement(s);
+            js.id = id;
+            js.src = "//connect.facebook.net/pl_PL/sdk.js#xfbml=1&version=v2.6&appId=1191702130875167";
+            fjs.parentNode.insertBefore(js, fjs);
+        }(document, 'script', 'facebook-jssdk'));</script>
+    <div class="fb-page" data-href="https://www.facebook.com/JestemGraczemPL/" data-tabs="timeline"
+         data-small-header="false" data-adapt-container-width="true" data-hide-cover="false"
+         data-show-facepile="true">
+        <div class="fb-xfbml-parse-ignore">
+            <blockquote cite="https://www.facebook.com/JestemGraczemPL/"><a
+                        href="https://www.facebook.com/JestemGraczemPL/">JestemGraczem.pl</a>
+            </blockquote>
+        </div>
+    </div>
+    <div class="g-person" data-href="https://plus.google.com/102672951602264583636" data-layout="landscape"
+         data-rel="author"></div>
+    <script type="text/javascript">
+        window.___gcfg = {lang: 'pl'};
+
+        (function () {
+            var po = document.createElement('script');
+            po.type = 'text/javascript';
+            po.async = true;
+            po.src = 'https://apis.google.com/js/platform.js';
+            var s = document.getElementsByTagName('script')[0];
+            s.parentNode.insertBefore(po, s);
+        })();
+    </script>
+{% endblock %}

@@ -23,7 +23,7 @@ nav:
     blog: 'Blog'
     forum: 'Forum'
     support: 'Support'
-    rules: 'Regulamin serwisu'
+    rules: 'Regulamin serwisu i polityka prywatności serwisu'
     ppartner: 'Program partnerski'
     howto: 'Jak stworzyć turniej'
     status: 'Statusy serwerów'
@@ -34,6 +34,10 @@ article:
     introduction: 'Wstęp'
     body: 'Treść artykułu'
     source: 'Źródła informacji i materiałów wykorzystanych w artykule'
+mikroblog:
+    title: 'Tytuł'
+    add: 'Dodaj post'
+    text: 'Treść'
 form:
     add: 'Dodaj'
 button:
@@ -43,6 +47,7 @@ button:
     player: 'Zobacz w odtwarzaczu'
     more: 'Pokaż więcej'
     comments: 'Zobacz komentarze!'
+    main: 'Główna'
     add: 'Dodaj nowy'
     next: 'Następne'
     prev: 'Poprzednie'

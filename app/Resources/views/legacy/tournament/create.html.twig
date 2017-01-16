@@ -1,0 +1,69 @@
+{% extends "legacy/base.html.twig" %}
+
+{% form_theme form ':Form:form.html.twig' %}
+
+{% block body %}
+    <div class="container-fluid top p-t-3 p-b-2">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-6 btn-clear-lp p-l-1 m-b-3 ">
+                    <span class="color-magenta">UTWÓRZ</span>TURNIEJ
+                </div>
+            </div>
+            <div class="col-md-6 text-xs-left form-turnament">
+                {{ form_start(form) }}
+
+                {{ form_label(form.name) }}
+                {{ form_errors(form.name) }}
+                {{ form_widget(form.name) }}
+
+                {{ form_label(form.type) }}
+                {{ form_errors(form.type) }}
+                {{ form_widget(form.type) }}
+
+                {{ form_label(form.game) }}
+                {{ form_errors(form.game) }}
+                {{ form_widget(form.game) }}
+
+                {{ form_label(form.playerType) }}
+                {{ form_errors(form.playerType) }}
+                {{ form_widget(form.playerType) }}
+
+                {{ form_label(form.cost) }}
+                {{ form_errors(form.cost) }}
+                {{ form_widget(form.cost) }}
+
+                {{ form_label(form.costPerTeam) }}
+                {{ form_errors(form.costPerTeam) }}
+                {{ form_widget(form.costPerTeam) }}
+
+                {{ form_label(form.costOrg) }}
+                {{ form_errors(form.costOrg) }}
+                {{ form_widget(form.costOrg) }}
+                <hr>
+            </div>
+            <div class="col-md-6 text-xs-left form-turnament">
+                {{ form_label(form.dateStart) }}
+                {{ form_errors(form.dateStart) }}
+                {{ form_widget(form.dateStart) }}
+
+                {{ form_label(form.dateStop) }}
+                {{ form_errors(form.dateStop) }}
+                {{ form_widget(form.dateStop) }}
+                <hr>
+                {{ form_label(form.countTeam) }}
+                {{ form_errors(form.countTeam) }}
+                {{ form_widget(form.countTeam) }}
+                <hr>
+                {{ form_label(form.description) }}
+                {{ form_errors(form.description) }}
+                {{ form_widget(form.description) }}
+                <hr>
+
+
+                {{ form_end(form) }}
+            </div>
+        </div>
+    </div>
+
+{% endblock %}

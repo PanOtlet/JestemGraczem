@@ -37,7 +37,7 @@ class LoLController extends Controller
             ]
         ];
 
-        return $this->render('gameCenter/lol.html.twig', [
+        return $this->render($this->getParameter('theme') . '/gameCenter/lol.html.twig', [
             'color' => GameBundle::getColor(),
             'feeds' => $feeds,
             'json' => json_encode($feeds,true)

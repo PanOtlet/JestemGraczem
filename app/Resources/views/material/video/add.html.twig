@@ -1,0 +1,52 @@
+{% extends "material/base.html.twig" %}
+
+{% form_theme form 'material/Form/form.html.twig' %}
+
+{% block body %}
+    <div class="container-fluid marginTop2">
+        <div class="divider-new">
+            <h2 class="h2-responsive wow bounceIn">
+                Dodaj film
+            </h2>
+        </div>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4">
+                    <a href="{{ url('video.add') }}" class="btn btn-danger btn-block">
+                        {{ 'button.add'|trans }}
+                    </a>
+                </div>
+                <div class="col-md-4">
+                    <a href="{{ url('video') }}" class="btn btn-primary btn-block">
+                        {{ 'button.main'|trans }}
+                    </a>
+                </div>
+                <div class="col-md-4">
+                    <a href="{{ url('video.wait') }}" class="btn btn-secondary btn-block">
+                        {{ 'button.waitingroom'|trans }}
+                    </a>
+                </div>
+            </div>
+            {% block adbanner %}{{ parent() }}{% endblock %}
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6">
+                {{ form_start(form) }}
+                {{ form_widget(form) }}
+                {{ form_end(form) }}
+            </div>
+            <div class="col-md-6">
+                <p>
+                    Po dodaniu, film wyląduje w poczekalni i tam administracja oceni jego wartość, a następnie
+                    przeniesie na główną lub pozostawi w poczekalni.
+                </p>
+                <p>
+                    Najlepsze filmy oraz filmy partnerskie pojawią się na głównej oraz w indeksie strony!
+                </p>
+            </div>
+        </div>
+    </div>
+{% endblock %}
