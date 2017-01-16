@@ -29,7 +29,7 @@ framework:
     trusted_hosts:   ~
     trusted_proxies: ~
     session:
-        cookie_secure: true
+#        cookie_secure: true
 #        handler_id: nelmio_security.session.handler
         handler_id:  session.handler.native_file
         save_path:   "%kernel.root_dir%/../var/sessions/%kernel.environment%"
