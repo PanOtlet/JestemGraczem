@@ -95,10 +95,10 @@ nelmio_security:
 
     # forces HTTPS handling, don't combine with flexible mode
     # and make sure you have SSL working on your site before enabling this
-    forced_ssl:
-        enabled: true
-        hsts_max_age: 2592000
-        hsts_subdomains: true
+#    forced_ssl:
+#        enabled: true
+#        hsts_max_age: 2592000
+#        hsts_subdomains: true
 
 #    cookie_session:
 #        enabled: true
