@@ -22,9 +22,11 @@ security:
                 secret:   '%secret%'
                 lifetime: 604800
                 path:     /
+                secure: true
             pattern: ^/
             form_login:
                 provider: fos_userbundle
+                require_previous_session: false
                 csrf_token_generator: security.csrf.token_manager
 
             logout:       true

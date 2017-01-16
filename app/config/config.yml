@@ -3,6 +3,7 @@ imports:
     - { resource: security.yml }
     - { resource: services.yml }
     - { resource: admin.yml }
+    - { resource: secure.yml }
 
 # Put parameters here that don't need to change on each machine where the app is deployed
 # http://symfony.com/doc/current/best_practices/configuration.html#application-related-configuration
@@ -28,7 +29,9 @@ framework:
     trusted_hosts:   ~
     trusted_proxies: ~
     session:
-        handler_id:  session.handler.native_file
+        cookie_secure: true
+        handler_id: nelmio_security.session.handler
+#        handler_id:  session.handler.native_file
         save_path:   "%kernel.root_dir%/../var/sessions/%kernel.environment%"
     fragments:       ~
     http_method_override: true
@@ -176,105 +179,3 @@ knp_paginator:
 #        pagination: KnpPaginatorBundle:Pagination:sliding.html.twig
         pagination: material/pagination.html.twig
         sortable: KnpPaginatorBundle:Pagination:sortable_link.html.twig
-
-# Security Bundle
-nelmio_security:
-    # signs/verifies all cookies
-    signed_cookie:
-        names: ['*']
-    # prevents framing of the entire site
-    clickjacking:
-        paths:
-            '^/.*': DENY
-    # prevents redirections outside the website's domain
-    external_redirects:
-        abort: false
-        log: true
-
-    # prevents inline scripts, unsafe eval, external scripts/images/styles/frames, etc
-    csp:
-        hosts:
-            - localhost
-            - jestemgraczem.pl
-        content_types: []
-        report_logger_service: monolog.logger.security
-        enforce:
-            level1_fallback: false
-            browser_adaptive:
-                enabled: false
-            report-uri: %router.request_context.base_url%/nelmio/csp/report
-            default-src:
-                - 'self'
-                - beam.pro
-                - use.fontawesome.com
-                - vjs.zencdn.net
-                - localhost
-                - api.twitch.tv
-            style-src:
-                - 'self'
-                - 'unsafe-inline'
-                - vjs.zencdn.net
-                - use.fontawesome.com
-            script-src:
-                - 'self'
-                - 'unsafe-inline'
-                - 'unsafe-eval'
-                - www.google-analytics.com
-                - vjs.zencdn.net
-                - ajax.googleapis.com
-                - use.fontawesome.com
-                - cdn.onesignal.com
-                - apis.google.com
-                - connect.facebook.net
-                - www.youtube.com
-            frame-src:
-                - www.youtube.com
-                - connect.facebook.net
-                - jestemgraczem.onesignal.com
-                - beam.pro
-                - apis.google.com
-                - accounts.google.com
-                - staticxx.facebook.com
-                - www.facebook.com
-                - player.twitch.tv
-            font-src:
-                - 'self'
-                - 'unsafe-inline'
-                - use.fontawesome.com
-                - 'data:'
-            img-src:
-                - 'self'
-                - facebook.com
-                - flickr.com
-                - i.imgur.com
-                - uploads.beam.pro
-                - static-cdn.jtvnw.net
-                - www.gravatar.com
-                - img.youtube.com
-                - www.google-analytics.com
-                - ssl.gstatic.com
-                - www.facebook.com
-            block-all-mixed-content: true # defaults to false, blocks HTTP content over HTTPS transport
-            upgrade-insecure-requests: true # defaults to false, upgrades HTTP requests to HTTPS transport
-
-    # disables content type sniffing for script resources
-    content_type:
-        nosniff: true
-
-    # forces Microsoft's XSS-Protection with
-    # its block mode
-    xss_protection:
-        enabled: true
-        mode_block: true
-
-    # forces HTTPS handling, don't combine with flexible mode
-    # and make sure you have SSL working on your site before enabling this
-    forced_ssl:
-        hsts_max_age: 2592000
-        hsts_subdomains: true
-
-    # flexible HTTPS handling, read the detailed config info
-    # and make sure you have SSL working on your site before enabling this
-#    flexible_ssl:
-#        cookie_name: auth
-#        unsecured_logout: false

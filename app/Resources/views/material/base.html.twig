@@ -26,17 +26,6 @@
             ga('send', 'pageview');
         </script>
 
-        {% block stylesheets %}
-            <link href="{{ asset('assets/material/css/bootstrap.min.css') }}" rel="stylesheet">
-            <link href="{{ asset('assets/material/css/mdb.min.css') }}" rel="stylesheet">
-            <link href="{{ asset('assets/material/css/style.css') }}" rel="stylesheet">
-
-            {% if app.session.flashBag.has('error') or app.session.flashBag.has('info') or app.session.flashBag.has('warning') or app.session.flashBag.has('success') %}
-                <link rel="stylesheet" type="text/css" href="{{ asset('assets/js/sweetalert.css') }}"
-                      property="stylesheet">
-            {% endif %}
-        {% endblock %}
-
         <link rel="apple-touch-icon" sizes="57x57" href="{{ asset('assets/img/favicon/apple-icon-57x57.png') }}">
         <link rel="apple-touch-icon" sizes="60x60" href="{{ asset('assets/img/favicon/apple-icon-60x60.png') }}">
         <link rel="apple-touch-icon" sizes="72x72" href="{{ asset('assets/img/favicon/apple-icon-72x72.png') }}">
@@ -154,13 +143,14 @@
                                 <a class="nav-link dropdown-toggle" id="dropdownUser" data-toggle="dropdown"
                                    aria-haspopup="true" aria-expanded="false">
                                     {#<i class="fa fa-user"></i>#}
-                                    <img src="https://www.gravatar.com/avatar/{{ app.user.email|md5 }}" style="max-height: 30px"
-                                         alt="JestemGraczem Logo">
+                                    <img src="https://www.gravatar.com/avatar/{{ app.user.email|md5 }}"
+                                         style="max-height: 30px"
+                                         alt="JestemGraczem Gravatar">
                                     {{ app.user.username }}
                                 </a>
                                 <div class="dropdown-menu" aria-labelledby="dropdownUser">
                                     {% if is_granted('ROLE_ADMIN') %}
-                                        <a href="{{ url('easyadmin') }}" target="_blank">
+                                        <a class="dropdown-item" href="{{ url('easyadmin') }}" target="_blank">
                                             <i class="fa fa-terminal" aria-hidden="true"></i> AdminCP
                                         </a>
                                     {% endif %}
@@ -247,21 +237,29 @@
                             gdzie każdy członek społeczności gamingowej znajdzie coś dla siebie!
                         </p>
                     </div>
-                    {#<hr class="hidden-md-up">#}
+                    <hr class="hidden-md-up">
                     <div class="col-md-2 offset-md-1">
-                        {#<h5 class="title">Links</h5>#}
-                        {#<ul>#}
-                        {#<li><a href="#!">Link 1</a></li>#}
-                        {#<li><a href="#!">Link 2</a></li>#}
-                        {#<li><a href="#!">Link 3</a></li>#}
-                        {#<li><a href="#!">Link 4</a></li>#}
-                        {#</ul>#}
+                        <h5 class="title">Partnerzy medialni</h5>
+                        <ul>
+                            <li>
+                                <a href="https://www.youtube.com/user/PanOtlet">
+                                    <i class="fa fa-youtube-play" aria-hidden="true"></i> PanOtlet
+                                </a>
+                            </li>
+                            <li>
+                                <a href="https://www.youtube.com/channel/UCepCNuYZY9KzbzpSP1552Wg">
+                                    <i class="fa fa-youtube-play" aria-hidden="true"></i> itsKocyk
+                                </a>
+                            </li>
+                        </ul>
                     </div>
                     <hr class="hidden-md-up">
                     <div class="col-md-2">
                         <h5 class="title">Sponsorzy</h5>
                         <ul>
                             <li><a href="https://deephosting.pro">Deephosting.pro</a></li>
+                            <li><a href="https://otlet.pl">Otlet.pl</a></li>
+                            <li><a href="https://sklep.otlet.pl">Geek && Nerd Shop</a></li>
                         </ul>
                     </div>
                     <hr class="hidden-md-up">
@@ -304,13 +302,13 @@
                     <div class="col-md-4">
                         <a href="https://23games.pl" target="_blank">
                             <img src="{{ asset('assets/img/partners/games.png') }}"
-                                 alt="Najlepszy TeamSpeak3" class="img-responsive">
+                                 alt="Najlepszy TeamSpeak3 23games" class="img-responsive">
                         </a>
                     </div>
                     <div class="col-md-4">
                         <a href="https://beam.pro/otlet" target="_blank">
                             <img src="{{ asset('assets/img/partners/beam.png') }}"
-                                 alt="Beam.pro" class="img-responsive">
+                                 alt="Beam.pro Otlet" class="img-responsive">
                         </a>
                     </div>
                 </div>
@@ -323,6 +321,20 @@
                 </div>
             </div>
         </footer>
+    {% endblock %}
+
+    {% block stylesheets %}
+        <link href="{{ asset('assets/material/css/bootstrap.min.css') }}" media="none"
+              onload="if(media!='all')media='all'" rel="stylesheet">
+        <link href="{{ asset('assets/material/css/mdb.min.css') }}" media="none" onload="if(media!='all')media='all'"
+              rel="stylesheet">
+        <link href="{{ asset('assets/material/css/style.css') }}" media="none" onload="if(media!='all')media='all'"
+              rel="stylesheet">
+
+        {% if app.session.flashBag.has('error') or app.session.flashBag.has('info') or app.session.flashBag.has('warning') or app.session.flashBag.has('success') %}
+            <link rel="stylesheet" type="text/css" href="{{ asset('assets/js/sweetalert.css') }}"
+                  media="none" onload="if(media!='all')media='all'" property="stylesheet">
+        {% endif %}
     {% endblock %}
 
     {% block javascripts %}
