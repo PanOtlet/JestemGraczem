@@ -112,7 +112,7 @@ sonata_seo:
         services:
             - app.sitemap_service
     page:
-        title:            JestemGraczem
+        title:            🐔 JestemGraczem.pl 🐔
 #        default:          sonata.seo.page.default
         metas:
             name:
