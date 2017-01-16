@@ -16,8 +16,6 @@ use Vich\UploaderBundle\Form\Type\VichImageType;
 class DefaultController extends Controller
 {
 
-    protected $color = "green";
-
     /**
      * @Route("/article/{id}-{title}", name="article.id")
      * @param $id
@@ -52,7 +50,6 @@ class DefaultController extends Controller
             ->addMeta('property', 'og:url', $this->get('router')->generate('article.id', ['id' => $id], UrlGeneratorInterface::ABSOLUTE_URL));
 
         return $this->render($this->getParameter('theme') . '/news/news.html.twig', [
-            'color' => $this->color,
             'article' => $article
         ]);
     }
@@ -129,7 +126,6 @@ class DefaultController extends Controller
         }
 
         return $this->render($this->getParameter('theme') . '/news/add.html.twig', [
-            'color' => $this->color,
             'form' => $form->createView(),
         ]);
     }
@@ -176,7 +172,6 @@ class DefaultController extends Controller
             ->addMeta('property', 'og:url', $this->get('router')->generate('articles', ['page' => $page], UrlGeneratorInterface::ABSOLUTE_URL));
 
         return $this->render($this->getParameter('theme') . '/news/index.html.twig', [
-            'color' => $this->color,
             'articles' => $articles,
             'page' => $page,
             'promoted' => $promoted
@@ -226,7 +221,6 @@ class DefaultController extends Controller
             ->addMeta('property', 'og:url', $this->get('router')->generate('articles', ['page' => $page], UrlGeneratorInterface::ABSOLUTE_URL));
 
         return $this->render($this->getParameter('theme') . '/news/index.html.twig', [
-            'color' => $this->color,
             'articles' => $articles,
             'page' => $page,
             'promoted' => $promoted
