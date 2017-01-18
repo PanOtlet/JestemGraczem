@@ -6,7 +6,7 @@
     {% block adbanner %}{{ parent() }}{% endblock %}
     <div class="divider-new">
         <h2 class="h2-responsive wow bounceIn">
-            {{ user.username }}
+            {{ user.username }} {% if is_granted('ROLE_ADMIN') %} <span class="tag red">Administrator</span> {% endif %}
         </h2>
     </div>
     <div class="container" style="margin-top: 10px">
