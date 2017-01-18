@@ -67,6 +67,15 @@ class DefaultController extends Controller
     }
 
     /**
+     * @Route("/admin", name="adminFakePanel")
+     * @return \Symfony\Component\HttpFoundation\Response
+     */
+    public function adminFakeAction()
+    {
+        return $this->redirect('http://stackoverflow.com/admin.php');
+    }
+
+    /**
      * @Route("/redirect", name="redirect")
      * @return \Symfony\Component\HttpFoundation\Response
      */
@@ -117,9 +126,13 @@ class DefaultController extends Controller
             ->where('p.username = :user')
             ->setParameter('user', $user)
             ->getQuery()
-            ->getSingleResult();
+            ->getOneOrNullResult();
 
         if (!$user) {
+            $this->addFlash(
+                'error',
+                'Kurde, nie znaleźliśmy tego co poszukujesz :('
+            );
             throw $this->createNotFoundException('Nie ma takiego użytkownika!');
         }
 
