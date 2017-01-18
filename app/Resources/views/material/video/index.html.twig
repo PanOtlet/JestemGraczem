@@ -40,7 +40,7 @@
                                     {% for video in videos %}
                                         <div class="col-md-6 marginFor">
                                             <div class="view hm-zoom">
-                                                <img src="http://img.youtube.com/vi/{{ video.videoid }}/mqdefault.jpg" class="img-fluid img-full" alt="{{ video.title|slice(0,23) }}">
+                                                <img src="https://img.youtube.com/vi/{{ video.videoid }}/mqdefault.jpg" class="img-fluid img-full" alt="{{ video.title|slice(0,23) }}">
                                                 <div class="mask flex-center">
                                                     <a href="{{ url('video.id',{'id': video.id}) }}" class="white-text">
                                                         {{ video.title|slice(0,22) }}...
