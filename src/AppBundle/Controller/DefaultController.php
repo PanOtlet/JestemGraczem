@@ -67,6 +67,15 @@ class DefaultController extends Controller
     }
 
     /**
+     * @Route("/admin", name="adminFakePanel")
+     * @return \Symfony\Component\HttpFoundation\Response
+     */
+    public function adminFakeAction()
+    {
+        return $this->redirect('http://stackoverflow.com/admin.php');
+    }
+
+    /**
      * @Route("/redirect", name="redirect")
      * @return \Symfony\Component\HttpFoundation\Response
      */

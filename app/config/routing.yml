@@ -131,7 +131,7 @@ fos_user:
 easy_admin_bundle:
     resource: "@EasyAdminBundle/Controller/"
     type:     annotation
-    prefix:   /admin
+    prefix:   /siemaeniu
 payum_capture:
     resource: "@PayumBundle/Resources/config/routing/capture.xml"
 payum_notify:
