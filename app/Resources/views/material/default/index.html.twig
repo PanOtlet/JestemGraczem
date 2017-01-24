@@ -302,7 +302,7 @@
     <link rel="stylesheet" href="{{ asset('assets/material/css/videojs.css') }}">
     <script src="https://apis.google.com/js/platform.js"></script>
     <script>
-        var stream = new Stream('{{ url("api.stream") }}', 'dd80eugsisvxdq2h689e6m8e3tqqzuw');
+        var stream = new Stream('{{ path("api.stream") }}', 'dd80eugsisvxdq2h689e6m8e3tqqzuw');
         if (typeof ads !== 'undefined')
             stream.start(true);
         else
