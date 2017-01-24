@@ -38,7 +38,7 @@ api:
     resource: "@ApiBundle/Controller/"
     type:     annotation
     prefix:   /api
-    schemes:  [https]
+#    schemes:  [https]
 
 api.lol:
     resource: "@ApiBundle/Controller/LoLController.php"
