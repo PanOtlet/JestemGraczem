@@ -170,33 +170,29 @@
                         {#</a>#}
                         {#</div>#}
                         {#</li>#}
-                        <li class="nav-item btn-group">
-                            <a class="nav-link dropdown-toggle" id="dropdownGaming" data-toggle="dropdown"
-                               aria-haspopup="true" aria-expanded="false">
-                                <span data-toggle="tooltip" title="Strefa gier" data-placement="bottom">
-                                    <i class="fa fa-gamepad" aria-hidden="true"></i> <span
-                                            class="hide-md">Strefa gier</span>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ url('centrum') }}">
+                                <span data-toggle="tooltip" title="{{ 'nav.center'|trans }}" data-placement="bottom">
+                                    <i class="fa fa-gamepad" aria-hidden="true"></i>
+                                    <span class="hide-md">{{ 'nav.center'|trans }}</span>
                                 </span>
                             </a>
-                            <div class="dropdown-menu" aria-labelledby="dropdownGaming">
-                                <h6 class="dropdown-header">Strefa gier</h6>
-                                <a href="{{ url('centrum') }}" class="dropdown-item">
-                                    <i class="fa fa-gamepad" aria-hidden="true"></i>
-                                    {{ 'nav.center'|trans }}
-                                </a>
-                                <a href="{{ url('articles') }}" class="dropdown-item">
-                                    <i class="fa fa-newspaper-o" aria-hidden="true"></i>
-                                    {{ 'nav.news'|trans }}
-                                </a>
-                                <a href="{{ url('rss') }}" class="dropdown-item">
-                                    <i class="fa fa-rss-square" aria-hidden="true"></i>
-                                    {{ 'nav.rss'|trans }}
-                                </a>
-                                <a href="{{ url('status') }}" class="dropdown-item">
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ url('status') }}">
+                                <span data-toggle="tooltip" title="{{ 'nav.status'|trans }}" data-placement="bottom">
                                     <i class="fa fa-power-off" aria-hidden="true"></i>
-                                    {{ 'nav.status'|trans }}
-                                </a>
-                            </div>
+                                    <span class="hide-md">{{ 'nav.status'|trans }}</span>
+                                </span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ url('rss') }}">
+                                <span data-toggle="tooltip" title="{{ 'nav.rss'|trans }}" data-placement="bottom">
+                                    <i class="fa fa-rss-square" aria-hidden="true"></i>
+                                    <span class="hide-md">{{ 'nav.rss'|trans }}</span>
+                                </span>
+                            </a>
                         </li>
                         <li class="nav-item btn-group">
                             <a class="nav-link dropdown-toggle" id="dropdownFun" data-toggle="dropdown"
@@ -217,6 +213,13 @@
                                     <i class="fa fa-youtube-play" aria-hidden="true"></i> {{ 'nav.video'|trans }}
                                 </a>
                             </div>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ url('articles') }}">
+                                <span data-toggle="tooltip" title="{{ 'nav.news'|trans }}" data-placement="bottom">
+                                    <i class="fa fa-newspaper-o" aria-hidden="true"></i> <span class="hide-md">{{ 'nav.news'|trans }}</span>
+                                </span>
+                            </a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="{{ url('mikroblog') }}">

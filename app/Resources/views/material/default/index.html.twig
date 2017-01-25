@@ -37,15 +37,17 @@
                             <div class="flex-center animated fadeInDown">
                                 <ul>
                                     <li>
-                                        <h1 class="h1-responsive">{{ slider.title }}</h1>
+                                        <h1 class="h1-responsive tag purple">{{ slider.title }}</h1>
                                     </li>
                                     <li>
-                                        <p>{{ slider.description }}</p>
+                                        <p class="tag purple">{{ slider.description }}</p>
                                     </li>
-                                    <li>
-                                        <a target="_blank" href="{{ slider.buttonUrl }}"
-                                           class="btn btn-primary btn-lg waves-effect waves-light">{{ slider.buttonText }}</a>
-                                    </li>
+                                    {% if slider.buttonUrl %}
+                                        <li>
+                                            <a target="_blank" href="{{ slider.buttonUrl }}"
+                                               class="btn btn-primary btn-lg waves-effect waves-light">{{ slider.buttonText }}</a>
+                                        </li>
+                                    {% endif %}
                                 </ul>
                             </div>
                         </div>
@@ -54,15 +56,17 @@
                             <div class="flex-center animated fadeInDown">
                                 <ul>
                                     <li>
-                                        <h1 class="h1-responsive">{{ slider.title }}</h1>
+                                        <h1 class="h1-responsive tag red">{{ slider.title }}</h1>
                                     </li>
                                     <li>
-                                        <p>{{ slider.description }}</p>
+                                        <p class="tag red">{{ slider.description }}</p>
                                     </li>
-                                    <li>
-                                        <a target="_blank" href="{{ slider.buttonUrl }}"
-                                           class="btn btn-primary btn-lg waves-effect waves-light">{{ slider.buttonText }}</a>
-                                    </li>
+                                    {% if slider.buttonUrl %}
+                                        <li>
+                                            <a target="_blank" href="{{ slider.buttonUrl }}"
+                                               class="btn btn-primary btn-lg waves-effect waves-light">{{ slider.buttonText }}</a>
+                                        </li>
+                                    {% endif %}
                                 </ul>
                             </div>
                         </div>
