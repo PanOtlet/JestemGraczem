@@ -144,9 +144,6 @@ class DefaultController extends Controller
 
         $form->handleRequest($request);
 
-        $mem = $this->getDoctrine()->getRepository('AppBundle:Meme')->findBy(['user' => $user['id']]);
-        $video = $this->getDoctrine()->getRepository('AppBundle:Video')->findBy(['user' => $user['id']]);
-
         $seo = $this->container->get('sonata.seo.page');
         $seo->setTitle('Profil: ' . $user['username'] . ' :: JestemGraczem.pl')
             ->addMeta('name', 'description', "Profil użytkownika " . $user['username'] . " na portalu JestemGraczem.pl")
@@ -156,8 +153,6 @@ class DefaultController extends Controller
 
         return $this->render($this->getParameter('theme') . '/default/user.html.twig', [
             'user' => $user,
-            'meme' => $mem,
-            'video' => $video,
             'form' => $form->createView()
         ]);
     }

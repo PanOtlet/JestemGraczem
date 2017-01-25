@@ -21,27 +21,77 @@
                         <i class="fa fa-bars" aria-hidden="true"></i> Tablica
                     </a>
                     {% if user.beampro %}
-                        <a href="https://beam.pro/{{ user.beampro }}" class="list-group-item">
+                        <a class="list-group-item" data-toggle="modal" data-target="#beamPro">
                             <i class="fa fa-windows" aria-hidden="true"></i> Beam.pro
                         </a>
+                        <div class="modal fade" id="beamPro" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+                             aria-hidden="true">
+                            <div class="modal-dialog" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                        <h4 class="modal-title w-100">
+                                            {{ user.beampro }} na Beam.pro
+                                        </h4>
+                                    </div>
+                                    <div class="modal-body">
+                                        <div class="embed-responsive embed-responsive-16by9">
+                                            <iframe src="https://beam.pro/embed/player/{{ user.beampro }}"></iframe>
+                                        </div>
+                                        <div class="embed-responsive embed-responsive-16by9">
+                                            <iframe src="https://beam.pro/embed/chat/{{ user.beampro }}"></iframe>
+                                        </div>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     {% endif %}
                     {% if user.twitch %}
-                        <a href="https://twitch.tv/{{ user.twitch }}" class="list-group-item">
-                            <i class="fa fa-twitch" aria-hidden="true"></i> Twitch
+                        <a class="list-group-item" data-toggle="modal" data-target="#twitch">
+                            <i class="fa fa-windows" aria-hidden="true"></i> Twitch.tv
                         </a>
+                        <div class="modal fade" id="twitch" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+                             aria-hidden="true">
+                            <div class="modal-dialog" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                        <h4 class="modal-title w-100">
+                                            {{ user.twitch }} na Twitch.tv
+                                        </h4>
+                                    </div>
+                                    <div class="modal-body">
+                                        <div class="embed-responsive embed-responsive-16by9">
+                                            <iframe src="https://player.twitch.tv/?channel={{ user.twitch }}&autoplay=false"></iframe>
+                                        </div>
+                                        <div class="embed-responsive embed-responsive-16by9">
+                                            <iframe src="https://www.twitch.tv/{{ user.twitch }}/chat?popout="></iframe>
+                                        </div>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     {% endif %}
-                    <a href="https://twitch.tv/{{ user.twitch }}" class="list-group-item">
-                        <i class="fa fa-picture-o" aria-hidden="true"></i> Memy
-                    </a>
-                    <a href="https://twitch.tv/{{ user.twitch }}" class="list-group-item">
-                        <i class="fa fa-youtube" aria-hidden="true"></i> Filmy
-                    </a>
                 </div>
             </div>
             <div class="col-md-6">
-                {{ form_start(form) }}
-                {{ form_widget(form) }}
-                {{ form_end(form) }}
+                {% if app.user.username == user.username %}
+                    {{ form_start(form) }}
+                    {{ form_widget(form) }}
+                    {{ form_end(form) }}
+                {% endif %}
                 <div class="tablica">
                     <div class="media">
                         <a class="media-left waves-light">
@@ -50,7 +100,8 @@
                         </a>
                         <div class="media-body">
                             <p>
-                                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nisi cupiditate temporibus iure
+                                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nisi cupiditate temporibus
+                                iure
                                 soluta. Quasi mollitia maxime nemo quam accusamus possimus, voluptatum expedita
                                 assumenda. Earum sit id ullam eum vel delectus!
                             </p>
@@ -63,7 +114,8 @@
                         </a>
                         <div class="media-body">
                             <p>
-                                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nisi cupiditate temporibus iure
+                                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nisi cupiditate temporibus
+                                iure
                                 soluta. Quasi mollitia maxime nemo quam accusamus possimus, voluptatum expedita
                                 assumenda. Earum sit id ullam eum vel delectus!
                             </p>
@@ -76,7 +128,8 @@
                         </a>
                         <div class="media-body">
                             <p>
-                                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nisi cupiditate temporibus iure
+                                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nisi cupiditate temporibus
+                                iure
                                 soluta. Quasi mollitia maxime nemo quam accusamus possimus, voluptatum expedita
                                 assumenda. Earum sit id ullam eum vel delectus!
                             </p>
@@ -89,7 +142,8 @@
                         </a>
                         <div class="media-body">
                             <p>
-                                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nisi cupiditate temporibus iure
+                                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nisi cupiditate temporibus
+                                iure
                                 soluta. Quasi mollitia maxime nemo quam accusamus possimus, voluptatum expedita
                                 assumenda. Earum sit id ullam eum vel delectus!
                             </p>
@@ -100,160 +154,158 @@
             <div class="col-md-3">
                 <h3>Social Media</h3>
                 <span class="tag red">Administrator</span>
-
-
             </div>
         </div>
     </div>
-    <div class="container" style="margin-top: 10px">
-        <ul class="nav nav-tabs" role="tablist">
-            <li class="nav-item">
-                <a class="nav-link active" data-toggle="tab" href="#home" role="tab">Informacje ogólne</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" data-toggle="tab" href="#memy" role="tab">Memy</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" data-toggle="tab" href="#videos" role="tab">Filmiki</a>
-            </li>
-        </ul>
-        <div class="tab-content">
-            <div class="tab-pane active" id="home" role="tabpanel">
-                <br>
-                <div class="row">
-                    <div class="col-md-3">
-                        <img src="https://www.gravatar.com/avatar/{{ user.email|md5 }}?s=256"
-                             alt="{{ user.username }}" class="img-fluid">
-                    </div>
-                    <div class="col-md-9">
-                        <div class="row">
-                            {% if user.beampro %}
-                                <div class="col-md-3">
-                                    <a href="https://beam.pro/{{ user.beampro }}"
-                                       class="btn btn-block unique-color-dark">
-                                        Beam.pro
-                                    </a>
-                                </div>
-                            {% endif %}
-                            {% if user.twitch %}
-                                <div class="col-md-3">
-                                    <a href="https://twitch.tv/{{ user.twitch }}" class="btn btn-block primary-color">
-                                        <i class="fa fa-twitch" aria-hidden="true"></i> Twitch
-                                    </a>
-                                </div>
-                            {% endif %}
-                            {% if user.steam %}
-                                <div class="col-md-3">
-                                    <a href="{{ user.steam }}"
-                                       class="btn btn-block elegant-color">
-                                        <i class="fa fa-steam-square" aria-hidden="true"></i> Steam
-                                    </a>
-                                </div>
-                            {% endif %}
-                            {% if user.twitch %}
-                                <div class="col-md-3">
-                                    <a href="{{ user.youtube }}"
-                                       class="btn btn-block danger-color-dark">
-                                        <i class="fa fa-youtube" aria-hidden="true"></i> YouTube
-                                    </a>
-                                </div>
-                            {% endif %}
-                        </div>
-                        <p>
-                            {{ user.description }}
-                        </p>
-                        <div class="btn-group" role="group" aria-label="Basic example">
-                            {% if user.battlenet %}
-                                <button type="button" class="btn btn-secondary">
-                                    Battle.net {{ user.battlenet }}
-                                </button>
-                            {% endif %}
-                            {% if user.lol %}
-                                <button type="button" class="btn btn-secondary">
-                                    League of Legends {{ user.lol }}
-                                </button>
-                            {% endif %}
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="tab-pane" id="memy" role="tabpanel">
-                {% for mem in meme %}
-                    {% if loop.index%2 or loop.first %}
-                        <div class="row">
-                    {% endif %}
-                    <div class="col-md-6">
-                        {% if mem.url | slice(-4) == '.mp4' or mem.url | slice(-5) == '.webm' %}
-                            <div class="card text-xs-center">
-                                <div class="card-header danger-color-dark white-text">
-                                    <a href="{{ url('mem.id',{'id': mem.id}) }}">
-                                        {{ mem.title|slice(0,50) }}
-                                    </a>
-                                </div>
-                                <div class="embed-responsive embed-responsive-16by9 shadow">
-                                    <video id="promotedMemes" class="video-js embed-responsive-item" controls
-                                           preload="auto"
-                                           data-setup="{}">
-                                        <source src="{{ asset('assets/mem/') ~ mem.url }}" type="video/mp4"
-                                                class="embed-responsive-item">
-                                        <p class="vjs-no-js">
-                                            Masz kiepską przeglądarkę! Użyj GOOGLE CHROME!
-                                        </p>
-                                    </video>
-                                </div>
-                                <div class="card-footer text-muted primary-color-dark white-text"
-                                     style="padding: 0">
-                                    <div style="margin-bottom: 5px" class="fb-like"
-                                         data-href="{{ url('mem.id',{'id': mem.id}) }}"
-                                         data-layout="standard" data-action="like" data-show-faces="false"
-                                         data-share="true">
-                                    </div>
-                                </div>
-                            </div>
-                        {% else %}
-                            <div class="card text-xs-center">
-                                <div class="card-header danger-color-dark white-text">
-                                    <a href="{{ url('mem.id',{'id': mem.id}) }}">
-                                        {{ mem.title|slice(0,50) }}
-                                    </a>
-                                </div>
-                                <a href="{{ url('mem.id',{'id': mem.id}) }}">
-                                    <img src="{{ asset('assets/mem/') ~ mem.url }}"
-                                         alt="{{ mem.title|slice(0,50) }}"
-                                         class="img-fluid">
-                                </a>
-                                <div class="card-footer text-muted primary-color-dark white-text"
-                                     style="padding: 0">
-                                    <div style="margin-bottom: 5px" class="fb-like"
-                                         data-href="{{ url('mem.id',{'id': mem.id}) }}"
-                                         data-layout="standard" data-action="like" data-show-faces="false"
-                                         data-share="true">
-                                    </div>
-                                </div>
-                            </div>
-                        {% endif %}
-                    </div>
-                    {% if not loop.index%2 or loop.last %}
-                        </div>
-                    {% endif %}
-                {% endfor %}
-            </div>
-            <div class="tab-pane" id="videos" role="tabpanel">
-                <div class="row">
-                    {% for vod in video %}
-                        <div class="col-md-3 video">
-                            <a href="{{ url('video.id', { 'id':vod.id }) }}" data-toggle="tooltip"
-                               title="{{ vod.title }}">
-                                <img class="img-fluid img-thumbnail"
-                                     src="//img.youtube.com/vi/{{ vod.videoid }}/mqdefault.jpg"
-                                     alt="{{ vod.title }}">
-                            </a>
-                        </div>
-                    {% endfor %}
-                </div>
-            </div>
-        </div>
-    </div>
+    {#<div class="container" style="margin-top: 10px">#}
+    {#<ul class="nav nav-tabs" role="tablist">#}
+    {#<li class="nav-item">#}
+    {#<a class="nav-link active" data-toggle="tab" href="#home" role="tab">Informacje ogólne</a>#}
+    {#</li>#}
+    {#<li class="nav-item">#}
+    {#<a class="nav-link" data-toggle="tab" href="#memy" role="tab">Memy</a>#}
+    {#</li>#}
+    {#<li class="nav-item">#}
+    {#<a class="nav-link" data-toggle="tab" href="#videos" role="tab">Filmiki</a>#}
+    {#</li>#}
+    {#</ul>#}
+    {#<div class="tab-content">#}
+    {#<div class="tab-pane active" id="home" role="tabpanel">#}
+    {#<br>#}
+    {#<div class="row">#}
+    {#<div class="col-md-3">#}
+    {#<img src="https://www.gravatar.com/avatar/{{ user.email|md5 }}?s=256"#}
+    {#alt="{{ user.username }}" class="img-fluid">#}
+    {#</div>#}
+    {#<div class="col-md-9">#}
+    {#<div class="row">#}
+    {#{% if user.beampro %}#}
+    {#<div class="col-md-3">#}
+    {#<a href="https://beam.pro/{{ user.beampro }}"#}
+    {#class="btn btn-block unique-color-dark">#}
+    {#Beam.pro#}
+    {#</a>#}
+    {#</div>#}
+    {#{% endif %}#}
+    {#{% if user.twitch %}#}
+    {#<div class="col-md-3">#}
+    {#<a href="https://twitch.tv/{{ user.twitch }}" class="btn btn-block primary-color">#}
+    {#<i class="fa fa-twitch" aria-hidden="true"></i> Twitch#}
+    {#</a>#}
+    {#</div>#}
+    {#{% endif %}#}
+    {#{% if user.steam %}#}
+    {#<div class="col-md-3">#}
+    {#<a href="{{ user.steam }}"#}
+    {#class="btn btn-block elegant-color">#}
+    {#<i class="fa fa-steam-square" aria-hidden="true"></i> Steam#}
+    {#</a>#}
+    {#</div>#}
+    {#{% endif %}#}
+    {#{% if user.twitch %}#}
+    {#<div class="col-md-3">#}
+    {#<a href="{{ user.youtube }}"#}
+    {#class="btn btn-block danger-color-dark">#}
+    {#<i class="fa fa-youtube" aria-hidden="true"></i> YouTube#}
+    {#</a>#}
+    {#</div>#}
+    {#{% endif %}#}
+    {#</div>#}
+    {#<p>#}
+    {#{{ user.description }}#}
+    {#</p>#}
+    {#<div class="btn-group" role="group" aria-label="Basic example">#}
+    {#{% if user.battlenet %}#}
+    {#<button type="button" class="btn btn-secondary">#}
+    {#Battle.net {{ user.battlenet }}#}
+    {#</button>#}
+    {#{% endif %}#}
+    {#{% if user.lol %}#}
+    {#<button type="button" class="btn btn-secondary">#}
+    {#League of Legends {{ user.lol }}#}
+    {#</button>#}
+    {#{% endif %}#}
+    {#</div>#}
+    {#</div>#}
+    {#</div>#}
+    {#</div>#}
+    {#<div class="tab-pane" id="memy" role="tabpanel">#}
+    {#{% for mem in meme %}#}
+    {#{% if loop.index%2 or loop.first %}#}
+    {#<div class="row">#}
+    {#{% endif %}#}
+    {#<div class="col-md-6">#}
+    {#{% if mem.url | slice(-4) == '.mp4' or mem.url | slice(-5) == '.webm' %}#}
+    {#<div class="card text-xs-center">#}
+    {#<div class="card-header danger-color-dark white-text">#}
+    {#<a href="{{ url('mem.id',{'id': mem.id}) }}">#}
+    {#{{ mem.title|slice(0,50) }}#}
+    {#</a>#}
+    {#</div>#}
+    {#<div class="embed-responsive embed-responsive-16by9 shadow">#}
+    {#<video id="promotedMemes" class="video-js embed-responsive-item" controls#}
+    {#preload="auto"#}
+    {#data-setup="{}">#}
+    {#<source src="{{ asset('assets/mem/') ~ mem.url }}" type="video/mp4"#}
+    {#class="embed-responsive-item">#}
+    {#<p class="vjs-no-js">#}
+    {#Masz kiepską przeglądarkę! Użyj GOOGLE CHROME!#}
+    {#</p>#}
+    {#</video>#}
+    {#</div>#}
+    {#<div class="card-footer text-muted primary-color-dark white-text"#}
+    {#style="padding: 0">#}
+    {#<div style="margin-bottom: 5px" class="fb-like"#}
+    {#data-href="{{ url('mem.id',{'id': mem.id}) }}"#}
+    {#data-layout="standard" data-action="like" data-show-faces="false"#}
+    {#data-share="true">#}
+    {#</div>#}
+    {#</div>#}
+    {#</div>#}
+    {#{% else %}#}
+    {#<div class="card text-xs-center">#}
+    {#<div class="card-header danger-color-dark white-text">#}
+    {#<a href="{{ url('mem.id',{'id': mem.id}) }}">#}
+    {#{{ mem.title|slice(0,50) }}#}
+    {#</a>#}
+    {#</div>#}
+    {#<a href="{{ url('mem.id',{'id': mem.id}) }}">#}
+    {#<img src="{{ asset('assets/mem/') ~ mem.url }}"#}
+    {#alt="{{ mem.title|slice(0,50) }}"#}
+    {#class="img-fluid">#}
+    {#</a>#}
+    {#<div class="card-footer text-muted primary-color-dark white-text"#}
+    {#style="padding: 0">#}
+    {#<div style="margin-bottom: 5px" class="fb-like"#}
+    {#data-href="{{ url('mem.id',{'id': mem.id}) }}"#}
+    {#data-layout="standard" data-action="like" data-show-faces="false"#}
+    {#data-share="true">#}
+    {#</div>#}
+    {#</div>#}
+    {#</div>#}
+    {#{% endif %}#}
+    {#</div>#}
+    {#{% if not loop.index%2 or loop.last %}#}
+    {#</div>#}
+    {#{% endif %}#}
+    {#{% endfor %}#}
+    {#</div>#}
+    {#<div class="tab-pane" id="videos" role="tabpanel">#}
+    {#<div class="row">#}
+    {#{% for vod in video %}#}
+    {#<div class="col-md-3 video">#}
+    {#<a href="{{ url('video.id', { 'id':vod.id }) }}" data-toggle="tooltip"#}
+    {#title="{{ vod.title }}">#}
+    {#<img class="img-fluid img-thumbnail"#}
+    {#src="//img.youtube.com/vi/{{ vod.videoid }}/mqdefault.jpg"#}
+    {#alt="{{ vod.title }}">#}
+    {#</a>#}
+    {#</div>#}
+    {#{% endfor %}#}
+    {#</div>#}
+    {#</div>#}
+    {#</div>#}
+    {#</div>#}
 {% endblock %}
 
 {% block stylesheets %}
