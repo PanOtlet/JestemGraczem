@@ -2,9 +2,15 @@
 
 namespace AppBundle\Controller;
 
+use Ivory\CKEditorBundle\Form\Type\CKEditorType;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\Form\Extension\Core\Type\SubmitType;
+use Symfony\Component\Form\Extension\Core\Type\TextareaType;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
+use Symfony\Component\HttpFoundation\Request;
+use WykopBundle\Entity\BlogPosts;
 
 class DefaultController extends Controller
 {
@@ -53,20 +59,6 @@ class DefaultController extends Controller
     }
 
     /**
-     * @Route("/test", name="test")
-     * @return \Symfony\Component\HttpFoundation\Response
-     */
-    public function testAction()
-    {
-
-        $avatar = ($this->getUser()) ? md5($this->getUser()->getEmail()) : md5('thejestemgraczemsquad@gmail.com');
-
-        return $this->render($this->getParameter('theme') . '/default/test.html.twig', [
-            'avatar' => $avatar
-        ]);
-    }
-
-    /**
      * @Route("/admin", name="adminFakePanel")
      * @return \Symfony\Component\HttpFoundation\Response
      */
@@ -99,7 +91,7 @@ class DefaultController extends Controller
      * @param $user
      * @return \Symfony\Component\HttpFoundation\Response
      */
-    public function userSiteAction($user)
+    public function userSiteAction(Request $request, $user)
     {
 
         $em = $this->getDoctrine()->getRepository('AppBundle:User');
@@ -136,6 +128,22 @@ class DefaultController extends Controller
             throw $this->createNotFoundException('Nie ma takiego użytkownika!');
         }
 
+        $post = new BlogPosts();
+
+        $form = $this->createFormBuilder($post)
+            ->add('text', TextareaType::class, [
+                'label' => false,
+            ])
+            ->add('save', SubmitType::class, [
+                'label' => 'mikroblog.add',
+                'attr' => [
+                    'class' => 'btn btn-danger'
+                ]
+            ])
+            ->getForm();
+
+        $form->handleRequest($request);
+
         $mem = $this->getDoctrine()->getRepository('AppBundle:Meme')->findBy(['user' => $user['id']]);
         $video = $this->getDoctrine()->getRepository('AppBundle:Video')->findBy(['user' => $user['id']]);
 
@@ -149,7 +157,8 @@ class DefaultController extends Controller
         return $this->render($this->getParameter('theme') . '/default/user.html.twig', [
             'user' => $user,
             'meme' => $mem,
-            'video' => $video
+            'video' => $video,
+            'form' => $form->createView()
         ]);
     }
 
