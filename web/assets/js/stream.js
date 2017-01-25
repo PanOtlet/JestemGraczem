@@ -120,7 +120,7 @@ function Stream(url, twitchApiKey) {
                         'platform': 'twitch',
                         'viewers': channel['streams'][i]['viewers'],
                         'name': channel['streams'][i]['channel']['display_name'],
-                        'url': 'http://player.twitch.tv/?channel=' + channel['streams'][i]['channel']['name'],
+                        'url': 'https://player.twitch.tv/?channel=' + channel['streams'][i]['channel']['name'],
                         'title': channel['streams'][i]['channel']['status'],
                         'image': channel['streams'][i]['preview']['medium']
                     })
@@ -174,7 +174,7 @@ function Stream(url, twitchApiKey) {
         ).fadeIn(1000);
         $('#viewers').hide().html('www.jestemgraczem.pl').fadeIn(1000);
         $('#display_name').hide().html('Rick Astley').fadeIn(1000);
-        $('#avatar').hide().attr('src', 'http://i3.kym-cdn.com/photos/images/newsfeed/000/247/207/813.gif').fadeIn(1000);
+        $('#avatar').hide().attr('src', 'https://jestemgraczem.pl/assets/img/troll.gif').fadeIn(1000);
     };
 
     /**
