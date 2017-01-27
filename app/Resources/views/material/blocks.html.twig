@@ -1,6 +1,6 @@
 {% block adbanner %}
-    {% if app.user.premium is defined and app.user.premium != 1 %}
-        Reklama!
+    {% if app.user.premium is defined and app.user.premium == 1 %}
+    {% else %}
         <script type="text/javascript" src="//www.adfreestyle.pl/show/LGHKSEPJvlO"></script>
     {% endif %}
 {% endblock %}
