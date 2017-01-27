@@ -112,6 +112,8 @@ class DefaultController extends Controller
                 'p.battlenet',
                 'p.lol',
                 'p.steam',
+                'p.wot',
+                'p.roles',
                 'p.localization',
                 'p.profilePicturePath'
             )
