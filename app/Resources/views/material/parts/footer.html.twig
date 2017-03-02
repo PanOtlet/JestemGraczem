@@ -1,0 +1,101 @@
+
+<footer class="page-footer center-on-small-only">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-3 offset-md-1">
+                <h5 class="title">JestemGraczem.pl</h5>
+                <p style="text-align: justify">
+                    JestemGraczem.pl jest innowacyjną platformą turniejową i nie tylko!
+                    Naszym głównym założeniem było stworzyć portal dostosowany pod każdego gracza,
+                    gdzie każdy członek społeczności gamingowej znajdzie coś dla siebie!
+                </p>
+            </div>
+            <hr class="hidden-md-up">
+            <div class="col-md-2 offset-md-1">
+                <h5 class="title">Partnerzy medialni</h5>
+                <ul>
+                    <li>
+                        <a href="https://www.youtube.com/user/PanOtlet">
+                            <i class="fa fa-youtube-play" aria-hidden="true"></i> PanOtlet
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://www.youtube.com/channel/UCepCNuYZY9KzbzpSP1552Wg">
+                            <i class="fa fa-youtube-play" aria-hidden="true"></i> itsKocyk
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://www.youtube.com/channel/UCxnJo6TEMEEhga3CnGVNTbg">
+                            <i class="fa fa-youtube-play" aria-hidden="true"></i> OgniemPlujący Po cichu
+                        </a>
+                    </li>
+                </ul>
+            </div>
+            <hr class="hidden-md-up">
+            <div class="col-md-2">
+                <h5 class="title">Sponsorzy</h5>
+                <ul>
+                    <li><a href="https://deephosting.pro">Deephosting.pro</a></li>
+                    <li><a href="https://otlet.pl">Otlet.pl</a></li>
+                    <li><a href="https://sklep.otlet.pl">Geek && Nerd Shop</a></li>
+                </ul>
+            </div>
+            <hr class="hidden-md-up">
+            <div class="col-md-2">
+                <h5 class="title">Support</h5>
+                <ul>
+                    <li>
+                        <a href="{{ url('cms',{'title': 'support'}) }}">
+                            {{ 'nav.support'|trans }}
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{{ url('cms',{'title': 'regulamin'}) }}">
+                            {{ 'nav.rules'|trans }}
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{{ url('cms',{'title': 'jak-stworzyc-turniej'}) }}">
+                            {{ 'nav.howto'|trans }}
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{{ url('cms',{'title': 'program-partnerski'}) }}">
+                            {{ 'nav.ppartner'|trans }}
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <hr>
+    <div class="call-to-action container">
+        <div class="row">
+            <div class="col-md-4">
+                <a href="https://sklep.otlet.pl" target="_blank">
+                    <img src="{{ asset('assets/img/partners/gn.png') }}" alt="Geek and Nerd Shop"
+                         class="img-responsive">
+                </a>
+            </div>
+            <div class="col-md-4">
+                <a href="https://23games.pl" target="_blank">
+                    <img src="{{ asset('assets/img/partners/games.png') }}"
+                         alt="Najlepszy TeamSpeak3 23games" class="img-responsive">
+                </a>
+            </div>
+            <div class="col-md-4">
+                <a href="https://beam.pro/otlet" target="_blank">
+                    <img src="{{ asset('assets/img/partners/beam.png') }}"
+                         alt="Beam.pro Otlet" class="img-responsive">
+                </a>
+            </div>
+        </div>
+        <br>
+    </div>
+    <div class="footer-copyright">
+        <div class="container-fluid">
+            Copyright &copy; {{ "now"|date('Y') }} <span class="red">JestemGraczem.pl</span> <br>
+            Made with &hearts; by DeepWebServices &amp; Otlet.pl
+        </div>
+    </div>
+</footer>

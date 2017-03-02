@@ -1,0 +1,168 @@
+<nav class="navbar navbar-dark deep-purple">
+    <button class="navbar-toggler hidden-sm-up" type="button" data-toggle="collapse" data-target="#collapseEx">
+        <i class="fa fa-bars"></i></button>
+    <div class="container">
+        <div class="collapse navbar-toggleable-xs" id="collapseEx">
+            <ul class="nav navbar-nav">
+                <a href="{{ url('homepage') }}" class="navbar-brand">
+                    <img src="{{ asset('assets/img/Logo3.png') }}" style="max-height: 30px"
+                         alt="JestemGraczem Logo">
+                    JestemGraczem.pl
+                </a>
+                <li class="nav-item">
+                    <a class="nav-link disabled" data-toggle="tooltip" title="Turnieje już wkrótce!"
+                       data-placement="bottom">
+                        <i class="fa fa-trophy" aria-hidden="true"></i> <span class="hide-md">Turnieje</span>
+                    </a>
+                </li>
+                {#<li class="nav-item btn-group">#}
+                {#<a class="nav-link dropdown-toggle" id="dropdownTurnieje" data-toggle="dropdown"#}
+                {#aria-haspopup="true" aria-expanded="false">Turnieje</a>#}
+                {#<div class="dropdown-menu" aria-labelledby="dropdownTurnieje">#}
+                {#<a href="{{ url('tournament') }}" class="dropdown-item">#}
+                {#<i class="fa fa-trophy" aria-hidden="true"></i>#}
+                {#{{ 'nav.turnaments'|trans }}#}
+                {#</a>#}
+                {#<a href="{{ url('team') }}" class="dropdown-item">#}
+                {#<i class="fa fa-users" aria-hidden="true"></i>#}
+                {#{{ 'nav.teams'|trans }}#}
+                {#</a>#}
+                {#</div>#}
+                {#</li>#}
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ url('centrum') }}">
+                                <span data-toggle="tooltip" title="{{ 'nav.center'|trans }}" data-placement="bottom">
+                                    <i class="fa fa-gamepad" aria-hidden="true"></i>
+                                    <span class="hide-md">{{ 'nav.center'|trans }}</span>
+                                </span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ url('rss') }}">
+                                <span data-toggle="tooltip" title="{{ 'nav.rss'|trans }}" data-placement="bottom">
+                                    <i class="fa fa-rss-square" aria-hidden="true"></i>
+                                    <span class="hide-md">{{ 'nav.rss'|trans }}</span>
+                                </span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ url('articles') }}">
+                                <span data-toggle="tooltip" title="{{ 'nav.news'|trans }}" data-placement="bottom">
+                                    <i class="fa fa-newspaper-o" aria-hidden="true"></i> <span
+                                            class="hide-md">{{ 'nav.news'|trans }}</span>
+                                </span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ url('mikroblog') }}">
+                                <span data-toggle="tooltip" title="Mikroblog" data-placement="bottom">
+                                    <i class="fa fa-commenting-o" aria-hidden="true"></i> <span class="hide-md">Mikroblog</span>
+                                </span>
+                    </a>
+                </li>
+                <li class="nav-item btn-group">
+                    <a class="nav-link dropdown-toggle" id="dropdownFun" data-toggle="dropdown"
+                       aria-haspopup="true" aria-expanded="false">
+                                <span data-toggle="tooltip" title="Strefa Rozrywki" data-placement="bottom">
+                                    <i class="fa fa-smile-o" aria-hidden="true"></i> <span class="hide-md">Strefa Rozrywki</span>
+                                </span>
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="dropdownFun">
+                        <h6 class="dropdown-header">Strefa rozrywki</h6>
+                        <a href="{{ url('mem') }}" class="dropdown-item">
+                            <i class="fa fa-picture-o" aria-hidden="true"></i> {{ 'nav.meme'|trans }}
+                        </a>
+                        <a href="{{ url('stream') }}" class="dropdown-item disabled">
+                            <i class="fa fa-twitch" aria-hidden="true"></i> {{ 'nav.streams'|trans }}
+                        </a>
+                        <a href="{{ url('video') }}" class="dropdown-item">
+                            <i class="fa fa-youtube-play" aria-hidden="true"></i> {{ 'nav.video'|trans }}
+                        </a>
+                    </div>
+                </li>
+            </ul>
+
+            <ul class="nav navbar-nav nav-flex-icons">
+                {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+                    <li class="nav-item btn-group">
+                        <a class="nav-link dropdown-toggle" id="dropdownUser" data-toggle="dropdown"
+                           aria-haspopup="true" aria-expanded="false">
+                            {#<i class="fa fa-user"></i>#}
+                            <img src="https://www.gravatar.com/avatar/{{ app.user.email|md5 }}"
+                                 style="max-height: 30px"
+                                 alt="JestemGraczem Gravatar">
+                            {{ app.user.username }}
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="dropdownUser">
+                            {% if is_granted('ROLE_ADMIN') %}
+                                <a class="dropdown-item" href="{{ url('easyadmin') }}" target="_blank">
+                                    <i class="fa fa-terminal" aria-hidden="true"></i> AdminCP
+                                </a>
+                            {% endif %}
+                            <a class="dropdown-item" href="{{ url('user',{'user': app.user.username}) }}">
+                                <i class="fa fa-user"
+                                   aria-hidden="true"></i> {{ 'profile.publicprofil'|trans({}, 'FOSUserBundle') }}
+                            </a>
+                            <a class="dropdown-item" href="{{ url('fos_user_change_password') }}">
+                                <i class="fa fa-key"
+                                   aria-hidden="true"></i> {{ 'change_password.submit'|trans({}, 'FOSUserBundle') }}
+                            </a>
+                            <a class="dropdown-item" href="{{ url('fos_user_profile_edit') }}">
+                                <i class="fa fa-pencil"
+                                   aria-hidden="true"></i> {{ 'profile.edit.edit'|trans({}, 'FOSUserBundle') }}
+                            </a>
+                            <a class="dropdown-item" href="{{ url('fos_user_security_logout') }}">
+                                <i class="fa fa-sign-out"
+                                   aria-hidden="true"></i> {{ 'layout.logout'|trans({}, 'FOSUserBundle') }}
+                            </a>
+                        </div>
+                    </li>
+                {% else %}
+                    <li class="nav-item btn-group">
+                        <a class="nav-link dropdown-toggle" id="dropdownUser" data-toggle="dropdown"
+                           aria-haspopup="true" aria-expanded="false">
+                            <i class="fa fa-user"></i>
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="dropdownUser">
+                            <a class="dropdown-item" href="{{ url('fos_user_security_login') }}">
+                                {{ 'layout.login'|trans({}, 'FOSUserBundle') }}
+                            </a>
+                            <a class="dropdown-item" href="{{ url('fos_user_registration_register') }}">
+                                {{ 'account.register'|trans }} {{ 'account.now'|trans }}
+                            </a>
+                            <a class="dropdown-item" href="{{ url('fos_user_resetting_request') }}">
+                                {{ 'account.forgotpass'|trans }}
+                            </a>
+                        </div>
+                    </li>
+                {% endif %}
+                <li class="nav-item">
+                    <a href="https://youtube.com/PanOtlet" target="_blank"
+                       class="nav-link waves-effect waves-light">
+                        <i class="fa fa-youtube"></i>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="https://twitter.com/PanOtlet" target="_blank"
+                       class="nav-link waves-effect waves-light">
+                        <i class="fa fa-twitter"></i>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="https://facebook.com/JestemGraczemPL" target="_blank"
+                       class="nav-link waves-effect waves-light">
+                        <i class="fa fa-facebook"></i>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ url('status') }}">
+                                <span data-toggle="tooltip" title="{{ 'nav.status'|trans }}" data-placement="bottom">
+                                    <i class="fa fa-power-off" aria-hidden="true"></i>
+                                    <span class="hide-md">{{ 'nav.status'|trans }}</span>
+                                </span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
