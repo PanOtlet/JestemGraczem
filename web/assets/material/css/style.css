@@ -240,7 +240,7 @@ footer.page-footer {
 }
 
 .marginus {
-    margin: 23px 0 23px 0;
+    margin: 23px auto 23px auto;
 }
 
 #mems {
@@ -311,14 +311,17 @@ footer.page-footer {
     padding: 1rem;
 }
 
+/*
+ * Styl dla swipera przy streamach
+ */
 .swiper-container {
-    width: 100%;
-    height: 100%;
+    /*width: 100%;*/
+    /*height: 100%;*/
 }
 .swiper-slide {
     text-align: center;
     font-size: 18px;
-    background: #fff;
+    /*background: #fff;*/
     display: -webkit-box;
     display: -ms-flexbox;
     display: -webkit-flex;
@@ -333,6 +336,9 @@ footer.page-footer {
     align-items: center;
 }
 
+/*
+ * Karuzela newsów
+ */
 .carousel {
     height: 540px;
 }
@@ -354,4 +360,12 @@ footer.page-footer {
 
 .divider-new {
     margin: 0;
+    background-color: #4a148c;
+    color: #fff;
 }
+
+.stream-title {
+    color: white;
+    text-shadow: 0 0 3px #000, 0 0 5px #670477;
+}
+

@@ -91,83 +91,53 @@
     </div>
 
     {#<div id="stream-container" class="divShadow">#}
-        {#<div class="container">#}
-            {#<section id="stream">#}
-                {#<div class="row">#}
-                    {#<div class="col-md-8 hidden-md-down">#}
-                        {#<div class="embed-responsive embed-responsive-16by9">#}
-                            {#<iframe id="topstream" class="embed-responsive-item"#}
-                                    {#src="https://beam.pro/embed/player/monstercat"></iframe>#}
-                        {#</div>#}
-                    {#</div>#}
-                    {#<div class="col-md-4">#}
-                        {#<ul class="text-xs-center">#}
-                            {#<li class="wow fadeInUp" data-wow-delay="0.5s">#}
-                                {#<img id="avatar" class="img-fluid hidden-md-down"#}
-                                     {#src="https://www.gravatar.com/avatar/{{ avatar }}?s=25" alt="Gravatar Avatar">#}
-                                {#<h3 id="display_name" style="margin-top: 30pt" class="h3-responsive tag red">Brak</h3>#}
-                            {#</li>#}
-
-                            {#<li class="wow fadeInUp" data-wow-delay="1.0s">#}
-                                {#<p id="link" class="tag grey">Niestety nikt nie streamuje :(</p>#}
-                            {#</li>#}
-
-                            {#<li class="wow fadeInUp tag black" data-wow-delay="1.5s">#}
-                                {#Widzów: <span id="viewers">n/d</span>#}
-                            {#</li>#}
-                        {#</ul>#}
-                    {#</div>#}
-                {#</div>#}
-                {#<div class="container-fluid" id="streams-container">#}
-
-                {#</div>#}
-            {#</section>#}
-        {#</div>#}
+    {#<div class="container">#}
+    {#<section id="stream">#}
+    {#<div class="row">#}
+    {#<div class="col-md-8 hidden-md-down">#}
+    {#<div class="embed-responsive embed-responsive-16by9">#}
+    {#<iframe id="topstream" class="embed-responsive-item"#}
+    {#src="https://beam.pro/embed/player/monstercat"></iframe>#}
     {#</div>#}
+    {#</div>#}
+    {#<div class="col-md-4">#}
+    {#<ul class="text-xs-center">#}
+    {#<li class="wow fadeInUp" data-wow-delay="0.5s">#}
+    {#<img id="avatar" class="img-fluid hidden-md-down"#}
+    {#src="https://www.gravatar.com/avatar/{{ avatar }}?s=25" alt="Gravatar Avatar">#}
+    {#<h3 id="display_name" style="margin-top: 30pt" class="h3-responsive tag red">Brak</h3>#}
+    {#</li>#}
+
+    {#<li class="wow fadeInUp" data-wow-delay="1.0s">#}
+    {#<p id="link" class="tag grey">Niestety nikt nie streamuje :(</p>#}
+    {#</li>#}
+
+    {#<li class="wow fadeInUp tag black" data-wow-delay="1.5s">#}
+    {#Widzów: <span id="viewers">n/d</span>#}
+    {#</li>#}
+    {#</ul>#}
+    {#</div>#}
+    {#</div>#}
+    {#<div class="container-fluid" id="streams-container">#}
+
+    {#</div>#}
+    {#</section>#}
+    {#</div>#}
+    {#</div>#}
+
     <div id="stream-container" class="divShadow">
         <div class="swiper-container">
             <div class="swiper-wrapper">
-                <div class="swiper-slide">Slide 1</div>
-                <div class="swiper-slide">Slide 2</div>
-                <div class="swiper-slide">Slide 3</div>
-                <div class="swiper-slide">Slide 3</div>
-                <div class="swiper-slide">Slide 3</div>
-                <div class="swiper-slide">Slide 3</div>
-                <div class="swiper-slide">Slide 3</div>
+                {#<div class="swiper-slide">#}
+                    {#<div class="view">#}
+                        {#<img src="https://uploads.beam.pro/thumbnails/h9iecin8-160788.jpg" class="img-fluid" alt="">#}
+                        {#<div class="mask pattern-1 flex-center">#}
+                            {#<a class="stream-title" href="#">TEST</a>#}
+                        {#</div>#}
+                    {#</div>#}
+                {#</div>#}
             </div>
             <div class="swiper-scrollbar"></div>
-        </div>
-        <div class="container-fluid">
-            <section id="stream">
-                <div class="row">
-                    <div class="col-md-8 hidden-md-down">
-                        <div class="embed-responsive embed-responsive-16by9">
-                            <iframe id="topstream" class="embed-responsive-item"
-                                    src="https://beam.pro/embed/player/monstercat"></iframe>
-                        </div>
-                    </div>
-                    <div class="col-md-4">
-                        <ul class="text-xs-center">
-                            <li class="wow fadeInUp" data-wow-delay="0.5s">
-                                <img id="avatar" class="img-fluid hidden-md-down"
-                                     src="https://www.gravatar.com/avatar/{{ avatar }}?s=25" alt="Gravatar Avatar">
-                                <h3 id="display_name" style="margin-top: 30pt" class="h3-responsive tag red">Brak</h3>
-                            </li>
-
-                            <li class="wow fadeInUp" data-wow-delay="1.0s">
-                                <p id="link" class="tag grey">Niestety nikt nie streamuje :(</p>
-                            </li>
-
-                            <li class="wow fadeInUp tag black" data-wow-delay="1.5s">
-                                Widzów: <span id="viewers">n/d</span>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="container-fluid" id="streams-container">
-
-                </div>
-            </section>
         </div>
     </div>
 
@@ -234,7 +204,8 @@
                 {% else %}
                     <div class="col-md-4">
                         <a href="{{ url('mem.id', { 'id':mem.id }) }}" data-toggle="tooltip" title="{{ mem.title }}">
-                            <img class="img-fluid img-mem mb-1" src="{{ asset('assets/mem/') ~ mem.url }}" alt="{{ mem.title }}">
+                            <img class="img-fluid img-mem mb-1" src="{{ asset('assets/mem/') ~ mem.url }}"
+                                 alt="{{ mem.title }}">
                         </a>
                     </div>
                 {% endif %}
@@ -274,50 +245,44 @@
         </div>
     </div>
 
-    <div id="socialMedia">
-        <div class="container-fluid">
-            <div class="row">
-                <div class="divider-new">
-                    <h2 class="h2-responsive wow bounceIn">
-                        Znajdź nas w Social Media oraz YouTube!
-                    </h2>
-                </div>
+    {#<div id="socialMedia">#}
+        {#<div class="container-fluid">#}
+            {#<div class="row">#}
+                {#<div class="col-md-4">#}
+                    {#<div class="card card-block">#}
+                        {#<div id="fb-root"></div>#}
+                        {#<div class="fb-page" data-href="https://www.facebook.com/jestemgraczempl/"#}
+                             {#data-small-header="false"#}
+                             {#data-adapt-container-width="true" data-hide-cover="false" data-show-facepile="false">#}
+                            {#<blockquote cite="https://www.facebook.com/jestemgraczempl/" class="fb-xfbml-parse-ignore">#}
+                                {#<a#}
+                                        {#href="https://www.facebook.com/jestemgraczempl/">JestemGraczem.pl</a>#}
+                            {#</blockquote>#}
+                        {#</div>#}
+                    {#</div>#}
+                {#</div>#}
 
-                <div class="col-md-4">
-                    <div class="card card-block">
-                        <div id="fb-root"></div>
-                        <div class="fb-page" data-href="https://www.facebook.com/jestemgraczempl/"
-                             data-small-header="false"
-                             data-adapt-container-width="true" data-hide-cover="false" data-show-facepile="false">
-                            <blockquote cite="https://www.facebook.com/jestemgraczempl/" class="fb-xfbml-parse-ignore">
-                                <a
-                                        href="https://www.facebook.com/jestemgraczempl/">JestemGraczem.pl</a>
-                            </blockquote>
-                        </div>
-                    </div>
-                </div>
+                {#<div class="col-md-4">#}
+                    {#<div class="card card-block">#}
+                        {#<div class="g-ytsubscribe" data-channelid="UCwyKvaFQcBfJ7dCxM_uX5EQ" data-layout="full"#}
+                             {#data-count="default"></div>#}
+                        {#<br>#}
+                        {#<div class="g-ytsubscribe" data-channel="PanOtlet" data-layout="full"#}
+                             {#data-count="default"></div>#}
+                    {#</div>#}
+                {#</div>#}
 
-                <div class="col-md-4">
-                    <div class="card card-block">
-                        <div class="g-ytsubscribe" data-channelid="UCwyKvaFQcBfJ7dCxM_uX5EQ" data-layout="full"
-                             data-count="default"></div>
-                        <br>
-                        <div class="g-ytsubscribe" data-channel="PanOtlet" data-layout="full"
-                             data-count="default"></div>
-                    </div>
-                </div>
+                {#<div class="col-md-4">#}
+                    {#<div class="card card-block">#}
+                        {#<div class="g-page" data-href="//plus.google.com/u/4/116516903644267522146"#}
+                             {#data-layout="landscape"#}
+                             {#data-rel="publisher"></div>#}
+                    {#</div>#}
+                {#</div>#}
 
-                <div class="col-md-4">
-                    <div class="card card-block">
-                        <div class="g-page" data-href="//plus.google.com/u/4/116516903644267522146"
-                             data-layout="landscape"
-                             data-rel="publisher"></div>
-                    </div>
-                </div>
-
-            </div>
-        </div>
-    </div>
+            {#</div>#}
+        {#</div>#}
+    {#</div>#}
 {% endblock %}
 
 {% block stylesheets %}
@@ -331,21 +296,23 @@
             background-size: cover;
             opacity: 0.4;
         }
+
         {% endfor %}
     </style>
 {% endblock %}
 
 {% block javascripts %}
     {{ parent() }}
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mustache.js/2.3.0/mustache.min.js"
+            integrity="sha256-iaqfO5ue0VbSGcEiQn+OeXxnxAMK2+QgHXIDA5bWtGI=" crossorigin="anonymous"></script>
     <script src="{{ asset('assets/js/ads.js') }}"></script>
-    <script src="{{ asset('assets/js/stream.js') }}"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/mustache.js/2.3.0/mustache.min.js"></script>
+    <script src="{{ asset('assets/js/homepage.js') }}"></script>
     <script src="https://vjs.zencdn.net/5.12.6/video.js"></script>
     <link rel="stylesheet" href="{{ asset('assets/material/css/videojs.css') }}">
     <script src="https://apis.google.com/js/platform.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/3.4.1/js/swiper.jquery.min.js"></script>
     <script>
-        var stream = new Stream('{{ path("api.stream") }}', 'dd80eugsisvxdq2h689e6m8e3tqqzuw');
+        var stream = new Stream('{{ path("api.stream") }}');
         if (typeof ads !== 'undefined')
             stream.start(true);
         else
