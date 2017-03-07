@@ -108,14 +108,14 @@
     <div id="stream-container" class="divShadow">
         <div class="swiper-container">
             <div class="swiper-wrapper">
-                {#<div class="swiper-slide">#}
-                    {#<div class="view">#}
-                        {#<img src="https://uploads.beam.pro/thumbnails/h9iecin8-160788.jpg" class="img-fluid" alt="">#}
-                        {#<div class="mask pattern-1 flex-center">#}
-                            {#<a class="stream-title" href="#">TEST</a>#}
-                        {#</div>#}
-                    {#</div>#}
-                {#</div>#}
+                <div class="swiper-slide" id="streamLoading">
+                    <div class="view">
+                        <img src="http://jestemgraczem.pl/assets/img/bg_defoult.png" class="img-fluid" alt="JestemGraczem Loading">
+                        <div class="mask pattern-1 flex-center">
+                            <a class="stream-title" href="#">LOADING</a>
+                        </div>
+                    </div>
+                </div>
             </div>
             <div class="swiper-scrollbar"></div>
         </div>
