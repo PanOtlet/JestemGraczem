@@ -5,7 +5,7 @@ function Stream(url) {
     this.twitchApiKey = 'dd80eugsisvxdq2h689e6m8e3tqqzuw';
     this.twitchNameList = [];
     this.twitchList = '';
-    this.streamerList = []; //Lista streamerów z wew. API
+    this.streamList = null;
     this.list = []; //Wygenerowana lista streamerów
     this.activeList = []; //Aktywni
     this.templateStreamPosition = '<div class="swiper-slide">' +
@@ -43,16 +43,14 @@ function Stream(url) {
      * @returns {boolean}
      */
     this.getStreamerList = function () {
-        var info;
         $.ajax({
             url: stream.url,
             dataType: 'json',
             success: function (streamInfo) {
-                info = streamInfo;
+                console.debug(streamInfo);
             },
             error: function () {
-                console.log('Błąd w API JestemGraczem.pl');
-                info = false
+                console.error('Błąd w API JestemGraczem.pl');
             },
             complete: function (streamInfo) {
                 stream.streamList = streamInfo;
@@ -80,7 +78,20 @@ function Stream(url) {
         this.twitchChannelRequest(this.twitchList);
 
         $(document).ajaxStop(function () {
-            // stream.activeList.sort(sorter);
+            if (stream.activeList.length === 0) {
+                for (var i = 0; i < 4; i++)
+                    stream.activeList.push({
+                        'domain': 'beam.pro',
+                        'platform': 'beam',
+                        'viewers': 0,
+                        'name': 'monstercat',
+                        'url': 'https://beam.pro/embed/player/monstercat',
+                        'title': 'monstercat',
+                        'image': 'https://static-cdn.jtvnw.net/previews-ttv/live_user_monstercat-320x180.jpg'
+                    });
+            }
+            stream.activeList.sort(sorter);
+            $('#streamLoading').remove();
             stream.renderStreamList(stream.activeList);
 
             var mySwiper = new Swiper('.swiper-container', {
