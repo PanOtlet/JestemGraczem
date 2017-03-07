@@ -43,8 +43,9 @@
 <ul class="sidebar-nav-login">=
     {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
         <li>
-            <img src="https://www.gravatar.com/avatar/{{ app.user.email|md5 }}" alt="JestemGraczem Gravatar">
-            <i class="fa fa-user"></i> {{ app.user.username }}
+            <a href="{{ url('user',{'user': app.user.username}) }}">
+                <i class="fa fa-user"></i> {{ app.user.username }}
+            </a>
         </li>
         {% if is_granted('ROLE_ADMIN') %}
             <li>
@@ -53,12 +54,6 @@
                 </a>
             </li>
         {% endif %}
-        <li>
-            <a href="{{ url('user',{'user': app.user.username}) }}">
-                <i class="fa fa-user"
-                   aria-hidden="true"></i> {{ 'profile.publicprofil'|trans({}, 'FOSUserBundle') }}
-            </a>
-        </li>
         <li>
             <a href="{{ url('fos_user_change_password') }}">
                 <i class="fa fa-key"
