@@ -1,13 +1,15 @@
 {% extends "material/base.html.twig" %}
 
 {% block body %}
-    {% block adbanner %}{{ parent() }}{% endblock %}
     <div class="divider-new">
         <h2 class="h2-responsive wow bounceIn">
             {{ cms.title }}
         </h2>
     </div>
-    <div class="container" style="margin-top: 10px">
+
+    <div class="container">
+        {% block adbanner %}{{ parent() }}{% endblock %}
+
         {{ cms.text|markdown }}
     </div>
 {% endblock %}
