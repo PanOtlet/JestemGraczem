@@ -1,32 +1,30 @@
 {% extends "material/base.html.twig" %}
 
 {% block body %}
-    <div class="container-fluid marginTop2">
-        <div class="divider-new">
-            <h2 class="h2-responsive wow bounceIn">
-                {{ 'button.newest.new'|trans }} {{ 'button.newest.video'|trans }}
-            </h2>
-        </div>
-        <div class="container">
-            <div class="row">
-                <div class="col-md-4">
-                    <a href="{{ url('video.add') }}" class="btn btn-danger btn-block">
-                        {{ 'button.add'|trans }}
-                    </a>
-                </div>
-                <div class="col-md-4">
-                    <a href="{{ url('video') }}" class="btn btn-primary btn-block">
-                        {{ 'button.main'|trans }}
-                    </a>
-                </div>
-                <div class="col-md-4">
-                    <a href="{{ url('video.wait') }}" class="btn btn-secondary btn-block">
-                        {{ 'button.waitingroom'|trans }}
-                    </a>
-                </div>
+    <div class="divider-new">
+        <h2 class="h2-responsive wow bounceIn">
+            {{ 'button.newest.new'|trans }} {{ 'button.newest.video'|trans }}
+        </h2>
+    </div>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-4">
+                <a href="{{ url('video.add') }}" class="btn btn-danger btn-block">
+                    {{ 'button.add'|trans }}
+                </a>
             </div>
-            {% block adbanner %}{{ parent() }}{% endblock %}
+            <div class="col-md-4">
+                <a href="{{ url('video') }}" class="btn btn-primary btn-block">
+                    {{ 'button.main'|trans }}
+                </a>
+            </div>
+            <div class="col-md-4">
+                <a href="{{ url('video.wait') }}" class="btn btn-secondary btn-block">
+                    {{ 'button.waitingroom'|trans }}
+                </a>
+            </div>
         </div>
+        {% block adbanner %}{{ parent() }}{% endblock %}
     </div>
 
     <section id="mems">

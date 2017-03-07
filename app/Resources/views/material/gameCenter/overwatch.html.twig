@@ -1,13 +1,13 @@
 {% extends "material/base.html.twig" %}
 
-{% block bodyMenu %}
-    {% block adbanner %}{{ parent() }}{% endblock %}
+{% block body %}
     <div class="divider-new">
         <h2 class="h2-responsive wow bounceIn">
             Overwatch
         </h2>
     </div>
-    <div class="container" style="margin-top: 10px">
+    <div class="container">
+        {% block adbanner %}{{ parent() }}{% endblock %}
         <div class="row">
             <div class="col-md-8">
                 <div class="row">

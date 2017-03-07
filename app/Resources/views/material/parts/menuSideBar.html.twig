@@ -1,0 +1,92 @@
+<ul class="sidebar-nav">
+    <li class="sidebar-brand">
+        <a href="{{ url('homepage') }}">
+            JestemGraczem.pl
+        </a>
+    </li>
+    <li>
+        <a href="{{ url('centrum') }}">
+            <i class="fa fa-gamepad" aria-hidden="true"></i> {{ 'nav.center'|trans }}
+        </a>
+    </li>
+    <li>
+        <a href="{{ url('articles') }}">
+            <i class="fa fa-newspaper-o" aria-hidden="true"></i> {{ 'nav.news'|trans }}
+        </a>
+    </li>
+    <li>
+        <a href="{{ url('mikroblog') }}">
+            <i class="fa fa-commenting-o" aria-hidden="true"></i> Mikroblog
+        </a>
+    </li>
+    <li>
+        <a href="{{ url('mem') }}">
+            <i class="fa fa-picture-o" aria-hidden="true"></i> {{ 'nav.meme'|trans }}
+        </a>
+    </li>
+    {#<li>#}
+        {#<a href="{{ url('stream') }}">#}
+            {#<i class="fa fa-twitch" aria-hidden="true"></i> {{ 'nav.streams'|trans }}#}
+        {#</a>#}
+    {#</li>#}
+    <li>
+        <a href="{{ url('video') }}">
+            <i class="fa fa-youtube-play" aria-hidden="true"></i> {{ 'nav.video'|trans }}
+        </a>
+    </li>
+    <li>
+        <a href="{{ url('rss') }}">
+            <i class="fa fa-rss-square" aria-hidden="true"></i> {{ 'nav.rss'|trans }}
+        </a>
+    </li>
+</ul>
+<ul class="sidebar-nav-login">=
+    {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+        <li>
+            <a href="{{ url('user',{'user': app.user.username}) }}">
+                <i class="fa fa-user"></i> {{ app.user.username }}
+            </a>
+        </li>
+        {% if is_granted('ROLE_ADMIN') %}
+            <li>
+                <a href="{{ url('easyadmin') }}" target="_blank">
+                    <i class="fa fa-terminal" aria-hidden="true"></i> AdminCP
+                </a>
+            </li>
+        {% endif %}
+        <li>
+            <a href="{{ url('fos_user_change_password') }}">
+                <i class="fa fa-key"
+                   aria-hidden="true"></i> {{ 'change_password.submit'|trans({}, 'FOSUserBundle') }}
+            </a>
+        </li>
+        <li>
+            <a href="{{ url('fos_user_profile_edit') }}">
+                <i class="fa fa-pencil"
+                   aria-hidden="true"></i> {{ 'profile.edit.edit'|trans({}, 'FOSUserBundle') }}
+            </a>
+        </li>
+        <li>
+            <a href="{{ url('fos_user_security_logout') }}">
+                <i class="fa fa-sign-out"
+                   aria-hidden="true"></i> {{ 'layout.logout'|trans({}, 'FOSUserBundle') }}
+            </a>
+        </li>
+    {% else %}
+        <li>
+            <a href="{{ url('fos_user_security_login') }}">
+                {{ 'layout.login'|trans({}, 'FOSUserBundle') }}
+            </a>
+        </li>
+        <li>
+            <a href="{{ url('fos_user_registration_register') }}">
+                {{ 'account.register'|trans }} {{ 'account.now'|trans }}
+            </a>
+        </li>
+        <li>
+            <a href="{{ url('fos_user_resetting_request') }}">
+                {{ 'account.forgotpass'|trans }}
+            </a>
+        </li>
+    {% endif %}
+</ul>

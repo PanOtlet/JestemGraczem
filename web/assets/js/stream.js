@@ -1,4 +1,3 @@
-/*eslint no-console: ["error", { allow: ["warn", "error"] }] */
 /**
  * Generator streamów na stronie
  * @constructor
@@ -22,6 +21,15 @@ function Stream(url, twitchApiKey) {
     this.twitchNameList = '';
 
     this.streams = 4;
+
+    this.template = [];
+    this.template['bottomStream'] = '<div class="col-sm-3" id="{{name}}">' +
+        '<div class="">' +
+        '<div class="v-title" id="{{name}}_title"></div>' +
+        '<div class="v-img" id="{{name}}_img"></div>' +
+        '<div class="v-bottom" id="{{name}}_bottom"></div>' +
+        '</div>' +
+        '</div>';
 
     /**
      * Funkcja sortująca
@@ -205,7 +213,7 @@ function Stream(url, twitchApiKey) {
      */
     this.renderStreamList = function (array) {
         var name = array['name'] + "_" + array['platform'];
-        $("#streams-container").append('<div class="col-sm-3" id="' + name + '"><div class=""><div class="v-title" id="' + name + '_title"></div><div class="v-img" id="' + name + '_img"></div><div class="v-bottom" id="' + name + '_bottom"></div></div></div>');
+        $("#streams-container").append(Mustache.render(this.template['bottomStream'], {name: name}));
         $("#" + name).addClass('danger');
         $("#" + name + "_status").html('ONLINE').css('font-weight', 'bold');
         $("#" + name + "_game").html(array["game"]);
@@ -284,6 +292,13 @@ function Stream(url, twitchApiKey) {
 
         this.generateMainVideos(this.fullData);
 
+        var mySwiper = new Swiper ('.swiper-container', {
+            loop: true,
+            scrollbar: '.swiper-scrollbar',
+            slidesPerView: 4,
+            paginationClickable: true,
+            spaceBetween: 30
+        });
         $('#loading').remove();
     };
 

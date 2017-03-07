@@ -1,13 +1,15 @@
 {% block adbanner %}
     {% if app.user.premium is defined and app.user.premium == 1 %}
     {% else %}
-        <script type="text/javascript" src="//www.adfreestyle.pl/show/LGHKSEPJvlO"></script>
+        <div style="max-width: 100%">
+            <script type="text/javascript" src="//www.adfreestyle.pl/show/LGHKSEPJvlO"></script>
+        </div>
     {% endif %}
 {% endblock %}
 
 {% block adsidebar %}
     <a href="{{ url('redirect',{'url':'https://23games.pl'}) }}">
-        <img src="{{ asset('assets/img/banner_23Games.png') }}" alt="23Games" class="img-responsive">
+        <img src="{{ asset('assets/img/banner_23Games.png') }}" alt="23Games" class="img-fluid">
     </a>
 {% endblock %}
 

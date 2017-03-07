@@ -33,7 +33,7 @@ class DefaultController extends Controller
             ->setMaxResults(3)
             ->getQuery()->getResult();
 
-        $mem = $this->getDoctrine()->getRepository('AppBundle:Meme')->findOneBy(['promoted' => true], ['id' => 'DESC']);
+        $mems = $this->getDoctrine()->getRepository('AppBundle:Meme')->findBy(['promoted' => true], ['id' => 'DESC'], 6);
 
         $video = $this->getDoctrine()->getRepository('AppBundle:Video')->createQueryBuilder('m')
             ->where('m.promoted = 1')
@@ -51,7 +51,7 @@ class DefaultController extends Controller
 
         return $this->render($this->getParameter('theme') . '/default/index.html.twig', [
             'articles' => $articles,
-            'meme' => $mem,
+            'mems' => $mems,
             'video' => $video,
             'avatar' => $avatar,
             'sliders' => $sliders

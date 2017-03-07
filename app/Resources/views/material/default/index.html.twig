@@ -1,88 +1,68 @@
 {% extends "material/base.html.twig" %}
 
 {% block beforeBody %}
-    {% if not is_granted("IS_AUTHENTICATED_REMEMBERED") %}
-        <div class="view hm-black-strong divShadow">
-            <div class="full-bg-img flex-center">
-                <ul>
-                    <li>
-                        <h1 class="h1-responsive wow fadeInDown" data-wow-delay="0.2s">JestemGraczem.pl</h1></li>
-                    <li>
-                        <p class="wow fadeInDown">Platforma zrobiona przez graczy dla graczy!</p>
-                    </li>
-                    <li>
-                        <a href="{{ url('fos_user_security_login') }}"
-                           class="btn btn-primary btn-lg wow fadeInLeft" data-wow-delay="0.2s">Zaloguj się!</a>
-                        <a href="{{ url('fos_user_registration_register') }}"
-                           class="btn btn-secondary btn-lg wow fadeInLeft" data-wow-delay="0.2s">Zarejestruj się!</a>
-                    </li>
-                </ul>
-            </div>
-        </div>
-    {% else %}
-        <div id="slider" class="carousel slide carousel-fade divShadow" data-ride="carousel">
-            <ol class="carousel-indicators">
-                {% for slider in sliders %}
-                    {% if loop.index == 1 %}
-                        <li data-target="#slider" data-slide-to="{{ loop.index0 }}" class="active"></li>
-                    {% else %}
-                        <li data-target="#slider" data-slide-to="{{ loop.index0 }}" class=""></li>
-                    {% endif %}
-                {% endfor %}
-            </ol>
-            <div class="carousel-inner" role="listbox">
-                {% for slider in sliders %}
-                    {% if loop.index == 1 %}
-                        <div class="carousel-item active">
-                            <div class="flex-center animated fadeInDown">
-                                <ul>
+    <div id="slider" class="carousel slide carousel-fade divShadow" data-ride="carousel">
+        <ol class="carousel-indicators">
+            {% for slider in sliders %}
+                {% if loop.index == 1 %}
+                    <li data-target="#slider" data-slide-to="{{ loop.index0 }}" class="active"></li>
+                {% else %}
+                    <li data-target="#slider" data-slide-to="{{ loop.index0 }}" class=""></li>
+                {% endif %}
+            {% endfor %}
+        </ol>
+        <div class="carousel-inner" role="listbox">
+            {% for slider in sliders %}
+                {% if loop.index == 1 %}
+                    <div class="carousel-item active">
+                        <div class="flex-center animated fadeInDown">
+                            <ul>
+                                <li>
+                                    <h1 class="h1-responsive tag purple">{{ slider.title }}</h1>
+                                </li>
+                                <li>
+                                    <p class="tag purple">{{ slider.description }}</p>
+                                </li>
+                                {% if slider.buttonUrl %}
                                     <li>
-                                        <h1 class="h1-responsive tag purple">{{ slider.title }}</h1>
+                                        <a target="_blank" href="{{ slider.buttonUrl }}"
+                                           class="btn btn-primary btn-lg waves-effect waves-light">{{ slider.buttonText }}</a>
                                     </li>
-                                    <li>
-                                        <p class="tag purple">{{ slider.description }}</p>
-                                    </li>
-                                    {% if slider.buttonUrl %}
-                                        <li>
-                                            <a target="_blank" href="{{ slider.buttonUrl }}"
-                                               class="btn btn-primary btn-lg waves-effect waves-light">{{ slider.buttonText }}</a>
-                                        </li>
-                                    {% endif %}
-                                </ul>
-                            </div>
+                                {% endif %}
+                            </ul>
                         </div>
-                    {% else %}
-                        <div class="carousel-item">
-                            <div class="flex-center animated fadeInDown">
-                                <ul>
+                    </div>
+                {% else %}
+                    <div class="carousel-item">
+                        <div class="flex-center animated fadeInDown">
+                            <ul>
+                                <li>
+                                    <h1 class="h1-responsive tag red">{{ slider.title }}</h1>
+                                </li>
+                                <li>
+                                    <p class="tag red">{{ slider.description }}</p>
+                                </li>
+                                {% if slider.buttonUrl %}
                                     <li>
-                                        <h1 class="h1-responsive tag red">{{ slider.title }}</h1>
+                                        <a target="_blank" href="{{ slider.buttonUrl }}"
+                                           class="btn btn-primary btn-lg waves-effect waves-light">{{ slider.buttonText }}</a>
                                     </li>
-                                    <li>
-                                        <p class="tag red">{{ slider.description }}</p>
-                                    </li>
-                                    {% if slider.buttonUrl %}
-                                        <li>
-                                            <a target="_blank" href="{{ slider.buttonUrl }}"
-                                               class="btn btn-primary btn-lg waves-effect waves-light">{{ slider.buttonText }}</a>
-                                        </li>
-                                    {% endif %}
-                                </ul>
-                            </div>
+                                {% endif %}
+                            </ul>
                         </div>
-                    {% endif %}
-                {% endfor %}
-            </div>
-            <a class="left carousel-control" href="#slider" role="button" data-slide="prev">
-                <span class="icon-prev" aria-hidden="true"></span>
-                <span class="sr-only">Previous</span>
-            </a>
-            <a class="right carousel-control" href="#slider" role="button" data-slide="next">
-                <span class="icon-next" aria-hidden="true"></span>
-                <span class="sr-only">Next</span>
-            </a>
+                    </div>
+                {% endif %}
+            {% endfor %}
         </div>
-    {% endif %}
+        <a class="left carousel-control" href="#slider" role="button" data-slide="prev">
+            <span class="icon-prev" aria-hidden="true"></span>
+            <span class="sr-only">Previous</span>
+        </a>
+        <a class="right carousel-control" href="#slider" role="button" data-slide="next">
+            <span class="icon-next" aria-hidden="true"></span>
+            <span class="sr-only">Next</span>
+        </a>
+    </div>
 {% endblock %}
 
 {% block body %}
@@ -90,49 +70,65 @@
         <h2 class="h2-responsive wow bounceIn">Polecane streamy</h2>
     </div>
 
+    {#<div id="stream-container" class="divShadow">#}
+    {#<div class="container">#}
+    {#<section id="stream">#}
+    {#<div class="row">#}
+    {#<div class="col-md-8 hidden-md-down">#}
+    {#<div class="embed-responsive embed-responsive-16by9">#}
+    {#<iframe id="topstream" class="embed-responsive-item"#}
+    {#src="https://beam.pro/embed/player/monstercat"></iframe>#}
+    {#</div>#}
+    {#</div>#}
+    {#<div class="col-md-4">#}
+    {#<ul class="text-xs-center">#}
+    {#<li class="wow fadeInUp" data-wow-delay="0.5s">#}
+    {#<img id="avatar" class="img-fluid hidden-md-down"#}
+    {#src="https://www.gravatar.com/avatar/{{ avatar }}?s=25" alt="Gravatar Avatar">#}
+    {#<h3 id="display_name" style="margin-top: 30pt" class="h3-responsive tag red">Brak</h3>#}
+    {#</li>#}
+
+    {#<li class="wow fadeInUp" data-wow-delay="1.0s">#}
+    {#<p id="link" class="tag grey">Niestety nikt nie streamuje :(</p>#}
+    {#</li>#}
+
+    {#<li class="wow fadeInUp tag black" data-wow-delay="1.5s">#}
+    {#Widzów: <span id="viewers">n/d</span>#}
+    {#</li>#}
+    {#</ul>#}
+    {#</div>#}
+    {#</div>#}
+    {#<div class="container-fluid" id="streams-container">#}
+
+    {#</div>#}
+    {#</section>#}
+    {#</div>#}
+    {#</div>#}
+
     <div id="stream-container" class="divShadow">
-        <div class="container">
-            <section id="stream">
-                <div class="row">
-                    <div class="col-md-8 hidden-md-down">
-                        <div class="embed-responsive embed-responsive-16by9">
-                            <iframe id="topstream" class="embed-responsive-item"
-                                    src="https://beam.pro/embed/player/monstercat"></iframe>
-                        </div>
-                    </div>
-                    <div class="col-md-4">
-                        <ul class="text-xs-center">
-                            <li class="wow fadeInUp" data-wow-delay="0.5s">
-                                <img id="avatar" class="img-fluid hidden-md-down"
-                                     src="https://www.gravatar.com/avatar/{{ avatar }}?s=25" alt="Gravatar Avatar">
-                                <h3 id="display_name" style="margin-top: 30pt" class="h3-responsive tag red">Brak</h3>
-                            </li>
-
-                            <li class="wow fadeInUp" data-wow-delay="1.0s">
-                                <p id="link" class="tag grey">Niestety nikt nie streamuje :(</p>
-                            </li>
-
-                            <li class="wow fadeInUp tag black" data-wow-delay="1.5s">
-                                Widzów: <span id="viewers">n/d</span>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="container-fluid" id="streams-container">
-
-                </div>
-            </section>
+        <div class="swiper-container">
+            <div class="swiper-wrapper">
+                {#<div class="swiper-slide">#}
+                    {#<div class="view">#}
+                        {#<img src="https://uploads.beam.pro/thumbnails/h9iecin8-160788.jpg" class="img-fluid" alt="">#}
+                        {#<div class="mask pattern-1 flex-center">#}
+                            {#<a class="stream-title" href="#">TEST</a>#}
+                        {#</div>#}
+                    {#</div>#}
+                {#</div>#}
+            </div>
+            <div class="swiper-scrollbar"></div>
         </div>
     </div>
 
-    <div class="container">
-        <div class="marginus">
+    <div class="container-fluid">
+        <div class="marginus m-x-auto d-block">
             {% block adbanner %}{{ parent() }}{% endblock %}
         </div>
     </div>
 
     <div id="news" class="divShadow">
-        <div class="container">
+        <div class="container-fluid">
             <div class="row">
                 {% for article in articles %}
                     <div class="col-md-4">
@@ -160,133 +156,120 @@
         </div>
     </div>
 
-    <div id="media" class="container">
-        <div class="row p-t-1">
-            <div class="col-md-6">
-                {% if meme %}
-                    <div class="divider-new">
-                        <h2 class="h2-responsive wow bounceIn">
-                            {{ 'button.newest.new'|trans }} {{ 'button.newest.meme'|trans }}
-                        </h2>
-                    </div>
-                    <div class="card">
-                        {% if meme.url | slice(-4) == '.mp4' or meme.url | slice(-5) == '.webm' %}
-                            <div class="embed-responsive embed-responsive-16by9">
-                                <video id="promotedMemes" class="video-js embed-responsive-item" controls preload="auto"
-                                       data-setup="{}">
-                                    <source src="{{ asset('assets/mem/') ~ meme.url }}" type="video/mp4"
-                                            class="embed-responsive-item">
-                                    <p class="vjs-no-js">
-                                        Masz kiepską przeglądarkę! Użyj GOOGLE CHROME!
-                                    </p>
-                                </video>
-                            </div>
-                        {% else %}
-                            <img class="img-fluid"
-                                 src="{{ asset('assets/mem/') ~ meme.url }}" alt="{{ meme.title }}">
-                        {% endif %}
-                        <div class="card-block">
-                            <h4 class="card-title">{{ meme.title }}</h4>
-                            <a href="{{ url('mem.id', {'id': meme.id}) }}" class="btn btn-primary">
-                                {{ 'button.comments'|trans }}
-                            </a>
-                            <a href="{{ url('mem') }}" class="btn btn-secondary">
-                                {{ 'button.more'|trans }}
-                            </a>
+    <div id="newestmems" class="container p-t-1">
+        <div class="row">
+            <a href="{{ url('mem.all') }}">
+                <h3>
+                    <span class="tag tag-pill white text-muted">{{ 'button.newest.new'|trans }}</span>
+                    <span class="tag tag-pill red">{{ 'button.newest.meme'|trans }}</span>
+                </h3>
+            </a>
+            {% for mem in mems %}
+                {% if loop.index == 1 or loop.index == 4 %}
+                    <div class="row">
+                {% endif %}
+                {% if mem.url | slice(-4) == '.mp4' or mem.url | slice(-5) == '.webm' %}
+                    <div class="col-md-4">
+                        <div class="embed-responsive embed-responsive-16by9 m-b-1">
+                            <video id="promotedMemes" class="video-js embed-responsive-item" controls preload="auto"
+                                   data-setup="{}">
+                                <source src="{{ asset('assets/mem/') ~ mem.url }}" type="video/mp4"
+                                        class="embed-responsive-item">
+                                <p class="vjs-no-js">
+                                    Masz kiepską przeglądarkę! Użyj GOOGLE CHROME!
+                                </p>
+                            </video>
                         </div>
+                    </div>
+                {% else %}
+                    <div class="col-md-4">
+                        <a href="{{ url('mem.id', { 'id':mem.id }) }}" data-toggle="tooltip" title="{{ mem.title }}">
+                            <img class="img-fluid img-mem mb-1" src="{{ asset('assets/mem/') ~ mem.url }}"
+                                 alt="{{ mem.title }}">
+                        </a>
                     </div>
                 {% endif %}
-            </div>
-            <div class="col-md-6">
-                <div class="divider-new">
-                    <h2 class="h2-responsive wow bounceIn">
-                        {{ 'button.newest.new'|trans }} {{ 'button.newest.video'|trans }}
-                    </h2>
-                </div>
-                <div class="container-fluid">
-                    <div class="row">
-                        {% for vod in video %}
-                            <div class="col-md-6 video">
-                                <a href="{{ url('video.id', { 'id':vod.id }) }}" data-toggle="tooltip"
-                                   title="{{ vod.title }}">
-                                    <img class="img-fluid img-thumbnail"
-                                         src="//img.youtube.com/vi/{{ vod.videoid }}/mqdefault.jpg"
-                                         alt="{{ vod.title }}">
-                                </a>
-                            </div>
-                        {% endfor %}
+                {% if loop.index == 3 or loop.index == 6 %}
                     </div>
-
-                    <a class="btn btn-purple btn-block" href="{{ url('video') }}">{{ 'button.more'|trans }}</a>
-                </div>
-            </div>
+                {% endif %}
+            {% endfor %}
         </div>
     </div>
 
-    <div id="socialMedia">
-        <div class="container">
-            <div class="row">
-                <div class="divider-new">
-                    <h2 class="h2-responsive wow bounceIn">
-                        Znajdź nas w Social Media oraz YouTube!
-                    </h2>
-                </div>
-
-                <div class="col-md-4">
-                    <div class="card card-block">
-                        <div id="fb-root"></div>
-                        <div class="fb-page" data-href="https://www.facebook.com/jestemgraczempl/" data-small-header="false"
-                             data-adapt-container-width="true" data-hide-cover="false" data-show-facepile="false">
-                            <blockquote cite="https://www.facebook.com/jestemgraczempl/" class="fb-xfbml-parse-ignore"><a
-                                        href="https://www.facebook.com/jestemgraczempl/">JestemGraczem.pl</a></blockquote>
+    <div id="videoFluidContainer" class="divShadow">
+        <div id="newestVideo" class="container-fluid">
+            <div id="newestvideos" class="row">
+                <div class="col-md-12">
+                    <a href="{{ url('video') }}">
+                        <h3>
+                            <span class="tag tag-pill white text-muted">{{ 'button.newest.new'|trans }}</span>
+                            <span class="tag tag-pill red">{{ 'button.newest.video'|trans }}</span>
+                        </h3>
+                    </a>
+                    <div class="container-fluid">
+                        <div class="row">
+                            {% for vod in video %}
+                                <div class="col-md-3 video mb-1">
+                                    <a href="{{ url('video.id', { 'id':vod.id }) }}" data-toggle="tooltip"
+                                       title="{{ vod.title }}">
+                                        <img class="img-fluid"
+                                             src="//img.youtube.com/vi/{{ vod.videoid }}/mqdefault.jpg"
+                                             alt="{{ vod.title }}">
+                                    </a>
+                                </div>
+                            {% endfor %}
                         </div>
                     </div>
                 </div>
-
-                <div class="col-md-4">
-                    <div class="card card-block">
-                        <div class="g-ytsubscribe" data-channelid="UCwyKvaFQcBfJ7dCxM_uX5EQ" data-layout="full"
-                             data-count="default"></div>
-                        <br>
-                        <div class="g-ytsubscribe" data-channel="PanOtlet" data-layout="full" data-count="default"></div>
-                    </div>
-                </div>
-
-                <div class="col-md-4">
-                    <div class="card card-block">
-                        <div class="g-page" data-href="//plus.google.com/u/4/116516903644267522146" data-layout="landscape"
-                             data-rel="publisher"></div>
-                    </div>
-                </div>
-
             </div>
         </div>
     </div>
+
+    {#<div id="socialMedia">#}
+        {#<div class="container-fluid">#}
+            {#<div class="row">#}
+                {#<div class="col-md-4">#}
+                    {#<div class="card card-block">#}
+                        {#<div id="fb-root"></div>#}
+                        {#<div class="fb-page" data-href="https://www.facebook.com/jestemgraczempl/"#}
+                             {#data-small-header="false"#}
+                             {#data-adapt-container-width="true" data-hide-cover="false" data-show-facepile="false">#}
+                            {#<blockquote cite="https://www.facebook.com/jestemgraczempl/" class="fb-xfbml-parse-ignore">#}
+                                {#<a#}
+                                        {#href="https://www.facebook.com/jestemgraczempl/">JestemGraczem.pl</a>#}
+                            {#</blockquote>#}
+                        {#</div>#}
+                    {#</div>#}
+                {#</div>#}
+
+                {#<div class="col-md-4">#}
+                    {#<div class="card card-block">#}
+                        {#<div class="g-ytsubscribe" data-channelid="UCwyKvaFQcBfJ7dCxM_uX5EQ" data-layout="full"#}
+                             {#data-count="default"></div>#}
+                        {#<br>#}
+                        {#<div class="g-ytsubscribe" data-channel="PanOtlet" data-layout="full"#}
+                             {#data-count="default"></div>#}
+                    {#</div>#}
+                {#</div>#}
+
+                {#<div class="col-md-4">#}
+                    {#<div class="card card-block">#}
+                        {#<div class="g-page" data-href="//plus.google.com/u/4/116516903644267522146"#}
+                             {#data-layout="landscape"#}
+                             {#data-rel="publisher"></div>#}
+                    {#</div>#}
+                {#</div>#}
+
+            {#</div>#}
+        {#</div>#}
+    {#</div>#}
 {% endblock %}
 
 {% block stylesheets %}
     {{ parent() }}
     <link href="https://vjs.zencdn.net/5.12.6/video-js.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Swiper/3.4.1/css/swiper.min.css">
     <style>
-        .carousel {
-            height: 540px;
-        }
-
-        @media (max-width: 776px) {
-            .carousel {
-                height: 100%;
-            }
-        }
-
-        .carousel-item,
-        .active {
-            height: 100%;
-        }
-
-        .carousel-inner {
-            height: 100%;
-        }
-
         {% for slide in sliders %}
         .carousel-item:nth-child({{ loop.index }}) {
             background: url("{{ slide.image }}") no-repeat;
@@ -300,13 +283,16 @@
 
 {% block javascripts %}
     {{ parent() }}
-    <script src="{{ asset('assets/js/stream.js') }}"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mustache.js/2.3.0/mustache.min.js"
+            integrity="sha256-iaqfO5ue0VbSGcEiQn+OeXxnxAMK2+QgHXIDA5bWtGI=" crossorigin="anonymous"></script>
     <script src="{{ asset('assets/js/ads.js') }}"></script>
+    <script src="{{ asset('assets/js/homepage.js') }}"></script>
     <script src="https://vjs.zencdn.net/5.12.6/video.js"></script>
     <link rel="stylesheet" href="{{ asset('assets/material/css/videojs.css') }}">
     <script src="https://apis.google.com/js/platform.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/3.4.1/js/swiper.jquery.min.js"></script>
     <script>
-        var stream = new Stream('{{ path("api.stream") }}', 'dd80eugsisvxdq2h689e6m8e3tqqzuw');
+        var stream = new Stream('{{ path("api.stream") }}');
         if (typeof ads !== 'undefined')
             stream.start(true);
         else
