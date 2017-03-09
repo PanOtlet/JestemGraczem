@@ -12,7 +12,8 @@ function Stream(url) {
         '<div class="view">' +
         '<img src="{{image}}" class="img-fluid" alt="{{name}}">' +
         '<div class="mask pattern-1 flex-center">' +
-        '<a class="stream-title" href="{{url}}">{{domain}} {{name}}</a></div></div></div>';
+        '<a class="stream-title" href="{{url}}" target="_blank">{{domain}} {{name}}</a>' +
+        '</div></div></div>';
 
     /**
      * Funkcja startowa
@@ -79,17 +80,44 @@ function Stream(url) {
 
         $(document).ajaxStop(function () {
             if (stream.activeList.length === 0) {
-                for (var i = 0; i < 4; i++)
-                    stream.activeList.push({
-                        'domain': 'beam.pro',
-                        'platform': 'beam',
-                        'viewers': 0,
-                        'name': 'monstercat',
-                        'url': 'https://beam.pro/embed/player/monstercat',
-                        'title': 'monstercat',
-                        'image': 'https://static-cdn.jtvnw.net/previews-ttv/live_user_monstercat-320x180.jpg'
-                    });
+                stream.activeList.push({
+                    'domain': 'beam.pro',
+                    'platform': 'beam',
+                    'viewers': 0,
+                    'name': 'monstercat',
+                    'url': 'https://beam.pro/embed/player/monstercat',
+                    'title': 'monstercat',
+                    'image': 'https://static-cdn.jtvnw.net/previews-ttv/live_user_monstercat-320x180.jpg'
+                });
+                stream.activeList.push({
+                    'domain': 'beam.pro',
+                    'platform': 'beam',
+                    'viewers': 0,
+                    'name': 'otlet',
+                    'url': 'https://beam.pro/embed/player/otlet',
+                    'title': 'otlet',
+                    'image': 'https://static-cdn.jtvnw.net/previews-ttv/live_user_otlet-320x180.jpg'
+                });
+                stream.activeList.push({
+                    'domain': 'beam.pro',
+                    'platform': 'beam',
+                    'viewers': 0,
+                    'name': 'monstercat',
+                    'url': 'https://beam.pro/embed/player/monstercat',
+                    'title': 'monstercat',
+                    'image': 'https://static-cdn.jtvnw.net/previews-ttv/live_user_monstercat-320x180.jpg'
+                });
+                stream.activeList.push({
+                    'domain': 'beam.pro',
+                    'platform': 'beam',
+                    'viewers': 0,
+                    'name': 'otlet',
+                    'url': 'https://beam.pro/embed/player/otlet',
+                    'title': 'otlet',
+                    'image': 'https://static-cdn.jtvnw.net/previews-ttv/live_user_otlet-320x180.jpg'
+                });
             }
+
             stream.activeList.sort(sorter);
             $('#streamLoading').remove();
             stream.renderStreamList(stream.activeList);
@@ -151,9 +179,10 @@ function Stream(url) {
      * @param name
      */
     this.twitchChannelRequest = function (name) {
+
         $.ajax({
             type: 'GET',
-            url: 'https://api.twitch.tv/kraken/streams?channel=' + name,
+            url: 'https://api.twitch.tv/kraken/streams?channel=' + name.slice(0, -1),
             headers: {
                 'Client-ID': stream.twitchApiKey
             },
