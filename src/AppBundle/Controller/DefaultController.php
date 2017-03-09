@@ -34,6 +34,10 @@ class DefaultController extends Controller
             ->getQuery()->getResult();
 
         $mems = $this->getDoctrine()->getRepository('AppBundle:Meme')->findBy(['promoted' => true], ['id' => 'DESC'], 6);
+        $featuredEvents = $this->getDoctrine()
+            ->getManager()
+            ->createQuery('SELECT e FROM AppBundle:FeaturedEvents e WHERE e.date > CURRENT_TIMESTAMP()')
+            ->getResult();
 
         $video = $this->getDoctrine()->getRepository('AppBundle:Video')->createQueryBuilder('m')
             ->where('m.promoted = 1')
@@ -54,7 +58,8 @@ class DefaultController extends Controller
             'mems' => $mems,
             'video' => $video,
             'avatar' => $avatar,
-            'sliders' => $sliders
+            'sliders' => $sliders,
+            'events' => $featuredEvents
         ]);
     }
 
