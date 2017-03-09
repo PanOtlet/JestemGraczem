@@ -209,13 +209,15 @@
                     <div class="container-fluid">
                         <div class="row">
                             {% for vod in video %}
-                                <div class="col-md-3 video mb-1">
-                                    <a href="{{ url('video.id', { 'id':vod.id }) }}" data-toggle="tooltip"
-                                       title="{{ vod.title }}">
-                                        <img class="img-fluid"
-                                             src="//img.youtube.com/vi/{{ vod.videoid }}/mqdefault.jpg"
-                                             alt="{{ vod.title }}">
-                                    </a>
+                                <div class="col-md-3 mb-1">
+                                    <div class="view">
+                                        <img src="//img.youtube.com/vi/{{ vod.videoid }}/mqdefault.jpg" class="img-fluid" alt="{{ vod.title }}">
+                                        <div class="mask pattern-2 flex-center">
+                                            <a href="{{ url('video.id', { 'id':vod.id }) }}" class="white-text stream-title">
+                                                {{ vod.title|slice(0,25) }}...
+                                            </a>
+                                        </div>
+                                    </div>
                                 </div>
                             {% endfor %}
                         </div>
