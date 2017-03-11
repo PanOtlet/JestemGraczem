@@ -119,11 +119,11 @@ game.pokemon:
     type:     annotation
     prefix:   /game/pokemon
 
-# WykopBundle
+# ForumBundle
 wykop:
-    resource: "@WykopBundle/Controller/DefaultController.php"
+    resource: "@ForumBundle/Controller/DefaultController.php"
     type:     annotation
-    prefix:   /mikroblog
+    prefix:   /forum
 
 
 #SYSTEM

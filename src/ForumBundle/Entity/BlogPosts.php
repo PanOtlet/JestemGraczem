@@ -1,16 +1,16 @@
 <?php
 
-namespace WykopBundle\Entity;
+namespace ForumBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * BlogComments
+ * BlogPosts
  *
- * @ORM\Table(name="blog_comments")
+ * @ORM\Table(name="blog_posts")
  * @ORM\Entity
  */
-class BlogComments
+class BlogPosts
 {
     /**
      * @var int
@@ -22,11 +22,11 @@ class BlogComments
     private $id;
 
     /**
-     * @var int
+     * @var string
      *
-     * @ORM\Column(name="postId", type="integer")
+     * @ORM\Column(name="title", type="string", length=255)
      */
-    private $postId;
+    private $title;
 
     /**
      * @var int
@@ -36,9 +36,16 @@ class BlogComments
     private $author;
 
     /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="date", type="datetime")
+     */
+    private $date;
+
+    /**
      * @var string
      *
-     * @ORM\Column(name="text", type="string", length=512)
+     * @ORM\Column(name="text", type="text")
      */
     private $text;
 
@@ -54,27 +61,27 @@ class BlogComments
     }
 
     /**
-     * Set postId
+     * Set title
      *
-     * @param integer $postId
+     * @param string $title
      *
-     * @return BlogComments
+     * @return BlogPosts
      */
-    public function setPostId($postId)
+    public function setTitle($title)
     {
-        $this->postId = $postId;
+        $this->title = $title;
 
         return $this;
     }
 
     /**
-     * Get postId
+     * Get title
      *
-     * @return int
+     * @return string
      */
-    public function getPostId()
+    public function getTitle()
     {
-        return $this->postId;
+        return $this->title;
     }
 
     /**
@@ -82,7 +89,7 @@ class BlogComments
      *
      * @param integer $author
      *
-     * @return BlogComments
+     * @return BlogPosts
      */
     public function setAuthor($author)
     {
@@ -102,11 +109,35 @@ class BlogComments
     }
 
     /**
+     * Set date
+     *
+     * @param \DateTime $date
+     *
+     * @return BlogPosts
+     */
+    public function setDate($date)
+    {
+        $this->date = $date;
+
+        return $this;
+    }
+
+    /**
+     * Get date
+     *
+     * @return \DateTime
+     */
+    public function getDate()
+    {
+        return $this->date;
+    }
+
+    /**
      * Set text
      *
      * @param string $text
      *
-     * @return BlogComments
+     * @return BlogPosts
      */
     public function setText($text)
     {
