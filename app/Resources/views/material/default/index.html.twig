@@ -155,7 +155,7 @@
                                 <div class="view overlay hm-white-slight">
                                     <img src="{{ app.request.basePath }}{{ vich_uploader_asset(article, 'imageFile', 'NewsBundle\\Entity\\News') }}"
                                          class="img-fluid" alt="{{ article.title }}">
-                                    <a href="#">
+                                    <a href="{{ url('article.id',{'id': article.id, 'title': article.title|replace({' ': '-'})}) }}">
                                         <div class="mask"></div>
                                     </a>
                                 </div>
