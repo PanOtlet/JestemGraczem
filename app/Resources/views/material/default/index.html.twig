@@ -1,6 +1,23 @@
 {% extends "material/base.html.twig" %}
 
 {% block beforeBody %}
+    {% for event in events %}
+        <div class="event">
+            {{ event.html|raw }}
+            {% if event.javascript %}
+                <script>{{ event.javascript|raw }}</script>
+            {% endif %}
+            {% if event.css %}
+                <style>{{ event.css|raw }}</style>
+            {% endif %}
+            {% if event.buttonUrl %}
+                <a target="_blank" href="{{ event.buttonUrl }}"
+                   class="btn btn-primary btn-block waves-effect waves-light">
+                    {{ event.buttonText }}
+                </a>
+            {% endif %}
+        </div>
+    {% endfor %}
     <div id="slider" class="carousel slide carousel-fade divShadow" data-ride="carousel">
         <ol class="carousel-indicators">
             {% for slider in sliders %}
@@ -110,7 +127,8 @@
             <div class="swiper-wrapper">
                 <div class="swiper-slide" id="streamLoading">
                     <div class="view">
-                        <img src="http://jestemgraczem.pl/assets/img/bg_defoult.png" class="img-fluid" alt="JestemGraczem Loading">
+                        <img src="http://jestemgraczem.pl/assets/img/bg_defoult.png" class="img-fluid"
+                             alt="JestemGraczem Loading">
                         <div class="mask pattern-1 flex-center">
                             <a class="stream-title" href="#">LOADING</a>
                         </div>
@@ -133,17 +151,20 @@
                 {% for article in articles %}
                     <div class="col-md-4">
                         <div class="card">
-                            <div class="card-header danger-color-dark white-text">
-                                {{ article.title|slice(0,25) }}...
-                            </div>
-                            <div class="card-block">
-                                {% if article.imageName %}
+                            {% if article.imageName %}
+                                <div class="view overlay hm-white-slight">
                                     <img src="{{ app.request.basePath }}{{ vich_uploader_asset(article, 'imageFile', 'NewsBundle\\Entity\\News') }}"
-                                         alt="{{ article.title }}" class="img-fluid">
-                                {% endif %}
-                                <p class="card-text">{{ article.introduction|slice(0,100) }}</p>
+                                         class="img-fluid" alt="{{ article.title }}">
+                                    <a href="#">
+                                        <div class="mask"></div>
+                                    </a>
+                                </div>
+                            {% endif %}
+                            <div class="card-block">
+                                <h4 class="card-title">{{ article.title|slice(0,25) }}</h4>
+                                <p class="card-text">{{ article.introduction|slice(0,100) }}...</p>
                                 <a href="{{ url('article.id',{'id': article.id, 'title': article.title|replace({' ': '-'})}) }}"
-                                   class="btn btn-danger">Czytaj dalej...</a>
+                                   class="btn btn-info">Czytaj dalej...</a>
                             </div>
                         </div>
                     </div>
@@ -209,13 +230,17 @@
                     <div class="container-fluid">
                         <div class="row">
                             {% for vod in video %}
-                                <div class="col-md-3 video mb-1">
-                                    <a href="{{ url('video.id', { 'id':vod.id }) }}" data-toggle="tooltip"
-                                       title="{{ vod.title }}">
-                                        <img class="img-fluid"
-                                             src="//img.youtube.com/vi/{{ vod.videoid }}/mqdefault.jpg"
-                                             alt="{{ vod.title }}">
-                                    </a>
+                                <div class="col-md-3 mb-1">
+                                    <div class="view">
+                                        <img src="//img.youtube.com/vi/{{ vod.videoid }}/mqdefault.jpg"
+                                             class="img-fluid" alt="{{ vod.title }}">
+                                        <div class="mask pattern-2 flex-center">
+                                            <a href="{{ url('video.id', { 'id':vod.id }) }}"
+                                               class="white-text stream-title">
+                                                {{ vod.title|slice(0,25) }}...
+                                            </a>
+                                        </div>
+                                    </div>
                                 </div>
                             {% endfor %}
                         </div>
@@ -226,42 +251,42 @@
     </div>
 
     {#<div id="socialMedia">#}
-        {#<div class="container-fluid">#}
-            {#<div class="row">#}
-                {#<div class="col-md-4">#}
-                    {#<div class="card card-block">#}
-                        {#<div id="fb-root"></div>#}
-                        {#<div class="fb-page" data-href="https://www.facebook.com/jestemgraczempl/"#}
-                             {#data-small-header="false"#}
-                             {#data-adapt-container-width="true" data-hide-cover="false" data-show-facepile="false">#}
-                            {#<blockquote cite="https://www.facebook.com/jestemgraczempl/" class="fb-xfbml-parse-ignore">#}
-                                {#<a#}
-                                        {#href="https://www.facebook.com/jestemgraczempl/">JestemGraczem.pl</a>#}
-                            {#</blockquote>#}
-                        {#</div>#}
-                    {#</div>#}
-                {#</div>#}
+    {#<div class="container-fluid">#}
+    {#<div class="row">#}
+    {#<div class="col-md-4">#}
+    {#<div class="card card-block">#}
+    {#<div id="fb-root"></div>#}
+    {#<div class="fb-page" data-href="https://www.facebook.com/jestemgraczempl/"#}
+    {#data-small-header="false"#}
+    {#data-adapt-container-width="true" data-hide-cover="false" data-show-facepile="false">#}
+    {#<blockquote cite="https://www.facebook.com/jestemgraczempl/" class="fb-xfbml-parse-ignore">#}
+    {#<a#}
+    {#href="https://www.facebook.com/jestemgraczempl/">JestemGraczem.pl</a>#}
+    {#</blockquote>#}
+    {#</div>#}
+    {#</div>#}
+    {#</div>#}
 
-                {#<div class="col-md-4">#}
-                    {#<div class="card card-block">#}
-                        {#<div class="g-ytsubscribe" data-channelid="UCwyKvaFQcBfJ7dCxM_uX5EQ" data-layout="full"#}
-                             {#data-count="default"></div>#}
-                        {#<br>#}
-                        {#<div class="g-ytsubscribe" data-channel="PanOtlet" data-layout="full"#}
-                             {#data-count="default"></div>#}
-                    {#</div>#}
-                {#</div>#}
+    {#<div class="col-md-4">#}
+    {#<div class="card card-block">#}
+    {#<div class="g-ytsubscribe" data-channelid="UCwyKvaFQcBfJ7dCxM_uX5EQ" data-layout="full"#}
+    {#data-count="default"></div>#}
+    {#<br>#}
+    {#<div class="g-ytsubscribe" data-channel="PanOtlet" data-layout="full"#}
+    {#data-count="default"></div>#}
+    {#</div>#}
+    {#</div>#}
 
-                {#<div class="col-md-4">#}
-                    {#<div class="card card-block">#}
-                        {#<div class="g-page" data-href="//plus.google.com/u/4/116516903644267522146"#}
-                             {#data-layout="landscape"#}
-                             {#data-rel="publisher"></div>#}
-                    {#</div>#}
-                {#</div>#}
+    {#<div class="col-md-4">#}
+    {#<div class="card card-block">#}
+    {#<div class="g-page" data-href="//plus.google.com/u/4/116516903644267522146"#}
+    {#data-layout="landscape"#}
+    {#data-rel="publisher"></div>#}
+    {#</div>#}
+    {#</div>#}
 
-            {#</div>#}
-        {#</div>#}
+    {#</div>#}
+    {#</div>#}
     {#</div>#}
 {% endblock %}
 

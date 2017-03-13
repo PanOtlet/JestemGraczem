@@ -10,6 +10,15 @@ easy_admin:
                     - { property: 'promoted', label: 'admin.promoted'}
                     - { property: 'title', label: 'admin.title'}
                     - { property: 'author', label: 'admin.author'}
+        FeaturedEvents:
+            label: admin.featuredevents
+            class: AppBundle\Entity\FeaturedEvents
+            list:
+                fields:
+                    - 'id'
+                    - { property: 'date', label: 'admin.date'}
+                    - { property: 'name', label: 'admin.name'}
+                    - { property: 'buttonText', label: 'admin.text'}
         Sliders:
             label: admin.sliders
             class: AppBundle\Entity\Slider

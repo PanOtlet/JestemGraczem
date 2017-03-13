@@ -10,7 +10,7 @@ use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 use Symfony\Component\HttpFoundation\Request;
-use WykopBundle\Entity\BlogPosts;
+use ForumBundle\Entity\BlogPosts;
 
 class DefaultController extends Controller
 {
@@ -35,6 +35,11 @@ class DefaultController extends Controller
 
         $mems = $this->getDoctrine()->getRepository('AppBundle:Meme')->findBy(['promoted' => true], ['id' => 'DESC'], 6);
 
+        $featuredEvents = $this->getDoctrine()
+            ->getManager()
+            ->createQuery('SELECT e FROM AppBundle:FeaturedEvents e WHERE e.date > CURRENT_TIMESTAMP()')
+            ->getResult();
+
         $video = $this->getDoctrine()->getRepository('AppBundle:Video')->createQueryBuilder('m')
             ->where('m.promoted = 1')
             ->orderBy('m.id', 'DESC')
@@ -54,7 +59,8 @@ class DefaultController extends Controller
             'mems' => $mems,
             'video' => $video,
             'avatar' => $avatar,
-            'sliders' => $sliders
+            'sliders' => $sliders,
+            'events' => $featuredEvents
         ]);
     }
 
@@ -137,7 +143,7 @@ class DefaultController extends Controller
                 'label' => false,
             ])
             ->add('save', SubmitType::class, [
-                'label' => 'mikroblog.add',
+                'label' => 'forum.add',
                 'attr' => [
                     'class' => 'btn btn-danger'
                 ]

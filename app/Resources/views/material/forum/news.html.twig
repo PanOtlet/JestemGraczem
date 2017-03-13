@@ -16,7 +16,7 @@
                         {{ post.text|raw }}
                     </div>
                 </div>
-                <div class="fb-like" data-href="{{ url('mikroblog.id',{'id': post.id}) }}"
+                <div class="fb-like" data-href="{{ url('forum.id',{'id': post.id}) }}"
                      data-layout="standard" data-action="like" data-show-faces="false"
                      data-share="true"></div>
                 {% for comment in comments %}

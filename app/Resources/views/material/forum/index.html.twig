@@ -3,7 +3,7 @@
 {% block body %}
     <div class="divider-new">
         <h2 class="h2-responsive wow bounceIn">
-            Mikroblogi <a href="{{ url('mikroblog.add') }}" class="btn btn-primary">Dodaj nowy</a>
+            Forum <a href="{{ url('forum.add') }}" class="btn btn-primary">Dodaj nowy</a>
         </h2>
     </div>
     <div class="container">
@@ -13,7 +13,7 @@
                 <div class="container-fluid">
                     <div class="list-group">
                         {% for blog in pagination %}
-                            <a href="{{ url('mikroblog.id', {'id': blog.id}) }}" class="list-group-item">
+                            <a href="{{ url('forum.id', {'id': blog.id}) }}" class="list-group-item">
                                 <h4 class="list-group-item-heading">{{ blog.title }}</h4>
                                 <p class="list-group-item-text">
                                     {{ blog.text|slice(0,100)|striptags }}
