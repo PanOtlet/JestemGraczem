@@ -40,7 +40,7 @@
         </a>
     </li>
 </ul>
-<ul class="sidebar-nav-login">=
+<ul class="sidebar-nav-login">
     {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
         <li>
             <a href="{{ url('user',{'user': app.user.username}) }}">
