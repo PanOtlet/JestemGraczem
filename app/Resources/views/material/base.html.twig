@@ -137,6 +137,7 @@
         <div class="loader-section section-right"></div>
     </div>
 
+    {% include('material/parts/navbar.html.twig') %}
     <div id="wrapper">
         <div id="sidebar-wrapper">
             {% block navbar %}
@@ -196,7 +197,7 @@
 
         <script>
             $(document).ready(function () {
-                $("#menu-toggle").click(function(e) {
+                $("#menu-toggle").click(function (e) {
                     e.preventDefault();
                     $("#wrapper").toggleClass("toggled");
                 });
