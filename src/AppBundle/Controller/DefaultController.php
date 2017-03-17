@@ -37,7 +37,7 @@ class DefaultController extends Controller
 
         $featuredEvents = $this->getDoctrine()
             ->getManager()
-            ->createQuery('SELECT e FROM AppBundle:FeaturedEvents e WHERE e.startdate < CURRENT_TIMESTAMP() AND WHERE e.date > CURRENT_TIMESTAMP()')
+            ->createQuery('SELECT e FROM AppBundle:FeaturedEvents e WHERE e.startDate < CURRENT_TIMESTAMP() AND e.date > CURRENT_TIMESTAMP()')
             ->getResult();
 
         $video = $this->getDoctrine()->getRepository('AppBundle:Video')->createQueryBuilder('m')
