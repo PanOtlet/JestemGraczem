@@ -62,63 +62,6 @@ status:
     type:     annotation
     prefix:   /status
 
-#GameBundle
-
-game:
-    resource: "@GameBundle/Controller/DefaultController.php"
-    type:     annotation
-    prefix:   /game
-
-game.lol:
-    resource: "@GameBundle/Controller/LoLController.php"
-    type:     annotation
-    prefix:   /game/lol
-
-game.csgo:
-    resource: "@GameBundle/Controller/CSGOController.php"
-    type:     annotation
-    prefix:   /game/csgo
-
-game.hots:
-    resource: "@GameBundle/Controller/HotSController.php"
-    type:     annotation
-    prefix:   /game/hots
-
-game.wow:
-    resource: "@GameBundle/Controller/WoWController.php"
-    type:     annotation
-    prefix:   /game/wow
-
-game.overwatch:
-    resource: "@GameBundle/Controller/OverwatchController.php"
-    type:     annotation
-    prefix:   /game/overwatch
-
-game.hs:
-    resource: "@GameBundle/Controller/HearthstoneController.php"
-    type:     annotation
-    prefix:   /game/hearthstone
-
-game.wot:
-    resource: "@GameBundle/Controller/WoTController.php"
-    type:     annotation
-    prefix:   /game/wot
-
-game.gta:
-    resource: "@GameBundle/Controller/GTAController.php"
-    type:     annotation
-    prefix:   /game/gta
-
-game.dota:
-    resource: "@GameBundle/Controller/DotaController.php"
-    type:     annotation
-    prefix:   /game/dota
-
-game.pokemon:
-    resource: "@GameBundle/Controller/PokemonController.php"
-    type:     annotation
-    prefix:   /game/pokemon
-
 # ForumBundle
 wykop:
     resource: "@ForumBundle/Controller/DefaultController.php"

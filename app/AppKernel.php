@@ -28,7 +28,7 @@ class AppKernel extends Kernel
             new AppBundle\AppBundle(),
             new ApiBundle\ApiBundle(),
             new TurniejBundle\TurniejBundle(),
-            new GameBundle\GameBundle(),
+//            new GameBundle\GameBundle(),
             new NewsBundle\NewsBundle(),
             new ForumBundle\ForumBundle(),
         ];

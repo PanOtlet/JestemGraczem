@@ -35,10 +35,10 @@
                         <div class="flex-center animated fadeInDown">
                             <ul>
                                 <li>
-                                    <h1 class="h1-responsive tag purple">{{ slider.title }}</h1>
+                                    <h1 class="h1-responsive tag elegant-color">{{ slider.title }}</h1>
                                 </li>
                                 <li>
-                                    <p class="tag purple">{{ slider.description }}</p>
+                                    <p class="tag elegant-color">{{ slider.description }}</p>
                                 </li>
                                 {% if slider.buttonUrl %}
                                     <li>
@@ -171,7 +171,7 @@
                 {% endfor %}
             </div>
 
-            <a href="{{ url('articles') }}" class="btn btn-block btn-purple waves-effect">
+            <a href="{{ url('articles') }}" class="btn btn-block btn-elegant waves-effect">
                 Czytaj więcej...
             </a>
         </div>
@@ -249,45 +249,6 @@
             </div>
         </div>
     </div>
-
-    {#<div id="socialMedia">#}
-    {#<div class="container-fluid">#}
-    {#<div class="row">#}
-    {#<div class="col-md-4">#}
-    {#<div class="card card-block">#}
-    {#<div id="fb-root"></div>#}
-    {#<div class="fb-page" data-href="https://www.facebook.com/jestemgraczempl/"#}
-    {#data-small-header="false"#}
-    {#data-adapt-container-width="true" data-hide-cover="false" data-show-facepile="false">#}
-    {#<blockquote cite="https://www.facebook.com/jestemgraczempl/" class="fb-xfbml-parse-ignore">#}
-    {#<a#}
-    {#href="https://www.facebook.com/jestemgraczempl/">JestemGraczem.pl</a>#}
-    {#</blockquote>#}
-    {#</div>#}
-    {#</div>#}
-    {#</div>#}
-
-    {#<div class="col-md-4">#}
-    {#<div class="card card-block">#}
-    {#<div class="g-ytsubscribe" data-channelid="UCwyKvaFQcBfJ7dCxM_uX5EQ" data-layout="full"#}
-    {#data-count="default"></div>#}
-    {#<br>#}
-    {#<div class="g-ytsubscribe" data-channel="PanOtlet" data-layout="full"#}
-    {#data-count="default"></div>#}
-    {#</div>#}
-    {#</div>#}
-
-    {#<div class="col-md-4">#}
-    {#<div class="card card-block">#}
-    {#<div class="g-page" data-href="//plus.google.com/u/4/116516903644267522146"#}
-    {#data-layout="landscape"#}
-    {#data-rel="publisher"></div>#}
-    {#</div>#}
-    {#</div>#}
-
-    {#</div>#}
-    {#</div>#}
-    {#</div>#}
 {% endblock %}
 
 {% block stylesheets %}
@@ -313,7 +274,6 @@
     <script src="{{ asset('assets/js/ads.js') }}"></script>
     <script src="{{ asset('assets/js/homepage.js') }}"></script>
     <script src="https://vjs.zencdn.net/5.12.6/video.js"></script>
-    <link rel="stylesheet" href="{{ asset('assets/material/css/videojs.css') }}">
     <script src="https://apis.google.com/js/platform.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/3.4.1/js/swiper.jquery.min.js"></script>
     <script>

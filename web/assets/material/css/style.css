@@ -28,7 +28,7 @@ body {
     height: 100%;
     margin-left: -250px;
     overflow-y: auto;
-    background: #4a148c;
+    background: #2E2E2E;
     /*-webkit-transition: all 0.5s ease;*/
     /*-moz-transition: all 0.5s ease;*/
     /*-o-transition: all 0.5s ease;*/
@@ -360,12 +360,15 @@ footer.page-footer {
 
 .divider-new {
     margin: 0;
-    background-color: #4a148c;
+    background-color: #2E2E2E;
     color: #fff;
 }
 
 .stream-title {
     color: white;
-    text-shadow: 0 0 3px #000, 0 0 5px #670477;
+    text-shadow: 0 0 3px #000, 0 0 5px #2E2E2E;
 }
 
+.navbar {
+    border-radius: 0;
+}

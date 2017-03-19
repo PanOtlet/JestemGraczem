@@ -1,87 +1,8 @@
-<nav class="navbar navbar-dark deep-purple">
+<nav class="navbar navbar-dark elegant-color">
     <button class="navbar-toggler hidden-sm-up" type="button" data-toggle="collapse" data-target="#collapseEx">
         <i class="fa fa-bars"></i></button>
-    <div class="container">
+    <div class="container-fluid">
         <div class="collapse navbar-toggleable-xs" id="collapseEx">
-            <ul class="nav navbar-nav">
-                <a href="{{ url('homepage') }}" class="navbar-brand">
-                    <img src="{{ asset('assets/img/Logo3.png') }}" style="max-height: 30px"
-                         alt="JestemGraczem Logo">
-                    JestemGraczem.pl
-                </a>
-                <li class="nav-item">
-                    <a class="nav-link disabled" data-toggle="tooltip" title="Turnieje już wkrótce!"
-                       data-placement="bottom">
-                        <i class="fa fa-trophy" aria-hidden="true"></i> <span class="hide-md">Turnieje</span>
-                    </a>
-                </li>
-                {#<li class="nav-item btn-group">#}
-                {#<a class="nav-link dropdown-toggle" id="dropdownTurnieje" data-toggle="dropdown"#}
-                {#aria-haspopup="true" aria-expanded="false">Turnieje</a>#}
-                {#<div class="dropdown-menu" aria-labelledby="dropdownTurnieje">#}
-                {#<a href="{{ url('tournament') }}" class="dropdown-item">#}
-                {#<i class="fa fa-trophy" aria-hidden="true"></i>#}
-                {#{{ 'nav.turnaments'|trans }}#}
-                {#</a>#}
-                {#<a href="{{ url('team') }}" class="dropdown-item">#}
-                {#<i class="fa fa-users" aria-hidden="true"></i>#}
-                {#{{ 'nav.teams'|trans }}#}
-                {#</a>#}
-                {#</div>#}
-                {#</li>#}
-                <li class="nav-item">
-                    <a class="nav-link" href="{{ url('centrum') }}">
-                                <span data-toggle="tooltip" title="{{ 'nav.center'|trans }}" data-placement="bottom">
-                                    <i class="fa fa-gamepad" aria-hidden="true"></i>
-                                    <span class="hide-md">{{ 'nav.center'|trans }}</span>
-                                </span>
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="{{ url('rss') }}">
-                                <span data-toggle="tooltip" title="{{ 'nav.rss'|trans }}" data-placement="bottom">
-                                    <i class="fa fa-rss-square" aria-hidden="true"></i>
-                                    <span class="hide-md">{{ 'nav.rss'|trans }}</span>
-                                </span>
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="{{ url('articles') }}">
-                                <span data-toggle="tooltip" title="{{ 'nav.news'|trans }}" data-placement="bottom">
-                                    <i class="fa fa-newspaper-o" aria-hidden="true"></i> <span
-                                            class="hide-md">{{ 'nav.news'|trans }}</span>
-                                </span>
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="{{ url('forum') }}">
-                                <span data-toggle="tooltip" title="Forum" data-placement="bottom">
-                                    <i class="fa fa-commenting-o" aria-hidden="true"></i> <span class="hide-md">Forum</span>
-                                </span>
-                    </a>
-                </li>
-                <li class="nav-item btn-group">
-                    <a class="nav-link dropdown-toggle" id="dropdownFun" data-toggle="dropdown"
-                       aria-haspopup="true" aria-expanded="false">
-                                <span data-toggle="tooltip" title="Strefa Rozrywki" data-placement="bottom">
-                                    <i class="fa fa-smile-o" aria-hidden="true"></i> <span class="hide-md">Strefa Rozrywki</span>
-                                </span>
-                    </a>
-                    <div class="dropdown-menu" aria-labelledby="dropdownFun">
-                        <h6 class="dropdown-header">Strefa rozrywki</h6>
-                        <a href="{{ url('mem') }}" class="dropdown-item">
-                            <i class="fa fa-picture-o" aria-hidden="true"></i> {{ 'nav.meme'|trans }}
-                        </a>
-                        <a href="{{ url('stream') }}" class="dropdown-item disabled">
-                            <i class="fa fa-twitch" aria-hidden="true"></i> {{ 'nav.streams'|trans }}
-                        </a>
-                        <a href="{{ url('video') }}" class="dropdown-item">
-                            <i class="fa fa-youtube-play" aria-hidden="true"></i> {{ 'nav.video'|trans }}
-                        </a>
-                    </div>
-                </li>
-            </ul>
-
             <ul class="nav navbar-nav nav-flex-icons">
                 {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
                     <li class="nav-item btn-group">
@@ -156,10 +77,10 @@
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="{{ url('status') }}">
-                                <span data-toggle="tooltip" title="{{ 'nav.status'|trans }}" data-placement="bottom">
-                                    <i class="fa fa-power-off" aria-hidden="true"></i>
-                                    <span class="hide-md">{{ 'nav.status'|trans }}</span>
-                                </span>
+                        <span data-toggle="tooltip" title="{{ 'nav.status'|trans }}" data-placement="bottom">
+                            <i class="fa fa-power-off" aria-hidden="true"></i>
+                            <span class="hide-md">{{ 'nav.status'|trans }}</span>
+                        </span>
                     </a>
                 </li>
             </ul>
