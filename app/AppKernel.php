@@ -25,10 +25,10 @@ class AppKernel extends Kernel
             new Payum\Bundle\PayumBundle\PayumBundle(),
             new Ivory\CKEditorBundle\IvoryCKEditorBundle(),
             new Vich\UploaderBundle\VichUploaderBundle(),
+//            new Liip\ImagineBundle\LiipImagineBundle(),
             new AppBundle\AppBundle(),
             new ApiBundle\ApiBundle(),
             new TurniejBundle\TurniejBundle(),
-//            new GameBundle\GameBundle(),
             new NewsBundle\NewsBundle(),
             new ForumBundle\ForumBundle(),
         ];
