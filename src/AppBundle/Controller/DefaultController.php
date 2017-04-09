@@ -90,7 +90,7 @@ class DefaultController extends Controller
      * @param $user
      * @return \Symfony\Component\HttpFoundation\Response
      */
-    public function userSiteAction(Request $request, $user)
+    public function userSiteAction($user)
     {
 
         $em = $this->getDoctrine()->getRepository('AppBundle:User');
@@ -129,20 +129,6 @@ class DefaultController extends Controller
             throw $this->createNotFoundException('Nie ma takiego użytkownika!');
         }
 
-        $form = $this->createFormBuilder($post)
-            ->add('text', TextareaType::class, [
-                'label' => false,
-            ])
-            ->add('save', SubmitType::class, [
-                'label' => 'forum.add',
-                'attr' => [
-                    'class' => 'btn btn-danger'
-                ]
-            ])
-            ->getForm();
-
-        $form->handleRequest($request);
-
         $seo = $this->container->get('sonata.seo.page');
         $seo->setTitle('Profil: ' . $user['username'] . ' :: JestemGraczem.pl')
             ->addMeta('name', 'description', "Profil użytkownika " . $user['username'] . " na portalu JestemGraczem.pl")
@@ -151,8 +137,7 @@ class DefaultController extends Controller
             ->addMeta('property', 'og:url', $this->get('router')->generate('user', ['user' => $user['username']], UrlGeneratorInterface::ABSOLUTE_URL));
 
         return $this->render($this->getParameter('theme') . '/default/user.html.twig', [
-            'user' => $user,
-            'form' => $form->createView()
+            'user' => $user
         ]);
     }
 
