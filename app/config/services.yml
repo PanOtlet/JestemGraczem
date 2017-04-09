@@ -23,7 +23,14 @@ services:
         tags:
             - { name: "kernel.event_subscriber", priority: 100 }
     app.sitemap.cms_subscriber:
-        class:     AppBundle\EventListener\SitemapCmsPostSubscriber
+        class:     AppBundle\EventListener\SitemapCmsSubscriber
+        arguments:
+            - "@router"
+            - "@doctrine.orm.entity_manager"
+        tags:
+            - { name: "kernel.event_subscriber", priority: 100 }
+    app.sitemap.users_subscriber:
+        class:     AppBundle\EventListener\SitemapUsersSubscriber
         arguments:
             - "@router"
             - "@doctrine.orm.entity_manager"

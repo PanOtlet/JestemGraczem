@@ -129,8 +129,6 @@ class DefaultController extends Controller
             throw $this->createNotFoundException('Nie ma takiego użytkownika!');
         }
 
-        $post = new BlogPosts();
-
         $form = $this->createFormBuilder($post)
             ->add('text', TextareaType::class, [
                 'label' => false,
