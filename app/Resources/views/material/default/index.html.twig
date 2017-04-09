@@ -123,7 +123,7 @@
                     {% endif %}
                     {% if mem.url | slice(-4) == '.mp4' or mem.url | slice(-5) == '.webm' %}
                         <div class="col-md-6">
-                            <div class="embed-responsive embed-responsive-16by9 m-b-1">
+                            <div class="embed-responsive embed-responsive-16by9 mb-1">
                                 <video id="promotedMemes" class="video-js embed-responsive-item" controls preload="auto"
                                        data-setup="{}">
                                     <source src="{{ asset('assets/mem/') ~ mem.url }}" type="video/mp4"
