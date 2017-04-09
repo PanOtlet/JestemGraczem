@@ -283,12 +283,16 @@ footer.page-footer {
     margin-bottom: 1rem;
 }
 
-@media screen and (min-width: 769px) {
-    .img-mem {
-        max-height: 202px;
-        min-width: 360px;
-    }
+.img-mem {
+    display: block;
+    margin: auto;
 }
+/*@media screen and (min-width: 769px) {*/
+    /*.img-mem {*/
+        /*max-height: 500px;*/
+        /*min-width: 360px;*/
+    /*}*/
+/*}*/
 
 #newestmems, #videoFluidContainer {
     margin-top: 1rem;

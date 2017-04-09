@@ -28,9 +28,8 @@ class AppKernel extends Kernel
 //            new Liip\ImagineBundle\LiipImagineBundle(),
             new AppBundle\AppBundle(),
             new ApiBundle\ApiBundle(),
-            new TurniejBundle\TurniejBundle(),
+//            new TurniejBundle\TurniejBundle(),
             new NewsBundle\NewsBundle(),
-            new ForumBundle\ForumBundle(),
         ];
 
         if (in_array($this->getEnvironment(), ['dev', 'test'], true)) {

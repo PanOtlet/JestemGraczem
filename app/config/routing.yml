@@ -10,20 +10,20 @@ app:
 
 #TurniejBundle
 
-turniej:
-    resource: "@TurniejBundle/Controller/"
-    type:     annotation
-    prefix:   /turniej
-
-team:
-    resource: "@TurniejBundle/Controller/TeamController.php"
-    type:     annotation
-    prefix:   /druzyny
-
-division:
-    resource: "@TurniejBundle/Controller/DivisionController.php"
-    type:     annotation
-    prefix:   /dywizja
+#turniej:
+#    resource: "@TurniejBundle/Controller/"
+#    type:     annotation
+#    prefix:   /turniej
+#
+#team:
+#    resource: "@TurniejBundle/Controller/TeamController.php"
+#    type:     annotation
+#    prefix:   /druzyny
+#
+#division:
+#    resource: "@TurniejBundle/Controller/DivisionController.php"
+#    type:     annotation
+#    prefix:   /dywizja
 
 #NewsBundle
 
@@ -39,11 +39,6 @@ api:
     type:     annotation
     prefix:   /api
 #    schemes:  [https]
-
-api.lol:
-    resource: "@ApiBundle/Controller/LoLController.php"
-    type:     annotation
-    prefix:   /api/lol
 
 #Default
 
@@ -61,13 +56,6 @@ status:
     resource: "@AppBundle/Controller/StatusController.php"
     type:     annotation
     prefix:   /status
-
-# ForumBundle
-wykop:
-    resource: "@ForumBundle/Controller/DefaultController.php"
-    type:     annotation
-    prefix:   /forum
-
 
 #SYSTEM
 

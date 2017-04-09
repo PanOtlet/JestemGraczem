@@ -46,6 +46,9 @@
                     </div>
                 {% endif %}
             {% endfor %}
+            <a href="{{ url('articles') }}" class="btn btn-block btn-outline-danger waves-effect">
+                Czytaj więcej...
+            </a>
         </div>
     </div>
 {% endblock %}
@@ -60,7 +63,7 @@
                 <div class="swiper-wrapper">
                     <div class="swiper-slide" id="streamLoading">
                         <div class="view">
-                            <img src="http://jestemgraczem.pl/assets/img/bg_defoult.png" class="img-fluid"
+                            <img src="{{ asset('assets/img/bg_defoult.png') }}" class="img-fluid"
                                  alt="JestemGraczem Loading">
                             <div class="mask pattern-1 flex-center">
                                 <a class="stream-title" href="#">LOADING</a>
@@ -78,39 +81,35 @@
             </div>
         </div>
 
-        <div id="news" class="divShadow">
-            <div class="container-fluid">
-                <div class="row">
-                    {% for article in articles %}
-                        <div class="col-md-4">
-                            <div class="card">
-                                {% if article.imageName %}
-                                    <div class="view overlay hm-white-slight">
-                                        <img src="{{ app.request.basePath }}{{ vich_uploader_asset(article, 'imageFile', 'NewsBundle\\Entity\\News') }}"
-                                             class="img-fluid" alt="{{ article.title }}">
-                                        <a href="{{ url('article.id',{'id': article.id, 'title': article.title|replace({' ': '-'})}) }}">
-                                            <div class="mask"></div>
-                                        </a>
-                                    </div>
-                                {% endif %}
-                                <div class="card-block">
-                                    <h4 class="card-title">{{ article.title|slice(0,25) }}</h4>
-                                    <p class="card-text">{{ article.introduction|slice(0,100) }}...</p>
-                                    <a href="{{ url('article.id',{'id': article.id, 'title': article.title|replace({' ': '-'})}) }}"
-                                       class="btn btn-info">Czytaj dalej...</a>
-                                </div>
-                            </div>
-                        </div>
-                    {% endfor %}
-                </div>
+        {#<div id="news" class="divShadow">#}
+            {#<div class="container-fluid">#}
+                {#<div class="row">#}
+                    {#{% for article in articles %}#}
+                        {#<div class="col-md-4">#}
+                            {#<div class="card">#}
+                                {#{% if article.imageName %}#}
+                                    {#<div class="view overlay hm-white-slight">#}
+                                        {#<img src="{{ app.request.basePath }}{{ vich_uploader_asset(article, 'imageFile', 'NewsBundle\\Entity\\News') }}"#}
+                                             {#class="img-fluid" alt="{{ article.title }}">#}
+                                        {#<a href="{{ url('article.id',{'id': article.id, 'title': article.title|replace({' ': '-'})}) }}">#}
+                                            {#<div class="mask"></div>#}
+                                        {#</a>#}
+                                    {#</div>#}
+                                {#{% endif %}#}
+                                {#<div class="card-block">#}
+                                    {#<h4 class="card-title">{{ article.title|slice(0,25) }}</h4>#}
+                                    {#<p class="card-text">{{ article.introduction|slice(0,100) }}...</p>#}
+                                    {#<a href="{{ url('article.id',{'id': article.id, 'title': article.title|replace({' ': '-'})}) }}"#}
+                                       {#class="btn btn-info">Czytaj dalej...</a>#}
+                                {#</div>#}
+                            {#</div>#}
+                        {#</div>#}
+                    {#{% endfor %}#}
+                {#</div>#}
+            {#</div>#}
+        {#</div>#}
 
-                <a href="{{ url('articles') }}" class="btn btn-block btn-elegant waves-effect">
-                    Czytaj więcej...
-                </a>
-            </div>
-        </div>
-
-        <div id="newestmems" class="container p-t-1">
+        <div id="newestmems" class="container">
             <div class="row">
                 <a href="{{ url('mem.all') }}">
                     <h3>
@@ -119,11 +118,11 @@
                     </h3>
                 </a>
                 {% for mem in mems %}
-                    {% if loop.index == 1 or loop.index == 4 %}
-                        <div class="row">
+                    {% if loop.index == 1 or loop.index == 3 or loop.index == 5 %}
+                        <div class="row mb-1">
                     {% endif %}
                     {% if mem.url | slice(-4) == '.mp4' or mem.url | slice(-5) == '.webm' %}
-                        <div class="col-md-4">
+                        <div class="col-md-6">
                             <div class="embed-responsive embed-responsive-16by9 m-b-1">
                                 <video id="promotedMemes" class="video-js embed-responsive-item" controls preload="auto"
                                        data-setup="{}">
@@ -136,7 +135,7 @@
                             </div>
                         </div>
                     {% else %}
-                        <div class="col-md-4">
+                        <div class="col-md-6">
                             <a href="{{ url('mem.id', { 'id':mem.id }) }}" data-toggle="tooltip"
                                title="{{ mem.title }}">
                                 <img class="img-fluid img-mem mb-1" src="{{ asset('assets/mem/') ~ mem.url }}"
@@ -144,7 +143,7 @@
                             </a>
                         </div>
                     {% endif %}
-                    {% if loop.index == 3 or loop.index == 6 %}
+                    {% if loop.index == 2 or loop.index == 4 or loop.index == 6 %}
                         </div>
                     {% endif %}
                 {% endfor %}

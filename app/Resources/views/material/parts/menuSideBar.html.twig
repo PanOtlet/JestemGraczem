@@ -12,19 +12,14 @@
         </a>
     </li>
     <li>
-        <a href="{{ url('forum') }}">
-            <i class="fa fa-commenting-o" aria-hidden="true"></i> Dyskusje
-        </a>
-    </li>
-    <li>
         <a href="{{ url('mem') }}">
             <i class="fa fa-picture-o" aria-hidden="true"></i> {{ 'nav.meme'|trans }}
         </a>
     </li>
     {#<li>#}
-        {#<a href="{{ url('stream') }}">#}
-            {#<i class="fa fa-twitch" aria-hidden="true"></i> {{ 'nav.streams'|trans }}#}
-        {#</a>#}
+    {#<a href="{{ url('stream') }}">#}
+    {#<i class="fa fa-twitch" aria-hidden="true"></i> {{ 'nav.streams'|trans }}#}
+    {#</a>#}
     {#</li>#}
     <li>
         <a href="{{ url('video') }}">
@@ -36,6 +31,10 @@
             <i class="fa fa-rss-square" aria-hidden="true"></i> {{ 'nav.rss'|trans }}
         </a>
     </li>
+    <a href="http://jestemgraczem.dev/app_dev.php/redirect?url=https%3A//23games.pl">
+        <img src="{{ asset('assets/img/banner_23Games.png') }}" alt="23Games" class="hidden-lg-down"
+             style="max-width: 75%;display:block;margin: auto">
+    </a>
 </ul>
 <ul class="sidebar-nav-login">
     {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
@@ -72,17 +71,17 @@
     {% else %}
         <li>
             <a href="{{ url('fos_user_security_login') }}">
-                {{ 'layout.login'|trans({}, 'FOSUserBundle') }}
+                <i class="fa fa-user" aria-hidden="true"></i> {{ 'layout.login'|trans({}, 'FOSUserBundle') }}
             </a>
         </li>
         <li>
             <a href="{{ url('fos_user_registration_register') }}">
-                {{ 'account.register'|trans }} {{ 'account.now'|trans }}
+                <i class="fa fa-user-plus" aria-hidden="true"></i> {{ 'account.register'|trans }} {{ 'account.now'|trans }}
             </a>
         </li>
         <li>
             <a href="{{ url('fos_user_resetting_request') }}">
-                {{ 'account.forgotpass'|trans }}
+                <i class="fa fa-user-md" aria-hidden="true"></i> {{ 'account.forgotpass'|trans }}
             </a>
         </li>
     {% endif %}
