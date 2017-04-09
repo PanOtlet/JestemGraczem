@@ -8,7 +8,7 @@ use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 use Presta\SitemapBundle\Event\SitemapPopulateEvent;
 use Presta\SitemapBundle\Sitemap\Url\UrlConcrete;
 
-class SitemapCmsPostSubscriber implements EventSubscriberInterface
+class SitemapCmsSubscriber implements EventSubscriberInterface
 {
     /**
      * @var UrlGeneratorInterface
