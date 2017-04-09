@@ -1,0 +1,89 @@
+<nav class="navbar navbar-dark elegant-color">
+    <button class="navbar-toggler hidden-sm-up" type="button" data-toggle="collapse" data-target="#collapseEx">
+        <i class="fa fa-bars"></i></button>
+    <div class="container-fluid">
+        <div class="collapse navbar-toggleable-xs" id="collapseEx">
+            <ul class="nav navbar-nav nav-flex-icons">
+                {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+                    <li class="nav-item btn-group">
+                        <a class="nav-link dropdown-toggle" id="dropdownUser" data-toggle="dropdown"
+                           aria-haspopup="true" aria-expanded="false">
+                            {#<i class="fa fa-user"></i>#}
+                            <img src="https://www.gravatar.com/avatar/{{ app.user.email|md5 }}"
+                                 style="max-height: 30px"
+                                 alt="JestemGraczem Gravatar">
+                            {{ app.user.username }}
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="dropdownUser">
+                            {% if is_granted('ROLE_ADMIN') %}
+                                <a class="dropdown-item" href="{{ url('easyadmin') }}" target="_blank">
+                                    <i class="fa fa-terminal" aria-hidden="true"></i> AdminCP
+                                </a>
+                            {% endif %}
+                            <a class="dropdown-item" href="{{ url('user',{'user': app.user.username}) }}">
+                                <i class="fa fa-user"
+                                   aria-hidden="true"></i> {{ 'profile.publicprofil'|trans({}, 'FOSUserBundle') }}
+                            </a>
+                            <a class="dropdown-item" href="{{ url('fos_user_change_password') }}">
+                                <i class="fa fa-key"
+                                   aria-hidden="true"></i> {{ 'change_password.submit'|trans({}, 'FOSUserBundle') }}
+                            </a>
+                            <a class="dropdown-item" href="{{ url('fos_user_profile_edit') }}">
+                                <i class="fa fa-pencil"
+                                   aria-hidden="true"></i> {{ 'profile.edit.edit'|trans({}, 'FOSUserBundle') }}
+                            </a>
+                            <a class="dropdown-item" href="{{ url('fos_user_security_logout') }}">
+                                <i class="fa fa-sign-out"
+                                   aria-hidden="true"></i> {{ 'layout.logout'|trans({}, 'FOSUserBundle') }}
+                            </a>
+                        </div>
+                    </li>
+                {% else %}
+                    <li class="nav-item btn-group">
+                        <a class="nav-link dropdown-toggle" id="dropdownUser" data-toggle="dropdown"
+                           aria-haspopup="true" aria-expanded="false">
+                            <i class="fa fa-user"></i>
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="dropdownUser">
+                            <a class="dropdown-item" href="{{ url('fos_user_security_login') }}">
+                                {{ 'layout.login'|trans({}, 'FOSUserBundle') }}
+                            </a>
+                            <a class="dropdown-item" href="{{ url('fos_user_registration_register') }}">
+                                {{ 'account.register'|trans }} {{ 'account.now'|trans }}
+                            </a>
+                            <a class="dropdown-item" href="{{ url('fos_user_resetting_request') }}">
+                                {{ 'account.forgotpass'|trans }}
+                            </a>
+                        </div>
+                    </li>
+                {% endif %}
+                <li class="nav-item">
+                    <a href="https://youtube.com/PanOtlet" target="_blank"
+                       class="nav-link waves-effect waves-light">
+                        <i class="fa fa-youtube"></i>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="https://twitter.com/PanOtlet" target="_blank"
+                       class="nav-link waves-effect waves-light">
+                        <i class="fa fa-twitter"></i>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="https://facebook.com/JestemGraczemPL" target="_blank"
+                       class="nav-link waves-effect waves-light">
+                        <i class="fa fa-facebook"></i>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ url('status') }}">
+                        <span data-toggle="tooltip" title="{{ 'nav.status'|trans }}" data-placement="bottom">
+                            <i class="fa fa-power-off" aria-hidden="true"></i>
+                            <span class="hide-md">{{ 'nav.status'|trans }}</span>
+                        </span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>

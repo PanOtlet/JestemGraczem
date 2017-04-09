@@ -1,26 +1,46 @@
-turniej:
-    resource: "@TurniejBundle/Controller/"
+app:
+    resource: "@AppBundle/Controller/"
     type:     annotation
-    prefix:   /turniej
+#    schemes:  [https]
 
-team:
-    resource: "@TurniejBundle/Controller/TeamController.php"
-    type:     annotation
-    prefix:   /druzyny
+#nelmio_security:
+#    path:     /nelmio/csp/report
+#    defaults: { _controller: nelmio_security.csp_reporter_controller:indexAction }
+#    methods:  [POST]
 
-division:
-    resource: "@TurniejBundle/Controller/DivisionController.php"
+#TurniejBundle
+
+#turniej:
+#    resource: "@TurniejBundle/Controller/"
+#    type:     annotation
+#    prefix:   /turniej
+#
+#team:
+#    resource: "@TurniejBundle/Controller/TeamController.php"
+#    type:     annotation
+#    prefix:   /druzyny
+#
+#division:
+#    resource: "@TurniejBundle/Controller/DivisionController.php"
+#    type:     annotation
+#    prefix:   /dywizja
+
+#NewsBundle
+
+news:
+    resource: "@NewsBundle/Controller/DefaultController.php"
     type:     annotation
-    prefix:   /dywizja
+    prefix:   /news
+
+#API
 
 api:
     resource: "@ApiBundle/Controller/"
     type:     annotation
     prefix:   /api
+#    schemes:  [https]
 
-app:
-    resource: "@AppBundle/Controller/"
-    type:     annotation
+#Default
 
 cms:
     resource: "@AppBundle/Controller/CMSController.php"
@@ -37,9 +57,18 @@ status:
     type:     annotation
     prefix:   /status
 
+#SYSTEM
+
 fos_user:
     resource: "@FOSUserBundle/Resources/config/routing/all.xml"
 easy_admin_bundle:
     resource: "@EasyAdminBundle/Controller/"
     type:     annotation
-    prefix:   /admin
+    prefix:   /siemaeniu
+payum_capture:
+    resource: "@PayumBundle/Resources/config/routing/capture.xml"
+payum_notify:
+    resource: "@PayumBundle/Resources/config/routing/notify.xml"
+PrestaSitemapBundle:
+    resource: "@PrestaSitemapBundle/Resources/config/routing.yml"
+    prefix:   /

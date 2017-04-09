@@ -2,18 +2,22 @@
 
 namespace AppBundle\Controller;
 
+use Ivory\CKEditorBundle\Form\Type\CKEditorType;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\Form\Extension\Core\Type\SubmitType;
+use Symfony\Component\Form\Extension\Core\Type\TextareaType;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
-use AppBundle\Model\SitemapIterator;
+use Symfony\Component\HttpFoundation\Request;
+use ForumBundle\Entity\BlogPosts;
 
 class DefaultController extends Controller
 {
 
-    protected $color = "green";
-
     /**
-     * @Route("/", name="homepage")
+     * @Route("/", name="homepage", options={"sitemap" = true})
+     * @return \Symfony\Component\HttpFoundation\Response
      */
     public function indexAction()
     {
@@ -23,66 +27,117 @@ class DefaultController extends Controller
             ->addMeta('property', 'og:title', 'Strona główna :: JestemGraczem.pl')
             ->addMeta('property', 'og:url', $this->get('router')->generate('homepage', [], UrlGeneratorInterface::ABSOLUTE_URL));
 
-        $meme = $this->getDoctrine()->getRepository('AppBundle:Meme')->findOneBy(['promoted' => true], ['id' => 'DESC']);
-        $stream = $this->getDoctrine()->getRepository('AppBundle:User')->findBy(['partner' => true]);
+        $articles = $this->getDoctrine()->getRepository('NewsBundle:News')->createQueryBuilder('m')
+            ->where('m.promoted = 1')
+            ->orderBy('m.id', 'DESC')
+            ->setMaxResults(3)
+            ->getQuery()->getResult();
+
+        $mems = $this->getDoctrine()->getRepository('AppBundle:Meme')->findBy(['promoted' => true], ['id' => 'DESC'], 6);
+
+        $featuredEvents = $this->getDoctrine()
+            ->getManager()
+            ->createQuery('SELECT e FROM AppBundle:FeaturedEvents e WHERE e.startDate < CURRENT_TIMESTAMP() AND e.date > CURRENT_TIMESTAMP()')
+            ->getResult();
 
         $video = $this->getDoctrine()->getRepository('AppBundle:Video')->createQueryBuilder('m')
             ->where('m.promoted = 1')
             ->orderBy('m.id', 'DESC')
-            ->setMaxResults(6)
+            ->setMaxResults(8)
             ->getQuery()->getResult();
 
         $avatar = ($this->getUser()) ? md5($this->getUser()->getEmail()) : md5('thejestemgraczemsquad@gmail.com');
 
-        return $this->render('default/index.html.twig', [
-            'color' => $this->color,
-            'meme' => $meme,
+        return $this->render($this->getParameter('theme') . '/default/index.html.twig', [
+            'articles' => $articles,
+            'mems' => $mems,
             'video' => $video,
-            'stream' => $stream,
-            'avatar' => $avatar
+            'avatar' => $avatar,
+            'events' => $featuredEvents
         ]);
     }
 
     /**
-     * @Route("/redirect", name="redirect")
+     * @Route("/admin", name="adminFakePanel")
+     * @return \Symfony\Component\HttpFoundation\Response
+     */
+    public function adminFakeAction()
+    {
+        return $this->redirect('http://stackoverflow.com/admin.php');
+    }
+
+    /**
+     * @Route("/redirect", name="redirect", options={"sitemap" = true})
+     * @return \Symfony\Component\HttpFoundation\Response
      */
     public function redirectAction()
     {
         if (isset($_GET['url']) && !preg_match('|^http(s)?://[a-z0-9-]+(.[a-z0-9-]+)*(:[0-9]+)?(/.*)?$|i', $_GET['url'])) {
             return $this->redirectToRoute('homepage');
         }
-        return $this->redirect($_GET['url']);
+
+        if (isset($_GET['r']) && $_GET['r'] == TRUE) {
+            return $this->redirect($_GET['url']);
+        }
+
+        return $this->render($this->getParameter('theme') . '/default/frame.html.twig', [
+            'url' => $_GET['url'],
+        ]);
     }
 
     /**
      * @Route("/u/{user}", name="user")
+     * @param $user
+     * @return \Symfony\Component\HttpFoundation\Response
      */
     public function userSiteAction($user)
     {
-        $user = $this->getDoctrine()->getRepository('AppBundle:User')->findOneBy(['username' => $user]);
+
+        $em = $this->getDoctrine()->getRepository('AppBundle:User');
+
+        $user = $em->createQueryBuilder('p')
+            ->select(
+                'p.id',
+                'p.username',
+                'p.twitch',
+                'p.beampro',
+                'p.youtube',
+                'p.partner',
+                'p.premium',
+                'p.editor',
+                'p.description',
+                'p.email',
+                'p.steam',
+                'p.battlenet',
+                'p.lol',
+                'p.steam',
+                'p.wot',
+                'p.roles',
+                'p.localization',
+                'p.profilePicturePath'
+            )
+            ->where('p.username = :user')
+            ->setParameter('user', $user)
+            ->getQuery()
+            ->getOneOrNullResult();
 
         if (!$user) {
+            $this->addFlash(
+                'error',
+                'Kurde, nie znaleźliśmy tego co poszukujesz :('
+            );
             throw $this->createNotFoundException('Nie ma takiego użytkownika!');
         }
 
-        $meme = $this->getDoctrine()->getRepository('AppBundle:Meme')->findOneBy(['user' => $user->getId()]);
-        $video = $this->getDoctrine()->getRepository('AppBundle:Video')->findOneBy(['user' => $user->getId()]);
-
         $seo = $this->container->get('sonata.seo.page');
-        $seo->setTitle('Profil: ' . $user->getUsername() . ' :: JestemGraczem.pl')
-            ->addMeta('name', 'description', "Profil użytkownika " . $user->getUsername() . " na portalu JestemGraczem.pl")
-            ->addMeta('property', 'og:title', $user->getUsername())
+        $seo->setTitle('Profil: ' . $user['username'] . ' :: JestemGraczem.pl')
+            ->addMeta('name', 'description', "Profil użytkownika " . $user['username'] . " na portalu JestemGraczem.pl")
+            ->addMeta('property', 'og:title', $user['username'])
             ->addMeta('property', 'og:type', 'profile')
-            ->addMeta('property', 'og:url', $this->get('router')->generate('user', ['user' => $user], UrlGeneratorInterface::ABSOLUTE_URL));
+            ->addMeta('property', 'og:url', $this->get('router')->generate('user', ['user' => $user['username']], UrlGeneratorInterface::ABSOLUTE_URL));
 
-        $avatar = md5($user->getEmail());
-
-        return $this->render('default/user.html.twig', [
-            'color' => $this->color,
-            'user' => $user,
-            'avatar' => $avatar,
-            'meme' => $meme,
-            'video' => $video
+        return $this->render($this->getParameter('theme') . '/default/user.html.twig', [
+            'user' => $user
         ]);
     }
 

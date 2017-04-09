@@ -12,6 +12,7 @@ class ProfileFormType extends AbstractType
         $builder->add('steam')
                 ->add('battlenet')
                 ->add('lol')
+                ->add('beampro')
                 ->add('twitch')
                 ->add('youtube')
                 ->add('localization')

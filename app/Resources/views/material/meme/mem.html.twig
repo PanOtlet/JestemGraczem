@@ -1,0 +1,61 @@
+{% extends "material/base.html.twig" %}
+
+{% block body %}
+    <div class="divider-new">
+        <h2 class="h2-responsive wow bounceIn">
+            {{ mem.title }}
+        </h2>
+    </div>
+    <div class="container">
+        {% block adbanner %}{{ parent() }}{% endblock %}
+        <div class="row">
+            <div class="col-md-8">
+                <div class="meme jumbotron">
+                    {% if mem.url | slice(-4) == '.mp4' or mem.url | slice(-5) == '.webm' %}
+                        <div class="embed-responsive embed-responsive-16by9 shadow">
+                            <video id="promotedMemes" class="video-js embed-responsive-item" controls preload="auto"
+                                   data-setup="{}">
+                                <source src="{{ asset('assets/mem/') ~ mem.url }}" type="video/mp4"
+                                        class="embed-responsive-item">
+                                <p class="vjs-no-js">
+                                    Masz kiepską przeglądarkę! Użyj GOOGLE CHROME!
+                                </p>
+                            </video>
+                        </div>
+                    {% else %}
+                        <img src="{{ asset('assets/mem/') ~ mem.url }}" alt="" class="img-fluid">
+                    {% endif %}
+                    <div class="m-bottom">
+                        <div class="fb-like" data-href="{{ url('mem.id',{'id': mem.id}) }}"
+                             data-layout="standard" data-action="like" data-show-faces="false"
+                             data-share="true"></div>
+                        <small>{{ mem.date.date|date('d/m/Y') }}</small>
+                    </div>
+                    <div id="fb-root"></div>
+                    <script>(function (d, s, id) {
+                            var js, fjs = d.getElementsByTagName(s)[0];
+                            if (d.getElementById(id)) return;
+                            js = d.createElement(s);
+                            js.id = id;
+                            js.src = "//connect.facebook.net/pl_PL/sdk.js#xfbml=1&version=v2.6&appId=1792775277616619";
+                            fjs.parentNode.insertBefore(js, fjs);
+                        }(document, 'script', 'facebook-jssdk'));</script>
+                    <div class="fb-comments" data-href="{{ absolute_url(url('mem.id', {'id': mem.id})) }}"
+                         data-numposts="10"></div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                {% block sidebar %}{{ parent() }}{% endblock %}
+            </div>
+    </div>
+{% endblock %}
+
+{% block stylesheets %}
+    {{  parent() }}
+    <link href="https://vjs.zencdn.net/5.12.6/video-js.css" rel="stylesheet">
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script src="https://vjs.zencdn.net/5.12.6/video.js"></script>
+{% endblock %}

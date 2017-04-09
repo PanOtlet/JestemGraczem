@@ -9,11 +9,8 @@ use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 
 class StreamController extends Controller
 {
-
-    protected $color = "green";
-
     /**
-     * @Route("/stream", name="stream")
+     * @Route("/stream", name="stream", options={"sitemap" = true})
      */
     public function indexAction()
     {
@@ -29,8 +26,7 @@ class StreamController extends Controller
             ->addMeta('property', 'og:description', 'Nudzisz się? Sprawdź audycje na żywo naszych użytkowników!')
             ->addMeta('property', 'og:url', $this->get('router')->generate('stream', [], UrlGeneratorInterface::ABSOLUTE_URL));
 
-        return $this->render('stream/index.html.twig', [
-            'color' => $this->color,
+        return $this->render($this->getParameter('theme') . '/stream/index.html.twig', [
             'promoted' => $promoted,
             'total' => $total
         ]);
@@ -38,6 +34,8 @@ class StreamController extends Controller
 
     /**
      * @Route("/player/{twitch}", name="stream.id")
+     * @param null $twitch
+     * @return \Symfony\Component\HttpFoundation\Response
      */
     public function streamAction($twitch = NULL)
     {
@@ -58,8 +56,7 @@ class StreamController extends Controller
             ->addMeta('property', 'og:description', 'Oglądnij audycję '.$twitch.' na żywo! Najciekawsze audycje na żywo tylko u nas!')
             ->addMeta('property', 'og:url', $this->get('router')->generate('stream', [], UrlGeneratorInterface::ABSOLUTE_URL));
 
-        return $this->render('stream/tv.html.twig', [
-            'color' => $this->color,
+        return $this->render($this->getParameter('theme') . '/stream/tv.html.twig', [
             'stream' => $stream
         ]);
     }

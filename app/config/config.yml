@@ -2,6 +2,8 @@ imports:
     - { resource: parameters.yml }
     - { resource: security.yml }
     - { resource: services.yml }
+    - { resource: admin.yml }
+#    - { resource: secure.yml }
 
 # Put parameters here that don't need to change on each machine where the app is deployed
 # http://symfony.com/doc/current/best_practices/configuration.html#application-related-configuration
@@ -27,6 +29,8 @@ framework:
     trusted_hosts:   ~
     trusted_proxies: ~
     session:
+#        cookie_secure: true
+#        handler_id: nelmio_security.session.handler
         handler_id:  session.handler.native_file
         save_path:   "%kernel.root_dir%/../var/sessions/%kernel.environment%"
     fragments:       ~
@@ -82,6 +86,25 @@ fos_user:
         address:        noreply@jestemgraczem.pl
         sender_name:    JestemGraczem
 
+# Payum configuration
+payum:
+    security:
+        token_storage:
+            TurniejBundle\Entity\PaymentToken: { doctrine: orm }
+
+    storages:
+        TurniejBundle\Entity\Payment: { doctrine: orm }
+
+    gateways:
+        offline:
+            factory: offline
+        paypal:
+            factory: paypal_express_checkout
+            username:  "%paypal_username%"
+            password:  "%paypal_password%"
+            signature: "%paypal_signature%"
+            sandbox: "%paypal_sandbox%"
+
 #SonataSeoBundle
 sonata_seo:
     encoding:         UTF-8
@@ -89,14 +112,19 @@ sonata_seo:
         services:
             - app.sitemap_service
     page:
-        title:            JestemGraczem
+        title:            🐔 JestemGraczem.pl 🐔
 #        default:          sonata.seo.page.default
         metas:
             name:
                 keywords:             jestem,graczem,gry,tworzone,z,pasji,portal,poświęcony,graczom,jestemgraczem,turnieje,stream,youtube,reklama
                 description:          JestemGraczem.pl jest to pierwszy w Polsce portal poświęcony graczom, a nie samym grom!
                 robots:               index, follow
+                author:               Otlet
                 viewport:             width=device-width, initial-scale=1, shrink-to-fit=no
+                'twitter:card':        summary
+                'twitter:site':        "@PanOtlet"
+                'twitter:title':       JestemGraczem.pl
+                'twitter:description': JestemGraczem.pl jest to pierwszy w Polsce portal poświęcony graczom, a nie samym grom!
             property:
                 # Facebook application settings
                 'fb:app_id':          '1792775277616619'
@@ -107,10 +135,13 @@ sonata_seo:
                 'og:site_name':       "JestemGraczem.pl"
                 'og:description':     "JestemGraczem.pl jest to pierwszy w Polsce portal poświęcony graczom, a nie samym grom!"
                 'og:type':            "website"
+                'og:image':           "http://i.imgur.com/Ims7cz0.png"
 
             http-equiv:
                 'Content-Type':         text/html; charset=utf-8
                 #'X-Ua-Compatible':      IE=EmulateIE7
+                'cache-control': 'public'
+                'cache-control': 'max-age=86400'
 
             charset:
                 UTF-8:    ''
@@ -120,61 +151,32 @@ sonata_seo:
             'xmlns:og':           http://opengraphprotocol.org/schema/
             'xmlns:fb':           http://www.facebook.com/2008/fbml
 
-easy_admin:
-    entities:
-        CMS:
-            class: AppBundle\Entity\CMS
-            list:
-                fields:
-                    - 'id'
-                    - { property: 'title', label: 'admin.title'}
-                    - { property: 'url', label: 'admin.url'}
-                    - { property: 'text', label: 'admin.text'}
-        Mems:
-            class: AppBundle\Entity\Meme
-            list:
-                fields:
-                    - 'id'
-                    - { property: 'accept', label: 'admin.accept'}
-                    - { property: 'promoted', label: 'admin.promoted'}
-                    - { property: 'title', label: 'admin.title'}
-                    - { property: 'source', label: 'admin.source'}
-                    - { property: 'url', type: 'image', base_path: 'http://jestemgraczem.pl/assets/mem/', label: 'admin.img' }
-        YouTube:
-            class: AppBundle\Entity\Video
-            list:
-                fields:
-                    - 'id'
-                    - { property: 'title', label: 'admin.title'}
-                    - { property: 'accept', label: 'admin.accept'}
-                    - { property: 'promoted', label: 'admin.promoted'}
-                    - { property: 'videoid', label: 'admin.id'}
-        Uzytkownicy:
-            class: AppBundle\Entity\User
-            list:
-                fields:
-                    - 'id'
-                    - { property: 'username', label: 'admin.username'}
-                    - { property: 'email', label: 'admin.email'}
-                    - { property: 'last_login', label: 'admin.lastlogin', type: 'datetime'}
-                    - { property: 'locked', label: 'admin.locked'}
-                    - { property: 'enabled', label: 'admin.enabled'}
-            form:
-                fields:
-                    - { property: 'username', label: 'admin.username'}
-                    - { property: 'email', label: 'admin.email'}
-                    - { property: 'locked', label: 'admin.locked'}
-                    - { property: 'enabled', label: 'admin.enabled'}
-                    - { property: 'partner', label: 'admin.partner'}
-                    - { property: 'roles', label: 'admin.roles'}
-                    - { property: 'steam', label: 'Steam'}
-                    - { property: 'battlenet', label: 'Battlenet'}
-                    - { property: 'lol', label: 'Lol'}
-                    - { property: 'twitch', label: 'Twitch'}
-                    - { property: 'youtube', label: 'Youtube'}
-                    - { property: 'localization', label: 'Localization'}
-                    - { property: 'description', label: 'Description'}
-        RSS: AppBundle\Entity\News
-    site_name: 'JG Admin'
-    design:
-        brand_color: '#9C27B0'
+# Vich Upload Bundle
+vich_uploader:
+    db_driver: orm
+    mappings:
+        news:
+            uri_prefix:         /assets/images/news
+            upload_destination: '%kernel.root_dir%/../web/assets/images/news'
+            inject_on_load:     false
+            delete_on_update:   true
+            delete_on_remove:   true
+            namer:              vich_uploader.namer_hash
+
+# Twig
+twig:
+    form_themes:
+        - 'VichUploaderBundle:Form:fields.html.twig'
+
+# KNP Pagination
+knp_paginator:
+    page_range: 5
+    default_options:
+        page_name: page
+        sort_field_name: sort
+        sort_direction_name: direction
+        distinct: true
+    template:
+#        pagination: KnpPaginatorBundle:Pagination:sliding.html.twig
+        pagination: material/pagination.html.twig
+        sortable: KnpPaginatorBundle:Pagination:sortable_link.html.twig

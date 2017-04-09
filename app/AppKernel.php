@@ -15,14 +15,22 @@ class AppKernel extends Kernel
             new Symfony\Bundle\SwiftmailerBundle\SwiftmailerBundle(),
             new Doctrine\Bundle\DoctrineBundle\DoctrineBundle(),
             new Sensio\Bundle\FrameworkExtraBundle\SensioFrameworkExtraBundle(),
+//            new Nelmio\SecurityBundle\NelmioSecurityBundle(),
             new FOS\UserBundle\FOSUserBundle(),
             new Sonata\SeoBundle\SonataSeoBundle(),
             new JMS\SerializerBundle\JMSSerializerBundle(),
             new JavierEguiluz\Bundle\EasyAdminBundle\EasyAdminBundle(),
+            new Knp\Bundle\PaginatorBundle\KnpPaginatorBundle(),
             new Knp\Bundle\MarkdownBundle\KnpMarkdownBundle(),
+            new Payum\Bundle\PayumBundle\PayumBundle(),
+            new Ivory\CKEditorBundle\IvoryCKEditorBundle(),
+            new Vich\UploaderBundle\VichUploaderBundle(),
+//            new Liip\ImagineBundle\LiipImagineBundle(),
+            new Presta\SitemapBundle\PrestaSitemapBundle(),
             new AppBundle\AppBundle(),
             new ApiBundle\ApiBundle(),
-            new TurniejBundle\TurniejBundle(),
+//            new TurniejBundle\TurniejBundle(),
+            new NewsBundle\NewsBundle(),
         ];
 
         if (in_array($this->getEnvironment(), ['dev', 'test'], true)) {

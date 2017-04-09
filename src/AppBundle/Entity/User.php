@@ -63,6 +63,28 @@ class User extends BaseUser
      *     groups={"Registration", "Profile"}
      * )
      */
+    protected $wot = null;
+
+    /**
+     * @ORM\Column(type="string", nullable=true)
+     *
+     * @Assert\Length(
+     *     min=3,
+     *     minMessage="The name is too short.",
+     *     groups={"Registration", "Profile"}
+     * )
+     */
+    protected $beampro = null;
+
+    /**
+     * @ORM\Column(type="string", nullable=true)
+     *
+     * @Assert\Length(
+     *     min=3,
+     *     minMessage="The name is too short.",
+     *     groups={"Registration", "Profile"}
+     * )
+     */
     protected $twitch = null;
 
     /**
@@ -88,7 +110,7 @@ class User extends BaseUser
     protected $localization = null;
 
     /**
-     * @ORM\Column(type="string", nullable=true)
+     * @ORM\Column(type="text", nullable=true)
      *
      * @Assert\Length(
      *     min=3,
@@ -97,6 +119,11 @@ class User extends BaseUser
      * )
      */
     protected $description = null;
+
+    /**
+     * @ORM\Column(type="boolean")
+     */
+    protected $subscribeMailingList = true;
 
     /**
      * @Assert\File(maxSize="8M")
@@ -116,6 +143,16 @@ class User extends BaseUser
      */
     protected $partner = 0;
 
+    /**
+     * @ORM\Column(type="boolean", nullable=false)
+     */
+    protected $editor = 0;
+
+    /**
+     * @ORM\Column(type="boolean", nullable=false)
+     */
+    protected $premium = 0;
+
     public function __construct()
     {
         parent::__construct();
@@ -134,6 +171,16 @@ class User extends BaseUser
     public function getLol()
     {
         return $this->lol;
+    }
+
+    public function getWot()
+    {
+        return $this->wot;
+    }
+
+    public function getBeampro()
+    {
+        return $this->beampro;
     }
 
     public function getTwitch()
@@ -161,6 +208,16 @@ class User extends BaseUser
         return $this->partner;
     }
 
+    public function getEditor()
+    {
+        return $this->editor;
+    }
+
+    public function getPremium()
+    {
+        return $this->premium;
+    }
+
     public function setSteam($steam)
     {
         $this->steam = $steam;
@@ -174,6 +231,16 @@ class User extends BaseUser
     public function setLol($lol)
     {
         $this->lol = $lol;
+    }
+
+    public function setWot($wot)
+    {
+        $this->wot = $wot;
+    }
+
+    public function setBeampro($beampro)
+    {
+        $this->beampro = $beampro;
     }
 
     public function setTwitch($twitch)
@@ -199,6 +266,32 @@ class User extends BaseUser
     public function setPartner($partner)
     {
         $this->partner = $partner;
+    }
+
+    public function setEditor($editor)
+    {
+        $this->editor = $editor;
+    }
+
+    public function setPremium($premium)
+    {
+        $this->premium = $premium;
+    }
+
+    /**
+     * @param mixed $subscribeMailingList
+     */
+    public function setSubscribeMailingList($subscribeMailingList)
+    {
+        $this->subscribeMailingList = $subscribeMailingList;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getSubscribeMailingList()
+    {
+        return $this->subscribeMailingList;
     }
 
     /**

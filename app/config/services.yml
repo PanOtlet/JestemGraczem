@@ -8,4 +8,45 @@ services:
 #        class: AppBundle\Directory\ClassName
 #        arguments: ["@another_service_name", "plain_value", "%parameter_name%"]
     app.sitemap_service:
-        class: SitemapIterator
+        class: AppBundle\Model\SitemapIterator
+    app.twig_extension:
+        class: AppBundle\Twig\AppExtension
+        public: false
+        tags:
+            - { name: twig.extension }
+    #SiteMap!
+    app.sitemap.mem_post_subscriber:
+        class:     AppBundle\EventListener\SitemapMemPostSubscriber
+        arguments:
+            - "@router"
+            - "@doctrine.orm.entity_manager"
+        tags:
+            - { name: "kernel.event_subscriber", priority: 100 }
+    app.sitemap.video_post_subscriber:
+        class:     AppBundle\EventListener\SitemapVideoPostSubscriber
+        arguments:
+            - "@router"
+            - "@doctrine.orm.entity_manager"
+        tags:
+            - { name: "kernel.event_subscriber", priority: 100 }
+    app.sitemap.cms_subscriber:
+        class:     AppBundle\EventListener\SitemapCmsSubscriber
+        arguments:
+            - "@router"
+            - "@doctrine.orm.entity_manager"
+        tags:
+            - { name: "kernel.event_subscriber", priority: 20 }
+    app.sitemap.users_subscriber:
+        class:     AppBundle\EventListener\SitemapUsersSubscriber
+        arguments:
+            - "@router"
+            - "@doctrine.orm.entity_manager"
+        tags:
+            - { name: "kernel.event_subscriber", priority: 10 }
+    app.sitemap.news_post_subscriber:
+        class:     NewsBundle\EventListener\SitemapNewsPostSubscriber
+        arguments:
+            - "@router"
+            - "@doctrine.orm.entity_manager"
+        tags:
+            - { name: "kernel.event_subscriber", priority: 100 }

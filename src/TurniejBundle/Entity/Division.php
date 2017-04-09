@@ -53,13 +53,6 @@ class Division
     private $pass;
 
     /**
-     * @var array
-     *
-     * @ORM\Column(name="members", type="json_array")
-     */
-    private $members;
-
-    /**
      * @var string
      *
      * @ORM\Column(name="description", type="string", length=255)

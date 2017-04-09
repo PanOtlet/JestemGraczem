@@ -99,6 +99,6 @@ fabric.properties
 web/assets/user/
 web/assets/team/
 web/assets/mem/
-deploy.php
-composer.lock
+web/assets/images/
+web/sitemap*.xml
 cgi-bin/

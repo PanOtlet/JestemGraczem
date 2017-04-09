@@ -10,15 +10,15 @@ use Symfony\Component\Form\Extension\Core\Type\UrlType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use AppBundle\Entity\Video;
+use AppBundle\Model\YouTube;
 use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 
 class VideoController extends Controller
 {
-
-    protected $color = "green";
-
     /**
-     * @Route("/video/add", name="video.add")
+     * @Route("/video/add", name="video.add", options={"sitemap" = true})
+     * @param Request $request
+     * @return RedirectResponse|\Symfony\Component\HttpFoundation\Response
      */
     public function addAction(Request $request)
     {
@@ -32,14 +32,9 @@ class VideoController extends Controller
 
         if ($form->isSubmitted() && $form->isValid()) {
 
-            $videoId = parse_url($form->get('url')->getViewData(), PHP_URL_QUERY);
-            parse_str($videoId, $videoIdParsed);
+            $video = new YouTube($form->get('url')->getViewData());
 
-            $videoUrl = 'https://www.youtube.com/oembed?url=https://www.youtube.com/watch?v=' . $videoIdParsed['v'];
-
-            $response = substr(get_headers($videoUrl)[0], 9, 3);
-
-            if ($response != "200") {
+            if ($video->HttpStatus() != '200') {
                 $this->addFlash(
                     'error',
                     'Błąd! Film nie istnieje lub nie pochodzi z serwisu YouTube!'
@@ -50,7 +45,7 @@ class VideoController extends Controller
             $data = new Video();
             $data->setUser($this->getUser()->getId());
             $data->setTitle($form->get('title')->getViewData());
-            $data->setVideoid($videoIdParsed['v']);
+            $data->setVideoid($video->getId());
             if ($this->getUser()->getPartner() == 1) {
                 $data->setPromoted(true);
                 $data->setAccept(true);
@@ -78,7 +73,7 @@ class VideoController extends Controller
             ->addMeta('property', 'og:description', 'Dodaj swój własny film do naszej bazy!')
             ->addMeta('property', 'og:url', $this->get('router')->generate('video.add', [], UrlGeneratorInterface::ABSOLUTE_URL));
 
-        return $this->render('video/add.html.twig', [
+        return $this->render($this->getParameter('theme') . '/video/add.html.twig', [
             'color' => $this->color,
             'form' => $form->createView(),
         ]);
@@ -86,6 +81,8 @@ class VideoController extends Controller
 
     /**
      * @Route("/video/poczekalnia/{page}", name="video.wait")
+     * @param int $page
+     * @return \Symfony\Component\HttpFoundation\Response
      */
     public function waitAction($page = 0)
     {
@@ -113,7 +110,7 @@ class VideoController extends Controller
             ->addMeta('property', 'og:description', 'Poczekalnia z najciekawszymi filmami dostępnymi w internecie! Strona ' . $page)
             ->addMeta('property', 'og:url', $this->get('router')->generate('video.wait', ['page' => $page], UrlGeneratorInterface::ABSOLUTE_URL));
 
-        return $this->render('video/index.html.twig', [
+        return $this->render($this->getParameter('theme') . '/video/index.html.twig', [
             'color' => $this->color,
             'videos' => $video,
             'page' => $page
@@ -122,6 +119,8 @@ class VideoController extends Controller
 
     /**
      * @Route("/video/{page}", name="video")
+     * @param int $page
+     * @return \Symfony\Component\HttpFoundation\Response
      */
     public function indexAction($page = 0)
     {
@@ -151,7 +150,7 @@ class VideoController extends Controller
             ->addMeta('property', 'og:description', 'Poszukujesz ciekawych filmów w internecie? Zapraszamy do oglądania twórczości naszych użytkowników! Strona ' . $page)
             ->addMeta('property', 'og:url', $this->get('router')->generate('video.wait', ['page' => $page], UrlGeneratorInterface::ABSOLUTE_URL));
 
-        return $this->render('video/index.html.twig', [
+        return $this->render($this->getParameter('theme') . '/video/index.html.twig', [
             'color' => $this->color,
             'videos' => $video,
             'promoted' => $promoted,
@@ -161,6 +160,8 @@ class VideoController extends Controller
 
     /**
      * @Route("/tv/{id}", name="video.id")
+     * @param $id
+     * @return \Symfony\Component\HttpFoundation\Response
      */
     public function tvAction($id)
     {
@@ -178,11 +179,11 @@ class VideoController extends Controller
         $seo->setTitle($video->getTitle() . ' :: JestemGraczem.pl')
             ->addMeta('name', 'description', 'Film ' . $video->getTitle() . ' dostępny jest na platformie JestemGraczem.pl bez ograniczeń!')
             ->addMeta('property', 'og:title', $video->getTitle())
-            ->addMeta('property', 'og:video', 'https://www.youtube.com/v/' . $video->getVideoid())
+            ->addMeta('property', 'og:image', 'http://img.youtube.com/vi/' . $video->getVideoid() . '/hqdefault.jpg')
             ->addMeta('property', 'og:description', 'Film ' . $video->getTitle() . ' dostępny jest na platformie JestemGraczem.pl bez ograniczeń!')
             ->addMeta('property', 'og:url', $this->get('router')->generate('video.id', ['id' => $id], UrlGeneratorInterface::ABSOLUTE_URL));
 
-        return $this->render('video/tv.html.twig', [
+        return $this->render($this->getParameter('theme') . '/video/tv.html.twig', [
             'color' => $this->color,
             'video' => $video
         ]);

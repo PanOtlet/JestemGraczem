@@ -1,0 +1,242 @@
+{% spaceless %}
+    {% use 'material/blocks.html.twig' %}
+    <!DOCTYPE html>
+    <html lang="pl">
+    <head>
+        {{ sonata_seo_metadatas() }}
+
+        {{ sonata_seo_title() }}
+
+        {% block head %}{% endblock %}
+
+        <script>
+            (function (i, s, o, g, r, a, m) {
+                i['GoogleAnalyticsObject'] = r;
+                i[r] = i[r] || function () {
+                        (i[r].q = i[r].q || []).push(arguments)
+                    };
+                i[r].l = 1 * new Date();
+                a = s.createElement(o);
+                m = s.getElementsByTagName(o)[0];
+                a.async = 1;
+                a.src = g;
+                m.parentNode.insertBefore(a, m)
+            })(window, document, 'script', 'https://www.google-analytics.com/analytics.js', 'ga');
+            ga('create', 'UA-30138329-3', 'auto');
+            ga('send', 'pageview');
+        </script>
+
+        <link rel="apple-touch-icon" sizes="57x57" href="{{ asset('assets/img/favicon/apple-icon-57x57.png') }}">
+        <link rel="apple-touch-icon" sizes="60x60" href="{{ asset('assets/img/favicon/apple-icon-60x60.png') }}">
+        <link rel="apple-touch-icon" sizes="72x72" href="{{ asset('assets/img/favicon/apple-icon-72x72.png') }}">
+        <link rel="apple-touch-icon" sizes="76x76" href="{{ asset('assets/img/favicon/apple-icon-76x76.png') }}">
+        <link rel="apple-touch-icon" sizes="114x114" href="{{ asset('assets/img/favicon/apple-icon-114x114.png') }}">
+        <link rel="apple-touch-icon" sizes="120x120" href="{{ asset('assets/img/favicon/apple-icon-120x120.png') }}">
+        <link rel="apple-touch-icon" sizes="144x144" href="{{ asset('assets/img/favicon/apple-icon-144x144.png') }}">
+        <link rel="apple-touch-icon" sizes="152x152" href="{{ asset('assets/img/favicon/apple-icon-152x152.png') }}">
+        <link rel="apple-touch-icon" sizes="180x180" href="{{ asset('assets/img/favicon/apple-icon-180x180.png') }}">
+        <link rel="icon" type="image/png" sizes="192x192"
+              href="{{ asset('assets/img/favicon/android-icon-192x192.png') }}">
+        <link rel="icon" type="image/png" sizes="32x32" href="{{ asset('assets/img/favicon/favicon-32x32.png') }}">
+        <link rel="icon" type="image/png" sizes="96x96" href="{{ asset('assets/img/favicon/favicon-96x96.png') }}">
+        <link rel="icon" type="image/png" sizes="16x16" href="{{ asset('assets/img/favicon/favicon-16x16.png') }}">
+        <link rel="manifest" href="{{ asset('assets/img/favicon/manifest.json') }}">
+        <meta name="msapplication-TileColor" content="#500472">
+        <meta name="msapplication-TileImage" content="{{ asset('assets/img/favicon/ms-icon-144x144.png') }}">
+        <meta name="theme-color" content="#500472">
+
+        <style>
+            #loader-wrapper {
+                position: fixed;
+                top: 0;
+                left: 0;
+                background: #000;
+                width: 100%;
+                height: 100%;
+                z-index: 1000;
+            }
+
+            #loader {
+                display: block;
+                position: relative;
+                left: 50%;
+                top: 50%;
+                width: 150px;
+                height: 150px;
+                margin: -75px 0 0 -75px;
+                border-radius: 50%;
+                border: 3px solid transparent;
+                border-top-color: #3498db;
+
+                -webkit-animation: spin 2s linear infinite; /* Chrome, Opera 15+, Safari 5+ */
+                animation: spin 2s linear infinite; /* Chrome, Firefox 16+, IE 10+, Opera */
+            }
+
+            #loader:before {
+                content: "";
+                position: absolute;
+                top: 5px;
+                left: 5px;
+                right: 5px;
+                bottom: 5px;
+                border-radius: 50%;
+                border: 3px solid transparent;
+                border-top-color: #e74c3c;
+
+                -webkit-animation: spin 3s linear infinite; /* Chrome, Opera 15+, Safari 5+ */
+                animation: spin 3s linear infinite; /* Chrome, Firefox 16+, IE 10+, Opera */
+            }
+
+            #loader:after {
+                content: "";
+                position: absolute;
+                top: 15px;
+                left: 15px;
+                right: 15px;
+                bottom: 15px;
+                border-radius: 50%;
+                border: 3px solid transparent;
+                border-top-color: #f9c922;
+
+                -webkit-animation: spin 1.5s linear infinite; /* Chrome, Opera 15+, Safari 5+ */
+                animation: spin 1.5s linear infinite; /* Chrome, Firefox 16+, IE 10+, Opera */
+            }
+
+            @-webkit-keyframes spin {
+                0% {
+                    -webkit-transform: rotate(0deg); /* Chrome, Opera 15+, Safari 3.1+ */
+                    -ms-transform: rotate(0deg); /* IE 9 */
+                    transform: rotate(0deg); /* Firefox 16+, IE 10+, Opera */
+                }
+                100% {
+                    -webkit-transform: rotate(360deg); /* Chrome, Opera 15+, Safari 3.1+ */
+                    -ms-transform: rotate(360deg); /* IE 9 */
+                    transform: rotate(360deg); /* Firefox 16+, IE 10+, Opera */
+                }
+            }
+
+            @keyframes spin {
+                0% {
+                    -webkit-transform: rotate(0deg); /* Chrome, Opera 15+, Safari 3.1+ */
+                    -ms-transform: rotate(0deg); /* IE 9 */
+                    transform: rotate(0deg); /* Firefox 16+, IE 10+, Opera */
+                }
+                100% {
+                    -webkit-transform: rotate(360deg); /* Chrome, Opera 15+, Safari 3.1+ */
+                    -ms-transform: rotate(360deg); /* IE 9 */
+                    transform: rotate(360deg); /* Firefox 16+, IE 10+, Opera */
+                }
+            }
+        </style>
+
+    </head>
+    <body>
+    <div id="loader-wrapper">
+        <div id="loader"></div>
+        <div class="loader-section section-left"></div>
+        <div class="loader-section section-right"></div>
+    </div>
+    <div id="wrapper">
+        <div id="sidebar-wrapper">
+            {% block navbar %}
+                {% include('material/parts/menuSideBar.html.twig') %}
+            {% endblock %}
+        </div>
+        <div id="page-content-wrapper">
+            <div class="hidden-md-up">
+                <a href="#menu-toggle" class="btn btn-elegant btn-block" id="menu-toggle">
+                    <i class="fa fa-bars"></i> Menu
+                </a>
+            </div>
+
+            <section id="body">
+
+                {#{% include('material/parts/navbar.html.twig') %}#}
+                {% block beforeBody %}{% endblock %}
+                {% block body %}{% endblock %}
+            </section>
+
+            {% block footer %}
+                {% include('material/parts/footer.html.twig') %}
+            {% endblock %}
+        </div>
+    </div>
+
+    {% block stylesheets %}
+        <link href="{{ asset('assets/material/css/bootstrap.min.css') }}" media="none"
+              onload="if(media!='all')media='all'" rel="stylesheet">
+        <link href="{{ asset('assets/material/css/mdb.min.css') }}" media="none" onload="if(media!='all')media='all'"
+              rel="stylesheet">
+        <link href="{{ asset('assets/material/css/style.css') }}" media="none" onload="if(media!='all')media='all'"
+              rel="stylesheet">
+
+        {% if app.session.flashBag.has('error') or app.session.flashBag.has('info') or app.session.flashBag.has('warning') or app.session.flashBag.has('success') %}
+            <link rel="stylesheet" type="text/css" href="{{ asset('assets/js/sweetalert.css') }}"
+                  media="none" onload="if(media!='all')media='all'" property="stylesheet">
+        {% endif %}
+    {% endblock %}
+
+    {% block javascripts %}
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+        <script src="{{ asset('assets/material/js/tether.min.js') }}"></script>
+        <script src="{{ asset('assets/material/js/bootstrap.min.js') }}"></script>
+        <script src="{{ asset('assets/material/js/mdb.min.js') }}"></script>
+        <script async src="https://use.fontawesome.com/c0b3ee6d21.js"></script>
+        <script src="https://cdn.onesignal.com/sdks/OneSignalSDK.js"></script>
+        <script type="text/javascript" id="cookieinfo"
+                src="//cookieinfoscript.com/js/cookieinfo.min.js"
+                data-close-text="Rozumiem!"
+                data-message="Nasza strona korzysta z plików cookies! Korzystając z niej zgadzasz się na ich wykorzystanie!"
+                data-linkmsg="Regulamin i polityka prywatności"
+                data-moreinfo="{{ url('cms',{'title':'regulamin'}) }}">
+        </script>
+
+        {% if app.session.flashBag.has('error') or app.session.flashBag.has('info') or app.session.flashBag.has('warning') or app.session.flashBag.has('success') %}
+        <script src="{{ asset('assets/js/sweetalert.min.js') }}"></script>
+        {% endif %}
+
+        <script>
+            $(document).ready(function () {
+                $("#menu-toggle").click(function (e) {
+                    e.preventDefault();
+                    $("#wrapper").toggleClass("toggled");
+                });
+
+                {% for flash_message in app.session.flashBag.get('error') %}
+                sweetAlert("Oops...", "{{ flash_message }}", "error");
+                {% endfor %}
+
+                {% for flash_message in app.session.flashBag.get('info') %}
+                sweetAlert("Informacja", "{{ flash_message }}", "info");
+                {% endfor %}
+
+                {% for flash_message in app.session.flashBag.get('warning') %}
+                sweetAlert("Ostrzeżenie", "{{ flash_message }}", "warning");
+                {% endfor %}
+
+                {% for flash_message in app.session.flashBag.get('success') %}
+                sweetAlert("Jupi!", "{{ flash_message }}", "success");
+                {% endfor %}
+
+                $(function () {
+                    $('[data-toggle="tooltip"]').tooltip()
+                });
+
+                var OneSignal = window.OneSignal || [];
+                OneSignal.push(["init", {
+                    appId: "5611cf12-14a7-45d2-8f8f-d767df85e768",
+                    autoRegister: true,
+                    subdomainName: 'jestemgraczem',
+                    notifyButton: {
+                        enable: true
+                    }
+                }]);
+                $("#loader-wrapper").remove();
+            });
+        </script>
+
+    {% endblock %}
+
+    </body>
+    </html>
+{% endspaceless %}

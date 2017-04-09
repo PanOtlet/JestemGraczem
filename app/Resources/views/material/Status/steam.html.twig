@@ -1,0 +1,129 @@
+{% extends "material/base.html.twig" %}
+
+{% block body %}
+    <div class="divider-new">
+        <h2 class="h2-responsive wow bounceIn">
+            Serwery Steam
+        </h2>
+    </div>
+    <div class="container">
+        {% block adbanner %}{{ parent() }}{% endblock %}
+        <div class="col-md-6" id="status">
+            <h3 class="">
+                <span class="">
+                    Steam CMs
+                </span>
+                <span class="pull-right" id="cms">
+
+                </span>
+            </h3>
+
+            <h3 class="">
+                <span class="">
+                    Steam Store
+                </span>
+                <span class="pull-right" id="store">
+
+                </span>
+            </h3>
+
+            <h3 class="">
+                <span class="">
+                    Steam Community
+                </span>
+                <span class="pull-right" id="community">
+
+                </span>
+            </h3>
+
+            <h3 class="">
+                <span class="">
+                    Steam Web API
+                </span>
+                <span class="pull-right" id="webapi">
+
+                </span>
+            </h3>
+
+            <h3 class="">
+                <span class="">
+                    TF2 Services
+                </span>
+                <span class="pull-right" id="tf2">
+
+                </span>
+            </h3>
+
+            <h3 class="">
+                <span class="">
+                    Dota 2 Services
+                </span>
+                <span class="pull-right" id="dota2">
+
+                </span>
+            </h3>
+
+            <h3 class="">
+                <span class="">
+                    CS:GO Services
+                </span>
+                <span class="pull-right" id="csgo">
+
+                </span>
+            </h3>
+
+            <h3 class="">
+                <span class="">
+                    Sessions Logon
+                </span>
+                <span class="pull-right" id="csgo_sessions">
+
+                </span>
+            </h3>
+
+            <h3 class="">
+                <span class="">
+                    Player Inventories
+                </span>
+                <span class="pull-right" id="csgo_community">
+
+                </span>
+            </h3>
+
+            <h3>
+                <span class="">
+                    Matchmaking Scheduler
+                </span>
+                <span class="pull-right" id="csgo_mm_scheduler">
+
+                </span>
+            </h3>
+
+        </div>
+    </div>
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script>
+        var id_array = ["cms", "store", "community", "webapi", "tf2", "dota2", "csgo", "csgo_sessions", "csgo_community", "csgo_mm_scheduler"];
+        setInterval(steam(), 45000);
+
+        function steam() {
+            $.ajax({
+                url: '{{ url('api.steam') }}',
+                dataType: 'json',
+                success: function (data) {
+//                    console.log(data);
+                    for (var i = 0; i < id_array.length; i++) {
+//                        console.log(id_array[i]);
+                        $("#" + id_array[i]).html(data['services'][id_array[i]]['title']);
+                        $("#" + id_array[i]).addClass(data['services'][id_array[i]]['status']);
+                    }
+                }, error: function () {
+                    console.log("Coś poszło nie tak podczas łączenia z api steam");
+                }
+            });
+        }
+    </script>
+{% endblock %}

@@ -18,25 +18,29 @@ security:
             pattern: ^/(_(profiler|wdt)|css|images|js)/
             security: false
         main:
+            remember_me:
+                secret:   '%secret%'
+                lifetime: 604800
+                path:     /
+                secure: true
             pattern: ^/
             form_login:
                 provider: fos_userbundle
+                require_previous_session: false
                 csrf_token_generator: security.csrf.token_manager
 
             logout:       true
             anonymous:    true
 
     access_control:
-#        - { path: ^/, roles: IS_AUTHENTICATED_ANONYMOUSLY, requires_channel: https, host: jestemgraczem\.pl$ }
-#        - { path: ^/, roles: IS_AUTHENTICATED_ANONYMOUSLY, requires_channel: https, host: beta\.jestemgraczem\.pl$ }
-#        - { path: ^/, roles: IS_AUTHENTICATED_ANONYMOUSLY, requires_channel: http, host: localhost$ }
-        - { path: ^/admin/, role: ROLE_ADMIN }
+#        - { path: ^/, requires_channel: https, host: jestemgraczem\.pl$ }
+#        - { path: ^/, requires_channel: https, host: jestemgraczem\.dev }
+#        - { path: ^/*, requires_channel: https }
+        - { path: ^/siemaeniu/, role: ROLE_ADMIN }
         - { path: ^/login$, role: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/register, role: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/resetting, role: IS_AUTHENTICATED_ANONYMOUSLY }
-        - { path: ^/news/add, role: ROLE_USER }
-        - { path: ^/video/add, role: ROLE_USER }
-        - { path: ^/stream/add, role: ROLE_USER }
-        - { path: ^/meme/add, role: ROLE_USER }
-        - { path: ^/druzyny/add, role: ROLE_USER }
-        - { path: ^/dywizja/add, role: ROLE_USER }
+        - { path: ^/.*/add, role: ROLE_USER }
+        - { path: ^/status*, role: ROLE_USER }
+        - { path: ^/turniej/.*/*, role: ROLE_USER }
+#        - { path: ^/turniej/.*/*, role: ROLE_ADMIN }

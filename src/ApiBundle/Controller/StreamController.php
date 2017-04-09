@@ -20,17 +20,18 @@ class StreamController extends Controller
     {
         $em = $this->getDoctrine()->getRepository('AppBundle:User');
 
-        $stream = $em->createQueryBuilder('p')
-            ->select('p.username', 'p.twitch', 'p.partner', 'p.description')
+        $response = $em->createQueryBuilder('p')
+            ->select('p.username', 'p.twitch', 'p.beampro', 'p.partner', 'p.description')
             ->where('p.twitch IS NOT NULL')
-            ->orderBy('p.partner', 'DESC')
+            ->orWhere('p.beampro IS NOT NULL')
+            ->andWhere('p.partner = 1')
             ->getQuery()
             ->getResult();
 
-        if ($stream == NULL) {
+        if (!$response) {
             return new Response(
-                "{name:NULL,status:-1,message:'ERROR 404 - Streamów nie znaleziono!'}",
-                Response::HTTP_NOT_FOUND,
+                "[]",
+                Response::HTTP_OK,
                 ['content-type' => 'application/json']
             );
         }
@@ -47,11 +48,52 @@ class StreamController extends Controller
         $serializer = new Serializer($normalizers, $encoders);
 
         return new Response(
-            $serializer->serialize($stream, 'json'),
+            $serializer->serialize($response, 'json'),
             Response::HTTP_OK,
             ['content-type' => 'application/json']
         );
     }
+
+    /**
+     * @Route("/stream/all", name="api.stream.all")
+     */
+    public function fullAction()
+    {
+        $em = $this->getDoctrine()->getRepository('AppBundle:User');
+
+        $response = $em->createQueryBuilder('p')
+            ->select('p.username', 'p.twitch', 'p.beampro', 'p.partner', 'p.description')
+            ->where('p.twitch IS NOT NULL')
+            ->orWhere('p.beampro IS NOT NULL')
+            ->getQuery()
+            ->getResult();
+
+        if (!$response) {
+            return new Response(
+                "[]",
+                Response::HTTP_OK,
+                ['content-type' => 'application/json']
+            );
+        }
+
+        $encoders = [
+            new XmlEncoder(),
+            new JsonEncoder()
+        ];
+
+        $normalizers = [
+            new ObjectNormalizer()
+        ];
+
+        $serializer = new Serializer($normalizers, $encoders);
+
+        return new Response(
+            $serializer->serialize($response, 'json'),
+            Response::HTTP_OK,
+            ['content-type' => 'application/json']
+        );
+    }
+
     /**
      * @Route("/stream/{name}", name="api.stream.name")
      */

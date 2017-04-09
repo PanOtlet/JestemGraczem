@@ -1,0 +1,121 @@
+easy_admin:
+    entities:
+        Articles:
+            label: admin.articles
+            class: NewsBundle\Entity\News
+            list:
+                fields:
+                    - 'id'
+                    - { property: 'accepted', label: 'admin.accept'}
+                    - { property: 'promoted', label: 'admin.promoted'}
+                    - { property: 'title', label: 'admin.title'}
+                    - { property: 'author', label: 'admin.author'}
+        FeaturedEvents:
+            label: admin.featuredevents
+            class: AppBundle\Entity\FeaturedEvents
+            list:
+                fields:
+                    - 'id'
+                    - { property: 'date', label: 'admin.date'}
+                    - { property: 'name', label: 'admin.name'}
+                    - { property: 'buttonText', label: 'admin.text'}
+        Sliders:
+            label: admin.sliders
+            class: AppBundle\Entity\Slider
+            list:
+                fields:
+                    - 'id'
+                    - { property: 'enabled', label: 'admin.enabled'}
+                    - { property: 'title', label: 'admin.title'}
+        Mems:
+            label: admin.mem
+            class: AppBundle\Entity\Meme
+            list:
+                fields:
+                    - 'id'
+                    - { property: 'accept', label: 'admin.accept'}
+                    - { property: 'promoted', label: 'admin.promoted'}
+                    - { property: 'title', label: 'admin.title'}
+                    - { property: 'source', label: 'admin.source'}
+                    - { property: 'url', type: 'image', base_path: 'http://jestemgraczem.pl/assets/mem/', label: 'admin.img' }
+        YouTube:
+            label: admin.youtube
+            class: AppBundle\Entity\Video
+            list:
+                fields:
+                    - 'id'
+                    - { property: 'title', label: 'admin.title'}
+                    - { property: 'accept', label: 'admin.accept'}
+                    - { property: 'promoted', label: 'admin.promoted'}
+                    - { property: 'videoid', label: 'admin.id'}
+        Users:
+            label: admin.users
+            class: AppBundle\Entity\User
+            list:
+                fields:
+                    - 'id'
+                    - { property: 'username', label: 'admin.username'}
+                    - { property: 'email', label: 'admin.email'}
+                    - { property: 'last_login', label: 'admin.lastlogin', type: 'datetime'}
+                    - { property: 'locked', label: 'admin.locked'}
+                    - { property: 'enabled', label: 'admin.enabled'}
+            form:
+                fields:
+                    - { property: 'username', label: 'admin.username'}
+                    - { property: 'email', label: 'admin.email'}
+                    - { property: 'enabled', label: 'admin.enabled'}
+                    - { property: 'partner', label: 'admin.partner'}
+                    - { property: 'premium', label: 'admin.premium'}
+                    - { property: 'editor', label: 'admin.editor'}
+                    - { property: 'roles', label: 'admin.roles'}
+                    - { property: 'steam', label: 'Steam'}
+                    - { property: 'beampro', label: 'Beam'}
+                    - { property: 'battlenet', label: 'Battlenet'}
+                    - { property: 'lol', label: 'Lol'}
+                    - { property: 'twitch', label: 'Twitch'}
+                    - { property: 'youtube', label: 'Youtube'}
+                    - { property: 'localization', label: 'Localization'}
+                    - { property: 'description', label: 'Description'}
+        CMS:
+            label: admin.cms
+            class: AppBundle\Entity\CMS
+            list:
+                fields:
+                    - 'id'
+                    - { property: 'title', label: 'admin.title'}
+                    - { property: 'url', label: 'admin.url'}
+                    - { property: 'text', label: 'admin.text'}
+#        Teams:
+#            label: admin.team
+#            class: TurniejBundle\Entity\Team
+#            list:
+#                fields:
+#                    - 'id'
+#                    - { property: 'owner', label: 'turniej.owner'}
+#                    - { property: 'name', label: 'turniej.name'}
+#                    - { property: 'tag', label: 'turniej.tag'}
+#                    - { property: 'logo', type: 'image', base_path: 'http://jestemgraczem.pl/assets/team/logo/', label: 'admin.img' }
+#        Division:
+#            label: admin.division
+#            class: TurniejBundle\Entity\Division
+#            list:
+#                fields:
+#                    - 'id'
+#                    - { property: 'team', label: 'turniej.team'}
+#                    - { property: 'name', label: 'turniej.name'}
+#                    - { property: 'tag', label: 'turniej.tag'}
+#                    - { property: 'pass', label: 'turniej.pass'}
+#                    - { property: 'members', label: 'turniej.members'}
+#                    - { property: 'descriptions', label: 'turniej.opis'}
+#        Tournaments:
+#            label: admin.turnieje
+#            class: TurniejBundle\Entity\Turnieje
+#        Entry:
+#            label: admin.entry
+#            class: TurniejBundle\Entity\EntryTournament
+        RSS:
+            label: admin.rss
+            class: AppBundle\Entity\News
+    site_name: 'JG Admin'
+    design:
+        brand_color: '#9C27B0'
