@@ -26,3 +26,7 @@ parameters:
 
     # A theme style
     theme: legacy
+
+    #Sitemap URL
+    router.request_context.host:   jestemgraczem.pl
+    router.request_context.scheme: http
