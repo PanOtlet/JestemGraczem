@@ -410,3 +410,8 @@ footer.page-footer {
 .newsImage h2 span.spacer {
     padding: 0 5px;
 }
+
+.img-youtube {
+    width: 100%;
+    margin: auto;
+}

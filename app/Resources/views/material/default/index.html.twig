@@ -166,8 +166,8 @@
                                 {% for vod in video %}
                                     <div class="col-md-3 mb-1">
                                         <div class="view">
-                                            <img src="//img.youtube.com/vi/{{ vod.videoid }}/mqdefault.jpg"
-                                                 class="img-fluid" alt="{{ vod.title }}">
+                                            <img src="//img.youtube.com/vi/{{ vod.videoid }}/hqdefault.jpg"
+                                                 class="img-youtube img-fluid" alt="{{ vod.title }}">
                                             <div class="mask pattern-2 flex-center">
                                                 <a href="{{ url('video.id', { 'id':vod.id }) }}"
                                                    class="white-text stream-title">
