@@ -1312,6 +1312,7 @@
                 "url"
             ],
             "time": "2017-03-20T17:10:46+00:00"
+<<<<<<< HEAD
         },
         {
             "name": "imagine/imagine",
@@ -1369,6 +1370,8 @@
                 "image processing"
             ],
             "time": "2015-09-19T16:54:05+00:00"
+=======
+>>>>>>> 1a0ebd49eceaae0a7a25926d3c3f84bac959f0e5
         },
         {
             "name": "incenteev/composer-parameter-handler",
