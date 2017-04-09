@@ -62,7 +62,9 @@
         "egeloen/ckeditor-bundle": "^4.0",
         "vich/uploader-bundle": "^1.4",
         "knplabs/knp-paginator-bundle": "^2.5",
-        "nelmio/security-bundle": "^2.0"
+        "nelmio/security-bundle": "^2.0",
+        "liip/imagine-bundle": "^1.7",
+        "presta/sitemap-bundle": "^1.5"
     },
     "require-dev": {
         "sensio/generator-bundle": "^3.0",

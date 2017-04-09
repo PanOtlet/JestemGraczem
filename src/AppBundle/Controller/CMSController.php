@@ -8,9 +8,6 @@ use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 
 class CMSController extends Controller
 {
-
-    protected $color = "red";
-
     /**
      * @Route("/{title}", name="cms")
      * @param null $title

@@ -136,7 +136,6 @@
         <div class="loader-section section-left"></div>
         <div class="loader-section section-right"></div>
     </div>
-
     <div id="wrapper">
         <div id="sidebar-wrapper">
             {% block navbar %}
@@ -145,12 +144,14 @@
         </div>
         <div id="page-content-wrapper">
             <div class="hidden-md-up">
-                <a href="#menu-toggle" class="btn btn-purple btn-block" id="menu-toggle">
+                <a href="#menu-toggle" class="btn btn-elegant btn-block" id="menu-toggle">
                     <i class="fa fa-bars"></i> Menu
                 </a>
             </div>
 
             <section id="body">
+
+                {#{% include('material/parts/navbar.html.twig') %}#}
                 {% block beforeBody %}{% endblock %}
                 {% block body %}{% endblock %}
             </section>
@@ -196,7 +197,7 @@
 
         <script>
             $(document).ready(function () {
-                $("#menu-toggle").click(function(e) {
+                $("#menu-toggle").click(function (e) {
                     e.preventDefault();
                     $("#wrapper").toggleClass("toggled");
                 });

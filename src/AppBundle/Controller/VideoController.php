@@ -15,11 +15,8 @@ use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 
 class VideoController extends Controller
 {
-
-    protected $color = "green";
-
     /**
-     * @Route("/video/add", name="video.add")
+     * @Route("/video/add", name="video.add", options={"sitemap" = true})
      * @param Request $request
      * @return RedirectResponse|\Symfony\Component\HttpFoundation\Response
      */

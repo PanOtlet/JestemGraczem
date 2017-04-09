@@ -66,6 +66,13 @@ class FeaturedEvents
     /**
      * @var \DateTime
      *
+     * @ORM\Column(name="startDate", type="datetime")
+     */
+    private $startDate;
+
+    /**
+     * @var \DateTime
+     *
      * @ORM\Column(name="date", type="datetime")
      */
     private $date;
@@ -223,6 +230,22 @@ class FeaturedEvents
     public function getButtonText()
     {
         return $this->buttonText;
+    }
+
+    /**
+     * @param \DateTime $startDate
+     */
+    public function setStartDate($startDate)
+    {
+        $this->startDate = $startDate;
+    }
+
+    /**
+     * @return \DateTime
+     */
+    public function getStartDate()
+    {
+        return $this->startDate;
     }
 
     /**

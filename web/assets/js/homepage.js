@@ -36,7 +36,9 @@ function Stream(url) {
     };
 
     this.antyBlocker = function () {
-        $('a').html('AdBlock zablokował link');
+        $('h1').html('Prosimy o wyłączenie AdBlock!');
+        $('h2').html('Prosimy o wyłączenie AdBlock!');
+        $('h3').html('Prosimy o wyłączenie AdBlock!');
     };
 
     /**
