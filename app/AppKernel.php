@@ -26,6 +26,7 @@ class AppKernel extends Kernel
             new Ivory\CKEditorBundle\IvoryCKEditorBundle(),
             new Vich\UploaderBundle\VichUploaderBundle(),
 //            new Liip\ImagineBundle\LiipImagineBundle(),
+            new Presta\SitemapBundle\PrestaSitemapBundle(),
             new AppBundle\AppBundle(),
             new ApiBundle\ApiBundle(),
 //            new TurniejBundle\TurniejBundle(),

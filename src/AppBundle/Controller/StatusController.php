@@ -9,11 +9,8 @@ use AppBundle\Model\phpTools;
 
 class StatusController extends Controller
 {
-
-    protected $color = "orange";
-
     /**
-     * @Route("/", name="status")
+     * @Route("/", name="status", options={"sitemap" = true})
      * @return \Symfony\Component\HttpFoundation\Response
      */
     public function indexAction()
@@ -30,7 +27,7 @@ class StatusController extends Controller
     }
 
     /**
-     * @Route("/wow", name="status.wow")
+     * @Route("/wow", name="status.wow", options={"sitemap" = true})
      * @return \Symfony\Component\HttpFoundation\Response
      */
     public function wowStatusAction()
@@ -53,7 +50,7 @@ class StatusController extends Controller
     }
 
     /**
-     * @Route("/lol", name="status.lol")
+     * @Route("/lol", name="status.lol", options={"sitemap" = true})
      * @return \Symfony\Component\HttpFoundation\Response
      */
     public function lolStatusAction()
@@ -76,7 +73,7 @@ class StatusController extends Controller
     }
 
     /**
-     * @Route("/steam", name="status.steam")
+     * @Route("/steam", name="status.steam", options={"sitemap" = true})
      * @return \Symfony\Component\HttpFoundation\Response
      */
     public function steamStatusAction()

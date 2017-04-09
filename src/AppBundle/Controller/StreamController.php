@@ -9,11 +9,8 @@ use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 
 class StreamController extends Controller
 {
-
-    protected $color = "green";
-
     /**
-     * @Route("/stream", name="stream")
+     * @Route("/stream", name="stream", options={"sitemap" = true})
      */
     public function indexAction()
     {

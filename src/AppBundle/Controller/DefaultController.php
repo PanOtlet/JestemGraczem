@@ -16,7 +16,7 @@ class DefaultController extends Controller
 {
 
     /**
-     * @Route("/", name="homepage")
+     * @Route("/", name="homepage", options={"sitemap" = true})
      * @return \Symfony\Component\HttpFoundation\Response
      */
     public function indexAction()
@@ -67,7 +67,7 @@ class DefaultController extends Controller
     }
 
     /**
-     * @Route("/redirect", name="redirect")
+     * @Route("/redirect", name="redirect", options={"sitemap" = true})
      * @return \Symfony\Component\HttpFoundation\Response
      */
     public function redirectAction()

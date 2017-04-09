@@ -14,3 +14,18 @@ services:
         public: false
         tags:
             - { name: twig.extension }
+    #SiteMap!
+    app.sitemap.mem_post_subscriber:
+        class:     AppBundle\EventListener\SitemapMemPostSubscriber
+        arguments:
+            - "@router"
+            - "@doctrine.orm.entity_manager"
+        tags:
+            - { name: "kernel.event_subscriber", priority: 100 }
+    app.sitemap.news_post_subscriber:
+        class:     NewsBundle\EventListener\SitemapNewsPostSubscriber
+        arguments:
+            - "@router"
+            - "@doctrine.orm.entity_manager"
+        tags:
+            - { name: "kernel.event_subscriber", priority: 100 }
