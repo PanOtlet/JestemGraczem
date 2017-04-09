@@ -25,12 +25,12 @@ class AppKernel extends Kernel
             new Payum\Bundle\PayumBundle\PayumBundle(),
             new Ivory\CKEditorBundle\IvoryCKEditorBundle(),
             new Vich\UploaderBundle\VichUploaderBundle(),
+//            new Liip\ImagineBundle\LiipImagineBundle(),
+            new Presta\SitemapBundle\PrestaSitemapBundle(),
             new AppBundle\AppBundle(),
             new ApiBundle\ApiBundle(),
-            new TurniejBundle\TurniejBundle(),
-            new GameBundle\GameBundle(),
+//            new TurniejBundle\TurniejBundle(),
             new NewsBundle\NewsBundle(),
-            new ForumBundle\ForumBundle(),
         ];
 
         if (in_array($this->getEnvironment(), ['dev', 'test'], true)) {

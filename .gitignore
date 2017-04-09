@@ -100,4 +100,5 @@ web/assets/user/
 web/assets/team/
 web/assets/mem/
 web/assets/images/
+web/sitemap*.xml
 cgi-bin/

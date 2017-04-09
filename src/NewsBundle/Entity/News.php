@@ -103,6 +103,13 @@ class News
      */
     private $updatedAt;
 
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="tags", type="string", length=255, nullable=true)
+     */
+    private $tags;
+
 
     /**
      * Get id
@@ -364,6 +371,22 @@ class News
     public function getImageName()
     {
         return $this->imageName;
+    }
+
+    /**
+     * @return string
+     */
+    public function getTags(): string
+    {
+        return $this->tags;
+    }
+
+    /**
+     * @param string $tags
+     */
+    public function setTags(string $tags)
+    {
+        $this->tags = $tags;
     }
 }
 

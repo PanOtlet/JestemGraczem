@@ -13,11 +13,8 @@ use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 
 class NewsController extends Controller
 {
-
-    protected $color = "orange";
-
     /**
-     * @Route("/rss", name="rss")
+     * @Route("/rss", name="rss", options={"sitemap" = true})
      * @param Request $request
      * @return \Symfony\Component\HttpFoundation\Response
      */
@@ -43,7 +40,7 @@ class NewsController extends Controller
     }
 
     /**
-     * @Route("/rss/add", name="rss.add")
+     * @Route("/rss/add", name="rss.add", options={"sitemap" = true})
      * @param Request $request
      * @return \Symfony\Component\HttpFoundation\RedirectResponse|\Symfony\Component\HttpFoundation\Response
      */

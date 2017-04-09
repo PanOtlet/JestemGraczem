@@ -16,7 +16,7 @@ class DefaultController extends Controller
 {
 
     /**
-     * @Route("/", name="homepage")
+     * @Route("/", name="homepage", options={"sitemap" = true})
      * @return \Symfony\Component\HttpFoundation\Response
      */
     public function indexAction()
@@ -37,19 +37,13 @@ class DefaultController extends Controller
 
         $featuredEvents = $this->getDoctrine()
             ->getManager()
-            ->createQuery('SELECT e FROM AppBundle:FeaturedEvents e WHERE e.date > CURRENT_TIMESTAMP()')
+            ->createQuery('SELECT e FROM AppBundle:FeaturedEvents e WHERE e.startDate < CURRENT_TIMESTAMP() AND e.date > CURRENT_TIMESTAMP()')
             ->getResult();
 
         $video = $this->getDoctrine()->getRepository('AppBundle:Video')->createQueryBuilder('m')
             ->where('m.promoted = 1')
             ->orderBy('m.id', 'DESC')
             ->setMaxResults(8)
-            ->getQuery()->getResult();
-
-        $sliders = $this->getDoctrine()->getRepository('AppBundle:Slider')->createQueryBuilder('m')
-            ->where('m.enabled = 1')
-            ->orderBy('m.id', 'DESC')
-            ->setMaxResults(5)
             ->getQuery()->getResult();
 
         $avatar = ($this->getUser()) ? md5($this->getUser()->getEmail()) : md5('thejestemgraczemsquad@gmail.com');
@@ -59,7 +53,6 @@ class DefaultController extends Controller
             'mems' => $mems,
             'video' => $video,
             'avatar' => $avatar,
-            'sliders' => $sliders,
             'events' => $featuredEvents
         ]);
     }
@@ -74,7 +67,7 @@ class DefaultController extends Controller
     }
 
     /**
-     * @Route("/redirect", name="redirect")
+     * @Route("/redirect", name="redirect", options={"sitemap" = true})
      * @return \Symfony\Component\HttpFoundation\Response
      */
     public function redirectAction()
@@ -97,7 +90,7 @@ class DefaultController extends Controller
      * @param $user
      * @return \Symfony\Component\HttpFoundation\Response
      */
-    public function userSiteAction(Request $request, $user)
+    public function userSiteAction($user)
     {
 
         $em = $this->getDoctrine()->getRepository('AppBundle:User');
@@ -136,22 +129,6 @@ class DefaultController extends Controller
             throw $this->createNotFoundException('Nie ma takiego użytkownika!');
         }
 
-        $post = new BlogPosts();
-
-        $form = $this->createFormBuilder($post)
-            ->add('text', TextareaType::class, [
-                'label' => false,
-            ])
-            ->add('save', SubmitType::class, [
-                'label' => 'forum.add',
-                'attr' => [
-                    'class' => 'btn btn-danger'
-                ]
-            ])
-            ->getForm();
-
-        $form->handleRequest($request);
-
         $seo = $this->container->get('sonata.seo.page');
         $seo->setTitle('Profil: ' . $user['username'] . ' :: JestemGraczem.pl')
             ->addMeta('name', 'description', "Profil użytkownika " . $user['username'] . " na portalu JestemGraczem.pl")
@@ -160,8 +137,7 @@ class DefaultController extends Controller
             ->addMeta('property', 'og:url', $this->get('router')->generate('user', ['user' => $user['username']], UrlGeneratorInterface::ABSOLUTE_URL));
 
         return $this->render($this->getParameter('theme') . '/default/user.html.twig', [
-            'user' => $user,
-            'form' => $form->createView()
+            'user' => $user
         ]);
     }
 

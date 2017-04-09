@@ -11,9 +11,6 @@ use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 
 class MemeController extends Controller
 {
-
-    protected $color = "green";
-
     /**
      * @Route("/img/{id}", name="mem.id")
      * @param $id
@@ -57,7 +54,7 @@ class MemeController extends Controller
     }
 
     /**
-     * @Route("/add", name="mem.add")
+     * @Route("/add", name="mem.add", options={"sitemap" = true})
      * @param Request $request
      * @return \Symfony\Component\HttpFoundation\RedirectResponse|\Symfony\Component\HttpFoundation\Response
      */

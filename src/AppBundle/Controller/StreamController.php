@@ -9,11 +9,8 @@ use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 
 class StreamController extends Controller
 {
-
-    protected $color = "green";
-
     /**
-     * @Route("/stream", name="stream")
+     * @Route("/stream", name="stream", options={"sitemap" = true})
      */
     public function indexAction()
     {
@@ -30,7 +27,6 @@ class StreamController extends Controller
             ->addMeta('property', 'og:url', $this->get('router')->generate('stream', [], UrlGeneratorInterface::ABSOLUTE_URL));
 
         return $this->render($this->getParameter('theme') . '/stream/index.html.twig', [
-            'color' => $this->color,
             'promoted' => $promoted,
             'total' => $total
         ]);
@@ -61,7 +57,6 @@ class StreamController extends Controller
             ->addMeta('property', 'og:url', $this->get('router')->generate('stream', [], UrlGeneratorInterface::ABSOLUTE_URL));
 
         return $this->render($this->getParameter('theme') . '/stream/tv.html.twig', [
-            'color' => $this->color,
             'stream' => $stream
         ]);
     }
