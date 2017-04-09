@@ -126,7 +126,7 @@ function Stream(url) {
 
             var mySwiper = new Swiper('.swiper-container', {
                 loop: true,
-                scrollbar: '.swiper-scrollbar',
+                scrollbar: '.stream-scrollbar',
                 slidesPerView: 4,
                 paginationClickable: true,
                 spaceBetween: 30

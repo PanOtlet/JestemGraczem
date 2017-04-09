@@ -15,3 +15,5 @@ parameters:
     paypal_signature: ''
     paypal_sandbox: true
     theme: legacy
+    router.request_context.host:   jestemgraczem.pl
+    router.request_context.scheme: http

@@ -419,3 +419,8 @@ footer.page-footer {
     width: 100%;
     margin: auto;
 }
+
+.meme-swiper .swiper-slide .embed-responsive {
+    min-width: 100%;
+    height: auto;
+}
