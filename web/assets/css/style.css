@@ -287,33 +287,6 @@ footer.page-footer {
     display: block;
     margin: auto;
 }
-/*@media screen and (min-width: 769px) {*/
-    /*.img-mem {*/
-        /*max-height: 500px;*/
-        /*min-width: 360px;*/
-    /*}*/
-/*}*/
-
-#newestmems, #videoFluidContainer {
-    margin-top: 1rem;
-    margin-bottom: 1rem;
-}
-
-#videoFluidContainer {
-    padding: 15px 0 15px 0;
-    background: url("../../img/bg-youtube.png") no-repeat center center fixed;
-    -webkit-background-size: cover;
-    -moz-background-size: cover;
-    -o-background-size: cover;
-    background-size: cover;
-    overflow: hidden;
-    position: relative;
-    cursor: default;
-}
-
-#newestvideos {
-    padding: 1rem;
-}
 
 /*
  * Styl dla swipera przy streamach
@@ -371,7 +344,7 @@ footer.page-footer {
 
 .stream-title {
     color: white;
-    text-shadow: 0 0 3px #000, 0 0 5px #2E2E2E;
+    text-shadow: 0 0 5px #000, 0 0 8px #2E2E2E;
 }
 
 .navbar {

@@ -79,11 +79,22 @@
                 {% endfor %}
             </div>
             <div class="col-md-4">
-                <div class="row wow fadeIn" data-wow-delay="0.2s" style="visibility: visible; animation-delay: 0.2s; animation-name: fadeIn;">
+                <div class="view wow fadeIn" data-wow-delay="0.2s"
+                     style="visibility: visible; animation-delay: 0.2s; animation-name: fadeIn;">
+                    <img src="//img.youtube.com/vi/{{ video.videoid }}/hqdefault.jpg"
+                         class="img-youtube img-fluid" alt="{{ video.title }}">
+                    <div class="mask pattern-2 flex-center">
+                        <a href="{{ url('video.id', { 'id':video.id }) }}"
+                           class="white-text stream-title">
+                            {#{{ video.title|length > 25 ? video.title|slice(0, 25) ~ '...' : video.title }}#}
+                            {{ video.title }}
+                        </a>
+                    </div>
+                </div>
+                <div class="row wow fadeIn" data-wow-delay="0.2s"
+                     style="visibility: visible; animation-delay: 0.2s; animation-name: fadeIn;">
                     <div class="col-md-12">
-                        <h1 class="h1-responsive">Page heading
-                            <small class="text-muted">secondary text</small>
-                        </h1>
+                        <h1 class="h1-responsive">Losowy mem</h1>
                     </div>
                 </div>
                 {% if mem.url | slice(-4) == '.mp4' or mem.url | slice(-5) == '.webm' %}
@@ -104,16 +115,6 @@
                              alt="{{ mem.title }}">
                     </a>
                 {% endif %}
-                <div class="view">
-                    <img src="//img.youtube.com/vi/{{ video.videoid }}/hqdefault.jpg"
-                         class="img-youtube img-fluid" alt="{{ video.title }}">
-                    <div class="mask pattern-2 flex-center">
-                        <a href="{{ url('video.id', { 'id':video.id }) }}"
-                           class="white-text stream-title">
-                            {{ video.title|length > 25 ? video.title|slice(0, 25) ~ '...' : video.title }}
-                        </a>
-                    </div>
-                </div>
             </div>
         </div>
     </div>

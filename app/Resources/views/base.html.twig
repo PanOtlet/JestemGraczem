@@ -163,11 +163,11 @@
     </div>
 
     {% block stylesheets %}
-        <link href="{{ asset('assets/material/css/bootstrap.min.css') }}" media="none"
+        <link href="{{ asset('assets/css/bootstrap.min.css') }}" media="none"
               onload="if(media!='all')media='all'" rel="stylesheet">
-        <link href="{{ asset('assets/material/css/mdb.min.css') }}" media="none" onload="if(media!='all')media='all'"
+        <link href="{{ asset('assets/css/mdb.min.css') }}" media="none" onload="if(media!='all')media='all'"
               rel="stylesheet">
-        <link href="{{ asset('assets/material/css/style.css') }}" media="none" onload="if(media!='all')media='all'"
+        <link href="{{ asset('assets/css/style.css') }}" media="none" onload="if(media!='all')media='all'"
               rel="stylesheet">
 
         {% if app.session.flashBag.has('error') or app.session.flashBag.has('info') or app.session.flashBag.has('warning') or app.session.flashBag.has('success') %}
@@ -178,9 +178,9 @@
 
     {% block javascripts %}
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-        <script src="{{ asset('assets/material/js/tether.min.js') }}"></script>
-        <script src="{{ asset('assets/material/js/bootstrap.min.js') }}"></script>
-        <script src="{{ asset('assets/material/js/mdb.min.js') }}"></script>
+        <script src="{{ asset('assets/js/tether.min.js') }}"></script>
+        <script src="{{ asset('assets/js/bootstrap.min.js') }}"></script>
+        <script src="{{ asset('assets/js/mdb.min.js') }}"></script>
         <script async src="https://use.fontawesome.com/c0b3ee6d21.js"></script>
         <script src="https://cdn.onesignal.com/sdks/OneSignalSDK.js"></script>
         <script type="text/javascript" id="cookieinfo"
