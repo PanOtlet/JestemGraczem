@@ -47,7 +47,7 @@ class MemeController extends Controller
             );
         }
 
-        return $this->render($this->getParameter('theme') . '/meme/mem.html.twig', [
+        return $this->render('meme/mem.html.twig', [
             'color' => $this->color,
             'mem' => $mem
         ]);
@@ -115,7 +115,7 @@ class MemeController extends Controller
             return $this->redirectToRoute('mem.all');
         }
 
-        return $this->render($this->getParameter('theme') . '/meme/add.html.twig', [
+        return $this->render('meme/add.html.twig', [
             'color' => $this->color,
             'form' => $form->createView(),
         ]);
@@ -166,7 +166,7 @@ class MemeController extends Controller
             ->addMeta('property', 'og:description', 'To miejsce na wszystkie memy, które jeszcze nie przeszły walidacji lub pozostaną w czyściu! Strona ' . $page)
             ->addMeta('property', 'og:url', $this->get('router')->generate('mem.all', ['page' => $page], UrlGeneratorInterface::ABSOLUTE_URL));
 
-        return $this->render($this->getParameter('theme') . '/meme/index.html.twig', [
+        return $this->render('meme/index.html.twig', [
             'color' => $this->color,
             'meme' => $mem,
             'page' => $page,
@@ -216,7 +216,7 @@ class MemeController extends Controller
             ->addMeta('property', 'og:description', 'Najlepsze gamingowe memy w całym internecie! Strona ' . $page)
             ->addMeta('property', 'og:url', $this->get('router')->generate('mem', ['page' => $page], UrlGeneratorInterface::ABSOLUTE_URL));
 
-        return $this->render($this->getParameter('theme') . '/meme/index.html.twig', [
+        return $this->render('meme/index.html.twig', [
             'color' => $this->color,
             'meme' => $mem,
             'page' => $page,

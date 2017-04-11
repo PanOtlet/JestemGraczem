@@ -1,0 +1,399 @@
+html,
+body,
+.view {
+    height: 100%;
+}
+
+body {
+    overflow-x: hidden !important;
+}
+
+#wrapper {
+    padding-left: 0;
+    /*-webkit-transition: all 0.5s ease;*/
+    /*-moz-transition: all 0.5s ease;*/
+    /*-o-transition: all 0.5s ease;*/
+    /*transition: all 0.5s ease;*/
+}
+
+#wrapper.toggled {
+    padding-left: 250px;
+}
+
+#sidebar-wrapper {
+    z-index: 1000;
+    position: fixed;
+    left: 250px;
+    width: 0;
+    height: 100%;
+    margin-left: -250px;
+    overflow-y: auto;
+    background: #2E2E2E;
+    /*-webkit-transition: all 0.5s ease;*/
+    /*-moz-transition: all 0.5s ease;*/
+    /*-o-transition: all 0.5s ease;*/
+    /*transition: all 0.5s ease;*/
+}
+
+#wrapper.toggled #sidebar-wrapper {
+    width: 250px;
+}
+
+#page-content-wrapper {
+    width: 100%;
+    position: absolute;
+}
+
+#wrapper.toggled #page-content-wrapper {
+    position: absolute;
+    margin-right: -250px;
+}
+
+.sidebar-nav {
+    position: absolute;
+    top: 0;
+    width: 250px;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.sidebar-nav-login {
+    position: absolute;
+    bottom: 0;
+    width: 250px;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.sidebar-nav li, .sidebar-nav-login li {
+    text-indent: 20px;
+    line-height: 40px;
+}
+
+.sidebar-nav li a, .sidebar-nav-login li a {
+    display: block;
+    text-decoration: none;
+    color: #999999;
+}
+
+.sidebar-nav li a:hover, .sidebar-nav-login li a:hover {
+    text-decoration: none;
+    color: #fff;
+    background: rgba(255, 255, 255, 0.2);
+}
+
+.sidebar-nav li a:active,
+.sidebar-nav li a:focus,
+.sidebar-nav-login li a:active,
+.sidebar-nav-login li a:focus {
+    text-decoration: none;
+}
+
+.sidebar-nav > .sidebar-brand {
+    height: 65px;
+    font-size: 18px;
+    line-height: 60px;
+}
+
+.sidebar-nav > .sidebar-brand a {
+    color: #999999;
+}
+
+.sidebar-nav > .sidebar-brand a:hover {
+    color: #fff;
+    background: none;
+}
+
+@media (min-width: 768px) {
+    #wrapper {
+        padding-left: 250px;
+    }
+
+    #wrapper.toggled {
+        padding-left: 0;
+    }
+
+    #sidebar-wrapper {
+        width: 250px;
+    }
+
+    #wrapper.toggled #sidebar-wrapper {
+        width: 0;
+    }
+
+    #page-content-wrapper {
+        position: relative;
+    }
+
+    #wrapper.toggled #page-content-wrapper {
+        position: relative;
+        margin-right: 0;
+    }
+}
+
+.marginTop {
+    margin-top: 54px;
+}
+
+.marginTop2 {
+    margin-top: 100px;
+}
+
+.marginFor {
+    margin-bottom: 10px;
+}
+
+.navbar {
+    background-color: transparent;
+}
+
+.scrolling-navbar {
+    -webkit-transition: background .5s ease-in-out, padding .5s ease-in-out;
+    -moz-transition: background .5s ease-in-out, padding .5s ease-in-out;
+    transition: background .5s ease-in-out, padding .5s ease-in-out;
+}
+
+.top-nav-collapse {
+    background-color: #1C2331;
+}
+
+footer.page-footer {
+    background-color: #1C2331;
+    margin-top: 2rem;
+}
+
+@media only screen and (max-width: 768px) {
+    .navbar {
+        background-color: #1C2331;
+    }
+}
+
+.flex-center {
+    color: #fff;
+}
+
+.view {
+    background: url("../../img/bease-bg-lol.jpg") no-repeat center center fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    overflow: hidden;
+    position: relative;
+    cursor: default;
+}
+
+#stream .fa {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+    color: #1C2331;
+}
+
+.stream {
+    border: solid 4px #000000;
+    -webkit-filter: grayscale(100%); /* Chrome, Safari, Opera */
+    filter: grayscale(100%);
+}
+
+.stream:hover {
+    border: solid 4px #2b2d2f;
+    -webkit-filter: grayscale(50%); /* Chrome, Safari, Opera */
+    filter: grayscale(50%);
+    cursor: pointer;
+}
+
+.stream-active {
+    border: solid 4px #00008b;
+    -webkit-filter: grayscale(0%); /* Chrome, Safari, Opera */
+    filter: grayscale(0%);
+}
+
+.stream-active:hover {
+    cursor: pointer;
+    border: solid 4px #0000ff;
+    -webkit-filter: grayscale(10%); /* Chrome, Safari, Opera */
+    filter: grayscale(10%);
+}
+
+#streams-container {
+    margin-top: 20px;
+}
+
+#stream-container {
+    padding: 20px;
+    background: url('https://i.imgur.com/4jaiQ2S.png') no-repeat fixed center;
+    background-size: cover;
+}
+
+#news {
+    padding: 20px;
+    background: url('https://i.imgur.com/vzRN4in.jpg') no-repeat fixed center;
+    background-size: cover;
+}
+
+.divShadow {
+    -webkit-box-shadow: 0 0 30px 0 rgba(0, 0, 0, 0.75);
+    -moz-box-shadow: 0 0 30px 0 rgba(0, 0, 0, 0.75);
+    box-shadow: 0 0 30px 0 rgba(0, 0, 0, 0.75);
+}
+
+.marginus {
+    margin: 23px auto 23px auto;
+}
+
+#mems {
+    padding: 15px 0 15px 0;
+    background: url("../../img/bease-bg-lol.jpg") no-repeat center center fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    overflow: hidden;
+    position: relative;
+    cursor: default;
+}
+
+.img-full {
+    display: block;
+    width: 100%;
+}
+
+footer.page-footer {
+    margin-top: 50px;
+}
+
+.white-text a {
+    color: white !important;
+}
+
+@media screen and (min-width: 720px) {
+    .hide-md {
+        display: none !important;
+    }
+}
+
+#media {
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+}
+
+#media .img-thumbnail {
+    margin-bottom: 1rem;
+}
+
+.img-mem {
+    display: block;
+    margin: auto;
+}
+
+/*
+ * Styl dla swipera przy streamach
+ */
+.swiper-container {
+    /*width: 100%;*/
+    /*height: 100%;*/
+}
+
+.swiper-slide {
+    text-align: center;
+    font-size: 18px;
+    /*background: #fff;*/
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: -webkit-flex;
+    display: flex;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    -webkit-justify-content: center;
+    justify-content: center;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    -webkit-align-items: center;
+    align-items: center;
+}
+
+/*
+ * Karuzela newsów
+ */
+.carousel {
+    height: 540px;
+}
+
+@media (max-width: 776px) {
+    .carousel {
+        height: 100%;
+    }
+}
+
+.carousel-item,
+.active {
+    height: 100%;
+}
+
+.carousel-inner {
+    height: 100%;
+}
+
+.divider-new {
+    margin: 0;
+    background-color: #2E2E2E;
+    color: #fff;
+}
+
+.stream-title {
+    color: white;
+    text-shadow: 0 0 5px #000, 0 0 8px #2E2E2E;
+}
+
+.navbar {
+    border-radius: 0;
+}
+
+.newsImage {
+    position: relative;
+    width: 100%;
+}
+
+.newsImage img {
+    width: 100%;
+}
+
+.newsImage h2 {
+    position: absolute;
+    bottom: 2rem;
+    left: 0.1rem;
+    width: 100%;
+}
+
+.newsImage h2 span {
+    color: white;
+    font: bold 24px/45px Helvetica, Sans-Serif;
+    letter-spacing: -1px;
+    background: rgb(0, 0, 0);
+    background: rgba(0, 0, 0, 0.7);
+    padding: 10px;
+}
+
+#newsMiniatures {
+    padding-right: 0;
+}
+
+#newsMiniatures .row .col-md-8, #newsMiniatures .row .col-md-4 {
+    padding: 0 !important;
+}
+
+.newsImage h2 span.spacer {
+    padding: 0 5px;
+}
+
+.img-youtube {
+    width: 100%;
+    margin: auto;
+}
+
+.meme-swiper .swiper-slide .embed-responsive {
+    min-width: 100%;
+    height: auto;
+}

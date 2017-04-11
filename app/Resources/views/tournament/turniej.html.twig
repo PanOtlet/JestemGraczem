@@ -1,0 +1,215 @@
+{% extends "base.html.twig" %}
+
+{% block body %}
+    <div class="container-fluid top p-t-3 p-b-2">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-6 btn-clear-lg p-l-1 ">
+                    <span style="color: #8bc34a;">{{ turniej.name }}</span>
+                </div>
+                {% if turniej.type == 0 and app.user and turniej.owner != app.user.id %}
+                    <div class="col-md-6">
+                        <a href="{{ url('tournament.join', {'id':turniej.id}) }}" type="button"
+                           class="btn btn-green pull-sm-right"><span class="p-x-3">{{ 'tournament.join'|trans }}</span></a>
+                    </div>
+                {% endif %}
+                {% if app.user and turniej.owner == app.user.id %}
+                    <div class="col-md-3">
+                        <a href="{{ url('tournament.id.edit', {'id':turniej.id}) }}" type="button"
+                           class="btn btn-green pull-sm-right"><span class="p-x-3">{{ 'button.edit'|trans }}</span></a>
+                    </div>
+                    <div class="col-md-3">
+                        <a href="{{ url('tournament.id.invite', {'id':turniej.id}) }}" type="button"
+                           class="btn btn-green pull-sm-right"><span
+                                    class="p-x-3">{{ 'tournament.invitation'|trans }}</span></a>
+                    </div>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+    <div class="container p-t-1">
+        <div class="col-md-4">
+            {% if user is not null and user.status == 1 %}
+                <a href="#" type="button" class="btn btn-green btn-block" onclick="fee()">
+                    <span class="p-x-3">{{ 'payment.fee'|trans }}</span>
+                </a>
+            {% endif %}
+            {% if turniej.dyscyplina == 1 %}
+                <div class="btn-white-lg dots m-b-0">
+                    <span class="p-x-1 text"> {{ 'tournament.game'|trans }}</span>
+                </div>
+                <div class="grey-box p-y-1 p-l-1 m-b-1">
+                    <p class="game">{{ 'tournament.csgo'|trans }}</p>
+                </div>
+            {% elseif turniej.dyscyplina == 2 %}
+                <div class="btn-white-lg dots m-b-0">
+                    <span class="p-x-1 text"> {{ 'tournament.game'|trans }}</span>
+                </div>
+                <div class="grey-box p-y-1 p-l-1 m-b-1">
+                    <p class="game">{{ 'tournament.lol'|trans }}</p>
+                </div>
+            {% elseif turniej.dyscyplina == 3 %}
+                <div class="btn-white-lg dots m-b-0">
+                    <span class="p-x-1 text"> {{ 'tournament.game'|trans }}</span>
+                </div>
+                <div class="grey-box p-y-1 p-l-1 m-b-1">
+                    <p class="game">{{ 'tournament.hots'|trans }}</p>
+                </div>
+            {% elseif turniej.dyscyplina == 4 %}
+                <div class="btn-white-lg dots m-b-0">
+                    <span class="p-x-1 text"> {{ 'tournament.game'|trans }}</span>
+                </div>
+                <div class="grey-box p-y-1 p-l-1 m-b-1">
+                    <p class="game">{{ 'tournament.sc2'|trans }}</p>
+                </div>
+            {% elseif turniej.dyscyplina == 5 %}
+                <div class="btn-white-lg dots m-b-0">
+                    <span class="p-x-1 text"> {{ 'tournament.game'|trans }}</span>
+                </div>
+                <div class="grey-box p-y-1 p-l-1 m-b-1">
+                    <p class="game">{{ 'tournament.hs'|trans }}</p>
+                </div>
+            {% elseif turniej.dyscyplina == 6 %}
+                <div class="btn-white-lg dots m-b-0">
+                    <span class="p-x-1 text"> {{ 'tournament.game'|trans }}</span>
+                </div>
+                <div class="grey-box p-y-1 p-l-1 m-b-1">
+                    <p class="game">{{ 'tournament.dota2'|trans }}</p>
+                </div>
+            {% elseif turniej.dyscyplina == 7 %}
+                <div class="btn-white-lg dots m-b-0">
+                    <span class="p-x-1 text"> {{ 'tournament.game'|trans }}</span>
+                </div>
+                <div class="grey-box p-y-1 p-l-1 m-b-1">
+                    <p class="game">{{ 'tournament.wot'|trans }}</p>
+                </div>
+            {% else %}
+                <div class="btn-white-lg dots m-b-0">
+                    <span class="p-x-1 text"> {{ 'tournament.game'|trans }}</span>
+                </div>
+                <div class="grey-box p-y-1 p-l-1 m-b-1">
+                    <p class="game">{{ 'tournament.other'|trans }}</p>
+                </div>
+            {% endif %}
+            {% if turniej.cost !=0 %}
+                <div class="btn-white-lp dots m-b-1">
+                    <span class="p-x-1 text">{{ 'tournament.cost'|trans }}: <span
+                                style="color: #303030;">{{ turniej.costPerTeam }} zł</span></span>
+                </div>
+            {% endif %}
+            <div class="btn-white-lg dots m-b-0">
+                <span class="p-x-1 text"> {{ 'tournament.players'|trans }}</span>
+            </div>
+            <div class="grey-box p-y-1 p-l-1 m-b-1" style="text-align: center">
+                {% for player in entry %}
+                    {% set status = 'tournament.status.' ~ player.status %}
+                    {% if player.name is defined %}
+                        <div class="contestants p-b-1" data-toggle="tooltip" data-placement="top"
+                             title="{{ status|trans }}">
+                            <p class="game">{{ player.name }} </p>
+                        </div>
+                    {% else %}
+                        <div class="contestants p-b-1" data-toggle="tooltip" data-placement="top"
+                             title="{{ status|trans }}">
+                            <img class="img-responsive img-circle"
+                                 src="https://www.gravatar.com/avatar/{{ player.email|md5 }}?s=100"
+                                 alt="{{ player.username }}">
+                            <p class="game">{{ player.username }}</p>
+                            <img class="img-responsive img-circle"
+                                 src="https://www.gravatar.com/avatar/{{ player.email|md5 }}?s=100"
+                                 alt="{{ player.username }}">
+                        </div>
+                    {% endif %}
+                {% endfor %}
+            </div>
+        </div>
+        <div class="col-md-8">
+            <div class="container m-b-1">
+                {% if app.user and turniej.owner == app.user.id %}
+                    <div class="bracet" id="save"></div>
+                {% else %}
+                    <div class="bracet" id="view"></div>
+                {% endif %}
+            </div>
+            <div class="row"></div>
+
+            <div class="btn-white-lp dots m-b-1">
+                <span class="p-x-1 text">{{ 'tournament.countTeam'|trans }}: <span
+                            style="color: #303030;">{{ turniej.countTeam }}</span></span>
+            </div>
+            <div class="btn-white-lg dots m-b-1">
+                {% if turniej.playerType == 1 %}
+                    <span class="p-x-1 text">{{ 'tournament.playerType'|trans }}: <span
+                                style="color: #303030;">{{ 'tournament.team'|trans }}</span></span>
+                {% elseif turniej.playerType == 0 %}
+                    <span class="p-x-1 text">{{ 'tournament.playerType'|trans }}: <span
+                                style="color: #303030;">{{ 'tournament.individual'|trans }}</span></span>
+                {% endif %}
+            </div>
+            <div class="btn-white-lp dots m-b-1">
+                {% if turniej.type %}
+                    <span class="p-x-1 text">{{ 'tournament.type'|trans }}: <span
+                                style="color: #303030;">{{ 'tournament.invite'|trans }}</span></span>
+                {% else %}
+                    <span class="p-x-1 text">{{ 'tournament.type'|trans }}: <span
+                                style="color: #303030;">{{ 'tournament.open'|trans }}</span></span>
+                {% endif %}
+            </div>
+            <div class="btn-white-lg dots m-b-0">
+                <span class="p-x-1 text">{{ 'tournament.description'|trans }}: <span
+                            style="color: #303030;"></span></span>
+            </div>
+            <div class="grey-box p-y-1 p-l-1 m-b-1">
+                <p>{{ turniej.description }}</p>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script src="{{ asset('assets/js/jquery.bracket.js') }}"></script>
+    <script src="{{ asset('assets/js/bracket.js') }}"></script>
+    <script>
+        {% if turniej.fullBracket is not null %}
+        Data = {{ turniej.fullBracket|raw }};
+        {% if app.user and turniej.owner == app.user.id %}
+        edit('{{ url('api.bracket') }}', '{{ turniej.id }}');
+        {% else %}
+        view();
+        {% endif %}
+        {% endif %}
+    </script>
+
+    {% if user is not null and user.status == 1 %}
+        <script src="{{ asset('assets/js/sweetalert.min.js') }}"></script>
+        <script>
+
+            function fee() {
+                swal({
+                    title: "Jesteś pewien?",
+                    text: "Opłacając wpisowe turnieju informujesz, że zapoznałeś/aś się z regulaminem!",
+                    type: "warning",
+                    showCancelButton: true,
+                    confirmButtonColor: "#DD6B55",
+                    confirmButtonText: "Tak! Opłać wpisowe",
+                    cancelButtonText: "Anuluj",
+                    closeOnConfirm: false,
+                    closeOnCancel: false
+                }, function (isConfirm) {
+                    if (isConfirm) {
+                        window.location.href = "{{ url('payment.fee', {'id':turniej.id}) }}";
+                    } else {
+                        swal("Anulowano", "Twoja płatność została anulowana", "error");
+                    }
+                });
+            }
+        </script>
+    {% endif %}
+{% endblock %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <link rel="stylesheet" href="{{ asset('assets/css/jquery.bracket.min.css') }}">
+{% endblock %}
+
