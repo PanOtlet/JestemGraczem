@@ -26,7 +26,7 @@ class StreamController extends Controller
             ->addMeta('property', 'og:description', 'Nudzisz się? Sprawdź audycje na żywo naszych użytkowników!')
             ->addMeta('property', 'og:url', $this->get('router')->generate('stream', [], UrlGeneratorInterface::ABSOLUTE_URL));
 
-        return $this->render($this->getParameter('theme') . '/stream/index.html.twig', [
+        return $this->render('stream/index.html.twig', [
             'promoted' => $promoted,
             'total' => $total
         ]);
@@ -56,7 +56,7 @@ class StreamController extends Controller
             ->addMeta('property', 'og:description', 'Oglądnij audycję '.$twitch.' na żywo! Najciekawsze audycje na żywo tylko u nas!')
             ->addMeta('property', 'og:url', $this->get('router')->generate('stream', [], UrlGeneratorInterface::ABSOLUTE_URL));
 
-        return $this->render($this->getParameter('theme') . '/stream/tv.html.twig', [
+        return $this->render('stream/tv.html.twig', [
             'stream' => $stream
         ]);
     }

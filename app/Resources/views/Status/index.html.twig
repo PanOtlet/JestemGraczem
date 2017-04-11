@@ -1,0 +1,29 @@
+{% extends "base.html.twig" %}
+
+{% block body %}
+    <div class="divider-new">
+        <h2 class="h2-responsive wow bounceIn">
+            Statusy serwerów gier
+        </h2>
+    </div>
+    <div class="container">
+        {% block adbanner %}{{ parent() }}{% endblock %}
+        <div class="row">
+            <div class="col-md-4">
+                <a href="{{ url('status.wow') }}" class="btn btn-primary btn-block">
+                    <img class="img-fluid" src="{{ asset('assets/img/wow.png') }}" alt="World of Warcraft Informacje JestemGraczem">
+                </a>
+            </div>
+            <div class="col-md-4">
+                <a href="{{ url('status.lol') }}" class="btn btn-primary btn-block">
+                    <img class="img-fluid" src="{{ asset('assets/img/lol.png') }}" alt="League of Legends Informacje JestemGraczem">
+                </a>
+            </div>
+            <div class="col-md-4">
+                <a href="{{ url('status.steam') }}" class="btn btn-primary btn-block">
+                    <img class="img-fluid" src="{{ asset('assets/img/steam.png') }}" alt="Steam Informacje JestemGraczem">
+                </a>
+            </div>
+        </div>
+    </div>
+{% endblock %}

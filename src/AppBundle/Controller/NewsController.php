@@ -21,7 +21,7 @@ class NewsController extends Controller
     public function indexAction(Request $request)
     {
         if (!$this->isGranted('IS_AUTHENTICATED_REMEMBERED')) {
-            return $this->render($this->getParameter('theme') . '/default/news.html.twig', ['rss' => []]);
+            return $this->render('default/news.html.twig', ['rss' => []]);
         }
 
         $seo = $this->container->get('sonata.seo.page');
@@ -33,7 +33,7 @@ class NewsController extends Controller
             ->addMeta('property', 'og:url', $this->get('router')->generate('rss', [], UrlGeneratorInterface::ABSOLUTE_URL));
 
         $rss = $this->getDoctrine()->getRepository('AppBundle:News')->findBy(['user' => $this->getUser()->getId()]);
-        return $this->render($this->getParameter('theme') . '/default/news.html.twig', [
+        return $this->render('default/news.html.twig', [
             'color' => $this->color,
             'rss' => $rss
         ]);
@@ -81,7 +81,7 @@ class NewsController extends Controller
             ->addMeta('property', 'og:description', 'Dodaj swóje własne kanały z newsami, byś zawsze był na bieżąco!')
             ->addMeta('property', 'og:url', $this->get('router')->generate('rss.add', [], UrlGeneratorInterface::ABSOLUTE_URL));
 
-        return $this->render($this->getParameter('theme') . '/default/newsadd.html.twig', [
+        return $this->render('default/newsadd.html.twig', [
             'color' => $this->color,
             'form' => $form->createView(),
         ]);

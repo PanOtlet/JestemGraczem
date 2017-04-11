@@ -50,7 +50,7 @@ class DefaultController extends Controller
 
         $my = $query->getResult();
 
-        return $this->render($this->getParameter('theme') . '/tournament/index.html.twig', [
+        return $this->render('tournament/index.html.twig', [
             'color' => $this->color,
             'promo' => $promoted,
             'my' => $my
@@ -91,7 +91,7 @@ class DefaultController extends Controller
 
         $turnieje = $query->getQuery()->getResult();
 
-        return $this->render($this->getParameter('theme') . '/tournament/all.html.twig', [
+        return $this->render('tournament/all.html.twig', [
             'turnieje' => $turnieje,
             'color' => $this->color,
         ]);
@@ -130,7 +130,7 @@ class DefaultController extends Controller
 
         $turnieje = $query->getQuery()->getResult();
 
-        return $this->render($this->getParameter('theme') . '/tournament/all.html.twig', [
+        return $this->render('tournament/all.html.twig', [
             'turnieje' => $turnieje,
             'color' => $this->color,
         ]);
@@ -170,7 +170,7 @@ class DefaultController extends Controller
 
         $turnieje = $query->getQuery()->getResult();
 
-        return $this->render($this->getParameter('theme') . '/tournament/all.html.twig', [
+        return $this->render('tournament/all.html.twig', [
             'turnieje' => $turnieje,
             'color' => $this->color,
         ]);
@@ -206,7 +206,7 @@ class DefaultController extends Controller
 
         $turnieje = $query->getQuery()->getResult();
 
-        return $this->render($this->getParameter('theme') . '/tournament/all.html.twig', [
+        return $this->render('tournament/all.html.twig', [
             'turnieje' => $turnieje,
             'color' => $this->color,
         ]);
@@ -335,7 +335,7 @@ class DefaultController extends Controller
             ]);
         }
 
-        return $this->render($this->getParameter('theme') . '/tournament/create.html.twig', [
+        return $this->render('tournament/create.html.twig', [
             'color' => $this->color,
             'form' => $form->createView()
         ]);

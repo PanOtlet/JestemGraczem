@@ -25,7 +25,7 @@ class DefaultController extends Controller
      */
     public function noStreamAction()
     {
-        return $this->render($this->getParameter('theme') . '/default/fullPageMario.html.twig');
+        return $this->render('default/fullPageMario.html.twig');
     }
 
     public static function badRequest($json = "[]")

@@ -49,7 +49,7 @@ class DefaultController extends Controller
             ->addMeta('property', 'og:image', $this->container->get('vich_uploader.templating.helper.uploader_helper')->asset($article, 'imageFile'))
             ->addMeta('property', 'og:url', $this->get('router')->generate('article.id', ['id' => $id], UrlGeneratorInterface::ABSOLUTE_URL));
 
-        return $this->render($this->getParameter('theme') . '/news/news.html.twig', [
+        return $this->render('news/news.html.twig', [
             'article' => $article
         ]);
     }
@@ -125,7 +125,7 @@ class DefaultController extends Controller
             return $this->redirectToRoute('article.all');
         }
 
-        return $this->render($this->getParameter('theme') . '/news/add.html.twig', [
+        return $this->render('news/add.html.twig', [
             'form' => $form->createView(),
         ]);
     }
@@ -171,7 +171,7 @@ class DefaultController extends Controller
             ->addMeta('property', 'og:description', 'Najnowsze wieści ze świata gier i nie tylko! Strona ' . $page)
             ->addMeta('property', 'og:url', $this->get('router')->generate('articles', ['page' => $page], UrlGeneratorInterface::ABSOLUTE_URL));
 
-        return $this->render($this->getParameter('theme') . '/news/index.html.twig', [
+        return $this->render('news/index.html.twig', [
             'articles' => $articles,
             'page' => $page,
             'promoted' => $promoted
@@ -220,7 +220,7 @@ class DefaultController extends Controller
             ->addMeta('property', 'og:description', 'Najnowsze wieści ze świata gier i nie tylko! Strona ' . $page)
             ->addMeta('property', 'og:url', $this->get('router')->generate('articles', ['page' => $page], UrlGeneratorInterface::ABSOLUTE_URL));
 
-        return $this->render($this->getParameter('theme') . '/news/index.html.twig', [
+        return $this->render('news/index.html.twig', [
             'articles' => $articles,
             'page' => $page,
             'promoted' => $promoted

@@ -27,7 +27,7 @@ class CMSController extends Controller
             ->addMeta('property', 'og:title', $cms->getTitle() . ' :: JestemGraczem.pl')
             ->addMeta('property', 'og:url', $this->get('router')->generate('cms', ['title' => $cms->getUrl()], UrlGeneratorInterface::ABSOLUTE_URL));
 
-        return $this->render($this->getParameter('theme') . '/CMS/index.html.twig', [
+        return $this->render('CMS/index.html.twig', [
             'color' => $this->color,
             'cms' => $cms
         ]);

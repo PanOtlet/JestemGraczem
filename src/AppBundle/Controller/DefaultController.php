@@ -59,7 +59,7 @@ class DefaultController extends Controller
 //
 //        $avatar = ($this->getUser()) ? md5($this->getUser()->getEmail()) : md5('thejestemgraczemsquad@gmail.com');
 
-        return $this->render($this->getParameter('theme') . '/default/index.html.twig', [
+        return $this->render('default/index.html.twig', [
             'articles' => $articles,
             'mem' => $mem,
             'video' => $video,
@@ -91,7 +91,7 @@ class DefaultController extends Controller
             return $this->redirect($_GET['url']);
         }
 
-        return $this->render($this->getParameter('theme') . '/default/frame.html.twig', [
+        return $this->render('default/frame.html.twig', [
             'url' => $_GET['url'],
         ]);
     }
@@ -147,7 +147,7 @@ class DefaultController extends Controller
             ->addMeta('property', 'og:type', 'profile')
             ->addMeta('property', 'og:url', $this->get('router')->generate('user', ['user' => $user['username']], UrlGeneratorInterface::ABSOLUTE_URL));
 
-        return $this->render($this->getParameter('theme') . '/default/user.html.twig', [
+        return $this->render('default/user.html.twig', [
             'user' => $user
         ]);
     }
