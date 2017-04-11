@@ -18,227 +18,154 @@
             {% endif %}
         </div>
     {% endfor %}
+{% endblock %}
 
-    <div class="container-fluid" id="newsMiniatures">
-        <div class="row">
-            {% for article in articles %}
-                {% if loop.first %}
-                    <div class="col-md-8">
-                        <div class="newsImage">
-                            <a href="{{ url('article.id',{'id': article.id, 'title': article.title|replace({' ': '-'})}) }}">
-                                <img src="{{ app.request.basePath }}{{ vich_uploader_asset(article, 'imageFile', 'NewsBundle\\Entity\\News') }}"
-                                     alt="{{ article.title }}"/>
-                                <h2><span>{{ article.title }}</span></h2>
-                            </a>
+{% block body %}
+
+    <div id="stream-container" class="divShadow hidden-sm-down">
+        <div class="swiper-container">
+            <div class="swiper-wrapper">
+                <div class="swiper-slide" id="streamLoading">
+                    <div class="view">
+                        <img src="{{ asset('assets/img/bg_defoult.png') }}" class="img-fluid"
+                             alt="JestemGraczem Loading">
+                        <div class="mask pattern-1 flex-center">
+                            <a class="stream-title" href="#">LOADING</a>
                         </div>
                     </div>
-                    <div class="col-md-4">
+                </div>
+            </div>
+            <div class="stream-scrollbar swiper-scrollbar"></div>
+        </div>
+    </div>
+
+    <div class="container-fluid">
+        <div class="marginus m-x-auto d-block">
+            {% block adbanner %}{{ parent() }}{% endblock %}
+        </div>
+    </div>
+
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-8">
+                {% for article in articles %}
+                    <div class="row">
+                        <div class="row wow fadeIn" data-wow-delay="0.2s"
+                             style="visibility: visible; animation-delay: 0.2s; animation-name: fadeIn;">
+                            <div class="col-lg-6">
+                                <div class="view overlay hm-white-light z-depth-1-half">
+                                    <img src="{{ app.request.basePath }}{{ vich_uploader_asset(article, 'imageFile', 'NewsBundle\\Entity\\News') }}"
+                                         class="img-fluid" alt="{{ article.title }}">
+                                    <div class="mask"></div>
+                                </div>
+                            </div>
+                            <div class="col-lg-6">
+                                <a href="{{ url('article.id',{'id': article.id, 'title': article.title|replace({' ': '-'})}) }}">
+                                    <h2 class="post-title">
+                                        {{ article.title }}
+                                    </h2>
+                                </a>
+                                <p class="lead">
+                                    {{ article.introduction }}
+                                </p>
+                                <div class="read-more">
+                                    <a href="{{ url('article.id',{'id': article.id, 'title': article.title|replace({' ': '-'})}) }}"
+                                       class="btn btn-primary waves-effect waves-light">Czytaj dalej</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <hr>
+                {% endfor %}
+            </div>
+            <div class="col-md-4">
+                {% if mem.url | slice(-4) == '.mp4' or mem.url | slice(-5) == '.webm' %}
+                    <div class="embed-responsive embed-responsive-16by9 mb-1">
+                        <video id="promotedMemes" class="video-js embed-responsive-item" controls
+                               preload="auto" data-setup="{}">
+                            <source src="{{ asset('assets/mem/') ~ mem.url }}" type="video/mp4"
+                                    class="embed-responsive-item">
+                            <p class="vjs-no-js">
+                                Masz kiepską przeglądarkę! Użyj GOOGLE CHROME!
+                            </p>
+                        </video>
+                    </div>
                 {% else %}
-                    <div class="newsImage">
-                        <a href="{{ url('article.id',{'id': article.id, 'title': article.title|replace({' ': '-'})}) }}">
-                            <img src="{{ app.request.basePath }}{{ vich_uploader_asset(article, 'imageFile', 'NewsBundle\\Entity\\News') }}"
-                                 alt="{{ article.title }}"/>
-                            <h2><span>{{ article.title }}</span></h2>
+                    <a href="{{ url('mem.id', { 'id':mem.id }) }}" data-toggle="tooltip"
+                       title="{{ mem.title }}">
+                        <img class="img-fluid img-mem mb-1" src="{{ asset('assets/mem/') ~ mem.url }}"
+                             alt="{{ mem.title }}">
+                    </a>
+                {% endif %}
+                <div class="view">
+                    <img src="//img.youtube.com/vi/{{ video.videoid }}/hqdefault.jpg"
+                         class="img-youtube img-fluid" alt="{{ video.title }}">
+                    <div class="mask pattern-2 flex-center">
+                        <a href="{{ url('video.id', { 'id':video.id }) }}"
+                           class="white-text stream-title">
+                            {{ video.title|length > 25 ? video.title|slice(0, 25) ~ '...' : video.title }}
                         </a>
                     </div>
-                {% endif %}
-                {% if loop.last %}
-                    </div>
-                {% endif %}
-            {% endfor %}
-            <a href="{{ url('articles') }}" class="btn btn-block btn-outline-danger waves-effect">
-                Czytaj więcej...
-            </a>
+                </div>
+            </div>
         </div>
     </div>
 {% endblock %}
 
-    {% block body %}
-        <div class="divider-new hidden-sm-down">
-            <h2 class="h2-responsive wow bounceIn">Polecane streamy</h2>
-        </div>
+{% block stylesheets %}
+    {{ parent() }}
+    <link href="https://vjs.zencdn.net/5.12.6/video-js.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Swiper/3.4.1/css/swiper.min.css">
+{% endblock %}
 
-        <div id="stream-container" class="divShadow hidden-sm-down">
-            <div class="swiper-container">
-                <div class="swiper-wrapper">
-                    <div class="swiper-slide" id="streamLoading">
-                        <div class="view">
-                            <img src="{{ asset('assets/img/bg_defoult.png') }}" class="img-fluid"
-                                 alt="JestemGraczem Loading">
-                            <div class="mask pattern-1 flex-center">
-                                <a class="stream-title" href="#">LOADING</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="stream-scrollbar swiper-scrollbar"></div>
-            </div>
-        </div>
+{% block javascripts %}
+    {{ parent() }}
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mustache.js/2.3.0/mustache.min.js"
+            integrity="sha256-iaqfO5ue0VbSGcEiQn+OeXxnxAMK2+QgHXIDA5bWtGI=" crossorigin="anonymous"></script>
+    <script src="{{ asset('assets/js/ads.js') }}"></script>
+    <script src="{{ asset('assets/js/homepage.js') }}"></script>
+    <script src="https://vjs.zencdn.net/5.12.6/video.js"></script>
+    <script src="https://apis.google.com/js/platform.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/3.4.1/js/swiper.jquery.min.js"></script>
+    <script>
+        var video = new Swiper('.video-container', {
+            pagination: '.video-pagination',
+            slidesPerView: 2,
+            paginationClickable: true,
+            spaceBetween: 30
+        });
 
-        <div class="container-fluid">
-            <div class="marginus m-x-auto d-block">
-                {% block adbanner %}{{ parent() }}{% endblock %}
-            </div>
-        </div>
+        var meme = new Swiper('.meme-container', {
+            pagination: '.meme-pagination',
+            slidesPerView: 3,
+            paginationClickable: true,
+            spaceBetween: 30
+        });
 
-        <div id="newestmems" class="container">
-            <div class="row">
-                <a href="{{ url('mem.all') }}">
-                    <h3>
-                        <span class="tag tag-pill white text-muted">{{ 'button.newest.new'|trans }}</span>
-                        <span class="tag tag-pill red">{{ 'button.newest.meme'|trans }}</span>
-                    </h3>
-                </a>
-                <div class="meme-swiper swiper-container">
-                    <div class="swiper-wrapper">
-                        {% for mem in mems %}
-                            {% if mem.url | slice(-4) == '.mp4' or mem.url | slice(-5) == '.webm' %}
-                                <div class="swiper-slide">
-                                    <div class="embed-responsive embed-responsive-16by9 mb-1">
-                                        <video id="promotedMemes" class="video-js embed-responsive-item" controls preload="auto"
-                                               data-setup="{}">
-                                            <source src="{{ asset('assets/mem/') ~ mem.url }}" type="video/mp4"
-                                                    class="embed-responsive-item">
-                                            <p class="vjs-no-js">
-                                                Masz kiepską przeglądarkę! Użyj GOOGLE CHROME!
-                                            </p>
-                                        </video>
-                                    </div>
-                                </div>
-                            {% else %}
-                                <div class="swiper-slide">
-                                    <a href="{{ url('mem.id', { 'id':mem.id }) }}" data-toggle="tooltip"
-                                       title="{{ mem.title }}">
-                                        <img class="img-fluid img-mem mb-1" src="{{ asset('assets/mem/') ~ mem.url }}"
-                                             alt="{{ mem.title }}">
-                                    </a>
-                                </div>
-                            {% endif %}
-                        {% endfor %}
-                    </div>
-                    <div class="meme-pagination swiper-pagination"></div>
-                </div>
-                {#{% for mem in mems %}#}
-                    {#{% if loop.index == 1 or loop.index == 3 or loop.index == 5 %}#}
-                        {#<div class="row mb-1">#}
-                    {#{% endif %}#}
-                    {#{% if mem.url | slice(-4) == '.mp4' or mem.url | slice(-5) == '.webm' %}#}
-                        {#<div class="col-md-6">#}
-                            {#<div class="embed-responsive embed-responsive-16by9 mb-1">#}
-                                {#<video id="promotedMemes" class="video-js embed-responsive-item" controls preload="auto"#}
-                                       {#data-setup="{}">#}
-                                    {#<source src="{{ asset('assets/mem/') ~ mem.url }}" type="video/mp4"#}
-                                            {#class="embed-responsive-item">#}
-                                    {#<p class="vjs-no-js">#}
-                                        {#Masz kiepską przeglądarkę! Użyj GOOGLE CHROME!#}
-                                    {#</p>#}
-                                {#</video>#}
-                            {#</div>#}
-                        {#</div>#}
-                    {#{% else %}#}
-                        {#<div class="col-md-6">#}
-                            {#<a href="{{ url('mem.id', { 'id':mem.id }) }}" data-toggle="tooltip"#}
-                               {#title="{{ mem.title }}">#}
-                                {#<img class="img-fluid img-mem mb-1" src="{{ asset('assets/mem/') ~ mem.url }}"#}
-                                     {#alt="{{ mem.title }}">#}
-                            {#</a>#}
-                        {#</div>#}
-                    {#{% endif %}#}
-                    {#{% if loop.index == 2 or loop.index == 4 or loop.index == 6 %}#}
-                        {#</div>#}
-                    {#{% endif %}#}
-                {#{% endfor %}#}
-            </div>
-        </div>
+        var stream = new Stream('{{ path("api.stream") }}');
+        if (typeof ads !== 'undefined')
+            stream.start(true);
+        else
+            stream.start(false);
 
-        <div id="videoFluidContainer" class="divShadow">
-            <div id="newestVideo" class="container-fluid">
-                <div id="newestvideos" class="row">
-                    <div class="col-md-12">
-                        <a href="{{ url('video') }}">
-                            <h3>
-                                <span class="tag tag-pill white text-muted">{{ 'button.newest.new'|trans }}</span>
-                                <span class="tag tag-pill red">{{ 'button.newest.video'|trans }}</span>
-                            </h3>
-                        </a>
-                        <div class="container-fluid">
-                            <div class="row">
-                                {% for vod in video %}
-                                    <div class="col-md-3 mb-1">
-                                        <div class="view">
-                                            <img src="//img.youtube.com/vi/{{ vod.videoid }}/hqdefault.jpg"
-                                                 class="img-youtube img-fluid" alt="{{ vod.title }}">
-                                            <div class="mask pattern-2 flex-center">
-                                                <a href="{{ url('video.id', { 'id':vod.id }) }}"
-                                                   class="white-text stream-title">
-                                                    {{ vod.title|slice(0,25) }}...
-                                                </a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                {% endfor %}
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    {% endblock %}
+        window.___gcfg = {lang: 'pl'};
+        (function () {
+            var po = document.createElement('script');
+            po.type = 'text/javascript';
+            po.async = true;
+            po.src = 'https://apis.google.com/js/platform.js';
+            var s = document.getElementsByTagName('script')[0];
+            s.parentNode.insertBefore(po, s);
+        })
+        ();
+        (function (d, s, id) {
+            var js, fjs = d.getElementsByTagName(s)[0];
+            if (d.getElementById(id)) return;
+            js = d.createElement(s);
+            js.id = id;
+            js.src = "//connect.facebook.net/pl_PL/sdk.js#xfbml=1&version=v2.7&appId=1792775277616619";
+            fjs.parentNode.insertBefore(js, fjs);
+        }(document, 'script', 'facebook-jssdk'));
 
-    {% block stylesheets %}
-        {{ parent() }}
-        <link href="https://vjs.zencdn.net/5.12.6/video-js.css" rel="stylesheet">
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Swiper/3.4.1/css/swiper.min.css">
-    {% endblock %}
-
-    {% block javascripts %}
-        {{ parent() }}
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/mustache.js/2.3.0/mustache.min.js"
-                integrity="sha256-iaqfO5ue0VbSGcEiQn+OeXxnxAMK2+QgHXIDA5bWtGI=" crossorigin="anonymous"></script>
-        <script src="{{ asset('assets/js/ads.js') }}"></script>
-        <script src="{{ asset('assets/js/homepage.js') }}"></script>
-        <script src="https://vjs.zencdn.net/5.12.6/video.js"></script>
-        <script src="https://apis.google.com/js/platform.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/3.4.1/js/swiper.jquery.min.js"></script>
-        <script>
-            var video = new Swiper('.video-container', {
-                pagination: '.video-pagination',
-                slidesPerView: 2,
-                paginationClickable: true,
-                spaceBetween: 30
-            });
-
-            var meme = new Swiper('.meme-container', {
-                pagination: '.meme-pagination',
-                slidesPerView: 3,
-                paginationClickable: true,
-                spaceBetween: 30
-            });
-
-            var stream = new Stream('{{ path("api.stream") }}');
-            if (typeof ads !== 'undefined')
-                stream.start(true);
-            else
-                stream.start(false);
-
-            window.___gcfg = {lang: 'pl'};
-            (function () {
-                var po = document.createElement('script');
-                po.type = 'text/javascript';
-                po.async = true;
-                po.src = 'https://apis.google.com/js/platform.js';
-                var s = document.getElementsByTagName('script')[0];
-                s.parentNode.insertBefore(po, s);
-            })
-            ();
-            (function (d, s, id) {
-                var js, fjs = d.getElementsByTagName(s)[0];
-                if (d.getElementById(id)) return;
-                js = d.createElement(s);
-                js.id = id;
-                js.src = "//connect.facebook.net/pl_PL/sdk.js#xfbml=1&version=v2.7&appId=1792775277616619";
-                fjs.parentNode.insertBefore(js, fjs);
-            }(document, 'script', 'facebook-jssdk'));
-
-        </script>
-    {% endblock %}
+    </script>
+{% endblock %}

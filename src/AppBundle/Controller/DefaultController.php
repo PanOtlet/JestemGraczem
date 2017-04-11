@@ -30,29 +30,40 @@ class DefaultController extends Controller
         $articles = $this->getDoctrine()->getRepository('NewsBundle:News')->createQueryBuilder('m')
             ->where('m.promoted = 1')
             ->orderBy('m.id', 'DESC')
-            ->setMaxResults(3)
+            ->setMaxResults(10)
             ->getQuery()->getResult();
 
-        $mems = $this->getDoctrine()->getRepository('AppBundle:Meme')->findBy(['promoted' => true], ['id' => 'DESC'], 6);
+
+        $em = $this->getDoctrine()->getManager();
+        $connection = $em->getConnection();
+        $statement = $connection->prepare("SELECT * FROM meme WHERE RAND()<(SELECT ((10/COUNT(*))*10) FROM meme) AND meme.accept = 1 ORDER BY RAND() LIMIT 1");
+        $statement->execute();
+        $mem = $statement->fetch();
+
+        $statement = $connection->prepare("SELECT * FROM video WHERE RAND()<(SELECT ((10/COUNT(*))*10) FROM video) AND video.promoted = 1 ORDER BY RAND() LIMIT 1");
+        $statement->execute();
+        $video = $statement->fetch();
+
+//        $mems = $this->getDoctrine()->getRepository('AppBundle:Meme')->findBy(['promoted' => true], ['id' => 'DESC'], 6);
 
         $featuredEvents = $this->getDoctrine()
             ->getManager()
             ->createQuery('SELECT e FROM AppBundle:FeaturedEvents e WHERE e.startDate < CURRENT_TIMESTAMP() AND e.date > CURRENT_TIMESTAMP()')
             ->getResult();
 
-        $video = $this->getDoctrine()->getRepository('AppBundle:Video')->createQueryBuilder('m')
-            ->where('m.promoted = 1')
-            ->orderBy('m.id', 'DESC')
-            ->setMaxResults(8)
-            ->getQuery()->getResult();
-
-        $avatar = ($this->getUser()) ? md5($this->getUser()->getEmail()) : md5('thejestemgraczemsquad@gmail.com');
+//        $video = $this->getDoctrine()->getRepository('AppBundle:Video')->createQueryBuilder('m')
+//            ->where('m.promoted = 1')
+//            ->orderBy('m.id', 'DESC')
+//            ->setMaxResults(8)
+//            ->getQuery()->getResult();
+//
+//        $avatar = ($this->getUser()) ? md5($this->getUser()->getEmail()) : md5('thejestemgraczemsquad@gmail.com');
 
         return $this->render($this->getParameter('theme') . '/default/index.html.twig', [
             'articles' => $articles,
-            'mems' => $mems,
+            'mem' => $mem,
             'video' => $video,
-            'avatar' => $avatar,
+//            'avatar' => $avatar,
             'events' => $featuredEvents
         ]);
     }
