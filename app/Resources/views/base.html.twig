@@ -45,7 +45,7 @@
         <meta name="msapplication-TileImage" content="{{ asset('assets/img/favicon/ms-icon-144x144.png') }}">
         <meta name="theme-color" content="#500472">
 
-        <style>
+        <style id="loader-style">
             #loader-wrapper {
                 position: fixed;
                 top: 0;
@@ -232,6 +232,7 @@
                     }
                 }]);
                 $("#loader-wrapper").remove();
+                $("#loader-style").remove();
             });
         </script>
 
