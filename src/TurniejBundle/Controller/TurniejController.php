@@ -67,7 +67,6 @@ class TurniejController extends Controller
         ]);
 
         return $this->render('tournament/turniej.html.twig', [
-            'color' => $this->color,
             'turniej' => $turniej,
             'entry' => $entry,
             'user' => $user
@@ -145,7 +144,6 @@ class TurniejController extends Controller
         }
 
         return $this->render('tournament/edit.html.twig', [
-            'color' => $this->color,
             'form' => $form->createView(),
         ]);
     }
@@ -290,7 +288,6 @@ class TurniejController extends Controller
         }
 
         return $this->render('tournament/edit.html.twig', [
-            'color' => $this->color,
             'form' => $form->createView(),
         ]);
     }
@@ -580,7 +577,6 @@ class TurniejController extends Controller
         }
 
         return $this->render('team/join.html.twig', [
-            'color' => $this->color,
             'form' => $form->createView(),
         ]);
     }

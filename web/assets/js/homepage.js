@@ -22,6 +22,8 @@ function Stream(url) {
      */
     this.start = function (ads) {
 
+        $('#stream-container').hide();
+
         if (!ads) {
             this.antyBlocker();
         }
@@ -82,46 +84,10 @@ function Stream(url) {
 
         $(document).ajaxStop(function () {
             if (stream.activeList.length === 0) {
-                stream.activeList.push({
-                    'domain': 'beam.pro',
-                    'platform': 'beam',
-                    'viewers': 0,
-                    'name': 'monstercat',
-                    'url': 'https://beam.pro/embed/player/monstercat',
-                    'title': 'monstercat',
-                    'image': 'https://static-cdn.jtvnw.net/previews-ttv/live_user_monstercat-320x180.jpg'
-                });
-                stream.activeList.push({
-                    'domain': 'beam.pro',
-                    'platform': 'beam',
-                    'viewers': 0,
-                    'name': 'otlet',
-                    'url': 'https://beam.pro/embed/player/otlet',
-                    'title': 'otlet',
-                    'image': 'https://static-cdn.jtvnw.net/previews-ttv/live_user_otlet-320x180.jpg'
-                });
-                stream.activeList.push({
-                    'domain': 'beam.pro',
-                    'platform': 'beam',
-                    'viewers': 0,
-                    'name': 'monstercat',
-                    'url': 'https://beam.pro/embed/player/monstercat',
-                    'title': 'monstercat',
-                    'image': 'https://static-cdn.jtvnw.net/previews-ttv/live_user_monstercat-320x180.jpg'
-                });
-                stream.activeList.push({
-                    'domain': 'beam.pro',
-                    'platform': 'beam',
-                    'viewers': 0,
-                    'name': 'otlet',
-                    'url': 'https://beam.pro/embed/player/otlet',
-                    'title': 'otlet',
-                    'image': 'https://static-cdn.jtvnw.net/previews-ttv/live_user_otlet-320x180.jpg'
-                });
+                $('#stream-container').remove();
             }
 
             stream.activeList.sort(sorter);
-            $('#streamLoading').remove();
             stream.renderStreamList(stream.activeList);
 
             var mySwiper = new Swiper('.swiper-container', {
@@ -131,6 +97,8 @@ function Stream(url) {
                 paginationClickable: true,
                 spaceBetween: 30
             });
+
+            $('#stream-container').show();
         });
     };
 

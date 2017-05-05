@@ -74,7 +74,6 @@ class VideoController extends Controller
             ->addMeta('property', 'og:url', $this->get('router')->generate('video.add', [], UrlGeneratorInterface::ABSOLUTE_URL));
 
         return $this->render('video/add.html.twig', [
-            'color' => $this->color,
             'form' => $form->createView(),
         ]);
     }
@@ -111,7 +110,6 @@ class VideoController extends Controller
             ->addMeta('property', 'og:url', $this->get('router')->generate('video.wait', ['page' => $page], UrlGeneratorInterface::ABSOLUTE_URL));
 
         return $this->render('video/index.html.twig', [
-            'color' => $this->color,
             'videos' => $video,
             'page' => $page
         ]);
@@ -151,7 +149,6 @@ class VideoController extends Controller
             ->addMeta('property', 'og:url', $this->get('router')->generate('video.wait', ['page' => $page], UrlGeneratorInterface::ABSOLUTE_URL));
 
         return $this->render('video/index.html.twig', [
-            'color' => $this->color,
             'videos' => $video,
             'promoted' => $promoted,
             'page' => $page
@@ -184,7 +181,6 @@ class VideoController extends Controller
             ->addMeta('property', 'og:url', $this->get('router')->generate('video.id', ['id' => $id], UrlGeneratorInterface::ABSOLUTE_URL));
 
         return $this->render('video/tv.html.twig', [
-            'color' => $this->color,
             'video' => $video
         ]);
     }

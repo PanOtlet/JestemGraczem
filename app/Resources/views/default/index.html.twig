@@ -25,106 +25,99 @@
     <div id="stream-container" class="divShadow hidden-sm-down">
         <div class="swiper-container">
             <div class="swiper-wrapper">
-                <div class="swiper-slide" id="streamLoading">
-                    <div class="view">
-                        <img src="{{ asset('assets/img/bg_defoult.png') }}" class="img-fluid"
-                             alt="JestemGraczem Loading">
-                        <div class="mask pattern-1 flex-center">
-                            <a class="stream-title" href="#">LOADING</a>
-                        </div>
-                    </div>
-                </div>
             </div>
             <div class="stream-scrollbar swiper-scrollbar"></div>
         </div>
     </div>
-
-    <div class="container-fluid">
-        <div class="marginus m-x-auto d-block">
-            {% block adbanner %}{{ parent() }}{% endblock %}
+    <section class="container">
+        <div class="container-fluid">
+            <div class="marginus m-x-auto d-block">
+                {% block adbanner %}{{ parent() }}{% endblock %}
+            </div>
         </div>
-    </div>
 
-    <div class="container-fluid">
-        <div class="row">
-            <div class="col-md-8">
-                {% for article in articles %}
-                    <div class="row">
-                        <div class="row wow fadeIn" data-wow-delay="0.2s"
-                             style="visibility: visible; animation-delay: 0.2s; animation-name: fadeIn;">
-                            <div class="col-lg-6">
-                                <div class="view overlay hm-white-light z-depth-1-half">
-                                    <img src="{{ app.request.basePath }}{{ vich_uploader_asset(article, 'imageFile', 'NewsBundle\\Entity\\News') }}"
-                                         class="img-fluid" alt="{{ article.title }}">
-                                    <div class="mask"></div>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-8">
+                    {% for article in articles %}
+                        <div class="row">
+                            <div class="row wow fadeIn" data-wow-delay="0.2s"
+                                 style="visibility: visible; animation-delay: 0.2s; animation-name: fadeIn;">
+                                <div class="col-lg-6">
+                                    <div class="view overlay hm-white-light z-depth-1-half">
+                                        <img src="{{ app.request.basePath }}{{ vich_uploader_asset(article, 'imageFile', 'NewsBundle\\Entity\\News') }}"
+                                             class="img-fluid" alt="{{ article.title }}">
+                                        <div class="mask"></div>
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="col-lg-6">
-                                <a href="{{ url('article.id',{'id': article.id, 'title': article.title|replace({' ': '-'})}) }}">
-                                    <h2 class="post-title">
-                                        {{ article.title }}
-                                    </h2>
-                                </a>
-                                <p class="lead">
-                                    {{ article.introduction }}
-                                </p>
-                                <div class="read-more">
-                                    <a href="{{ url('article.id',{'id': article.id, 'title': article.title|replace({' ': '-'})}) }}"
-                                       class="btn btn-primary waves-effect waves-light">Czytaj dalej</a>
+                                <div class="col-lg-6">
+                                    <a href="{{ url('article.id',{'id': article.id, 'title': article.title|replace({' ': '-'})}) }}">
+                                        <h2 class="post-title">
+                                            {{ article.title }}
+                                        </h2>
+                                    </a>
+                                    <p class="lead">
+                                        {{ article.introduction }}
+                                    </p>
+                                    <div class="read-more">
+                                        <a href="{{ url('article.id',{'id': article.id, 'title': article.title|replace({' ': '-'})}) }}"
+                                           class="btn btn-primary waves-effect waves-light">Czytaj dalej</a>
+                                    </div>
                                 </div>
                             </div>
                         </div>
+                        <hr>
+                    {% endfor %}
+                </div>
+                <div class="col-md-4">
+                    <div class="row wow fadeIn" data-wow-delay="0.2s"
+                         style="visibility: visible; animation-delay: 0.2s; animation-name: fadeIn;">
+                        <div class="col-md-12">
+                            <h1 class="h1-responsive">Losowy film</h1>
+                        </div>
+                    </div>
+                    <div class="view wow fadeIn" data-wow-delay="0.2s"
+                         style="visibility: visible; animation-delay: 0.2s; animation-name: fadeIn;">
+                        <img src="//img.youtube.com/vi/{{ video.videoid }}/hqdefault.jpg"
+                             class="img-youtube img-fluid" alt="{{ video.title }}">
+                        <div class="mask pattern-2 flex-center">
+                            <a href="{{ url('video.id', { 'id':video.id }) }}"
+                               class="white-text stream-title">
+                                {#{{ video.title|length > 25 ? video.title|slice(0, 25) ~ '...' : video.title }}#}
+                                {{ video.title }}
+                            </a>
+                        </div>
                     </div>
                     <hr>
-                {% endfor %}
-            </div>
-            <div class="col-md-4">
-                <div class="row wow fadeIn" data-wow-delay="0.2s"
-                     style="visibility: visible; animation-delay: 0.2s; animation-name: fadeIn;">
-                    <div class="col-md-12">
-                        <h1 class="h1-responsive">Losowy film</h1>
+                    <div class="row wow fadeIn" data-wow-delay="0.2s"
+                         style="visibility: visible; animation-delay: 0.2s; animation-name: fadeIn;">
+                        <div class="col-md-12">
+                            <h1 class="h1-responsive">Losowy mem</h1>
+                        </div>
                     </div>
-                </div>
-                <div class="view wow fadeIn" data-wow-delay="0.2s"
-                     style="visibility: visible; animation-delay: 0.2s; animation-name: fadeIn;">
-                    <img src="//img.youtube.com/vi/{{ video.videoid }}/hqdefault.jpg"
-                         class="img-youtube img-fluid" alt="{{ video.title }}">
-                    <div class="mask pattern-2 flex-center">
-                        <a href="{{ url('video.id', { 'id':video.id }) }}"
-                           class="white-text stream-title">
-                            {#{{ video.title|length > 25 ? video.title|slice(0, 25) ~ '...' : video.title }}#}
-                            {{ video.title }}
+                    {% if mem.url | slice(-4) == '.mp4' or mem.url | slice(-5) == '.webm' %}
+                        <div class="embed-responsive embed-responsive-16by9 mb-1">
+                            <video id="promotedMemes" class="video-js embed-responsive-item" controls
+                                   preload="auto" data-setup="{}">
+                                <source src="{{ asset('assets/mem/') ~ mem.url }}" type="video/mp4"
+                                        class="embed-responsive-item">
+                                <p class="vjs-no-js">
+                                    Masz kiepską przeglądarkę! Użyj GOOGLE CHROME!
+                                </p>
+                            </video>
+                        </div>
+                    {% else %}
+                        <a href="{{ url('mem.id', { 'id':mem.id }) }}" data-toggle="tooltip"
+                           title="{{ mem.title }}">
+                            <img class="img-fluid img-mem mb-1" src="{{ asset('assets/mem/') ~ mem.url }}"
+                                 alt="{{ mem.title }}">
                         </a>
-                    </div>
+                    {% endif %}
                 </div>
-                <hr>
-                <div class="row wow fadeIn" data-wow-delay="0.2s"
-                     style="visibility: visible; animation-delay: 0.2s; animation-name: fadeIn;">
-                    <div class="col-md-12">
-                        <h1 class="h1-responsive">Losowy mem</h1>
-                    </div>
-                </div>
-                {% if mem.url | slice(-4) == '.mp4' or mem.url | slice(-5) == '.webm' %}
-                    <div class="embed-responsive embed-responsive-16by9 mb-1">
-                        <video id="promotedMemes" class="video-js embed-responsive-item" controls
-                               preload="auto" data-setup="{}">
-                            <source src="{{ asset('assets/mem/') ~ mem.url }}" type="video/mp4"
-                                    class="embed-responsive-item">
-                            <p class="vjs-no-js">
-                                Masz kiepską przeglądarkę! Użyj GOOGLE CHROME!
-                            </p>
-                        </video>
-                    </div>
-                {% else %}
-                    <a href="{{ url('mem.id', { 'id':mem.id }) }}" data-toggle="tooltip"
-                       title="{{ mem.title }}">
-                        <img class="img-fluid img-mem mb-1" src="{{ asset('assets/mem/') ~ mem.url }}"
-                             alt="{{ mem.title }}">
-                    </a>
-                {% endif %}
             </div>
         </div>
-    </div>
+    </section>
+
 {% endblock %}
 
 {% block stylesheets %}

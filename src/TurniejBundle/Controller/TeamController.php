@@ -83,7 +83,6 @@ class TeamController extends Controller
         }
 
         return $this->render('team/add.html.twig', [
-            'color' => $this->color,
             'form' => $form->createView(),
         ]);
     }
@@ -133,7 +132,6 @@ class TeamController extends Controller
         $m8 = $query->getResult();
 
         return $this->render('team/team.html.twig', [
-            'color' => $this->color,
             'team' => $team,
             'divisions' => $division,
             'owner' => $owner,
@@ -208,7 +206,6 @@ class TeamController extends Controller
         }
 
         return $this->render('team/edit.html.twig', [
-            'color' => $this->color,
             'form' => $form->createView(),
         ]);
     }

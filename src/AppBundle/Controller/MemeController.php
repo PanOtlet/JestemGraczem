@@ -48,7 +48,6 @@ class MemeController extends Controller
         }
 
         return $this->render('meme/mem.html.twig', [
-            'color' => $this->color,
             'mem' => $mem
         ]);
     }
@@ -116,7 +115,6 @@ class MemeController extends Controller
         }
 
         return $this->render('meme/add.html.twig', [
-            'color' => $this->color,
             'form' => $form->createView(),
         ]);
     }
@@ -167,7 +165,6 @@ class MemeController extends Controller
             ->addMeta('property', 'og:url', $this->get('router')->generate('mem.all', ['page' => $page], UrlGeneratorInterface::ABSOLUTE_URL));
 
         return $this->render('meme/index.html.twig', [
-            'color' => $this->color,
             'meme' => $mem,
             'page' => $page,
             'promoted' => $promoted
@@ -217,7 +214,6 @@ class MemeController extends Controller
             ->addMeta('property', 'og:url', $this->get('router')->generate('mem', ['page' => $page], UrlGeneratorInterface::ABSOLUTE_URL));
 
         return $this->render('meme/index.html.twig', [
-            'color' => $this->color,
             'meme' => $mem,
             'page' => $page,
             'promoted' => $promoted
