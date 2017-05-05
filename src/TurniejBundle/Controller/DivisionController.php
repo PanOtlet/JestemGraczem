@@ -84,7 +84,6 @@ class DivisionController extends Controller
         }
 
         return $this->render('team/add.html.twig', [
-            'color' => $this->color,
             'form' => $form->createView(),
         ]);
     }
@@ -151,7 +150,6 @@ class DivisionController extends Controller
         }
 
         return $this->render('team/join.html.twig', [
-            'color' => $this->color,
             'form' => $form->createView(),
         ]);
     }
@@ -216,7 +214,6 @@ class DivisionController extends Controller
         }
 
         return $this->render('team/join.html.twig', [
-            'color' => $this->color,
             'form' => $form->createView(),
         ]);
     }
@@ -245,7 +242,6 @@ class DivisionController extends Controller
         }
 
         return $this->render('team/division.html.twig', [
-            'color' => $this->color,
             'team' => $team,
             'm8' => $m8
         ]);

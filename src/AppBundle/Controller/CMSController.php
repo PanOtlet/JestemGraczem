@@ -28,7 +28,6 @@ class CMSController extends Controller
             ->addMeta('property', 'og:url', $this->get('router')->generate('cms', ['title' => $cms->getUrl()], UrlGeneratorInterface::ABSOLUTE_URL));
 
         return $this->render('CMS/index.html.twig', [
-            'color' => $this->color,
             'cms' => $cms
         ]);
     }

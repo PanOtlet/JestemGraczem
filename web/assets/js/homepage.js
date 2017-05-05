@@ -22,6 +22,8 @@ function Stream(url) {
      */
     this.start = function (ads) {
 
+        $('#stream-container').hide();
+
         if (!ads) {
             this.antyBlocker();
         }
@@ -121,7 +123,6 @@ function Stream(url) {
             }
 
             stream.activeList.sort(sorter);
-            $('#streamLoading').remove();
             stream.renderStreamList(stream.activeList);
 
             var mySwiper = new Swiper('.swiper-container', {
@@ -131,6 +132,8 @@ function Stream(url) {
                 paginationClickable: true,
                 spaceBetween: 30
             });
+
+            $('#stream-container').show();
         });
     };
 

@@ -48,7 +48,6 @@ class MemeController extends Controller
         }
 
         return $this->render('meme/mem.html.twig', [
-            'color' => $this->color,
             'mem' => $mem
         ]);
     }
