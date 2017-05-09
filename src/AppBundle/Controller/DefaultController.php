@@ -44,26 +44,15 @@ class DefaultController extends Controller
         $statement->execute();
         $video = $statement->fetch();
 
-//        $mems = $this->getDoctrine()->getRepository('AppBundle:Meme')->findBy(['promoted' => true], ['id' => 'DESC'], 6);
-
         $featuredEvents = $this->getDoctrine()
             ->getManager()
             ->createQuery('SELECT e FROM AppBundle:FeaturedEvents e WHERE e.startDate < CURRENT_TIMESTAMP() AND e.date > CURRENT_TIMESTAMP()')
             ->getResult();
 
-//        $video = $this->getDoctrine()->getRepository('AppBundle:Video')->createQueryBuilder('m')
-//            ->where('m.promoted = 1')
-//            ->orderBy('m.id', 'DESC')
-//            ->setMaxResults(8)
-//            ->getQuery()->getResult();
-//
-//        $avatar = ($this->getUser()) ? md5($this->getUser()->getEmail()) : md5('thejestemgraczemsquad@gmail.com');
-
         return $this->render('default/index.html.twig', [
             'articles' => $articles,
             'mem' => $mem,
             'video' => $video,
-//            'avatar' => $avatar,
             'events' => $featuredEvents
         ]);
     }
