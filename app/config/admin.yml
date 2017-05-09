@@ -57,7 +57,6 @@ easy_admin:
                     - { property: 'username', label: 'admin.username'}
                     - { property: 'email', label: 'admin.email'}
                     - { property: 'last_login', label: 'admin.lastlogin', type: 'datetime'}
-                    - { property: 'locked', label: 'admin.locked'}
                     - { property: 'enabled', label: 'admin.enabled'}
             form:
                 fields:
